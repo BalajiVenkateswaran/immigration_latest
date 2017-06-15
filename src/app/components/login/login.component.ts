@@ -110,6 +110,13 @@ export class LoginComponent implements  OnInit {
                 this.appService.currentTab = 'clientview-petitions';
                 this.appService.moveToPage("clientview-petitions");
             }
+              // To Do
+            if (this.appService.user.roleName == "SUPERUSER") {
+                this.appService.applicationViewMode = "Superuser";
+                this.appService.clientId = this.appService.user.userId;
+                this.appService.currentTab = 'accounts';
+                this.appService.moveToPage("superuser-accounts");
+            }
           }
         }
       });
