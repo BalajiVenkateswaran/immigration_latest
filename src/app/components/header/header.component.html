@@ -66,11 +66,14 @@
           <li><a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');" [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']" routerLinkActive="active">Questionnaires</a></li>
           <li><a (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');" [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']" routerLinkActive="active">Requests</a></li>
         </ul>
+          <ul *ngIf="applicationViewMode=='Superuser'">
+              <li><a (click)="appService.moveToPage('accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']" routerLinkActive="active">Accounts</a></li>
+              <li><a (click)="appService.moveToPage('ProductCatalog'); highlightTab('ProductCatalog');" [ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']" routerLinkActive="active">Product Catalog</a></li>
+              <li><a (click)="appService.moveToPage('dashboards'); highlightTab('dashboards');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('dashboards') ? 'active' : '']" routerLinkActive="active">Dashboards</a></li>
+          </ul>
         <div class="clearfix"></div>
       </div>
     </div>
-    <!--Mani Menu End-->
-
   </div>
 
 </header>

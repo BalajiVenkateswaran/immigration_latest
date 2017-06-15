@@ -5,23 +5,19 @@
     <div class="table-data">
         <div class="row">
             <div class="col-md-12">
-                <!--<h2>Basic Information</h2>-->
-                <button type="submit" class="editbtn  no-marg-right" (click)="editQuestionnaireDC()" *ngIf="isQuestionnaireDCEdit==true" style="margin: 0px 0 10px 0 !important;">Edit</button>
-                <div class="tbl-head-btn" [hidden]="isQuestionnaireDCEdit">
-                    <button type="button" (click)="cancelQuestionnaireDC()" class="editbtn tbl-head-btn" *ngIf="isQuestionnaireDCEdit==false" style="margin: 0px 0 10px 0 !important;">Cancel</button>
-                    <button type="submit" value="Save" class="savebtn" (click)="saveQuestionnaireDC()" *ngIf="isQuestionnaireDCEdit==false" style="margin: 0px 10px 10px 0 !important;">Save</button>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-6 col-xs-12">
-                <div class="col-md-12 addresbox box-shadow">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h5 style="color:black;">Questionnaire Name:{{appService.QuestionnaireName}}, Form Type:{{appService.formname}}</h5><br />
-                        </div>
-                        <div class="col-sm-12 tbl-head">
-                            <h2 class="no-pad-left">Basic Information</h2>
-                        </div>
+                <h2 style="color:#2d2d2d !important;">Questionnaire Name:{{appService.QuestionnaireName}}, Form Type:{{appService.formname}}</h2>
+                <div class="col-sm-12">
+                    <div class="tbl-head-btn">
+                        <button type="submit" class="editbtn  no-marg-right" (click)="editQuestionnaireDC()" *ngIf="isQuestionnaireDCEdit==true">Edit</button>
                     </div>
+                    <div class="tbl-head-btn" [hidden]="isQuestionnaireDCEdit">
+                        <button type="button" (click)="cancelQuestionnaireDC()" class="editbtn tbl-head-btn" *ngIf="isQuestionnaireDCEdit==false">Cancel</button>
+                        <button type="submit" value="Save" class="savebtn" (click)="saveQuestionnaireDC()" *ngIf="isQuestionnaireDCEdit==false">Save</button>
+                    </div>
+                </div>
+                <h2>Basic Information</h2>
+
+                <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-4"><label for="">Name of the Petitioner</label></div>
                         <div class="col-md-8">

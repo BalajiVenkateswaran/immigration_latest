@@ -25,17 +25,18 @@
     <div class="table-data">
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-12">
-                    <h5 style="color:black;">Questionnaire Name:{{appService.QuestionnaireName}}, Form Type:{{appService.formname}}</h5><br />
+                    <h2 style="color:#2d2d2d !important;">Questionnaire Name:{{appService.QuestionnaireName}}, Form Type:{{appService.formname}}</h2>
+                <div class="col-sm-12">
+                    <div class="tbl-head-btn">
+                        <button class="editbtn" (click)="editQuestinnairei129Form()" *ngIf="isquestionnairei129hEdit==true" style="float: left;margin-right: 10px;">Edit</button>
+                        <button class="editbtn  no-marg-right" *ngIf="isquestionnairei129hEdit==true" style="float:right;">Repopulate</button>
+                    </div>
+                    <div class="tbl-head-btn" [hidden]="isquestionnairei129hEdit">
+                        <button type="button" (click)="cancelQuestinnairei129Edit()" class="editbtn tbl-head-btn" *ngIf="isquestionnairei129hEdit==false">Cancel</button>
+                        <button type="submit" value="Save" class="savebtn" (click)="savequestionnairei129Information()" *ngIf="isquestionnairei129hEdit==false">Save</button>
+                    </div>
                 </div>
                 <h2>Name of the Petitioner</h2>
-                <button type="submit" class="editbtn" (click)="editQuestinnairei129Form()" style="width:95px;margin-right:100px;" *ngIf="isquestionnairei129hEdit==true">Edit</button>
-                <button type="submit" class="editbtn  no-marg-right" style="width:95px;" *ngIf="isquestionnairei129hEdit==true">Re-Populate</button>
-
-                <div class="tbl-head-btn" [hidden]="isquestionnairei129hEdit">
-                    <button type="button" (click)="cancelQuestinnairei129Edit()" class="editbtn tbl-head-btn" *ngIf="isquestionnairei129hEdit==false">Cancel</button>
-                    <button type="submit" value="Save" class="savebtn" (click)="savequestionnairei129Information()" *ngIf="isquestionnairei129hEdit==false">Save</button>
-                </div>
             </div>
             <div class="col-md-12 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
