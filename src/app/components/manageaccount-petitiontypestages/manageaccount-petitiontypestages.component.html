@@ -1,0 +1,72 @@
+    <div class="main-content">
+        <div class="clearfix"></div>
+        <div class="petition-docs">
+            <h2>Petition Document Selection</h2>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="clearfix">&nbsp;</div>
+                        <h5><strong>Petition Type</strong></h5>
+                        <div class="left-form petition-type-stages-left">
+                            <form class="scroll-form">
+                                <div class="row" style="margin:0px; padding:0px 15px;">
+                                    <ul class="col-md-12 right-form petition-type-stages" >
+                                        <li *ngFor="let petitionType of petitionTypes;let i = index" (click)="onClickOfPetitionType(petitionType,i)" [ngClass]="{'slecteditemcolor': petitionType.petitionTypeId == selectedPetitionType.petitionTypeId,'selecteditems':petitionType.petitionTypeId != selectedPetitionType.petitionTypeId}">{{petitionType.petitiontype}}</li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3 ">
+                        <div class="clearfix">&nbsp;</div>
+                        <h5><strong>Stages</strong></h5>
+                        <div class="left-form petition-type-stages-left">
+                            <form>
+                                <div class="row" style="margin:0px; padding:0px 15px;" >
+                                    <ul class="col-md-12 right-form petition-type-stages" [dragula]="dragbox" [dragulaModel]="petitionStages">
+                                        <li *ngFor="let stage of petitionStages;let i = index" id="petitionstage" (click)="setClickedRowstages(stage,i)">
+                                            <div *ngIf="!stage.edit">
+                                                <span>{{ i + 1 }}  {{stage.name}}</span>
+                                                <div class="" style="float:right;">
+                                                    <a><i class="fa fa-pencil" (click)="editStagesList(stage)" aria-hidden="true" style="padding-left: 15px;"></i></a>
+                                                    <a><i class="fa fa-trash" (click)="deleteStagesList(stage, i)" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="stage.edit">
+                                                <input type="text" class="selecteditems" [value]="stage.name" (input)="updatename=$event.target.value" />
+                                                <div class="" style="float:right;">
+                                                    <a><i (click)="updateStages(stage,i)" class="fa fa-check" aria-hidden="true"></i></a>
+                                                    <a><i (click)="editCancel(stage)" class="fa fa-times" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                        </li>
+                                        <input *ngIf="addStages" type="text" class="selecteditems" [value]="addPetionStagesName" (input)="addPetionStagesName=$event.target.value" autofocus/>
+                                    </ul>
+                                </div>
+
+                            </form>
+                            <button *ngIf="saveorder" type="button" class="iportal-btn pull-right no-marg-right" (click)="saveOrder()">Save Order</button>
+                            <button *ngIf="addDeleteBtn" type="button" class="iportal-btn pull-right no-marg-right" (click)="addPetitionStages()">Add</button>
+                            <button *ngIf="cancelBtn" type="button" class="iportal-btn pull-left no-marg-right" (click)="cancelPetitionStages()">Cancel</button>
+                            <button *ngIf="saveBtn" type="button" class="iportal-btn pull-right no-marg-right" (click)="savePetitionStages(petitionStages)">Save</button>
+</div>
+                    </div>
+
+                    <div class="col-md-6 right-form petition-type-stages">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!--<ul class="updown">
+                                    <li><a href=""><i class="fa fa-angle-up" aria-hidden="true"></i></a></li>
+                                    <li><a href=""><i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
+                                </ul>-->
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

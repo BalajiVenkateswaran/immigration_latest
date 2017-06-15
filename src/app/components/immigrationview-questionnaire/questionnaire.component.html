@@ -1,0 +1,201 @@
+    <style>
+    .myclass {
+      float: right;
+      margin: 20px 0px 0 0;
+      border: none;
+      background:darkgray;
+      color: #d4d4d4 !important;
+      border-radius: 5px;
+      padding: 8px 15px;
+    }
+    </style>
+<div class="main-content">
+    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1> <h1 style="float:right;">{{appService.petitionDetails}}</h1>
+    <ul class="breadcrumb">
+        <li><a href="#">Petitions</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+
+        <h2>
+            <span>Client</span>
+            <button type="submit" (click)="addQuestionnaire()" class="iportal-btn pull-right no-marg-right">ADD</button></h2>
+        <table class="smarttable document-management" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td class="actions"  style="width:100px;">Actions</td>
+
+                    <td style="width:100px;">
+                        <span>Checkbox</span> <span class="pull-right"></span>
+                    </td>
+                    <td style="width:120px;">
+                        <span>Form Name</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Questionnaire Name</span> <span class="pull-right"></span>
+                    </td>
+                    <td style="width:100px;">
+                        <span>Status</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Sent To Client</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Status Date</span> <span class="pull-right"></span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="rowToBeAdded">
+                    <td  *ngIf="rowToBeAdded">
+                        <ul class="edit-delete">
+                            <li><a><i class="fa fa-check" aria-hidden="true" (click)="saveQuestion()"></i></a></li>
+                            <li><a><i class="fa fa-times" aria-hidden="true" (click)="cancelQuestion()"></i></a></li>
+                        </ul>
+
+                    </td>
+
+                    <td>
+                    <input type="checkbox"  [disabled]="true" [(ngModel)]="questionnaire.check" />
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-12">
+                              <select  [(ngModel)]="questionnaire.formId">
+                                <option *ngFor="let x of formsList" [ngValue]="x.applicationFormsId" [selected]="x.applicationFormsId === questionnaire.formId">{{x.formName}}</option>
+                              </select>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" [(ngModel)]="questionnaire.questionnaireName"/>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <select [(ngModel)]="questionnaire.status">
+                                        <option *ngFor="let x of status">{{x.status}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span>Completed</span>
+                    </td>
+                    <td>
+                        <span>DATE</span>
+                    </td>
+                </tr>
+                <tr *ngFor="let questionnaireClient of questionnaireList; let i=index">
+                    <td class="actions">
+                        <ul class="edit-delete">
+                            <li *ngIf="rowEdit[i]==true"><a (click)="editQuestionnaire(i,questionnaireClient)"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEdit[i]==false"><a (click)="saveQuestionnaire(i,questionnaireClient)"><i class="fa fa-check" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEdit[i]==false"><a (click)="cancelQuestionnaire(i,questionnaireClient)"><i class="fa fa-times" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEdit[i]==true"><a  (click)="deleteConfirm(i,questionnaireClient)"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </td>
+                    <td><input type="checkbox" [disabled]="!enableOrDisableCheckBox(questionnaireClient)"  [(ngModel)]="questionnaireClient.clientCheck" (change)="questionnaireChecked(i,questionnaireClient)"/></td>
+                    <td>
+                        <div class="col-md-12">
+                            <select  *ngIf="isEditQuestionnaire[i]==false" [(ngModel)]="questionnaireClient.formId">
+                                <option *ngFor="let x of formsList" [ngValue]="x.applicationFormsId" [selected]="x.applicationFormsId === questionnaireClient.formId">{{x.formName}}</option>
+                            </select>
+                            <span  *ngIf="isEditQuestionnaire[i]==true">{{getFormName(questionnaireClient.formId)}}</span>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="col-md-12">
+                            <input type="text" *ngIf="isEditQuestionnaire[i]==false" [(ngModel)]="questionnaireClient.questionnaireName">
+                            <span *ngIf="isEditQuestionnaire[i]==true">{{questionnaireClient.questionnaireName}}</span>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="col-md-12">
+                            <select  *ngIf="isEditQuestionnaire[i]==false" [(ngModel)]="questionnaireClient.clientStatus">
+                                <option *ngFor="let x of status">{{x.status}}</option>
+                            </select>
+                            <span *ngIf="isEditQuestionnaire[i]==true">{{questionnaireClient.clientStatus}}</span>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="col-md-12">
+                            <span>{{questionnaireClient.sentToClient ? 'Yes' : 'No'}}</span>
+                        </div>
+
+                    </td>
+                    <td>
+                        <span>{{questionnaireClient.clientStatusDate}}</span>
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button [(disabled)]="sendQuestionnaire" type="submit" class="submitbtn" (click)="sendQuestionnaireClient()" [ngClass]="{'myclass':sendQuestionnaire,'submitbtn':!sendQuestionnaire}">Send Questionnaire to client </button>
+        <div class="clearfix"></div>
+
+        <h2>
+            <span>Immigration Officer</span>
+        </h2>
+        <table class="smarttable document-management" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td class="actions">Actions</td>
+                    <td>
+                        <span>Form Name</span>
+                    </td>
+                    <td>
+                        <span>Questionnaire Name</span>
+                    </td>
+                    <td>
+                        <span>Status</span>
+                    </td>
+                    <td>
+                        <span>Status Date</span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let questionnaireEmployee of questionnaireList; let i=index">
+                    <td class="actions">
+                        <ul class="edit-delete">
+                            <li *ngIf="rowEditEmp[i]==true"><a (click)="editEmpQuestionnaire(i,questionnaireEmployee)"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEditEmp[i]==false"><a (click)="saveEmpQuestionnaire(i,questionnaireEmployee)"><i class="fa fa-check" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEditEmp[i]==false"><a (click)="cancelEmpQuestionnaire(i,questionnaireEmployee)"><i class="fa fa-times" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEditEmp[i]==true"><a (click)="deleteEmpQuestionnaire(i,questionnaireEmployee)"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="col-md-12">
+                          <span>{{getFormName(questionnaireEmployee.formId)}}</span>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="col-md-12">
+                            <input type="text" *ngIf="isEditEmpQuestionnaire[i]==false" [(ngModel)]="questionnaireEmployee.questionnaireName">
+                            <span *ngIf="isEditEmpQuestionnaire[i]==true">{{questionnaireEmployee.questionnaireName}}</span>
+                        </div>
+
+                    </td>
+                    <td>
+                      <div class="col-md-12">
+                        <select  *ngIf="isEditEmpQuestionnaire[i]==false" [(ngModel)]="questionnaireEmployee.employerStatus">
+                          <option *ngFor="let x of employerStatus">{{x.employerStatus}}</option>
+                        </select>
+                        <span *ngIf="isEditEmpQuestionnaire[i]==true">{{questionnaireEmployee.employerStatus}}</span>
+                      </div>
+                    </td>
+                    <td>
+                        <span>{{questionnaireEmployee.employerStatusDate}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

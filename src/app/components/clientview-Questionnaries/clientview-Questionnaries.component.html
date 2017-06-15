@@ -1,0 +1,57 @@
+﻿<div class="main-content">
+    <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+    <div class="clearfix"></div>
+    <div class="table-data">
+
+        <h2>Questionnnaires</h2>
+        <table class="smarttable document-management" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td>
+                        <span>Form Name</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Questionnaire Name</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Organization</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Status</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Status Date</span> <span class="pull-right"></span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let questionnaire of questionnaireClientViewList;">
+                    <td>
+                        {{questionnaire.formName}}
+                    </td>
+                    <td>
+
+                            {{questionnaire.questionnaireName}}
+
+                    </td>
+                    <td>
+                      {{questionnaire.orgName}}
+                    </td>
+                    <td>
+
+                            {{questionnaire.clientStatus}}
+
+                    </td>
+                    <td>
+
+                           {{questionnaire.clientStatusDate}}
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="clearfix"></div>
+    </div>
+
+</div>

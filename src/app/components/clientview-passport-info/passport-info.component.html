@@ -1,0 +1,121 @@
+<div class="main-content">
+    <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+    <ul class="breadcrumb">
+         <li><a href="#">Clients</a></li>
+         <li><a href="#">Passport</a></li>
+     </ul> 
+    <div class="clearfix"></div>
+    <div class="table-data-forms">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-sm-offset-3">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="no-pad-left">Passport</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="passportInfoEditForm()" *ngIf="isPassportInfoEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isPassportInfoEdit">
+                                <button type="button" (click)="cancelPassportInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isPassportInfoEdit==false">Cancel</button>
+                                <button type="submit" value="Save" (click)="savePassportformation()" class="savebtn" *ngIf="isPassportInfoEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-Passport">Passport</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="wa-name" [(ngModel)]="passportDetailsFileList.passportNumber" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.passportNumber}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-issuance-place">Issuance Place</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="wa-taxid" [(ngModel)]="passportDetailsFileList.issuancePlace" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.issuancePlace}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-issuance-state">Issuance State</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="wa-door" [(ngModel)]="passportDetailsFileList.issuanceState" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.issuanceState}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-issuance-country">Issuance Country</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-issuance-country" [(ngModel)]="passportDetailsFileList.issuanceCountry" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.issuanceCountry}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-issuing-country">Issuing Country</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="wa-city" [(ngModel)]="passportDetailsFileList.issuingCountry" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.issuingCountry}}</span></div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-4"><label for="pInfo-issuance-date">Issuance Date</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isPassportInfoEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passportDetailsFileList.isuanceDate" [selDate]="isuanceDate">
+                            </my-date-picker>
+                            <span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.isuanceDate}}</span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-4"><label for="pInfo-issuance-date">Expiration Date</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isPassportInfoEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passportDetailsFileList.expirationDate" [selDate]="expirationDate">
+                            </my-date-picker>
+                            <span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.expirationDate}}</span>
+                        </div>
+                      </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-issuance-date">Date of Birth</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isPassportInfoEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passportDetailsFileList.dateOfBirth" [selDate]="dateOfBirth">
+                            </my-date-picker>
+                            <span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.dateOfBirth}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-city-of-birth">City/Town/Village Of Birth</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="wa-country" [(ngModel)]="passportDetailsFileList.cityOfBirth" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.cityOfBirth}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-state-of-birth">State of Birth</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-state-of-birth" [(ngModel)]="passportDetailsFileList.stateOfBirth" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.stateOfBirth}}</span></div>
+                        {{countryofbirth}}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-country-of-birth">Country of Birth</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-country-of-birth" [(ngModel)]="passportDetailsFileList.countryOfBirth" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.countryOfBirth}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-nationality">Nationality</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-nationality" [(ngModel)]="passportDetailsFileList.nationality" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.nationality}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-country-nationality">Country of Nationality</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-country-nationality" [(ngModel)]="passportDetailsFileList.countryOfNationality" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.countryOfNationality}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-identification-marks">Identification Marks</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-identification-marks" [(ngModel)]="passportDetailsFileList.identificationMarks" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.identificationMarks}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-lost-passport">Have you ever lost a passport?</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-lost-passport" [(ngModel)]="passportDetailsFileList.everLostPassport" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.everLostPassport}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-travel-document">Travel Document</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-travel-document" [(ngModel)]="passportDetailsFileList.travelDocumentNumber" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.travelDocumentNumber}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-comments">Comments</label></div>
+                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passportDetailsFileList.comments" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.comments}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="tbl-head-btn" [hidden]="isPassportInfoEdit">
+                                <button type="button" (click)="cancelPassportInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isPassportInfoEdit==false">Cancel</button>
+                                <button type="submit" value="Save" (click)="savePassportformation()" class="savebtn bottombtns" *ngIf="isPassportInfoEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

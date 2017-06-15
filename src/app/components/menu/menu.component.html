@@ -1,0 +1,283 @@
+
+  <div class="navbar navbar-inverse navbar-fixed-left">
+
+      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-petition'">
+
+          <li>
+              <a id="testone" (click)="appservice.moveToPage('immigrationview-petition-details');highlightSBLink('Petition Details')" [ngClass]="[checkForCurrentSBLink('Petition Details') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-client-details"></span>
+                  <span>Petition Details</span>
+              </a>
+          </li>
+              <li ngbDropdown class="dropdown">
+                  <a (click)="appservice.moveToPage('immigrationview-questionnaire');highlightSBLink('Questionnaire')" [ngClass]="[checkForCurrentSBLink('Questionnaire') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="immigrationview-questionnaires" routerLinkActive="active">
+                      <span class="ico-questionnaire"></span>
+                      <span>Questionnaire</span>
+                      <span class="ico-arrow"></span>
+                  </a>
+                  <ul class="listsidemenu" role="menu" aria-labelledby="immigrationview-questionnaires" ngDefaultControl *ngIf="appservice.questionnaireName&&immiQstnre" [(ngModel)]="appservice.questionnaireName" >
+                      <li *ngFor="let value of appservice.questionnaireName" routerLinkActive="active"><a (click)="appservice.moveToQuestionnaire(value);highlightSBLink(value.questionnaireName)" [ngClass]="[checkForCurrentSBLink(value.questionnaireName) ? 'active': '']">{{value.questionnaireName}}</a></li>
+                  </ul>
+              </li>
+
+              <li>
+                  <a (click)="appservice.moveToPage('immigrationview-forms');highlightSBLink('Forms')" [ngClass]="[checkForCurrentSBLink('Forms') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-questionnaire"></span>
+                      <span>Forms</span>
+                  </a>
+              </li>
+              <li ngbDropdown class="dropdown">
+                  <a ngbDropdownToggle (click)="immiPetDoc();highlightSBLink(Documents)" [ngClass]="[checkForCurrentSBLink(Documents) ? 'active': '']" class="dropdown-toggle" id="petition-documents" data-toggle="dropdown">
+                      <span class="ico-dependents"></span>
+                      <span>Documents</span>
+                      <span class="ico-arrow"></span>
+                  </a>
+                  <ul class="listsidemenu" role="menu" *ngIf="immipetitiondoc" aria-labelledby="petition-documents">
+                      <li>
+                          <a (click)="appservice.moveToPage('immigrationview-petition-document-repository');highlightSBLink('Doc Repository')" [ngClass]="[checkForCurrentSBLink('Doc Repository') ? 'active': '']" routerLinkActive="active">Doc Repository</a>
+                      </li>
+                      <li>
+                          <a (click)="appservice.moveToPage('immigrationview-document-management');highlightSBLink('Doc Management')" [ngClass]="[checkForCurrentSBLink('Doc Management') ? 'active': '']" routerLinkActive="active">Doc Management</a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+
+      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-client'">
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')" [ngClass]="[checkForCurrentSBLink('Client Details') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-client-details"></span>
+                  <span>Client Details</span>
+              </a>
+          </li>
+          <li>
+            <a (click)="appservice.moveToPage('immigrationview-petitions');highlightSBLink('Petitions')" [ngClass]="[checkForCurrentSBLink('Petitions') ? 'active': '']" routerLinkActive="active">
+              <span class="ico-history"></span>
+              <span>Petitions</span>
+            </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-addressinfo');highlightSBLink('Address')" [ngClass]="[checkForCurrentSBLink('Address') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-address"></span>
+                  <span>Address</span>
+              </a>
+          </li>
+          <li ngbDropdown class="dropdown">
+              <a (click)="appservice.moveToPage('immigrationview-dependents');highlightSBLink('Dependents')" [ngClass]="[checkForCurrentSBLink('Dependents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" id="dependents" data-toggle="dropdown">
+                  <span class="ico-dependents"></span>
+                  <span>Dependents</span>
+                  <span class="ico-arrow"></span>
+              </a>
+              <ul class="listsidemenu" role="menu" aria-labelledby="dependents" name="dependents-list" ngDefaultControl *ngIf="appservice.dependents&&immidependents" [(ngModel)]="appservice.dependents">
+                  <li *ngFor='let value of appservice.dependents'><a (click)="appservice.moveToPageWithParams('dependentDetails',value.dependentId);highlightSBLink(value.firstName)" [ngClass]="[checkForCurrentSBLink(value.firstName) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
+              </ul>
+
+          </li>
+          <li ngbDropdown class="dropdown">
+              <a (click)="appservice.moveToPage('immigrationview-client-document-repository');highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" id="documents" data-toggle="dropdown">
+                  <span class="ico-dependents"></span>
+                  Documents
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-document-expirations');highlightSBLink('Documents Expirations')" [ngClass]="[checkForCurrentSBLink('Documents Expirations') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-documents-expirations"></span>
+                  <span>Documents Expirations</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-passport-info');highlightSBLink('Passport Info')" [ngClass]="[checkForCurrentSBLink('Passport Info') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-passport-info"></span>
+                  <span>Passport Info</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-job-details');highlightSBLink('Job Details')" [ngClass]="[checkForCurrentSBLink('Job Details') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-job-details"></span>
+                  <span>Job Details</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-arrival-departure-info');highlightSBLink('Arrival Desparture Inf')" [ngClass]="[checkForCurrentSBLink('Arrival Desparture Inf') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-arrival-desparture-info"></span>
+                  <span>Arrival Desparture Info</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-visas');highlightSBLink('Visas')" [ngClass]="[checkForCurrentSBLink('Visas') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-arrival-desparture-info"></span>
+                  <span>Visas</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-I-797-history');highlightSBLink('I -797 History')" [ngClass]="[checkForCurrentSBLink('I -797 History') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>I -797 History</span>
+              </a>
+          </li>
+      </ul>
+
+      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
+          <li>
+              <a (click)="appservice.moveToPage('manageaccount-user');highlightSBLink('User')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>User</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('manageaccount-organizations');highlightSBLink('Organizations')" [ngClass]="[checkForCurrentSBLink('Organizations') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Organizations</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('manageaccount-petitiontypestages');highlightSBLink('Petition Type Stages')" [ngClass]="[checkForCurrentSBLink('Petition Type Stages') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Petition Type Stages</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('manageaccount-shippingaddress');highlightSBLink('Shipping Address')" [ngClass]="[checkForCurrentSBLink('Shipping Address') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Shipping Address</span>
+              </a>
+          </li>
+          <!--<li>
+              <a (click)="appservice.moveToPage('manageaccount-preferences');highlightSBLink('Account Preferences')" [ngClass]="[checkForCurrentSBLink('Account Preferences') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Account Preferences</span>
+              </a>
+          </li>-->
+      </ul>
+
+      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='organization'">
+          <li>
+              <a (click)="appservice.moveToPage('organization');highlightSBLink('Org Details')" [ngClass]="[checkForCurrentSBLink('Org Details') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Org Details</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-organization-document-repository');highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Documents</span>
+              </a>
+          </li>
+      </ul>
+
+      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientView-client'">
+          <li>
+              <a (click)="appservice.moveToPage('clientview-client-details');highlightSBLink('ClientDetails')" [ngClass]="[checkForCurrentSBLink('ClientDetails') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-client-details"></span>
+                  <span>Client Details</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('clientview-addressinfo');highlightSBLink('Address')" [ngClass]="[checkForCurrentSBLink('Address') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-address"></span>
+                  <span>Address</span>
+              </a>
+          </li>
+          <li ngbDropdown class="dropdown">
+              <a (click)="appservice.moveToPage('clientview-dependents');highlightSBLink('Dependents')" [ngClass]="[checkForCurrentSBLink('Dependents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-dependents">
+                  <span class="ico-dependents"></span>
+                  <span>Dependents</span>
+                  <span class="ico-arrow"></span>
+              </a>
+              <ul class="listsidemenu" role="menu" aria-labelledby="dependents" name="dependents-list" ngDefaultControl *ngIf="appservice.dependents&&clientdependents" [(ngModel)]="appservice.dependents">
+                  <li *ngFor='let value of appservice.dependents'><a (click)="appservice.moveToPageWithParams('dependentDetails',value.dependentId);highlightSBLink(value.firstName)" [ngClass]="[checkForCurrentSBLink(value.firstName) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
+              </ul>
+          </li>
+          <li ngbDropdown class="dropdown">
+              <a (click)="clientDocClick();highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-documents" routerLinkActive="active">
+                  <span class="ico-documents"></span>
+                  <span>Documents</span>
+                  <span class="ico-arrow"></span>
+              </a>
+              <ul class="listsidemenu" *ngIf="clientdoctrue" role="menu" aria-labelledby="dependents" name="dependents-list" ngDefaultControl>
+                  <li (click)="appservice.selectedOrgClienttId=value.clientId;appservice.moveToPage('clientview-documents');highlightSBLink(value.orgName)" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" *ngFor='let value of docsideBarMenu'><a routerLinkActive="active">{{value.orgName}}</a></li>
+
+              </ul>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('clientview-document-expirations');highlightSBLink('Documents Expirations')" [ngClass]="[checkForCurrentSBLink('Documents Expirations') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-documents-expirations"></span>
+                  <span>Documents Expirations</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('clientview-passport-info');highlightSBLink('Passport Info')" [ngClass]="[checkForCurrentSBLink('Passport Info') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-passport-info"></span>
+                  <span>Passport Info</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('clientview-job-details');highlightSBLink('Job Details')" [ngClass]="[checkForCurrentSBLink('Job Details') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-job-details"></span>
+                  <span>Job Details</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('clientview-arrival-desparture-info');highlightSBLink('Arrival Desparture Info')" [ngClass]="[checkForCurrentSBLink('Arrival Desparture Info') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-arrival-desparture-info"></span>
+                  <span>Arrival Desparture Info</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('clientview-visas');highlightSBLink('Visas')" [ngClass]="[checkForCurrentSBLink('Visas') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-visas"></span>
+                  <span>Visas</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('clientview-I-797-history');highlightSBLink('I -797 History')" [ngClass]="[checkForCurrentSBLink('I -797 History') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>I -797 History</span>
+              </a>
+          </li>
+          </ul>
+
+      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-Questionnaire'">
+          <li ngbDropdown class="dropdown">
+              <a (click)="appservice.moveToPage('clientview-Questionnaries');highlightSBLink('Questionnaires')" [ngClass]="[checkForCurrentSBLink('Questionnaires') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-questionnaires" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Questionnaires</span>
+                  <span class="ico-arrow"></span>
+              </a>
+              <ul class="listsidemenu" *ngIf="clientQuest" role="menu" aria-labelledby="clientView-questionnaires">
+                  <!--<li><a (click)="appservice.moveToPage('questionnaire-i129');" routerLinkActive="active">Questionnaire Name A</a></li>
+                  <li><a (click)="appservice.moveToPage('QuestionnairenameB');" routerLinkActive="active">Questionnaire Name B</a></li>-->
+                  <!--<li>
+                      <a (click)="appservice.moveToPage('questionnaire-i129');" routerLinkActive="active">
+                          <span class="ico-client-details"></span>
+                          <span>Questionnaire I-129</span>
+                      </a>
+                  </li>-->
+                  <!--<li>
+                      <a (click)="appservice.moveToPage('questionnaire-i129clientView');" routerLinkActive="active">
+                          <span>Questionnaire I-129(Client View)</span>
+                      </a>
+
+                      <a (click)="appservice.moveToPage('questionnaire-i129hclientView');" routerLinkActive="active">
+                          <span>Questionnaire I-129H(Client View)</span>
+                      </a>
+                  </li>-->
+
+
+                  <!--<li>
+                      <a (click)="appservice.moveToPage('questionnaire-i129dc');" routerLinkActive="active">
+                          <span>I-129 DC</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a (click)="appservice.moveToPage('questionnaire-i129h');" routerLinkActive="active">
+                          <span>I-129 H</span>
+                      </a>
+                  </li>-->
+                  <li *ngFor='let value of appservice.dependentsname'><a (click)="appservice.questionaryName=value.questionnaireId;appservice.moveToQuestionnaire(value);highlightSBLink(value.questionnaireName)" [ngClass]="[checkForCurrentSBLink(value.questionnaireName) ? 'active': '']" routerLinkActive="active">{{value.questionnaireName}}</a></li>
+              </ul>
+          </li>
+      </ul>
+
+  </div>
+

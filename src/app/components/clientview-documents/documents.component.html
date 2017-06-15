@@ -1,0 +1,76 @@
+<div class="main-content">
+    <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+    <ul class="breadcrumb">
+        <li><a href="#">Documents</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2>Documents</h2>
+        <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
+            <div class="pull-right uplodbtn">
+                <div class="fileUpload btn btn-primary">
+                    <span>Choose File</span>
+                    <input type="file" class="upload" name="file" (change)="fileUpload($event)" />
+                </div>
+            </div>
+
+            <script type="text/javascript">
+              document.getElementById("uploadBtn").onchange = function () {
+                  document.getElementById("uploadFile").value = this.value;
+              };
+            </script>
+            <table class="smarttable document-management" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td class="actions">Action</td>
+                        <td class="sl-number">
+                            <span>SL No</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                          <span>Updated Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>File Name</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td class="sl-number"><input type="text" name="" formControlName="orderNo" /></td>
+                        <td><input type="text" name="" formControlName="updatedDate" /></td>
+                        <td><input type="text" name="" /></td>
+                    </tr>
+                    <tr *ngFor="let fileDetails of files; let i = index">
+                        <td class="actions">
+                            <ul class="edit-delete">
+                                <li *ngIf="rowEdit[i]==true"><a (click)="onFileRename(i,fileDetails)"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                                <li *ngIf="rowEdit[i]==false"><a (click)="saveFile(i,fileDetails)"><i class="fa fa-check" aria-hidden="true"></i></a></li>
+                                <li *ngIf="rowEdit[i]==false"><a (click)="cancelFileupload(i)"><i class="fa fa-times" aria-hidden="true"></i></a></li>
+                                <li *ngIf="rowEdit[i]==true"><a (click)="onFileDelete(fileDetails)"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+                                <li *ngIf="rowEdit[i]==true">
+                                    <div class="fileUpload">
+                                        <i class="fa fa-files-o" (click)="onReplaceFile(fileDetails)" aria-hidden="true"></i>
+                                        <input type="file" class="upload" name="file" (change)="fileReplace($event,fileDetails)" />
+                                    </div>
+
+                                </li>
+                                <li *ngIf="rowEdit[i]==true"><a (click)="onDownloadFile(fileDetails)"><i class="fa fa-download" aria-hidden="true"></i></a></li>
+
+                            </ul>
+
+                        </td>
+                        <td class="sl-number">{{fileDetails.orderNo}}</td>
+                        <!--<td>{{fileDetails.fileName}}</td>-->
+                        <td>{{fileDetails.updatedDate}}</td>
+                        <td><input type="text" *ngIf="onloadisEdit[i]==true" formControlName="fileName" [(ngModel)]="fileDetails.fileName" value="fileDetails.fileName"><span *ngIf="onloadisEdit[i]==false">{{fileDetails.fileName}}</span></td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+        </form>
+        <div class="clearfix"></div>
+    </div>
+</div>

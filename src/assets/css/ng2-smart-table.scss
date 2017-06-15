@@ -1,0 +1,275 @@
+@import 'colors';
+@import 'global';
+/*Login page css*/
+
+.ng2-smart-table-container {
+    table {
+            color: #585155;
+            width: 100%;
+            margin: 0px 0px;
+            thead {
+                /*background: rgba(255, 255, 255, 0.2);*/
+                tr {
+                    th {
+                        a {
+                            color:#585155 !important;
+                        }
+                    }
+                    td.actions {
+                        width: 100px;
+                    }
+                    td {
+                        padding: 7px 15px 7px 7px;
+                        border: solid 1px;
+                        border-color: rgba(255, 255, 255, 0.4);
+                        height: 40px;
+                        position: relative;
+
+                        a {
+                            color:#fff !important;
+                        }
+                        i {
+                            margin-left: 5px;
+                            font-size: 24px;
+                            color: #5093e1;
+                        }
+                        span:first-child {
+                            width: calc(100% - 23px)
+                        }
+                        span.pull-right {
+                            position: absolute;
+                            top: 13px;
+                            right: 5px;
+                        }
+                    }
+                }
+            }
+            tbody {
+                background: none;
+
+                tr:nth-child(even) {background: #f6f9fd;}
+                tr:nth-child(odd) {background: #FFF;}
+                tr.selected {background:none !important;}
+                tr {
+                    td.actions {
+                        width: 100px;
+                    }
+                    td {
+                        padding: 7px;
+                        border: solid 1px #e0e0e0 !important;
+                        & input{
+                            width: 100%;
+                            display: block;
+                            @include border-radius(4px);
+                            border-radius:4px;
+                            border: solid 1px;
+                            border-color: rgba(0, 0, 0, 0.2);
+                            padding:.375rem .75rem;
+                            color: #000 !important;
+                            background: rgba(255, 255, 255, 0.1);
+                            &:read-only{
+                                background: rgba(0, 0, 0, 0.1);
+                            }
+                        }
+                        input:focus {
+                                border: solid 1px #b1d9ff;
+                            }
+                        select.customSelect {
+                            width: 100%;
+                            @include border-radius(4px);
+                            border: solid 1px;
+                            border-color: rgba(0, 0, 0, 0.2);
+                            padding: 3px 4px 2px 5px;
+                            color: #000;
+                            font-weight: 600;
+                            font-size: 14px;
+                            background: rgba(255, 255, 255, 0.1);
+                            height: 30px;
+                            option {
+                                color: #000;
+                            }
+                        }
+                        a {
+                            color:#fff !important;
+                        }
+                        .form-control:focus {
+                            background:none !important;
+                        }
+                    }
+                    td:first-child {
+                        a {
+                            color:#5093e1 !important;
+                            font-size:18px;
+                            margin-left:8px;
+                        }
+                    }
+                }
+            }
+        }
+}
+
+
+.ng2-smart-table {
+    thead {
+
+        tr.ng2-smart-titles {
+            background: #eaeaeb;
+
+            th {
+                a {
+                    color:#000;
+                }
+            }
+        }
+        tr.ng2-smart-filters {
+        background: #f6f9fd;
+        }
+        tr.ng2-smart-filters, tr:last-child {
+    /*background:none !important;*/
+
+                        input{
+                            width: 100%;
+                            display: block;
+                            @include border-radius(4px);
+                            border: solid 1px;
+                            border-color: rgba(0, 0, 0, 0.2);
+                            padding: 3px 4px 2px 5px !important;
+                            color: #000 !important;
+                            background: #fff;
+                            &:read-only, disabled{
+                                background: rgba(0, 0, 0, 0.1);
+                            }
+
+                        }
+                        input:focus {
+                                border: solid 1px #b1d9ff;
+                            }
+                        select.customSelect {
+                            width: 100%;
+                            @include border-radius(4px);
+                            border: solid 1px;
+                            border-color: rgba(0, 0, 0, 0.2);
+                            padding: 3px 4px 2px 5px;
+                            color: #000;
+                            font-weight: 600;
+                            font-size: 14px;
+                            background: #fff;
+                            height: 30px;
+                            option {
+                                color: #000;
+                            }
+                        }
+                    }
+                }
+             }
+
+
+.ng2-smart-row:hover {
+    cursor:pointer;
+}
+
+
+
+.ng2-smart-table td, .ng2-smart-table th {
+    border: 1px solid #e0e0e0 !important;
+    padding:4px 7px 3px 7px !important;
+}
+
+/*.ng2-smart-th.phone {
+    width:150px;
+}
+.ng2-smart-th.petitionNumber {
+    width:80px;
+}
+.ng2-smart-th.lastUpdate {
+    width:120px;
+}
+.ng2-smart-th.status {
+    width:80px;
+    max-width:150px;
+}
+.ng2-smart-th.assignedTo {
+    width:120px;
+}
+.ng2-smart-th.firstName, .ng2-smart-th.lastName {
+    width:250px;
+}
+.ng2-smart-th.slNo {
+    width:80px;
+}
+.ng2-smart-th.clienttblstatus {
+    width:200px;
+}
+*/
+
+.ng2-smart-pagination.pagination {
+    width: 100%;
+    margin: 20px 0px 0px 0;
+
+    li {
+        width: 33px;
+    float: left;
+    }
+}
+
+
+/*.ng2-smart-th.petitionType {
+    width:90px;
+}
+.ng2-smart-th.assignedToName, .ng2-smart-th.petitionStage {
+    width:220px;
+}*/
+
+[_nghost-c1] a {
+    color: #2f323a !important;
+    }
+[_nghost-c1] a i {
+    font-size:18px;
+margin-right: 10px;
+}
+
+
+[_nghost-c1]     table tr:nth-child(even) {
+    background: #f6f9fd;
+}
+[_nghost-c1]     table tr:nth-child(odd) {
+    background: #fff;
+}
+[_nghost-c1]     table thead tr:first-child {
+       background: #eaeaeb;
+}
+[_nghost-c2]   .ng2-smart-row.selected[_ngcontent-c2] {
+    background:#fff !important;
+}
+[_nghost-c1]     table tr td, [_nghost-c1]     table tr th {
+        border: solid 1px #e0e0e0 !important;
+}
+
+
+/*Column Widths*/
+/* Immigration View Petitions Tab */
+.dsinstage, .petitionTable-type, .petitionTable-tag {
+        width:80px;
+    }
+.petitionTable-fileno, .petitionTable-status {
+    width:100px;
+}
+
+/*Immigration View Clients Tab */
+.clientTable-status {
+    width:160px;
+}
+.clientTable-phone {
+    width:110px;
+}
+
+/*Immigration View Add Petition */
+.addPetition-Type {
+    width: 80px;
+}
+.addPetition-subType, .addPetition-status {
+    width: 100px;
+}
+.addPetition-createdon, .addPetition-updatedon {
+    width: 120px;
+}

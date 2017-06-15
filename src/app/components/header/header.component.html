@@ -1,0 +1,77 @@
+
+
+<header>
+  <div class="container-fluid">
+    <div class="col-md-4 pull-left">
+      <div class="logo">
+        <a (click)="appService.moveToPage('petitions'); highlightTab('petitions');" >
+          <img src="assets/images/immigration-hub-logo.png" style="height: 50px"/>
+            <span id="logobeta">Beta</span>
+        </a>
+      </div>
+      <div *ngIf="appService.isBurgerMenuVisible" class="burger-menu">
+        <input type="checkbox" (click)="slideMenu()"  /><label></label>
+      </div>
+    </div>
+    <div class="col-md-4 text-center pull-left">
+      <div class="datails-holder-name">
+            <div class="pull-left">
+                  <h4 *ngIf="applicationViewMode=='Immigration'"><strong>{{selectedOrg.orgName}}</strong></h4>
+                  <!--<select #orgSelect required *ngIf="orgNamevisible==true && editorg==true" [(ngModel)]="selectedOrg" (focusout)="onFocusOut()" (ngModelChange)="changeOrg($event)">
+                      <option *ngFor="let org of orgNamelist" [ngValue]="org">{{org.orgName}}</option>
+                  </select>-->
+                </div>
+          <div class="pull-left">
+              <a class="ico-edit" *ngIf="applicationViewMode=='Immigration'" (click)="editorgname(orgSelect)"></a>
+              </div>
+          </div>
+    </div>
+    <div class="col-md-4 pull-left">
+      <div class="profile-container pull-right">
+        <div class="profile">
+          <div class="profile-name">
+            <h4>{{user.firstName}} {{user.lastName}}</h4>
+            <h6>{{user.roleName}}</h6>
+          </div>
+
+            <div ngbDropdown class="d-inline-block float-right">
+                <button class="btn" id="dropdownMenu1" ngbDropdownToggle>
+                    <div class="profile-pic">
+                        <img src="assets/images/user-menu.png" alt="profile-img">
+                    </div>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <button class="dropdown-item" (click)="logOut()">Logout</button>
+                </div>
+            </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <!--Mani Menu Start-->
+    <div class="row">
+      <div class="mainmenu">
+        <ul *ngIf="applicationViewMode=='Immigration'">
+          <li><a (click)="appService.moveToPage('petitions'); highlightTab('petitions');" [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']"  routerLinkActive="active" >Petitions</a></li>
+          <li><a (click)="appService.moveToPage('clients'); highlightTab('clients');" [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"  routerLinkActive="active">Clients</a></li>
+          <li><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');"   [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"   routerLinkActive="active">Organization</a></li>
+          <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
+          <li *ngIf="immigrationManager=='IMMIGRATION MANAGER'"><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"   routerLinkActive="active">Manage Account</a></li>
+        </ul>
+        <ul *ngIf="applicationViewMode=='Client'">
+          <li><a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');" [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']" routerLinkActive="active">Petitions</a></li>
+          <li><a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');" [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']" routerLinkActive="active">Client Details</a></li>
+          <li><a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');" [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']" routerLinkActive="active">Questionnaires</a></li>
+          <li><a (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');" [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']" routerLinkActive="active">Requests</a></li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <!--Mani Menu End-->
+
+  </div>
+
+</header>
+<div class="clearfix"></div>

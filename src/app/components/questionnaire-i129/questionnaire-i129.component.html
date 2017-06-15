@@ -1,0 +1,1280 @@
+<style>
+    .table-data {
+        margin-bottom: 30PX;
+    }
+</style>
+<div class="main-content">
+    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+    <h1 style="float:right;">{{appService.petitionDetails}}</h1>
+    <!--<div class="buttons">
+        <button type="submit" class="editbtn  no-marg-right" (click)="editQuestinnaireForm()" *ngIf="isquestionnaireEdit==true" style="float: left; margin-left:743px;">Edit</button>
+        <button class="editbtn  no-marg-right" *ngIf="isquestionnaireEdit==true" style="float:right;">Repopulate</button>
+
+    </div>
+    <div class="tbl-head-btn" [hidden]="isquestionnaireEdit">
+        <button type="button" (click)="cancelQuestinnaireEdit()" class="editbtn tbl-head-btn" *ngIf="isquestionnaireEdit==false">Cancel</button>
+        <button type="submit" value="Save" class="savebtn" (click)="savequestionnaireInformation(questionnairedata,contact,petitionInfo,beneficiaryInfo,processingInfo,processingInfoAddress,basicInfoAboutEmployeer,basicInfoAboutEmployeerAddress,defaultSelected,defaultSelectedvalue,petitionerSignatureDetails)" *ngIf="isquestionnaireEdit==false" style="margin: 0px 10px 0 0;">Save</button>
+    </div>-->
+
+
+    <ul class="breadcrumb">
+        <li><a href="#">Questionnaire</a></li>
+        <li><a href="#">I 129</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h5 style="color:black;">Questionnaire Name:{{appService.QuestionnaireName}}, Form Type:{{appService.formname}}</h5><br />
+            </div>
+            <div class="col-md-12">
+                <h2>Petitioner Information</h2>
+                <div class="col-sm-12">
+                    <div class="tbl-head-btn">
+                        <button class="editbtn" (click)="editQuestinnaireForm()" *ngIf="isquestionnaireEdit==true" style="float: left;margin-right: 10px;">Edit</button>
+                        <button class="editbtn  no-marg-right" *ngIf="isquestionnaireEdit==true" style="float:right;">Repopulate</button>
+                    </div>
+                    <div class="tbl-head-btn">
+                        <button type="button" (click)="cancelQuestinnaireEdit()" class="editbtn tbl-head-btn" *ngIf="isquestionnaireEdit==false">Cancel</button>
+                        <button type="submit" value="Save" class="savebtn" (click)="savequestionnaireInformation()" *ngIf="isquestionnaireEdit==false">Save</button>
+                    </div>
+                </div>
+         </div>
+
+
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+
+                    <!--petitioner information-->
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Company Or Organization Name</h2>
+
+                        </div>
+                    </div>-->
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Company Or Organization Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled    />     -->
+
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="petitonerInfo.orgName" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitonerInfo.orgName}}</span>
+
+
+                        </div>
+                    </div>
+
+                <!--</div>-->
+            <!--</div>
+            <div class="col-md-6 col-sm-6 col-xs-12">-->
+                <!--<div class="col-md-12 addresbox box-shadow">-->
+                    <div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left" style="margin-top: 15px;">Mailing Address of Individual, Company, or Organization</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">In Care of Name</label></div>
+
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="questionnaire.inCareOfName" />
+                            <span *ngIf="isquestionnaireEdit==true">{{questionnaire.inCareOfName}}</span>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Street Number</label></div>
+
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="questionnaire.street" />
+                            <span *ngIf="isquestionnaireEdit==true">{{questionnaire.street}}</span>
+                        </div>
+
+                    </div>
+                    <!--   <div class="row">
+                           <div class="col-md-4"><label for="">Ste</label></div>
+                           <div class="col-md-8">
+
+                               <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="questionnaire.suite" />
+                               <span *ngIf="isquestionnaireEdit==true">{{questionnaire.suite}}</span>
+
+
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-4"><label for="">Apt</label></div>
+                           <div class="col-md-8">
+
+                               <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="questionnaire.apt" />
+                               <span *ngIf="isquestionnaireEdit==true">{{questionnaire.apt}}</span>
+
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-4"><label for="">Flr</label></div>
+                           <div class="col-md-8">
+                               <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="questionnaire.floor" />
+                               <span *ngIf="isquestionnaireEdit==true">{{questionnaire.floor}}</span>
+
+                           </div>
+                       </div>  -->
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Apt/Ste/Flr</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="questionnaire.aptType">
+                                <option *ngFor="let aptTypes of apt">{{aptTypes.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{questionnaire.aptType}}</span>
+
+                            <!--  <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="apt" />
+                            <span *ngIf="isquestionnaireEdit==true">{{apt}}</span> -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Number</label></div>
+                        <div class="col-md-8">
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="questionnaire.houseNumber" />
+                            <span *ngIf="isquestionnaireEdit==true">{{questionnaire.houseNumber}}</span>
+                            <!--  <input type="text" id="" value="" disabled  /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">City</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="questionnaire.city" />
+                            <span *ngIf="isquestionnaireEdit==true">{{questionnaire.city}}</span>
+                            <!--  <input type="text" id="" value="" disabled  />-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">State</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled  /> -->
+
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="questionnaire.state">
+                                <option *ngFor="let petitionerState of states">{{petitionerState.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{questionnaire.state}}</span>
+
+
+
+
+                            <!--  <input type="text" *ngIf="isquestionnaireEdit==false" />
+                              <span *ngIf="isquestionnaireEdit==true"></span> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Zip Code</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="questionnaire.zipCode" />
+                            <span *ngIf="isquestionnaireEdit==true">{{questionnaire.zipCode}}</span>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Country</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="questionnaire.country" />
+                            <span *ngIf="isquestionnaireEdit==true">{{questionnaire.country}}</span>
+                            <!-- <input type="text" id="" value="" disabled  /> -->
+                        </div>
+                    </div>
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left" style="margin-top: 15px;">Contact Information</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Daytime TN</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="contact.dayTimeTn" />
+                            <span *ngIf="isquestionnaireEdit==true">{{contact.dayTimeTn}}</span>
+                            <!-- <input type="text" id="" value="" disabled  />-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">StreetMobile TN</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled  /> -->
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="contact.mobileTn" />
+                            <span *ngIf="isquestionnaireEdit==true">{{contact.mobileTn}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Email</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled  /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="contact.email" />
+                            <span *ngIf="isquestionnaireEdit==true">{{contact.email}}</span>
+                        </div>
+                    </div>
+                    <!-- </form>-->
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+                    <div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left"  style="margin-top: 15px;">Other Information</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">FEIN</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitonerInfo.fein" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitonerInfo.fein}}</span>
+                            <!--  <input type="text" id="" value="" disabled   /> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--petitioner information end-->
+
+
+    <div class="table-data">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Information About This Petition</h2>
+            </div>
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Requested Nonimmigrant Classification : H-1B</h2>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Requested Nonimmigrant Classification : H-1B</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitionInfo.nonImmigrantClassification" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitionInfo.nonImmigrantClassification}}</span>
+                            <!-- <input type="text" id="" value="" disabled  /> -->
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Basis for Classification</h2>
+                        </div>
+                    </div>-->
+                    <div class="row"  style="margin-top: 10px;">
+                        <div class="col-md-4"><label for="">Basis for Classification</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitionInfo.basicClassification" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitionInfo.basicClassification}}</span>
+                            <!--   <input type="text" id="" value="" disabled  /> -->
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Provide the most recent petition/application receipt number for the Beneficiary</h2>
+                        </div>
+                    </div>-->
+                    <div class="row"  style="margin-top: 10px;">
+                        <div class="col-md-4"><label for="">Provide the most recent petition/application receipt number for the Beneficiary</label></div>
+                        <div class="col-md-8">
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitionInfo.recentPetitionReceiptNo" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitionInfo.recentPetitionReceiptNo}}</span>
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="table-data">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Beneficiary Information</h2>
+            </div>
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Provide Name of Beneficiary</h2>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Beneficiary Last Name</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.lastName" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.lastName}}</span>
+                            <!-- <input type="text" id="" value="" disabled  /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Beneficiary First Name</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.firstName" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.firstName}}</span>
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Other Information</h2>
+                        </div>
+                    </div>-->
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Date Of Birth</label></div>
+                        <div class="col-md-8">
+                            <!--<input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.dateOfBirth" />-->
+
+                         <my-date-picker *ngIf="isquestionnaireEdit==false"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="beneficiaryInfo.dateOfBirth" [selDate]="dateOfBirth"></my-date-picker>   
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.dateOfBirth}}</span>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-taxid">Gender</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.gender">
+                                <option *ngFor="let genderTypes of gender">{{genderTypes.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.gender}}</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">US SSN</label></div>
+                        <div class="col-md-8">
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.ssn" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.ssn}}</span>
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Alien Registration Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.alienRegistrationNumber" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.alienRegistrationNumber}}</span>
+                            <!--  <input type="text" id="" value="" disabled  /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Country of Birth</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.countryOfBirth" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.countryOfBirth}}</span>
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Province of Birth</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.provinceOfBirth" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.provinceOfBirth}}</span>
+                            <!--  <input type="text" id="" value="" disabled   /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Country of Citizenship or Nationality</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.nationality" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.nationality}}</span>
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">If beneficiary is in US</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Date Of Last Arrival</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                            <!--<input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.dateOfLastArrival" />-->
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.dateOfLastArrival}}</span>
+                            <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="beneficiaryInfo.dateOfLastArrival" [selDate]="dateOfLastArrival"></my-date-picker>  
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">I-94 Record Number</label></div>
+                        <div class="col-md-8">
+                            <!--<input type="text" id="" value="" disabled   /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.i94" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.i94}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Passport Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.passportNo" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.passportNo}}</span>
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Date Passport Issued</label></div>
+                        <div class="col-md-8">
+                            <!--<input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.passportIssueDate" />-->
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.passportIssueDate}}</span>
+                            <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="beneficiaryInfo.passportIssueDate" [selDate]="passportIssueDate"></my-date-picker>
+
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Date Passport Expires</label></div>
+                        <div class="col-md-8">
+                            
+                            <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="beneficiaryInfo.passportExpiryDate" [selDate]="passportExpiryDate"></my-date-picker>
+                            <!--<input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.passportExpiryDate" />-->
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.passportExpiryDate}}</span>
+                            <!--<input type="text" id="" value="" disabled  /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">PP Country of Issuance</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.countryOfIssuance" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.countryOfIssuance}}</span>
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Current Nonimmigrant Status</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled  /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.currentNonImmigrantStatus" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.currentNonImmigrantStatus}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Date Status Expires</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                            <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="beneficiaryInfo.dateStatusExpires" [selDate]="dateStatusExpires"></my-date-picker>
+
+                            <!--<input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.dateStatusExpires" />-->
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.dateStatusExpires}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">SEVIS Number (if any)</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled  /> -->
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.sevisNumber" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.sevisNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">EAD (if any)</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled  /> -->
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.ead" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.ead}}</span>
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Current Residential U.S. Address</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Street Number and Name</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.street1" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.street1}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Apt/Ste/Flr</label></div>
+                        <div class="col-md-8">
+
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.aptType">
+                                <option *ngFor="let aptTypes of apt">{{aptTypes.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.aptType}}</span>
+
+                            <!--  <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="apt" />
+                              <span *ngIf="isquestionnaireEdit==true">{{apt}}</span> -->
+
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                         <div class="col-md-4"><label for="">Ste</label></div>
+                         <div class="col-md-8">
+
+                             <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="suite"/>
+                             <span *ngIf="isquestionnaireEdit==true">{{suite}}</span>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-md-4"><label for="">Flr</label></div>
+                         <div class="col-md-8">
+
+                             <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="floor"/>
+                             <span *ngIf="isquestionnaireEdit==true">{{floor}}</span>
+                         </div>
+                     </div> -->
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Number</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled   /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false"   [(ngModel)]="beneficiaryInfo.aptNumber" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.aptNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">City</label></div>
+                        <div class="col-md-8">
+                            <!--<input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.city" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.city}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">State</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled  /> -->
+                            <!--<input type="text" *ngIf="isquestionnaireEdit==false" />
+                             <span *ngIf="isquestionnaireEdit==true"></span> -->
+
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.state">
+                                <option *ngFor="let currentResidentialStates of states">{{currentResidentialStates.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.state}}</span>
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Zipcode</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="beneficiaryInfo.zipCode" />
+                            <span *ngIf="isquestionnaireEdit==true">{{beneficiaryInfo.zipCode}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-data">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Processing Information</h2>
+            </div>
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Type of Office </h2>
+                        </div>
+                    </div>-->
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-taxid">Type of Office</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfo.typeOfOffice">
+                                <option *ngFor="let officeTypes of typesOfOffice">{{officeTypes.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfo.typeOfOffice}}</span>
+
+                        </div>
+                    </div>
+
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Office Address (City)</h2>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Office Address (City)</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfo.officeAddress" />
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfo.officeAddress}}</span>
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">U.S State or Foreign Country</h2>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-md-4"><label for="">U.S State or Foreign Country Office Address (City)</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfo.usStateOrForeignCountry" />
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfo.usStateOrForeignCountry}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"><label for="">Does each person in this petition have a valid passport?</label></div>
+                        <div style="padding:5px" *ngFor="let x of questions">
+                            <label for="">
+                                <input type="radio" name="eachPersonHaveValidPassport" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="processingInfo.eachPersonHaveValidPassport" />
+                                {{x.display}}
+                            </label>
+                        </div>
+                        <!--<div class="col-md-8">
+                         
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfo.eachPersonHaveValidPassport" />
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfo.eachPersonHaveValidPassport}}</span>
+
+                        </div>-->
+                    </div>
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Beneficiary's Foreign Address</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Street Number and Name</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfoAddress.street" />
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.street}}</span>
+
+                        </div>
+                    </div>
+                    <!--   <div class="row">
+                           <div class="col-md-4"><label for="">Apt</label></div>
+                           <div class="col-md-8">
+                               <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="processingInfoAddress.apt"  />
+                               <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.apt}}</span>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-4"><label for="">Ste</label></div>
+                           <div class="col-md-8">
+                               <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="processingInfoAddress.suite" />
+                               <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.suite}}</span>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-4"><label for="">Flr</label></div>
+                           <div class="col-md-8">
+                               <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="processingInfoAddress.floor" />
+                               <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.floor}}</span>
+                           </div>
+                       </div> -->
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Apt/Ste/Flr</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfoAddress.aptType">
+                                <option *ngFor="let aptTypes of apt">{{aptTypes.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.aptType}}</span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Number</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfoAddress.houseNumber" />
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.houseNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">City</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfoAddress.city" />
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.city}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">State</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <!-- <input type="text" *ngIf="isquestionnaireEdit==false" />
+                             <span *ngIf="isquestionnaireEdit==true"></span> -->
+
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfoAddress.state">
+                                <option *ngFor="let benefiencyForeignStates of states">{{benefiencyForeignStates.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.state}}</span>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Zipcode</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="processingInfoAddress.zipCode" />
+                            <span *ngIf="isquestionnaireEdit==true">{{processingInfoAddress.zipCode}}</span>
+                        </div>
+                    </div>
+
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Does each person in this petition have a valid passport?</h2>
+                        </div>
+                    </div>-->
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-data">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Basic Information About the Proposed Employment and Employer</h2>
+            </div>
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Job Title</h2>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Job Title</label></div>
+                        <div class="col-md-8">
+                            <!--<input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.jobTitle" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.jobTitle}}</span>
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <!--<div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">LCA or ETA Case Number</h2>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-md-4"><label for="">LCA or ETA Case Number</label></div>
+                        <div class="col-md-8">
+                            <!--<input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.lcaNumber" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.lcaNumber}}</span>
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Address where the beneficiary(ies) will work if different from address in Petitioner Information </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Street Number and Name</label></div>
+                        <div class="col-md-8">
+                            <!--<input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeerAddress.street" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.street}}</span>
+                        </div>
+                    </div>
+                    <!--    <div class="row">
+                            <div class="col-md-4"><label for="">Apt</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeerAddress.apt" />
+                                <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.apt}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Ste</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="basicInfoAboutEmployeerAddress.suite"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.suite}}</span>
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-md-4"><label for="">Flr</label></div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeerAddress.floor" />
+                                    <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.floor}}</span>
+                                </div>
+                            </div> -->
+
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Apt/Ste/Flr</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeerAddress.aptType">
+                                <option *ngFor="let aptTypes of apt">{{aptTypes.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.aptType}}</span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Number</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeerAddress.houseNumber" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.houseNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">City</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeerAddress.city" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.city}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">State</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                            <!-- <input type="text" *ngIf="isquestionnaireEdit==false" />
+                             <span *ngIf="isquestionnaireEdit==true"></span> -->
+
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeerAddress.state">
+                                <option *ngFor="let basicInformationstates of states">{{basicInformationstates.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.state}}</span>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Zipcode</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeerAddress.zipCode" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeerAddress.zipCode}}</span>
+                        </div>
+                    </div>
+
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Did you include an itinerary with the petition </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10"><label for="">Did you include an itinerary with the petition </label></div>
+                        <div class="col-md-8">
+
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.itineraryIncluded" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.itineraryIncluded}}</span>
+                        </div>
+                        <!--<div style="padding:5px" *ngFor="let x of questions">
+                            <label for="">
+                                <input type="radio" name="itineraryIncluded" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="basicInfoAboutEmployeer.itineraryIncluded" />
+                                {{x.display}}
+                            </label>
+                        </div>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10"><label for="">Will the beneficiary(ies) work for you off-site at another company or organization's location </label></div>
+                        <!--<div class="col-md-8">
+                          
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.workingInAnotherOrg" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.workingInAnotherOrg}}</span>
+                        </div>-->
+                        <div style="padding:5px" *ngFor="let x of questions">
+                            <label for="">
+                                <input type="radio" name="workingInAnotherOrg" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="basicInfoAboutEmployeer.workingInAnotherOrg" />
+                                {{x.display}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10"><label for="">Will the beneficiary(ies) work exclusively in the Commonwealth of the Northern Mariana Islands (CNMI) </label></div>
+                        <!--<div class="col-md-8">
+                          
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.workInCNMI" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.workInCNMI}}</span>
+                        </div>-->
+                        <div style="padding:5px" *ngFor="let x of questions">
+                            <label for="">
+                                <input type="radio" name="workInCNMI" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="basicInfoAboutEmployeer.workInCNMI" />
+                                {{x.display}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10"><label for="">Is this a full-time position</label></div>
+                        <!--<div class="col-md-8">
+                          
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.fullTimePosition" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.fullTimePosition}}</span>
+                        </div>-->
+                        <div style="padding:5px" *ngFor="let x of questions">
+                            <label for="">
+                                <input type="radio" name="itineraryIncluded" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="basicInfoAboutEmployeer.fullTimePosition" />
+                                {{x.display}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">If the answer to Item Number 7. is no, how many hours per week for the position?</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.hoursPerWeek" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.hoursPerWeek}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Wages</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.wages" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.wages}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">per (Specify hour, week, month, or year)</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.hoursPerWeek" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.hoursPerWeek}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Other Compensation (Explain)</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.otherCompensations" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.otherCompensations}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Dates of intended employment</label></div>
+                        <div class="col-md-8">
+                              <!--<input type="text" *ngIf="isquestionnaireEdit==false"  />-->
+                              <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.intendEmploymentDate}}</span> 
+                            <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="beneficiaryInfo.intendEmploymentDate" [selDate]="intendEmploymentDate"></my-date-picker>
+
+                        </div>
+                        <div class="col-md-4"><label for="">From</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.intendentEmploymentFrom" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.intendentEmploymentFrom}}</span>
+                        </div>
+
+                        <div class="col-md-4"><label for="">To</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.intendentEmploymentTo" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.intendentEmploymentTo}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Type of Business</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.typeOfBusiness" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.typeOfBusiness}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Year Established</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.yearEstablished" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.yearEstablished}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Current Number of Employees in the United States</label></div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.currentNoOfEmployeesInUSA" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.currentNoOfEmployeesInUSA}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Gross Annual Income</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.grossAnnualIncome" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.grossAnnualIncome}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Net Annual Income</label></div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="basicInfoAboutEmployeer.netAnnualIncome" />
+                            <span *ngIf="isquestionnaireEdit==true">{{basicInfoAboutEmployeer.netAnnualIncome}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="table-data">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Certification Regarding the Release of Controlled Technology or Technical Data to Foreign Persons in the United States </h2>
+            </div>
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+
+                    <div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Job Title</h2>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <h6 style="padding-left:15px;">Select any one Job Title from below</h6>
+                        <div class="col-md-12" style="margin-top:10px;">
+                            <label for="">
+                                A license is not required from either the U.S. Department of Commerce or the U.S. Department of State to release Such Technology or technical data to the foreign person
+                            </label>
+                        </div>
+                        <div class="col-md-6">                            
+                         <input type="checkbox"  (change)="checkedChange($event)" [checked]="result"    *ngIf="isquestionnaireEdit==false" />                                               
+
+                            <span *ngIf="isquestionnaireEdit==true"><input type="checkbox" [checked]="result" disabled /></span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="">
+                                A license is required from the U.S. Department of Commerce and/or the U.S. Department of State to release such technology or technical data to the beneficiary and the petitioner will prevent access to the controlled technology or technical data by the beneficiary until and unless the petitioner has received the required license or other authorization to release it to the beneficiary
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+
+                            <input type="checkbox" (change)="checkedChanges($event)"  [checked]="resultdata"    *ngIf="isquestionnaireEdit==false" />
+                         
+                            <span *ngIf="isquestionnaireEdit==true"><input type="checkbox" [checked]="resultdata" disabled  /></span>
+
+                        </div>
+                    </div>
+
+
+
+                  <!--  <div class="row">
+                        <div class="col-md-6">
+                            <label for="">
+                                A license is not required from either the U.S. Department of Commerce or the U.S. Department of State to release Such Technology or technical data to the foreign person
+                            </label>
+                        </div>                      
+                        <div class="col-md-6">
+                            <select *ngIf="isquestionnaireEdit==false"  [(ngModel)]="defaultSelected">
+                                <option *ngFor="let result of ischecking" [ngValue]="result">{{result.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{defaultSelected}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">
+                                A license is required from the U.S. Department of Commerce and/or the U.S. Department of State to release such technology or technical data to the beneficiary and the petitioner will prevent access to the controlled technology or technical data by the beneficiary until and unless the petitioner has received the required license or other authorization to release it to the beneficiary
+                            </label>
+                        </div>
+                        <div class="col-md-6">                         
+
+                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="defaultSelectedvalue" >
+                                <option *ngFor="let resultvalue of ischecking" [ngValue]="resultvalue">{{resultvalue.name}}</option>
+                            </select>
+                            <span *ngIf="isquestionnaireEdit==true">{{defaultSelectedvalue}}</span>
+
+                        </div> 
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-data">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Declaration, Signature, and Contact Information of Petitioner or Authorized Signatory</h2>
+            </div>
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+
+                    <div class="row">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Name and Title of Authorized Signatory</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for=""> Family Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <!--   <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitionerSignatureDetails.familyName" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitionerSignatureDetails.familyName}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Given Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <!--<input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitionerSignatureDetails.givenName" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitionerSignatureDetails.givenName}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Title</label>
+                        </div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitionerSignatureDetails.title" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitionerSignatureDetails.title}}</span>
+
+                        </div>
+                    </div>
+
+                <!--</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">-->
+
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-sm-12 tbl-head">
+                            <h2 class="no-pad-left">Signatory's Contact Information</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Daytime Telephone Number</label>
+                        </div>
+                        <div class="col-md-8">
+                            <!-- <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitionerSignatureDetails.telephoneNumber" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitionerSignatureDetails.telephoneNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Email Address </label>
+                        </div>
+                        <div class="col-md-8">
+                            <!--  <input type="text" id="" value="" disabled /> -->
+                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="petitionerSignatureDetails.email" />
+                            <span *ngIf="isquestionnaireEdit==true">{{petitionerSignatureDetails.email}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,234 @@
+﻿<div class="main-content">
+    
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Beneficiary Information</h2>
+                <!--<button type="submit" class="editbtn  no-marg-right" (click)="editClientQuestionnaire()" *ngIf="isQuestionnaireClientEdit==true">Edit</button>-->
+                <div class="tbl-head-btn">
+                    <!--<button type="button" (click)="cancelClientQuestionnaire()" class="editbtn tbl-head-btn" *ngIf="isQuestionnaireClientEdit==false">Cancel</button>-->
+                    <button type="submit" value="Save" class="savebtn savelaterbtn" (click)="saveClientQuestionnaire(questionnaireClient)" *ngIf="isQuestionnaireClientEdit==false">Save Later</button>
+                    <button type="submit" value="Save" class="savebtn saveinformbtn" (click)="saveClientQuestionnaire(questionnaireClient)" *ngIf="isQuestionnaireClientEdit==false">Save and inform firm</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                        <div class="row">
+                            <div class="col-sm-12 tbl-head">
+                                <h2 class="no-pad-left">Provide Name of Beneficiary</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Last Name</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false" [(ngModel)]="questionnaireClient.lastName" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.lastName}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">First Name</label></div>
+                            <div class="col-md-8">
+                                <input *ngIf="isQuestionnaireClientEdit==false" type="text" [(ngModel)]="questionnaireClient.firstName"/>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.firstName}}</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                        <div class="row">
+                            <div class="col-sm-12 tbl-head">
+                                <h2 class="no-pad-left">Other Information</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Date Of Birth</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isQuestionnaireClientEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="questionnaireClient.dateOfBirth" [selDate]="dateOfBirth"></my-date-picker>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.dateOfBirth}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-taxid">Gender</label></div>
+                            <div class="col-md-8">
+                                <select *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.gender">
+                                    <option *ngFor="let genderTypes of gender" >{{genderTypes.name}}</option>
+                                </select>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.gender}}</span>
+                               
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">US SSN</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.ssn" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.ssn}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Alien Registration Number</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.alienRegistrationNumber" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.alienRegistrationNumber}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Country of Birth</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.countryOfBirth" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.countryOfBirth}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Province of Birth</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.provinceOfBirth" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.provinceOfBirth}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Country of Citizenship or Nationality</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.nationality" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.nationality}}</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                        <div class="row">
+                            <div class="col-sm-12 tbl-head">
+                                <h2 class="no-pad-left">If beneficiary is in US</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Date Of Last Arrival</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isQuestionnaireClientEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="questionnaireClient.dateOfLastArrival" [selDate]="dateOfLastArrival"></my-date-picker>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.dateOfLastArrival}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">I-94 Record Number</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.i94"/>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.i94}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Passport Number</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.passportNo" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.passportNo}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Date Passport Issued</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isQuestionnaireClientEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="questionnaireClient.passportIssueDate" [selDate]="passportIssueDate"></my-date-picker>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.passportIssueDate}}</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Date Passport Expires</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isQuestionnaireClientEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="questionnaireClient.passportExpiryDate" [selDate]="passportExpiryDate"></my-date-picker>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.passportExpiryDate}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">PP Country of Issuance</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.countryOfIssuance" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.countryOfIssuance}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Current Nonimmigrant Status</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.currentNonImmigrantStatus" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.currentNonImmigrantStatus}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Date Status Expires</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isQuestionnaireClientEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="questionnaireClient.dateStatusExpires" [selDate]="dateStatusExpires"></my-date-picker>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.dateStatusExpires}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">SEVIS Number (if any)</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.sevisNumber" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.sevisNumber}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">EAD (if any)</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.ead" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.ead}}</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                        <div class="row">
+                            <div class="col-sm-12 tbl-head">
+                                <h2 class="no-pad-left">Current Residential U.S. Address</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Street Number and Name</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false" [(ngModel)]="questionnaireClient.street1"/>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.street1}}</span>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="">Apt/Ste/Flr</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isQuestionnaireClientEdit==false" [(ngModel)]="questionnaireClient.aptType">
+                                <option *ngFor="let aptTypes of apt">{{aptTypes.name}}</option>
+                            </select>
+                            <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.aptType}}</span>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Number</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.aptNumber" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.aptNumber}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">City</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.city"/>
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.city}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">State</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.state" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.state}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Zipcode</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isQuestionnaireClientEdit==false"  [(ngModel)]="questionnaireClient.zipCode" />
+                                <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.zipCode}}</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

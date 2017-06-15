@@ -1,0 +1,47 @@
+<div class="container-fluid login-bg no-pad">
+				<div class="login_side">
+                    <form action="" class="login-form" [formGroup]="login" (ngSubmit)="onSubmitClick(login.value, login.valid)">
+                            <h2>Immigration Hub</h2>
+                            <div class="form-group row" [hidden]="!message">
+                                {{message}}
+                            </div>
+                            <div class="form-group" *ngIf="forgotPwd==true">
+                                <div class="user_id">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" id="userId" placeholder="Email" formControlName="emailId">
+                                </div>
+                                <div class="password">
+                                    <label>PASSWORD</label>
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" formControlName="password">
+                                </div>
+                                <div class="sign_in">
+                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                </div>
+                                <div class="forgot_password">
+                                    <a (click)="frgtPwd()">Forgot Password?</a>
+                                </div>
+                            </div>
+                        <div class="form-group" *ngIf="forgotPwd==false">
+                            <div class="user_id">
+                                <label>Enter Registered Email Id</label>
+                                <input type="email" class="form-control" id="forgetPassword" placeholder="Email" formControlName="emailId">
+                            </div>
+                            <div class="sign_in">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                            <div class="login_text">
+                                <h4>Welcome to Immigration Hub </h4>
+                                <p>Next gen case management, automation and document management application for your immigration needs</p>
+                            </div>
+                        </form>
+				</div>
+			<div class="login_main">
+				<div class="col-md-7 pull-right">
+					<div class="login_maintext">
+						<h4>Welcome to Immigration Hub</h4>
+						<p>Next gen case management, automation and document management application for your immigration needs</p>
+					</div>
+				</div>
+			</div>
+		</div>

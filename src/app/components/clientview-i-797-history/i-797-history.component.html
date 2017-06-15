@@ -1,0 +1,17 @@
+    <div class="main-content">
+        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">I-797 History</a></li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="table-data">
+            <h2>I-797 History</h2>
+            <form [formGroup]="addI797History">
+                <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                </form>
+                <div class="clearfix"></div>
+</div>
+
+
+    </div>

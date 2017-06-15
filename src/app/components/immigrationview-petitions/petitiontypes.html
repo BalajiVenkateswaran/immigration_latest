@@ -1,0 +1,4 @@
+
+<select name="name" [(ngModel)]="name">
+    <option *ngFor="let ptst of allPetitionTypesAndSubTypes" [value]="ptst.petitionTypeId">{{ptst.petitiontype}}</option>
+</select>

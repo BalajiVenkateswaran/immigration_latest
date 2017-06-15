@@ -1,0 +1,14 @@
+<div class="main-content">
+    <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+    <ul class="breadcrumb">
+        <li><a href="#">Dependents</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2><span>Dependents</span></h2>
+        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+    <div class="clearfix"></div>
+</div>
+
+
+</div>

@@ -1,0 +1,30 @@
+<div class="main-content">
+  <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
+  <ul class="breadcrumb">
+    <li><a href="#">Organizations</a></li>
+  </ul>
+  <div class="clearfix"></div>
+  <div class="table-data">
+    <h2>
+      <span>Organizations</span>
+    </h2>
+    <form [formGroup]="addOrganization"
+          (ngSubmit)="addOrganizationSubmit(addOrganization.value, addOrganization.valid)">
+      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+                       (editConfirm)="onEditConfirm($event)"
+                       (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+    </form>
+
+    <ul class="pagenation">
+      <li><a href="#"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#" class="act">4</a></li>
+      <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+
+
+</div>

@@ -1,0 +1,381 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px; }
+
+a, button {
+  cursor: pointer; }
+
+.float-right > .dropdown-menu {
+  left: auto;
+  right: 0px; }
+
+body a {
+  text-decoration: none !important; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #fff; }
+
+.show > .dropdown-menu {
+  display: block; }
+
+.cancelbtn, .savebtn {
+  margin: 0;
+  width: 80px;
+  height: 30px;
+  border: none;
+  color: #ffffff !important;
+  border-radius: 5px; }
+
+.cancelbtn, .cancelbtn.no-marg {
+  background: #c62828;
+  margin-right: 10px !important; }
+
+.pad-x15 {
+  padding-right: 15px;
+  padding-left: 15px; }
+
+.savebtn {
+  background: #5cc34a; }
+
+/*.box-shadow{
+    -webkit-box-shadow:2px 1px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow:2px 1px 4px rgba(0, 0, 0, 0.4);
+    box-shadow:2px 1px 4px rgba(0, 0, 0, 0.4);
+}*/
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em; }
+
+::-webkit-scrollbar-thumb {
+  background: slategray; }
+
+::-webkit-scrollbar-track {
+  background: #b8c0c8; }
+
+body {
+  scrollbar-face-color: slategray;
+  scrollbar-track-color: #b8c0c8; }
+
+.no-pad {
+  padding: 0px !important; }
+
+.no-pad-left {
+  padding-left: 0px !important; }
+
+.no-pad-right {
+  padding-right: 0px !important; }
+
+.no-pad-top {
+  padding-top: 0px !important; }
+
+.no-pad-bottom {
+  padding-bottom: 0px !important; }
+
+.no-marg {
+  margin: 0px !important; }
+
+.no-marg-left {
+  margin-left: 0px !important; }
+
+.no-marg-right {
+  margin-right: 0px !important; }
+
+.no-marg-top {
+  margin-top: 0px !important; }
+
+.no-marg-bottom {
+  margin-bottom: 0px !important; }
+
+button {
+  cursor: pointer; }
+
+placeholder ::-webkit-input-placeholder {
+  color: #fff; }
+placeholder :-moz-placeholder {
+  color: #fff; }
+placeholder ::-moz-placeholder {
+  color: #fff; }
+placeholder :-ms-input-placeholder {
+  color: #fff; }
+
+.ico-arrow-down {
+  background: url(../images/icons/down-arrow.png) no-repeat 0 0; }
+
+.ico-arrow-up {
+  background: url(../images/icons/up-arrow.png) no-repeat 0 0; }
+
+/*.ico-client-details{
+    background: url(../images/icons/client-details.png) no-repeat 0 0;
+}
+.ico-address{
+    background: url(../images/icons/address.png) no-repeat 0 0;
+}
+.ico-dependents{
+    background: url(../images/icons/depenedents.png) no-repeat 0 0;
+}
+.ico-documents{
+    background: url(../images/icons/documents.png) no-repeat 0 0;
+}
+.ico-documents-expirations{
+    background: url(../images/icons/document-expirations.png) no-repeat 0 0;
+}
+.ico-passport-info{
+    background: url(../images/icons/passport-info.png) no-repeat 0 0;
+}
+.ico-job-details{
+    background: url(../images/icons/job-details.png) no-repeat 0 0;
+}
+.ico-arrival-desparture-info{
+    background: url(../images/icons/arrival-departure-info.png) no-repeat 0 0;
+}
+.ico-visas{
+    background: url(../images/icons/visas.png) no-repeat 0 0;
+}
+.ico-history{
+    background: url(../images/icons/history.png) no-repeat 0 0;
+}
+.ico-questionnaire{
+    background: url(../images/icons/questionnaire.png) no-repeat 0 0;
+}
+.ico-flight{
+    background: url(../images/icons/flight.png) no-repeat 0 0;
+}
+.ico-leaf{
+    background: url(../images/icons/leaf.png) no-repeat 0 0;
+}*/
+.ico-edit {
+  background: url(../images/icons/search.png) no-repeat 0 0; }
+
+.smoothness {
+  transition: all 0.3s ease; }
+
+.iportal-btn {
+  margin: 0px 20px 0 0;
+  width: auto;
+  height: 30px;
+  padding: 6px 12px;
+  font-size: 13px;
+  border: none;
+  background: #04a9fc;
+  color: #ffffff !important;
+  border-radius: 5px; }
+
+/*Login page css*/
+.ng2-smart-table-container table {
+  color: #585155;
+  width: 100%;
+  margin: 0px 0px; }
+  .ng2-smart-table-container table thead {
+    /*background: rgba(255, 255, 255, 0.2);*/ }
+    .ng2-smart-table-container table thead tr th a {
+      color: #585155 !important; }
+    .ng2-smart-table-container table thead tr td.actions {
+      width: 100px; }
+    .ng2-smart-table-container table thead tr td {
+      padding: 7px 15px 7px 7px;
+      border: solid 1px;
+      border-color: rgba(255, 255, 255, 0.4);
+      height: 40px;
+      position: relative; }
+      .ng2-smart-table-container table thead tr td a {
+        color: #fff !important; }
+      .ng2-smart-table-container table thead tr td i {
+        margin-left: 5px;
+        font-size: 24px;
+        color: #5093e1; }
+      .ng2-smart-table-container table thead tr td span:first-child {
+        width: calc(100% - 23px); }
+      .ng2-smart-table-container table thead tr td span.pull-right {
+        position: absolute;
+        top: 13px;
+        right: 5px; }
+  .ng2-smart-table-container table tbody {
+    background: none; }
+    .ng2-smart-table-container table tbody tr:nth-child(even) {
+      background: #f6f9fd; }
+    .ng2-smart-table-container table tbody tr:nth-child(odd) {
+      background: #FFF; }
+    .ng2-smart-table-container table tbody tr.selected {
+      background: none !important; }
+    .ng2-smart-table-container table tbody tr td.actions {
+      width: 100px; }
+    .ng2-smart-table-container table tbody tr td {
+      padding: 7px;
+      border: solid 1px #e0e0e0 !important; }
+      .ng2-smart-table-container table tbody tr td input {
+        width: 100%;
+        display: block;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        border-radius: 4px;
+        border-radius: 4px;
+        border: solid 1px;
+        border-color: rgba(0, 0, 0, 0.2);
+        padding: .375rem .75rem;
+        color: #000 !important;
+        background: rgba(255, 255, 255, 0.1); }
+        .ng2-smart-table-container table tbody tr td input:read-only {
+          background: rgba(0, 0, 0, 0.1); }
+      .ng2-smart-table-container table tbody tr td input:focus {
+        border: solid 1px #b1d9ff; }
+      .ng2-smart-table-container table tbody tr td select.customSelect {
+        width: 100%;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        border-radius: 4px;
+        border: solid 1px;
+        border-color: rgba(0, 0, 0, 0.2);
+        padding: 3px 4px 2px 5px;
+        color: #000;
+        font-weight: 600;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.1);
+        height: 30px; }
+        .ng2-smart-table-container table tbody tr td select.customSelect option {
+          color: #000; }
+      .ng2-smart-table-container table tbody tr td a {
+        color: #fff !important; }
+      .ng2-smart-table-container table tbody tr td .form-control:focus {
+        background: none !important; }
+    .ng2-smart-table-container table tbody tr td:first-child a {
+      color: #5093e1 !important;
+      font-size: 18px;
+      margin-left: 8px; }
+
+.ng2-smart-table thead tr.ng2-smart-titles {
+  background: #eaeaeb; }
+  .ng2-smart-table thead tr.ng2-smart-titles th a {
+    color: #000; }
+.ng2-smart-table thead tr.ng2-smart-filters {
+  background: #f6f9fd; }
+.ng2-smart-table thead tr.ng2-smart-filters, .ng2-smart-table thead tr:last-child {
+  /*background:none !important;*/ }
+  .ng2-smart-table thead tr.ng2-smart-filters input, .ng2-smart-table thead tr:last-child input {
+    width: 100%;
+    display: block;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    border: solid 1px;
+    border-color: rgba(0, 0, 0, 0.2);
+    padding: 3px 4px 2px 5px !important;
+    color: #000 !important;
+    background: #fff; }
+    .ng2-smart-table thead tr.ng2-smart-filters input:read-only, .ng2-smart-table thead tr.ng2-smart-filters input disabled, .ng2-smart-table thead tr:last-child input:read-only, .ng2-smart-table thead tr:last-child input disabled {
+      background: rgba(0, 0, 0, 0.1); }
+  .ng2-smart-table thead tr.ng2-smart-filters input:focus, .ng2-smart-table thead tr:last-child input:focus {
+    border: solid 1px #b1d9ff; }
+  .ng2-smart-table thead tr.ng2-smart-filters select.customSelect, .ng2-smart-table thead tr:last-child select.customSelect {
+    width: 100%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    border: solid 1px;
+    border-color: rgba(0, 0, 0, 0.2);
+    padding: 3px 4px 2px 5px;
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+    background: #fff;
+    height: 30px; }
+    .ng2-smart-table thead tr.ng2-smart-filters select.customSelect option, .ng2-smart-table thead tr:last-child select.customSelect option {
+      color: #000; }
+
+.ng2-smart-row:hover {
+  cursor: pointer; }
+
+.ng2-smart-table td, .ng2-smart-table th {
+  border: 1px solid #e0e0e0 !important;
+  padding: 4px 7px 3px 7px !important; }
+
+/*.ng2-smart-th.phone {
+    width:150px;
+}
+.ng2-smart-th.petitionNumber {
+    width:80px;
+}
+.ng2-smart-th.lastUpdate {
+    width:120px;
+}
+.ng2-smart-th.status {
+    width:80px;
+    max-width:150px;
+}
+.ng2-smart-th.assignedTo {
+    width:120px;
+}
+.ng2-smart-th.firstName, .ng2-smart-th.lastName {
+    width:250px;
+}
+.ng2-smart-th.slNo {
+    width:80px;
+}
+.ng2-smart-th.clienttblstatus {
+    width:200px;
+}
+*/
+.ng2-smart-pagination.pagination {
+  width: 100%;
+  margin: 20px 0px 0px 0; }
+  .ng2-smart-pagination.pagination li {
+    width: 33px;
+    float: left; }
+
+/*.ng2-smart-th.petitionType {
+    width:90px;
+}
+.ng2-smart-th.assignedToName, .ng2-smart-th.petitionStage {
+    width:220px;
+}*/
+[_nghost-c1] a {
+  color: #2f323a !important; }
+
+[_nghost-c1] a i {
+  font-size: 18px;
+  margin-right: 10px; }
+
+[_nghost-c1] table tr:nth-child(even) {
+  background: #f6f9fd; }
+
+[_nghost-c1] table tr:nth-child(odd) {
+  background: #fff; }
+
+[_nghost-c1] table thead tr:first-child {
+  background: #eaeaeb; }
+
+[_nghost-c2] .ng2-smart-row.selected[_ngcontent-c2] {
+  background: #fff !important; }
+
+[_nghost-c1] table tr td, [_nghost-c1] table tr th {
+  border: solid 1px #e0e0e0 !important; }
+
+/*Column Widths*/
+/* Immigration View Petitions Tab */
+.dsinstage, .petitionTable-type, .petitionTable-tag {
+  width: 80px; }
+
+.petitionTable-fileno, .petitionTable-status {
+  width: 100px; }
+
+/*Immigration View Clients Tab */
+.clientTable-status {
+  width: 160px; }
+
+.clientTable-phone {
+  width: 110px; }
+
+/*Immigration View Add Petition */
+.addPetition-Type {
+  width: 80px; }
+
+.addPetition-subType, .addPetition-status {
+  width: 100px; }
+
+.addPetition-createdon, .addPetition-updatedon {
+  width: 120px; }
+
+/*# sourceMappingURL=ng2-smart-table.css.map */

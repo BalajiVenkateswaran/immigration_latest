@@ -1,0 +1,12 @@
+    <div class="main-content">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+
+        <div class="clearfix"></div>
+        <div class="table-data">
+            <h2>Arrival/Departure Info</h2>
+          <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm) = "onDeleteConfirm($event)" (editConfirm) = "onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+            <div class="clearfix"></div>
+        </div>
+
+
+    </div>

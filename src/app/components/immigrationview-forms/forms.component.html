@@ -1,0 +1,58 @@
+    <div class="main-content">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1><h1 style="float:right;">{{appService.petitionDetails}}</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Petitions</a></li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="table-data">
+            <h2>Forms</h2>
+          
+        <table class="smarttable document-management" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td class="actions">Actions</td>
+                    <td>
+                        <span>Form Name</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Save Form As</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Generate Form</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Generated Date</span> <span class="pull-right"></span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let forms of formsData; let i=index;">
+                    <td class="actions">
+                        <ul class="edit-delete">
+                            <li *ngIf="rowEdit[i]==true"><a (click)="editForm(i,forms)"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEdit[i]==false"><a (click)="saveForm(i,forms)"><i class="fa fa-check" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEdit[i]==false"><a (click)="cancelForm(i,forms)"><i class="fa fa-times" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span>{{forms.formName}}</span>
+                    </td>
+                    <td>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isEditForms[i]==false" [(ngModel)]="forms.formName">
+                            <span *ngIf="isEditForms[i]==true">{{forms.formName}}</span>
+                        </div>
+
+                    </td>
+                    <td>
+                        <span><button class="iportal-btn" (click)="generateForm(forms)">Generate Form</button></span>
+                    </td>
+                    <td>{{forms.formName}}</td>
+                 </tr>
+                </tbody>
+        </table>
+                <div class="clearfix"></div>
+</div>
+
+
+    </div>

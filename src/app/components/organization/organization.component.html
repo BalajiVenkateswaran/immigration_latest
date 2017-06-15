@@ -1,0 +1,355 @@
+<div class="main-content">
+    <!--<h1>{{orgDetails.orgName}}</h1>-->
+    <div class="clearfix"></div>
+    <div class="table-data-forms">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="no-pad-left">Basic Org Info</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isProfileEdit">
+                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveOrgProfile()" *ngIf="isProfileEdit==false">Save</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-name">Id</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-name" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.orgDetailsId"  /><span *ngIf="isProfileEdit==true">{{orgDetails.orgDetailsId}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-taxid">Name</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-taxid" [readonly]=true  [(ngModel)]="orgDetails.orgName" /><span *ngIf="isProfileEdit==true">{{orgDetails.orgName}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-door">Name Of Forms</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-door" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.nameOnForms" /><span *ngIf="isProfileEdit==true">{{orgDetails.nameOnForms}}</span></div>
+                    </div>
+                  <div class="row">
+                    <div class="col-md-4"><label for="wa-email">Email</label></div>
+                    <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-email" [readonly]="isProfileEdit"  [(ngModel)]="orgDetails.email"  /><span *ngIf="isProfileEdit==true">{{orgDetails.email}}</span></div>
+                  </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-status">Status</label></div>
+                        <div class="col-md-8">
+                          <select *ngIf="isProfileEdit==false" [(ngModel)]="orgDetails.status">
+                            <option *ngFor="let orgStatus of status">{{orgStatus.name}}</option>
+                          </select>
+                          <span *ngIf="isProfileEdit==true">{{orgDetails.status}}</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                      <!--  <div class="col-md-4"><label for="wa-city">Open Date</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-city" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.openDate"  /><span *ngIf="isProfileEdit==true">{{orgDetails.openDate}}</span></div> -->
+
+
+                        <div class="col-md-4"><label>Open Date</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isProfileEdit==false" id="wa-openDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="orgDetails.openDate" [selDate]="openDate">
+                            </my-date-picker>
+
+                          <!--<input type="text" *ngIf="isProfileEdit==false" [readonly]="true" id="wa-openDate" [(ngModel)]="orgDetails.openDate" />-->
+
+                          <span *ngIf="isProfileEdit==true">{{orgDetails.openDate}}</span>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-county">File Number</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-county"  [readonly]="true"  [(ngModel)]="orgDetails.fileNumber" /><span *ngIf="isProfileEdit==true">{{orgDetails.fileNumber}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-state">FED ID</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-state"  [readonly]="isProfileEdit" [(ngModel)]="orgDetails.fedId" /><span *ngIf="isProfileEdit==true">{{orgDetails.fedId}}</span></div>
+                    </div>
+
+                  <div class="row">
+                    <div class="col-md-4"><label for="wa-country">Mark for Deletion</label></div>
+                    <div class="col-md-8">
+                      <select *ngIf="isProfileEdit==false" [(ngModel)]="orgDetails.markForDeletion">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
+                      <span *ngIf="isProfileEdit==true">{{orgDetails.markForDeletion ? 'Yes' : 'No'}}</span>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4"><label for="wa-country">Marked For Deletion By</label></div>
+                    <div class="col-md-8">
+                      <input type="text" *ngIf="isProfileEdit==false" [readonly]=true
+                             [(ngModel)]="orgDetails.markedForDeletionBy"/>
+                      <span *ngIf="isProfileEdit==true">{{orgDetails.markedForDeletionBy}}</span>
+                    </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="tbl-head-btn" [hidden]="isProfileEdit">
+                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isProfileEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveOrgProfile()" *ngIf="isProfileEdit==false">Save</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="no-pad-left">Signing Person Details</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editSigninDetails()" *ngIf="isSigninEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isSigninEdit">
+                                <button type="button" (click)="cancelSigninEdit()" class="editbtn tbl-head-btn" *ngIf="isSigninEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveSignInformation()" *ngIf="isSigninEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Name</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinDetails.name" />
+                            <span *ngIf="isSigninEdit==true">{{signinDetails.name}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Title</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinDetails.title" />
+                            <span *ngIf="isSigninEdit==true">{{signinDetails.title}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Email</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinDetails.email" />
+                            <span *ngIf="isSigninEdit==true">{{signinDetails.email}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Telephone Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinDetails.tnNo" />
+                            <span *ngIf="isSigninEdit==true">{{signinDetails.tnNo}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Fax</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinDetails.fax" />
+                            <span *ngIf="isSigninEdit==true">{{signinDetails.fax}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Country</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.country" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.country}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Time Zone</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.timeZone" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.timeZone}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Street 1</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.street1" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.street1}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Street 2</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.street2" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.street2}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Apt./Ste./Flr./Door</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.aptNo" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.aptNo}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">City</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.city" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.city}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">County</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.county" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.county}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">State</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.state" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.state}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Zip Code</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.zipCode" />
+                            <span *ngIf="isSigninEdit==true">{{signinAddress.zipCode}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tbl-head-btn" [hidden]="isSigninEdit">
+                                <button type="button" (click)="cancelSigninEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isSigninEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveSignInformation()" *ngIf="isSigninEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="no-pad-left">Adminstrative Person Details</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editAdminDetails()" *ngIf="isAdminEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isAdminEdit">
+                                <button type="button" (click)="cancelAdminEdit()" class="editbtn tbl-head-btn" *ngIf="isAdminEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveAdminInformation()" *ngIf="isAdminEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Name</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.name" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeDetails.name}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Title</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.title" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeDetails.title}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Email</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.email" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeDetails.email}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Telephone Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.tnNo" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeDetails.tnNo}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Fax</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.fax" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeDetails.fax}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Country</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.country" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.country}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Time Zone</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.timeZone" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.timeZone}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Street 1</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.street1" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.street1}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Street 2</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.street2" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.street2}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Apt./Ste./Flr./Door</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.aptNo" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.aptNo}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">City</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.city" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.city}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">County</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.county" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.county}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">State</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.state" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.state}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Zip Code</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdminEdit==false" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.zipCode" />
+                            <span *ngIf="isAdminEdit==true">{{adminstrativeAddress.zipCode}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tbl-head-btn" [hidden]="isAdminEdit">
+                                <button type="button" (click)="cancelAdminEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isAdminEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveAdminInformation()" *ngIf="isAdminEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

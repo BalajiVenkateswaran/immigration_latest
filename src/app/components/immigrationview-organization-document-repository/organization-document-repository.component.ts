@@ -1,0 +1,253 @@
+import { Component, OnInit } from '@angular/core';
+import {OrganizationDocumentRepositoryService} from "./organization-document-repository.service";
+import {documentRepository} from "../../models/documentRepository";
+import {FormGroup, FormControl} from "@angular/forms";
+import {Http, Headers, RequestOptions, Response} from "@angular/http";
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
+import {User} from "../../models/user";
+import {AppService} from "../../services/app.service";
+import * as FileSaver from 'file-saver';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { DialogService } from "ng2-bootstrap-modal";
+@Component({
+    selector: 'app-document-repository',
+  templateUrl: './document-repository.component.html',
+  styleUrls: ['./document-repository.component.sass']
+})
+export class OrganizationDocumentRepositoryComponent implements OnInit {
+    public addDocumentRepository: FormGroup; // our model driven form
+    public submitted: boolean; // keep track on whether form is submitted
+    private message: string;
+    user: User;
+    private accountId;
+    constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http, public appService: AppService, private dialogService: DialogService) {
+        if (this.appService.user) {
+            this.user = this.appService.user;
+
+
+        }
+        this.addDocumentRepository = new FormGroup({
+            orderNo: new FormControl(''),
+            fileName: new FormControl(''),
+            updatedDate: new FormControl('')
+        });
+        this.accountId = this.user.accountId;
+    }
+    private deleterow;
+    private FileId;
+    public delmessage;
+    onFileDelete(i,FileDetails) {
+        var index = this.files.indexOf(FileDetails);
+        this.FileId = FileDetails.fileId;
+        this.delmessage = FileDetails.fileName;
+        this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Confirmation',
+            message: 'Are you sure you want to Delete ' + this.delmessage+'?'
+        })
+            .subscribe((isConfirmed) => {
+                //Get dialog result
+                //this.confirmResult = isConfirmed;
+
+                if (isConfirmed) {
+                    this.files.splice(index, 1);
+                   this.organizationdocumentrepositoryService.deleteFile(FileDetails.fileId).subscribe(res => {
+                     console.log("FileDelete %o",res);
+                    });
+                }
+            });
+    }
+
+    private rowEdit: boolean[]=[];
+    private onloadisEdit: boolean[] = [];
+    onFileRename(i, fileDetails) {
+        fileDetails.fileName = fileDetails.fileName.split(".")[0];
+        console.log(fileDetails.fileName);
+        this.rowEdit[i] = !this.rowEdit[i];
+        this.onloadisEdit[i] = !this.onloadisEdit[i];
+
+    }
+    fileUpload(event) {
+        let fileList: FileList = event.target.files;
+        let file: File = fileList[0];
+        let formData: FormData = new FormData();
+        var x = file.name;
+        for (var j = 0; j < this.files.length; j++) {
+            if (x == this.files[j].fileName) {
+                var upload = false;
+            }
+        }
+        var y = x.split(".");
+        if (fileList.length > 0 && y[1] == "pdf" && upload != false) {
+
+            formData.append('file', file, file.name);
+
+            let headers = new Headers();
+            headers.append("Content-Type", "multipart/ form - data");
+            let options = new RequestOptions({ headers: headers });
+            this.organizationdocumentrepositoryService.uploadFile(this.appService.orgId, formData, headers)
+                .subscribe(
+                res => {
+
+                    this.getFilesList();
+                }
+                );
+
+        }
+        else {
+            if (upload == false) {
+                this.dialogService.addDialog(ConfirmComponent, {
+                    title: 'Error..!',
+                    message: 'Filename is already exists.'
+                });
+            }
+            else {
+                this.dialogService.addDialog(ConfirmComponent, {
+                    title: 'Error..!',
+                    message: 'Please Upload Only Pdf files.'
+                });
+            }
+        }
+
+    }
+    saveFile(i, fileDetails) {
+        var filename = fileDetails.fileName.concat(".pdf");
+        for (var j = 0; j < this.files.length; j++) {
+            if (i != j) {
+                if (filename == this.files[j].fileName) {
+                    this.dialogService.addDialog(ConfirmComponent, {
+                        title: 'Error..!',
+                        message: 'Filename is already exists.'
+                    });
+                    var save = false;
+                }
+            }
+        }
+        if (save != false) {
+            this.FileId = fileDetails.fileId;
+            this.fileName = fileDetails.fileName.concat(".pdf");
+            fileDetails.fileName = this.fileName;
+            this.rowEdit[i] = !this.rowEdit[i];
+            this.onloadisEdit[i] = !this.onloadisEdit[i];
+            var url = "/file/rename";
+            var data = {
+                "accountId": this.accountId,
+                "fileId": this.FileId,
+                "fileName": this.fileName
+            };
+            this.organizationdocumentrepositoryService.renameFile(url, data).subscribe(
+                res => {
+                    console.log(res);
+                }
+            );
+        }
+    }
+    fileReplace(event, fileDetails) {
+        this.FileId = fileDetails.fileId;
+        let fileList: FileList = event.target.files;
+        let file: File = fileList[0];
+        let formData: FormData = new FormData();
+        var x = file.name;
+        for (var j = 0; j < this.files.length; j++) {
+            if (fileDetails.orderNo != j) {
+                if (x == this.files[j].fileName) {
+
+                    var replace = false;
+                }
+            }
+        }
+        var y = x.split(".");
+        if (fileList.length > 0 && y[1] == "pdf" && replace != false) {
+
+            formData.append('file', file, file.name);
+
+            let headers = new Headers();
+            headers.append("Content-Type", "multipart/ form - data");
+            let options = new RequestOptions({ headers: headers });
+            this.organizationdocumentrepositoryService.replaceFile(this.FileId, formData, headers)
+                .subscribe(
+                res => {
+
+                    this.getFilesList();
+                }
+                );
+
+        }
+        else {
+            if (replace == false) {
+                this.dialogService.addDialog(ConfirmComponent, {
+                    title: 'Error..!',
+                    message: 'Filename is already exists.'
+                });
+            }
+            else {
+                this.dialogService.addDialog(ConfirmComponent, {
+                    title: 'Error..!',
+                    message: 'Please Upload Only Pdf files.'
+                });
+            }
+        }
+
+    }
+    onDownloadFile(fileDetails) {
+        this.FileId = fileDetails.fileId;
+        this.fileName = fileDetails.fileName;
+        this.organizationdocumentrepositoryService.downloadFile(this.FileId).subscribe
+            (data => this.downloadFiles(data, this.fileName)),
+            error => console.log("Error Downloading....");
+            () => console.log("OK");
+
+    }
+    cancelFileupload(i) {
+        this.rowEdit[i] = !this.rowEdit[i];
+        this.onloadisEdit[i] = !this.onloadisEdit[i];
+        this.ngOnInit();
+    }
+    private orderNo;
+    private fileName;
+    private updatedDate;
+    private SlNoCount;
+    addrow() {
+        var SlNoCount=this.files.length;
+        this.files.push({orderNo: this.orderNo = SlNoCount, fileName: this.fileName, updatedDate: this.updatedDate = new Date() });
+
+    }
+    files=[];
+    ngOnInit() {
+        this.getFilesList();
+
+    }
+    getFilesList = function () {
+         return this.organizationdocumentrepositoryService.getFile(this.appService.orgId)
+                .subscribe((res) => {
+                    console.log("filesGetmethod%o", res);
+                    this.files = res['files'];
+                    for (var i in this.files) {
+                        this.rowEdit[i] = true;
+                        this.onloadisEdit[i] = false;
+                    }
+
+                });
+     }
+    downloadFiles(data: any, fileName) {
+        var blob = new Blob([data], {
+            type: 'application/pdf'
+        });
+        FileSaver.saveAs(blob, fileName);
+    }
+
+
+
+
+  addDocumentRepositorySubmit(model: documentRepository, isValid: boolean) {
+      console.log('formdata|account: %o|isValid:%o', model, isValid);
+      if (isValid) {
+          this.organizationdocumentrepositoryService.saveNewDocumentRepository(model).subscribe((status) => { this.message = status[0] });
+      } else {
+          this.message = "Filled etails are not correct! please correct...";
+      }
+
+  }
+}

@@ -1,0 +1,17 @@
+
+<router-outlet name="header" *ngIf="currentPage != 'login'"></router-outlet>
+<router-outlet name="breadcrumbs" *ngIf="currentPage != 'login'"></router-outlet>
+<router-outlet name="message"></router-outlet>
+<router-outlet name="carousel" *ngIf="currentPage != 'login'"></router-outlet>
+
+<section >
+  <aside class="left-opened smoothness" ng-class="{'left-opened': menuopenclose, 'left-closed': !menuopenclose}" *ngIf="currentPage != 'login' && currentPage != 'reset-password'"  [ngClass]="{ 'loginScreen' : (appService.currentPage == 'login' || appService.currentPage== 'reset-password' )}">
+    <router-outlet name="menu"></router-outlet>
+  </aside>
+
+  <aside class="rightwithmenu smoothness" [ngClass]="{'rightwithmenu':(!appService.menuSlider && (appService.currentPage != 'login' && appService.currentPage != 'reset-password')) , 'rightwithoutmenu': (appService.menuSlider && (appService.currentPage != 'login' && appService.currentPage != 'reset-password')), 'loginScreen' : (appService.currentPage == 'login' || appService.currentPage == 'reset-password')}">
+    <router-outlet></router-outlet>
+  </aside>
+
+</section>
+<router-outlet name="footer" *ngIf="currentPage != 'login' && currentPage != 'reset-password'"></router-outlet>
