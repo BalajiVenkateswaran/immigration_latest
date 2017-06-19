@@ -4,7 +4,7 @@ import {i797history} from "../../models/i797history";
 
 @Injectable()
 export class ImmigrationViewI797HistoryService {
-
+    private values;
     constructor(private restService: RestService) {
 
     }
