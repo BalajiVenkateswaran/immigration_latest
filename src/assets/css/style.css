@@ -1408,7 +1408,7 @@ tr.i129htblRow:nth-child(even) {
   color: #585155;
   font-weight: 500;
   font-size: 14px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(112, 112, 112, 0.1);
   height: 30px;
   margin-bottom: 12px;
   cursor: not-allowed; }
