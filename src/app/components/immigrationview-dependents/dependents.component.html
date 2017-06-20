@@ -1,14 +1,40 @@
-<div class="main-content">
-    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Dependents</a></li>
-    </ul>
-    <div class="clearfix"></div>
-    <div class="table-data">
-        <h2><span>Dependents</span></h2>
+<div class="main-content" *ngIf="getDependents">
+    <div>
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Dependents</a></li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="table-data">
+
+            <h2><span>Dependents</span></h2>
+            <button type="button" class="btn btn-primary pull-right" (click)="addNewDependents()">ADD</button>
             <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
             <div class="clearfix"></div>
+        </div>
+    </div>
+
+
 </div>
-
-
+<div *ngIf="addDependnts">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="close()">&times;</button>
+                <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    First Name:<input type="text" [(ngModel)]="addDependents.firstName">
+                    Middle Name:<input type="text" [(ngModel)]="addDependents.middleName">
+                    Last Name:<input type="text" [(ngModel)]="addDependents.lastName">
+                    Relation:<input type="text" [(ngModel)]="addDependents.relation">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="dependentSave()">SAVE</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>

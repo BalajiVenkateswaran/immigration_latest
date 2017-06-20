@@ -42,6 +42,7 @@ export class AppService {
     private _questionaryName:string;
     private _currentTab: string;
     private _currentSBLink: string;
+    public addDependents: any = {};
 
     public clientdep: boolean = false;
     public immidep: boolean = false;
