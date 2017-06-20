@@ -8,19 +8,28 @@ import {AppService} from "../../services/app.service";
 import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getDocExpirations: boolean;
+    addDocExpiration: boolean;
+}
 @Component({
     selector: 'app-document-expirations',
   templateUrl: './document-expirations.component.html',
   styleUrls: ['./document-expirations.component.sass']
 })
-export class ImmigrationviewDocumentExpirationsComponent implements OnInit {
+export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     private documentExpirationList: documentExpiration[];
     public addDocumentExpairation: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private user: User;
     public delmessage;
+    public getDocExpirations: boolean = true;
+    public addDocExpiration: boolean;
+    public addNewDocExp :any= {};
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -61,8 +70,8 @@ export class ImmigrationviewDocumentExpirationsComponent implements OnInit {
     };
 
  
-    constructor(private ImmigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService, public appService: AppService, private dialogService: DialogService) {
-        if (this.appService.user) {
+    constructor(private ImmigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);if (this.appService.user) {
             this.user = this.appService.user;
         }
         this.addDocumentExpairation = new FormGroup({
@@ -74,13 +83,42 @@ export class ImmigrationviewDocumentExpirationsComponent implements OnInit {
 
     }
     source: LocalDataSource = new LocalDataSource();
-    ngOnInit() {
+    getDocumentsExpirations() {
         this.ImmigrationviewDocumentExpirationsService.getDocumentExpiration(this.appService.clientId)
             .subscribe((res) => {
                 this.source.load(res['documentExpiration']);
             });
     }
+    ngOnInit() {
+        this.getDocumentsExpirations();
+    }
+    addNewDocExps() {
+        this.dialogService.addDialog(ImmigrationviewDocumentExpirationsComponent, {
+            addDocExpiration: true,
+            getDocExpirations:false,
+            title: 'Add Document Expiration'
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getDocumentsExpirations();
+                    }
 
+                });
+            }
+        });
+    }
+    docExpSave() {
+        this.addNewDocExp['clientId'] = this.appService.clientId;
+        this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
+        this.appService.addNewDocExp = this.addNewDocExp;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
     onCreateConfirm(event): void {
         event.newData['clientId'] = this.appService.clientId;
         event.newData['clientDocumentExpirationId'] = event.newData['clientId'];

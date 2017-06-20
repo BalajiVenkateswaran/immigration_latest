@@ -1,14 +1,44 @@
-<div class="main-content">
+<div class="main-content" *ngIf="getDocExpirations">
     <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
     <ul class="breadcrumb">
         <li><a href="#">Document Expirations</a></li>
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2>Document Expirations</h2>
+        <h2>Document Expirations<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewDocExps()">ADD</button></h2>
             <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
         <div class="clearfix"></div>
     </div>
-
-
+</div>
+<div *ngIf="addDocExpiration">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Document Type:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewDocExp.documentType" class="form-control"></div>
+                            <div class="col-md-4">Valid From:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewDocExp.validFrom" class="form-control"></div>
+                            <div class="col-md-4">Valid To:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewDocExp.validTo" class="form-control"></div>
+                            <div class="col-md-4">Status:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewDocExp.status" class="form-control"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="docExpSave()">SAVE</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>

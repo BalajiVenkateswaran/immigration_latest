@@ -43,7 +43,7 @@ export class AppService {
     private _currentTab: string;
     private _currentSBLink: string;
     public addDependents: any = {};
-
+    public addNewDocExp: any = {};
     public clientdep: boolean = false;
     public immidep: boolean = false;
     public clntqstn: boolean = false;
