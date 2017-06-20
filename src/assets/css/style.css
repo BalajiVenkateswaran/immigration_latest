@@ -1413,4 +1413,17 @@ tr.i129htblRow:nth-child(even) {
   margin-bottom: 12px;
   cursor: not-allowed; }
 
+.modal-header .modal-title {
+  float: left;
+  color: #5093e1;
+  font-size: 18px;
+  /* border-color: rgba(255, 255, 255, 0.2); */
+  font-weight: 500;
+  margin-bottom: 0px !important; }
+
+.modal-body .form-control {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 10px; }
+
 /*# sourceMappingURL=style.css.map */
