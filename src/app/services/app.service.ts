@@ -55,7 +55,7 @@ export class AppService {
 
 
     public newvisaitem: any = {};
-
+    public addArrDeparture: any = {};
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {
