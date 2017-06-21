@@ -32,7 +32,8 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     private dependent: any;
     public addDependents: any = {};
     public getDependents: boolean=true;
-    public addedData : any = {};
+    public addedData: any = {};
+    public addDependnts: any;
 
     settings = {
         add: {
