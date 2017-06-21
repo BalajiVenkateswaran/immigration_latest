@@ -49,7 +49,7 @@ export class AppService {
     public clntqstn: boolean = false;
     public immiqstn: boolean = false;
     public orgClientId;
-
+    public addNewDocExp: any = {};
     public _subtypes: any[] = [];
 
     constructor(private _router: Router) { }
