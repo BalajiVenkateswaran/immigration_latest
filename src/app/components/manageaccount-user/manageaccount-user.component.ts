@@ -7,8 +7,14 @@ import {AppService} from "../../services/app.service";
 import { Ng2SmartTableModule, LocalDataSource, ServerDataSource  } from 'ng2-smart-table';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getUsers: boolean;
+    adduser: boolean;
 
+}
 @Component({
   selector: 'app-manageaccount-user',
   templateUrl: './manageaccount-user.component.html',
@@ -17,7 +23,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 })
 
 
-export class ManageAccountUserComponent implements OnInit {
+export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
   private manageaccountuserList: User[] = [];
   public addUser: FormGroup; // our model driven form
@@ -28,6 +34,8 @@ export class ManageAccountUserComponent implements OnInit {
   "IMMIGRATION OFFICER" : "501f6e87-cd6e-11e6-a939-34e6d7382cac",
   "IMMIGRATION MANAGER" : "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
   };
+  public getUsers: boolean = true;
+  public addUsers: any = {};
   //roles : LocalDataSource = new LocalDataSource();
 
 
@@ -89,7 +97,8 @@ export class ManageAccountUserComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private manageAccountUserService: ManageAccountUserService,
-      private appService: AppService, private dialogService: DialogService) {
+      private appService: AppService, public dialogService: DialogService) {
+      super(dialogService);
 
     this.addUser = new FormGroup({
       accountId: new FormControl(''),
@@ -107,20 +116,49 @@ export class ManageAccountUserComponent implements OnInit {
     }
 
   }
+  getManageUsers() {
 
+      this.manageAccountUserService.getUsers(this.appService.user.accountId)
+          .subscribe((res) => {
+              for (var user of res['users']) {
+                  user['roleName'] = user['role'];
+              }
+              this.source.load(res['users']);
+          });
+  }
   ngOnInit() {
     this.appService.showSideBarMenu("manageaccount", "manageaccount-user");
-    this.manageAccountUserService.getUsers(this.appService.user.accountId)
-        .subscribe((res) => {
-            for(var user of res['users']){
-              user['roleName'] = user['role'];
-            }
-            this.source.load(res['users']);
-        });
+    this.getManageUsers();
     //this.roles = new ServerDataSource(this.http, { endPoint: 'http://ec2-34-192-10-166.compute-1.amazonaws.com:8080/immigrationPortal/user/roles', dataKey: 'users' });
   }
 
-
+  addNewUser() {
+      this.dialogService.addDialog(ManageAccountUserComponent, {
+          adduser: true,
+          getUsers: false,
+          title: 'Add New User',
+      }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
+           
+              this.manageAccountUserService.saveNewUser(this.appService.addUsers).subscribe((res) => {
+                  if (res['statusCode'] == 'SUCCESS') {
+                      this.getManageUsers();
+                  }
+              });
+          }
+      });
+  }
+  manageUserSave() {
+      this.addUsers['role'] = this.roles[this.addUsers['role']];
+      this.addUsers['accountId'] = this.appService.user.accountId;
+      this.appService.addUsers = this.addUsers;
+      this.result = true;
+      this.close();
+  }
+  cancel() {
+      this.result = false;
+      this.close();
+  }
   onCreateConfirm(event) : void {
     console.log("User table onCreateConfirm event: %o",event.newData);
     event.newData['role'] = this.roles[event.newData['roleName']];

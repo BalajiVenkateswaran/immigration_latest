@@ -54,6 +54,8 @@ export class AppService {
 
 
     public addArrDeparture: any = {};
+    public addUsers: any = {};
+
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {

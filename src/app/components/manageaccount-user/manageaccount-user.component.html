@@ -1,4 +1,4 @@
-    <div class="main-content">
+    <div class="main-content" *ngIf="getUsers">
         <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
         <ul class="breadcrumb">
             <li><a href="#">Users</a></li>
@@ -7,6 +7,7 @@
         <div class="table-data">
             <h2>
                 <span>Users</span>
+                <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewUser()">ADD</button>
                 <!--<button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right">Add User</button>-->
             </h2>
             <!--<form [formGroup]="addUser" (ngSubmit)="addUserSubmit(addUser.value, addUser.valid)">-->
@@ -122,6 +123,41 @@
             </ul>
             <div class="clearfix"></div>
         </div>
-
-
     </div>
+<div *ngIf="adduser">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">First Name:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.firstName" class="form-control"></div>
+                            <div class="col-md-4">Last Name:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.lastName" class="form-control"></div>
+                            <div class="col-md-4">Email</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.emailId" class="form-control"></div>
+                            <div class="col-md-4">Role:</div>
+                            <div class="col-md-8">
+                                <select [(ngModel)]="addUsers.role" class="form-control">
+                                    <option value="IMMIGRATION OFFICER">IMMIGRATION OFFICER</option>
+                                    <option value="IMMIGRATION MANAGER">IMMIGRATION MANAGER</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="manageUserSave()">SAVE</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
