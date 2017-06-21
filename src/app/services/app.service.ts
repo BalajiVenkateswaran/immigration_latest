@@ -52,6 +52,8 @@ export class AppService {
     public addNewDocExp: any = {};
     public _subtypes: any[] = [];
 
+
+    public addArrDeparture: any = {};
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {

@@ -7,19 +7,27 @@ import {User} from "../../models/user";
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    arrDepInfo: boolean;
+    addArrDep: boolean;
 
+}
 @Component({
   selector: 'app-arrival-departure-info',
   templateUrl: './arrival-departure-info.component.html',
   styleUrls: ['./arrival-departure-info.component.sass']
 })
-export class ImmigrationViewArrivalDepartureInfoComponent implements OnInit {
+export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     private delmessage;
   private arrivalDepartureInfo: any[];
   private arrivalDepartureInfoScreenData: any;
   private message: string;
   private user: User;
+  public arrDepInfo: boolean = true;
+  public addArrDeparture: any = {};
   settings = {
       add: {
           addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -44,7 +52,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent implements OnInit {
           departureCountry: {
               title: 'Departure Country'
           },
-          arrivaldate: {
+          arrivalDate: {
               title: 'Arrival date'
           },
           arrivalCountry: {
@@ -64,22 +72,53 @@ export class ImmigrationViewArrivalDepartureInfoComponent implements OnInit {
   };
 
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
-      public appService: AppService, private dialogService: DialogService) {
+      public appService: AppService, public dialogService: DialogService) {
+      super(dialogService);
       if (this.appService.user) {
           this.user = this.appService.user;
       }
   }
   source: LocalDataSource = new LocalDataSource();
-
-  ngOnInit() {
+  getArrivalDepartueInfo() {
       this.arrivalDepartureInfoService.getArrivalDepartureInfo(this.appService.clientId)
           .subscribe((res) => {
               this.source.load(res['arrivalDepartures']);
           });
   }
+  ngOnInit() {
+      this.getArrivalDepartueInfo();
+  }
   highlightSBLink(link) {
       this.appService.currentSBLink = link;
   }
+
+  addNewArrDep() {
+      this.dialogService.addDialog(ImmigrationViewArrivalDepartureInfoComponent, {
+          addArrDep: true,
+          arrDepInfo: false,
+          title: 'Add Arrival Departue Info',
+      }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
+           
+              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture).subscribe((res) => {
+                  if (res['statusCode'] == 'SUCCESS') {
+                      this.getArrivalDepartueInfo();
+                  }
+              });
+          }
+      });
+  }
+  arrDepSave() {
+      this.addArrDeparture['clientId'] = this.appService.clientId;
+      this.appService.addArrDeparture = this.addArrDeparture;
+      this.result = true;
+      this.close();
+  }
+  cancel() {
+      this.result = false;
+      this.close();
+  }
+
   onCreateConfirm(event): void {
       event.newData['clientId'] = this.appService.clientId;
       this.arrivalDepartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {
