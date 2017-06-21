@@ -8,20 +8,34 @@ import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+
+
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    showAddVisapopup: boolean;
+    getVisasData: boolean;
+
+}
+
 
 @Component({
   selector: 'app-visas',
   templateUrl: './visas.component.html',
   styleUrls: ['./visas.component.sass']
 })
-export class ImmigrationViewVisasComponent implements OnInit {
+export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     private delmessage;
     public addVisa: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private data
     private user: User;
+    public showAddVisapopup: boolean;
+    public getVisasData: boolean = true;
+    public newvisaitem: any = {};
+
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -64,26 +78,66 @@ export class ImmigrationViewVisasComponent implements OnInit {
             perPage: 10
         }
     };
-    constructor(private immigrationviewVisasService: ImmigrationViewVisasService, public appService: AppService, private dialogService: DialogService) {
-        if (this.appService.user) {
-            this.user = this.appService.user;
-        }
-        this.addVisa = new FormGroup({
-            country: new FormControl(''),
-            petitionNumber: new FormControl(''),
-            visaNumber: new FormControl(''),
-            visaType: new FormControl(''),
-            issuedOn: new FormControl(''),
-            expiresOn: new FormControl('')
-        });
+    constructor(private immigrationviewVisasService: ImmigrationViewVisasService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
     }
     source: LocalDataSource = new LocalDataSource();
+    getVisaaData() {
+        
+        this.immigrationviewVisasService.getClientVisas(this.appService.clientId).subscribe((res) => {
+            this.source.load(res['visas']);
+         });
+    }
+
     ngOnInit() {
         this.immigrationviewVisasService.getClientVisas(this.appService.clientId)
             .subscribe((res) => {
                 this.source.load(res['visas']);
             });
     }
+
+    addNewVisa() {
+        this.dialogService.addDialog(ImmigrationViewVisasComponent, {
+            showAddVisapopup: true,
+            getVisasData: false,
+            title: 'Add Visa',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem).subscribe((res) => {
+                   this.message = res['statusCode'];
+                    if (this.message == 'SUCCESS') {
+                        this.getVisaaData();
+                    } else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Unable to Add Visa.'
+                        });
+                    }
+
+                });
+            }
+        });
+    }
+    visaSave() {
+        this.newvisaitem['clientId'] = this.appService.clientId;
+        this.appService.newvisaitem = this.newvisaitem;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
+
+
+
+
+
+
+
+
+
+
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }

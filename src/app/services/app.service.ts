@@ -53,6 +53,8 @@ export class AppService {
     public _subtypes: any[] = [];
 
 
+
+    public newvisaitem: any = {};
     public addArrDeparture: any = {};
     public addUsers: any = {};
 
