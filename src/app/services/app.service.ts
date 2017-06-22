@@ -53,7 +53,7 @@ export class AppService {
     public _subtypes: any[] = [];
 
 
-
+    public newpetitionitem: any = {};
     public newvisaitem: any = {};
     public addArrDeparture: any = {};
     constructor(private _router: Router) { }

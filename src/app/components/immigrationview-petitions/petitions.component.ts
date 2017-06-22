@@ -10,19 +10,29 @@ import {MenuService} from "../menu/menu.service";
 import {Router} from "@angular/router";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 
 import { CustomEditorComponent } from './custom-editor.component';
 import { CustomRenderComponent } from './custom-render.component';
 
 import { PetitionSubTypeCustomEditorComponent } from './petitionSubType-custom-editor.component';
 
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    showAddPetitionpopup: boolean;
+    getPetitionsData: boolean;
+
+}
 @Component({
   selector: 'app-petitions',
   templateUrl: './petitions.component.html',
   styleUrls: ['./petitions.component.sass']
 })
-export class ImmigrationViewPetitionsComponent implements OnInit {
+export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+
+    private allSubTypes = {};
+
     private delmessage;
     private petitionList: petition[];
     public addPetition: FormGroup; // our model driven form
@@ -30,6 +40,9 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
     private message: string;
     private data
     private allPetitionTypesAndSubTypes;
+    public showAddPetitionpopup: boolean;
+    public getPetitionsData: boolean = true;
+    public newpetitionitem: any = {};
 
     settings = {
         add: {
@@ -164,7 +177,8 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
         this.appService.currentSBLink = link;
     }
     constructor(private immigrationviewpetitionService: ImmigrationViewPetitionsService, public appService: AppService,
-        private menuService: MenuService, private router: Router, private dialogService: DialogService) {
+        private menuService: MenuService, private router: Router, public dialogService: DialogService) {
+        super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
         }
@@ -185,6 +199,30 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
         });
     }
 
+    getPetitionData() {
+        this.immigrationviewpetitionService.getPetitions(this.appService.orgId, this.appService.clientId).subscribe((res) => {
+            this.source.load(res['petitions']);
+        });
+        this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
+            .subscribe((res) => {
+                this.allPetitionTypesAndSubTypes = res['petitionTypes'];
+            });
+    }
+    handleChange(event) {
+        console.log(event.target.value);
+        for (var i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
+            if (event.target.value == this.allPetitionTypesAndSubTypes[i].petitiontype) {
+                this.allSubTypes = this.allPetitionTypesAndSubTypes[i].petitionSubTypes;
+            }
+        }
+        this.appService.allsubtypesarray(this.allSubTypes);
+
+        //this.cell.newValue = event.target.value;
+        //this.selectedOne = this.allPetitionTypesAndSubTypes.filter((ptst) => {
+        //    return ptst.id == event.target.value;
+        //})[0];
+    }
+
   ngOnInit() {
       this.immigrationviewpetitionService.getPetitions(this.appService.orgId, this.appService.clientId)
           .subscribe((res) => {
@@ -202,6 +240,51 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
       //    });
 
   }
+  addNewPetition() {
+      this.dialogService.addDialog(ImmigrationViewPetitionsComponent, {
+          showAddPetitionpopup: true,
+          getPetitionsData: false,
+          title: 'Add Petition',
+      }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
+              this.immigrationviewpetitionService.saveNewImmigrationViewPetition(this.appService.newpetitionitem).subscribe((res) => {
+                  this.message = res['statusCode'];
+                  if (this.message == 'SUCCESS') {
+                      this.getPetitionData();
+                  } else {
+                      this.dialogService.addDialog(ConfirmComponent, {
+                          title: 'Error..!',
+                          message: 'Unable to Add Petition.'
+                      });
+                  }
+
+              });
+          }
+      });
+  }
+  petitionSave() {
+      this.newpetitionitem['clientId'] = this.appService.clientId;
+      this.newpetitionitem['orgId'] = this.appService.orgId;
+      this.newpetitionitem['petitionTypeId'] = this.petitionTypes[this.newpetitionitem['petitiontype']];
+      this.newpetitionitem['petitionSubTypeId'] = this.petitionSubTypes[this.newpetitionitem['petitionSubType']];
+      this.newpetitionitem['userId'] = this.user.userId;
+      this.newpetitionitem['accountId'] = this.user.accountId;
+
+      //Set default values
+      if (this.newpetitionitem['status'] == undefined) {
+          this.newpetitionitem['status'] = "Open";
+      }
+      this.appService.newpetitionitem = this.newpetitionitem;
+      this.result = true;
+      this.close();
+  }
+  cancel() {
+      this.result = false;
+      this.close();
+  }
+
+
+
 
   onCreateConfirm(event) : void {
      console.log("Petition table onCreateConfirm event: %o",event.newData);

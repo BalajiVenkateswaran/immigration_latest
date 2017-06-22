@@ -1,14 +1,65 @@
-<div class="main-content">
+<div class="main-content" *ngIf="getPetitionsData">
     <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
     <ul class="breadcrumb">
         <li><a href="#">Petitions</a></li>
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2>Petitions</h2>
+        <h2>Petitions<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewPetition()">ADD</button></h2>
         <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event)" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
         <div class="clearfix"></div>
     </div>
-
-
+</div>
+<div *ngIf="showAddPetitionpopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Name :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newpetitionitem.petitionName" class="form-control"></div>
+                            <div class="col-md-4">Type :</div>
+                            <div class="col-md-8">
+                                <select class="form-control" [(ngModel)]="newpetitionitem.petitiontype" (change)="handleChange($event)">
+                                    <option *ngFor="let ptst of allPetitionTypesAndSubTypes" [value]="ptst.petitiontype">{{ ptst.petitiontype }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">Subtype :</div>
+                            <div class="col-md-8">
+                                <select class="form-control" [(ngModel)]="newpetitionitem.petitionSubType">
+                                    <option *ngFor="let subtype of allSubTypes" [value]="subtype.petitionSubType">{{ subtype.petitionSubType }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">Status :</div>
+                            <div class="col-md-8">
+                                <select class="form-control" [(ngModel)]="newpetitionitem.status">
+                                    <option value="Open">Open</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">Stage :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newpetitionitem.stage" class="form-control"></div>
+                            <div class="col-md-4">Created :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newpetitionitem.createdOn" class="form-control"></div>
+                            <div class="col-md-4">Last Updated :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newpetitionitem.lastUpdate" class="form-control"></div>
+                            <div class="col-md-4">Assigned To :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newpetitionitem.assignedToName" class="form-control"></div>
+                            </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="petitionSave()">SAVE</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>
