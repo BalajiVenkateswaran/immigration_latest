@@ -53,6 +53,7 @@ export class AppService {
     public _subtypes: any[] = [];
 
 
+    public newQuestionnaireitem: any = {};
     public newpetitionitem: any = {};
     public newvisaitem: any = {};
     public addArrDeparture: any = {};
