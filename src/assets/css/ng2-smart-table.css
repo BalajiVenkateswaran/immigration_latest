@@ -378,4 +378,7 @@ placeholder :-ms-input-placeholder {
 .addPetition-createdon, .addPetition-updatedon {
   width: 120px; }
 
+.ng2-smart-action-add-add {
+  display: none; }
+
 /*# sourceMappingURL=ng2-smart-table.css.map */
