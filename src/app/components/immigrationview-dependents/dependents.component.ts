@@ -110,7 +110,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     }
     dependentSave() {
         this.addDependents['clientId'] = this.appService.clientId;
-        this.appService.addDependents = this.addDependents;
+        this.appService.addDependents = this.addDependents;     
         this.result = true;
         this.close();
     }

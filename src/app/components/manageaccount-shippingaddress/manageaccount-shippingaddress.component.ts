@@ -30,7 +30,7 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
     private user: User;
     public getShipping: boolean = true;
     public addAdress: any = {};
-
+    public addShippingAdress: boolean;
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
