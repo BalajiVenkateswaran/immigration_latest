@@ -36,6 +36,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
   };
   public getUsers: boolean = true;
   public addUsers: any = {};
+  public adduser: boolean;
   //roles : LocalDataSource = new LocalDataSource();
 
 

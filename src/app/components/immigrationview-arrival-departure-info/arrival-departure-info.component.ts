@@ -28,6 +28,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   private user: User;
   public arrDepInfo: boolean = true;
   public addArrDeparture: any = {};
+  public addArrDep: boolean;
   settings = {
       add: {
           addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
