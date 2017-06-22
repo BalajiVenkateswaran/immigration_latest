@@ -8,13 +8,24 @@ import {AppService} from "../../services/app.service";
 import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+
+
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    showAddOrgpopup: boolean;
+    getOrgsData: boolean;
+
+}
+
 @Component({
     selector: 'app-manageaccount-organizations',
     templateUrl: './manageaccount-organizations.component.html',
     styleUrls: ['./manageaccount-organizations.component.sass']
 })
-export class ManageAccountOrganizationsComponent implements OnInit {
+export class ManageAccountOrganizationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -73,9 +84,15 @@ export class ManageAccountOrganizationsComponent implements OnInit {
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private user: User;
-    source: LocalDataSource = new LocalDataSource();
+
+    public showAddOrgpopup: boolean;
+    public getOrgsData: boolean = true;
+    public neworgitem: any = {};
+
+
     constructor(private manageaccountorganizationService: ManageAccountOrganizationsService,
-        private appService: AppService, private dialogService: DialogService) {
+        private appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
 
         this.addOrganization = new FormGroup({
             orgId: new FormControl(''),
@@ -91,7 +108,12 @@ export class ManageAccountOrganizationsComponent implements OnInit {
         }
 
     }
-
+    source: LocalDataSource = new LocalDataSource();
+    getorganizationData() {
+        this.manageaccountorganizationService.getManageAccountOrganizations(this.appService.user.accountId).subscribe((res: any) => {
+            this.source.load(res['orgs']);
+        });
+    }
     ngOnInit() {
         this.manageaccountorganizationService
             .getManageAccountOrganizations(this.appService.user.accountId)
@@ -100,6 +122,40 @@ export class ManageAccountOrganizationsComponent implements OnInit {
                 this.source.load(res.orgs);
             });
   }
+    addNewOrganization() {
+        this.dialogService.addDialog(ManageAccountOrganizationsComponent, {
+            showAddOrgpopup: true,
+            getOrgsData: false,
+            title: 'Add Organization',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.manageaccountorganizationService.saveNewOrganization(this.appService.neworgitem).subscribe((res) => {
+                    this.message = res['statusCode'];
+                    if (this.message == 'SUCCESS') {
+                        this.getorganizationData();
+                    } else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Unable to Add Visa.'
+                        });
+                    }
+
+                });
+            }
+        });
+    }
+    OrganizationSave() {
+        this.neworgitem['accountId'] = this.appService.user.accountId;
+        this.appService.neworgitem = this.neworgitem;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
+
+
 
   onCreateConfirm(event) : void {
       console.log("User table onCreateConfirm event: %o",event.newData);

@@ -52,7 +52,7 @@ export class AppService {
     public addNewDocExp: any = {};
     public _subtypes: any[] = [];
 
-
+    public neworgitem: any = {};
     public newQuestionnaireitem: any = {};
     public newpetitionitem: any = {};
     public newvisaitem: any = {};
