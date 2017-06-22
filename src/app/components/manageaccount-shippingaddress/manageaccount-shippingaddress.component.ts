@@ -8,20 +8,28 @@ import {ManageAccountShippingAddressService} from "./manageaccount-shippingaddre
 import {AppService} from "../../services/app.service";
 import {User} from "../../models/user";
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getShipping: boolean;
+    addShippingAdress: boolean;
 
+}
 @Component({
     selector: 'app-manageaccount-shippingaddress',
     templateUrl: './manageaccount-shippingaddress.component.html',
     styleUrls: ['./manageaccount-shippingaddress.component.sass']
 })
-export class ManageAccountShippingAddressComponent implements OnInit {
+export class ManageAccountShippingAddressComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
     public addShippingAddress: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private data;
     private user: User;
+    public getShipping: boolean = true;
+    public addAdress: any = {};
 
     settings = {
         add: {
@@ -58,7 +66,8 @@ export class ManageAccountShippingAddressComponent implements OnInit {
         }
     };
 
-    constructor(private manageAccountShippingAddressService: ManageAccountShippingAddressService, private appService: AppService, private dialogService: DialogService) {
+    constructor(private manageAccountShippingAddressService: ManageAccountShippingAddressService, private appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
       if (this.appService.user) {
           this.user = this.appService.user;
       }
@@ -66,17 +75,47 @@ export class ManageAccountShippingAddressComponent implements OnInit {
     source: LocalDataSource = new LocalDataSource();
     getaccountid = function (accountid) {
     }
-  ngOnInit() {
-      this.manageAccountShippingAddressService.getShipmentAddress(this.appService.user.accountId)
-          .subscribe((res) => {
-              for(var address in res){
-                  res[address]['slNo'] = address;
-              }
-              this.source.load(res);
-              console.log(res);
-          });
+    getShippingDetails() {
+        this.manageAccountShippingAddressService.getShipmentAddress(this.appService.user.accountId)
+            .subscribe((res) => {
+                for (var address in res) {
+                    res[address]['slNo'] = address;
+                }
+                this.source.load(res);
+                console.log(res);
+            });
 
     }
+  ngOnInit() {
+      this.getShippingDetails();
+
+    }
+  addNewAdress() {
+      this.dialogService.addDialog(ManageAccountShippingAddressComponent, {
+          addShippingAdress: true,
+          getShipping: false,
+          title: 'Add Shipping Address',
+      }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
+              this.manageAccountShippingAddressService.createShipmentAddress(this.appService.addAdress).subscribe((res) => {
+                  if (res['statusCode'] == 'SUCCESS') {
+      this.getShippingDetails();
+
+                  }
+              });
+          }
+      });
+  }
+  shipAddressSave() {
+      this.addAdress['accountId'] = this.appService.user.accountId;
+      this.appService.addAdress = this.addAdress;
+      this.result = true;
+      this.close();
+  }
+  cancel() {
+      this.result = false;
+      this.close();
+  }
   onCreateConfirm(event): void {
       console.log("User table onCreateConfirm event: %o", event.newData);
       event.newData['accountId'] = this.appService.user.accountId;

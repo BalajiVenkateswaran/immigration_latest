@@ -56,6 +56,9 @@ export class AppService {
     public newpetitionitem: any = {};
     public newvisaitem: any = {};
     public addArrDeparture: any = {};
+    public addUsers: any = {};
+    public addAdress: any = {};
+
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {
