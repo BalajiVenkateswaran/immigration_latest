@@ -7,17 +7,37 @@ import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+
+
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    showAddi797popup: boolean;
+    getCvi797Data: boolean;
+
+}
 @Component({
   selector: 'app-i-797-history',
   templateUrl: './i-797-history.component.html',
   styleUrls: ['./i-797-history.component.sass']
 })
-export class I797HistoryComponent implements OnInit {
+export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public delmessage;
     public addI797History: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
+
+    public showAddi797popup: boolean;
+    public getCvi797Data: boolean = true;
+    public newi797item: any = {};
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
+
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -62,26 +82,73 @@ export class I797HistoryComponent implements OnInit {
         }
     };
 
-    constructor(private i797HistoryService: I797HistoryService, public appService: AppService, private dialogService: DialogService) {
-
-        this.addI797History = new FormGroup({
-            receiptNumber: new FormControl(''),
-            receiptDate: new FormControl(''),
-            status: new FormControl(''),
-            approvedOn: new FormControl(''),
-            validFrom: new FormControl(''),
-            validTill: new FormControl('')
-        });
+    constructor(private i797HistoryService: I797HistoryService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
+        //this.addI797History = new FormGroup({
+        //    receiptNumber: new FormControl(''),
+        //    receiptDate: new FormControl(''),
+        //    status: new FormControl(''),
+        //    approvedOn: new FormControl(''),
+        //    validFrom: new FormControl(''),
+        //    validTill: new FormControl('')
+        //});
     }
     source: LocalDataSource = new LocalDataSource();
+
+    geti797Data() {
+        this.i797HistoryService.getI797Details(this.appService.user.userId).subscribe((res) => {
+            this.source.load(res['i797HistoryList']);
+        });
+    }
     ngOnInit() {
 
         this.i797HistoryService.getI797Details(this.appService.user.userId)
             .subscribe((res) => {
                 this.source.load(res['i797HistoryList']);
             });
-
     }
+    addNewi797() {
+        this.dialogService.addDialog(I797HistoryComponent, {
+            showAddi797popup: true,
+            getCvi797Data: false,
+            title: 'Add I-797 History',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.i797HistoryService.saveI797Details(this.appService.newi797item).subscribe((res) => {
+                    this.message = res['statusCode'];
+                    if (this.message == 'SUCCESS') {
+                        this.geti797Data();
+                    } else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Unable to Add I-797 History.'
+                        });
+                    }
+
+                });
+            }
+        });
+    }
+    i797Save() {
+        this.newi797item['clientId'] = this.appService.clientId;
+        this.newi797item['i797HistoryId'] = this.appService.user.userId;
+        this.newi797item['receiptDate'] = this.newi797item['receiptDate']['formatted'];
+        this.newi797item['approvedOn'] = this.newi797item['approvedOn']['formatted'];
+        this.newi797item['validFrom'] = this.newi797item['validFrom']['formatted'];
+        this.newi797item['validTill'] = this.newi797item['validTill']['formatted'];
+        this.appService.newi797item = this.newi797item;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
+
+
+
+
+
     onCreateConfirm(event): void {
         event.newData['clientId'] = this.appService.user.userId;
         event.newData['i797HistoryId'] = this.appService.user.userId;
