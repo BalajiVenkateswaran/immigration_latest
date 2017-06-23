@@ -137,8 +137,6 @@ import { CustomRenderComponent } from './components/immigrationview-petitions/cu
 
 import { PetitionSubTypeCustomEditorComponent } from './components/immigrationview-petitions/petitionSubType-custom-editor.component';
 
-import {AgGridModule} from "ag-grid-angular/main";
-import {CustomFilterRow} from './components/immigrationview-i-797-history/CustomFilterRow';
 @NgModule({
   imports: [
     BrowserModule,
@@ -150,15 +148,12 @@ import {CustomFilterRow} from './components/immigrationview-i-797-history/Custom
       Ng2SmartTableModule,
       MyDatePickerModule,
       BootstrapModalModule,
-      AgGridModule.withComponents(
-          [ImmigrationViewI797HistoryComponent]
-      ),
       NgbModule.forRoot()],
 
 
 
   entryComponents: [
-      ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent,CustomFilterRow /*AdvancedExamplesCustomEditorComponent*/
+      ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent /*AdvancedExamplesCustomEditorComponent*/
   ],
   declarations: [
       CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, /*AdvancedExamplesCustomEditorComponent,*/
@@ -206,7 +201,7 @@ import {CustomFilterRow} from './components/immigrationview-i-797-history/Custom
         ImmigrationViewVisasComponent,
         ImmigrationViewI797HistoryComponent,
         ImmigrationViewPetitionsComponent,
-        CustomFilterRow,
+
         LoginComponent,
         QuestionnaireI129Component,
 
