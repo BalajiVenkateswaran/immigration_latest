@@ -29,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="tbl-head-btn">
                                 <button class="editbtn" (click)="editQuestinnairei129Form()" *ngIf="isquestionnairei129hEdit==true" style="float: left;margin-right: 10px; margin-top:0px; margin-bottom:15px;">Edit</button>
-                                <button class="editbtn  no-marg-right" *ngIf="isquestionnairei129hEdit==true" style="float:right; margin-top:0px; margin-bottom:15px;">Repopulate</button>
+                                <button class="editbtn  no-marg-right" (click)="repopulateI129H()" *ngIf="isquestionnairei129hEdit==true" style="float:right; margin-top:0px; margin-bottom:15px;">Repopulate</button>
                             </div>
                             <div class="tbl-head-btn" [hidden]="isquestionnairei129hEdit">
                                 <button type="button" (click)="cancelQuestinnairei129Edit()" class="editbtn tbl-head-btn" *ngIf="isquestionnairei129hEdit==false" style="margin-top:0px; margin-bottom:15px;">Cancel</button>

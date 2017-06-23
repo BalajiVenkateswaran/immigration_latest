@@ -74,6 +74,14 @@ export class QuestionnaireI129HComponent implements OnInit {
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
+    repopulateI129H() {
+        this.questionnaireI129HService.populateI129H(this.questionnaireId).subscribe(res => {
+            if (res['statusCode'] == "SUCCESS") {
+
+            }
+        });
+
+    }
     savequestionnairei129Information() {
         for (var i = 0; i < this.questionnairei129hstayPeriodList.length; i++) {
             if (this.questionnairei129hstayPeriodList[i]['from'] == '' && this.questionnairei129hstayPeriodList[i]['to'] == '' && this.questionnairei129hstayPeriodList[i]['subjectName'] == '') {

@@ -46,7 +46,10 @@ export class Quetionairervice {
 
     } 
 
-
+    public populateQuestionnaireI129(questionnaireID: string) {
+        console.log(questionnaireID);
+        return this.restService.postData("/questionnaire/populate/", questionnaireID);  
+    }
    
 
   

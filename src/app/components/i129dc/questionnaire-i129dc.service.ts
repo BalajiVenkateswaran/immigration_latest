@@ -20,4 +20,8 @@ export class QuestionnaireI129DCService {
         };
         return this.restService.postData("/questionnaire/i129DC", req);
     }
+    public populateQuestionnaireDC(questionnaireID: string) {
+        console.log(questionnaireID);
+        return this.restService.postData("/questionnaire/populate/", questionnaireID);
+    }
 }

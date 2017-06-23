@@ -132,6 +132,15 @@ export class QuestionnaireI129DCComponent implements OnInit {
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
+    repopulateQuestionnaireDC() {
+        this.questionnaire129DCService.populateQuestionnaireDC(this.questionnaireId).subscribe(res => {
+            if (res['statusCode'] == "SUCCESS") {
+
+            }
+        });
+
+    }
+
     editQuestionnaireDC() {
         this.beforeCancelQuestionnaireDC = (<any>Object).assign({}, this.questionnaireDC);
         this.backendEmployerInfo = (<any>Object).assign({}, this.employerInfo);

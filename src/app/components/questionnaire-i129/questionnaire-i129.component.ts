@@ -268,7 +268,14 @@ export class QuestionnaireI129Component implements OnInit {
 
 
     }
+   repopulateI129() {
+       this.quetionairervice.populateQuestionnaireI129(this.questionnaireId).subscribe(res => {
+           if (res['statusCode'] == "SUCCESS") {
 
+           }
+       });
+
+   }
    editQuestinnaireForm() {
 
         this.isquestionnaireEdit = !this.isquestionnaireEdit;
