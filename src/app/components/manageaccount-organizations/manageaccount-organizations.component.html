@@ -1,30 +1,54 @@
-<div class="main-content">
-  <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
-  <ul class="breadcrumb">
-    <li><a href="#">Organizations</a></li>
-  </ul>
-  <div class="clearfix"></div>
-  <div class="table-data">
-    <h2>
-      <span>Organizations</span>
-    </h2>
-    <form [formGroup]="addOrganization"
-          (ngSubmit)="addOrganizationSubmit(addOrganization.value, addOrganization.valid)">
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
-                       (editConfirm)="onEditConfirm($event)"
-                       (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
-    </form>
-
-    <ul class="pagenation">
-      <li><a href="#"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#" class="act">4</a></li>
-      <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+<div class="main-content" *ngIf="getOrgsData">
+    <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
+    <ul class="breadcrumb">
+        <li><a href="#">Organizations</a></li>
     </ul>
     <div class="clearfix"></div>
-  </div>
-
-
+    <div class="table-data">
+        <h2>
+            Organizations<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewOrganization()">ADD</button>
+        </h2>
+            <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+                             (editConfirm)="onEditConfirm($event)"
+                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+        <div class="clearfix"></div>
+    </div>
 </div>
+<div *ngIf="showAddOrgpopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Org Name :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.orgName" class="form-control"></div>
+                            <div class="col-md-4">Display Name :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.displayName" class="form-control"></div>
+                            <div class="col-md-4">Status :</div>
+                            <div class="col-md-8">
+                                <select [(ngModel)]="neworgitem.orgStatus" class="form-control">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">Email :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.email" class="form-control"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="OrganizationSave()">SAVE</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+

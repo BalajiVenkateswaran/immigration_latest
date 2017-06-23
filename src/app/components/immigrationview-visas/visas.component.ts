@@ -83,7 +83,6 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     }
     source: LocalDataSource = new LocalDataSource();
     getVisaaData() {
-        
         this.immigrationviewVisasService.getClientVisas(this.appService.clientId).subscribe((res) => {
             this.source.load(res['visas']);
          });

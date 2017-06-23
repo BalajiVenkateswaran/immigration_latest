@@ -11,8 +11,17 @@ import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 
+
+
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    showAddQuestionnairepopup: boolean;
+    getQuestionnaireData: boolean;
+
+}
 
 @Component({
     selector: 'app-questionnaire',
@@ -27,14 +36,20 @@ import { DialogService } from "ng2-bootstrap-modal";
         }
     `]
 })
-export class ImmigrationviewQuestionnaireComponent implements OnInit {
+export class ImmigrationviewQuestionnaireComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     //1st table of quotionaries
     confirmResult: boolean = null;
-
+    private message: string;
     private user: User;
     public addQuestionnaireClient: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private checking: boolean = true;
+
+    public showAddQuestionnairepopup: boolean;
+    public getQuestionnaireData: boolean = true;
+    public newQuestionnaireitem: any = {};
+
+
     private petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
     private myDatePickerOptions: IMyOptions = {
         // other options...
@@ -61,7 +76,7 @@ export class ImmigrationviewQuestionnaireComponent implements OnInit {
     private isEditEmpQuestionnaire: boolean[] = [];
     private rowEditEmp: boolean[] = [];
     private checkboxDisable: boolean = false;
-    questionnaireList = [];
+    questionnaireList: any;
     private questionnaire = {};
     private questionnaireClient = {};
     private questionnaireId;
@@ -93,11 +108,14 @@ export class ImmigrationviewQuestionnaireComponent implements OnInit {
         ];
 
 
-        constructor(private questionnaireService: QuestionnaireService, public appService: AppService, private dialogService: DialogService) {
+        constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService) {
+            super(dialogService);
         if (this.appService.user) {
             this.user = appService.user;
         }
-    }
+        }
+
+
         deleteConfirm(i, questions) {
             this.delmessage = questions.questionnaireName;
         this.dialogService.addDialog(ConfirmComponent, {
@@ -116,18 +134,43 @@ export class ImmigrationviewQuestionnaireComponent implements OnInit {
         this.appService.currentSBLink = link;
     }
     ngOnInit() {
+        this.getquesnreData();
+    }
 
 
-      this.questionnaireService.getQuestionnaireForms(this.appService.petitionId)
-          .subscribe((res) => {
-              if (res['statusCode'] == 'SUCCESS') {
-                  this.formsList = res['applicationForms'];
-                  this.appService.formList = res['applicationForms'];
-                  this.questionnaireService.getQuestionnaires(this.appService.petitionId)
-                  .subscribe((res) => {
-                      if(res['statusCode'] == 'SUCCESS'){
-                          this.questionnaireList = res['questionnaires']['content'];
-                          this.appService.questionnaireName = res['questionnaires']['content'];
+    addNewQuestionnaire() {
+        this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
+            showAddQuestionnairepopup: true,
+            getQuestionnaireData: false,
+            title: 'Add Questionnaire',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.questionnaireService.saveNewQuestionnaireClient(this.appService.newQuestionnaireitem).subscribe((res) => {
+                    this.message = res['statusCode'];
+                    if (this.message == 'SUCCESS') {
+                        this.getquesnreData();
+                    } else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Unable to Add Questionnaire.'
+                        });
+                    }
+
+                });
+            }
+        });
+    }
+    getquesnreData() {
+        this.questionnaireList = '';
+        this.questionnaireService.getQuestionnaireForms(this.appService.petitionId).subscribe((res) => {
+            if (res['statusCode'] == 'SUCCESS') {
+                this.formsList = res['applicationForms'];
+                this.appService.formList = res['applicationForms'];
+
+                this.questionnaireService.getQuestionnaires(this.appService.petitionId).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.questionnaireList = res['questionnaires']['content'];
+                        this.appService.questionnaireName = res['questionnaires']['content'];
                         for (var i = 0; i < this.questionnaireList.length; i++) {
                             this.rowEdit[i] = true;
                             this.isEditQuestionnaire[i] = true;
@@ -138,16 +181,23 @@ export class ImmigrationviewQuestionnaireComponent implements OnInit {
                             this.questionnaireList.map(function (item) {
                                 item.clientCheck = false;
                             });
-                          }
-                      }
-                  });
-              }
-          });
+                        }
+                    }
+                });
+            }
+        });
+    }
+    questionnaireSave() {
+        this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
+        this.appService.newQuestionnaireitem = this.newQuestionnaireitem;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
     }
 
-    /**
-    * Method to enable or disable check boxes
-    */
     enableOrDisableCheckBox(questionnaire: any){
       var formName = this.getFormName(questionnaire['formId']);
       var formNameBasedCheck = true;
@@ -172,27 +222,7 @@ export class ImmigrationviewQuestionnaireComponent implements OnInit {
         this.questionnaire = {};
     }
 
-    saveQuestion() {
-        this.rowToBeAdded = false;
-        var i = this.questionnaireList.length;
-        this.questionnaire['petitionId'] = this.appService.petitionId;
-        this.questionnaireService.saveNewQuestionnaireClient(this.questionnaire)
-            .subscribe((res) => {
-                if (res['statusCode'] == 'SUCCESS') {
-                    this.questionnaireList[i] = res['questionnaire'];
-                    this.isEditQuestionnaire[i] = !this.isEditQuestionnaire[i];
-                    this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
-                    this.rowEdit[i] = true;
-                    this.rowEditEmp[i] = true;
-                } else {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Error..!',
-                        message: 'Unable to Add Questionnaire..!'
-                    });
-                }
-            });
 
-    }
     cancelQuestion() {
         this.questionnaire = {};
         this.rowToBeAdded = false;
