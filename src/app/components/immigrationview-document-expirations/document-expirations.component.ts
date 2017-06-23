@@ -9,6 +9,7 @@ import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -29,7 +30,12 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     public delmessage;
     public getDocExpirations: boolean = true;
     public addDocExpiration: boolean;
-    public addNewDocExp :any= {};
+    public addNewDocExp: any = {};
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -111,6 +117,8 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     docExpSave() {
         this.addNewDocExp['clientId'] = this.appService.clientId;
         this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
+        this.addNewDocExp['validFrom'] = this.addNewDocExp['validFrom']['formatted'];
+        this.addNewDocExp['validTo'] = this.addNewDocExp['validTo']['formatted'];
         this.appService.addNewDocExp = this.addNewDocExp;
         this.result = true;
         this.close();

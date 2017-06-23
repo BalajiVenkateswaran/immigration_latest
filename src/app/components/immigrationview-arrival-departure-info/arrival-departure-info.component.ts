@@ -8,6 +8,7 @@ import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -29,6 +30,11 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   public arrDepInfo: boolean = true;
   public addArrDeparture: any = {};
   public addArrDep: boolean;
+  private myDatePickerOptions: IMyOptions = {
+      // other options...
+      dateFormat: 'mm-dd-yyyy',
+      showClearDateBtn: false,
+  };
   settings = {
       add: {
           addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -111,6 +117,8 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   }
   arrDepSave() {
       this.addArrDeparture['clientId'] = this.appService.clientId;
+      this.addArrDeparture['departureDate'] = this.addArrDeparture['departureDate']['formatted'];
+      this.addArrDeparture['arrivalDate'] = this.addArrDeparture['arrivalDate']['formatted'];
       this.appService.addArrDeparture = this.addArrDeparture;
       this.result = true;
       this.close();

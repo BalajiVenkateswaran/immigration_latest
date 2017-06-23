@@ -9,14 +9,21 @@ import {AppService} from "../../services/app.service";
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getI797History: boolean;
+    addI797His: boolean;
 
+}
 @Component({
   selector: 'app-i-797-history',
   templateUrl: './i-797-history.component.html',
   styleUrls: ['./i-797-history.component.sass']
 })
-export class ImmigrationViewI797HistoryComponent implements OnInit {
+export class ImmigrationViewI797HistoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -66,22 +73,67 @@ export class ImmigrationViewI797HistoryComponent implements OnInit {
     public addI797History: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
+    public getI797History: boolean = true;
+    public addI797His: boolean;
+    public addNewI797: any = {};
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
 
-    constructor(private immigrationViewI797HistoryService: ImmigrationViewI797HistoryService, public appService: AppService, private dialogService: DialogService) {
+    constructor(private immigrationViewI797HistoryService: ImmigrationViewI797HistoryService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
         }
     }
     source: LocalDataSource = new LocalDataSource();
-   ngOnInit() {
-       this.immigrationViewI797HistoryService.getI797Details(this.appService.clientId)
+    get1797history() {
+        this.immigrationViewI797HistoryService.getI797Details(this.appService.clientId)
             .subscribe((res) => {
                 this.source.load(res['i797HistoryList']);
             });
 
     }
+   ngOnInit() {
+       this.get1797history();
+    }
    highlightSBLink(link) {
        this.appService.currentSBLink = link;
+
+   }
+   addNewI797History() {
+       this.dialogService.addDialog(ImmigrationViewI797HistoryComponent, {
+           addI797His: true,
+           getI797History: false,
+           title: 'Add I-797 History',
+       }).subscribe((isConfirmed) => {
+           if (isConfirmed) {
+
+               this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
+                   if (res['statusCode'] == 'SUCCESS') {
+       this.get1797history();
+
+                   }
+               });
+           }
+       });
+   }
+   I797HistorySave() {
+       this.addNewI797['clientId'] = this.appService.clientId;
+       this.addNewI797['i797HistoryId'] = this.appService.clientId;
+       this.addNewI797['approvedOn'] = this.addNewI797['approvedOn']['formatted'];
+       this.addNewI797['receiptDate'] = this.addNewI797['receiptDate']['formatted'];
+       this.addNewI797['validFrom'] = this.addNewI797['validFrom']['formatted'];
+       this.addNewI797['validTill'] = this.addNewI797['validTill']['formatted'];
+       this.appService.addNewI797 = this.addNewI797;
+       this.result = true;
+       this.close();
+   }
+   cancel() {
+       this.result = false;
+       this.close();
    }
    onCreateConfirm(event): void {
        event.newData['clientId'] = this.appService.clientId;

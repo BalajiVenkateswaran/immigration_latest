@@ -34,9 +34,17 @@
                             <div class="col-md-4">Visa Type:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addNewVisa.visaType" class="form-control"></div>
                             <div class="col-md-4">Issued On:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewVisa.issuedOn" class="form-control"></div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewVisa.issuedOn"
+                                                [selDate]="issuedOn"></my-date-picker>
+                            </div>
                             <div class="col-md-4">Expires On:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewVisa.expiresOn" class="form-control"></div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewVisa.expiresOn"
+                                                [selDate]="expiresOn"></my-date-picker>                         
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
