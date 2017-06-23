@@ -8,6 +8,8 @@ import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -29,6 +31,11 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     public getCleintVisa: boolean = true;
     public addCleintVisa: boolean;
     public addNewVisa: any = {};
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -118,6 +125,8 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     }
     clientVisaSave() {
         this.addNewVisa['clientId'] = this.appService.clientId;
+        this.addNewVisa['issuedOn'] = this.addNewVisa['issuedOn']['formatted'];
+        this.addNewVisa['expiresOn'] = this.addNewVisa['expiresOn']['formatted'];
         this.appService.addNewVisa = this.addNewVisa;
         this.result = true;
         this.close();

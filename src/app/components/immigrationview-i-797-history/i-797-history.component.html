@@ -33,7 +33,7 @@
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.receiptDate"
-                                                [selDate]="issuedOn"></my-date-picker>
+                                                [selDate]="receiptDate"></my-date-picker>
                             </div>
                             <div class="col-md-4">Status On I-797:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addNewI797.status" class="form-control"></div>
@@ -41,19 +41,19 @@
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.approvedOn"
-                                                [selDate]="issuedOn"></my-date-picker>                            
+                                                [selDate]="approvedOn"></my-date-picker>                            
                             </div>
                             <div class="col-md-4">Valid From:</div>
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.validFrom"
-                                                [selDate]="issuedOn"></my-date-picker> 
+                                                [selDate]="validFrom"></my-date-picker> 
                             </div>
                             <div class="col-md-4">valid Till:</div>
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.validTill"
-                                                [selDate]="issuedOn"></my-date-picker>
+                                                [selDate]="validTill"></my-date-picker>
                             </div>                          
                         </div>
                     </div>

@@ -25,9 +25,17 @@
                             <div class="col-md-4">Document Type:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addNewDocExp.documentType" class="form-control"></div>
                             <div class="col-md-4">Valid From:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewDocExp.validFrom" class="form-control"></div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewDocExp.validFrom"
+                                                [selDate]="validFrom"></my-date-picker>                        
+                            </div>
                             <div class="col-md-4">Valid To:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewDocExp.validTo" class="form-control"></div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewDocExp.validTo"
+                                                [selDate]="validTo"></my-date-picker>  
+                            </div>
                             <div class="col-md-4">Status:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addNewDocExp.status" class="form-control"></div>
                         </div>

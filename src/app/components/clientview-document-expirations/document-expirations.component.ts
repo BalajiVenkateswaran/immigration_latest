@@ -8,6 +8,7 @@ import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -65,6 +66,11 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     public getClientDocExp: boolean = true;
     public addClientDocExp: boolean;
     public addClientNewDocExp: any = {};
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     source: LocalDataSource = new LocalDataSource();
     constructor(private documentExpirationsService: DocumentExpirationsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
@@ -104,6 +110,8 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     clientDocExpSave() {
         this.addClientNewDocExp['clientId'] = this.appService.user.userId;
         this.addClientNewDocExp['clientDocumentExpirationId'] = this.addClientNewDocExp['clientId'];
+        this.addClientNewDocExp['validFrom'] = this.addClientNewDocExp['validFrom']['formatted'];
+        this.addClientNewDocExp['validTo'] = this.addClientNewDocExp['validTo']['formatted'];
         this.appService.addClientNewDocExp = this.addClientNewDocExp;
         this.result = true;
         this.close();
