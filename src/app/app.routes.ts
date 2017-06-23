@@ -1,3 +1,4 @@
+import { SmartTableFramework } from './components/smarttableframework/SmartTableFramework';
 import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
 import {HeaderComponent} from "./components/header/header.component";
@@ -251,7 +252,8 @@ export const appRoutes: Routes = [
   },
   {
       path: 'immigrationview-I-797-history',
-      component: ImmigrationViewI797HistoryComponent
+      //component: SmartTableFramework
+     component:  ImmigrationViewI797HistoryComponent
   },
   {
       path: 'immigrationview-petitions',

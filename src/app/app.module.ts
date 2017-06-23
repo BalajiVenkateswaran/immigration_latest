@@ -1,3 +1,6 @@
+import { CustomFilterRow } from './components/smarttableframework/CustomFilterRow';
+import { SmartTableFrameworkService } from './components/smarttableframework/SmartTableFramework-service';
+import { SmartTableFramework } from './components/smarttableframework/SmartTableFramework';
 import {NgModule}      from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule}   from '@angular/forms';
@@ -137,6 +140,9 @@ import { CustomRenderComponent } from './components/immigrationview-petitions/cu
 
 import { PetitionSubTypeCustomEditorComponent } from './components/immigrationview-petitions/petitionSubType-custom-editor.component';
 
+import {AgGridModule} from "ag-grid-angular/main";
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -148,12 +154,14 @@ import { PetitionSubTypeCustomEditorComponent } from './components/immigrationvi
       Ng2SmartTableModule,
       MyDatePickerModule,
       BootstrapModalModule,
+      AgGridModule.withComponents([SmartTableFramework]),
       NgbModule.forRoot()],
+     
 
 
 
   entryComponents: [
-      ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent /*AdvancedExamplesCustomEditorComponent*/
+      ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent ,CustomFilterRow,SmartTableFramework/*AdvancedExamplesCustomEditorComponent*/
   ],
   declarations: [
       CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, /*AdvancedExamplesCustomEditorComponent,*/
@@ -217,8 +225,11 @@ import { PetitionSubTypeCustomEditorComponent } from './components/immigrationvi
       ResetPasswordComponent,
         ConfirmComponent,
         ConfirmorgComponent,
-        ClientsEnhansmentsComponent
+        ClientsEnhansmentsComponent,
        //Typeahead
+
+       //SmartTableFramework
+       SmartTableFramework,CustomFilterRow
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -275,7 +286,8 @@ import { PetitionSubTypeCustomEditorComponent } from './components/immigrationvi
         QuestionnaireI129HClentviewService,
         ResetPasswordService,
       ClientQuestionnaireService,
-      MenuComponent
+      MenuComponent,
+      SmartTableFrameworkService
 
     ],
     bootstrap: [AppComponent]

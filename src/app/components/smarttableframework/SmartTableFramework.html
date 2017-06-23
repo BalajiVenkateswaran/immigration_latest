@@ -1,0 +1,92 @@
+<style>
+    .highlightColor rag-element{
+        color:red;
+    }
+</style>
+<div class="main-content" *ngIf="getI797">
+    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+    <ul class="breadcrumb">
+        <li><a href="#">Clients</a></li>
+        <li><a href="#">I-797 History</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2>I-797 History</h2>
+        <!--<ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
+        <button  type="button" class="iportal-btn pull-right no-marg-right" (click)="addI797()" >ADD</button>
+        <div style="position: fixed; top: 160px; right: 32px; padding: 10px;">
+            Page Size:
+            <select  #pages (change)="onPageSizeChanged(pages.value)">
+                <option value="10" [selected]>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                
+            </select>
+        </div>
+        <div>
+            <div style="display:inline" *ngFor="let x of filterWholeArray let i=index">
+                <span style="margin-left:10px;">{{x.headingName}}</span>:<span>{{x.filterValue}}</span><span style="position:absolute;top: 118px;" class="close" (click)="delete(i,x)">&times;</span>
+            </div>
+            
+        </div>
+        <div style="width:100%;">
+            <ag-grid-angular #agGrid style="width: 100%; height:355px;" class="ag-fresh"
+                             [gridOptions]="gridOptions" (rowClicked)="onRowClicked($event)">
+            </ag-grid-angular>
+        </div>
+        <div class="clearfix">
+            
+        </div>
+    </div>
+
+
+</div>
+
+<div *ngIf="editI797">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Approved On:</div>
+                            <div class="col-md-8">
+                               <!-- <input type="text" [(ngModel)]="i797.approvedOn" class="form-control">-->
+                                <my-date-picker  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="i797.approvedOn" [selDate]="approvedOn"></my-date-picker>
+                            </div>
+                            <div class="col-md-4">Receipt Number:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="i797.receiptNumber" class="form-control"></div>
+                            <div class="col-md-4">Status:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="i797.status" class="form-control"></div>
+                            <div class="col-md-4">Valid From:</div>
+                            <div class="col-md-8">
+                              <!--  <input type="text" [(ngModel)]="i797.validFrom" class="form-control">-->
+                              <my-date-picker  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="i797.validFrom" [selDate]="validFrom"></my-date-picker>
+                            </div>
+                            <div class="col-md-4">Valid Till:</div>
+                            <div class="col-md-8">
+                               <!-- <input type="text" [(ngModel)]="i797.validTill" class="form-control">-->
+                                 <my-date-picker  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="i797.validTill" [selDate]="validTill"></my-date-picker>
+                            </div>
+                            <div class="col-md-4">Receipt Date:</div>
+                            <div class="col-md-8">
+                              <!--  <input type="text" [(ngModel)]="i797.receiptDate" class="form-control">-->
+                                <my-date-picker  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="i797.receiptDate" [selDate]="receiptDate"></my-date-picker>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="saveI797()">SAVE</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
