@@ -1,14 +1,44 @@
-<div class="main-content">
+<div class="main-content" *ngIf="getCVDependentData">
     <h1>{{appService.firstName}} {{appService.lastName}}</h1>
     <ul class="breadcrumb">
         <li><a href="#">Dependents</a></li>
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2><span>Dependents</span></h2>
+        <h2>Dependents<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewDependent()">ADD</button></h2>
         <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
-    <div class="clearfix"></div>
+        <div class="clearfix"></div>
+    </div>
 </div>
-
-
+<div *ngIf="showAddCVdependentpopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">First Name :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newCVdependentitem.firstName" class="form-control"></div>
+                            <div class="col-md-4">Middle Name :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newCVdependentitem.middleName" class="form-control"></div>
+                            <div class="col-md-4">Last Name :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newCVdependentitem.lastName" class="form-control"></div>
+                            <div class="col-md-4">Relation :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newCVdependentitem.relation" class="form-control"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="dependentSave()">SAVE</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>

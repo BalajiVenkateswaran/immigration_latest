@@ -7,13 +7,26 @@ import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+
+
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    showAddArvdInfopopup: boolean;
+    getArvdInfoData: boolean;
+
+}
+
 @Component({
   selector: 'app-arrival-desparture-info',
   templateUrl: './arrival-desparture-info.component.html',
   styleUrls: ['./arrival-desparture-info.component.sass']
 })
-export class ArrivalDespartureInfoComponent implements OnInit {
+export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+
+
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -61,18 +74,70 @@ export class ArrivalDespartureInfoComponent implements OnInit {
     public addArrivalDespartureInfo: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-
-    constructor(private arrivalDespartureInfoService: ArrivalDespartureInfoService, public appService: AppService, private dialogService: DialogService) {
+    public showAddArvdInfopopup: boolean;
+    public getArvdInfoData: boolean = true;
+    public newArvdInfoitem: any = {};
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
+    constructor(private arrivalDespartureInfoService: ArrivalDespartureInfoService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
     }
 
     source: LocalDataSource = new LocalDataSource();
+
+    getarvdptData() {
+        this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.appService.user.userId).subscribe((res) => {
+            this.source.load(res['arrivalDepartures']);
+        });
+    }
+
     ngOnInit() {
         this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.appService.user.userId)
             .subscribe((res) => {
                 this.source.load(res['arrivalDepartures']);
             });
 
-  }
+    }
+    addNewArvdInfo() {
+        this.dialogService.addDialog(ArrivalDespartureInfoComponent, {
+            showAddArvdInfopopup: true,
+            getArvdInfoData: false,
+            title: 'Add Arrival Departure Info',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.arrivalDespartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
+                    this.message = res['statusCode'];
+                    if (this.message == 'SUCCESS') {
+                        this.getarvdptData();
+                    } else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Unable to Add Arrival Departure Info.'
+                        });
+                    }
+
+                });
+            }
+        });
+    }
+    ArvdInfoSave() {
+        this.newArvdInfoitem['clientId'] = this.appService.clientId;
+        this.newArvdInfoitem['departureDate'] = this.newArvdInfoitem['departureDate']['formatted'];
+        this.newArvdInfoitem['arrivaldate'] = this.newArvdInfoitem['arrivaldate']['formatted'];
+        this.appService.newArvdInfoitem = this.newArvdInfoitem;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
+
+
+
     onCreateConfirm(event): void {
         event.newData['clientId'] = this.appService.user.userId;
         this.arrivalDespartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {

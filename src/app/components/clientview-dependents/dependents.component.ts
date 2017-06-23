@@ -7,18 +7,37 @@ import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+
+
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    showAddCVdependentpopup: boolean;
+    getCVDependentData: boolean;
+
+}
+
 @Component({
     selector: 'app-dependents',
     templateUrl: './dependents.component.html',
     styleUrls: ['./dependents.component.sass']
 })
-export class DependentsComponent implements OnInit {
+
+
+
+
+export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public delmessage;
     private dependentList: dependent[];
     public addDependent: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
+
+    public showAddCVdependentpopup: boolean;
+    public getCVDependentData: boolean = true;
+    public newCVdependentitem: any = {};
+
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -56,11 +75,16 @@ export class DependentsComponent implements OnInit {
             perPage: 10
         }
     };
-    source: LocalDataSource = new LocalDataSource();
-    constructor(private dependentService: DependentService, public appService: AppService, private dialogService: DialogService) {
+    constructor(private dependentService: DependentService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
     }
 
-
+    source: LocalDataSource = new LocalDataSource();
+    getCVDpntData() {
+        this.dependentService.getDependentSummary(this.appService.user.userId).subscribe((res) => {
+            this.source.load(res['dependents']);
+        });
+    }
 
     ngOnInit() {
         this.dependentService.getDependentSummary(this.appService.user.userId)
@@ -69,6 +93,41 @@ export class DependentsComponent implements OnInit {
                 this.appService.dependents = res['dependents'];
             });
     }
+
+    addNewDependent() {
+        this.dialogService.addDialog(DependentsComponent, {
+            showAddCVdependentpopup: true,
+            getCVDependentData: false,
+            title: 'Add Dependent',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.dependentService.saveDependentsSummary(this.appService.newCVdependentitem).subscribe((res) => {
+                    this.message = res['statusCode'];
+                    if (this.message == 'SUCCESS') {
+                        this.getCVDpntData();
+                    } else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Unable to Add Dependent.'
+                        });
+                    }
+
+                });
+            }
+        });
+    }
+    dependentSave() {
+        this.newCVdependentitem['clientId'] = this.appService.clientId;
+        this.appService.newCVdependentitem = this.newCVdependentitem;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
+
+
 
     onCreateConfirm(event): void {
         event.newData['clientId'] = this.appService.user.userId;
