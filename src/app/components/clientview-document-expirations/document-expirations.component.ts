@@ -7,13 +7,20 @@ import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getClientDocExp: boolean;
+    addClientDocExp: boolean;
+
+}
 @Component({
     selector: 'app-document-expirations',
   templateUrl: './document-expirations.component.html',
   styleUrls: ['./document-expirations.component.sass']
 })
-export class DocumentExpirationsComponent implements OnInit {
+export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel, boolean > implements OnInit {
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -55,9 +62,12 @@ export class DocumentExpirationsComponent implements OnInit {
     public addDocumentExpiration: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
+    public getClientDocExp: boolean = true;
+    public addClientDocExp: boolean;
+    public addClientNewDocExp: any = {};
     source: LocalDataSource = new LocalDataSource();
-    constructor(private documentExpirationsService: DocumentExpirationsService, public appService: AppService, private dialogService: DialogService) {
-
+    constructor(private documentExpirationsService: DocumentExpirationsService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
         this.addDocumentExpiration = new FormGroup({
             documentType: new FormControl(''),
             validFrom: new FormControl(''),
@@ -65,15 +75,43 @@ export class DocumentExpirationsComponent implements OnInit {
             status: new FormControl('')
         });
     }
-
-    ngOnInit() {
+    getClientDocumentExp() {
         this.documentExpirationsService.getDocumentExpiration(this.appService.user.userId)
             .subscribe((res) => {
                 this.source.load(res['documentExpiration']);
                 console.log(this.source);
             });
+    }
+    ngOnInit() {
+        this.getClientDocumentExp();
   }
-
+    addClientExps() {
+        this.dialogService.addDialog(DocumentExpirationsComponent, {
+            addClientDocExp: true,
+            getClientDocExp: false,
+            title: 'Add Document Expiration',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+             
+                this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getClientDocumentExp();
+                    }
+                });
+            }
+        });
+    }
+    clientDocExpSave() {
+        this.addClientNewDocExp['clientId'] = this.appService.user.userId;
+        this.addClientNewDocExp['clientDocumentExpirationId'] = this.addClientNewDocExp['clientId'];
+        this.appService.addClientNewDocExp = this.addClientNewDocExp;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
     onCreateConfirm(event): void {
         event.newData['clientId'] = this.appService.user.userId;
         event.newData['clientDocumentExpirationId'] = event.newData['clientId'];

@@ -59,6 +59,8 @@ export class AppService {
     public addArrDeparture: any = {};
     public addUsers: any = {};
     public addAdress: any = {};
+    public addClientNewDocExp: any = {};
+    public addNewVisa: any = {};
 
     constructor(private _router: Router) { }
 

@@ -7,19 +7,28 @@ import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getCleintVisa: boolean;
+    addCleintVisa: boolean;
+
+}
 @Component({
   selector: 'app-visas',
   templateUrl: './visas.component.html',
   styleUrls: ['./visas.component.sass']
 })
-export class VisasComponent implements OnInit {
+export class VisasComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
     public addVisa: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private data
-
+    public getCleintVisa: boolean = true;
+    public addCleintVisa: boolean;
+    public addNewVisa: any = {};
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -65,8 +74,8 @@ export class VisasComponent implements OnInit {
     };
 
     source: LocalDataSource = new LocalDataSource();
-    constructor(private visasService: VisasService, public appService: AppService, private dialogService: DialogService) {
-
+    constructor(private visasService: VisasService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
         this.addVisa = new FormGroup({
             country: new FormControl(''),
             petitionNumber: new FormControl(''),
@@ -77,10 +86,7 @@ export class VisasComponent implements OnInit {
         });
     }
 
-
-
-    ngOnInit() {
-
+    getClientviewvisa() {
         this.visasService.getClientVisas(this.appService.user.userId)
             .subscribe((res) => {
                 this.source.load(res['visas']);
@@ -88,6 +94,38 @@ export class VisasComponent implements OnInit {
 
     }
 
+    ngOnInit() {
+
+        this.getClientviewvisa();
+
+    }
+    addNewClientVisa() {
+        this.dialogService.addDialog(VisasComponent, {
+            addCleintVisa: true,
+            getCleintVisa: false,
+            title: 'Add Dependent',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+
+                this.visasService.saveClientVisas(this.appService.addNewVisa).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+        this.getClientviewvisa();
+
+                    }
+                });
+            }
+        });
+    }
+    clientVisaSave() {
+        this.addNewVisa['clientId'] = this.appService.clientId;
+        this.appService.addNewVisa = this.addNewVisa;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
     onCreateConfirm(event): void {
         event.newData['clientId'] = this.appService.user.userId;
         this.visasService.saveClientVisas(event.newData).subscribe((res) => {
