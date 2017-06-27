@@ -14,7 +14,9 @@ export interface ConfirmModel {
     message: string;
     arrDepInfo: boolean;
     addArrDep: boolean;
-
+    addArrDeparture:Object;
+    arrivalDate:string;
+    departureDate:string;
 }
 @Component({
   selector: 'app-arrival-departure-info',
@@ -22,7 +24,7 @@ export interface ConfirmModel {
   styleUrls: ['./arrival-departure-info.component.sass']
 })
 export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    private delmessage;
+  private delmessage;
   private arrivalDepartureInfo: any[];
   private arrivalDepartureInfoScreenData: any;
   private message: string;
@@ -30,6 +32,10 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   public arrDepInfo: boolean = true;
   public addArrDeparture: any = {};
   public addArrDep: boolean;
+  public beforeEdit: any;
+  public editFlag: boolean = true;
+  public rowClicked: boolean ;
+  onDateChanged(event: IMyDateModel) {}
   private myDatePickerOptions: IMyOptions = {
       // other options...
       dateFormat: 'mm-dd-yyyy',
@@ -43,10 +49,10 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
           confirmCreate: true
       },
       edit: {
-          editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-          saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-          cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-          confirmSave: true
+          editButtonContent: '<i class="fa fa-pencil" aria-hidden="false"></i>',
+          saveButtonContent: '<i class="fa fa-check" aria-hidden="false"></i>',
+          cancelButtonContent: '<i class="fa fa-times" aria-hidden="false"></i>',
+          confirmSave: false
       },
       delete: {
           deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
@@ -54,27 +60,36 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       },
       columns: {
           departureDate: {
-              title: 'Departure date'
+              title: 'Departure date',
+              
           },
           departureCountry: {
-              title: 'Departure Country'
+              title: 'Departure Country',
+              
           },
           arrivalDate: {
-              title: 'Arrival date'
+              title: 'Arrival date',
+              
           },
           arrivalCountry: {
-              title: 'Arrival Country'
+              title: 'Arrival Country',
+              
           },
           visaType: {
-              title: 'Visa Type'
+              title: 'Visa Type',
+              
           },
           i94: {
-              title: 'I-94'
+              title: 'I-94',
+              
           }
       },
       pager: {
           display: true,
           perPage: 10
+      },
+      actions:{
+          edit:false
       }
   };
 
@@ -117,8 +132,13 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   }
   arrDepSave() {
       this.addArrDeparture['clientId'] = this.appService.clientId;
-      this.addArrDeparture['departureDate'] = this.addArrDeparture['departureDate']['formatted'];
-      this.addArrDeparture['arrivalDate'] = this.addArrDeparture['arrivalDate']['formatted'];
+      
+      if(this.addArrDeparture['departureDate'] && this.addArrDeparture['departureDate']['formatted']){
+           this.addArrDeparture['departureDate'] = this.addArrDeparture['departureDate']['formatted'];
+      }
+      if(this.addArrDeparture['arrivalDate'] && this.addArrDeparture['arrivalDate']['formatted']){
+        this.addArrDeparture['arrivalDate'] = this.addArrDeparture['arrivalDate']['formatted'];
+      }
       this.appService.addArrDeparture = this.addArrDeparture;
       this.result = true;
       this.close();
@@ -127,7 +147,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       this.result = false;
       this.close();
   }
-
+/*
   onCreateConfirm(event): void {
       event.newData['clientId'] = this.appService.clientId;
       this.arrivalDepartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {
@@ -159,7 +179,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
               event.confirm.resolve(event.data);
           }
       });
-  }
+  }*/
 
   onDeleteConfirm(arrivalDeprtInfo) {
       this.delmessage = arrivalDeprtInfo.data.departureCountry;
@@ -180,4 +200,32 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
               }
           });
   }
+  editRowClicked(arrivalDeptInfo) {
+      this.editFlag = true;
+      if (this.editFlag) {
+          this.beforeEdit = (<any>Object).assign({}, arrivalDeptInfo.data);
+      }
+     this.dialogService.addDialog(ImmigrationViewArrivalDepartureInfoComponent, {
+          addArrDep: true,
+          arrDepInfo: false,
+          title: 'Edit Arrival Departue Info',
+          addArrDeparture: this.editFlag ? this.beforeEdit : this.addArrDeparture,
+          arrivalDate:arrivalDeptInfo.data.arrivalDate,
+          departureDate:arrivalDeptInfo.data.departureDate,
+          
+     }).subscribe((isConfirmed) => {
+         if (isConfirmed) {
+              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture).subscribe((res) => {
+                  if (res['statusCode'] == 'SUCCESS') {
+                      this.getArrivalDepartueInfo();
+                  }
+              });
+          }
+          else {
+              this.editFlag = false;   
+          }
+      });
+  }
+
+
 }
