@@ -15,6 +15,9 @@ export interface ConfirmModel {
     message: string;
     getDocExpirations: boolean;
     addDocExpiration: boolean;
+    addNewDocExp: Object;
+    validFrom: string;
+    validTo: string;
 }
 @Component({
     selector: 'app-document-expirations',
@@ -31,12 +34,16 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     public getDocExpirations: boolean = true;
     public addDocExpiration: boolean;
     public addNewDocExp: any = {};
+
+    public editFlag: boolean = true;
+    public beforeEdit: any;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
     settings = {
+        mode: 'external',
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
             createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
@@ -105,6 +112,8 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
             title: 'Add Document Expiration'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
+                this.addNewDocExp['clientId'] = this.appService.clientId;
+                this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
                 this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getDocumentsExpirations();
@@ -115,8 +124,6 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
         });
     }
     docExpSave() {
-        this.addNewDocExp['clientId'] = this.appService.clientId;
-        this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
         this.addNewDocExp['validFrom'] = this.addNewDocExp['validFrom']['formatted'];
         this.addNewDocExp['validTo'] = this.addNewDocExp['validTo']['formatted'];
         this.appService.addNewDocExp = this.addNewDocExp;
@@ -127,42 +134,52 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
         this.result = false;
         this.close();
     }
-    onCreateConfirm(event): void {
-        event.newData['clientId'] = this.appService.clientId;
-        event.newData['clientDocumentExpirationId'] = event.newData['clientId'];
-        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.newData = res['documentExpirations'];
-             event.confirm.resolve(event.newData);}
-            else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Add Document Expiration.'
-                });
-                event.confirm.reject();
-            }
+    //onCreateConfirm(event): void {
+    //    event.newData['clientId'] = this.appService.clientId;
+    //    event.newData['clientDocumentExpirationId'] = event.newData['clientId'];
+    //    this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(event.newData).subscribe((res) => {
+    //        this.message = res['statusCode'];
+    //        if (this.message == 'SUCCESS') {
+    //            event.newData = res['documentExpirations'];
+    //         event.confirm.resolve(event.newData);}
+    //        else {
+    //            this.dialogService.addDialog(ConfirmComponent, {
+    //                title: 'Error..!',
+    //                message: 'Unable to Add Document Expiration.'
+    //            });
+    //            event.confirm.reject();
+    //        }
 
-        });
-    }
+    //    });
+    //}
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
     onEditConfirm(event): void {
-        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-           if (this.message === "SUCCESS") {
-               event.newData = res['documentExpirations'];
-               event.confirm.resolve(event.newData);
-           }
-           else {
-               this.dialogService.addDialog(ConfirmComponent, {
-                   title: 'Error..!',
-                   message: 'Unable to Edit Document Expiration.'
-               });
-                event.confirm.reject();
+        this.editFlag = true;
+        if (this.editFlag) {
+            this.beforeEdit = (<any>Object).assign({}, event.data);
+        }
+
+        this.dialogService.addDialog(ImmigrationviewDocumentExpirationsComponent, {
+            addDocExpiration: true,
+            getDocExpirations: false,
+            title: 'Add Document Expiration',
+            addNewDocExp: this.editFlag ? this.beforeEdit : this.addNewDocExp,
+            validFrom: event.data.validFrom,
+            validTo: event.data.validTo,
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getDocumentsExpirations();
+                    }
+
+                });
+            } else {
+                this.editFlag = false;
             }
-       });
+        });
     }
 
     onDeleteConfirm(event): void {
