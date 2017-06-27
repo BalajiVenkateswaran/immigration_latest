@@ -14,7 +14,9 @@ export interface ConfirmModel {
     message: string;
     getClientDocExp: boolean;
     addClientDocExp: boolean;
-
+    addClientNewDocExp: Object;
+    validFrom: string;
+    validTo: string;
 }
 @Component({
     selector: 'app-document-expirations',
@@ -57,7 +59,8 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         pager: {
             display: true,
             perPage: 10
-        }
+        },
+        mode: 'external'
     };
     public delmessage;
     public addDocumentExpiration: FormGroup; // our model driven form
@@ -66,6 +69,8 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     public getClientDocExp: boolean = true;
     public addClientDocExp: boolean;
     public addClientNewDocExp: any = {};
+    public editFlag: boolean = true;
+    public beforeEdit: any;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -98,7 +103,8 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
             title: 'Add Document Expiration',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-             
+                this.appService.addClientNewDocExp['clientId'] = this.appService.clientId;
+                this.appService.addClientNewDocExp['clientDocumentExpirationId'] = this.addClientNewDocExp['clientId'];
                 this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getClientDocumentExp();
@@ -108,10 +114,12 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         });
     }
     clientDocExpSave() {
-        this.addClientNewDocExp['clientId'] = this.appService.user.userId;
-        this.addClientNewDocExp['clientDocumentExpirationId'] = this.addClientNewDocExp['clientId'];
-        this.addClientNewDocExp['validFrom'] = this.addClientNewDocExp['validFrom']['formatted'];
-        this.addClientNewDocExp['validTo'] = this.addClientNewDocExp['validTo']['formatted'];
+        if (this.addClientNewDocExp['validFrom'] && this.addClientNewDocExp['validFrom']['formatted']) {
+            this.addClientNewDocExp['validFrom'] = this.addClientNewDocExp['validFrom']['formatted'];
+        }
+        if (this.addClientNewDocExp['validTo'] && this.addClientNewDocExp['validTo']['formatted']) {
+            this.addClientNewDocExp['validTo'] = this.addClientNewDocExp['validTo']['formatted'];
+        }
         this.appService.addClientNewDocExp = this.addClientNewDocExp;
         this.result = true;
         this.close();
@@ -140,20 +148,45 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     }
 
     onEditConfirm(event): void {
-        this.documentExpirationsService.saveDocumentExpairation(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message === "SUCCESS") {
-                event.newData = res['documentExpirations'];
-                event.confirm.resolve(event.newData);
+        this.editFlag = true;
+        if (this.editFlag) {
+            this.beforeEdit = (<any>Object).assign({}, event.data);
+        }
+        this.dialogService.addDialog(DocumentExpirationsComponent, {
+            addClientDocExp: true,
+            getClientDocExp: false,
+            title: 'Edit Document Expiration',
+            addClientNewDocExp: this.editFlag ? this.beforeEdit : this.addClientNewDocExp,
+            validFrom: event.data.validFrom,
+            validTo: event.data.validTo,
+
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+
+                this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getClientDocumentExp();
+                    }
+                });
             }
             else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Edit Document Repository..!'
-                });
-                event.confirm.reject();
+                this.editFlag = false;
             }
         });
+        //this.documentExpirationsService.saveDocumentExpairation(event.newData).subscribe((res) => {
+        //    this.message = res['statusCode'];
+        //    if (this.message === "SUCCESS") {
+        //        event.newData = res['documentExpirations'];
+        //        event.confirm.resolve(event.newData);
+        //    }
+        //    else {
+        //        this.dialogService.addDialog(ConfirmComponent, {
+        //            title: 'Error..!',
+        //            message: 'Unable to Edit Document Repository..!'
+        //        });
+        //        event.confirm.reject();
+        //    }
+        //});
     }
 
     onDeleteConfirm(event): void {
@@ -168,11 +201,11 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
                     console.log("User table onDeleteConfirm event: %o", event.data);
                     this.documentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
                         this.message = res['statusCode'];
-                        if (this.message == 'SUCCESS') {
-                            event.confirm.resolve();
-                        } else {
-                            event.confirm.reject();
-                        }
+                        //if (this.message == 'SUCCESS') {
+                        //    event.confirm.resolve();
+                        //} else {
+                        //    event.confirm.reject();
+                        //}
                     });
                 }
             });
