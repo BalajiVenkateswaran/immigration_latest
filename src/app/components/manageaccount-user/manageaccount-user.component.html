@@ -9,7 +9,7 @@
                 <span>Users</span>
                 <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewUser()">ADD</button>
             </h2>
-                <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm) = "onDeleteConfirm($event)" (editConfirm) = "onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                <ng2-smart-table [settings]="settings" [source]="source" (delete) = "onDeleteConfirm($event)" (edit) = "onEditConfirm($event)" (create)="onCreateConfirm($event)" ></ng2-smart-table>
             <div class="clearfix"></div>
         </div>
     </div>
