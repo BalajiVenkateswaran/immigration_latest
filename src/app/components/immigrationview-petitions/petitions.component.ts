@@ -274,6 +274,10 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       if (this.newpetitionitem['status'] == undefined) {
           this.newpetitionitem['status'] = "Open";
       }
+      if (this.newpetitionitem['petitionName'] == undefined || this.newpetitionitem['petitionName'] == '') {
+          var currentYear = new Date().getFullYear();
+          this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
+      }
       this.appService.newpetitionitem = this.newpetitionitem;
       this.result = true;
       this.close();
@@ -282,9 +286,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       this.result = false;
       this.close();
   }
-
-
-
 
   onCreateConfirm(event) : void {
      console.log("Petition table onCreateConfirm event: %o",event.newData);
