@@ -61,4 +61,8 @@ export class AccountInvoiceComponent implements OnInit {
     };
     constructor(public appService: AppService, public dialogService: DialogService) { }
     ngOnInit() { }
+    source: LocalDataSource = new LocalDataSource();
+    onDeleteConfirm(event): void { }
+    onEditConfirm(event): void { }
+
 }

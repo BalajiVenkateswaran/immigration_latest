@@ -77,7 +77,8 @@ export class ManagersAccounts extends DialogComponent<ConfirmModel, boolean> imp
     };
     private user: User;
     public addUsers: any = {};
-    public getUsers:boolean=true;
+    public getUsers: boolean = true;
+    public adduser: boolean;
     source: LocalDataSource = new LocalDataSource();
     constructor(public appService:AppService,public managersAccountService:ManagersAccountService,public dialogService: DialogService){
          super(dialogService);
