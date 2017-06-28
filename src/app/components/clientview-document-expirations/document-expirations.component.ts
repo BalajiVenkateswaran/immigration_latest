@@ -104,7 +104,6 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.appService.addClientNewDocExp['clientId'] = this.appService.clientId;
-                this.appService.addClientNewDocExp['clientDocumentExpirationId'] = this.addClientNewDocExp['clientId'];
                 this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getClientDocumentExp();
@@ -200,7 +199,9 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
                 if (isConfirmed) {
                     console.log("User table onDeleteConfirm event: %o", event.data);
                     this.documentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
-                        this.message = res['statusCode'];
+                        if (res['statusCode'] == 'SUCCESS') {
+                            this.getClientDocumentExp();
+                        }
                         //if (this.message == 'SUCCESS') {
                         //    event.confirm.resolve();
                         //} else {

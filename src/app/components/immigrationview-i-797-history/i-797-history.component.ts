@@ -16,7 +16,11 @@ export interface ConfirmModel {
     message: string;
     getI797History: boolean;
     addI797His: boolean;
-
+    receiptDate: string;
+    approvedOn: string;
+    validFrom: string;
+    validTill: string;
+    addNewI797: Object;
 }
 @Component({
   selector: 'app-i-797-history',
@@ -65,7 +69,8 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
         pager: {
             display: true,
             perPage: 10
-        }
+        },
+        mode: 'external'
 
     };
     private delmessage;
@@ -81,7 +86,8 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-
+    public editi797Flag: boolean = true;
+    public beforei797Edit: any;
     constructor(private immigrationViewI797HistoryService: ImmigrationViewI797HistoryService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
@@ -110,7 +116,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
            title: 'Add I-797 History',
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
-
+           ;
                this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
                    if (res['statusCode'] == 'SUCCESS') {
        this.get1797history();
@@ -122,11 +128,20 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
    }
    I797HistorySave() {
        this.addNewI797['clientId'] = this.appService.clientId;
-       this.addNewI797['i797HistoryId'] = this.appService.clientId;
-       this.addNewI797['approvedOn'] = this.addNewI797['approvedOn']['formatted'];
-       this.addNewI797['receiptDate'] = this.addNewI797['receiptDate']['formatted'];
-       this.addNewI797['validFrom'] = this.addNewI797['validFrom']['formatted'];
-       this.addNewI797['validTill'] = this.addNewI797['validTill']['formatted'];
+
+
+       if (this.addNewI797['approvedOn'] && this.addNewI797['approvedOn']['formatted']) {
+           this.addNewI797['approvedOn'] = this.addNewI797['approvedOn']['formatted'];
+       }
+       if (this.addNewI797['receiptDate'] && this.addNewI797['receiptDate']['formatted']) {
+           this.addNewI797['receiptDate'] = this.addNewI797['receiptDate']['formatted'];
+       }
+       if (this.addNewI797['validFrom'] && this.addNewI797['validFrom']['formatted']) {
+           this.addNewI797['validFrom'] = this.addNewI797['validFrom']['formatted'];
+       }
+       if (this.addNewI797['validTill'] && this.addNewI797['validTill']['formatted']) {
+           this.addNewI797['validTill'] = this.addNewI797['validTill']['formatted'];
+       }
        this.appService.addNewI797 = this.addNewI797;
        this.result = true;
        this.close();
@@ -135,39 +150,51 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
        this.result = false;
        this.close();
    }
-   onCreateConfirm(event): void {
-       event.newData['clientId'] = this.appService.clientId;
-       event.newData['i797HistoryId'] = this.appService.clientId;
-       this.immigrationViewI797HistoryService.saveI797Details(event.newData).subscribe((res) => {
-           this.message = res['statusCode'];
-           if (this.message == 'SUCCESS') {
-               event.newData = res['i797HistoryList'];
-               event.confirm.resolve(event.newData);
-           } else {
-               this.dialogService.addDialog(ConfirmComponent, {
-                   title: 'Error..!',
-                   message: 'Unable to Add I-797.'
-               });
-               event.confirm.reject();
-           }
-       });
-   }
+   //onCreateConfirm(event): void {
+   //    event.newData['clientId'] = this.appService.clientId;
+   //    event.newData['i797HistoryId'] = this.appService.clientId;
+   //    this.immigrationViewI797HistoryService.saveI797Details(event.newData).subscribe((res) => {
+   //        this.message = res['statusCode'];
+   //        if (this.message == 'SUCCESS') {
+   //            event.newData = res['i797HistoryList'];
+   //            event.confirm.resolve(event.newData);
+   //        } else {
+   //            this.dialogService.addDialog(ConfirmComponent, {
+   //                title: 'Error..!',
+   //                message: 'Unable to Add I-797.'
+   //            });
+   //            event.confirm.reject();
+   //        }
+   //    });
+   //}
 
    onEditConfirm(event): void {
-       event.newData['clientId'] = this.appService.clientId;
-       this.immigrationViewI797HistoryService.saveI797Details(event.newData).subscribe((res) => {
-           this.message = res['statusCode'];
-           if (this.message == 'SUCCESS') {
-               event.newData = res['i797HistoryList'];
-               event.confirm.resolve(event.newData);
-           } else {
-               this.dialogService.addDialog(ConfirmComponent, {
-                   title: 'Error..!',
-                   message: 'Unable to Edit I-797.'
+       this.editi797Flag = true;
+       if (this.editi797Flag) {
+           this.beforei797Edit = (<any>Object).assign({}, event.data);
+       }
+       this.dialogService.addDialog(ImmigrationViewI797HistoryComponent, {
+           addI797His: true,
+           getI797History: false,
+           title: 'Edit I-797 History',
+           addNewI797: this.editi797Flag ? this.beforei797Edit : this.addNewI797,
+           receiptDate: event.data.receiptDate,
+           approvedOn: event.data.approvedOn,
+           validFrom: event.data.validFrom,
+           validTill: event.data.validTill
+       }).subscribe((isConfirmed) => {
+           if (isConfirmed) {
+              
+             this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
+                 if (res['statusCode'] == 'SUCCESS') {
+                 
+       this.get1797history();
+
+                   }
                });
-               event.confirm.resolve(event.data);
            }
        });
+  
    }
    onDeleteConfirm(immViewi797) {
        this.delmessage = immViewi797.data.receiptNumber
@@ -182,10 +209,12 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
                    this.immigrationViewI797HistoryService.removeI797Details(immViewi797.data['i797HistoryId']).subscribe((res) => {
                        this.message = res['statusCode'];
                        if (this.message == 'SUCCESS') {
-                           immViewi797.confirm.resolve();
-                       } else {
-                           immViewi797.confirm.reject();
+                           this.get1797history();
+                           //immViewi797.confirm.resolve();
                        }
+                          //  else {
+                       //    immViewi797.confirm.reject();
+                       //}
                    });
                }
            });

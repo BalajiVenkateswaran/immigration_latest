@@ -88,9 +88,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
           display: true,
           perPage: 10
       },
-      actions:{
-          edit:false
-      }
+      mode:'external'
   };
 
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
@@ -190,17 +188,20 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
           .subscribe((isConfirmed) => {
               if (isConfirmed) {
                   this.arrivalDepartureInfoService.removeClientArrivalDeparture(arrivalDeprtInfo.data['arrivalDepartureInfoId']).subscribe((res) => {
-                      this.message = res['statusCode'];
-                      if (this.message == 'SUCCESS') {
-                          arrivalDeprtInfo.confirm.resolve();
-                      } else {
-                          arrivalDeprtInfo.confirm.reject();
+                      //this.message = res['statusCode'];
+                      //if (this.message == 'SUCCESS') {
+                      //    arrivalDeprtInfo.confirm.resolve();
+                      //} else {
+                      //    arrivalDeprtInfo.confirm.reject();
+                      //}
+                      if (res['statusCode'] == 'SUCCESS') {
+                          this.getArrivalDepartueInfo();
                       }
                   });
               }
           });
   }
-  editRowClicked(arrivalDeptInfo) {
+  onEditConfirm(arrivalDeptInfo) {
       this.editFlag = true;
       if (this.editFlag) {
           this.beforeEdit = (<any>Object).assign({}, arrivalDeptInfo.data);
