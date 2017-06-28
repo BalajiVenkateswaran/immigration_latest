@@ -164,7 +164,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
         this.dialogService.addDialog(ImmigrationviewDocumentExpirationsComponent, {
             addDocExpiration: true,
             getDocExpirations: false,
-            title: 'Add Document Expiration',
+            title: 'Edit Document Expiration',
             addNewDocExp: this.editFlag ? this.beforeEdit : this.addNewDocExp,
             validFrom: event.data.validFrom,
             validTo: event.data.validTo,
