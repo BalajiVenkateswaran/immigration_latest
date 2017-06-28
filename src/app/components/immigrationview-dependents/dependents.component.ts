@@ -70,6 +70,9 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
         pager: {
             display: true,
             perPage: 10
+        },
+        actions: {
+            edit: false
         }
 
     };
@@ -118,22 +121,26 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
         this.result = false;
         this.close();
     }
-    onCreateConfirm(event): void {
-        event.newData['clientId'] = this.appService.clientId;
-        this.ImmigrationViewDependentService.saveDependentsSummary(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.newData = res['dependentsSummary'];
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Add Dependent..!'
-                });
-                event.confirm.reject();
-            }
-        });
+    onUserRowSelect(event): void {    
+        this.appService.moveToPageWithParams('dependentDetails', event.data.dependentId); 
+        this.appService.currentSBLink = event.data.firstName;
     }
+    //onCreateConfirm(event): void {
+    //    event.newData['clientId'] = this.appService.clientId;
+    //    this.ImmigrationViewDependentService.saveDependentsSummary(event.newData).subscribe((res) => {
+    //        this.message = res['statusCode'];
+    //        if (this.message == 'SUCCESS') {
+    //            event.newData = res['dependentsSummary'];
+    //            event.confirm.resolve(event.newData);
+    //        } else {
+    //            this.dialogService.addDialog(ConfirmComponent, {
+    //                title: 'Error..!',
+    //                message: 'Unable to Add Dependent..!'
+    //            });
+    //            event.confirm.reject();
+    //        }
+    //    });
+    //}
 
     onEditConfirm(event): void {
         event.newData['clientId'] = this.appService.clientId;
