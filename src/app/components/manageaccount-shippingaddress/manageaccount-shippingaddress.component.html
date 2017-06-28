@@ -11,7 +11,7 @@
                <!-- <button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right">Add</button> -->
             </h2>
 
-            <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+            <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
           <!--  <table class="smarttable" cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
