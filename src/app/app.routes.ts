@@ -64,6 +64,13 @@ import {QuestionnaireI129HclientviewComponent} from './components/clientview-i12
 
 //superuserview
 import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
+
+
+
+
+
+import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
+
 export const appRoutes: Routes = [
     {
         path: 'login',
@@ -275,6 +282,17 @@ export const appRoutes: Routes = [
   {
       path:'superuserview-managersaccount',
       component:ManagersAccounts
+  },
+
+
+
+
+
+
+  {
+      path: 'superuserview-invoice',
+      component: AccountInvoiceComponent
+
   },
   {
     path: '',

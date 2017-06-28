@@ -148,6 +148,15 @@ import {AgGridModule} from "ag-grid-angular/main";
  import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
  import {ManagersAccountService} from './components/superuserview-accountdetails-managers/managersaccount.service'
 
+
+
+
+
+ import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
+ import {AccountInvoiceService} from './components/superuserview-invoice/invoice.service';
+
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -236,7 +245,12 @@ import {AgGridModule} from "ag-grid-angular/main";
        //SmartTableFramework
        SmartTableFramework,CustomFilterRow,
        //superuserview
-       ManagersAccounts
+      ManagersAccounts,
+
+
+
+
+       AccountInvoiceComponent
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -297,8 +311,12 @@ import {AgGridModule} from "ag-grid-angular/main";
       SmartTableFrameworkService,
 
       //superuserview
-      ManagersAccountService
+      ManagersAccountService,
 
+
+
+     
+      AccountInvoiceService
     ],
     bootstrap: [AppComponent]
 })
