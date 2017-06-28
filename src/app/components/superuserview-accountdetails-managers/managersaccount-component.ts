@@ -10,7 +10,7 @@ export interface ConfirmModel {
     title: string;
     message: string;
     getUsers: boolean;
-    adduser: boolean;
+    addPopups: boolean;
     addUsers: Object;
 
 }
@@ -77,8 +77,8 @@ export class ManagersAccounts extends DialogComponent<ConfirmModel, boolean> imp
     };
     private user: User;
     public addUsers: any = {};
-    public getUsers: boolean = true;
-    public adduser: boolean;
+    public addPopups: boolean = false;
+    public getUsers:boolean=true;
     source: LocalDataSource = new LocalDataSource();
     constructor(public appService:AppService,public managersAccountService:ManagersAccountService,public dialogService: DialogService){
          super(dialogService);
@@ -103,7 +103,7 @@ export class ManagersAccounts extends DialogComponent<ConfirmModel, boolean> imp
     }
     addNewUser() {
         this.dialogService.addDialog(ManagersAccounts, {
-            adduser: true,
+            addPopups: true,
             getUsers: false,
             title: 'Add New User',
         }).subscribe((isConfirmed) => {
