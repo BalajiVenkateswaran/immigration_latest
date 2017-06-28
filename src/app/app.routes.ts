@@ -1,3 +1,4 @@
+import { viewAddressInfo } from './models/viewAddressInfo';
 import { SmartTableFramework } from './components/smarttableframework/SmartTableFramework';
 import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
@@ -60,6 +61,9 @@ import {ResetPasswordComponent} from './components/reset-password/reset-password
 
 import {QuestionnaireI129HclientviewComponent} from './components/clientview-i129h/questionnaire-i129h.component';
 
+
+//superuserview
+import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
 export const appRoutes: Routes = [
     {
         path: 'login',
@@ -267,6 +271,11 @@ export const appRoutes: Routes = [
         path: 'reset-password',
         component: ResetPasswordComponent
   },
+  //superuserview
+  {
+      path:'superuserview-managersaccount',
+      component:ManagersAccounts
+  },
   {
     path: '',
     component: LoginComponent
@@ -274,7 +283,11 @@ export const appRoutes: Routes = [
   {
     path: '**',
     component: LoginComponent
-  }
+  },
+
+  
+
+  
 ];
 
 export const appRoutingProviders: any[] = [];

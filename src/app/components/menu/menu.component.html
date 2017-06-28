@@ -115,6 +115,7 @@
                   <span>I -797 History</span>
               </a>
           </li>
+          
       </ul>
 
       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
@@ -278,6 +279,31 @@
               </ul>
           </li>
       </ul>
-
+    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview'">   
+         <li>
+              <a (click)="appservice.moveToPage('superuserview-managersaccount');" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>Account Details</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('superuserview-managersaccount');" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>Account Managers</span>
+              </a>
+          </li>
+           <li>
+              <a (click)="appservice.moveToPage('superuserview-managersaccount');" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>Account Preferences</span>
+              </a>
+          </li>
+           <li>
+              <a (click)="appservice.moveToPage('superuserview-managersaccount');" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>Invoices Tab</span>
+              </a>
+          </li>
+    </ul>    
   </div>
 

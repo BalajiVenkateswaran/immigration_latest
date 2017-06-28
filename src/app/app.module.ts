@@ -1,3 +1,4 @@
+import { viewAddressInfo } from './models/viewAddressInfo';
 import { CustomFilterRow } from './components/smarttableframework/CustomFilterRow';
 import { SmartTableFrameworkService } from './components/smarttableframework/SmartTableFramework-service';
 import { SmartTableFramework } from './components/smarttableframework/SmartTableFramework';
@@ -141,7 +142,11 @@ import { CustomRenderComponent } from './components/immigrationview-petitions/cu
 import { PetitionSubTypeCustomEditorComponent } from './components/immigrationview-petitions/petitionSubType-custom-editor.component';
 
 import {AgGridModule} from "ag-grid-angular/main";
+ 
+ //superusersview
 
+ import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
+ import {ManagersAccountService} from './components/superuserview-accountdetails-managers/managersaccount.service'
 
 @NgModule({
   imports: [
@@ -229,7 +234,9 @@ import {AgGridModule} from "ag-grid-angular/main";
        //Typeahead
 
        //SmartTableFramework
-       SmartTableFramework,CustomFilterRow
+       SmartTableFramework,CustomFilterRow,
+       //superuserview
+       ManagersAccounts
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -287,7 +294,10 @@ import {AgGridModule} from "ag-grid-angular/main";
         ResetPasswordService,
       ClientQuestionnaireService,
       MenuComponent,
-      SmartTableFrameworkService
+      SmartTableFrameworkService,
+
+      //superuserview
+      ManagersAccountService
 
     ],
     bootstrap: [AppComponent]
