@@ -16,7 +16,11 @@ export interface ConfirmModel {
     message: string;
     showAddi797popup: boolean;
     getCvi797Data: boolean;
-
+    newi797item: Object;
+    receiptDate: string;
+    approvedOn: string;
+    validFrom: string;
+    validTill: string;
 }
 @Component({
   selector: 'app-i-797-history',
@@ -32,6 +36,8 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
     public showAddi797popup: boolean;
     public getCvi797Data: boolean = true;
     public newi797item: any = {};
+    public editFlag: boolean = true;
+    public beforeEdit: any;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -39,6 +45,7 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
     };
 
     settings = {
+        mode: 'external',
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
             createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
@@ -101,11 +108,11 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
         });
     }
     ngOnInit() {
-
-        this.i797HistoryService.getI797Details(this.appService.user.userId)
-            .subscribe((res) => {
-                this.source.load(res['i797HistoryList']);
-            });
+        this.geti797Data();
+        //this.i797HistoryService.getI797Details(this.appService.user.userId)
+        //    .subscribe((res) => {
+        //        this.source.load(res['i797HistoryList']);
+        //    });
     }
     addNewi797() {
         this.dialogService.addDialog(I797HistoryComponent, {
@@ -114,6 +121,7 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
             title: 'Add I-797 History',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
+
                 this.i797HistoryService.saveI797Details(this.appService.newi797item).subscribe((res) => {
                     this.message = res['statusCode'];
                     if (this.message == 'SUCCESS') {
@@ -131,7 +139,7 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
     }
     i797Save() {
         this.newi797item['clientId'] = this.appService.clientId;
-        this.newi797item['i797HistoryId'] = this.appService.user.userId;
+        //this.newi797item['i797HistoryId'] = this.appService.user.userId;
         this.newi797item['receiptDate'] = this.newi797item['receiptDate']['formatted'];
         this.newi797item['approvedOn'] = this.newi797item['approvedOn']['formatted'];
         this.newi797item['validFrom'] = this.newi797item['validFrom']['formatted'];
@@ -168,18 +176,44 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
     }
 
     onEditConfirm(event): void {
-        event.newData['clientId'] = this.appService.user.userId;
-        this.i797HistoryService.saveI797Details(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.newData = res['i797HistoryList'];
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Edit I-797 History..!'
+        //event.newData['clientId'] = this.appService.user.userId;
+        //this.i797HistoryService.saveI797Details(event.newData).subscribe((res) => {
+        //    this.message = res['statusCode'];
+        //    if (this.message == 'SUCCESS') {
+        //        event.newData = res['i797HistoryList'];
+        //        event.confirm.resolve(event.newData);
+        //    } else {
+        //        this.dialogService.addDialog(ConfirmComponent, {
+        //            title: 'Error..!',
+        //            message: 'Unable to Edit I-797 History..!'
+        //        });
+        //        event.confirm.resolve(event.data);
+        //    }
+        //});
+        this.editFlag = true;
+        if (this.editFlag) {
+            this.beforeEdit = (<any>Object).assign({}, event.data);
+        }
+
+        this.dialogService.addDialog(I797HistoryComponent, {
+            showAddi797popup: true,
+            getCvi797Data: false,
+            title: 'Edit I-797 History',
+            newi797item: this.editFlag ? this.beforeEdit : this.newi797item,
+            receiptDate: event.data.receiptDate,
+            approvedOn: event.data.approvedOn,
+            validFrom: event.data.validFrom,
+            validTill: event.data.validTill,
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.i797HistoryService.saveI797Details(this.appService.newi797item).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.geti797Data();
+                    }
+
                 });
-                event.confirm.resolve(event.data);
+            } else {
+                this.editFlag = false;
             }
         });
     }
