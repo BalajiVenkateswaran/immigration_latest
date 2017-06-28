@@ -176,12 +176,9 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-5">Check Box :</div>
-                            <div class="col-md-7">
-                                <input type="checkbox" [disabled]="true" [(ngModel)]="newQuestionnaireitem.check" />
-                            </div>
-                            <div class="col-md-5">Form Name :</div>
-                            <div class="col-md-7">
+                            
+                            <div class="col-md-5" *ngIf="addquspopup">Form Name :</div>
+                            <div class="col-md-7" *ngIf="addquspopup">
                                 <select [(ngModel)]="newQuestionnaireitem.formId"  class="form-control">
                                     <option *ngFor="let x of formsList" [ngValue]="x.applicationFormsId" [selected]="x.applicationFormsId === questionnaire.formId">{{x.formName}}</option>
                                 </select>
@@ -190,10 +187,10 @@
                             <div class="col-md-7">
                                 <input type="text" [(ngModel)]="newQuestionnaireitem.questionnaireName" class="form-control" />
                             </div>
-                            <div class="col-md-5">Status :</div>
-                            <div class="col-md-7">
-                                <select [(ngModel)]="newQuestionnaireitem.status" class="form-control">
-                                    <option *ngFor="let x of status">{{x.status}}</option>
+                            <div class="col-md-5" *ngIf="editquspopup">Status :</div>
+                            <div class="col-md-7" *ngIf="editquspopup">
+                                <select [(ngModel)]="newQuestionnaireitem.clientStatus" class="form-control">
+                                    <option *ngFor="let x of status">{{x.clientStatus}}</option>
                                 </select>
                             </div>
                           </div>

@@ -256,8 +256,8 @@ export const appRoutes: Routes = [
   },
   {
       path: 'immigrationview-I-797-history',
-      //component: SmartTableFramework
-     component:  ImmigrationViewI797HistoryComponent
+      component: SmartTableFramework
+     //component:  ImmigrationViewI797HistoryComponent
   },
   {
       path: 'immigrationview-petitions',

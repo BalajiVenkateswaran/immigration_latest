@@ -20,6 +20,11 @@ export interface ConfirmModel {
     message: string;
     showAddQuestionnairepopup: boolean;
     getQuestionnaireData: boolean;
+    newQuestionnaireitem: Object;
+    addquspopup: boolean;
+    editquspopup: boolean;
+    questionnaireName: string;
+    clientStatus: string;
 
 }
 
@@ -48,7 +53,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     public showAddQuestionnairepopup: boolean;
     public getQuestionnaireData: boolean = true;
     public newQuestionnaireitem: any = {};
-
 
     private petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
     private myDatePickerOptions: IMyOptions = {
@@ -86,14 +90,16 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     private clientCheck: boolean[]=[];
     private sentQuestionnaireClient=[];
     public delmessage;
+    public editFlag: boolean = true;
+    public beforeEdit: any;
     private status = [
             {
                 "id": "0",
-                "status": "Open"
+                "clientStatus": "Open"
             },
             {
                 "id": "1",
-                "status": "Completed"
+                "clientStatus": "Completed"
             }
         ];
         private employerStatus = [
@@ -142,6 +148,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
             showAddQuestionnairepopup: true,
             getQuestionnaireData: false,
+            addquspopup: true,
+            editquspopup: false,
             title: 'Add Questionnaire',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
@@ -232,12 +240,40 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         this.selectedForm = name;
 
     }
-    editQuestionnaire(i, questions) {
-        this.beforeCancel = (<any>Object).assign({}, questions);
-        this.checkboxDisable = true;
-        this.statusDate = questions.statusDate;
-        this.rowEdit[i] = !this.rowEdit[i];
-        this.isEditQuestionnaire[i] = !this.isEditQuestionnaire[i];
+    editQuestionnaire(i, newQuestionnaireitem) {
+        //this.beforeCancel = (<any>Object).assign({}, questions);
+        //this.checkboxDisable = true;
+        //this.statusDate = questions.statusDate;
+        //this.rowEdit[i] = !this.rowEdit[i];
+        //this.isEditQuestionnaire[i] = !this.isEditQuestionnaire[i];
+
+        this.editFlag = true;
+        if (this.editFlag) {
+            this.beforeEdit = (<any>Object).assign({}, newQuestionnaireitem);
+        }
+
+        this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
+            showAddQuestionnairepopup: true,
+            getQuestionnaireData: false,
+            addquspopup: false,
+            editquspopup: true,
+            title: 'Edit Questionnaire',
+            newQuestionnaireitem: this.editFlag ? this.beforeEdit : this.newQuestionnaireitem,
+            //newQuestionnaireitem: questions.questionnaireName,
+            //clientStatus: questions.clientStatus,
+
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.questionnaireService.saveNewQuestionnaireClient(this.appService.newQuestionnaireitem).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getquesnreData();
+                    }
+
+                });
+            } else {
+                this.editFlag = false;
+            }
+        });
 
     }
     deleteQuestionnaire(i, questions) {
