@@ -1,9 +1,6 @@
 <div class="main-content">
     <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">Passport</a></li>
-    </ul>
+
     <div class="clearfix"></div>
     <div class="table-data-forms">
         <div class="row">
@@ -11,7 +8,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Passport</h2>
+                            <h2 class="no-pad-left">Account Info</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editForm()" *ngIf="isEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isEdit">
                                 <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn" *ngIf="isEdit==false">Cancel</button>
@@ -21,27 +18,31 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-Passport">Passport</label></div>
+                        <div class="col-md-4"><label for="pInfo-Passport">Account Name </label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span *ngIf="isEdit==true">{{passport.passportNumber}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-place">Issuance Place</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-taxid" [(ngModel)]="passport.issuancePlace" /><span *ngIf="isEdit==true">{{passport.issuancePlace}}</span></div>
+                        <div class="col-md-4"><label for="pInfo-issuance-place">Account Number</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-taxid" [(ngModel)]="passport.issuancePlace" disabled /><span *ngIf="isEdit==true">{{passport.issuancePlace}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-state">Issuance State</label></div>
+                        <div class="col-md-4"><label for="pInfo-issuance-state">First Name</label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-door" [(ngModel)]="passport.issuanceState" /><span *ngIf="isEdit==true">{{passport.issuanceState}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-country">Issuance Country</label></div>
+                        <div class="col-md-4"><label for="pInfo-issuance-country">Last Name</label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-issuance-country" [(ngModel)]="passport.issuanceCountry" /><span *ngIf="isEdit==true">{{passport.issuanceCountry}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuing-country">Issuing Country</label></div>
+                        <div class="col-md-4"><label for="pInfo-issuing-country">Email</label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-city" [(ngModel)]="passport.issuingCountry" /><span *ngIf="isEdit==true">{{passport.issuingCountry}}</span></div>
                     </div>
                     <div class="row">
-                       <div class="col-md-4"><label for="pInfo-issuance-date">Issuance Date</label></div>
+                        <div class="col-md-4"><label for="pInfo-issuing-country">Phone</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-city" [(ngModel)]="passport.issuingCountry" /><span *ngIf="isEdit==true">{{passport.issuingCountry}}</span></div>
+                    </div>
+                    <div class="row">
+                       <div class="col-md-4"><label for="pInfo-issuance-date">Created On</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.isuanceDate" [selDate]="isuanceDate">
                             </my-date-picker>
@@ -50,58 +51,30 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-date">Expiration Date</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.expirationDate" [selDate]="expirationDate">
-                            </my-date-picker>
-                            <span *ngIf="isEdit==true">{{passport.expirationDate}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-date">Date of Birth</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.dateOfBirth" [selDate]="dateOfBirth">
-                            </my-date-picker>
-                            <span *ngIf="isEdit==true">{{passport.dateOfBirth}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-city-of-birth">City/Town/Village Of Birth</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-country" [(ngModel)]="passport.cityOfBirth" /><span *ngIf="isEdit==true">{{passport.cityOfBirth}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-state-of-birth">State of Birth</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-state-of-birth" [(ngModel)]="passport.stateOfBirth" /><span *ngIf="isEdit==true">{{passport.stateOfBirth}}</span></div>
-                        {{countryofbirth}}
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-country-of-birth">Country of Birth</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-country-of-birth" [(ngModel)]="passport.countryOfBirth" /><span *ngIf="isEdit==true">{{passport.countryOfBirth}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-nationality">Nationality</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-nationality" [(ngModel)]="passport.nationality" /><span *ngIf="isEdit==true">{{passport.nationality}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-country-nationality">Country of Nationality</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-country-nationality" [(ngModel)]="passport.countryOfNationality" /><span *ngIf="isEdit==true">{{passport.countryOfNationality}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-identification-marks">Identification Marks</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-identification-marks" [(ngModel)]="passport.identificationMarks" /><span *ngIf="isEdit==true">{{passport.identificationMarks}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-lost-passport">Have you ever lost a passport?</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-lost-passport" [(ngModel)]="passport.everLostPassport" /><span *ngIf="isEdit==true">{{passport.everLostPassport}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-travel-document">Travel Document</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-travel-document" [(ngModel)]="passport.travelDocumentNumber" /><span *ngIf="isEdit==true">{{passport.travelDocumentNumber}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-comments">Comments</label></div>
+                        <div class="col-md-4"><label for="pInfo-comments">Status </label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-comments">Last Payment Status</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-comments">Storage Type</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-comments">Mark for Deletion</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-comments">Mark For Deletion details # By User on MM/DD/YYYY</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pInfo-comments">Notes/Comments</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
+                    </div>
+
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isEdit">
