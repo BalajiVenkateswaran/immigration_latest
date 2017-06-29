@@ -63,14 +63,9 @@ import {QuestionnaireI129HclientviewComponent} from './components/clientview-i12
 
 
 //superuserview
-import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
-import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
-
-
-
-
-
+import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
 import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
+import {SuperuserviewProductcatalogComponent} from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 
 export const appRoutes: Routes = [
     {
@@ -281,17 +276,17 @@ export const appRoutes: Routes = [
   },
   //superuserview
   {
-      path: 'accounts',
-      component: superuserViewAccountsComponent
-  },
-  {
-      path: 'account-details',
-      component: SuperuserViewAccountDetailsComponent
+      path:'superuserview-managersaccount',
+      component:ManagersAccounts
   },
   {
       path: 'superuserview-invoice',
       component: AccountInvoiceComponent
 
+  },
+  {
+      path:'superuserview-productcatalog',
+      component:SuperuserviewProductcatalogComponent
   },
   {
     path: '',

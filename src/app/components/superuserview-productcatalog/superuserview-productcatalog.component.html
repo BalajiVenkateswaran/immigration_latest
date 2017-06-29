@@ -1,0 +1,63 @@
+<div class="main-content">
+  <!--  <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>-->
+    <ul class="breadcrumb">
+        <li><a href="#">Clients</a></li>
+        <li><a href="#">Visas</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2>Visas<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewVisa()">ADD</button></h2>
+            <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div *ngIf="showAddVisapopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Country :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.country" class="form-control"></div>
+                            <div class="col-md-4">Petition Number:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
+                            <div class="col-md-4">Visa Number :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.visaNumber" class="form-control"></div>
+                            <div class="col-md-4">Visa Type :</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.visaType" class="form-control"></div>
+                            <div class="col-md-4">Issued On :</div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newvisaitem.issuedOn"
+                                                [selDate]="issuedOn"></my-date-picker>
+                            
+                            <!--<input type="text" [(ngModel)]="newvisaitem.issuedOn" class="form-control">-->
+                            </div>
+                            <div class="col-md-4">Expires On :</div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newvisaitem.expiresOn"
+                                                [selDate]="expiresOn"></my-date-picker>
+                            
+                            <!--<input type="text" [(ngModel)]="newvisaitem.expiresOn" class="form-control">-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="visaSave()">SAVE</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+

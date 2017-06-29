@@ -5,4 +5,5 @@ export interface manageaccountorganization {
   orgStatus: string;
   email: string;
   userId: string;
+  orgType: string;
 }

@@ -145,14 +145,16 @@ import {AgGridModule} from "ag-grid-angular/main";
  
  //superusersview
 
-import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
-import {superUserviewAccountService} from './components/superuserview-accounts/accounts.component.service';
+ import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
+ import {ManagersAccountService} from './components/superuserview-accountdetails-managers/managersaccount.service'
+
+
+
 
 
  import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
  import {AccountInvoiceService} from './components/superuserview-invoice/invoice.service';
- import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
- import {SuperuserViewAccountDetailsService} from './components/superuserview-account-details/superuserview-account-details.service';
+import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 
 
 
@@ -233,7 +235,7 @@ import {superUserviewAccountService} from './components/superuserview-accounts/a
         QuestionnaireI129DCComponent,
         QuestionnaireI129HComponent,
         QuestionnaireI129HclientviewComponent,
-      SuperuserViewAccountDetailsComponent,
+
 
       ResetPasswordComponent,
         ConfirmComponent,
@@ -244,12 +246,9 @@ import {superUserviewAccountService} from './components/superuserview-accounts/a
        //SmartTableFramework
        SmartTableFramework,CustomFilterRow,
        //superuserview
-      superuserViewAccountsComponent,
-
-
-
-
-       AccountInvoiceComponent
+      ManagersAccounts,
+      AccountInvoiceComponent,
+      SuperuserviewProductcatalogComponent
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -310,11 +309,7 @@ import {superUserviewAccountService} from './components/superuserview-accounts/a
       SmartTableFrameworkService,
 
       //superuserview
-      superUserviewAccountService,
-      SuperuserViewAccountDetailsService,
-
-
-     
+      ManagersAccountService,     
       AccountInvoiceService
     ],
     bootstrap: [AppComponent]
