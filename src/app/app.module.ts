@@ -145,10 +145,14 @@ import {AgGridModule} from "ag-grid-angular/main";
  
  //superusersview
 
+import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
+import {superUserviewAccountService} from './components/superuserview-accounts/accounts.component.service';
+
  import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
  import {ManagersAccountService} from './components/superuserview-accountdetails-managers/managersaccount.service'
 
-
+ import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
+ import {SuperuserViewAccountDetailsService} from './components/superuserview-account-details/superuserview-account-details.service';
 
 
 
@@ -234,8 +238,9 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
         QuestionnaireI129ClientComponent,
         QuestionnaireI129DCComponent,
         QuestionnaireI129HComponent,
-        QuestionnaireI129HclientviewComponent,
-
+      QuestionnaireI129HclientviewComponent,
+      superuserViewAccountsComponent,
+      SuperuserViewAccountDetailsComponent,
 
       ResetPasswordComponent,
         ConfirmComponent,
@@ -309,6 +314,8 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
       SmartTableFrameworkService,
 
       //superuserview
+      superUserviewAccountService,
+      SuperuserViewAccountDetailsService,
       ManagersAccountService,     
       AccountInvoiceService
     ],
