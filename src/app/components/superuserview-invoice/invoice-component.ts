@@ -6,13 +6,27 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {superuserinvoice} from "../../models/superuserinvoice";
 import {AccountInvoiceService} from './invoice.service';
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getInvoice: boolean;
+    addInvoice: boolean;
+}
 
 @Component({
     selector: 'account-invoice',
     templateUrl: './invoice-component.html'
 })
-export class AccountInvoiceComponent implements OnInit {
+export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+    public getInvoice: boolean = true;
+    public addInvoice: boolean;
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -59,10 +73,22 @@ export class AccountInvoiceComponent implements OnInit {
         },
         mode: 'external'
     };
-    constructor(public appService: AppService, public dialogService: DialogService) { }
+    constructor(public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
+    }
     ngOnInit() { }
     source: LocalDataSource = new LocalDataSource();
     onDeleteConfirm(event): void { }
     onEditConfirm(event): void { }
-
+    addNewInvoice(){
+        this.dialogService.addDialog(AccountInvoiceComponent, {
+            addInvoice: true,
+            getInvoice: false,
+            title: 'Add Invoice'
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+             
+            }
+        });
+}
 }
