@@ -217,10 +217,8 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         }
         this.appService.allsubtypesarray(this.allSubTypes);
 
-        //if (this.newpetitionitem['petitionName'] == undefined || this.newpetitionitem['petitionName'] == '') {
             var currentYear = new Date().getFullYear();
             this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
-        //}
     }
 
   ngOnInit() {

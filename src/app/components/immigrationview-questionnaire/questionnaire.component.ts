@@ -25,6 +25,8 @@ export interface ConfirmModel {
     editquspopup: boolean;
     questionnaireName: string;
     clientStatus: string;
+    questionnaireEmployee: Object;
+    showAddEmpQuespopup: boolean;
 
 }
 
@@ -53,7 +55,9 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     public showAddQuestionnairepopup: boolean;
     public getQuestionnaireData: boolean = true;
     public newQuestionnaireitem: any = {};
+    public questionnaireEmployee: any = {};
 
+    public showAddEmpQuespopup: boolean;
     private petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
     private myDatePickerOptions: IMyOptions = {
         // other options...
@@ -313,10 +317,51 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     }
 
     //Employee Questionnaire
-    editEmpQuestionnaire(i, question) {
-        this.empBeforeCancel = (<any>Object).assign({}, question);
-        this.rowEditEmp[i] = !this.rowEditEmp[i];
-        this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
+    editEmpQuestionnaire(i, questionnaireEmployee) {
+        //this.empBeforeCancel = (<any>Object).assign({}, question);
+        //this.rowEditEmp[i] = !this.rowEditEmp[i];
+        //this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
+
+
+        this.editFlag = true;
+        if (this.editFlag) {
+            this.beforeEdit = (<any>Object).assign({}, questionnaireEmployee);
+        }
+
+        this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
+            showAddEmpQuespopup: true,
+            getQuestionnaireData: false,
+            addquspopup: false,
+            editquspopup: true,
+            title: 'Edit Questionnaire',
+            questionnaireEmployee: this.editFlag ? this.beforeEdit : this.questionnaireEmployee,
+            //employerStatus: questionnaireEmployee.employerStatus,
+
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.questionnaireService.saveNewQuestionnaireClient(this.appService.questionnaireEmployee).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getquesnreData();
+                    }
+
+                });
+            } else {
+                this.editFlag = false;
+            }
+            });
+
+
+    }
+
+    empquestionnaireSave() {
+        //this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
+        this.appService.questionnaireEmployee = this.questionnaireEmployee;
+        this.result = true;
+        this.close();
+    }
+    empcancel() {
+        this.result = false;
+        this.close();
     }
     saveEmpQuestionnaire(i, question) {
 
