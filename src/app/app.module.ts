@@ -147,18 +147,13 @@ import {AgGridModule} from "ag-grid-angular/main";
 
 import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
 import {superUserviewAccountService} from './components/superuserview-accounts/accounts.component.service';
-
- import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
- import {ManagersAccountService} from './components/superuserview-accountdetails-managers/managersaccount.service'
-
- import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
- import {SuperuserViewAccountDetailsService} from './components/superuserview-account-details/superuserview-account-details.service';
-
-
-
- import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
- import {AccountInvoiceService} from './components/superuserview-invoice/invoice.service';
+import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
+import {SuperuserViewAccountDetailsService} from './components/superuserview-account-details/superuserview-account-details.service';
+import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
+import {AccountInvoiceService} from './components/superuserview-invoice/invoice.service';
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
+import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
+import { AccountManagersService } from './components/superuserview-accountdetails-managers/accountmanagers.service';
 
 
 
@@ -251,9 +246,10 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
        //SmartTableFramework
        SmartTableFramework,CustomFilterRow,
        //superuserview
-      ManagersAccounts,
       AccountInvoiceComponent,
-      SuperuserviewProductcatalogComponent
+      SuperuserviewProductcatalogComponent,
+      AccountsManagers
+
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -315,9 +311,9 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
 
       //superuserview
       superUserviewAccountService,
-      SuperuserViewAccountDetailsService,
-      ManagersAccountService,     
-      AccountInvoiceService
+      SuperuserViewAccountDetailsService,   
+      AccountInvoiceService,
+      AccountManagersService
     ],
     bootstrap: [AppComponent]
 })

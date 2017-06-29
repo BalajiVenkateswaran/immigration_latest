@@ -5,7 +5,7 @@ import { Ng2SmartTableModule, LocalDataSource, ServerDataSource  } from 'ng2-sma
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {ManagersAccountService} from './managersaccount.service';
+import {AccountManagersService} from './accountmanagers.service';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -16,9 +16,9 @@ export interface ConfirmModel {
 }
 @Component({
     selector:'managers-account',
-    templateUrl:'./managersaccount-component.html'
+    templateUrl:'./accountmanagers-component.html'
 })
-export class ManagersAccounts extends DialogComponent<ConfirmModel, boolean> implements OnInit{
+export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> implements OnInit{
      settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -80,7 +80,7 @@ export class ManagersAccounts extends DialogComponent<ConfirmModel, boolean> imp
     public addPopups: boolean = false;
     public getUsers:boolean=true;
     source: LocalDataSource = new LocalDataSource();
-    constructor(public appService:AppService,public managersAccountService:ManagersAccountService,public dialogService: DialogService){
+    constructor(public appService:AppService,public managersAccountService:AccountManagersService,public dialogService: DialogService){
          super(dialogService);
          if (this.appService.user) {
             this.user = this.appService.user;
@@ -89,7 +89,7 @@ export class ManagersAccounts extends DialogComponent<ConfirmModel, boolean> imp
     }
     ngOnInit(){
         this.getManageersAccounts();
-        this.appService.showSideBarMenu("superuserview", "superuserview-managersaccount");
+        this.appService.showSideBarMenu("accounts", "accounts");
     }
     getManageersAccounts() {
 
@@ -102,7 +102,7 @@ export class ManagersAccounts extends DialogComponent<ConfirmModel, boolean> imp
             });
     }
     addNewUser() {
-        this.dialogService.addDialog(ManagersAccounts, {
+        this.dialogService.addDialog(AccountsManagers, {
             addPopups: true,
             getUsers: false,
             title: 'Add New User',

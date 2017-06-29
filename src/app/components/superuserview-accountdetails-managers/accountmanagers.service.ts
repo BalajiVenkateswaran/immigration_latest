@@ -4,7 +4,7 @@ import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 
 @Injectable()
-export class ManagersAccountService {
+export class AccountManagersService {
     constructor(private restService: RestService) {
     }
 

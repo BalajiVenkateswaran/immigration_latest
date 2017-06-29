@@ -1,6 +1,6 @@
 import { LocalDataSource } from 'ng2-smart-table';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { Component, OnInit } from '@angular/core';
+import { Ng2SmartTableModule,ViewCell  } from 'ng2-smart-table';
+import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
 import {AppService} from "../../services/app.service";
 @Component({
   selector: 'app-superuserview-productcatalog',
@@ -53,6 +53,7 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
             createdOn :{
               title:'Created On '
             },
+           
         },
         pager: {
             display: true,
@@ -71,8 +72,7 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
         "maxStorage":"20GB",
         "cost":"10",
         "status":'active',
-        "createdOn":"06-29-2017",
-
+        "createdOn":"06-29-2017"
       },
       {
         "name":"Immigration",
@@ -83,7 +83,7 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
         "maxStorage":"20GB",
         "cost":"410",
         "status":'active',
-        "createdOn":"06-29-2017",
+        "createdOn":"06-29-2017"
         
       },
       {
@@ -95,8 +95,7 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
         "maxStorage":"20GB",
         "cost":"120",
         "status":'active',
-        "createdOn":"06-29-2017",
-        
+        "createdOn":"06-29-2017"
       }
     ];
   }
@@ -107,3 +106,4 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
   }
  
 }
+
