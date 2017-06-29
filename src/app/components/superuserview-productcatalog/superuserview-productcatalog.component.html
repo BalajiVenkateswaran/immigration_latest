@@ -6,13 +6,13 @@
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2>Visas<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewVisa()">ADD</button></h2>
+        <h2>Products<button type="button" class="iportal-btn pull-right no-marg-right">ADD</button></h2>
             <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
 
-<div *ngIf="showAddVisapopup">
+<!--<div *ngIf="showAddVisapopup">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,7 +38,7 @@
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="newvisaitem.issuedOn"
                                                 [selDate]="issuedOn"></my-date-picker>
                             
-                            <!--<input type="text" [(ngModel)]="newvisaitem.issuedOn" class="form-control">-->
+                            <input type="text" [(ngModel)]="newvisaitem.issuedOn" class="form-control">
                             </div>
                             <div class="col-md-4">Expires On :</div>
                             <div class="col-md-8">
@@ -46,7 +46,7 @@
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="newvisaitem.expiresOn"
                                                 [selDate]="expiresOn"></my-date-picker>
                             
-                            <!--<input type="text" [(ngModel)]="newvisaitem.expiresOn" class="form-control">-->
+                            <input type="text" [(ngModel)]="newvisaitem.expiresOn" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -59,5 +59,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
