@@ -304,6 +304,20 @@
                   <span>Invoices Tab</span>
               </a>
           </li>
-    </ul>    
+    </ul>  
+       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">   
+          <li>
+              <a (click)="appservice.moveToPage('superuserview-productcatalog');highlightSBLink('Products')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>Products</span>
+              </a>
+          </li>
+           <li>
+              <a (click)="appservice.moveToPage('superuserview-productcatalog');highlightSBLink('Discounts')" [ngClass]="[checkForCurrentSBLink('Discounts') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>Discounts</span>
+              </a>
+          </li>
+    </ul>  
   </div>
 

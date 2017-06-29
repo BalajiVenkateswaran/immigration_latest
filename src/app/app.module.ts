@@ -154,6 +154,7 @@ import {AgGridModule} from "ag-grid-angular/main";
 
  import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
  import {AccountInvoiceService} from './components/superuserview-invoice/invoice.service';
+import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 
 
 
@@ -246,11 +247,8 @@ import {AgGridModule} from "ag-grid-angular/main";
        SmartTableFramework,CustomFilterRow,
        //superuserview
       ManagersAccounts,
-
-
-
-
-       AccountInvoiceComponent
+      AccountInvoiceComponent,
+      SuperuserviewProductcatalogComponent
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -311,11 +309,7 @@ import {AgGridModule} from "ag-grid-angular/main";
       SmartTableFrameworkService,
 
       //superuserview
-      ManagersAccountService,
-
-
-
-     
+      ManagersAccountService,     
       AccountInvoiceService
     ],
     bootstrap: [AppComponent]

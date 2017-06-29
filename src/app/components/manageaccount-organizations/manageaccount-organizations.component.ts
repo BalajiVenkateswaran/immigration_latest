@@ -71,6 +71,9 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             },
             email: {
                 title: 'Email',
+            },
+            orgType: {
+                title: 'Type',
             }
         },
         pager: {
