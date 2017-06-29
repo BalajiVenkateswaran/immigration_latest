@@ -217,10 +217,10 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         }
         this.appService.allsubtypesarray(this.allSubTypes);
 
-        //this.cell.newValue = event.target.value;
-        //this.selectedOne = this.allPetitionTypesAndSubTypes.filter((ptst) => {
-        //    return ptst.id == event.target.value;
-        //})[0];
+        //if (this.newpetitionitem['petitionName'] == undefined || this.newpetitionitem['petitionName'] == '') {
+            var currentYear = new Date().getFullYear();
+            this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
+        //}
     }
 
   ngOnInit() {
@@ -233,11 +233,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
           .subscribe((res) => {
               this.allPetitionTypesAndSubTypes = res['petitionTypes'];
           });
-
-      //this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
-      //    .subscribe((res) => {
-      //        this.sourceForPetitionTypes.load(res['petitionTypes']);
-      //    });
 
   }
   addNewPetition() {
