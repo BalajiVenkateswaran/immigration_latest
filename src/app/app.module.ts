@@ -145,15 +145,14 @@ import {AgGridModule} from "ag-grid-angular/main";
  
  //superusersview
 
- import {ManagersAccounts} from './components/superuserview-accountdetails-managers/managersaccount-component';
- import {ManagersAccountService} from './components/superuserview-accountdetails-managers/managersaccount.service'
-
-
-
+import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
+import {superUserviewAccountService} from './components/superuserview-accounts/accounts.component.service';
 
 
  import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
  import {AccountInvoiceService} from './components/superuserview-invoice/invoice.service';
+ import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
+ import {SuperuserViewAccountDetailsService} from './components/superuserview-account-details/superuserview-account-details.service';
 
 
 
@@ -234,7 +233,7 @@ import {AgGridModule} from "ag-grid-angular/main";
         QuestionnaireI129DCComponent,
         QuestionnaireI129HComponent,
         QuestionnaireI129HclientviewComponent,
-
+      SuperuserViewAccountDetailsComponent,
 
       ResetPasswordComponent,
         ConfirmComponent,
@@ -245,7 +244,7 @@ import {AgGridModule} from "ag-grid-angular/main";
        //SmartTableFramework
        SmartTableFramework,CustomFilterRow,
        //superuserview
-      ManagersAccounts,
+      superuserViewAccountsComponent,
 
 
 
@@ -311,8 +310,8 @@ import {AgGridModule} from "ag-grid-angular/main";
       SmartTableFrameworkService,
 
       //superuserview
-      ManagersAccountService,
-
+      superUserviewAccountService,
+      SuperuserViewAccountDetailsService,
 
 
      
