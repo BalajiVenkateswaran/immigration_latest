@@ -70,5 +70,12 @@ export class MarkforDeletionComponent implements OnInit {
             delete:false
         }
 
+
     };
+    source: LocalDataSource = new LocalDataSource();
+    onDeleteConfirm(event): void { }
+    onEditConfirm(event): void { }
+    onCreateConfirm(event): void { }
+
+
 }

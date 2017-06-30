@@ -26,7 +26,7 @@ export interface ConfirmModel {
 })
 export class ManageAccountInvoicesComponent implements OnInit {
 
-    private invoiceDetailsForm: boolean = false;
+    public invoiceDetailsForm: boolean = false;
     public DefaultResponse = { "status": "Active" };
     settings = {
         add: {
