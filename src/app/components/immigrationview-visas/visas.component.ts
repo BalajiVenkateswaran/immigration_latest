@@ -17,7 +17,9 @@ export interface ConfirmModel {
     message: string;
     showAddVisapopup: boolean;
     getVisasData: boolean;
-
+    newvisaitem:Object;
+    expiresOn: string;
+    issuedOn: string;
 }
 
 
@@ -36,6 +38,8 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     public showAddVisapopup: boolean;
     public getVisasData: boolean = true;
     public newvisaitem: any = {};
+    public editvisaFlag: boolean = true;
+    public beforevisaEdit: any;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -81,7 +85,8 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
         pager: {
             display: true,
             perPage: 10
-        }
+        },
+        mode: 'external'
     };
     constructor(private immigrationviewVisasService: ImmigrationViewVisasService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
@@ -147,60 +152,82 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
-    onCreateConfirm(event): void {
-        event.newData['clientId'] = this.appService.clientId;
-        this.immigrationviewVisasService.saveClientVisas(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.newData = res['visa'];
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Add Visa.'
-                });
-                event.confirm.reject();
-            }
-        });
-    }
+    //onCreateConfirm(event): void {
+    //    event.newData['clientId'] = this.appService.user.userId;
+    //    this.visasService.saveClientVisas(event.newData).subscribe((res) => {
+    //        this.message = res['statusCode'];
+    //        if (this.message == 'SUCCESS') {
+    //            event.newData = res['visa'];
+    //            event.confirm.resolve(event.newData);
+    //        } else {
+    //            this.dialogService.addDialog(ConfirmComponent, {
+    //                title: 'Error..!',
+    //                message: 'Unable to Add Visa..!'
+    //            });
+    //            event.confirm.reject();
+    //        }
+    //    });
+    //}
 
     onEditConfirm(event): void {
-        event.newData['clientId'] = this.appService.clientId;
-        this.immigrationviewVisasService.saveClientVisas(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.newData = res['visa'];
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Edit Visa.'
+        this.editvisaFlag = true;
+        if (this.editvisaFlag) {
+            this.beforevisaEdit = (<any>Object).assign({}, event.data);
+        }
+        this.dialogService.addDialog(ImmigrationViewVisasComponent, {
+            getVisasData: false,
+            showAddVisapopup: true,
+            title: 'Edit Visa',
+            newvisaitem: this.editvisaFlag ? this.beforevisaEdit : this.newvisaitem,
+            issuedOn: event.data.issuedOn,
+            expiresOn: event.data.expiresOn,
+
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+
+                this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getVisaaData();
+
+                    }
                 });
-                event.confirm.resolve(event.data);
             }
         });
+        //event.newData['clientId'] = this.appService.user.userId;
+        //this.visasService.saveClientVisas(event.newData).subscribe((res) => {
+        //    this.message = res['statusCode'];
+        //    if (this.message == 'SUCCESS') {
+        //        event.newData = res['visa'];
+        //        event.confirm.resolve(event.newData);
+        //    } else {
+        //        this.dialogService.addDialog(ConfirmComponent, {
+        //            title: 'Error..!',
+        //            message: 'Unable to Edit Visa..!'
+        //        });
+        //        event.confirm.resolve(event.data);
+        //    }
+        //});
     }
-
-    onDeleteConfirm(immviewVisa) {
-        this.delmessage=immviewVisa.data.visaNumber
+    public delmesage;
+    onDeleteConfirm(event): void {
+        this.delmesage=event.data.country
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
-            message: 'Are you sure you want to Delete ' + this.delmessage+'?'
+            message: 'Are you sure you want to Delete  ' + this.delmesage+' ?'
         })
             .subscribe((isConfirmed) => {
-                //Get dialog result
-                //this.confirmResult = isConfirmed;
                 if (isConfirmed) {
-                    this.immigrationviewVisasService.deleteClientVisa(immviewVisa.data['visaId']).subscribe((res) => {
+                    this.immigrationviewVisasService.deleteClientVisa(event.data['visaId']).subscribe((res) => {
                         this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
-                            immviewVisa.confirm.resolve();
+                            event.confirm.resolve();
                         } else {
-                            immviewVisa.confirm.reject();
+                            event.confirm.reject();
                         }
                     });
                 }
             });
     }
+
 
 }
