@@ -10,7 +10,8 @@
         </h2>
             <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
                              (editConfirm)="onEditConfirm($event)"
-                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                             (createConfirm)="onCreateConfirm($event)"
+                             (userRowSelect)="onUserRowClick($event);"></ng2-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>

@@ -9,6 +9,8 @@ import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {MenuComponent} from "../menu/menu.component";
+import { ConfirmorgComponent } from '../confirmbox/confirmorg.component';
 
 
 export interface ConfirmModel {
@@ -94,7 +96,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
 
 
     constructor(private manageaccountorganizationService: ManageAccountOrganizationsService,
-        private appService: AppService, public dialogService: DialogService) {
+        private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent) {
         super(dialogService);
 
         this.addOrganization = new FormGroup({
@@ -233,5 +235,12 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             this.message = "Filled etails are not correct! please correct...";
         }
 
+    }
+    onUserRowClick(event): void {
+        this.menuComponent.highlightSBLink('Org Details');
+        this.appService.moveToPage("organization");
+        this.appService.clientId = event.data.orgDetailsId;
+        //todo this.appService.getorgName(Orgname);
+        //this.changeOrgName(Orgname);
     }
 }

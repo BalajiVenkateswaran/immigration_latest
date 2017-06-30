@@ -291,6 +291,7 @@
               </ul>
           </li>
       </ul>
+
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='accounts'">   
          <li>
               <a (click)="appservice.moveToPage('account-details');highlightSBLink('Account Details')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
@@ -323,6 +324,7 @@
             </a>
         </li>
     </ul>  
+
        <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">   
           <li>
               <a (click)="appservice.moveToPage('superuserview-productcatalog');highlightSBLink('Products')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
