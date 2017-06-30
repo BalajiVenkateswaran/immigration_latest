@@ -52,6 +52,8 @@ import {ManageAccountOrganizationsComponent} from "./components/manageaccount-or
 import {ManageAccountPetitionTypeStagesComponent} from "./components/manageaccount-petitiontypestages/manageaccount-petitiontypestages.component";
 import {ManageAccountShippingAddressComponent} from "./components/manageaccount-shippingaddress/manageaccount-shippingaddress.component";
 import {ManageAccountPreferencesComponent} from "./components/manageaccount-preferences/manageaccount-preferences.component";
+import {ManageAccountInvoicesComponent} from './components/manageaccount-invoices/manageaccount-invoices.component';
+import {ManageAccountPaymentsComponent} from './components/manageaccount-payments/manageaccount-payments.component';
 import {DocumentExpirationsComponent} from './components/clientview-document-expirations/document-expirations.component';
 
 import {ImmigrationViewClientDetailsComponent} from './components/immigrationview-client-details/client-details.component';
@@ -154,6 +156,7 @@ import {AccountInvoiceService} from './components/superuserview-invoice/invoice.
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import { AccountManagersService } from './components/superuserview-accountdetails-managers/accountmanagers.service';
+import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
 
 
 
@@ -208,7 +211,9 @@ import { AccountManagersService } from './components/superuserview-accountdetail
         ManageAccountOrganizationsComponent,
         ManageAccountPetitionTypeStagesComponent,
         ManageAccountShippingAddressComponent,
-        ManageAccountPreferencesComponent,
+      ManageAccountPreferencesComponent,
+      ManageAccountInvoicesComponent,
+      ManageAccountPaymentsComponent,
         DependentsComponent,
         DocumentExpirationsComponent,
         PetitionDocumentRepositoryComponent,
@@ -247,6 +252,7 @@ import { AccountManagersService } from './components/superuserview-accountdetail
        SmartTableFramework,CustomFilterRow,
        //superuserview
       AccountInvoiceComponent,
+      accountDetailsPaymentsComponent,
       SuperuserviewProductcatalogComponent,
       AccountsManagers
 

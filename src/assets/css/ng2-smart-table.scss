@@ -167,8 +167,11 @@
 .ng2-smart-row:hover {
     cursor:pointer;
 }
+tr.ng2-smart-row td.ng2-smart-actions {
+    padding-right:0px !important;
+    min-width:80px !important;
 
-
+}
 
 .ng2-smart-table td, .ng2-smart-table th {
     border: 1px solid #e0e0e0 !important;
@@ -275,4 +278,7 @@ margin-right: 10px;
 }
 .ng2-smart-action-add-add {
     display:none;
+}
+.ng2-smart-action-edit-edit {
+    float:left;
 }

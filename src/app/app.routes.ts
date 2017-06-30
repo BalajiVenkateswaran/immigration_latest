@@ -57,7 +57,8 @@ import {QuestionnaireI129ClientComponent} from './components/questionnaire-i129c
 import {QuestionnaireI129DCComponent} from './components/i129dc/questionnaire-i129dc.component';
 import {QuestionnaireI129HComponent} from './components/i129h/questionnaire-i129h.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
-
+import {ManageAccountInvoicesComponent} from './components/manageaccount-invoices/manageaccount-invoices.component';
+import {ManageAccountPaymentsComponent} from './components/manageaccount-payments/manageaccount-payments.component';
 
 import {QuestionnaireI129HclientviewComponent} from './components/clientview-i129h/questionnaire-i129h.component';
 
@@ -68,6 +69,7 @@ import {SuperuserViewAccountDetailsComponent} from './components/superuserview-a
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
+import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
 
 export const appRoutes: Routes = [
     {
@@ -227,6 +229,14 @@ export const appRoutes: Routes = [
       component: ManageAccountPreferencesComponent
   },
   {
+      path: 'manageaccount-invoices',
+      component: ManageAccountInvoicesComponent
+  },
+  {
+      path: 'manageaccount-payments',
+      component: ManageAccountPaymentsComponent
+  },
+  {
       path: 'clientview-petitions',
       component: petitionsclientviewComponent
   },
@@ -292,7 +302,10 @@ export const appRoutes: Routes = [
   {
       path: 'superuserview-invoice',
       component: AccountInvoiceComponent
-
+  },
+  {
+      path: 'accountdetails-payments',
+      component: accountDetailsPaymentsComponent
   },
   {
       path:'superuserview-accountmanagers',

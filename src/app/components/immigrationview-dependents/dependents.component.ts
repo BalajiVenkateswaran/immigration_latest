@@ -43,7 +43,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
             confirmCreate: true
         },
         edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+            editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
             saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
             cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
             confirmSave: true
@@ -71,9 +71,10 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
             display: true,
             perPage: 10
         },
-        actions: {
-            edit: false
-        }
+        mode:'external'
+        //actions: {
+        //    edit: false
+        //}
 
     };
     constructor(private ImmigrationViewDependentService: ImmigrationViewDependentService, public appService: AppService, public dialogService: DialogService) {
@@ -121,10 +122,12 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
         this.result = false;
         this.close();
     }
-    onUserRowSelect(event): void {    
+
+    onEditConfirm(event): void {    
         this.appService.moveToPageWithParams('dependentDetails', event.data.dependentId); 
         this.appService.currentSBLink = event.data.firstName;
     }
+
     //onCreateConfirm(event): void {
     //    event.newData['clientId'] = this.appService.clientId;
     //    this.ImmigrationViewDependentService.saveDependentsSummary(event.newData).subscribe((res) => {
@@ -142,22 +145,22 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     //    });
     //}
 
-    onEditConfirm(event): void {
-        event.newData['clientId'] = this.appService.clientId;
-        this.ImmigrationViewDependentService.saveDependentsSummary(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.newData = res['dependentsSummary'];
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Edit Dependent..!'
-                });
-                event.confirm.reject();
-            }
-        });
-    }
+    //onEditConfirm(event): void {
+    //    event.newData['clientId'] = this.appService.clientId;
+    //    this.ImmigrationViewDependentService.saveDependentsSummary(event.newData).subscribe((res) => {
+    //        this.message = res['statusCode'];
+    //        if (this.message == 'SUCCESS') {
+    //            event.newData = res['dependentsSummary'];
+    //            event.confirm.resolve(event.newData);
+    //        } else {
+    //            this.dialogService.addDialog(ConfirmComponent, {
+    //                title: 'Error..!',
+    //                message: 'Unable to Edit Dependent..!'
+    //            });
+    //            event.confirm.reject();
+    //        }
+    //    });
+    //}
 
     onDeleteConfirm(dependents) {
         this.dependent = dependents.data.firstName;
@@ -170,10 +173,12 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
                     this.ImmigrationViewDependentService.removeDependentsSummary(dependents.data['dependentId']).subscribe((res) => {
                         this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
-                            dependents.confirm.resolve();
-                        } else {
-                            dependents.confirm.reject();
+                            //dependents.confirm.resolve();
+                            this.getDepData();  
                         }
+                        //else {
+                        //    dependents.confirm.reject();
+                        //}
                     });
                 }
             });

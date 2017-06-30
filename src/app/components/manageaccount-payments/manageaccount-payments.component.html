@@ -1,0 +1,163 @@
+    <div class="main-content">
+        <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
+        <ul class="breadcrumb">
+            <li><a href="#">Account Preferences</a></li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="table-data">
+            <h2>payments</h2>
+            <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
+
+            <table class="smarttable" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td><span>payment ID</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span></td>
+                        <td>
+                            <span>Invoice Number</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Invoice Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Invoice Amount</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Transaction Id</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Payment Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Payment Amount</span><span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Payment Status</span><span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>View Details</span> 
+                        </td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>NPS Tier 1 </td>
+                        <td>17-01-2017</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>17-01-2017</td>
+                        <td>6</td>
+                        <td>6</td>
+                        <td>548</td>
+                        <td><a (click)="getDetails()"><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-data-forms" *ngIf="invoiceDetailsForm" style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-sm-offset-3">
+                    <div class="col-md-12 addresbox box-shadow">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2 class="no-pad-left">Payment Details </h2>
+                                <button type="submit" class="editbtn  no-marg-right" (click)="editForm()" *ngIf="isEdit==true">Edit</button>
+                                <div class="tbl-head-btn" [hidden]="isEdit">
+                                    <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn" *ngIf="isEdit==false">Cancel</button>
+                                    <button type="submit" value="Save" class="savebtn" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-Passport">Payment Id</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span>{{passport.passportNumber}}</span><!--<span *ngIf="isEdit==true">{{passport.passportNumber}}</span>--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-Passport">Transaction Type</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span>{{passport.passportNumber}}</span><!--<span *ngIf="isEdit==true">{{passport.passportNumber}}</span>--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-Passport">Transaction Id</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span>{{passport.passportNumber}}</span><!--<span *ngIf="isEdit==true">{{passport.passportNumber}}</span>--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-issuance-place">Account Name</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-taxid" [(ngModel)]="passport.issuancePlace" /><span>{{passport.issuancePlace}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-issuance-state">Account Number</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-door" [(ngModel)]="passport.issuanceState" /><span>{{passport.issuanceState}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-issuance-country">Invoice Date</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-issuance-country" [(ngModel)]="passport.issuanceCountry" /><span>{{passport.issuanceCountry}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-issuing-country">Invoice Number</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-city" [(ngModel)]="passport.issuingCountry" /><span>{{passport.issuingCountry}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-issuance-date">Invoice Amount</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.isuanceDate" [selDate]="isuanceDate">
+                                </my-date-picker>
+                                <span>{{passport.isuanceDate}}</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-issuance-date">Product Codes</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.expirationDate" [selDate]="expirationDate">
+                                </my-date-picker>
+                                <span>{{passport.expirationDate}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pInfo-issuance-date">Discount Codes</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.dateOfBirth" [selDate]="dateOfBirth">
+                                </my-date-picker>
+                                <span>{{passport.dateOfBirth}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-city-of-birth">Payment Date</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-country" [(ngModel)]="passport.cityOfBirth" /><span>{{passport.cityOfBirth}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-city-of-birth">Payment Amount</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-country" [(ngModel)]="passport.cityOfBirth" /><span>{{passport.cityOfBirth}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-city-of-birth">Payment Status</label></div>
+                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-country" [(ngModel)]="passport.cityOfBirth" /><span>{{passport.cityOfBirth}}</span></div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="tbl-head-btn" [hidden]="isEdit">
+                                    <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isEdit==false">Cancel</button>
+                                    <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
