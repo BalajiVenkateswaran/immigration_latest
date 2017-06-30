@@ -71,6 +71,9 @@ import { AccountsManagers } from './components/superuserview-accountdetails-mana
 import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
 
+import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
+
+
 export const appRoutes: Routes = [
     {
         path: 'login',
@@ -310,6 +313,10 @@ export const appRoutes: Routes = [
   {
       path:'superuserview-accountmanagers',
       component:AccountsManagers
+  },
+  {
+      path: 'manageaccount-markfordeletion',
+      component: MarkforDeletionComponent
   },
   {
     path: '',
