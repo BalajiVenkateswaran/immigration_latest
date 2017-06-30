@@ -156,6 +156,7 @@ import {AccountInvoiceService} from './components/superuserview-invoice/invoice.
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import { AccountManagersService } from './components/superuserview-accountdetails-managers/accountmanagers.service';
+import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
 
 
 
@@ -251,6 +252,7 @@ import { AccountManagersService } from './components/superuserview-accountdetail
        SmartTableFramework,CustomFilterRow,
        //superuserview
       AccountInvoiceComponent,
+      accountDetailsPaymentsComponent,
       SuperuserviewProductcatalogComponent,
       AccountsManagers
 
