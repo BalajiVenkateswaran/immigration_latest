@@ -25,15 +25,14 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <form novalidate>
                             <div class="col-md-4">First Name:</div>
-                            <div class="col-md-8"><input type="text" required [(ngModel)]="addUsers.firstName" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.firstName" class="form-control"></div>
                             <div class="col-md-4">Last Name:</div>
-                            <div class="col-md-8"><input type="text" required [(ngModel)]="addUsers.lastName" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.lastName" class="form-control"></div>
                             <div class="col-md-4">Email</div>
-                            <div class="col-md-8"><input type="text" required [(ngModel)]="addUsers.emailId" class="form-control"></div>
-                            <div class="col-md-4">Phone:</div>
-                            <div class="col-md-8"><input type="text" required [(ngModel)]="addUsers.phone" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.emailId" class="form-control"></div>
+                            <div class="col-md-4">Phone</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.phone" class="form-control"></div>
                             <div class="col-md-4">Role:</div>
                             <div class="col-md-8">
                                 <select [(ngModel)]="addUsers.role" class="form-control">
@@ -41,17 +40,15 @@
                                     <option value="IMMIGRATION MANAGER">IMMIGRATION MANAGER</option>
                                 </select>
                             </div>
-                            </form>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="manageUserSave()">Save</button>
+                <button type="button" class="btn btn-primary" (click)="accountmanagersSave()">Save</button>
                 <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
             </div>
         </div>
     </div>
 </div>
-<!--<h1 style="color:red">Hiiiiiiiiiiiii</h1>-->

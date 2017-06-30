@@ -7,7 +7,135 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Products<button type="button" class="iportal-btn pull-right no-marg-right">ADD</button></h2>
-            <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+         <!--   <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
+         <table class="smarttable document-management" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td class="actions" style="width:100px;">
+                        <span>Actions</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Name</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Code</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Max Users</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Max Clients/Month</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Max Petitions/Month</span> <span class="pull-right"></span>
+                    </td>
+                     <td>
+                        <span>Max S3 Storage</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Cost</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Status</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Created On</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>View Details</span> <span class="pull-right"></span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr *ngFor="let productDet of products; let i=index">
+                    <td class="actions">
+                        <ul class="edit-delete">
+                            <li *ngIf="rowEdit[i]==true"><a (click)="editQuestionnaire(i,questionnaireClient)"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEdit[i]==false"><a (click)="saveQuestionnaire(i,questionnaireClient)"><i class="fa fa-check" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEdit[i]==false"><a (click)="cancelQuestionnaire(i,questionnaireClient)"><i class="fa fa-times" aria-hidden="true"></i></a></li>
+                            <li *ngIf="rowEdit[i]==true"><a (click)="deleteConfirm(i,questionnaireClient)"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </td>
+                   <td>
+                       <span>{{productDet.name}}</span>  
+                    </td>
+                    <td>
+                       <span>{{productDet.code}}</span>  
+                    </td>
+                    <td>
+                       <span>{{productDet.maxUsers}}</span>  
+                    </td>
+                    <td>
+                       <span>{{productDet.maxClients}}</span>  
+                    </td>
+                    <td>
+                       <span>{{productDet.maxPetitions}}</span>  
+                    </td>
+                    <td>
+                       <span>{{productDet.maxStorage}}</span>  
+                    </td>
+                    <td>
+                       <span>{{productDet.cost}}</span>  
+                    </td>
+                    <td>
+                       <span>{{productDet.status}}</span>  
+                    </td>
+                    <td>
+                       <span>{{productDet.createdOn}}</span>  
+                    </td>
+                    <td>
+                        <button (click)="viewDetails(productDet,i)">View</button>
+                    </td>
+                    <td  *ngIf="rowEdit[i]==false">
+                         <div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Name</label></div>
+                <div class="col-md-8"><span>{{rowData.name}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Code</label></div>
+                <div class="col-md-8"><span>{{rowData.code}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Description</label></div>
+                <div class="col-md-8"><span></span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Max Users</label></div>
+                <div class="col-md-8"><span>{{rowData.maxUsers}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Max Clients/Month</label></div>
+                <div class="col-md-8"><span>{{rowData.maxClients}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Max Petitions/Month</label></div>
+                <div class="col-md-8"><span>{{rowData.maxPetitions}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Max S3 Storage</label></div>
+                <div class="col-md-8"><span>{{rowData.maxStorage}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Cost</label></div>
+                <div class="col-md-8"><span>{{rowData.cost}}</span></div>
+            </div>
+             <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Status</label></div>
+                <div class="col-md-8"><span>{{rowData.status}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label for="pInfo-Passport">Created On</label></div>
+                <div class="col-md-8"><span>{{rowData.createdOn}}</span></div>
+            </div>
+        </div>
+                     </td>   
+                </tr>
+                
+            </tbody>
+        </table>
+         
         <div class="clearfix"></div>
     </div>
 </div>
