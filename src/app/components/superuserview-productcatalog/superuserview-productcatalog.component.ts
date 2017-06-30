@@ -8,7 +8,11 @@ import {AppService} from "../../services/app.service";
   styleUrls: ['./superuserview-productcatalog.component.sass']
 })
 export class SuperuserviewProductcatalogComponent implements OnInit {
-    settings = {
+    public products:any={};
+    private rowEdit: boolean[] = [];
+    public rowData:any;
+    public viewDetailsSection:boolean=false;
+ /*   settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
             createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
@@ -53,6 +57,13 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
             createdOn :{
               title:'Created On '
             },
+            Button:{
+                title:'Button',
+                type:'html',
+                valuePrepareFunction:(cell,row)=>{
+                return `<button (myfunction)="">View</button>`
+                }
+            },
            
         },
         pager: {
@@ -61,6 +72,7 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
         }
     };
     public products:any={};
+    
   constructor(public appService:AppService) { 
     this.products=[
       {
@@ -184,6 +196,58 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
       //        }
       //    });
   }
- 
+  helloButton(){
+      console.log("hello....");
+  }*/
+  ngOnInit(){
+   this.appService.showSideBarMenu("superuserview-product", "superuserview-product");
+  }
+  constructor(public appService:AppService) { 
+    this.products=[
+      {
+        "name":"One",
+        "code":"XCV",
+        "maxUsers":'20',
+        "maxClients":'25',
+        "maxPetitions":'30',
+        "maxStorage":"20GB",
+        "cost":"10",
+        "status":'active',
+        "createdOn":"06-29-2017"
+      },
+      {
+        "name":"Immigration",
+        "code":"XCV",
+        "maxUsers":'10',
+        "maxClients":'35',
+        "maxPetitions":'30',
+        "maxStorage":"20GB",
+        "cost":"410",
+        "status":'active',
+        "createdOn":"06-29-2017"
+        
+      },
+      {
+        "name":"Immigration Plus",
+        "code":"XCV",
+        "maxUsers":'120',
+        "maxClients":'125',
+        "maxPetitions":'30',
+        "maxStorage":"20GB",
+        "cost":"120",
+        "status":'active',
+        "createdOn":"06-29-2017"
+      }
+    ];
+    for(var i=0;i<this.products.length;i++){
+        this.rowEdit[i] = true;
+        this.viewDetails[i]=false;
+    }
+  }
+  viewDetails(data,i){
+    this.rowData=data;
+    this.rowEdit[i]=false;
+    //this.viewDetailsSection[i]=true;
+  }
 }
 

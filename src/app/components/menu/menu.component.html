@@ -305,7 +305,7 @@
               </a>
           </li>
           <li>
-              <a (click)="appservice.moveToPage('superuserview-accountmanagers');" routerLinkActive="active">
+              <a (click)="appservice.moveToPage('superuserview-accountmanagers');highlightSBLink('Account Managers')" [ngClass]="[checkForCurrentSBLink('Account Managers') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-history"></span>
                   <span>Account Managers</span>
               </a>
