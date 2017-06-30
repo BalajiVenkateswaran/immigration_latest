@@ -149,6 +149,12 @@
                   <span>Account Preferences</span>
               </a>
           </li>
+          <li>
+              <a (click)="appservice.moveToPage('manageaccount-invoices');highlightSBLink('Invoices')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Invoices</span>
+              </a>
+          </li>
       </ul>
 
       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='organization'">
