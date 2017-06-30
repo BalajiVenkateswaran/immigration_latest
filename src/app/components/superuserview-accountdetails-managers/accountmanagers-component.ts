@@ -79,7 +79,13 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     public addUsers: any = {};
     public addPopups: boolean = false;
     public getUsers:boolean=true;
+    public beforeEdit: any;
+    public editFlag: boolean = true;
     source: LocalDataSource = new LocalDataSource();
+     private roles: any = {
+        "IMMIGRATION OFFICER": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
+        "IMMIGRATION MANAGER": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
+    };
     constructor(public appService:AppService,public managersAccountService:AccountManagersService,public dialogService: DialogService){
          super(dialogService);
          if (this.appService.user) {
@@ -88,10 +94,10 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         }
     }
     ngOnInit(){
-        this.getManageersAccounts();
+        this.getAccountsManagers();
         this.appService.showSideBarMenu("accounts", "accounts");
     }
-    getManageersAccounts() {
+    getAccountsManagers() {
 
         this.managersAccountService.getUsers(this.appService.user.accountId)
             .subscribe((res) => {
@@ -111,10 +117,81 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
 
                 this.managersAccountService.saveNewUser(this.appService.addUsers).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
-                        this.getManageersAccounts();
+                        this.getAccountsManagers();
                     }
                 });
             }
         });
+    }
+    accountmanagersSave(){
+        this.addUsers['role'] = this.roles[this.addUsers['role']];
+        this.addUsers['accountId'] = this.appService.user.accountId;
+        this.appService.addUsers = this.addUsers;
+        this.result = true;
+        this.close();
+    }
+    cancel(){
+
+    }
+    onEditConfirm(event): void {
+        //console.log("User table onEditConfirm event: %o",event.newData);
+        //event.newData['role'] = this.roles[event.newData['roleName']];
+        //this.manageAccountUserService.updateUser(event.newData).subscribe((res) => {
+        //      this.message = res['statusCode'];
+        //      if(this.message === "SUCCESS"){
+        //        event.confirm.resolve(event.newData);
+        //      } else {
+        //          this.dialogService.addDialog(ConfirmComponent, {
+        //              title: 'Error..!',
+        //              message: 'Unable to Edit User..!'
+        //          });
+        //        event.confirm.resolve(event.data);
+        //      }
+        //});
+        this.editFlag = true;
+        if (this.editFlag) {
+            this.beforeEdit = (<any>Object).assign({}, event.data);
+        }
+        this.dialogService.addDialog(AccountsManagers, {
+            addPopups: true,
+            getUsers: false,
+            title: 'Edit User',
+            addUsers: this.editFlag ? this.beforeEdit : this.addUsers,
+
+
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.managersAccountService.updateUser(this.appService.addUsers).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getAccountsManagers();
+                    }
+                });
+            }
+            else {
+                this.editFlag = false;
+            }
+        });
+    }
+
+    onDeleteConfirm(event): void {
+        this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Confirmation',
+            message: 'Are you sure you want to Delete ' + event.data['emailId'] + '?'
+        })
+            .subscribe((isConfirmed) => {
+                if (isConfirmed) {
+                    this.managersAccountService.deleteUser(event.data['userId'], this.appService.user.accountId).subscribe((res) => {
+                        //this.message = res['statusCode'];
+                        //if (this.message == 'SUCCESS') {
+                        //    event.confirm.resolve();
+                        //} else {
+                        //    event.confirm.reject();
+                        //}
+                        if (res['statusCode'] == 'SUCCESS') {
+                            this.getAccountsManagers();
+                        }
+                    });
+                }
+            });
     }
 }
