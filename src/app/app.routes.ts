@@ -58,6 +58,7 @@ import {QuestionnaireI129DCComponent} from './components/i129dc/questionnaire-i1
 import {QuestionnaireI129HComponent} from './components/i129h/questionnaire-i129h.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {ManageAccountInvoicesComponent} from './components/manageaccount-invoices/manageaccount-invoices.component';
+import {ManageAccountPaymentsComponent} from './components/manageaccount-payments/manageaccount-payments.component';
 
 import {QuestionnaireI129HclientviewComponent} from './components/clientview-i129h/questionnaire-i129h.component';
 
@@ -229,6 +230,10 @@ export const appRoutes: Routes = [
   {
       path: 'manageaccount-invoices',
       component: ManageAccountInvoicesComponent
+  },
+  {
+      path: 'manageaccount-payments',
+      component: ManageAccountPaymentsComponent
   },
   {
       path: 'clientview-petitions',

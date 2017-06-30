@@ -53,6 +53,7 @@ import {ManageAccountPetitionTypeStagesComponent} from "./components/manageaccou
 import {ManageAccountShippingAddressComponent} from "./components/manageaccount-shippingaddress/manageaccount-shippingaddress.component";
 import {ManageAccountPreferencesComponent} from "./components/manageaccount-preferences/manageaccount-preferences.component";
 import {ManageAccountInvoicesComponent} from './components/manageaccount-invoices/manageaccount-invoices.component';
+import {ManageAccountPaymentsComponent} from './components/manageaccount-payments/manageaccount-payments.component';
 import {DocumentExpirationsComponent} from './components/clientview-document-expirations/document-expirations.component';
 
 import {ImmigrationViewClientDetailsComponent} from './components/immigrationview-client-details/client-details.component';
@@ -211,6 +212,7 @@ import { AccountManagersService } from './components/superuserview-accountdetail
         ManageAccountShippingAddressComponent,
       ManageAccountPreferencesComponent,
       ManageAccountInvoicesComponent,
+      ManageAccountPaymentsComponent,
         DependentsComponent,
         DocumentExpirationsComponent,
         PetitionDocumentRepositoryComponent,
