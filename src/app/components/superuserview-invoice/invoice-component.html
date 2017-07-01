@@ -46,14 +46,14 @@
             <td><input type="text" name="" /></td>
             <td></td>
         </tr>
-        <tr>
-            <td>NPS Tier 1 </td>
-            <td>17-01-2017</td>
-            <td>6</td>
-            <td>4</td>           
-            <td>6</td>          
+        <tr *ngFor="let invoice of AccountInvoices">
+            <td>{{invoice.invoiceNumber}}</td>
+            <td>{{invoice.invoiceDate}}</td>
+            <td>{{invoice.invoiceAmount}}</td>
+            <td>{{invoice.paymentRecieved}}</td>           
+            <td>{{invoice.fileName}}</td>          
             <td><button type="button" class="btn btn-primary">Downdload</button></td>
-            <td><a (click)="getInvoiceInfo()"><i class="fa fa-eye"></i></a></td>
+            <td><a (click)="getInvoiceInfo(invoice)"><i class="fa fa-eye"></i></a></td>
         </tr>
     </tbody>
 </table>
@@ -72,47 +72,47 @@
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Invoice Number:</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.invoiceNumber" disabled></div>
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Invoice Date:</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.invoiceDate" disabled></div>
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Invoice Amount:</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.invoiceAmount" disabled></div>
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Account Name:</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.accountName" disabled></div>
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Account Number:</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.accountNumber" disabled></div>
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Product Codes:</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.productCodes" disabled></div>
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Discount Codes:</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.discountCodes" disabled></div>
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Payment Status:</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.paymentStatus" disabled></div>
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">Invoice (PDF Name):</div>
-                        <div class="col-md-8"><input type="text" class="form-control" disabled></div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.fileName" disabled></div>
                     </div>
                     <button type="button" class="iportal-btn pull-right no-marg-right">Upload Invoice</button>
                     </div>

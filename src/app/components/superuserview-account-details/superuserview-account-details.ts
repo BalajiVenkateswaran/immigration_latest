@@ -13,7 +13,7 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 })
 export class SuperuserViewAccountDetailsComponent implements OnInit {
 
-    private accountDetails: any = {};
+    public accountDetails: any = {};
     isEdit;
     isEditstorage;
     public cancelUserEdit: boolean = false;
@@ -34,18 +34,19 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     ngOnInit() {
         this.appService.showSideBarMenu("accounts", "accounts");
         this.storagenable();
+        this.getAcountDetails();
+    }
+    getAcountDetails() {
 
         this.superuserviewAccountDetailsService.getAccountdetails(this.user.accountId)
             .subscribe((res) => {
                 console.log("filesGetmethod%o", res);
                 this.accountDetails = res;
                 console.log(this.accountDetails);
-               
                 this.isEdit = true
                 this.isEditstorage = true;
             });
     }
-
     onDateChanged(event: IMyDateModel) {
 
 
@@ -87,18 +88,16 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     }
     saveAccountDetails() {
 
-        if (this.accountDetails['isuanceDate'] && this.accountDetails['isuanceDate']['formatted']) {
-            this.accountDetails['isuanceDate'] = this.accountDetails['isuanceDate']['formatted'];
+        if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
+            this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
         }
        
         this.accountDetails['accountId'] = this.user.accountId;
         this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
             .subscribe((res) => {
-                this.isEdit = true;
                 this.isEditstorage = true;
-                if (res['passport']) {
-                    
-                }
+                this.getAcountDetails();
+
             });
 
     }

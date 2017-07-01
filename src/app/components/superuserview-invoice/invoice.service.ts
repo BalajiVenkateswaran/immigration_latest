@@ -7,4 +7,7 @@ import {superuserinvoice} from "../../models/superuserinvoice";
 export class AccountInvoiceService {
     constructor(private restService: RestService) {
     }
+    public getAccountInvoice(accountid: string) {
+        return this.restService.getData("/superuser/account/" + accountid + "/invoices");
+    }
 }
