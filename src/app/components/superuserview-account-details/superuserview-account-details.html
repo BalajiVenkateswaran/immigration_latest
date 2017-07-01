@@ -1,5 +1,4 @@
 <div class="main-content">
-    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
 
     <div class="clearfix"></div>
     <div class="table-data-forms">
@@ -12,78 +11,91 @@
                             <button type="submit" class="editbtn  no-marg-right" (click)="editForm()" *ngIf="isEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isEdit">
                                 <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn" *ngIf="isEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveAccountDetails()" *ngIf="isEdit==false">Save</button>
                             </div>
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-Passport">Account Name </label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span *ngIf="isEdit==true">{{passport.passportNumber}}</span></div>
+                        <div class="col-md-4"><label for="accountdetails-name">Account Name </label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-name" [(ngModel)]="accountDetails.accountName" /><span *ngIf="isEdit==true">{{accountDetails.accountName}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-place">Account Number</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-taxid" [(ngModel)]="passport.issuancePlace" disabled /><span *ngIf="isEdit==true">{{passport.issuancePlace}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-state">First Name</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-door" [(ngModel)]="passport.issuanceState" /><span *ngIf="isEdit==true">{{passport.issuanceState}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-country">Last Name</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-issuance-country" [(ngModel)]="passport.issuanceCountry" /><span *ngIf="isEdit==true">{{passport.issuanceCountry}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuing-country">Email</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-city" [(ngModel)]="passport.issuingCountry" /><span *ngIf="isEdit==true">{{passport.issuingCountry}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuing-country">Phone</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-city" [(ngModel)]="passport.issuingCountry" /><span *ngIf="isEdit==true">{{passport.issuingCountry}}</span></div>
-                    </div>
-                    <div class="row">
-                       <div class="col-md-4"><label for="pInfo-issuance-date">Created On</label></div>
+                        <div class="col-md-4"><label for="accountdetails-number">Account Number</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.isuanceDate" [selDate]="isuanceDate">
+                            <span>{{accountDetails.accountNumber}}</span>
+                       </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-firstname">First Name</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-fname" [(ngModel)]="accountDetails.firstName" /><span *ngIf="isEdit==true">{{accountDetails.firstName}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-lastname">Last Name</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-lname" [(ngModel)]="accountDetails.lastName" /><span *ngIf="isEdit==true">{{accountDetails.lastName}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-email">Email</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-email" [(ngModel)]="accountDetails.email" /><span *ngIf="isEdit==true">{{accountDetails.email}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-phone">Phone</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-phone" [(ngModel)]="accountDetails.phone" /><span *ngIf="isEdit==true">{{accountDetails.phone}}</span></div>
+                    </div>
+                    <div class="row">
+                       <div class="col-md-4"><label for="accountdetails-createdon">Created On</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isEdit==false" id="ad-createdon" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="accountDetails.createdOn" [selDate]="createdOn">
                             </my-date-picker>
-                            <span *ngIf="isEdit==true">{{passport.isuanceDate}}</span>
+                            <span *ngIf="isEdit==true">{{accountDetails.createdOn}}</span>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-comments">Status </label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-comments">Last Payment Status</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-comments">Storage Type</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-comments">Mark for Deletion</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-comments">Mark For Deletion details # By User on MM/DD/YYYY</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pInfo-comments">Notes/Comments</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-comments" [(ngModel)]="passport.comments" /><span *ngIf="isEdit==true">{{passport.comments}}</span></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="tbl-head-btn" [hidden]="isEdit">
-                                <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
-                            </div>
+                        <div class="col-md-4"><label for="accountdetails-status">Status </label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.status" class="form-control" (change)="statuschange()">
+                                <option value="PreAct">Pre-Act</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        <span *ngIf="isEdit==true">{{accountDetails.status}}</span>
                         </div>
-
                     </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-lastpay">Last Payment Status</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-lastpay" [(ngModel)]="accountDetails.lastPaymentStatus" /><span *ngIf="isEdit==true">{{accountDetails.lastPaymentStatus}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-storage">Storage Type</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isEditstorage==false" [(ngModel)]="accountDetails.storageType" class="form-control">
+                                <option value="S3">S3</option>
+                                <option value="GD">GD</option>
+                            </select>
+                        <span *ngIf="isEditstorage==true">{{accountDetails.storageType}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-mark">Mark for Deletion</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.markForDeletion" class="form-control">
+                                <option value="true">YES</option>
+                                <option value="false">NO</option>
+                            </select>
+                        <span *ngIf="isEdit==true">{{accountDetails.markForDeletion}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-byuser">Mark For Deletion details # By User on MM/DD/YYYY</label></div>
+                        <div class="col-md-8">
+                            <span>{{accountDetails.mfdBy}}</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="accountdetails-comments">Notes/Comments</label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-comment" [(ngModel)]="accountDetails.notes" /><span *ngIf="isEdit==true">{{accountDetails.notes}}</span></div>
+                    </div>
+
+                  
                 </div>
             </div>
         </div>

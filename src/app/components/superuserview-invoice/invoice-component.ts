@@ -22,6 +22,7 @@ export interface ConfirmModel {
 export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public getInvoice: boolean = true;
     public addInvoice: boolean;
+    public accountInvoice: boolean = false;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -90,5 +91,8 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
              
             }
         });
-}
+    }
+    getInvoiceInfo() {
+        this.accountInvoice = true;
+    }
 }

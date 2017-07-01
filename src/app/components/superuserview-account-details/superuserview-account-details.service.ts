@@ -8,14 +8,12 @@ export class SuperuserViewAccountDetailsService {
     constructor(private restService: RestService) {
 
     }
-    public getFile(clientid: string) {
-        return this.restService.getData("/client/passport/" + clientid);
+    public getAccountdetails(accountid: string) {
+        return this.restService.getData("/superuser/account/" + accountid+"/details");
     }
-    public savePassport(passport: any) {
-        console.log("immigrationview-passport-info|savePassport|passport:%o", passport);
-        var req = {
-            "passport": passport
-        };
-        return this.restService.postData("/client/passport", req);
+    public saveAccountdetails(accountdetails: any) {
+        console.log("superuserview-account|saveaccountdetails|accountdetails:%o", accountdetails);
+       
+        return this.restService.postData("/superuser/account/details", accountdetails);
     }
 }
