@@ -69,7 +69,7 @@
                             <span>{{payment.paymentStatus}}</span>                                  
                         </td>
                         <td>
-                            <span class="pull-left"><a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a></span>
+                            <span class="pull-left" (click)="viewDetails(payment,i)"><i class="fa fa-eye" aria-hidden="true"></i></span>
                         </td>
                     </tr>
                 </tbody>

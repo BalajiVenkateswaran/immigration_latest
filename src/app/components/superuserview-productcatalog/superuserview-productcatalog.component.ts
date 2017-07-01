@@ -2,16 +2,31 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Ng2SmartTableModule,ViewCell  } from 'ng2-smart-table';
 import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
 import {AppService} from "../../services/app.service";
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getProducts: boolean;
+    viewPopup: boolean;
+    product: Object;
+
+}
 @Component({
   selector: 'app-superuserview-productcatalog',
   templateUrl: './superuserview-productcatalog.component.html',
   styleUrls: ['./superuserview-productcatalog.component.sass']
 })
-export class SuperuserviewProductcatalogComponent implements OnInit {
+export class SuperuserviewProductcatalogComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public products:any={};
     private rowEdit: boolean[] = [];
     public rowData:any;
     public viewDetailsSection:boolean=false;
+    public getProducts:boolean=true;
+    public viewPopup:boolean;
+    public product:any={};
+    
  /*   settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -202,7 +217,8 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
   ngOnInit(){
    this.appService.showSideBarMenu("superuserview-product", "superuserview-product");
   }
-  constructor(public appService:AppService) { 
+  constructor(public appService:AppService,public dialogService: DialogService) { 
+    super(dialogService);
     this.products=[
       {
         "name":"One",
@@ -244,10 +260,33 @@ export class SuperuserviewProductcatalogComponent implements OnInit {
         this.viewDetails[i]=false;
     }
   }
-  viewDetails(data,i){
-    this.rowData=data;
-    this.rowEdit[i]=false;
-    //this.viewDetailsSection[i]=true;
+  viewDetails(data){
+      this.dialogService.addDialog(SuperuserviewProductcatalogComponent, {
+            viewPopup: true,
+            getProducts: false,
+            title: 'View Product Details',
+            product:data,
+
+
+        }).subscribe((isConfirmed) => {
+            /*if (isConfirmed) {
+                this.manageAccountUserService.updateUser(this.appService.addUsers).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getManageUsers();
+                    }
+                });
+            }
+            else {
+                this.editFlag = false;
+            }*/
+        });
   }
+  highlightSBLink(link) {
+      this.appService.currentSBLink = link;
+  }
+  addProduct(){
+
+  }
+
 }
 

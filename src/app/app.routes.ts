@@ -70,6 +70,7 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
+import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 
@@ -317,6 +318,10 @@ export const appRoutes: Routes = [
   {
       path: 'manageaccount-markfordeletion',
       component: MarkforDeletionComponent
+  },
+  {
+      path:'superuserview-productcatalog-discounts',
+      component:SuperuserviewProductcatalogDiscountsComponent
   },
   {
     path: '',
