@@ -74,7 +74,7 @@ import {SuperUserViewInvoicestabComponent} from './components/superuserview-invo
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
-
+import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component'
 
 export const appRoutes: Routes = [
     {
