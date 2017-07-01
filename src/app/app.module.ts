@@ -161,6 +161,7 @@ import {accountDetailsPaymentsComponent} from './components/superuserview-accoun
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 import {markfordeletionservice} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.service';
+import { AccountDetailsPaymentsService } from './components/superuserview-accountdetails-payments/accountdetails-payments.service';
 
 import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
 import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';

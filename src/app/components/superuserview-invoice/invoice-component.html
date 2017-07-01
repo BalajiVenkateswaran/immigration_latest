@@ -9,93 +9,149 @@
             <span>Account Invoice</span>
             <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewInvoice()">ADD</button>
         </h2>
-        <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)"></ng2-smart-table>
+        <!--<ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)"></ng2-smart-table>-->
+        <table class="smarttable" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <td>
+                <span>Invoice Number</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+            </td>
+            <td>
+                <span>Invoice Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+            </td>
+            <td>
+                <span>Invoice Amount</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+            </td>
+            <td>
+                <span>Payment Received</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+            </td>
+            <td>
+                <span>PDF Uploaded</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+            </td>
+            <td>
+                <span>Download Button</span><span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+            </td> 
+            <td>
+                <span>View Details</span>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" name="" /></td>
+            <td><input type="text" name="" /></td>
+            <td><input type="text" name="" /></td>
+            <td><input type="text" name="" /></td>
+            <td><input type="text" name="" /></td>
+            <td><input type="text" name="" /></td>
+            <td></td>
+        </tr>
+        <tr *ngFor="let invoice of AccountInvoices">
+            <td>{{invoice.invoiceNumber}}</td>
+            <td>{{invoice.invoiceDate}}</td>
+            <td>{{invoice.invoiceAmount}}</td>
+            <td>{{invoice.paymentRecieved}}</td>           
+            <td>{{invoice.fileName}}</td>          
+            <td><button type="button" class="btn btn-primary">Downdload</button></td>
+            <td><a (click)="getInvoiceInfo(invoice)"><i class="fa fa-eye"></i></a></td>
+        </tr>
+    </tbody>
+</table>
         <div class="clearfix"></div>
     </div>
 
-    <div class="table-data">
-        <h2>Invoice Info</h2>
-        <div class="row">   
-            <div class="col-md-1"></div>      
-            <div class="col-md-3">Invoice Number:</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
+    <div class="table-data-forms" *ngIf="accountInvoice" style="margin-top: 30px;">
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">Invoice Date:</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">Invoice Amount:</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">Account Name:</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">Account Number:</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">Product Codes:</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">Discount Codes:</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">Payment Status:</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">Invoice (PDF Name):</div>
-            <div class="col-md-8"><input type="text" class="form-control" disabled></div>
-        </div>
-        <button type="button" class="iportal-btn pull-right no-marg-right">Upload Invoice</button>
-           
-    </div>
-</div><div *ngIf="addInvoice">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-4">Invoice Number:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.invoiceNumber" class="form-control"></div>
-                            <div class="col-md-4">Invoice Date:</div>
-                            <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newInvoice.invoiceDate"
-                                                [selDate]="invoiceDate"></my-date-picker>   
-                            </div>
-                            <div class="col-md-4">Invoice Amount:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.invoiceAmount" class="form-control"></div>
-                            <div class="col-md-4">Payment Received:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.paymentReceived" class="form-control"></div>
+            <div class="col-md-12 col-sm-6 col-xs-12 col-sm-offset-3">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="no-pad-left">Invoice  Info</h2>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Invoice Number:</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.invoiceNumber" disabled></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Invoice Date:</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.invoiceDate" disabled></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Invoice Amount:</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.invoiceAmount" disabled></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Account Name:</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.accountName" disabled></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Account Number:</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.accountNumber" disabled></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Product Codes:</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.productCodes" disabled></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Discount Codes:</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.discountCodes" disabled></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Payment Status:</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.paymentStatus" disabled></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Invoice (PDF Name):</div>
+                        <div class="col-md-8"><input type="text" class="form-control" [(ngModel)]="viewRowDetails.fileName" disabled></div>
+                    </div>
+                    <button type="button" class="iportal-btn pull-right no-marg-right">Upload Invoice</button>
+                    </div>
+                </div>
+</div>
+                </div>
+            </div><div *ngIf="addInvoice">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{title}}</h4>
+                            <button type="button" class="close" (click)="close()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-4">Invoice Number:</div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.invoiceNumber" class="form-control"></div>
+                                        <div class="col-md-4">Invoice Date:</div>
+                                        <div class="col-md-8">
+                                            <my-date-picker [options]="myDatePickerOptions"
+                                                            (dateChanged)="onDateChanged($event)" [(ngModel)]="newInvoice.invoiceDate"
+                                                            [selDate]="invoiceDate"></my-date-picker>
+                                        </div>
+                                        <div class="col-md-4">Invoice Amount:</div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.invoiceAmount" class="form-control"></div>
+                                        <div class="col-md-4">Payment Received:</div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.paymentReceived" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="dependentSave()">Save</button>
+                            <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="dependentSave()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>

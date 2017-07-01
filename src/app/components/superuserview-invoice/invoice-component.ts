@@ -7,6 +7,8 @@ import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {superuserinvoice} from "../../models/superuserinvoice";
 import {AccountInvoiceService} from './invoice.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {User} from "../../models/user";
+
 
 export interface ConfirmModel {
     title: string;
@@ -22,6 +24,10 @@ export interface ConfirmModel {
 export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public getInvoice: boolean = true;
     public addInvoice: boolean;
+    public accountInvoice: boolean = false;
+    private user: User;  
+    public AccountInvoices: any;
+    public viewRowDetails: any = {};
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -73,10 +79,25 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         },
         mode: 'external'
     };
-    constructor(public appService: AppService, public dialogService: DialogService) {
+    constructor(public appService: AppService, public dialogService: DialogService, public accountInvoiceService: AccountInvoiceService) {
         super(dialogService);
+        if (this.appService.user) {
+            this.user = appService.user;
+        }
     }
-    ngOnInit() { }
+    ngOnInit() {
+
+        this.accountInvoiceService.getAccountInvoice(this.user.accountId)
+            .subscribe((res) => {
+                console.log("getinoices%o", res);
+                if (res['invoices']) {
+                    this.AccountInvoices = res['invoices'];
+                }
+              
+                console.log();
+              
+            });
+    }
     source: LocalDataSource = new LocalDataSource();
     onDeleteConfirm(event): void { }
     onEditConfirm(event): void { }
@@ -90,5 +111,9 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
              
             }
         });
-}
+    }
+    getInvoiceInfo(rowdata) {
+        this.accountInvoice = true;
+        this.viewRowDetails = rowdata;
+    }
 }

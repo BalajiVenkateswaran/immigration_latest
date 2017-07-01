@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {passportinfo} from "../../models/passportinfo";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
@@ -14,16 +13,12 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 })
 export class SuperuserViewAccountDetailsComponent implements OnInit {
 
-    private passport: any = {};
-    private fieldsList: passportinfo[];
+    public accountDetails: any = {};
     isEdit;
-    countryofbirth;
-    private saveEditUser: any;
+    isEditstorage;
     public cancelUserEdit: boolean = false;
-    private user: User;
-    private isuanceDate: string;
-    private expirationDate: string;
-    private dateOfBirth: string;
+    private user: User;  
+    public createdOn: any;
     constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService) {
         if (this.appService.user) {
             this.user = appService.user;
@@ -35,21 +30,23 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    private beforeCancelPassport;
+    private beforeCancelAccountdetails;
     ngOnInit() {
         this.appService.showSideBarMenu("accounts", "accounts");
-        this.superuserviewAccountDetailsService.getFile(this.appService.clientId)
+        this.storagenable();
+        this.getAcountDetails();
+    }
+    getAcountDetails() {
+
+        this.superuserviewAccountDetailsService.getAccountdetails(this.user.accountId)
             .subscribe((res) => {
                 console.log("filesGetmethod%o", res);
-                this.passport = res['passport'];
-                console.log(this.passport);
-                if(this.passport == undefined){
-                  this.passport = {};
-                }
-                this.isEdit=true
+                this.accountDetails = res;
+                console.log(this.accountDetails);
+                this.isEdit = true
+                this.isEditstorage = true;
             });
     }
-
     onDateChanged(event: IMyDateModel) {
 
 
@@ -57,51 +54,50 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
-
+    storagenable() {
+        if (this.accountDetails.status == "PreAct") {
+            this.isEditstorage = false;
+        }
+        else {
+            this.isEditstorage = true;
+        }
+    }
+    statuschange() {
+        this.storagenable();
+    }
     //is edit function for read only
     editForm() {
-        this.beforeCancelPassport = (<any>Object).assign({}, this.passport);
+        this.beforeCancelAccountdetails = (<any>Object).assign({}, this.accountDetails);
         this.isEdit = !this.isEdit;
         this.cancelUserEdit = true;
-        this.isuanceDate = this.passport.isuanceDate;
-        this.expirationDate = this.passport.expirationDate;
-        this.dateOfBirth = this.passport.dateOfBirth;
+        this.storagenable();
+        this.createdOn = this.accountDetails.createdOn;
+      
     }
     //cancel button function
     cancelEdit(event, i) {
-        this.passport = this.beforeCancelPassport;
-        if (this.passport['isuanceDate'] && this.passport['isuanceDate']['formatted']) {
-            this.passport['isuanceDate'] = this.passport['isuanceDate']['formatted'];
-        }
-        if (this.passport['expirationDate'] && this.passport['expirationDate']['formatted']) {
-            this.passport['expirationDate'] = this.passport['expirationDate']['formatted'];
-        }
-        if (this.passport['dateOfBirth'] && this.passport['dateOfBirth']['formatted']) {
-            this.passport['dateOfBirth'] = this.passport['dateOfBirth']['formatted'];
-        }
+        this.accountDetails = this.beforeCancelAccountdetails;
+        if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
+            this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
+        }        
      if (this.cancelUserEdit == true) {
             this.ngOnInit();
             this.isEdit[i] = !this.isEdit[i];
+            this.isEditstorage = !this.isEditstorage;
         }
     }
-    saveClientPassport() {
+    saveAccountDetails() {
 
-        if (this.passport['isuanceDate'] && this.passport['isuanceDate']['formatted']) {
-            this.passport['isuanceDate'] = this.passport['isuanceDate']['formatted'];
+        if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
+            this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
         }
-        if (this.passport['expirationDate'] && this.passport['expirationDate']['formatted']) {
-            this.passport['expirationDate'] = this.passport['expirationDate']['formatted'];
-        }
-        if (this.passport['dateOfBirth'] && this.passport['dateOfBirth']['formatted']) {
-            this.passport['dateOfBirth'] = this.passport['dateOfBirth']['formatted'];
-        }
-        this.passport['clientId'] = this.appService.clientId;
-        this.superuserviewAccountDetailsService.savePassport(this.passport)
+       
+        this.accountDetails['accountId'] = this.user.accountId;
+        this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
             .subscribe((res) => {
-                this.isEdit = true;
-                if (res['passport']) {
-                    this.passport = res['passport'];
-                }
+                this.isEditstorage = true;
+                this.getAcountDetails();
+
             });
 
     }
