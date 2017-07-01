@@ -129,8 +129,12 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     }
     visaSave() {
         this.newvisaitem['clientId'] = this.appService.clientId;
-        this.newvisaitem['issuedOn'] = this.newvisaitem['issuedOn']['formatted'];
-        this.newvisaitem['expiresOn'] = this.newvisaitem['expiresOn']['formatted'];
+        if(this.newvisaitem['issuedOn'] && this.newvisaitem['issuedOn']['formatted']){
+           this.newvisaitem['issuedOn'] = this.newvisaitem['issuedOn']['formatted'];
+        }
+        if(this.newvisaitem['expiresOn'] && this.newvisaitem['expiresOn']['formatted']){
+           this.newvisaitem['expiresOn'] = this.newvisaitem['expiresOn']['formatted'];
+        }
         this.appService.newvisaitem = this.newvisaitem;
         this.result = true;
         this.close();
@@ -218,11 +222,15 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
                     this.immigrationviewVisasService.deleteClientVisa(event.data['visaId']).subscribe((res) => {
-                        this.message = res['statusCode'];
+                       /* this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
                             event.confirm.resolve();
+                            this.getVisaaData();
                         } else {
                             event.confirm.reject();
+                        }*/
+                         if (res['statusCode'] == 'SUCCESS') {
+                            this.getVisaaData();
                         }
                     });
                 }

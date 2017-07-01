@@ -3,11 +3,11 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Arrival Desparture Info<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewArvdInfo()">ADD</button></h2>
-        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+        <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
-<div *ngIf="showAddArvdInfopopup">
+<div *ngIf="addArrDep">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

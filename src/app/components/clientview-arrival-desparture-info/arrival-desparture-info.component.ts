@@ -14,8 +14,11 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 export interface ConfirmModel {
     title: string;
     message: string;
-    showAddArvdInfopopup: boolean;
     getArvdInfoData: boolean;
+    addArrDep: boolean;
+    newArvdInfoitem:Object;
+    arrivalDate:string;
+    departureDate:string;
 
 }
 
@@ -26,7 +29,10 @@ export interface ConfirmModel {
 })
 export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
-
+    public beforeEdit: any;
+    public editFlag: boolean = true;
+    public addArrDeparture: any = {};
+    public addArrDep: boolean;
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -68,13 +74,13 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
         pager: {
             display: true,
             perPage: 10
-        }
+        },
+        mode:'external'
     };
     public delmessage;
     public addArrivalDespartureInfo: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-    public showAddArvdInfopopup: boolean;
     public getArvdInfoData: boolean = true;
     public newArvdInfoitem: any = {};
     private myDatePickerOptions: IMyOptions = {
@@ -103,11 +109,12 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     }
     addNewArvdInfo() {
         this.dialogService.addDialog(ArrivalDespartureInfoComponent, {
-            showAddArvdInfopopup: true,
+            addArrDep: true,
             getArvdInfoData: false,
             title: 'Add Arrival Departure Info',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
+               
                 this.arrivalDespartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
                     this.message = res['statusCode'];
                     if (this.message == 'SUCCESS') {
@@ -125,8 +132,12 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     }
     ArvdInfoSave() {
         this.newArvdInfoitem['clientId'] = this.appService.clientId;
-        this.newArvdInfoitem['departureDate'] = this.newArvdInfoitem['departureDate']['formatted'];
-        this.newArvdInfoitem['arrivaldate'] = this.newArvdInfoitem['arrivaldate']['formatted'];
+        if(this.newArvdInfoitem['departureDate'] && this.newArvdInfoitem['departureDate']['formatted']){
+           this.newArvdInfoitem['departureDate'] = this.newArvdInfoitem['departureDate']['formatted'];
+        }
+        if(this.newArvdInfoitem['arrivalDate'] && this.newArvdInfoitem['arrivalDate']['formatted']){
+        this.newArvdInfoitem['arrivalDate'] = this.newArvdInfoitem['arrivalDate']['formatted'];
+        }
         this.appService.newArvdInfoitem = this.newArvdInfoitem;
         this.result = true;
         this.close();
@@ -155,21 +166,32 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
 
     }
     onEditConfirm(event): void {
-        event.newData['clientId'] = this.appService.user.userId;
-        this.arrivalDespartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.newData = res['arrivalDepartureInfo'];
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Edit Arrival Desparture Info..!'
-                });
-                event.confirm.resolve(event.data);
-            }
-        });
-    }
+       this.editFlag = true;
+      if (this.editFlag) {
+          this.beforeEdit = (<any>Object).assign({}, event.data);
+      }
+     this.dialogService.addDialog(ArrivalDespartureInfoComponent, {
+          addArrDep: true,
+          getArvdInfoData: false,
+          title: 'Edit Arrival Departue Info',
+          newArvdInfoitem: this.editFlag ? this.beforeEdit : this.newArvdInfoitem,
+          arrivalDate:event.data.arrivalDate,
+          departureDate:event.data.departureDate,
+          
+     }).subscribe((isConfirmed) => {
+         if (isConfirmed) {
+              this.arrivalDespartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
+                  if (res['statusCode'] == 'SUCCESS') {
+                      this.getarvdptData();
+                  }
+              });
+          }
+          else {
+              this.editFlag = false;   
+          }
+      });
+  }
+    
     onDeleteConfirm(event): void {
         this.delmessage = event.data.arrivalCountry
         this.dialogService.addDialog(ConfirmComponent, {
@@ -181,6 +203,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
                     this.arrivalDespartureInfoService.removeClientArrivalDeparture(event.data['arrivalDepartureInfoId']).subscribe((res) => {
                         this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
+                            this.getarvdptData();
                             event.confirm.resolve();
                         } else {
                             event.confirm.reject();
