@@ -70,9 +70,10 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
-import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
+import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
+import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
 
 
 export const appRoutes: Routes = [
@@ -95,246 +96,254 @@ export const appRoutes: Routes = [
     },
     {
         path: 'questionnaire-i129h/:questionnaireId',
-        component:QuestionnaireI129HComponent
+        component: QuestionnaireI129HComponent
     },
     {
         path: 'questionnaire-i129hclientView/:questionnaireId',
-        component:QuestionnaireI129HclientviewComponent
+        component: QuestionnaireI129HclientviewComponent
     },
     {
-    path: 'header',
-    component: HeaderComponent,
-    outlet: 'header'
-  },
-  {
-    path: 'menu',
-    component: MenuComponent,
-    outlet: 'menu'
-  },
-  {
-    path: 'footer',
-    component: FooterComponent,
-    outlet: 'footer'
-  },
-  {
-    path: 'petitions',
-    component: PetitionsComponent
-  },
-  {
-    path: 'clients',
-    component: ClientsComponent
-  },
-  {
-    path: 'organization',
-    component: OrganizationComponent
-  },
-  {
-    path: 'reports',
-    component: ReportsComponent
-  },
-  {
-      path: 'clientview-client-details',
-    component: ClientDetailsComponent
-  },
-  {
-      path: 'immigrationview-petition-details',
-      component: ImmigrationviewPetitionDetailsComponent
-  },
-  {
-      path: 'immigrationview-questionnaire',
-      component: ImmigrationviewQuestionnaireComponent
-  },
-  {
-      path: 'clientview-Questionnaries',
-      component: clientviewQuestionnaireComponent
-  },
-  {
-      path: 'immigrationview-forms',
-      component: ImmigrationviewFormsComponent
-  },
-  {
-      path: 'immigrationview-organization-document-repository',
-      component: OrganizationDocumentRepositoryComponent
-  },
-  {
-      path: 'immigrationview-petition-document-repository',
-      component: PetitionDocumentRepositoryComponent
-  },
-  {
-      path: 'immigrationview-client-document-repository',
-      component: ClientDocumentRepositoryComponent
-  },
-  {
-      path: 'immigrationview-document-management',
-      component: DocumentManagementComponent
-  },
-  {
-      path: 'clientview-addressinfo',
-    component: AddressinfoComponent
-  },
-  {
-    path: 'dependentDetails/:dependentId',
-    component: DependentDetailsComponent
-  },
-  {
-      path: 'immigrationview-document-expirations',
-      component: ImmigrationviewDocumentExpirationsComponent
-  },
-  {
-      path: 'clientview-document-expirations',
-      component: DocumentExpirationsComponent
-  },
-  {
-      path: 'clientview-documents',
-    component: DocumentsComponent
-  },
-  {
-      path: 'clientview-dependents',
-    component: DependentsComponent
-  },
-  {
-      path: 'clientview-passport-info',
-    component: PassportInfoComponent
-  },
-  {
-      path: 'clientview-job-details',
-    component: JobDetailsComponent
-  },
-  {
-      path: 'clientview-arrival-desparture-info',
-    component: ArrivalDespartureInfoComponent
-  },
-  {
-      path: 'clientview-visas',
-    component: VisasComponent
-  },
-  {
-      path: 'clientview-I-797-history',
-    component: I797HistoryComponent
-  },
-  {
-      path: 'manageaccount-user',
-      component: ManageAccountUserComponent
-  },
-  {
-      path: 'manageaccount-organizations',
-      component: ManageAccountOrganizationsComponent
-  },
-  {
-      path: 'manageaccount-petitiontypestages',
-      component: ManageAccountPetitionTypeStagesComponent
-  },
-  {
-      path: 'manageaccount-shippingaddress',
-      component: ManageAccountShippingAddressComponent
-  },
-  {
-      path: 'manageaccount-preferences',
-      component: ManageAccountPreferencesComponent
-  },
-  {
-      path: 'manageaccount-invoices',
-      component: ManageAccountInvoicesComponent
-  },
-  {
-      path: 'manageaccount-payments',
-      component: ManageAccountPaymentsComponent
-  },
-  {
-      path: 'clientview-petitions',
-      component: petitionsclientviewComponent
-  },
+        path: 'header',
+        component: HeaderComponent,
+        outlet: 'header'
+    },
+    {
+        path: 'menu',
+        component: MenuComponent,
+        outlet: 'menu'
+    },
+    {
+        path: 'footer',
+        component: FooterComponent,
+        outlet: 'footer'
+    },
+    {
+        path: 'petitions',
+        component: PetitionsComponent
+    },
+    {
+        path: 'clients',
+        component: ClientsComponent
+    },
+    {
+        path: 'organization',
+        component: OrganizationComponent
+    },
+    {
+        path: 'reports',
+        component: ReportsComponent
+    },
+    {
+        path: 'clientview-client-details',
+        component: ClientDetailsComponent
+    },
+    {
+        path: 'immigrationview-petition-details',
+        component: ImmigrationviewPetitionDetailsComponent
+    },
+    {
+        path: 'immigrationview-questionnaire',
+        component: ImmigrationviewQuestionnaireComponent
+    },
+    {
+        path: 'clientview-Questionnaries',
+        component: clientviewQuestionnaireComponent
+    },
+    {
+        path: 'immigrationview-forms',
+        component: ImmigrationviewFormsComponent
+    },
+    {
+        path: 'immigrationview-organization-document-repository',
+        component: OrganizationDocumentRepositoryComponent
+    },
+    {
+        path: 'immigrationview-petition-document-repository',
+        component: PetitionDocumentRepositoryComponent
+    },
+    {
+        path: 'immigrationview-client-document-repository',
+        component: ClientDocumentRepositoryComponent
+    },
+    {
+        path: 'immigrationview-document-management',
+        component: DocumentManagementComponent
+    },
+    {
+        path: 'clientview-addressinfo',
+        component: AddressinfoComponent
+    },
+    {
+        path: 'dependentDetails/:dependentId',
+        component: DependentDetailsComponent
+    },
+    {
+        path: 'immigrationview-document-expirations',
+        component: ImmigrationviewDocumentExpirationsComponent
+    },
+    {
+        path: 'clientview-document-expirations',
+        component: DocumentExpirationsComponent
+    },
+    {
+        path: 'clientview-documents',
+        component: DocumentsComponent
+    },
+    {
+        path: 'clientview-dependents',
+        component: DependentsComponent
+    },
+    {
+        path: 'clientview-passport-info',
+        component: PassportInfoComponent
+    },
+    {
+        path: 'clientview-job-details',
+        component: JobDetailsComponent
+    },
+    {
+        path: 'clientview-arrival-desparture-info',
+        component: ArrivalDespartureInfoComponent
+    },
+    {
+        path: 'clientview-visas',
+        component: VisasComponent
+    },
+    {
+        path: 'clientview-I-797-history',
+        component: I797HistoryComponent
+    },
+    {
+        path: 'manageaccount-user',
+        component: ManageAccountUserComponent
+    },
+    {
+        path: 'manageaccount-organizations',
+        component: ManageAccountOrganizationsComponent
+    },
+    {
+        path: 'manageaccount-petitiontypestages',
+        component: ManageAccountPetitionTypeStagesComponent
+    },
+    {
+        path: 'manageaccount-shippingaddress',
+        component: ManageAccountShippingAddressComponent
+    },
+    {
+        path: 'manageaccount-preferences',
+        component: ManageAccountPreferencesComponent
+    },
+    {
+        path: 'manageaccount-invoices',
+        component: ManageAccountInvoicesComponent
+    },
+    {
+        path: 'manageaccount-payments',
+        component: ManageAccountPaymentsComponent
+    },
+    {
+        path: 'clientview-petitions',
+        component: petitionsclientviewComponent
+    },
 
-  {
-      path: 'immigrationview-client-details',
-      component: ImmigrationViewClientDetailsComponent
-  },
-  {
-      path: 'immigrationview-addressinfo',
-      component: ImmigrationViewAddressinfoComponent
-  },
-  {
-      path: 'immigrationview-dependents',
-      component: ImmigrationViewDependentsComponent
-  },
-  {
-      path: 'immigrationview-passport-info',
-      component: ImmigrationViewPassportInfoComponent
-  },
-  {
-      path: 'immigrationview-job-details',
-      component: ImmigrationViewJobDetailsComponent
-  },
-  {
-      path: 'immigrationview-arrival-departure-info',
-      component: ImmigrationViewArrivalDepartureInfoComponent
-  },
-  {
-      path: 'immigrationview-visas',
-      component: ImmigrationViewVisasComponent
-  },
-  {
-      path: 'immigrationview-I-797-history',
-      component: SmartTableFramework
-     //component:  ImmigrationViewI797HistoryComponent
-  },
-  {
-      path: 'immigrationview-petitions',
-      component: ImmigrationViewPetitionsComponent
-  },
-  {
-      path: 'clientview-Requests',
-      component: requestclientviewcomponent
-  },
-  {
+    {
+        path: 'immigrationview-client-details',
+        component: ImmigrationViewClientDetailsComponent
+    },
+    {
+        path: 'immigrationview-addressinfo',
+        component: ImmigrationViewAddressinfoComponent
+    },
+    {
+        path: 'immigrationview-dependents',
+        component: ImmigrationViewDependentsComponent
+    },
+    {
+        path: 'immigrationview-passport-info',
+        component: ImmigrationViewPassportInfoComponent
+    },
+    {
+        path: 'immigrationview-job-details',
+        component: ImmigrationViewJobDetailsComponent
+    },
+    {
+        path: 'immigrationview-arrival-departure-info',
+        component: ImmigrationViewArrivalDepartureInfoComponent
+    },
+    {
+        path: 'immigrationview-visas',
+        component: ImmigrationViewVisasComponent
+    },
+    {
+        path: 'immigrationview-I-797-history',
+        component: SmartTableFramework
+        //component:  ImmigrationViewI797HistoryComponent
+    },
+    {
+        path: 'immigrationview-petitions',
+        component: ImmigrationViewPetitionsComponent
+    },
+    {
+        path: 'clientview-Requests',
+        component: requestclientviewcomponent
+    },
+    {
         path: 'reset-password',
         component: ResetPasswordComponent
-  },
-  //superuserview
-  {
-      path: 'accounts',
-      component: superuserViewAccountsComponent
-  },
-  {
-      path: 'superuserview-productcatalog',
-      component: SuperuserviewProductcatalogComponent
-  },
-  {
-      path: 'account-details',
-      component: SuperuserViewAccountDetailsComponent
-  },
-  {
-      path: 'superuserview-invoice',
-      component: AccountInvoiceComponent
-  },
-  {
-      path: 'accountdetails-payments',
-      component: accountDetailsPaymentsComponent
-  },
-  {
-      path:'superuserview-accountmanagers',
-      component:AccountsManagers
-  },
-  {
-      path: 'manageaccount-markfordeletion',
-      component: MarkforDeletionComponent
-  },
-  {
-      path:'superuserview-productcatalog-discounts',
-      component:SuperuserviewProductcatalogDiscountsComponent
-  },
-  {
-    path: '',
-    component: LoginComponent
-  },
-  {
-    path: '**',
-    component: LoginComponent
-  },
+    },
+    //superuserview
+    {
+        path: 'accounts',
+        component: superuserViewAccountsComponent
+    },
+    {
+        path: 'invoices',
+        component: SuperUserViewInvoicestabComponent
+    },
+    {
+        path: 'payments',
+        component: SuperUserViewPaymentstabComponent
+    },
+    {
+        path: 'superuserview-productcatalog',
+        component: SuperuserviewProductcatalogComponent
+    },
+    {
+        path: 'account-details',
+        component: SuperuserViewAccountDetailsComponent
+    },
+    {
+        path: 'superuserview-invoice',
+        component: AccountInvoiceComponent
+    },
+    {
+        path: 'accountdetails-payments',
+        component: accountDetailsPaymentsComponent
+    },
+    {
+        path: 'superuserview-accountmanagers',
+        component: AccountsManagers
+    },
+    {
+        path: 'manageaccount-markfordeletion',
+        component: MarkforDeletionComponent
+    },
+    {
+        path: 'superuserview-productcatalog-discounts',
+        component: SuperuserviewProductcatalogDiscountsComponent
+    },
+    {
+        path: '',
+        component: LoginComponent
+    },
+    {
+        path: '**',
+        component: LoginComponent
+    },
 
-  
 
-  
+
+
 ];
 
 export const appRoutingProviders: any[] = [];

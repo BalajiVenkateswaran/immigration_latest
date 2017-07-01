@@ -144,8 +144,8 @@ import { CustomRenderComponent } from './components/immigrationview-petitions/cu
 import { PetitionSubTypeCustomEditorComponent } from './components/immigrationview-petitions/petitionSubType-custom-editor.component';
 
 import {AgGridModule} from "ag-grid-angular/main";
- 
- //superusersview
+
+//superusersview
 
 import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
 import {superUserviewAccountService} from './components/superuserview-accounts/accounts.component.service';
@@ -164,30 +164,32 @@ import {markfordeletionservice} from './components/manageaccount-markfordeletion
 import { AccountDetailsPaymentsService } from './components/superuserview-accountdetails-payments/accountdetails-payments.service';
 import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
 import {ProductCatalogDiscountService} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.service';
+import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
+import {SuperUserViewPaymentstabService} from './components/superuserview-payments/payments.service';
 
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    routing,
-      DragulaModule,
-      Ng2SmartTableModule,
-      MyDatePickerModule,
-      BootstrapModalModule,
-      AgGridModule.withComponents([SmartTableFramework]),
-      NgbModule.forRoot()],
-     
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        routing,
+        DragulaModule,
+        Ng2SmartTableModule,
+        MyDatePickerModule,
+        BootstrapModalModule,
+        AgGridModule.withComponents([SmartTableFramework]),
+        NgbModule.forRoot()],
 
 
 
-  entryComponents: [
-      ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent ,CustomFilterRow,SmartTableFramework/*AdvancedExamplesCustomEditorComponent*/
-  ],
-  declarations: [
-      CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, /*AdvancedExamplesCustomEditorComponent,*/
+
+    entryComponents: [
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework/*AdvancedExamplesCustomEditorComponent*/
+    ],
+    declarations: [
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, /*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,
@@ -217,9 +219,9 @@ import {ProductCatalogDiscountService} from './components/superuserview-productc
         ManageAccountOrganizationsComponent,
         ManageAccountPetitionTypeStagesComponent,
         ManageAccountShippingAddressComponent,
-      ManageAccountPreferencesComponent,
-      ManageAccountInvoicesComponent,
-      ManageAccountPaymentsComponent,
+        ManageAccountPreferencesComponent,
+        ManageAccountInvoicesComponent,
+        ManageAccountPaymentsComponent,
         DependentsComponent,
         DocumentExpirationsComponent,
         PetitionDocumentRepositoryComponent,
@@ -244,65 +246,66 @@ import {ProductCatalogDiscountService} from './components/superuserview-productc
         QuestionnaireI129ClientComponent,
         QuestionnaireI129DCComponent,
         QuestionnaireI129HComponent,
-      QuestionnaireI129HclientviewComponent,
-      superuserViewAccountsComponent,
-      SuperuserViewAccountDetailsComponent,
+        QuestionnaireI129HclientviewComponent,
+        superuserViewAccountsComponent,
+        SuperuserViewAccountDetailsComponent,
 
-      ResetPasswordComponent,
+        ResetPasswordComponent,
         ConfirmComponent,
         ConfirmorgComponent,
         ClientsEnhansmentsComponent,
-       //Typeahead
+        //Typeahead
 
-       //SmartTableFramework
-       SmartTableFramework,CustomFilterRow,
-       //superuserview
-      AccountInvoiceComponent,
-      accountDetailsPaymentsComponent,
-      SuperuserviewProductcatalogComponent,
-      AccountsManagers,
+        //SmartTableFramework
+        SmartTableFramework, CustomFilterRow,
+        //superuserview
+        AccountInvoiceComponent,
+        accountDetailsPaymentsComponent,
+        SuperuserviewProductcatalogComponent,
+        AccountsManagers,
+        SuperUserViewInvoicestabComponent,
+        SuperUserViewPaymentstabComponent,
+
+        MarkforDeletionComponent,
 
 
-      MarkforDeletionComponent,
+        SuperuserviewProductcatalogDiscountsComponent
 
-
-      SuperuserviewProductcatalogDiscountsComponent
-
-  ],
-  providers: [
-    {provide: APP_BASE_HREF, useValue: '/'},
-    CurrencyPipe,
-    RestService,
-      AppService,
-      MenuService,
-      PetitionsService,
-      ClientsService,
-      ClientRequestService,
-      appRoutingProviders,
-      ManageAccountUserService,
-      ManageAccountOrganizationsService,
-      QuestionnaireService,
-      ImmigrationViewDependentService,
-      OrganizationDocumentRepositoryService,
-      Addressinfoservice,
-      ImmigrationViewVisasService,
-      ImmigrationViewI797HistoryService,
-      ImmigrationViewPetitionsService,
-      ImmigrationViewArrivalDepartureInfoService,
-      FormsService,
-      DependentService,
-      DocumentExpirationsService,
-      ArrivalDespartureInfoService,
-      VisasService,
-      I797HistoryService,
-      JobDetailsService,
-      UiFieldService,
-      OrganizationService,
-      DependentDetailsService,
-      //DependentDepartmentOneService,
-      //DependentDepartmentTwoService,
-      ClientDocumentRepositoryService,
-      documentService,
+    ],
+    providers: [
+        { provide: APP_BASE_HREF, useValue: '/' },
+        CurrencyPipe,
+        RestService,
+        AppService,
+        MenuService,
+        PetitionsService,
+        ClientsService,
+        ClientRequestService,
+        appRoutingProviders,
+        ManageAccountUserService,
+        ManageAccountOrganizationsService,
+        QuestionnaireService,
+        ImmigrationViewDependentService,
+        OrganizationDocumentRepositoryService,
+        Addressinfoservice,
+        ImmigrationViewVisasService,
+        ImmigrationViewI797HistoryService,
+        ImmigrationViewPetitionsService,
+        ImmigrationViewArrivalDepartureInfoService,
+        FormsService,
+        DependentService,
+        DocumentExpirationsService,
+        ArrivalDespartureInfoService,
+        VisasService,
+        I797HistoryService,
+        JobDetailsService,
+        UiFieldService,
+        OrganizationService,
+        DependentDetailsService,
+        //DependentDepartmentOneService,
+        //DependentDepartmentTwoService,
+        ClientDocumentRepositoryService,
+        documentService,
         ClientDetailsService,
         AddressInfoService,
         PassportInfoService,
@@ -323,19 +326,19 @@ import {ProductCatalogDiscountService} from './components/superuserview-productc
         QuestionnaireI129HService,
         QuestionnaireI129HClentviewService,
         ResetPasswordService,
-      ClientQuestionnaireService,
-      MenuComponent,
-      SmartTableFrameworkService,
+        ClientQuestionnaireService,
+        MenuComponent,
+        SmartTableFrameworkService,
 
-      //superuserview
-      superUserviewAccountService,
-      SuperuserViewAccountDetailsService,   
-      AccountInvoiceService,
-      AccountManagersService,
-     
-      markfordeletionservice,
-      AccountDetailsPaymentsService,
-      ProductCatalogDiscountService
+        //superuserview
+        superUserviewAccountService,
+        SuperuserViewAccountDetailsService,
+        AccountInvoiceService,
+        AccountManagersService,
+        SuperUserViewInvoicestabService,
+        markfordeletionservice,
+        SuperUserViewPaymentstabService,
+        AccountDetailsPaymentsService
     ],
     bootstrap: [AppComponent]
 })
