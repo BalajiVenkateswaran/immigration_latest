@@ -163,6 +163,12 @@ import {MarkforDeletionComponent} from './components/manageaccount-markfordeleti
 import {markfordeletionservice} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.service';
 import { AccountDetailsPaymentsService } from './components/superuserview-accountdetails-payments/accountdetails-payments.service';
 
+import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
+import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
+
+import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
+import {SuperUserViewPaymentstabService} from './components/superuserview-payments/payments.service';
+
 
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
@@ -261,7 +267,8 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
       accountDetailsPaymentsComponent,
       SuperuserviewProductcatalogComponent,
       AccountsManagers,
-
+      SuperUserViewInvoicestabComponent,
+      SuperUserViewPaymentstabComponent,
 
       MarkforDeletionComponent,
       AccountPreferencesComponent
@@ -331,8 +338,10 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
       SuperuserViewAccountDetailsService,   
       AccountInvoiceService,
       AccountManagersService,
-     
+      SuperUserViewInvoicestabService,
       markfordeletionservice,
+      SuperUserViewPaymentstabService,
+      AccountDetailsPaymentsService
       AccountDetailsPaymentsService,
 
       SuperuserViewAccountpreferencessService
