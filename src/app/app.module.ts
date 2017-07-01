@@ -336,7 +336,8 @@ import {SuperUserViewPaymentstabService} from './components/superuserview-paymen
       AccountManagersService,
       SuperUserViewInvoicestabService,
       markfordeletionservice,
-      SuperUserViewPaymentstabService
+      SuperUserViewPaymentstabService,
+      AccountDetailsPaymentsService
     ],
     bootstrap: [AppComponent]
 })
