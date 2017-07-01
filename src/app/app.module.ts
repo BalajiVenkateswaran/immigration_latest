@@ -166,8 +166,8 @@ import { SuperuserviewProductcatalogDiscountsComponent } from './components/supe
 import {ProductCatalogDiscountService} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.service';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
 import {SuperUserViewPaymentstabService} from './components/superuserview-payments/payments.service';
-import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
-import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
+//import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
+//import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
 
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
@@ -271,7 +271,7 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
 
       MarkforDeletionComponent,
       AccountPreferencesComponent,
-
+      
     
 
 
