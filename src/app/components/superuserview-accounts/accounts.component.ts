@@ -16,8 +16,8 @@ import {MenuComponent} from "../menu/menu.component";
 export interface ConfirmModel {
     title: string;
     message: string;
-    addNewClient: boolean;
-    getClientsData: boolean;
+    addAccounts: boolean;
+    getAccountsData: boolean;
 
 }
 
@@ -28,7 +28,7 @@ export interface ConfirmModel {
 })
 export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
-    private clientList: client[];
+    public accountList=[];
     public addClient: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
@@ -36,15 +36,15 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     private user: User;
     private deleteclients: any;
     private clientName: any;
-    public addNewClient: boolean;
-    public getClientsData: boolean = true;
-    public newclitem: any = {};
+    public addAccounts: boolean;
+    public getAccountsData: boolean = true;
+    public accountDetails: any = {};
 
     public DefaultResponse = { "status": "Active" };
 
 
     settings = {
-        add: {
+        /*add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
             createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
             cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
@@ -55,124 +55,86 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
             cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
             confirmSave: true
-        },
-        actions: {
-            delete: false
-        },
+        },*/
+        actions:false,
         columns: {
+            accountName: {
+                title: 'Account Name'
+            },
+            accountNumber: {
+                title: 'Account Number'
+            },
             firstName: {
-                title: 'First Name'
+                title: 'Account Number'
             },
             lastName: {
-                title: 'Last Name'
+                title: 'Last Name',
             },
-            email: {
-                title: 'Email'
+            email:{
+                title: 'Email',
             },
-            phone: {
+            phone:{
                 title: 'Phone',
-                class: 'clientTable-phone'
             },
-            status: {
+            status:{
                 title: 'Status',
-                class: 'clientTable-status',
-                editor: {
-                    type: 'list',
-                    config: {
-                        list: [
-                            {
-                                value: "Active",
-                                title: "Active",
-                            },
-                            {
-                                value: "Inactive",
-                                title: "Inactive"
-                            }
-                        ]
-                    }
-                }
-            }
+            },
+            createdOn:{
+                title: 'Created On',
+            },
+            storageType:{
+                title: 'Storage Type',
+            },
+            
         },
         pager: {
             display: true,
             perPage: 10
         }
     };
-    //source: LocalDataSource = new LocalDataSource();
+    source: LocalDataSource = new LocalDataSource();
     constructor(private clientService: superUserviewAccountService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
         super(dialogService);
-        //this.addClient = new FormGroup({
-        //    firstName: new FormControl(''),
-        //    lastName: new FormControl(''),
-        //    email: new FormControl(''),
-        //    phone: new FormControl(''),
-        //    statusId: new FormControl('')
-
-        //});
     }
-    source: LocalDataSource = new LocalDataSource();
-    getCliData() {
+   
+    getAccountDetail() {
         this.appService.showSideBarMenu(null, "accounts");
-        this.clientService.getClients(this.appService.orgId).subscribe((res) => {
-            this.clientList = res['clients'];
-            this.clientList.forEach(client => {
-                if (client.markForDeletion)
-                    client.status = 'Mark for Deletion';
-            });
-            this.source.load(this.clientList);
-
-            if (this.appService.user) {
-                this.user = this.appService.user;
+        this.clientService.getAccountDetails(this.user.accountId).subscribe((res) => {
+            if(res['statusCode']=='SUCCESS'){
+                this.accountList.push(res);
+                this.source.load(this.accountList);
+                console.log(this.accountList);
             }
         });
-    }
-    //ngOnInit() {
-    //    this.getCliData();
-    //}
+    }   
+   
     ngOnInit() {
-        this.appService.showSideBarMenu(null, "accounts");
-        this.clientService
-            .getClients(this.appService.orgId)
-            .subscribe((res: any) => {
-                this.clientList = res.clients;
-                this.clientList.forEach(client => {
-                    if (client.markForDeletion)
-                        client.status = 'Mark for Deletion';
-                });
-                this.source.load(this.clientList);
-
-                console.log(this.data);
-                console.log(this.clientList);
-            });
         if (this.appService.user) {
             this.user = this.appService.user;
         }
-
+        this.appService.showSideBarMenu(null, "accounts");
+        this.getAccountDetail();
+      
 
     }
     addNewCli() {
         this.dialogService.addDialog(superuserViewAccountsComponent, {
-            addNewClient: true,
-            getClientsData: false,
+            addAccounts: true,
+            getAccountsData: false,
             title: 'Add Client',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
+                this.clientService.saveAccountDetails(this.appService.newclitem).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
-                        this.getCliData();
+                        this.getAccountDetail();
                     }
                 });
             }
         });
     }
     clientSave() {
-        this.newclitem['accountId'] = this.appService.user.accountId;
-        this.newclitem['orgId'] = this.appService.orgId;
-        this.newclitem['createdBy'] = this.appService.user.userId;
-        if (this.newclitem['status'] == '' || null || undefined) {
-            this.newclitem['status'] = "Active";
-        }
-        this.appService.newclitem = this.newclitem;
+        this.accountDetails['accountId'] = this.appService.user.accountId;
+        this.appService.newclitem = this.accountDetails;
         this.result = true;
         this.close();
     }
@@ -184,7 +146,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
 
 
 
-    onCreateConfirm(event): void {
+    /*onCreateConfirm(event): void {
         event.newData['accountId'] = this.appService.user.accountId;
         event.newData['orgId'] = this.appService.orgId;
         event.newData['createdBy'] = this.appService.user.userId;
@@ -204,9 +166,9 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
                 event.confirm.reject();
             }
         });
-    }
+    }*/
 
-    onEditConfirm(event): void {
+   /* onEditConfirm(event): void {
         this.clientService.updateClient(event.newData, this.appService.user.userId).subscribe((res) => {
             this.message = res['statusCode'];
             if (this.message === "SUCCESS") {
@@ -219,8 +181,8 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
                 event.confirm.resolve(event.data);
             }
         });
-    }
-    onDeleteConfirm(clients) {
+    }*/
+    /*onDeleteConfirm(clients) {
         this.clientName = clients.data.firstName;
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
@@ -239,7 +201,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
 
                 }
             });
-    }
+    }*/
     onUserRowClick(event): void {
         this.menuComponent.highlightSBLink('Account Details');
         this.appService.moveToPage("account-details");
