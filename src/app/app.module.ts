@@ -265,13 +265,13 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         accountDetailsPaymentsComponent,
         SuperuserviewProductcatalogComponent,
         AccountsManagers,
-        SuperUserViewInvoicestabComponent,
+      
         SuperUserViewPaymentstabComponent,
 
       MarkforDeletionComponent,
-      AccountPreferencesComponent
+      AccountPreferencesComponent,
 
-        MarkforDeletionComponent,
+    
 
 
         SuperuserviewProductcatalogDiscountsComponent
@@ -340,20 +340,20 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         SuperuserViewAccountDetailsService,
         AccountInvoiceService,
         AccountManagersService,
-        SuperUserViewInvoicestabService,
+    
         markfordeletionservice,
         SuperUserViewPaymentstabService,
-        AccountDetailsPaymentsService
+        AccountDetailsPaymentsService,
       //superuserview
       superUserviewAccountService,
       SuperuserViewAccountDetailsService,   
       AccountInvoiceService,
       AccountManagersService,
-      SuperUserViewInvoicestabService,
+   
       markfordeletionservice,
       SuperUserViewPaymentstabService,
-      AccountDetailsPaymentsService
       AccountDetailsPaymentsService,
+    
 
       SuperuserViewAccountpreferencessService
     ],

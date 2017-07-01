@@ -70,7 +70,7 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
-import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
+
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 
@@ -79,8 +79,9 @@ import {AccountPreferencesComponent} from './components/superuserview-accountpre
 
 
 
-import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
+import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
+
 
 
 export const appRoutes: Routes = [
@@ -303,10 +304,7 @@ export const appRoutes: Routes = [
         path: 'accounts',
         component: superuserViewAccountsComponent
     },
-    {
-        path: 'invoices',
-        component: SuperUserViewInvoicestabComponent
-    },
+  
     {
         path: 'payments',
         component: SuperUserViewPaymentstabComponent
@@ -347,16 +345,13 @@ export const appRoutes: Routes = [
         path: '**',
         component: LoginComponent
     },
-  },
+ 
   //superuserview
   {
       path: 'accounts',
       component: superuserViewAccountsComponent
   },
-  {
-      path: 'invoices',
-      component: SuperUserViewInvoicestabComponent
-  },
+ 
   {
       path: 'payments',
       component: SuperUserViewPaymentstabComponent
