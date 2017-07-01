@@ -64,6 +64,8 @@
 
           <!--<li><a (click)="appService.moveToPage('superuserview-managersaccount'); highlightTab('superuserview-managersaccount');" [ngClass]="[checkForCurrentTab('superuserview-managersaccount') ? 'active': '']"  routerLinkActive="active">Accounts</a></li>-->
            <li><a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('superuserview-productcatalog');" [ngClass]="[checkForCurrentTab('superuserview-productcatalog') ? 'active': '']"  routerLinkActive="active">Product Catalog</a></li>
+            <li><a (click)="appService.moveToPage('invoices'); highlightTab('invoices');" [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']" routerLinkActive="active">Invoices</a></li>
+            <li><a (click)="appService.moveToPage('payments'); highlightTab('payments');" [ngClass]="[checkForCurrentTab('payments') ? 'active': '']" routerLinkActive="active">Payments</a></li>
         </ul>
         <ul *ngIf="applicationViewMode=='Client'">
           <li><a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');" [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']" routerLinkActive="active">Petitions</a></li>
