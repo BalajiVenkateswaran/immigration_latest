@@ -30,7 +30,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     public getPayments:boolean=true;
     public addPopups:boolean;
     public DefaultResponse = { "status": "Active" };
-    public paymentList:any={};
+    public paymentList:any;
     public payments:any={};
     settings = {
         add: {
@@ -117,7 +117,6 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         });
     }
     savePayments() {
-        this.payments['accountId'] = this.appService.user.accountId;
         this.appService.addUsers = this.payments;
         this.result = true;
         this.close();
@@ -125,5 +124,8 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     cancel() {
         this.result = false;
         this.close();
+    }
+    viewDetails(data,index){
+
     }
 }

@@ -144,8 +144,8 @@ import { CustomRenderComponent } from './components/immigrationview-petitions/cu
 import { PetitionSubTypeCustomEditorComponent } from './components/immigrationview-petitions/petitionSubType-custom-editor.component';
 
 import {AgGridModule} from "ag-grid-angular/main";
- 
- //superusersview
+
+//superusersview
 
 import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
 import {superUserviewAccountService} from './components/superuserview-accounts/accounts.component.service';
@@ -162,10 +162,8 @@ import {accountDetailsPaymentsComponent} from './components/superuserview-accoun
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 import {markfordeletionservice} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.service';
 import { AccountDetailsPaymentsService } from './components/superuserview-accountdetails-payments/accountdetails-payments.service';
-
-import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
-import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
-
+import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
+import {ProductCatalogDiscountService} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.service';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
 import {SuperUserViewPaymentstabService} from './components/superuserview-payments/payments.service';
 
@@ -173,27 +171,27 @@ import {SuperUserViewPaymentstabService} from './components/superuserview-paymen
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    routing,
-      DragulaModule,
-      Ng2SmartTableModule,
-      MyDatePickerModule,
-      BootstrapModalModule,
-      AgGridModule.withComponents([SmartTableFramework]),
-      NgbModule.forRoot()],
-     
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        routing,
+        DragulaModule,
+        Ng2SmartTableModule,
+        MyDatePickerModule,
+        BootstrapModalModule,
+        AgGridModule.withComponents([SmartTableFramework]),
+        NgbModule.forRoot()],
 
 
 
-  entryComponents: [
-      ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent ,CustomFilterRow,SmartTableFramework/*AdvancedExamplesCustomEditorComponent*/
-  ],
-  declarations: [
-      CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, /*AdvancedExamplesCustomEditorComponent,*/
+
+    entryComponents: [
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework/*AdvancedExamplesCustomEditorComponent*/
+    ],
+    declarations: [
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, /*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,
@@ -223,9 +221,9 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         ManageAccountOrganizationsComponent,
         ManageAccountPetitionTypeStagesComponent,
         ManageAccountShippingAddressComponent,
-      ManageAccountPreferencesComponent,
-      ManageAccountInvoicesComponent,
-      ManageAccountPaymentsComponent,
+        ManageAccountPreferencesComponent,
+        ManageAccountInvoicesComponent,
+        ManageAccountPaymentsComponent,
         DependentsComponent,
         DocumentExpirationsComponent,
         PetitionDocumentRepositoryComponent,
@@ -250,65 +248,69 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         QuestionnaireI129ClientComponent,
         QuestionnaireI129DCComponent,
         QuestionnaireI129HComponent,
-      QuestionnaireI129HclientviewComponent,
-      superuserViewAccountsComponent,
-      SuperuserViewAccountDetailsComponent,
+        QuestionnaireI129HclientviewComponent,
+        superuserViewAccountsComponent,
+        SuperuserViewAccountDetailsComponent,
 
-      ResetPasswordComponent,
+        ResetPasswordComponent,
         ConfirmComponent,
         ConfirmorgComponent,
         ClientsEnhansmentsComponent,
-       //Typeahead
+        //Typeahead
 
-       //SmartTableFramework
-       SmartTableFramework,CustomFilterRow,
-       //superuserview
-      AccountInvoiceComponent,
-      accountDetailsPaymentsComponent,
-      SuperuserviewProductcatalogComponent,
-      AccountsManagers,
-      SuperUserViewInvoicestabComponent,
-      SuperUserViewPaymentstabComponent,
+        //SmartTableFramework
+        SmartTableFramework, CustomFilterRow,
+        //superuserview
+        AccountInvoiceComponent,
+        accountDetailsPaymentsComponent,
+        SuperuserviewProductcatalogComponent,
+        AccountsManagers,
+        SuperUserViewInvoicestabComponent,
+        SuperUserViewPaymentstabComponent,
 
       MarkforDeletionComponent,
       AccountPreferencesComponent
 
+        MarkforDeletionComponent,
 
-  ],
-  providers: [
-    {provide: APP_BASE_HREF, useValue: '/'},
-    CurrencyPipe,
-    RestService,
-      AppService,
-      MenuService,
-      PetitionsService,
-      ClientsService,
-      ClientRequestService,
-      appRoutingProviders,
-      ManageAccountUserService,
-      ManageAccountOrganizationsService,
-      QuestionnaireService,
-      ImmigrationViewDependentService,
-      OrganizationDocumentRepositoryService,
-      Addressinfoservice,
-      ImmigrationViewVisasService,
-      ImmigrationViewI797HistoryService,
-      ImmigrationViewPetitionsService,
-      ImmigrationViewArrivalDepartureInfoService,
-      FormsService,
-      DependentService,
-      DocumentExpirationsService,
-      ArrivalDespartureInfoService,
-      VisasService,
-      I797HistoryService,
-      JobDetailsService,
-      UiFieldService,
-      OrganizationService,
-      DependentDetailsService,
-      //DependentDepartmentOneService,
-      //DependentDepartmentTwoService,
-      ClientDocumentRepositoryService,
-      documentService,
+
+        SuperuserviewProductcatalogDiscountsComponent
+
+    ],
+    providers: [
+        { provide: APP_BASE_HREF, useValue: '/' },
+        CurrencyPipe,
+        RestService,
+        AppService,
+        MenuService,
+        PetitionsService,
+        ClientsService,
+        ClientRequestService,
+        appRoutingProviders,
+        ManageAccountUserService,
+        ManageAccountOrganizationsService,
+        QuestionnaireService,
+        ImmigrationViewDependentService,
+        OrganizationDocumentRepositoryService,
+        Addressinfoservice,
+        ImmigrationViewVisasService,
+        ImmigrationViewI797HistoryService,
+        ImmigrationViewPetitionsService,
+        ImmigrationViewArrivalDepartureInfoService,
+        FormsService,
+        DependentService,
+        DocumentExpirationsService,
+        ArrivalDespartureInfoService,
+        VisasService,
+        I797HistoryService,
+        JobDetailsService,
+        UiFieldService,
+        OrganizationService,
+        DependentDetailsService,
+        //DependentDepartmentOneService,
+        //DependentDepartmentTwoService,
+        ClientDocumentRepositoryService,
+        documentService,
         ClientDetailsService,
         AddressInfoService,
         PassportInfoService,
@@ -329,10 +331,19 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         QuestionnaireI129HService,
         QuestionnaireI129HClentviewService,
         ResetPasswordService,
-      ClientQuestionnaireService,
-      MenuComponent,
-      SmartTableFrameworkService,
+        ClientQuestionnaireService,
+        MenuComponent,
+        SmartTableFrameworkService,
 
+        //superuserview
+        superUserviewAccountService,
+        SuperuserViewAccountDetailsService,
+        AccountInvoiceService,
+        AccountManagersService,
+        SuperUserViewInvoicestabService,
+        markfordeletionservice,
+        SuperUserViewPaymentstabService,
+        AccountDetailsPaymentsService
       //superuserview
       superUserviewAccountService,
       SuperuserViewAccountDetailsService,   
