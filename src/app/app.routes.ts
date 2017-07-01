@@ -74,6 +74,10 @@ import {accountDetailsPaymentsComponent} from './components/superuserview-accoun
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 
 
+import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
+
+
+
 export const appRoutes: Routes = [
     {
         path: 'login',
@@ -317,6 +321,10 @@ export const appRoutes: Routes = [
   {
       path: 'manageaccount-markfordeletion',
       component: MarkforDeletionComponent
+  },
+  {
+      path: 'superuserview-preference',
+      component: AccountPreferencesComponent
   },
   {
     path: '',

@@ -28,7 +28,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     private user: User;  
     public AccountInvoices: any;
     public viewRowDetails: any = {};
-    private myDatePickerOptions: IMyOptions = {
+    public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,

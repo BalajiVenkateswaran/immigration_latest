@@ -164,6 +164,8 @@ import {markfordeletionservice} from './components/manageaccount-markfordeletion
 import { AccountDetailsPaymentsService } from './components/superuserview-accountdetails-payments/accountdetails-payments.service';
 
 
+import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
+import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
 @NgModule({
   imports: [
     BrowserModule,
@@ -261,7 +263,9 @@ import { AccountDetailsPaymentsService } from './components/superuserview-accoun
       AccountsManagers,
 
 
-      MarkforDeletionComponent
+      MarkforDeletionComponent,
+      AccountPreferencesComponent
+
 
   ],
   providers: [
@@ -329,7 +333,9 @@ import { AccountDetailsPaymentsService } from './components/superuserview-accoun
       AccountManagersService,
      
       markfordeletionservice,
-      AccountDetailsPaymentsService
+      AccountDetailsPaymentsService,
+
+      SuperuserViewAccountpreferencessService
     ],
     bootstrap: [AppComponent]
 })
