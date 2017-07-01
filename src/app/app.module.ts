@@ -161,6 +161,7 @@ import {accountDetailsPaymentsComponent} from './components/superuserview-accoun
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 import {markfordeletionservice} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.service';
+import { AccountDetailsPaymentsService } from './components/superuserview-accountdetails-payments/accountdetails-payments.service';
 
 
 @NgModule({
@@ -326,8 +327,9 @@ import {markfordeletionservice} from './components/manageaccount-markfordeletion
       SuperuserViewAccountDetailsService,   
       AccountInvoiceService,
       AccountManagersService,
-
-      markfordeletionservice
+     
+      markfordeletionservice,
+      AccountDetailsPaymentsService
     ],
     bootstrap: [AppComponent]
 })

@@ -10,13 +10,14 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
-
+import {AccountDetailsPaymentsService} from './accountdetails-payments.service';
 
 export interface ConfirmModel {
     title: string;
     message: string;
-    addNewClient: boolean;
-    getClientsData: boolean;
+    addPopups: boolean;
+    getPayments: boolean;
+    payments:Object;
 
 }
 @Component({
@@ -24,10 +25,13 @@ export interface ConfirmModel {
     templateUrl: './accountdetails-payments.component.html',
     styleUrls: ['./accountdetails-payments.component.sass']
 })
-export class accountDetailsPaymentsComponent implements OnInit {
+export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
-    public invoiceDetailsForm: boolean = false;
+    public getPayments:boolean=true;
+    public addPopups:boolean;
     public DefaultResponse = { "status": "Active" };
+    public paymentList:any={};
+    public payments:any={};
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -76,17 +80,50 @@ export class accountDetailsPaymentsComponent implements OnInit {
     };
     //source: LocalDataSource = new LocalDataSource();
     private user: User;
-    constructor(private appService: AppService) {
+    constructor(private appService: AppService,public accountsPaymentService:AccountDetailsPaymentsService,public dialogService: DialogService) {
+        super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
 
         }
     }
     
-
-    ngOnInit() {
+    getPaymentDetails(){
+        this.accountsPaymentService.getPaymentDetails(this.user.accountId).subscribe(
+            res=>{
+                if(res['statusCode']=='SUCCESS'){
+                    this.paymentList=res['payments'];
+                }
+            }
+        )
     }
-    getDetails() {
-        this.invoiceDetailsForm = true;
+    ngOnInit() {
+        this.getPaymentDetails();
+    }
+    addNewPayments() {
+        this.dialogService.addDialog(accountDetailsPaymentsComponent, {
+            addPopups: true,
+            getPayments: false,
+            title: 'Add New User',
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+
+                this.accountsPaymentService.savePaymentDetails(this.user.accountId,this.appService.addUsers).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getPaymentDetails();
+                    }
+                });
+            }
+        });
+    }
+    savePayments() {
+        this.payments['accountId'] = this.appService.user.accountId;
+        this.appService.addUsers = this.payments;
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
     }
 }
