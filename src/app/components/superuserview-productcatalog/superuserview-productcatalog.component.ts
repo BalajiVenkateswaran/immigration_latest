@@ -19,6 +19,7 @@ export interface ConfirmModel {
   styleUrls: ['./superuserview-productcatalog.component.sass']
 })
 export class SuperuserviewProductcatalogComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+    public addPopup;
     public products:any={};
     private rowEdit: boolean[] = [];
     public rowData:any;
@@ -26,7 +27,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     public getProducts:boolean=true;
     public viewPopup:boolean;
     public product:any={};
-    
+
  /*   settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -79,7 +80,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
                 return `<button (myfunction)="">View</button>`
                 }
             },
-           
+
         },
         pager: {
             display: true,
@@ -87,8 +88,8 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         }
     };
     public products:any={};
-    
-  constructor(public appService:AppService) { 
+
+  constructor(public appService:AppService) {
     this.products=[
       {
         "name":"One",
@@ -111,7 +112,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         "cost":"410",
         "status":'active',
         "createdOn":"06-29-2017"
-        
+
       },
       {
         "name":"Immigration Plus",
@@ -217,7 +218,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   ngOnInit(){
    this.appService.showSideBarMenu("superuserview-product", "superuserview-product");
   }
-  constructor(public appService:AppService,public dialogService: DialogService) { 
+  constructor(public appService:AppService,public dialogService: DialogService) {
     super(dialogService);
     this.products=[
       {
@@ -241,7 +242,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         "cost":"410",
         "status":'active',
         "createdOn":"06-29-2017"
-        
+
       },
       {
         "name":"Immigration Plus",
