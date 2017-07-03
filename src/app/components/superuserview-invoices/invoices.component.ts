@@ -198,8 +198,8 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
   //        });
   //}
   onUserRowClick(event): void{
-      this.menuComponent.highlightSBLink('superuserview-accountdetails-invoice');
-      this.appService.moveToPage("superuserview-accountdetails-invoice");
+      this.menuComponent.highlightSBLink('Account Details Invoices');
+      this.appService.moveToPage("accountdetails-invoice");
     //this.appService.clientId = event.data.clientId;
       
   }

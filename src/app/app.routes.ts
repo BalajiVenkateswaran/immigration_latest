@@ -321,7 +321,7 @@ export const appRoutes: Routes = [
         component: SuperuserViewAccountDetailsComponent
     },
     {
-        path: 'superuserview-accountdetails-invoice',
+        path: 'accountdetails-invoice',
         component: AccountInvoiceComponent
     },
     {

@@ -298,39 +298,7 @@
           </li>
       </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='accounts'">   
-         <li>
-              <a (click)="appservice.moveToPage('account-details');highlightSBLink('Account Details')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Account Details</span>
-              </a>
-          </li>
-          <li>
-              <a (click)="appservice.moveToPage('superuserview-accountmanagers');highlightSBLink('Account Managers')" [ngClass]="[checkForCurrentSBLink('Account Managers') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Account Managers</span>
-              </a>
-          </li>
-           <li>
-              <a (click)="appservice.moveToPage('superuserview-preference');highlightSBLink('superuserview-preference')" [ngClass]="[checkForCurrentSBLink('superuserview-preference') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Account Preferences</span>
-              </a>
-          </li>
-           <li>
-              <a (click)="appservice.moveToPage('superuserview-accountdetails-invoice');highlightSBLink('superuserview-accountdetails-invoice')" [ngClass]="[checkForCurrentSBLink('superuserview-accountdetails-invoice') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Invoices</span>
-              </a>
-          </li>
-        <li>
-            <a (click)="appservice.moveToPage('accountdetails-payments');highlightSBLink('Payments')" [ngClass]="[checkForCurrentSBLink('Payments') ? 'active': '']" routerLinkActive="active">
-                <span class="ico-flight"></span>
-                <span>Payments</span>
-            </a>
-        </li>
-        
-    </ul>  
+
 
        <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">   
           <li>
@@ -666,7 +634,7 @@
             </a>
         </li>
         <li>
-            <a (click)="appservice.moveToPage('superuserview-invoice');highlightSBLink('superuserview-invoice')" [ngClass]="[checkForCurrentSBLink('superuserview-invoice') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appservice.moveToPage('accountdetails-invoice');highlightSBLink('Account-Details-Invoices')" [ngClass]="[checkForCurrentSBLink('Account-Details-Invoices') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Invoices</span>
             </a>
