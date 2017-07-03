@@ -99,11 +99,11 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     
     getAccountDetail() {
         this.appService.showSideBarMenu(null, "accounts");
-        this.clientService.getAccountDetails(this.user.accountId).subscribe((res) => {
-            if(res['statusCode']=='SUCCESS'){
-               /* this.accountList.push(res);*/
-              
-                console.log(this.accountList);
+        this.clientService.getAccountDetails().subscribe((res) => {
+            if(res['statusCode']=='SUCCESS'){              
+                console.log(res['accountInfoList']);
+                this.source.load(res['accountInfoList']);
+
             }
         });
     }   
@@ -115,33 +115,32 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         this.appService.showSideBarMenu(null, "accounts");
         this.getAccountDetail();
      
-        this.accountList=[
-            {
-                "accountName":"Balaji Venkateswaran",
-                "accountNumber":"545465646",
-                "firstName":"Balaji",
-                "lastName":"Venkateswaran",
-                "email":"balaji@gmail.com",
-                "phone":"9490017854",
-                "status":"Active",
-                "createdOn":"07-03-2017",
-                "storageType":"S3"
+    //    this.accountList=[
+    //        {
+    //            "accountName":"Balaji Venkateswaran",
+    //            "accountNumber":"545465646",
+    //            "firstName":"Balaji",
+    //            "lastName":"Venkateswaran",
+    //            "email":"balaji@gmail.com",
+    //            "phone":"9490017854",
+    //            "status":"Active",
+    //            "createdOn":"07-03-2017",
+    //            "storageType":"S3"
 
-            },
-            {
-                "accountName":"Raja",
-                "accountNumber":"545465646",
-                "firstName":"Raja",
-                "lastName":"Raja",
-                "email":"Raja@gmail.com",
-                "phone":"949001794",
-                "status":"Active",
-                "createdOn":"07-03-2017",
-                "storageType":"S3"
+    //        },
+    //        {
+    //            "accountName":"Raja",
+    //            "accountNumber":"545465646",
+    //            "firstName":"Raja",
+    //            "lastName":"Raja",
+    //            "email":"Raja@gmail.com",
+    //            "phone":"949001794",
+    //            "status":"Active",
+    //            "createdOn":"07-03-2017",
+    //            "storageType":"S3"
 
-            }
-    ];
-         this.source.load(this.accountList);
+    //        }
+    //];
 
     }
     addNewCli() {
@@ -232,7 +231,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     onUserRowClick(event): void {
         this.menuComponent.highlightSBLink('Account Details');
         this.appService.moveToPage("account-details");
-        this.appService.clientId = event.data.clientId;
+        this.appService.user.accountId = event.data.accountId;
     }
 
 }
