@@ -4,5 +4,4 @@
     invoiceAmount: any;
     paymentReceived: any;
     pdfUploaded: string;
-    
 }
