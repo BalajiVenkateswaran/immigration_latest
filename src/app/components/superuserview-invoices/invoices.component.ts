@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {client} from "../../models/client";
+import {invoice} from "../../models/invoice";
 import {FormGroup, FormControl} from "@angular/forms";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -26,7 +26,7 @@ export interface ConfirmModel {
   templateUrl: './invoices.component.html'
 })
 export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    private clientList: client[];
+    private invoicesList: invoice[];
     public addClient: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
@@ -85,59 +85,43 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
             perPage: 10
         }
     };
-    //source: LocalDataSource = new LocalDataSource();
     constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
         super(dialogService); 
     }
     source: LocalDataSource = new LocalDataSource();
     getCliData() {
         this.appService.showSideBarMenu(null, "clients");
-        this.superuserviewInvoicestabService.getClients(this.appService.orgId).subscribe((res) => {
-            this.clientList = res['clients'];
-            this.clientList.forEach(client => {
-                if (client.markForDeletion)
-                    client.status = 'Mark for Deletion';
-            });
-            this.source.load(this.clientList);
-
-            if (this.appService.user) {
-                this.user = this.appService.user;
-            }
+        this.superuserviewInvoicestabService.getInvoices(this.appService.orgId).subscribe((res) => {
+            this.invoicesList = res['invoices'];
+            this.source.load(this.invoicesList);
             });
     }
       ngOnInit() {
     this.appService.showSideBarMenu(null, "clients");
-    this.superuserviewInvoicestabService
-      .getClients(this.appService.orgId)
+    this.superuserviewInvoicestabService.getInvoices(this.appService.orgId)
       .subscribe((res: any) => {
-        this.clientList = res.clients;
-        this.clientList.forEach(client => {if(client.markForDeletion)
-                                                 client.status = 'Mark for Deletion';
-                                           });
-        //this.source.load(this.clientList);
-
-        console.log(this.data);
-        console.log(this.clientList);
+          this.invoicesList = res.invoices;
+        this.source.load(this.invoicesList);
         });
     if (this.appService.user) {
         this.user = this.appService.user;
     }
   }
-    addNewCli() {
-        this.dialogService.addDialog(SuperUserViewInvoicestabComponent, {
-            addNewClient: true,
-            getClientsData: false,
-            title: 'Add Client',
-        }).subscribe((isConfirmed) => {
-            if (isConfirmed) {
-                this.superuserviewInvoicestabService.saveNewClient(this.appService.newclitem).subscribe((res) => {
-                    if (res['statusCode'] == 'SUCCESS') {
-                        this.getCliData();
-                    }
-                });
-            }
-        });
-    }
+    //addNewCli() {
+    //    this.dialogService.addDialog(SuperUserViewInvoicestabComponent, {
+    //        addNewClient: true,
+    //        getClientsData: false,
+    //        title: 'Add Client',
+    //    }).subscribe((isConfirmed) => {
+    //        if (isConfirmed) {
+    //            this.superuserviewInvoicestabService.saveNewClient(this.appService.newclitem).subscribe((res) => {
+    //                if (res['statusCode'] == 'SUCCESS') {
+    //                    this.getCliData();
+    //                }
+    //            });
+    //        }
+    //    });
+    //}
     clientSave() {
         this.newclitem['accountId'] = this.appService.user.accountId;
         this.newclitem['orgId'] = this.appService.orgId;
@@ -157,62 +141,62 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
 
 
 
-  onCreateConfirm(event) : void {
-      event.newData['accountId'] = this.appService.user.accountId;
-      event.newData['orgId'] = this.appService.orgId;
-      event.newData['createdBy'] = this.appService.user.userId;
+  //onCreateConfirm(event) : void {
+  //    event.newData['accountId'] = this.appService.user.accountId;
+  //    event.newData['orgId'] = this.appService.orgId;
+  //    event.newData['createdBy'] = this.appService.user.userId;
 
-      if (event.newData['status'] == '' || null || undefined) {
-          event.newData['status'] = "Active";
-      }
-      this.superuserviewInvoicestabService.saveNewClient(event.newData).subscribe((res) => {
-          if (res['statusCode'] == "SUCCESS") {
-              event.newData['clientId'] = res['clientId'];
-              event.confirm.resolve(event.newData);
-          } else {
-              this.dialogService.addDialog(ConfirmComponent, {
-                  title: 'Error..!',
-                  message: 'Unable to Add Client..!'
-              });
-              event.confirm.reject();
-            }
-      });
-  }
+  //    if (event.newData['status'] == '' || null || undefined) {
+  //        event.newData['status'] = "Active";
+  //    }
+  //    this.superuserviewInvoicestabService.saveNewClient(event.newData).subscribe((res) => {
+  //        if (res['statusCode'] == "SUCCESS") {
+  //            event.newData['clientId'] = res['clientId'];
+  //            event.confirm.resolve(event.newData);
+  //        } else {
+  //            this.dialogService.addDialog(ConfirmComponent, {
+  //                title: 'Error..!',
+  //                message: 'Unable to Add Client..!'
+  //            });
+  //            event.confirm.reject();
+  //          }
+  //    });
+  //}
 
-  onEditConfirm(event) : void {
-    this.superuserviewInvoicestabService.updateClient(event.newData, this.appService.user.userId).subscribe((res) => {
-              this.message = res['statusCode'];
-              if(this.message === "SUCCESS"){
-                event.confirm.resolve(event.newData);
-              } else {
-                  this.dialogService.addDialog(ConfirmComponent, {
-                      title: 'Error..!',
-                      message: 'Unable to Edit Client..!'
-                  });
-                event.confirm.resolve(event.data);
-              }
-    });
-  }
-  onDeleteConfirm(clients) {
-      this.clientName=clients.data.firstName;
-      this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Confirmation',
-          message: 'Are you sure you want to Delete '+this.clientName+' ?'
-      })
-          .subscribe((isConfirmed) => {
-              //Get dialog result
-              //this.confirmResult = isConfirmed;
-              if (isConfirmed) {
-                  this.superuserviewInvoicestabService.removeclient(clients.data['clientId'], this.appService.user.userId).subscribe((res) => {
-                      this.message = res['statusCode'];
-                      clients.data.clientStatus = "Mark for Deletion";
-                      clients.confirm.reject();
-                      this.source.refresh();
-                   });
+  //onEditConfirm(event) : void {
+  //  this.superuserviewInvoicestabService.updateClient(event.newData, this.appService.user.userId).subscribe((res) => {
+  //            this.message = res['statusCode'];
+  //            if(this.message === "SUCCESS"){
+  //              event.confirm.resolve(event.newData);
+  //            } else {
+  //                this.dialogService.addDialog(ConfirmComponent, {
+  //                    title: 'Error..!',
+  //                    message: 'Unable to Edit Client..!'
+  //                });
+  //              event.confirm.resolve(event.data);
+  //            }
+  //  });
+  //}
+  //onDeleteConfirm(clients) {
+  //    this.clientName=clients.data.firstName;
+  //    this.dialogService.addDialog(ConfirmComponent, {
+  //        title: 'Confirmation',
+  //        message: 'Are you sure you want to Delete '+this.clientName+' ?'
+  //    })
+  //        .subscribe((isConfirmed) => {
+  //            //Get dialog result
+  //            //this.confirmResult = isConfirmed;
+  //            if (isConfirmed) {
+  //                this.superuserviewInvoicestabService.removeclient(clients.data['clientId'], this.appService.user.userId).subscribe((res) => {
+  //                    this.message = res['statusCode'];
+  //                    clients.data.clientStatus = "Mark for Deletion";
+  //                    clients.confirm.reject();
+  //                    this.source.refresh();
+  //                 });
 
-              }
-          });
-  }
+  //            }
+  //        });
+  //}
   onUserRowClick(event): void{
       this.menuComponent.highlightSBLink('Client Details');
     this.appService.moveToPage("immigrationview-client-details");

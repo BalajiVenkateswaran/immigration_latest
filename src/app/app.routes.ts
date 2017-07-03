@@ -77,7 +77,7 @@ import {MarkforDeletionComponent} from './components/manageaccount-markfordeleti
 
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 
-
+import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
 
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
@@ -304,7 +304,10 @@ export const appRoutes: Routes = [
         path: 'accounts',
         component: superuserViewAccountsComponent
     },
-  
+  {
+        path: 'invoices',
+        component: SuperUserViewInvoicestabComponent
+    },
     {
         path: 'payments',
         component: SuperUserViewPaymentstabComponent

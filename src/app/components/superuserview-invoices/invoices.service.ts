@@ -9,23 +9,22 @@ export class SuperUserViewInvoicestabService {
 
   }
 
-  public getClients (orgId: string) {
-    console.log("PetitionsService|getPetitions|orgId:%o", orgId);
-    return this.restService.getData("/clients/immigration/"+orgId);
+  public getInvoices (orgId: string) {
+      return this.restService.getData("/superuser/invoices");
   }
 
-  public saveNewClient(clientData: client) {
-      return this.restService.postData("/client", clientData);
-  }
+  //public saveNewClient(clientData: client) {
+  //    return this.restService.postData("/client", clientData);
+  //}
 
-  public updateClient(clientData: client, updatedBy: string) {
-    var req = {
-      client : clientData,
-      updatedBy: updatedBy
-    };
-      return this.restService.postData("/clients/immigration", req);
-  }
-  public removeclient(clientId: string, immigrationOfficerId: string) {
-      return this.restService.deleteData("/client/" + clientId +"/immigrationOfficerId/"+immigrationOfficerId);
-  }
+  //public updateClient(clientData: client, updatedBy: string) {
+  //  var req = {
+  //    client : clientData,
+  //    updatedBy: updatedBy
+  //  };
+  //    return this.restService.postData("/clients/immigration", req);
+  //}
+  //public removeclient(clientId: string, immigrationOfficerId: string) {
+  //    return this.restService.deleteData("/client/" + clientId +"/immigrationOfficerId/"+immigrationOfficerId);
+  //}
 }
