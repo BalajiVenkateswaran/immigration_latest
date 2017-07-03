@@ -85,6 +85,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
             this.user = appService.user;
         }
     }
+    source: LocalDataSource = new LocalDataSource();
     ngOnInit() {
         this.accountInvoiceService.getAccountInvoice(this.user.accountId)
             .subscribe((res) => {
@@ -92,12 +93,12 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
                 if (res['invoices']) {
                     this.AccountInvoices = res['invoices'];
                 }
-              
-                console.log();
-              
+                console.log(this.AccountInvoices);
+                
             });
+        //this.source.load(this.AccountInvoices);
     }
-    source: LocalDataSource = new LocalDataSource();
+    
     onDeleteConfirm(event): void { }
     onEditConfirm(event): void { }
     addNewInvoice(){
@@ -111,6 +112,11 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
             }
         });
     }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
+
     getInvoiceInfo(rowdata) {
         this.accountInvoice = true;
         this.viewRowDetails = rowdata;
