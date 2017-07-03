@@ -87,6 +87,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     }
    // source: LocalDataSource = new LocalDataSource();
     ngOnInit() {
+        this.appService.showSideBarMenu("accounts", "accounts");
         this.accountInvoiceService.getAccountInvoice(this.user.accountId)
             .subscribe((res) => {
                 console.log("getinoices%o", res);

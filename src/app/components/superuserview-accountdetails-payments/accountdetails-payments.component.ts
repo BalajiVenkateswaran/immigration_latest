@@ -98,6 +98,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         )
     }
     ngOnInit() {
+        this.appService.showSideBarMenu("accounts", "accounts");
         this.getPaymentDetails();
     }
     addNewPayments() {
