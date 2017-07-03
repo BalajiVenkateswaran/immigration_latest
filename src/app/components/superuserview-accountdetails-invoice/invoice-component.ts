@@ -8,6 +8,10 @@ import {superuserinvoice} from "../../models/superuserinvoice";
 import {AccountInvoiceService} from './invoice.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {User} from "../../models/user";
+import {FormGroup, FormControl} from "@angular/forms";
+import {Router} from "@angular/router";
+import {MenuComponent} from "../menu/menu.component";
+
 
 
 export interface ConfirmModel {
@@ -15,6 +19,7 @@ export interface ConfirmModel {
     message: string;
     getInvoice: boolean;
     addInvoice: boolean;
+    invoiceDate: string;
 }
 
 @Component({

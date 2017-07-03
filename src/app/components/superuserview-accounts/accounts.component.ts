@@ -99,7 +99,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     
     getAccountDetail() {
         this.appService.showSideBarMenu(null, "accounts");
-        this.clientService.getAccountDetails(this.user.accountId).subscribe((res) => {
+        this.clientService.getAccountDetails(this.user.userId).subscribe((res) => {
             if(res['statusCode']=='SUCCESS'){
                /* this.accountList.push(res);*/
               

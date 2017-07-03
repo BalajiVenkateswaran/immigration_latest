@@ -11,12 +11,14 @@ export class superUserviewAccountService {
 
     }
 
-    public getAccountDetails(accountId: string) {
-        return this.restService.getData("/superuser/account/" + accountId+"/details");
+    public getAccountDetails(name:string) {
+        //return this.restService.getData("/superuser/account/" + accountId + "/details");
+        var req = {"accountName":name};
+        return this.restService.postData("/superuser/account/accountSummary", req);
     }
 
     public saveAccountDetails(accountDetails) {
-        return this.restService.postData("/superuser/account/details    ", accountDetails);
+        return this.restService.postData("/superuser/account/details", accountDetails);
     }
 
   
