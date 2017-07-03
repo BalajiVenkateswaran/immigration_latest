@@ -21,7 +21,7 @@ export class SuperuserviewProductcatalogDiscountsComponent implements OnInit {
             res=>{
                 if(res['statusCode']=='SUCCESS'){
                     //this.paymentList=res['payments'];
-                    this.discounts=res['discounts'];
+                    this.discounts=res['discountCatalogs'];
                 }
             }
         )

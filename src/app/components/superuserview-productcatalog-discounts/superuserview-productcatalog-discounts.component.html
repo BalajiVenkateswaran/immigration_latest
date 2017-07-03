@@ -28,7 +28,7 @@
                         <span>Status </span> <span class="pull-right"></span>
                     </td>
                      <td>
-                        <span>Created On </span> <span class="pull-right"></span>
+                        <span>View Details</span> <span class="pull-right"></span>
                     </td>
                 </tr>
             </thead>
@@ -52,7 +52,7 @@
                        <span>{{discount.status}}</span>  
                     </td>
                     <td>
-                       <span>{{productDet.startDate}}</span>  
+                       <span><i class="fa fa-eye" aria-hidden="true"></i></span>  
                     </td>
                   
                 </tr>
@@ -64,7 +64,7 @@
     </div>
 </div>
 
-<!--<div *ngIf="showAddVisapopup">
+<div *ngIf="addDiscounts">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -80,27 +80,7 @@
                             <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.country" class="form-control"></div>
                             <div class="col-md-4">Petition Number:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
-                            <div class="col-md-4">Visa Number :</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.visaNumber" class="form-control"></div>
-                            <div class="col-md-4">Visa Type :</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.visaType" class="form-control"></div>
-                            <div class="col-md-4">Issued On :</div>
-                            <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newvisaitem.issuedOn"
-                                                [selDate]="issuedOn"></my-date-picker>
                             
-                            <input type="text" [(ngModel)]="newvisaitem.issuedOn" class="form-control">
-                            </div>
-                            <div class="col-md-4">Expires On :</div>
-                            <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newvisaitem.expiresOn"
-                                                [selDate]="expiresOn"></my-date-picker>
-                            
-                            <input type="text" [(ngModel)]="newvisaitem.expiresOn" class="form-control">
-                            </div>
-                        </div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -111,5 +91,5 @@
             </div>
         </div>
     </div>
-</div>-->
+</div>
 
