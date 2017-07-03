@@ -10,7 +10,7 @@ import {User} from "../../models/user";
 import {FormGroup, FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MenuComponent} from "../menu/menu.component";
-
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 
 
 export interface ConfirmModel {
