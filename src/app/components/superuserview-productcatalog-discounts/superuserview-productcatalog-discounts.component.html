@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" *ngIf="viewDetails">
   <!--  <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>-->
     <ul class="breadcrumb">
         <li><a href="#">Clients</a></li>
@@ -6,7 +6,7 @@
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2>Products<button type="button" class="iportal-btn pull-right no-marg-right">ADD</button></h2>
+        <h2>Discounts<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addProducts()">ADD</button></h2>
          <!--   <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
          <table class="smarttable document-management" cellpadding="0" cellspacing="0">
             <thead>
@@ -52,7 +52,7 @@
                        <span>{{discount.status}}</span>  
                     </td>
                     <td>
-                       <span><i class="fa fa-eye" aria-hidden="true"></i></span>  
+                       <span><i class="fa fa-eye" aria-hidden="true" (click)="viewDiscountDetails(discount,i)"></i></span>  
                     </td>
                   
                 </tr>
@@ -63,8 +63,51 @@
         <div class="clearfix"></div>
     </div>
 </div>
-
-<div *ngIf="addDiscounts">
+<div *ngIf="viewDiscountPopup">
+       <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Name:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.discountCode" class="form-control"></div>
+                            <div class="col-md-4">Code:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.discountName" class="form-control"></div>
+                            <div class="col-md-4">Description:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.description" class="form-control"></div>
+                            <div class="col-md-4">Cost:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.cost" class="form-control"></div>
+                            <div class="col-md-4">Percentage:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.percentage" class="form-control"></div>
+                            <div class="col-md-4">Status:</div>
+                            <div class="col-md-8">
+                                <select [(ngModel)]="discount.status" class="form-control">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">Created On:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.createdOn" class="form-control"></div>
+                            
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="saveDiscounts()">Save</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div *ngIf="addDiscountPopup">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,20 +119,19 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">Country :</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.country" class="form-control"></div>
-                            <div class="col-md-4">Petition Number:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
+                            <div class="col-md-4">Name:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
+                            <div class="col-md-4">Code:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountName" class="form-control"></div>
                             
                     </div>
                     <div class="col-md-1"></div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="visaSave()">Save</button>
+                <button type="button" class="btn btn-primary" (click)="saveDiscounts()">Save</button>
                 <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
             </div>
         </div>
     </div>
 </div>
-

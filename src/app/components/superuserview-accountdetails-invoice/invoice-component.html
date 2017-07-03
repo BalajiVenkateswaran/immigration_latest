@@ -52,7 +52,7 @@
             <td>{{invoice.invoiceAmount}}</td>
             <td>{{invoice.paymentRecieved}}</td>           
             <td>{{invoice.fileName}}</td>          
-            <td><button type="button" class="btn btn-primary">Downdload</button></td>
+            <td><button type="button" class="btn btn-primary" (click)="downloadInvoice()">Downdload</button></td>
             <td><a (click)="getInvoiceInfo(invoice)"><i class="fa fa-eye"></i></a></td>
         </tr>
     </tbody>

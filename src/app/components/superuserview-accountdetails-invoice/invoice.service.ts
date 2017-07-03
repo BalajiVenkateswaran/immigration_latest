@@ -10,4 +10,7 @@ export class AccountInvoiceService {
     public getAccountInvoice(accountid: string) {
         return this.restService.getData("/superuser/account/" + accountid + "/invoices");
     }
+    public downloadInvoice(invoiceid: string) {
+        return this.restService.getData("/superuser/invoice/" + invoiceid );
+    }
 }

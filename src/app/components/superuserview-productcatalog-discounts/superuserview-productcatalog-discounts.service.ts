@@ -10,10 +10,10 @@ export class ProductCatalogDiscountService {
     public getDiscounts(accountId: string) {
         return this.restService.getData("/superuser/discounts");
     }
-    public savePaymentDetails(accountId:string,discounts: any) {
+    public saveDiscountDetails(discounts: any) {
         var req = {
-            "discounts": discounts
+            "discount": discounts
         };
-        return this.restService.postData("/superuser/account/"+accountId+"/discounts", req);
+        return this.restService.postData("/superuser/discounts", req);
     }
 }

@@ -6,7 +6,6 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {superuserinvoice} from "../../models/superuserinvoice";
 import {AccountInvoiceService} from './invoice.service';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {User} from "../../models/user";
 import {FormGroup, FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
@@ -38,59 +37,59 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
-            invoiceNumber: {
-                title: 'Invoice Number'
-            },
-            invoiceDate: {
-                title: 'Invoice Date'
-            },
-            invoiceAmount: {
-                title: 'Invoice Amount'
-            },
-            paymentReceived: {
-                title: 'Payment Received'
-            },
-            pdfUploaded: {
-                title: 'PDF uploaded'
-            },
-            download: {
-                title: 'Download Button'
-            },
-            viewDetails: {
-                title:'View Details'
-            }      
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        },
-        mode: 'external'
-    };
+    //settings = {
+    //    add: {
+    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmCreate: true
+    //    },
+    //    edit: {
+    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmSave: true
+    //    },
+    //    delete: {
+    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //        confirmDelete: true
+    //    },
+    //    columns: {
+    //        invoiceNumber: {
+    //            title: 'Invoice Number'
+    //        },
+    //        invoiceDate: {
+    //            title: 'Invoice Date'
+    //        },
+    //        invoiceAmount: {
+    //            title: 'Invoice Amount'
+    //        },
+    //        paymentReceived: {
+    //            title: 'Payment Received'
+    //        },
+    //        pdfUploaded: {
+    //            title: 'PDF uploaded'
+    //        },
+    //        download: {
+    //            title: 'Download Button'
+    //        },
+    //        viewDetails: {
+    //            title:'View Details'
+    //        }      
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    },
+    //    mode: 'external'
+    //};
     constructor(public appService: AppService, public dialogService: DialogService, public accountInvoiceService: AccountInvoiceService) {
         super(dialogService);
         if (this.appService.user) {
             this.user = appService.user;
         }
     }
-    source: LocalDataSource = new LocalDataSource();
+   // source: LocalDataSource = new LocalDataSource();
     ngOnInit() {
         this.appService.showSideBarMenu("accounts", "accounts");
         this.accountInvoiceService.getAccountInvoice(this.user.accountId)
@@ -126,5 +125,11 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     getInvoiceInfo(rowdata) {
         this.accountInvoice = true;
         this.viewRowDetails = rowdata;
+    }
+    downloadInvoice() {
+        this.accountInvoiceService.downloadInvoice(this.user.accountId)
+            .subscribe((res) => {
+
+            });
     }
 }
