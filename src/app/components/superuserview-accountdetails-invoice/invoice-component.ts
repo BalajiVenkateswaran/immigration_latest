@@ -106,28 +106,28 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     
     onDeleteConfirm(event): void { }
     onEditConfirm(event): void { }
-    addNewInvoice(){
-        this.dialogService.addDialog(AccountInvoiceComponent, {
-            addInvoice: true,
-            getInvoice: false,
-            title: 'Add Invoice'
-        }).subscribe((isConfirmed) => {
-            if (isConfirmed) {
+    //addNewInvoice(){
+    //    this.dialogService.addDialog(AccountInvoiceComponent, {
+    //        addInvoice: true,
+    //        getInvoice: false,
+    //        title: 'Add Invoice'
+    //    }).subscribe((isConfirmed) => {
+    //        if (isConfirmed) {
              
-            }
-        });
-    }
-    cancel() {
-        this.result = false;
-        this.close();
-    }
+    //        }
+    //    });
+    //}
+    //cancel() {
+    //    this.result = false;
+    //    this.close();
+    //}
 
     getInvoiceInfo(rowdata) {
         this.accountInvoice = true;
         this.viewRowDetails = rowdata;
     }
-    downloadInvoice() {
-        this.accountInvoiceService.downloadInvoice(this.user.accountId)
+    downloadInvoice(rowData) {
+        this.accountInvoiceService.downloadInvoice(rowData.invoiceId)
             .subscribe((res) => {
 
             });
