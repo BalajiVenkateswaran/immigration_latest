@@ -151,8 +151,8 @@ import {superuserViewAccountsComponent} from './components/superuserview-account
 import {superUserviewAccountService} from './components/superuserview-accounts/accounts.component.service';
 import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
 import {SuperuserViewAccountDetailsService} from './components/superuserview-account-details/superuserview-account-details.service';
-import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
-import {AccountInvoiceService} from './components/superuserview-invoice/invoice.service';
+import {AccountInvoiceComponent} from './components/superuserview-accountdetails-invoice/invoice-component';
+import {AccountInvoiceService} from './components/superuserview-accountdetails-invoice/invoice.service';
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import { AccountManagersService } from './components/superuserview-accountdetails-managers/accountmanagers.service';
@@ -166,8 +166,8 @@ import { SuperuserviewProductcatalogDiscountsComponent } from './components/supe
 import {ProductCatalogDiscountService} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.service';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
 import {SuperUserViewPaymentstabService} from './components/superuserview-payments/payments.service';
-//import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
-//import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
+import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
+import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
 
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
@@ -266,7 +266,7 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         accountDetailsPaymentsComponent,
         SuperuserviewProductcatalogComponent,
         AccountsManagers,
-      
+        SuperUserViewInvoicestabComponent,
         SuperUserViewPaymentstabComponent,
 
       MarkforDeletionComponent,
@@ -351,7 +351,7 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
       SuperuserViewAccountDetailsService,   
       AccountInvoiceService,
       AccountManagersService,
-   
+        SuperUserViewInvoicestabService,
       markfordeletionservice,
       SuperUserViewPaymentstabService,
       AccountDetailsPaymentsService,

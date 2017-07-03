@@ -68,7 +68,7 @@ import {superuserViewAccountsComponent} from './components/superuserview-account
 import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
-import {AccountInvoiceComponent} from './components/superuserview-invoice/invoice-component';
+import {AccountInvoiceComponent} from './components/superuserview-accountdetails-invoice/invoice-component';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
 
 
@@ -321,7 +321,7 @@ export const appRoutes: Routes = [
         component: SuperuserViewAccountDetailsComponent
     },
     {
-        path: 'superuserview-invoice',
+        path: 'superuserview-accountdetails-invoice',
         component: AccountInvoiceComponent
     },
     {
@@ -331,6 +331,10 @@ export const appRoutes: Routes = [
     {
         path: 'superuserview-accountmanagers',
         component: AccountsManagers
+    },
+    {
+        path: 'superuserview-preference',
+        component: AccountPreferencesComponent
     },
     {
         path: 'manageaccount-markfordeletion',
@@ -347,57 +351,7 @@ export const appRoutes: Routes = [
     {
         path: '**',
         component: LoginComponent
-    },
- 
-  //superuserview
-  {
-      path: 'accounts',
-      component: superuserViewAccountsComponent
-  },
- 
-  {
-      path: 'payments',
-      component: SuperUserViewPaymentstabComponent
-  },
-  {
-      path: 'superuserview-productcatalog',
-      component: SuperuserviewProductcatalogComponent
-  },
-  {
-      path: 'account-details',
-      component: SuperuserViewAccountDetailsComponent
-  },
-  {
-      path: 'superuserview-invoice',
-      component: AccountInvoiceComponent
-  },
-  {
-      path: 'accountdetails-payments',
-      component: accountDetailsPaymentsComponent
-  },
-  {
-      path:'superuserview-accountmanagers',
-      component:AccountsManagers
-  },
-  {
-      path: 'manageaccount-markfordeletion',
-      component: MarkforDeletionComponent
-  },
-  {
-      path: 'superuserview-preference',
-      component: AccountPreferencesComponent
-  },
-  {
-    path: '',
-    component: LoginComponent
-  },
-  {
-    path: '**',
-    component: LoginComponent
-  },
-
-
-
+    }
 
 ];
 
