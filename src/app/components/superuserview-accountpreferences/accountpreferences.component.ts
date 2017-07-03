@@ -40,6 +40,8 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     };
     public editproduct: any;
     public editdiscount: any;
+    public adddprdctPref: any;
+    public adddiscntPref: any;
     //settings = {
 
     //    add: {

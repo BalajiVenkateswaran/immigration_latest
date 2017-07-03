@@ -9,7 +9,8 @@ import {ProductCatalogDiscountService} from './superuserview-productcatalog-disc
 })
 export class SuperuserviewProductcatalogDiscountsComponent implements OnInit {
   private user: User;
-  public discounts:any=[];
+  public discounts: any = [];
+  public addDiscounts: any;
   constructor(private appService: AppService,public productCatalogDiscountService:ProductCatalogDiscountService) {
      if (this.appService.user) {
             this.user = this.appService.user;
