@@ -345,6 +345,7 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         markfordeletionservice,
         SuperUserViewPaymentstabService,
         AccountDetailsPaymentsService,
+        ProductCatalogDiscountService,
       //superuserview
       superUserviewAccountService,
       SuperuserViewAccountDetailsService,   
@@ -362,5 +363,5 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
 })
 
 export class AppModule {
-
+        
 }

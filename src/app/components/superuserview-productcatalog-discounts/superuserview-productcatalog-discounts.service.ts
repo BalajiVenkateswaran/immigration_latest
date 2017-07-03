@@ -8,7 +8,7 @@ export class ProductCatalogDiscountService {
 
     }
     public getDiscounts(accountId: string) {
-        return this.restService.getData("/superuser/account/" + accountId+"/discounts");
+        return this.restService.getData("/superuser/discounts");
     }
     public savePaymentDetails(accountId:string,discounts: any) {
         var req = {

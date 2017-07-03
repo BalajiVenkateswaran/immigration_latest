@@ -41,7 +41,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     public accountDetails: any = {};
 
     public DefaultResponse = { "status": "Active" };
-
+    public accountsList:any;
 
     settings = {
         /*add: {
@@ -96,13 +96,13 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     constructor(private clientService: superUserviewAccountService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
         super(dialogService);
     }
-   
+    
     getAccountDetail() {
         this.appService.showSideBarMenu(null, "accounts");
         this.clientService.getAccountDetails(this.user.accountId).subscribe((res) => {
             if(res['statusCode']=='SUCCESS'){
-                this.accountList.push(res);
-                this.source.load(this.accountList);
+               /* this.accountList.push(res);*/
+              
                 console.log(this.accountList);
             }
         });
@@ -114,7 +114,34 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         }
         this.appService.showSideBarMenu(null, "accounts");
         this.getAccountDetail();
-      
+     
+        this.accountList=[
+            {
+                "accountName":"Balaji Venkateswaran",
+                "accountNumber":"545465646",
+                "firstName":"Balaji",
+                "lastName":"Venkateswaran",
+                "email":"balaji@gmail.com",
+                "phone":"9490017854",
+                "status":"Active",
+                "createdOn":"07-03-2017",
+                "storageType":"S3"
+
+            },
+            {
+                "accountName":"Raja",
+                "accountNumber":"545465646",
+                "firstName":"Raja",
+                "lastName":"Raja",
+                "email":"Raja@gmail.com",
+                "phone":"949001794",
+                "status":"Active",
+                "createdOn":"07-03-2017",
+                "storageType":"S3"
+
+            }
+    ];
+         this.source.load(this.accountList);
 
     }
     addNewCli() {
