@@ -144,7 +144,7 @@ import { CustomRenderComponent } from './components/immigrationview-petitions/cu
 import { PetitionSubTypeCustomEditorComponent } from './components/immigrationview-petitions/petitionSubType-custom-editor.component';
 
 import {AgGridModule} from "ag-grid-angular/main";
-
+import { ProductCatalogProductService} from './components/superuserview-productcatalog/superuserview-productcatalog.service';
 //superusersview
 
 import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
@@ -269,10 +269,10 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         SuperUserViewInvoicestabComponent,
         SuperUserViewPaymentstabComponent,
 
-      MarkforDeletionComponent,
-      AccountPreferencesComponent,
-      
-    
+        MarkforDeletionComponent,
+        AccountPreferencesComponent,
+
+
 
 
         SuperuserviewProductcatalogDiscountsComponent
@@ -335,33 +335,35 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         ClientQuestionnaireService,
         MenuComponent,
         SmartTableFrameworkService,
+        //
 
+        ProductCatalogProductService,
         //superuserview
         superUserviewAccountService,
         SuperuserViewAccountDetailsService,
         AccountInvoiceService,
         AccountManagersService,
-    
+
         markfordeletionservice,
         SuperUserViewPaymentstabService,
         AccountDetailsPaymentsService,
         ProductCatalogDiscountService,
-      //superuserview
-      superUserviewAccountService,
-      SuperuserViewAccountDetailsService,   
-      AccountInvoiceService,
-      AccountManagersService,
+        //superuserview
+        superUserviewAccountService,
+        SuperuserViewAccountDetailsService,
+        AccountInvoiceService,
+        AccountManagersService,
         SuperUserViewInvoicestabService,
-      markfordeletionservice,
-      SuperUserViewPaymentstabService,
-      AccountDetailsPaymentsService,
-    
+        markfordeletionservice,
+        SuperUserViewPaymentstabService,
+        AccountDetailsPaymentsService,
 
-      SuperuserViewAccountpreferencessService
+
+        SuperuserViewAccountpreferencessService
     ],
     bootstrap: [AppComponent]
 })
 
 export class AppModule {
-        
+
 }
