@@ -86,7 +86,6 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         }
     }
     ngOnInit() {
-
         this.accountInvoiceService.getAccountInvoice(this.user.accountId)
             .subscribe((res) => {
                 console.log("getinoices%o", res);
