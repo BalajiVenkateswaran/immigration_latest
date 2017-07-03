@@ -16,7 +16,10 @@ export interface ConfirmModel {
     title: string;
     message: string;
     getacntpref: boolean;
-    adddAcntPref: boolean;
+    adddprdctPref: boolean;
+    adddiscntPref: boolean;
+    editprdct: boolean;
+    editdscnt: boolean;
 }
 
 @Component({
@@ -35,6 +38,8 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
+    public editproduct: any;
+    public editdiscount: any;
     //settings = {
 
     //    add: {
@@ -83,11 +88,41 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
 
         }
     }
-    addNewPref() {
+    addEditProduct(value) {
+        if (value == "edit") {
+            var productlable = "Edit";
+            this.editproduct = true;
+        }
+        if (value == "add") {
+            var productlable = "Add";
+            this.editproduct = false;
+        }
         this.dialogService.addDialog(AccountPreferencesComponent, {
-            adddAcntPref: true,
+            adddprdctPref: true,
             getacntpref: false,
-            title: 'Add'
+            title: productlable + ' Product',
+            editprdct: this.editproduct    
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+
+            }
+        });
+    }
+    addEditDiscount(value) {
+        if (value == "edit") {
+            var productlable = "Edit";
+            this.editdiscount = true;
+        }
+        if (value == "add") {
+            var productlable = "Add";
+            this.editdiscount = false;
+        }
+        this.dialogService.addDialog(AccountPreferencesComponent, {
+            adddiscntPref: true,
+            getacntpref: false,
+            title: productlable + ' Discount',
+            editdscnt: this.editdiscount    
+
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
 
