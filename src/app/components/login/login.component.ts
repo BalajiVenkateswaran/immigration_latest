@@ -90,28 +90,29 @@ export class LoginComponent implements  OnInit {
         if(res.statusCode=="FAILURE") {
           this.message = res.statusDescription;
         } else {
-          this.appService.user = res.authenticatedUser;
+          this.appService.user = res.user;
+          this.appService.organizations = res.organizationList;
 
           //Reset password
-          if(this.appService.user != undefined && this.appService.user['resetPassword'] != undefined
-          && this.appService.user['resetPassword'] == true){
+          if(res['resetPassword'] != undefined
+          && res['resetPassword'] == true){
             this.appService.moveToPage('reset-password');
           } else {
-            if (this.appService.user.roleName == "IMMIGRATION MANAGER"
-            || this.appService.user.roleName == "IMMIGRATION OFFICER") {
+            if (res.userAccountRoleList[0].roleName == "IMMIGRATION MANAGER"
+            || res.userAccountRoleList[0].roleName == "IMMIGRATION OFFICER") {
                 this.appService.applicationViewMode = "Immigration";
-                this.appService.orgId = this.appService.user.organizations[0].orgId;
+                this.appService.orgId = res.organizationList[0].orgId;
                 this.appService.currentTab = 'petitions';
                 this.appService.moveToPage("petitions");
             }
-            if (this.appService.user.roleName == "CLIENT") {
+            if (res.userAccountRoleList[0].roleName == "CLIENT") {
                 this.appService.applicationViewMode = "Client";
                 this.appService.clientId = this.appService.user.userId;
                 this.appService.currentTab = 'clientview-petitions';
                 this.appService.moveToPage("clientview-petitions");
             }
               // To Do
-            //if (this.appService.user.roleName == "SUPERUSER") {
+            //if (res.userAccountRoleList[0].roleName == "SUPERUSER") {
             //    this.appService.applicationViewMode = "Superuser";
             //    this.appService.clientId = this.appService.user.userId;
             //    this.appService.currentTab = 'accounts';

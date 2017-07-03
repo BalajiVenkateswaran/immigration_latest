@@ -15,6 +15,7 @@ export class AppService {
     public docsidemenu;
     public orgnamemenu;
     private _user: User;
+    private _organizations;
     public _currentPage: string;
     public _applicationViewMode: string;
     private _accountId: string;
@@ -452,7 +453,12 @@ export class AppService {
         this._currentTab = currentTab;
     }
 
-
+    get organizations() {
+        return this._organizations;
+    }
+    set organizations(organizations: string) {
+        this._organizations = organizations;
+    }
 
 
     get currentSBLink() {

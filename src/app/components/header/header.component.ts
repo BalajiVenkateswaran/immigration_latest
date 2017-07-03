@@ -50,7 +50,7 @@ export class HeaderComponent implements AfterViewChecked{
       this.user = this.appService.user;
       }
 
-    this.orgNamelist = this.appService.user.organizations;
+    this.orgNamelist = this.appService.organizations;
 
     if (this.orgNamelist) {
         this.orgNamevisible = true;
