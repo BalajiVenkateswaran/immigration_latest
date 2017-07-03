@@ -23,7 +23,7 @@ export interface ConfirmModel {
 })
 export class SuperuserviewProductcatalogComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public addPopup;
-    public products:any={};
+    public products:any;
     public addProduct:any={};
     private rowEdit: boolean[] = [];
     public rowData:any;

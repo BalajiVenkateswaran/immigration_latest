@@ -9,7 +9,7 @@ import {AccountManagersService} from './accountmanagers.service';
 export interface ConfirmModel {
     title: string;
     message: string;
-    getUsers: boolean;
+    viewUsers: boolean;
     addPopups: boolean;
     addUsers: Object;
 
@@ -78,7 +78,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     private user: User;
     public addUsers: any = {};
     public addPopups: boolean = false;
-    public getUsers:boolean=true;
+    public viewUsers:boolean=true;
     public beforeEdit: any;
     public editFlag: boolean = true;
     source: LocalDataSource = new LocalDataSource();
@@ -95,11 +95,10 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     }
     ngOnInit(){
         this.getAccountsManagers();
-        this.appService.showSideBarMenu("accounts", "accounts");
     }
     getAccountsManagers() {
 
-        this.managersAccountService.getUsers(this.appService.user.accountId)
+        this.managersAccountService.getUsers('a2604ec8-e0f2-11e5-a291-34e6d7382cac')
             .subscribe((res) => {
                 for (var user of res['users']) {
                     user['roleName'] = user['role'];
@@ -110,7 +109,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     addNewUser() {
         this.dialogService.addDialog(AccountsManagers, {
             addPopups: true,
-            getUsers: false,
+            viewUsers: false,
             title: 'Add New User',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
@@ -131,7 +130,8 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         this.close();
     }
     cancel(){
-
+        this.result = false;
+        this.close();
     }
     onEditConfirm(event): void {
         //console.log("User table onEditConfirm event: %o",event.newData);
@@ -154,7 +154,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         }
         this.dialogService.addDialog(AccountsManagers, {
             addPopups: true,
-            getUsers: false,
+            viewUsers: false,
             title: 'Edit User',
             addUsers: this.editFlag ? this.beforeEdit : this.addUsers,
 
