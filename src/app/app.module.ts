@@ -144,7 +144,7 @@ import { CustomRenderComponent } from './components/immigrationview-petitions/cu
 import { PetitionSubTypeCustomEditorComponent } from './components/immigrationview-petitions/petitionSubType-custom-editor.component';
 
 import {AgGridModule} from "ag-grid-angular/main";
-
+import { ProductCatalogProductService} from './components/superuserview-productcatalog/superuserview-productcatalog.service';
 //superusersview
 
 import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
@@ -335,7 +335,9 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         ClientQuestionnaireService,
         MenuComponent,
         SmartTableFrameworkService,
-
+        //
+         ProductCatalogDiscountService,
+         ProductCatalogProductService,
         //superuserview
         superUserviewAccountService,
         SuperuserViewAccountDetailsService,
@@ -345,7 +347,7 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         markfordeletionservice,
         SuperUserViewPaymentstabService,
         AccountDetailsPaymentsService,
-        ProductCatalogDiscountService,
+       
       //superuserview
       superUserviewAccountService,
       SuperuserViewAccountDetailsService,   

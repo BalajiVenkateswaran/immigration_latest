@@ -1,4 +1,4 @@
-<div class="main-content" *ngIf="getProducts">
+<div class="main-content" *ngIf="getData">
   <!--  <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>-->
     <ul class="breadcrumb">
         <li><a href="#">Clients</a></li>
@@ -6,7 +6,7 @@
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2>Products<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addProduct()">ADD</button></h2>
+        <h2>Products<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addProducts()">ADD</button></h2>
          <!--   <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
          <table class="smarttable document-management" cellpadding="0" cellspacing="0">
             <thead>
@@ -67,13 +67,13 @@
                        <span>{{productDet.maxUsers}}</span>  
                     </td>
                     <td>
-                       <span>{{productDet.maxClients}}</span>  
+                       <span>{{productDet.maxClientsPerMonth}}</span>  
                     </td>
                     <td>
-                       <span>{{productDet.maxPetitions}}</span>  
+                       <span>{{productDet.maxPetitionsPerMonth}}</span>  
                     </td>
                     <td>
-                       <span>{{productDet.maxStorage}}</span>  
+                       <span>{{productDet.maxS3Storage}}</span>  
                     </td>
                     <td>
                        <span>{{productDet.cost}}</span>  
@@ -82,10 +82,10 @@
                        <span>{{productDet.status}}</span>  
                     </td>
                     <td>
-                       <span>{{productDet.createdOn}}</span>  
+                       <span>{{productDet.startDate}}</span>  
                     </td>
                     <td>
-                        <button (click)="viewDetails(productDet,i)">View</button>
+                       <span><i class="fa fa-eye" aria-hidden="true" (click)="viewDetails(productDet,i)"></i></span>  
                     </td>
                 </tr>
                 
@@ -101,6 +101,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
+               <!-- <div class="row">
+                        <div class="col-sm-12">
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editForm()" *ngIf="isEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isEdit">
+                                <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn" *ngIf="isEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
+                            </div>
+                        </div>
+
+                    </div>-->
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
@@ -117,17 +127,17 @@
                             <div class="col-md-4">Max Users:</div>
                             <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.maxUsers" class="form-control"></div>
                             <div class="col-md-4">Max Clients/Month:</div>
-                            <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.maxClients" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.maxClientsPerMonth" class="form-control"></div>
                             <div class="col-md-4">Max Petitions/Month:</div>
-                            <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.maxPetitions" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.maxPetitionsPerMonth" class="form-control"></div>
                             <div class="col-md-4">Max S3 Storage:</div>
-                            <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.maxStorage" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.maxS3Storage" class="form-control"></div>
                             <div class="col-md-4">Cost:</div>
                             <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.cost" class="form-control"></div>
                             <div class="col-md-4">Status:</div>
                             <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.status" class="form-control"></div>
                             <div class="col-md-4">Created On:</div>
-                            <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.createdOn" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" [disabled]="true" [(ngModel)]="product.startDate" class="form-control"></div>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
@@ -161,7 +171,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="visaSave()">Save</button>
+                <button type="button" class="btn btn-primary" (click)="saveProduct()">Save</button>
                 <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
             </div>
         </div>

@@ -5,12 +5,15 @@ import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import {ProductCatalogProductService} from './superuserview-productcatalog.service';
 export interface ConfirmModel {
     title: string;
     message: string;
-    getProducts: boolean;
-    viewPopup: boolean;
-    product: Object;
+    getData: boolean;
+    addPopup: boolean;
+    viewPopup:boolean;
+    product:Object;
+    addProduct: Object;
 
 }
 @Component({
@@ -21,12 +24,14 @@ export interface ConfirmModel {
 export class SuperuserviewProductcatalogComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public addPopup;
     public products:any={};
+    public addProduct:any={};
     private rowEdit: boolean[] = [];
     public rowData:any;
     public viewDetailsSection:boolean=false;
-    public getProducts:boolean=true;
+    public getData:boolean=true;
     public viewPopup:boolean;
     public product:any={};
+    //public isEdit:boolean=true;
 
  /*   settings = {
         add: {
@@ -216,55 +221,28 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
       console.log("hello....");
   }*/
   ngOnInit(){
-   this.appService.showSideBarMenu("superuserview-product", "superuserview-product");
+  
+ 
   }
-  constructor(public appService:AppService,public dialogService: DialogService) {
+  getProducts(){
+        this.productCatalogProductService.getProductDetails().subscribe(
+       res=>{
+           if(res['statusCode']=='SUCCESS'){
+               this.products=res['products'];
+           }
+       }
+     )
+  }
+  constructor(public appService:AppService,public dialogService: DialogService,public productCatalogProductService:ProductCatalogProductService) {
     super(dialogService);
-    this.products=[
-      {
-        "name":"One",
-        "code":"XCV",
-        "maxUsers":'20',
-        "maxClients":'25',
-        "maxPetitions":'30',
-        "maxStorage":"20GB",
-        "cost":"10",
-        "status":'active',
-        "createdOn":"06-29-2017"
-      },
-      {
-        "name":"Immigration",
-        "code":"XCV",
-        "maxUsers":'10',
-        "maxClients":'35',
-        "maxPetitions":'30',
-        "maxStorage":"20GB",
-        "cost":"410",
-        "status":'active',
-        "createdOn":"06-29-2017"
-
-      },
-      {
-        "name":"Immigration Plus",
-        "code":"XCV",
-        "maxUsers":'120',
-        "maxClients":'125',
-        "maxPetitions":'30',
-        "maxStorage":"20GB",
-        "cost":"120",
-        "status":'active',
-        "createdOn":"06-29-2017"
-      }
-    ];
-    for(var i=0;i<this.products.length;i++){
-        this.rowEdit[i] = true;
-        this.viewDetails[i]=false;
-    }
+    this.appService.showSideBarMenu("superuserview-product", "superuserview-product");
+    this.getProducts();
   }
   viewDetails(data){
       this.dialogService.addDialog(SuperuserviewProductcatalogComponent, {
             viewPopup: true,
-            getProducts: false,
+            getData: false,
+            addPopup:false,
             title: 'View Product Details',
             product:data,
 
@@ -285,9 +263,32 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   highlightSBLink(link) {
       this.appService.currentSBLink = link;
   }
-  addProduct(){
-
+  addProducts(){
+      this.dialogService.addDialog(SuperuserviewProductcatalogComponent, {
+            addPopup: true,
+            getData: false,
+            viewPopup: false,
+            title: 'Add New Product',
+            addProduct:this.addProduct,
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.productCatalogProductService.saveProductDetails(this.appService.addUsers).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getProducts();
+                    }
+                });
+            }
+        });
   }
-
+  saveProduct(){
+       /* this.addUsers['accountId'] = this.appService.user.accountId;*/
+        this.appService.addUsers = this.addProduct;
+        this.result = true;
+        this.close();
+  }
+  cancel(){
+       this.result = false;
+       this.close();
+  }
 }
 
