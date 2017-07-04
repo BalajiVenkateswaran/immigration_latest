@@ -122,13 +122,12 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     //this.discount=this.beforeCancel;
     this.isEditProducts = !this.isEditProducts;
     this.result = false;
-    this.close();
+    //this.close();
   }
   saveProductInfo(){
     this.isEditProducts = !this.isEditProducts;
     this.appService.addUsers = this.product;
     this.result = true;
-    this.close();
   }
 }
 

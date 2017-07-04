@@ -1427,12 +1427,47 @@ tr.i129htblRow:nth-child(even) {
   /* border-color: rgba(255, 255, 255, 0.2); */
   font-weight: 500;
   margin-bottom: 0px !important; }
+.modal-header .editinpopup {
+  float: right;
+  margin: 0;
+  width: 80px;
+  height: 30px;
+  border: solid 1px #e0e0e0;
+  background: #edeff5;
+  color: #585155;
+  border-radius: 5px; }
+.modal-header .savebtn {
+  margin-top: 0px !important; }
+
+.modal-footer .editinpopup {
+  float: right;
+  margin: 0;
+  width: 80px;
+  height: 30px;
+  border: solid 1px #e0e0e0;
+  background: #edeff5;
+  color: #585155;
+  border-radius: 5px; }
+.modal-footer .savebtn {
+  margin-top: 0px !important; }
 
 .modal-body .form-control {
   padding-top: 8px;
   padding-bottom: 8px;
   margin-bottom: 10px;
   font-size: 16px !important; }
+.modal-body .addresbox .row .col-md-8 span {
+  width: 100%;
+  border-radius: 4px;
+  border: solid 1px #c7c5c6;
+  padding: 3px 4px 2px 5px;
+  color: #585155;
+  font-weight: 500;
+  font-size: 14px;
+  /* background: rgba(0, 0, 0, 0.1); */
+  height: 30px;
+  margin-bottom: 12px;
+  float: left; }
 
 @media (min-width: 576px) {
   .modal-dialog {
