@@ -52,4 +52,8 @@ export class ImmigrationViewPetitionDetailsService {
 
         return this.restService.postData("/petition/sponsorInfo", req);
     }
+
+    public getAllPetitionTypesAndSubTypes() {
+        return this.restService.getData("/petition/config/all/types/subtypes");
+    }
 }

@@ -23,6 +23,9 @@ export interface formControl {
     styleUrls: ['./petition-details.component.sass']
 })
 export class ImmigrationviewPetitionDetailsComponent implements OnInit {
+    sfmpi: boolean = false;
+    private allPetitionTypesAndSubTypes;
+    private allSubTypes = {};
     private user: User;
     private petitionDetails: any = {};
     petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
@@ -100,6 +103,18 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     }
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
+    }
+    handleChange(event) {
+        console.log(event.target.value);
+        for (var i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
+            if (event.target.value == this.allPetitionTypesAndSubTypes[i].petitiontype) {
+                this.allSubTypes = this.allPetitionTypesAndSubTypes[i].petitionSubTypes;
+            }
+        }
+        this.appService.allsubtypesarray(this.allSubTypes);
+
+        //var currentYear = new Date().getFullYear();
+        //this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
     }
     ngOnInit() {
 
@@ -182,6 +197,10 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.defaultSelected = this.receiptNumber[1].name;
         console.log(this.defaultSelected);
 
+        this.petitionDetailsService.getAllPetitionTypesAndSubTypes()
+            .subscribe((res) => {
+                this.allPetitionTypesAndSubTypes = res['petitionTypes'];
+            });
     }
 
     //is edit function for read only
@@ -197,6 +216,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
     //cancel button function
     cancelPetitionInfoEdit() {
+        this.sfmpi = false;
         this.petitionInformation = this.beforeCancelPetition;
         this.petitionInformation.startDate = this.petitionDetails.startDate;
         this.petitionInformation.deniedDate = this.petitionDetails.deniedDate;
@@ -206,6 +226,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
     //Save Client Details
     savePetitionInformation() {
+        
         this.petitionDetails['petitionId'] = this.appService.petitionId;
         this.mapFromPetitionInformation();
         if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
@@ -217,25 +238,28 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
             this.petitionDetails['withdrawDate'] = this.petitionDetails['withdrawDate']['formatted'];
         }
-
-        this.petitionDetailsService.savePetitionDetails(this.petitionDetails,this.appService.user.userId )
-            .subscribe((res) => {
-                this.isPetitionInformationEdit = true;
-                if (res['petitionInfo'] != undefined) {
-                    this.petitionDetails = res['petitionInfo'];
-                    this.petitionDetailsService.getUsersForAccount(this.appService.user.accountId)
+        if (this.petitionDetails['name'] == '' || this.petitionDetails['fileNumber'] == '') {
+            this.sfmpi = true;
+        } else {
+            this.sfmpi = false;
+            this.petitionDetailsService.savePetitionDetails(this.petitionDetails, this.appService.user.userId)
+                .subscribe((res) => {
+                    this.isPetitionInformationEdit = true;
+                    if (res['petitionInfo'] != undefined) {
+                        this.petitionDetails = res['petitionInfo'];
+                        this.petitionDetailsService.getUsersForAccount(this.appService.user.accountId)
                             .subscribe((res) => {
                                 this.users = res['users'];
                                 this.users.filter(user => {
-                                if(user.emailId == this.petitionDetails['assignedTo'])
-                                    this.assignedToName =  user.firstName +', '+user.lastName;
-                                      });
-                                    });
-                    this.mapToPetitionInformation();
+                                    if (user.emailId == this.petitionDetails['assignedTo'])
+                                        this.assignedToName = user.firstName + ', ' + user.lastName;
+                                });
+                            });
+                        this.mapToPetitionInformation();
 
-                }
-            });
-
+                    }
+                });
+        }
     }
 
     mapToPetitionInformation() {
