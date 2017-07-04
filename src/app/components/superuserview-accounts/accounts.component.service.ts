@@ -16,8 +16,8 @@ export class superUserviewAccountService {
         return this.restService.postData("/superuser/account/accountSummary",req);
     }
 
-    public saveAccountDetails(accountDetails) {
-        return this.restService.postData("/superuser/account/details", accountDetails);
+    public createAccount(accountDetails) {
+        return this.restService.postData("/superuser/account", accountDetails);
     }
 
   
