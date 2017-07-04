@@ -31,6 +31,9 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     public getData:boolean=true;
     public viewPopup:boolean;
     public product:any={};
+    public isEditProducts:boolean=true;
+    public editFlag: boolean = true;
+    public beforeEdit: any;
     //public isEdit:boolean=true;
 
  /*   settings = {
@@ -239,25 +242,30 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     this.getProducts();
   }
   viewDetails(data){
+      this.editFlag = true;
+      if (this.editFlag) {
+          this.beforeEdit = (<any>Object).assign({},data);
+      }
       this.dialogService.addDialog(SuperuserviewProductcatalogComponent, {
             viewPopup: true,
             getData: false,
             addPopup:false,
             title: 'View Product Details',
-            product:data,
+            product:this.editFlag ? this.beforeEdit : data,
 
 
         }).subscribe((isConfirmed) => {
-            /*if (isConfirmed) {
-                this.manageAccountUserService.updateUser(this.appService.addUsers).subscribe((res) => {
-                    if (res['statusCode'] == 'SUCCESS') {
-                        this.getManageUsers();
-                    }
-                });
-            }
-            else {
-                this.editFlag = false;
-            }*/
+           if(isConfirmed){
+                  this.productCatalogProductService.editProducts(this.appService.addUsers).subscribe((res) => {
+                  if (res['statusCode'] == 'SUCCESS') {
+                      this.getProducts();
+                  }
+              });
+           }
+           else{
+               
+               this.editFlag = false;  
+           }
         });
   }
   highlightSBLink(link) {
@@ -289,6 +297,22 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   cancel(){
        this.result = false;
        this.close();
+  }
+   editProductInfo(){
+    //this.beforeCancel = (<any>Object).assign({}, this.discount);
+    this.isEditProducts = !this.isEditProducts;
+  }
+  cancelProductInfo(){
+    //this.discount=this.beforeCancel;
+    this.isEditProducts = !this.isEditProducts;
+    this.result = false;
+    this.close();
+  }
+  saveProductInfo(){
+    this.isEditProducts = !this.isEditProducts;
+    this.appService.addUsers = this.product;
+    this.result = true;
+    this.close();
   }
 }
 

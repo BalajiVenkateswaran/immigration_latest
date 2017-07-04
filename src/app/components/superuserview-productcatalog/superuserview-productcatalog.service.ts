@@ -16,4 +16,10 @@ export class ProductCatalogProductService {
         };
         return this.restService.postData("/superuser/products", req);
     }
+    public editProducts(products){
+        var req={
+            "product":products
+        }
+        return this.restService.putData("/superuser/products",req)
+    }
 }

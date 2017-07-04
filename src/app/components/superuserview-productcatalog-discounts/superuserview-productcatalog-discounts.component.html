@@ -1,5 +1,5 @@
 <div class="main-content" *ngIf="viewDetails">
-  <!--  <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>-->
+    <!--  <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>-->
     <ul class="breadcrumb">
         <li><a href="#">Clients</a></li>
         <li><a href="#">Visas</a></li>
@@ -7,11 +7,11 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Discounts<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addProducts()">ADD</button></h2>
-         <!--   <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
-         <table class="smarttable document-management" cellpadding="0" cellspacing="0">
+        <!--   <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
+        <table class="smarttable document-management" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                    
+
                     <td>
                         <span>Name</span> <span class="pull-right"></span>
                     </td>
@@ -27,86 +27,120 @@
                     <td>
                         <span>Status </span> <span class="pull-right"></span>
                     </td>
-                     <td>
+                    <td>
                         <span>View Details</span> <span class="pull-right"></span>
                     </td>
                 </tr>
             </thead>
             <tbody>
-               
+
                 <tr *ngFor="let discount of discounts; let i=index">
-                   
-                   <td>
-                       <span>{{discount.discountName}}</span>  
+
+                    <td>
+                        <span>{{discount.discountName}}</span>
                     </td>
                     <td>
-                       <span>{{discount.discountCode}}</span>  
+                        <span>{{discount.discountCode}}</span>
                     </td>
                     <td>
-                       <span>{{discount.cost}}</span>  
+                        <span>{{discount.cost}}</span>
                     </td>
                     <td>
-                       <span>{{discount.percentage}}</span>  
+                        <span>{{discount.percentage}}</span>
                     </td>
                     <td>
-                       <span>{{discount.status}}</span>  
+                        <span>{{discount.status}}</span>
                     </td>
                     <td>
-                       <span><i class="fa fa-eye" aria-hidden="true" (click)="viewDiscountDetails(discount,i)"></i></span>  
+                        <span><i class="fa fa-eye" aria-hidden="true" (click)="viewDiscountDetails(discount,i)"></i></span>
                     </td>
-                  
+
                 </tr>
-                
+
             </tbody>
         </table>
-         
+
         <div class="clearfix"></div>
     </div>
 </div>
-<div *ngIf="viewDiscountPopup">
-       <div class="modal-dialog">
+<div class="table-data-forms" *ngIf="viewDiscountPopup">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
+                 <div class="row">
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editDiscountInfo()" *ngIf="isEditDiscount==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isEditDiscount">
+                                <button type="button" (click)="cancelDiscountInfo()" class="editbtn tbl-head-btn" *ngIf="isEditDiscount==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveDiscountInfo()" *ngIf="isEditDiscount==false">Save</button>
+                            </div>
+                            </div>
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-4">Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.discountCode" class="form-control"></div>
-                            <div class="col-md-4">Code:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.discountName" class="form-control"></div>
-                            <div class="col-md-4">Description:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.description" class="form-control"></div>
-                            <div class="col-md-4">Cost:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.cost" class="form-control"></div>
-                            <div class="col-md-4">Percentage:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.percentage" class="form-control"></div>
-                            <div class="col-md-4">Status:</div>
-                            <div class="col-md-8">
-                                <select [(ngModel)]="discount.status" class="form-control">
+                    <div class="col-md-12 col-sm-6 col-xs-12 col-sm-offset-3">
+                        <div class="col-md-12 addresbox box-shadow">
+                            <div class="row">
+                                <div class="col-md-4">Name:</div>
+                                <div class="col-md-8">
+                                    <input type="text" [disabled]="true" *ngIf="isEditDiscount==false" [(ngModel)]="discount.discountName" class="form-control">
+                                    <span *ngIf="isEditDiscount==true">{{discount.discountName}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Code:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditDiscount==false"   [(ngModel)]="discount.discountCode" class="form-control">
+                                    <span *ngIf="isEditDiscount==true">{{discount.discountCode}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Description:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.description" class="form-control">
+                                    <span *ngIf="isEditDiscount==true">{{discount.description}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Cost:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.cost" class="form-control">
+                                    <span *ngIf="isEditDiscount==true">{{discount.cost}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Percentage:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.percentage" class="form-control">
+                                    <span *ngIf="isEditDiscount==true">{{discount.percentage}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Status:</div>
+                                <div class="col-md-8">
+                                    <select [(ngModel)]="discount.status" class="form-control" *ngIf="isEditDiscount==false">
                                     <option value="Active">Active</option>
                                     <option value="Inactive">Inactive</option>
                                 </select>
+                                    <span *ngIf="isEditDiscount==true">{{discount.status}}</span>
+                                </div>
                             </div>
-                            <div class="col-md-4">Created On:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="discount.createdOn" class="form-control"></div>
-                            
+                            <div class="row">
+                                <div class="col-md-4">Created On:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditDiscount==false" [disabled]="true"  [(ngModel)]="discount.createdOn" class="form-control">
+                                    <span *ngIf="isEditDiscount==true">{{discount.createdOn}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="saveDiscounts()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
             </div>
         </div>
     </div>
 </div>
-</div>
+
 <div *ngIf="addDiscountPopup">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -123,15 +157,15 @@
                             <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
                             <div class="col-md-4">Code:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountName" class="form-control"></div>
-                            
+
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="saveDiscounts()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="saveDiscounts()">Save</button>
+                    <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-</div>

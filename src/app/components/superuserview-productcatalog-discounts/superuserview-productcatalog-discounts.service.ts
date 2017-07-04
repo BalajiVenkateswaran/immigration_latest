@@ -16,4 +16,10 @@ export class ProductCatalogDiscountService {
         };
         return this.restService.postData("/superuser/discounts", req);
     }
+    public editDiscounts(discounts:any){
+        var req={
+            "discount":discounts
+        }
+        return this.restService.putData("/superuser/discounts",req);
+    }
 }

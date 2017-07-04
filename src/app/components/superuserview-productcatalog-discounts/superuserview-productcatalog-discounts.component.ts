@@ -27,6 +27,9 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
   public viewDetails:boolean=true;
   public addDiscountPopup:boolean;
   public viewDiscountPopup:boolean;
+  public isEditDiscount:boolean=true;
+  public editFlag: boolean = true;
+  public beforeEdit: any;
   constructor(private appService: AppService,public productCatalogDiscountService:ProductCatalogDiscountService,public dialogService: DialogService) {
      super(dialogService);
      if (this.appService.user) {
@@ -77,13 +80,43 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
 
   //view 
   viewDiscountDetails(record,index){
+    this.editFlag = true;
+      if (this.editFlag) {
+          this.beforeEdit = (<any>Object).assign({},record);
+      }
       this.dialogService.addDialog(SuperuserviewProductcatalogDiscountsComponent, {
             viewDiscountPopup: true,
             viewDetails: false,
             addDiscountPopup:false,
             title: 'View  Details',
-            discount:record,
-        })
+            discount:this.editFlag ? this.beforeEdit : record,
+        }).subscribe((isConfirmed) => {
+           if(isConfirmed){
+                  this.productCatalogDiscountService.editDiscounts(this.appService.addUsers).subscribe((res) => {
+                  if (res['statusCode'] == 'SUCCESS') {
+                      this.getDiscountDetails();
+                  }
+              });
+           }
+           else{
+               
+               this.editFlag = false;  
+           }
+        });
+  }
+  editDiscountInfo(){
+    this.isEditDiscount = !this.isEditDiscount;
+  }
+  cancelDiscountInfo(){
+    this.isEditDiscount = !this.isEditDiscount;
+    this.result = false;
+    this.close();
+  }
+  saveDiscountInfo(){
+    this.isEditDiscount = !this.isEditDiscount;
+    this.appService.addUsers = this.discount;
+    this.result = true;
+    this.close();
   }
   
 
