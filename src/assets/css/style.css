@@ -188,6 +188,11 @@ placeholder :-ms-input-placeholder {
 label {
   display: block; }
 
+.redstar {
+  color: red;
+  font-size: 14px;
+  font-weight: bold; }
+
 .login_side h2 {
   margin-bottom: 25px;
   font-size: 36px;
@@ -816,6 +821,8 @@ section .rightwithoutmenu {
         display: inline-block;
         color: #333 !important;
         border-color: #ccc; }
+      .main-content .table-data .addresbox .redborder, .main-content .table-data-forms .addresbox .redborder {
+        border-color: red !important; }
       .main-content .table-data .addresbox .mydp, .main-content .table-data-forms .addresbox .mydp {
         border: solid 1px #c7c5c6;
         margin: 0 0 6px 0;

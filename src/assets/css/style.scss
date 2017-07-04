@@ -29,6 +29,11 @@
 label {
     display: block;
 }
+.redstar {
+    color:red;
+    font-size: 14px;
+    font-weight: bold;
+}
 .login_side {
     h2 {
         margin-bottom: 25px;
@@ -722,6 +727,9 @@ section {
                 display: inline-block;
                 color: #333 !important;
                 border-color: #ccc;
+            }
+            .redborder {
+                border-color:red !important;
             }
 
 
