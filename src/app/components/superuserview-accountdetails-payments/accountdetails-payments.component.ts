@@ -17,7 +17,8 @@ export interface ConfirmModel {
     message: string;
     addPopups: boolean;
     getPayments: boolean;
-    payments:Object;
+    viewAccountPopup:boolean;
+    payment:Object;
 
 }
 @Component({
@@ -29,9 +30,12 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
 
     public getPayments:boolean=true;
     public addPopups:boolean;
+    public viewAccountPopup:boolean;
+    public payment:any;
     public DefaultResponse = { "status": "Active" };
     public paymentList:any;
     public payments:any={};
+    public isEditpayments:boolean=true;
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -93,6 +97,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
             res=>{
                 if(res['statusCode']=='SUCCESS'){
                     this.paymentList=res['payments'];
+                   /* this.appService.paymentId=res['payments']['paymentId']*/
                 }
             }
         )
@@ -105,6 +110,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         this.dialogService.addDialog(accountDetailsPaymentsComponent, {
             addPopups: true,
             getPayments: false,
+            viewAccountPopup: false,
             title: 'Add New User',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
@@ -119,6 +125,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     }
     savePayments() {
         this.appService.addUsers = this.payments;
+        //this.appService.addUsers=this.appService.paymentId;
         this.result = true;
         this.close();
     }
@@ -127,6 +134,36 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         this.close();
     }
     viewDetails(data,index){
-
+        this.dialogService.addDialog(accountDetailsPaymentsComponent, {
+            viewAccountPopup: true,
+            getPayments: false,
+            addPopups:false,
+            title: 'View  Details',
+            payment:data,
+        }).subscribe((isConfirmed) => {
+           if(isConfirmed){
+                  this.accountsPaymentService.editpaymentss(this.user.accountId,this.appService.addUsers).subscribe((res) => {
+                  if (res['statusCode'] == 'SUCCESS') {
+                      this.getPaymentDetails();
+                  }
+              });
+           }
+           else{
+               
+               //this.editFlag = false;  
+           }
+        });
+    }
+    editpaymentsInfo(){
+      this.isEditpayments = !this.isEditpayments;    
+    }
+    cancelpaymentsInfo(){
+      this.isEditpayments = !this.isEditpayments;
+    }
+    savepaymentsInfo(){
+     this.isEditpayments = !this.isEditpayments;
+     this.appService.addUsers = this.payment;
+     this.result = true;
+     this.close();
     }
 }
