@@ -34,7 +34,8 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     public AccountInvoices: any;
     public viewRowDetails: any = {};
     public isEditInvoice:boolean=true;
-    public invoice:any;
+    public invoice: any;
+    public viewPopup: boolean;
     public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
