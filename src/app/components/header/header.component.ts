@@ -98,7 +98,7 @@ export class HeaderComponent implements AfterViewChecked{
   }
   logOut() {
       this.appService.destroy();
-    this.appService.moveToPage('login');
+    this.appService.moveToPage('');
     //  this.router.navigate(['login'], { skipLocationChange: false });
 
   }
