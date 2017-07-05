@@ -34,7 +34,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     public getDependents: boolean=true;
     public addedData: any = {};
     public addDependnts: any;
-
+    public warningMessage:boolean=false;
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
