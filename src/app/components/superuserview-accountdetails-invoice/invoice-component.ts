@@ -18,7 +18,8 @@ export interface ConfirmModel {
     message: string;
     getInvoice: boolean;
     addInvoice: boolean;
-    invoiceDate: string;
+    viewPopup:boolean;
+    invoice: Object;
 }
 
 @Component({
@@ -32,6 +33,8 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     private user: User;  
     public AccountInvoices: any;
     public viewRowDetails: any = {};
+    public isEditInvoice:boolean=true;
+    public invoice:any;
     public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -123,13 +126,22 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     //}
 
     getInvoiceInfo(rowdata) {
-        this.accountInvoice = true;
-        this.viewRowDetails = rowdata;
+        //this.invoice=rowdata;
+        this.dialogService.addDialog(AccountInvoiceComponent, {
+            title: 'View Innvoice Details',
+            viewPopup: true,
+            getInvoice: false,
+            addInvoice:false,
+            invoice:rowdata,
+        })
     }
     downloadInvoice(rowData) {
         this.accountInvoiceService.downloadInvoice(rowData.invoiceId)
             .subscribe((res) => {
 
             });
+    }
+    cancel(){
+         this.close();
     }
 }
