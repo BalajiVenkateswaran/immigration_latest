@@ -116,7 +116,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       this.dialogService.addDialog(ImmigrationViewArrivalDepartureInfoComponent, {
           addArrDep: true,
           arrDepInfo: false,
-          title: 'Add Arrival Departue Info',
+          title: 'Add Arrival Departure Info',
       }).subscribe((isConfirmed) => {
           if (isConfirmed) {
            
@@ -209,7 +209,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
      this.dialogService.addDialog(ImmigrationViewArrivalDepartureInfoComponent, {
           addArrDep: true,
           arrDepInfo: false,
-          title: 'Edit Arrival Departue Info',
+          title: 'Edit Arrival Departure Info',
           addArrDeparture: this.editFlag ? this.beforeEdit : this.addArrDeparture,
           arrivalDate:arrivalDeptInfo.data.arrivalDate,
           departureDate:arrivalDeptInfo.data.departureDate,

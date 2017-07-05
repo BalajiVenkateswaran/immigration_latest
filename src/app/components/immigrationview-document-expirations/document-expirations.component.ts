@@ -195,12 +195,15 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
                     this.ImmigrationviewDocumentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
-                        this.message = res['statusCode'];
+                        /*this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
                             //event.confirm.resolve();
                             this.getDocumentsExpirations();
                         } else {
                             event.confirm.reject();
+                        }*/
+                         if (res['statusCode'] == 'SUCCESS') {
+                            this.getDocumentsExpirations();
                         }
                     });
                 }

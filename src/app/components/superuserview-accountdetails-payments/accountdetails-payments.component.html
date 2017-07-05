@@ -81,13 +81,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                 <div class="row">
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isEditpayments">
-                                <button type="button" (click)="cancelpaymentsInfo()" class="editbtn tbl-head-btn" *ngIf="isEditpayments==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
-                            </div>
-                            </div>
+                <div class="row">
+                    <button type="submit" class="editinpopup" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
+                    <div class="tbl-head-btn" [hidden]="isEditDiscount">
+                        <button type="button" (click)="cancelpaymentsInfo()" class="editinpopup" *ngIf="isEditpayments==false">Cancel</button>
+                        <button type="submit" value="Save" class="savebtn" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default" (click)="cancel()">Close</button>
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
@@ -97,22 +98,22 @@
                             <div class="row">
                                 <div class="col-md-4">Payment Id:</div>
                                 <div class="col-md-8">
-                                    <input type="text" [disabled]="true" *ngIf="isEditpayments==false" [(ngModel)]="payments.paymentId" class="form-control">
-                                    <span *ngIf="isEditpayments==true">{{payments.paymentId}}</span>
+                                    <input type="text" [disabled]="true" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentId" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.paymentId}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Transaction Type:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false"   [(ngModel)]="payments.transactionType" class="form-control">
-                                    <span *ngIf="isEditpayments==true">{{payments.transactionType}}</span>
+                                    <input type="text" *ngIf="isEditpayments==false"   [(ngModel)]="payment.transactionType" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.transactionType}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Transaction Id:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payments.transactionId" class="form-control">
-                                    <span *ngIf="isEditpayments==true">{{payments.transactionId}}</span>
+                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.transactionId" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.transactionId}}</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -195,6 +196,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+             <div class="modal-footer">
+                
             </div>
         </div>
     </div>

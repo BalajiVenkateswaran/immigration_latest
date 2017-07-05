@@ -109,8 +109,8 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
   }
   cancelDiscountInfo(){
     this.isEditDiscount = !this.isEditDiscount;
-    this.result = false;
-    this.close();
+    
+    
   }
   saveDiscountInfo(){
     this.isEditDiscount = !this.isEditDiscount;
