@@ -18,9 +18,9 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="row" *ngIf="sfmpi">
+                    <div class="row sfm" *ngIf="sfmpi">
                         <div class="col-md-12">
-                            <span class="redstar">*</span> Fields are Mandatory.
+                            <span class="redstar">* Fields are Mandatory.</span> 
                         </div>
                     </div>
                     <div class="row">
@@ -31,22 +31,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Petition Type <span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Petition Type </label></div>
                         <div class="col-md-8">
-                            <select class="form-control" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitiontype" (change)="handleChange($event)" [ngClass]="petitionInformation.petitiontype == '' ? 'redborder': ''">
-                                <option *ngFor="let ptst of allPetitionTypesAndSubTypes" [value]="ptst.petitiontype">{{ ptst.petitiontype }}</option>
-                            </select>
+                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitiontype" disabled />
                             <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitiontype}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Petition Sub Type <span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Petition Sub Type</label></div>
                         <div class="col-md-8">
-                            <select class="form-control" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitionSubType" [ngClass]="petitionInformation.petitionSubType == '' ? 'redborder': ''">
-                                <option *ngFor="let subtype of allSubTypes" [value]="subtype.petitionSubType">{{ subtype.petitionSubType }}</option>
-                            </select>
-
-                            <!--<input type="text"  [readonly]="isEdit" [(ngModel)]="petitionInformation.name"  />-->
+                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitionSubType" disabled/>
                             <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitionSubType}}</span>
                         </div>
                     </div>
@@ -57,13 +51,14 @@
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.description}}</span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pi-filenumber">File Number <span class="redstar">*</span></label></div>
-                            <div class="col-md-8">
-                                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.fileNumber" [ngClass]="petitionInformation.fileNumber == '' ? 'redborder': ''" />
-                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.fileNumber}}</span>
-                            </div>
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">File Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.fileNumber" disabled />
+                            <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.fileNumber}}</span>
                         </div>
+                    </div>
                         <div class="row">
                             <div class="col-md-4"><label for="pi-petitionstatus">Status <span class="redstar">*</span></label></div>
                             <div class="col-md-8">
@@ -86,35 +81,38 @@
                             <div class="col-md-8">
                                 <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.currentStage" [ngClass]="petitionInformation.currentStage == '' ? 'redborder': ''">
                                     <option *ngFor="let petitionStage of petitionStages;" [value]="petitionStage.stageId">{{petitionStage.name}}</option>
+                                    <!--<option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>-->
                                 </select>
-                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.currentStage}}</span>
+                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.currentStageId}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="pi-petitionwithdrawndate">Days in Current Stage</label></div>
                             <div class="col-md-8">
-                                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.daysInCurrentStage" />
+                                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.daysInCurrentStage" disabled />
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.daysInCurrentStage}}</span>
                             </div>
                         </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-createdby">Next Stage</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.nextStage" disabled />
+                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.nextStage" disabled />
                             <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.nextStage}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-createdby">Final Action</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.nextStage" />
+                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.nextStage" />
                             <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.nextStage}}</span>
                         </div>
                     </div>
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Denied Date</label></div>
                             <div class="col-md-8">
-                                <!--<input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]="isEdit" [(ngModel)]="petitionInformation.deniedDate" />-->
                                 <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="petitionInformation.deniedDate" [selDate]="selDate1"></my-date-picker>
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deniedDate}}</span>
                             </div>
@@ -131,28 +129,29 @@
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Assigned To <span class="redstar">*</span></label></div>
                             <div class="col-md-8">
-                                <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.assignedTo">
+                                <!--<select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.assignedTo" [ngClass]="petitionInformation.currentStage == '' ? 'redborder': ''">
                                     <option *ngFor="let user of users" [ngValue]="user.emailId">{{user.firstName}}, {{user.lastName}}</option>
-                                </select>
-                                <span *ngIf="isPetitionInformationEdit==true">{{assignedToName}}</span>
+                                </select>-->
+                                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]="isEdit" [(ngModel)]="petitionInformation.assignedTo" [ngClass]="petitionInformation.assignedTo == '' ? 'redborder': ''" />
+                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.assignedTo}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Created # User on MM/DD/YYYY</label></div>
                             <div class="col-md-8">
-                                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.createdBy" disabled />
+                                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.createdBy" disabled />
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.createdBy}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Last Updated # User on MM/DD/YYYY</label></div>
                             <div class="col-md-8">
-                                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.lastUpdatedBy" disabled />
+                                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.lastUpdatedBy" disabled />
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.lastUpdatedBy}}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4"><label for="pi-markfordeletion">Mark for Deletion</label></div>
+                            <div class="col-md-4"><label for="pi-markfordeletion">Mark for Deletion <span class="redstar">*</span></label></div>
                             <div class="col-md-8">
                                 <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.markForDeletion">
                                     <option value="true">Yes</option>
@@ -168,9 +167,9 @@
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deletedOn}}</span>
                             </div>
                         </div>
-                    <div class="row" *ngIf="sfmpi">
+                    <div class="row sfm" *ngIf="sfmpi">
                         <div class="col-md-12">
-                            <span class="redstar">*</span> Fields are Mandatory.
+                            <span class="redstar">* Fields are Mandatory.</span> 
                         </div>
                     </div>
 
@@ -205,6 +204,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row sfm" *ngIf="sfmRI">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Receipt Number</label></div>
                         <div class="col-md-8">
@@ -220,12 +224,11 @@
                             <!--<my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="receiptInfo.receiptDate"></my-date-picker>-->
                         </div>
                     </div>
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Receipt Notice Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="receiptInfo.receiptNoticeDate" [selDate]="receiptNoticeDate"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.receiptNoticeDate}}</span>
-                            <!--<my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="receiptInfo.receiptDate"></my-date-picker>-->
                         </div>
                     </div>
                     <div class="row">
@@ -234,7 +237,7 @@
                             <input type="text" *ngIf="isReceiptInfoEdit==false" [readonly]="isEdit" [(ngModel)]="receiptInfo.clazz" />
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.clazz}}</span>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Approved On</label></div>
                         <div class="col-md-8">
@@ -279,9 +282,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Show Reciept Number to Client</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Show Reciept Number to Client <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isReceiptInfoEdit==false" [(ngModel)]="receiptInfo.showReceiptNumberToClient">
+                            <select *ngIf="isReceiptInfoEdit==false" [(ngModel)]="receiptInfo.showReceiptNumberToClient" [ngClass]="receiptInfo.showReceiptNumberToClient == '' ? 'redborder': ''">
                                 <!-- <option value="1">Yes</option>
                                  <option value="0">No</option> -->
                                 <option *ngFor="let receiptnumber of receiptNumber;" [value]="receiptnumber.value">{{receiptnumber.name}}</option>
@@ -291,6 +294,11 @@
                             <!--<span *ngIf="!isReceiptInfoEdit">{{defaultSelected}}</span>-->
 
 
+                        </div>
+                    </div>
+                    <div class="row sfm" *ngIf="sfmRI">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
                         </div>
                     </div>
                     <div class="row">
@@ -308,6 +316,60 @@
 
         <div class="clearfix"></div>
         <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="no-pad-left">Additional Details</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editAdditionalDetailsForm()" *ngIf="isAdditionalDetailsEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
+                                <button type="button" (click)="cancelAdditionalDetailsEdit()" class="editbtn tbl-head-btn" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveAdditionalDetails()" *ngIf="isAdditionalDetailsEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label>Shipping Date</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isAdditionalDetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="receiptInfo.sentToGovAgencyOn" [selDate]="sentToGovAgencyOn"></my-date-picker>
+                            <span *ngIf="isAdditionalDetailsEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4"><label>Shipping Carrier</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="receiptInfo.comments" />
+                            <span *ngIf="isAdditionalDetailsEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label>Tracking Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="receiptInfo.comments" />
+                            <span *ngIf="isAdditionalDetailsEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label>Check Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="receiptInfo.comments" />
+                            <span *ngIf="isAdditionalDetailsEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
+                                <button type="button" (click)="cancelAdditionalDetailsEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveAdditionalDetails()" *ngIf="isAdditionalDetailsEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
@@ -336,6 +398,9 @@
                     </div>
                 </div>
             </div>
+           
+        </div>
+        <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
@@ -421,9 +486,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
@@ -577,6 +639,57 @@
                             <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
                                 <button type="button" (click)="cancelSponsorInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isSponsorInfoEdit==false">Cancel</button>
                                 <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveSponsorInformation()" *ngIf="isSponsorInfoEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="no-pad-left">Delegated Orgs</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editNotesForm()" *ngIf="isDelegatedOrgsEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
+                                <button type="button" (click)="cancelNotesEdit()" class="editbtn tbl-head-btn" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveNotes()" *ngIf="isDelegatedOrgsEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Delegated Org Name</label></div>
+                        <div class="col-md-8">
+                            <input type="checkbox" [(ngModel)]="petitionInformation.name" />
+                            <!--<span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.name}}</span>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Delegated Org Name</label></div>
+                        <div class="col-md-8">
+                            <input type="checkbox" [(ngModel)]="petitionInformation.name" />
+                            <!--<span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.name}}</span>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Delegated Org Name</label></div>
+                        <div class="col-md-8">
+                            <input type="checkbox" [(ngModel)]="petitionInformation.name" />
+                            <!--<span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.name}}</span>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Delegated Org Name</label></div>
+                        <div class="col-md-8">
+                            <input type="checkbox" [(ngModel)]="petitionInformation.name" />
+                            <!--<span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.name}}</span>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
+                                <button type="button" (click)="cancelNotesEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveNotes()" *ngIf="isDelegatedOrgsEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
