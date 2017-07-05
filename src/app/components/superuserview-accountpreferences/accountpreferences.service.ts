@@ -12,10 +12,12 @@ export class SuperuserViewAccountpreferencessService {
      return this.restService.getData("/superuser/account/" + accountid + "/discounts");
  }
  public saveproduct(addproduct: any,accountid:string) {
+     
      var req = {
          "accountId": accountid,
-         "products": [addproduct]
+         "products": addproduct
      }
+     console.log(req);
      return this.restService.postData("/superuser/accounts/products", req);
  }
  public savediscount(adddiscount: any,accountid:string) {
