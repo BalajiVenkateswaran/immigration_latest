@@ -40,11 +40,19 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     public newvisaitem: any = {};
     public editvisaFlag: boolean = true;
     public beforevisaEdit: any;
+    public expiresOn;
+    public issuedOn;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
+        
+        
     };
+    onDateChanged(event: IMyDateModel) {
+        this.myDatePickerOptions.disableSince=event.date;
+        // event properties are: event.date, event.jsdate, event.formatted and event.epoc
+    }
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -95,6 +103,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     getVisaaData() {
         this.immigrationviewVisasService.getClientVisas(this.appService.clientId).subscribe((res) => {
             this.source.load(res['visas']);
+            
          });
     }
 
@@ -103,6 +112,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
             .subscribe((res) => {
                 this.source.load(res['visas']);
             });
+          
     }
 
     addNewVisa() {
@@ -130,6 +140,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     visaSave() {
         this.newvisaitem['clientId'] = this.appService.clientId;
         if(this.newvisaitem['issuedOn'] && this.newvisaitem['issuedOn']['formatted']){
+        
            this.newvisaitem['issuedOn'] = this.newvisaitem['issuedOn']['formatted'];
         }
         if(this.newvisaitem['expiresOn'] && this.newvisaitem['expiresOn']['formatted']){
@@ -143,16 +154,6 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
         this.result = false;
         this.close();
     }
-
-
-
-
-
-
-
-
-
-
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }

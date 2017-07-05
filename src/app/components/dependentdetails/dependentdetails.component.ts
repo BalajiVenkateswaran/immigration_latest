@@ -40,6 +40,7 @@ export class DependentDetailsComponent implements OnInit {
     private dateOfBirth: string;
     private beforeCancelProfile;
     private beforeCancelPersonal;
+    public warningMessage:boolean=false;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -139,13 +140,16 @@ export class DependentDetailsComponent implements OnInit {
 
     //Save Client Details
     saveClientProfile() {
-         if (this.dependentProfile['creationDate'] && this.dependentProfile['creationDate']['formatted']) {
+        
+        if (this.dependentProfile['creationDate'] && this.dependentProfile['creationDate']['formatted']) {
             this.dependentProfile['creationDate'] = this.dependentProfile['creationDate']['formatted'];
         }
-
-        this.mapFromClientProfile();
-
-        this.dependentDetailsService.saveDependentDetails(this.dependent)
+        if(this.dependentProfile['firstName']==undefined || this.dependentProfile['lastName']==undefined || this.dependentProfile['relation']==undefined || this.dependentProfile['fileNumber']==undefined){
+            this.warningMessage=true;
+        }
+        else{
+            this.warningMessage=false;
+            this.dependentDetailsService.saveDependentDetails(this.dependent)
             .subscribe((res) => {
                 this.isProfileEdit = true;
                 if (res['dependent']) {
@@ -155,6 +159,10 @@ export class DependentDetailsComponent implements OnInit {
                 }
 
             });
+        }
+        this.mapFromClientProfile();
+
+        
     }
 
     //Save Client Details
@@ -164,7 +172,7 @@ export class DependentDetailsComponent implements OnInit {
             this.dependentPersonalInfo['dateOfBirth'] = this.dependentPersonalInfo['dateOfBirth']['formatted'];
         }
 
-          this.mapFromClientPersonalInfo();
+          //this.mapFromClientPersonalInfo();
 
           this.dependentDetailsService.saveDependentDetails(this.dependent)
             .subscribe((res) => {

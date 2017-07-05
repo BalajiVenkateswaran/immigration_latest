@@ -6,7 +6,8 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Petitions<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewPetition()">ADD</button></h2>
-        <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event)" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+        <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event)" (deleteConfirm)="onDeleteConfirm($event)"
+            (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
@@ -21,23 +22,29 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
+                        <div class="row" *ngIf="warningMessage">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
+                            </div>
+                        </div>
                         <div class="row">
-                            
-                            <div class="col-md-4">Petition Type :</div>
+
+                            <div class="col-md-4">Petition Type:<span class="redstar">*</span></div>
                             <div class="col-md-8">
-                                <select class="form-control" [(ngModel)]="newpetitionitem.petitiontype" (change)="handleChange($event)">
+                                <select class="form-control" [(ngModel)]="newpetitionitem.petitiontype" (change)="handleChange($event)" [ngClass]="newpetitionitem.petitiontype == '' ? 'redborder': ''">
                                     <option *ngFor="let ptst of allPetitionTypesAndSubTypes" [value]="ptst.petitiontype">{{ ptst.petitiontype }}</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">Petition Subtype :</div>
+                            <div class="col-md-4">Petition Subtype:<span class="redstar">*</span></div>
                             <div class="col-md-8">
-                                <select class="form-control" [(ngModel)]="newpetitionitem.petitionSubType">
+                                <select class="form-control" [(ngModel)]="newpetitionitem.petitionSubType" [ngClass]="newpetitionitem.petitionSubType == '' ? 'redborder': ''">
                                     <option *ngFor="let subtype of allSubTypes" [value]="subtype.petitionSubType">{{ subtype.petitionSubType }}</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">Petition Name :</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="newpetitionitem.petitionName" class="form-control"></div>
-                            </div>
+                            <div class="col-md-4">Petition Name:<span class="redstar">*</span></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="newpetitionitem.petitionName" [ngClass]="newpetitionitem.petitionName == '' ? 'redborder': ''"
+                                    class="form-control"></div>
+                        </div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>

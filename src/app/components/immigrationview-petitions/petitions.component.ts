@@ -43,7 +43,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public showAddPetitionpopup: boolean;
     public getPetitionsData: boolean = true;
     public newpetitionitem: any = {};
-
+    public warningMessage:boolean=false;
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -271,9 +271,16 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
           var currentYear = new Date().getFullYear();
           this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
       }
-      this.appService.newpetitionitem = this.newpetitionitem;
-      this.result = true;
-      this.close();
+      if(this.newpetitionitem['petitionSubType']==undefined||this.newpetitionitem['petitiontype']==undefined||this.newpetitionitem['petitionName']==''){
+          this.warningMessage=true;
+      }
+      else{
+          this.warningMessage=false;
+          this.appService.newpetitionitem = this.newpetitionitem;
+          this.result = true;
+          this.close();
+      }
+     
   }
   cancel() {
       this.result = false;
