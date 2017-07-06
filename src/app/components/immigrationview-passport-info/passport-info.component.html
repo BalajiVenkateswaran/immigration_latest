@@ -20,9 +20,14 @@
                         </div>
 
                     </div>
+                    <div class="row" *ngIf="warningMessage">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span> 
+                        </div>
+                    </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-Passport">Passport</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span *ngIf="isEdit==true">{{passport.passportNumber}}</span></div>
+                        <div class="col-md-4"><label for="pInfo-Passport">Passport No.<span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" [ngClass]="passport.passportNumber == '' ? 'redborder': ''"/><span *ngIf="isEdit==true">{{passport.passportNumber}}</span></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pInfo-issuance-place">Issuance Place</label></div>
@@ -37,30 +42,30 @@
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-issuance-country" [(ngModel)]="passport.issuanceCountry" /><span *ngIf="isEdit==true">{{passport.issuanceCountry}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuing-country">Issuing Country</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-city" [(ngModel)]="passport.issuingCountry" /><span *ngIf="isEdit==true">{{passport.issuingCountry}}</span></div>
+                        <div class="col-md-4"><label for="pInfo-issuing-country">Issuing Country<span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-city" [(ngModel)]="passport.issuingCountry" [ngClass]="passport.issuingCountry == '' ? 'redborder': ''"/><span *ngIf="isEdit==true">{{passport.issuingCountry}}</span></div>
                     </div>
                     <div class="row">
-                       <div class="col-md-4"><label for="pInfo-issuance-date">Issuance Date</label></div>
+                       <div class="col-md-4"><label for="pInfo-issuance-date">Issuance Date<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.isuanceDate" [selDate]="isuanceDate">
+                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.isuanceDate" [selDate]="isuanceDate" [ngClass]="passport.isuanceDate == '' ? 'redborder': ''">
                             </my-date-picker>
                             <span *ngIf="isEdit==true">{{passport.isuanceDate}}</span>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-date">Expiration Date</label></div>
+                        <div class="col-md-4"><label for="pInfo-issuance-date">Expiration Date<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.expirationDate" [selDate]="expirationDate">
+                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [ngClass]="passport.expirationDate == '' ? 'redborder': ''" [(ngModel)]="passport.expirationDate" [selDate]="expirationDate">
                             </my-date-picker>
                             <span *ngIf="isEdit==true">{{passport.expirationDate}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-issuance-date">Date of Birth</label></div>
+                        <div class="col-md-4"><label for="pInfo-issuance-date">Date of Birth<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.dateOfBirth" [selDate]="dateOfBirth">
+                            <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" [ngClass]="passport.dateOfBirth == '' ? 'redborder': ''" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.dateOfBirth" [selDate]="dateOfBirth">
                             </my-date-picker>
                             <span *ngIf="isEdit==true">{{passport.dateOfBirth}}</span>
                         </div>
@@ -95,7 +100,7 @@
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-lost-passport" [(ngModel)]="passport.everLostPassport" /><span *ngIf="isEdit==true">{{passport.everLostPassport}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-travel-document">Travel Document</label></div>
+                        <div class="col-md-4"><label for="pInfo-travel-document">Travel Document#</label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-travel-document" [(ngModel)]="passport.travelDocumentNumber" /><span *ngIf="isEdit==true">{{passport.travelDocumentNumber}}</span></div>
                     </div>
                     <div class="row">
@@ -110,6 +115,11 @@
                             </div>
                         </div>
 
+                    </div>
+                    <div class="row" *ngIf="warningMessage">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span> 
+                        </div>
                     </div>
                 </div>
             </div>

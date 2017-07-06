@@ -7,6 +7,7 @@ import {MenuComponent} from "./components/menu/menu.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {ClientDetailsComponent} from "./components/clientview-client-details/client-details.component";
 import {ImmigrationviewPetitionDetailsComponent} from "./components/immigrationview-petition-details/petition-details.component";
+import {ImmigrationviewPetitionNotesComponent} from "./components/immigrationview-petition-notes/petition-notes.component";
 import {ImmigrationviewQuestionnaireComponent} from "./components/immigrationview-questionnaire/questionnaire.component";
 import {ImmigrationviewFormsComponent} from "./components/immigrationview-forms/forms.component";
 import {OrganizationDocumentRepositoryComponent} from "./components/immigrationview-organization-document-repository/organization-document-repository.component";
@@ -150,6 +151,10 @@ export const appRoutes: Routes = [
         component: ImmigrationviewPetitionDetailsComponent
     },
     {
+        path: 'immigrationview-petition-notes',
+        component: ImmigrationviewPetitionNotesComponent
+    },
+    {
         path: 'immigrationview-questionnaire',
         component: ImmigrationviewQuestionnaireComponent
     },
@@ -284,8 +289,8 @@ export const appRoutes: Routes = [
     },
     {
         path: 'immigrationview-I-797-history',
-        component: SmartTableFramework
-        //component:  ImmigrationViewI797HistoryComponent
+        //component: SmartTableFramework
+        component:  ImmigrationViewI797HistoryComponent
     },
     {
         path: 'immigrationview-petitions',

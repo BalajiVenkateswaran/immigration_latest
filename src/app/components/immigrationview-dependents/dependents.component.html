@@ -23,19 +23,24 @@
                 <h4 class="modal-title">{{title}}</h4>
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
+            <div class="row" *ngIf="warningMessage">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span> 
+                        </div>
+                    </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">First Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.firstName" class="form-control"></div>
+                            <div class="col-md-4">First Name:<span class="redstar">*</span></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.firstName" [ngClass]="addDependents.firstName == '' ? 'redborder': ''" class="form-control"></div>
                             <div class="col-md-4">Middle Name:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.middleName" class="form-control"></div>
-                            <div class="col-md-4">Last Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.lastName" class="form-control"></div>
-                            <div class="col-md-4">Relation:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.relation" class="form-control"></div>
+                            <div class="col-md-4">Last Name:<span class="redstar">*</span></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.lastName" [ngClass]="addDependents.lastName == '' ? 'redborder': ''" class="form-control"></div>
+                            <div class="col-md-4">Relation:<span class="redstar">*</span></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.relation" [ngClass]="addDependents.relation == '' ? 'redborder': ''" class="form-control"></div>
                         </div>
                         </div>
                     <div class="col-md-1"></div>

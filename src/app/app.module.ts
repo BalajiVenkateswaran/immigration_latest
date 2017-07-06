@@ -34,6 +34,8 @@ import {PetitionDocumentRepositoryComponent} from "./components/immigrationview-
 import {ClientDocumentRepositoryComponent} from "./components/immigrationview-client-document-repository/client-document-repository.component";
 
 import { DependentDetailsComponent } from './components/dependentdetails/dependentdetails.component';
+import {ImmigrationviewPetitionNotesComponent} from "./components/immigrationview-petition-notes/petition-notes.component";
+import {ImmigrationViewPetitionNotesService} from "./components/immigrationview-petition-notes/petition-notes.service";
 
 import {ImmigrationviewDocumentExpirationsComponent} from "./components/immigrationview-document-expirations/document-expirations.component";
 import { PassportInfoComponent } from './components/clientview-passport-info/passport-info.component';
@@ -239,7 +241,7 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         ImmigrationViewVisasComponent,
         ImmigrationViewI797HistoryComponent,
         ImmigrationViewPetitionsComponent,
-
+        ImmigrationviewPetitionNotesComponent,
         LoginComponent,
         QuestionnaireI129Component,
 
@@ -335,6 +337,7 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         ClientQuestionnaireService,
         MenuComponent,
         SmartTableFrameworkService,
+        ImmigrationViewPetitionNotesService,
         //
 
         ProductCatalogProductService,

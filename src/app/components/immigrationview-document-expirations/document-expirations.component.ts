@@ -112,8 +112,8 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
             title: 'Add Document Expiration'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.appService.addNewDocExp['clientId'] = this.appService.clientId;
-                //this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
+                
+                this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
                 this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getDocumentsExpirations();
@@ -124,6 +124,10 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
         });
     }
     docExpSave() {
+        if (this.addNewDocExp['status'] == '' || null || undefined) {
+            this.addNewDocExp['status'] == "Active";
+        }
+        this.addNewDocExp['clientId'] = this.appService.clientId;
         this.addNewDocExp['validFrom'] = this.addNewDocExp['validFrom']['formatted'];
         this.addNewDocExp['validTo'] = this.addNewDocExp['validTo']['formatted'];
         this.appService.addNewDocExp = this.addNewDocExp;
@@ -193,7 +197,8 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
                     this.ImmigrationviewDocumentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
                         /*this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
-                            event.confirm.resolve();
+                            //event.confirm.resolve();
+                            this.getDocumentsExpirations();
                         } else {
                             event.confirm.reject();
                         }*/

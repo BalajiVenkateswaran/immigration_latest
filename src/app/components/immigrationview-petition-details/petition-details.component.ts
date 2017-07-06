@@ -5,7 +5,6 @@ import {ImmigrationViewPetitionDetailsService} from "./petition-details.service"
 import {User} from "../../models/user";
 import {ImmigrationViewPetitionInformation} from "../../models/ImmigrationViewPetitionInformation";
 import {ImmigrationViewReceiptInformation} from "../../models/ImmigrationViewReceiptInformation";
-import {ImmigrationViewPetitionNotes} from "../../models/ImmigrationViewPetitionNotes";
 import {ImmigrationViewLCAInformation} from "../../models/ImmigrationViewLCAInformation";
 import {ImmigrationViewSponsorInformation} from "../../models/ImmigrationViewSponsorInformation";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
@@ -24,6 +23,7 @@ export interface formControl {
 })
 export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     sfmpi: boolean = false;
+    sfmRI: boolean = false;
     private allPetitionTypesAndSubTypes;
     private allSubTypes = {};
     private user: User;
@@ -41,6 +41,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private receiptNumber: any[];
     isLCAInfoEdit: boolean = true;
     isReceiptInfoEdit: boolean = true;
+    isAdditionalDetailsEdit: boolean = true;
     isSponsorInfoEdit: boolean = true;
     private defaultSelected: string;
     private selector: number = 0;
@@ -117,7 +118,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         //this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
     }
     ngOnInit() {
-
+        
         this.appService.showSideBarMenu("immigrationview-petition", "petitions");
         this.petitionDetailsService.getPetitionDetails(this.appService.petitionId)
             .subscribe((res) => {
@@ -180,7 +181,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
 
             });
-
+        console.log(this.petitionDetails);
 
 
         this.status = [
@@ -194,6 +195,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
         ]
 
+        if (this.petitionDetails['markForDeletion'] == true) {
+            this.petitionDetails['status'] == "MFD";
+        }
         this.defaultSelected = this.receiptNumber[1].name;
         console.log(this.defaultSelected);
 
@@ -201,6 +205,8 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             .subscribe((res) => {
                 this.allPetitionTypesAndSubTypes = res['petitionTypes'];
             });
+
+        console.log(this.petitionDetails['petitionTypeId'].petitionType);
     }
 
     //is edit function for read only
@@ -238,7 +244,10 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
             this.petitionDetails['withdrawDate'] = this.petitionDetails['withdrawDate']['formatted'];
         }
-        if (this.petitionDetails['name'] == '' || this.petitionDetails['fileNumber'] == '') {
+        if (this.petitionDetails['markForDeletion'] == true) {
+            this.petitionDetails['status'] == "MFD";
+        }
+        if (this.petitionDetails['name'] == '' || this.petitionDetails['name'] == null || this.petitionDetails['name'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined) {
             this.sfmpi = true;
         } else {
             this.sfmpi = false;
@@ -394,17 +403,26 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         if (this.receiptInfo['sentToGovAgencyOn'] && this.receiptInfo['sentToGovAgencyOn']['formatted']) {
             this.receiptInfo['sentToGovAgencyOn'] = this.receiptInfo['sentToGovAgencyOn']['formatted'];
         }
+
         this.receiptInfo['petitionId'] = this.appService.petitionId;
         this.receiptInfo['petitionReceiptId'] = this.receiptInfo['petitionReceiptId'];
-        this.petitionDetailsService.saveReceiptInfo(this.receiptInfo)
-            .subscribe((res) => {
-                console.log(this.receiptInfo);
-                console.log(res);
-                this.isReceiptInfoEdit = true;
-                if (res['receiptInfo'] != undefined) {
-                    this.receiptInfo = res['receiptInfo'];
-                }
-            });
+
+        if (this.receiptInfo['showReceiptNumberToClient'] == '' || null || undefined) {
+            this.sfmRI = true;
+        } else {
+            this.sfmRI = false;
+            this.petitionDetailsService.saveReceiptInfo(this.receiptInfo)
+                .subscribe((res) => {
+                    console.log(this.receiptInfo);
+                    console.log(res);
+                    this.isReceiptInfoEdit = true;
+                    if (res['receiptInfo'] != undefined) {
+                        this.receiptInfo = res['receiptInfo'];
+                    }
+                });
+        }
+
+        
     }
     //For LCA form Section
     editLCAInfoForm() {
