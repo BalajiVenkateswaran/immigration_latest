@@ -10,13 +10,15 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
+import { ManageAccountInvoiceService } from "./manageaccount-invoices.service";
 
 
 export interface ConfirmModel {
     title: string;
     message: string;
-    addNewClient: boolean;
-    getClientsData: boolean;
+    getInvoice: boolean;
+    viewPopup:boolean;
+    invoice: Object;
 
 }
 @Component({
@@ -24,10 +26,13 @@ export interface ConfirmModel {
     templateUrl: './manageaccount-invoices.component.html',
     styleUrls: ['./manageaccount-invoices.component.sass']
 })
-export class ManageAccountInvoicesComponent implements OnInit {
-
-    public invoiceDetailsForm: boolean = false;
+export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel, boolean>  implements OnInit {
+    public getInvoice: boolean = true;
+    public viewPopup:boolean;
+    public AccountInvoices: any;
     public DefaultResponse = { "status": "Active" };
+    public invoice:any;
+    public isEditInvoice:boolean=true;
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -76,7 +81,8 @@ export class ManageAccountInvoicesComponent implements OnInit {
     };
     //source: LocalDataSource = new LocalDataSource();
     private user: User;
-    constructor(private appService: AppService) {
+    constructor(private appService: AppService,public dialogService: DialogService,private manageAccountInvoiceService:ManageAccountInvoiceService) {
+        super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
 
@@ -85,8 +91,35 @@ export class ManageAccountInvoicesComponent implements OnInit {
     
 
     ngOnInit() {
+         this.manageAccountInvoiceService.getAccountInvoice(this.user.accountId)
+            .subscribe((res) => {
+                console.log("getinoices%o", res);
+                if (res['invoices']) {
+                    this.AccountInvoices = res['invoices'];
+                }
+                console.log(this.AccountInvoices);
+                
+            });
     }
     getDetails() {
-        this.invoiceDetailsForm = true;
+        
+    }
+    getInvoiceInfo(rowdata) {
+        //this.invoice=rowdata;
+        this.dialogService.addDialog(ManageAccountInvoicesComponent, {
+            title: 'View Invoice Details',
+            viewPopup: true,
+            getInvoice: false,
+            invoice:rowdata,
+        })
+    }
+    downloadInvoice(rowData) {
+        this.manageAccountInvoiceService.downloadInvoice(rowData.invoiceId)
+            .subscribe((res) => {
+
+            });
+    }
+    cancel(){
+         this.close();
     }
 }

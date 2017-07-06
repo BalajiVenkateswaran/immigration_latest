@@ -16,4 +16,10 @@ export class AccountDetailsPaymentsService {
         };
         return this.restService.postData("/superuser/account/"+accountId+"/payments", req);
     }
+    public editpaymentss(accountId:string,payment:any){
+        var req = {
+            "payment": payment
+        };
+        return this.restService.putData("/superuser/account/"+accountId+"/payments", req);
+    }
 }

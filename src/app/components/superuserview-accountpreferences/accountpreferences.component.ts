@@ -11,6 +11,8 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {SuperuserViewAccountpreferencessService} from "./accountpreferences.service";
+
 
 export interface ConfirmModel {
     title: string;
@@ -42,6 +44,17 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public editdiscount: any;
     public adddprdctPref: any;
     public adddiscntPref: any;
+    public Products: any = [];
+    public Discounts: any = [];
+    public addproduct: any = {};
+    public productcode: any;
+    public productstartDate: string;
+    public productendDate: string;
+    public adddiscount: any = {};
+    public disconutcode: any;
+    public discountstartDate: string;
+    public discountendDate: string;
+
     //settings = {
 
     //    add: {
@@ -83,7 +96,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     //};
     //source: LocalDataSource = new LocalDataSource();
     private user: User;
-    constructor(private appService: AppService, public dialogService: DialogService) {
+    constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService) {
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
@@ -106,7 +119,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             editprdct: this.editproduct    
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-
+              
             }
         });
     }
@@ -131,6 +144,52 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             }
         });
     }
+    productSave() {
+        this.addproduct['code'] = this.productcode;
+        this.addproduct['startDate'] = this.productstartDate['formatted'];
+        this.addproduct['endDate'] = this.productendDate['formatted'];
+        this.superuserViewAccountpreferencessService.saveproduct(this.addproduct,this.user.accountId).subscribe((res) => {
+            if (res['statusCode'] = "SUCCESS") {
+                this.result = true;
+                this.close();
+              
+            }              
+        });
+         
+    }
+    discountSave() {
+        this.adddiscount['discountCode'] = this.disconutcode;
+        this.adddiscount['startDate'] = this.discountstartDate['formatted'];
+        this.adddiscount['endDate'] = this.discountendDate['formatted'];
+        this.superuserViewAccountpreferencessService.savediscount(this.adddiscount, this.user.accountId).subscribe((res) => {
+            if (res['statusCode'] = "SUCCESS") {
+                this.result = true;
+                this.close();        
+            }
+        });
+
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
+    getproducts() {
+        this.superuserViewAccountpreferencessService.getproductsAccount(this.user.accountId).subscribe((res) => {
+            if (res['statusCode'] == "SUCCESS") {
+                this.Products = res['products'];
+            }
+        });
+    }
+    getdiscounts() {
+        this.superuserViewAccountpreferencessService.getdiscountsAccount(this.user.accountId).subscribe((res) => {
+            if (res['statusCode'] == "SUCCESS") {
+                this.Discounts = res['discounts'];
+
+            }
+        });
+    }
     ngOnInit() {
+        this.getproducts();
+        this.getdiscounts();
     }
 }

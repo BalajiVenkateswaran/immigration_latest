@@ -17,9 +17,6 @@
       <div class="datails-holder-name">
             <div class="pull-left">
                   <h4 *ngIf="applicationViewMode=='Immigration'"><strong>{{selectedOrg.orgName}}</strong></h4>
-                  <!--<select #orgSelect required *ngIf="orgNamevisible==true && editorg==true" [(ngModel)]="selectedOrg" (focusout)="onFocusOut()" (ngModelChange)="changeOrg($event)">
-                      <option *ngFor="let org of orgNamelist" [ngValue]="org">{{org.orgName}}</option>
-                  </select>-->
                 </div>
           <div class="pull-left">
               <a class="ico-edit" *ngIf="applicationViewMode=='Immigration'" (click)="editorgname(orgSelect)"></a>
@@ -57,7 +54,7 @@
           <li><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');"   [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"   routerLinkActive="active">Organization</a></li>
           <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
           <li *ngIf="immigrationManager=='IMMIGRATION MANAGER'"><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"   routerLinkActive="active">Manage Account</a></li>
-           <li><a (click)="appService.moveToPage('immigrationview-reports'); highlightTab('immigrationview-reports');highlightSBLink('immigrationview-reports');"   [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>
+           <li><a (click)="appService.moveToPage('immigrationview-reports'); highlightTab('immigrationview-reports');highlightSBLink('immigrationview-reports');" [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']" routerLinkActive="active">Reports</a></li>
           <li><a (click)="appService.moveToPage('accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']"  routerLinkActive="active">Accounts</a></li>
           <!--<li><a (click)="appService.moveToPage('superuserview-managersaccount'); highlightTab('superuserview-managersaccount');" [ngClass]="[checkForCurrentTab('superuserview-managersaccount') ? 'active': '']"  routerLinkActive="active">Accounts</a></li>-->
            <li><a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('productcatalog');" [ngClass]="[checkForCurrentTab('productcatalog') ? 'active': '']"  routerLinkActive="active">Product Catalog</a></li>

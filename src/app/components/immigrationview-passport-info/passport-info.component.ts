@@ -24,6 +24,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
     private isuanceDate: string;
     private expirationDate: string;
     private dateOfBirth: string;
+    public warningMessage:boolean=false;
     constructor(public appService: AppService, private passportinfoservice: passportInfoService) {
         if (this.appService.user) {
             this.user = appService.user;
@@ -68,6 +69,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
     }
     //cancel button function
     cancelEdit(event, i) {
+        this.warningMessage = false;
         this.passport = this.beforeCancelPassport;
         if (this.passport['isuanceDate'] && this.passport['isuanceDate']['formatted']) {
             this.passport['isuanceDate'] = this.passport['isuanceDate']['formatted'];
@@ -94,14 +96,21 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
         if (this.passport['dateOfBirth'] && this.passport['dateOfBirth']['formatted']) {
             this.passport['dateOfBirth'] = this.passport['dateOfBirth']['formatted'];
         }
-        this.passport['clientId'] = this.appService.clientId;
-        this.passportinfoservice.savePassport(this.passport)
+        if(this.passport['isuanceDate']==''||this.passport['passportNumber']=='' ||this.passport['issuingCountry']==''||this.passport['expirationDate']==''||this.passport['dateOfBirth']==''){
+            this.warningMessage=true;
+        }
+        else{
+            this.warningMessage=false;
+             this.passport['clientId'] = this.appService.clientId;
+            this.passportinfoservice.savePassport(this.passport)
             .subscribe((res) => {
                 this.isEdit = true;
                 if (res['passport']) {
                     this.passport = res['passport'];
                 }
             });
+        }
+       
 
     }
 }

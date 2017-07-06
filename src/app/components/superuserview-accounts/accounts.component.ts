@@ -150,16 +150,21 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             title: 'Add Client',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.clientService.saveAccountDetails(this.appService.newclitem).subscribe((res) => {
+                
+                this.clientService.createAccount(this.appService.newclitem).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getAccountDetail();
                     }
+                    
                 });
             }
         });
     }
-    clientSave() {
-        this.accountDetails['accountId'] = this.appService.user.accountId;
+    accountSave() {
+        //this.accountDetails['accountId'] = this.appService.user.accountId;
+        if (this.accountDetails['status'] == "" || this.accountDetails['status'] == undefined) {
+            this.accountDetails['status'] = "Active";
+        }
         this.appService.newclitem = this.accountDetails;
         this.result = true;
         this.close();

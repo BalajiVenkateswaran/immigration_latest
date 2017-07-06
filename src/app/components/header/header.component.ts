@@ -44,27 +44,21 @@ export class HeaderComponent implements AfterViewChecked{
   checkForCurrentTab(tab){
     return this.appService.currentTab == tab;
   }
-
   constructor(private router: Router, public appService: AppService, private dialogService: DialogService, private headerservice: Immigrationviewservice) {
     if(this.appService.user) {
       this.user = this.appService.user;
       }
-
     this.orgNamelist = this.appService.organizations;
-
     if (this.orgNamelist) {
-        this.orgNamevisible = true;
         this.selectedOrg = this.orgNamelist[0];
+        if (this.selectedOrg == undefined) {
+            this.selectedOrg = {};
+        }
         this.appService.orgId = this.selectedOrg.orgId;
 
-    }
-    else {
-        this.orgNamevisible = false;
-    }
-    this.editorg = false;
 
+    }
   }
-
   editorgname() {
       //for (this.i = 0; this.i < this.orgNamelist.length; this.i++) {
           this.orgnames=this.orgNamelist;
@@ -86,19 +80,26 @@ export class HeaderComponent implements AfterViewChecked{
   public slideMenu() {
     this.appService.menuSlider = (this.appService.menuSlider)? false: true;
   }
-  ngDoCheck() {
+  ngDoCheck() {  
+      this.orgNamelist = this.appService.organizations;
+      if (this.orgNamelist) {
+          this.selectedOrg = this.orgNamelist[0];
+          if (this.selectedOrg == undefined) {
+              this.selectedOrg = {};
+          }
+          this.appService.orgId = this.selectedOrg.orgId;    
+                  
+      }
       this.applicationViewMode = this.appService.applicationViewMode;
       this.immigrationManager = this.appService.user.roleName;
       if (this.appService.getorgMenu != undefined) {
           this.selectedOrg = this.appService.getorgMenu;
           this.appService.orgId = this.selectedOrg.orgId;
-      }
-
-
+      }       
   }
   logOut() {
       this.appService.destroy();
-    this.appService.moveToPage('login');
+    this.appService.moveToPage('');
     //  this.router.navigate(['login'], { skipLocationChange: false });
 
   }

@@ -40,7 +40,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     public addNewClient: boolean;
     public getClientsData: boolean = true;
     public newclitem: any = {};
-
+    public warningMessage:boolean=false;
     public DefaultResponse = {"status": "Active" };
 
 
@@ -91,6 +91,24 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                         }
                       ]
                   }
+                }
+            },
+            openPetitions:{
+                title: 'Open Petitions',
+                editor: {
+                    type: 'list',
+                    config: {
+                        list: [
+                            {
+                                value: "Yes",
+                                title: "Yes",
+                            },
+                            {
+                                value: "No",
+                                title: "No"
+                            }
+                        ]
+                    }
                 }
             }
         },
@@ -172,9 +190,17 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         if (this.newclitem['status'] == '' || null || undefined) {
             this.newclitem['status'] = "Active";
         }
-        this.appService.newclitem = this.newclitem;
-        this.result = true;
-        this.close();
+        if (this.newclitem['firstName'] == '' || this.newclitem['firstName'] == null || this.newclitem['firstName'] == undefined || this.newclitem['lastName'] == '' || this.newclitem['lastName'] == null || this.newclitem['lastName'] == undefined || this.newclitem['email'] == '' || this.newclitem['email'] == null || this.newclitem['email'] == undefined || this.newclitem['phone'] == '' || this.newclitem['phone'] == null || this.newclitem['phone'] == undefined) {
+          this.warningMessage=true;
+        }
+        else{
+            this.warningMessage=false;
+            this.appService.newclitem = this.newclitem;
+            this.result = true;
+            this.close();
+        }
+        
+       
     }
     cancel() {
         this.result = false;

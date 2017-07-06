@@ -41,6 +41,12 @@
                       </li>
                   </ul>
               </li>
+          <li>
+              <a (click)="appservice.moveToPage('immigrationview-petition-notes');highlightSBLink('Notes')" [ngClass]="[checkForCurrentSBLink('Notes') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-questionnaire"></span>
+                  <span>Notes</span>
+              </a>
+          </li>
           </ul>
 
       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-client'">

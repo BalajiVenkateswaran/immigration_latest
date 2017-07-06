@@ -178,6 +178,8 @@ import {SuperUserViewInvoicestabService} from './components/superuserview-invoic
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
+import { ManageAccountInvoiceService } from "./components/manageaccount-invoices/manageaccount-invoices.service";
+
 @NgModule({
     imports: [
         BrowserModule,

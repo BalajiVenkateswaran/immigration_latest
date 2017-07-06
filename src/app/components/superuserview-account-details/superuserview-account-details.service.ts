@@ -13,7 +13,7 @@ export class SuperuserViewAccountDetailsService {
     }
     public saveAccountdetails(accountdetails: any) {
         console.log("superuserview-account|saveaccountdetails|accountdetails:%o", accountdetails);
-       
+ 
         return this.restService.postData("/superuser/account/details", accountdetails);
     }
 }

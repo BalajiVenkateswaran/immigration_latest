@@ -10,15 +10,9 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
+import {ManageAccountpreferencessService} from './manageaccount-preferences.service';
 
 
-export interface ConfirmModel {
-    title: string;
-    message: string;
-    addNewClient: boolean;
-    getClientsData: boolean;
-
-}
 @Component({
     selector: 'app-manageaccount-preferences',
     templateUrl: './manageaccount-preferences.component.html',
@@ -26,7 +20,8 @@ export interface ConfirmModel {
 })
 export class ManageAccountPreferencesComponent implements OnInit {
 
-
+    public products:any=[];
+    public discounts:any=[];
     public DefaultResponse = { "status": "Active" };
     settings = {
         add: {
@@ -68,7 +63,7 @@ export class ManageAccountPreferencesComponent implements OnInit {
     };
     //source: LocalDataSource = new LocalDataSource();
     private user: User;
-    constructor(private appService: AppService) {
+    constructor(private appService: AppService,private manageAccountpreferencessService:ManageAccountpreferencessService) {
         if (this.appService.user) {
             this.user = this.appService.user;
 
@@ -76,5 +71,22 @@ export class ManageAccountPreferencesComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getproducts();
+        this.getdiscounts();
+    }
+    getproducts() {
+        this.manageAccountpreferencessService.getproductsAccount(this.appService.user.accountId).subscribe((res) => {
+            if (res['statusCode'] == "SUCCESS") {
+                this.products = res['products'];
+            }
+        });
+    }
+    getdiscounts() {
+        this.manageAccountpreferencessService.getdiscountsAccount(this.appService.user.accountId).subscribe((res) => {
+            if (res['statusCode'] == "SUCCESS") {
+                this.discounts = res['discounts'];
+
+            }
+        });
     }
 }

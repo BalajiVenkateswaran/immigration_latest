@@ -34,7 +34,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     public getDependents: boolean=true;
     public addedData: any = {};
     public addDependnts: any;
-
+    public warningMessage:boolean=false;
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -114,9 +114,15 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     }
     dependentSave() {
         this.addDependents['clientId'] = this.appService.clientId;
-        this.appService.addDependents = this.addDependents;     
-        this.result = true;
-        this.close();
+        if (this.addDependents['firstName'] == '' || this.addDependents['firstName'] == null || this.addDependents['firstName'] == undefined || this.addDependents['lastName'] == '' || this.addDependents['lastName'] == null || this.addDependents['lastName'] == undefined || this.addDependents['relation'] == '' || this.addDependents['relation'] == null || this.addDependents['relation'] == undefined) {
+            this.warningMessage = true;
+        } else {
+            this.warningMessage = false;
+            this.appService.addDependents = this.addDependents;
+            this.result = true;
+            this.close();
+        }
+        
     }
     cancel() {
         this.result = false;
