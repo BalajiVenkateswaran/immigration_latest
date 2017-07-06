@@ -5,7 +5,6 @@ import {ImmigrationViewPetitionDetailsService} from "./petition-details.service"
 import {User} from "../../models/user";
 import {ImmigrationViewPetitionInformation} from "../../models/ImmigrationViewPetitionInformation";
 import {ImmigrationViewReceiptInformation} from "../../models/ImmigrationViewReceiptInformation";
-import {ImmigrationViewPetitionNotes} from "../../models/ImmigrationViewPetitionNotes";
 import {ImmigrationViewLCAInformation} from "../../models/ImmigrationViewLCAInformation";
 import {ImmigrationViewSponsorInformation} from "../../models/ImmigrationViewSponsorInformation";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
