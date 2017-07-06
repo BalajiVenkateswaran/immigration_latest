@@ -16,10 +16,7 @@
     <div class="col-md-4 text-center pull-left">
       <div class="datails-holder-name">
             <div class="pull-left">
-                  <h4 *ngIf="applicationViewMode=='Immigration'"><strong>{{selectedOrg.orgName}}</strong></h4>
-                  <!--<select #orgSelect required *ngIf="orgNamevisible==true && editorg==true" [(ngModel)]="selectedOrg" (focusout)="onFocusOut()" (ngModelChange)="changeOrg($event)">
-                      <option *ngFor="let org of orgNamelist" [ngValue]="org">{{org.orgName}}</option>
-                  </select>-->
+                  <h4 *ngIf="applicationViewMode=='Immigration'"><strong>{{selectedOrg.orgName}}</strong></h4>                
                 </div>
           <div class="pull-left">
               <a class="ico-edit" *ngIf="applicationViewMode=='Immigration'" (click)="editorgname(orgSelect)"></a>
