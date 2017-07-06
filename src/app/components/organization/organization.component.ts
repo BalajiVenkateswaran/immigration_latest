@@ -20,7 +20,7 @@ export interface formControl {
 })
 export class OrganizationComponent implements OnInit {
 
-
+    public warningMessage: boolean = false;
     isProfileEdit;
     isAdminEdit: boolean = true;
     isSigninEdit: boolean = true;
@@ -88,20 +88,33 @@ export class OrganizationComponent implements OnInit {
         }
         this.orgDetails['orgId'] = this.appService.orgId;
 
-        this.organizationService.saveOrgDetails(this.orgDetails, this.appService.user.userId)
-            .subscribe((res) => {
-                this.isProfileEdit = true;
-                if (res['organizationDetails']) {
-                   this.orgDetails = res['organizationDetails'];
-                }
+        if (this.orgDetails['markForDeletion'] == true) {
+            this.orgDetails['status'] == "MFD";
+        }
+        if (this.orgDetails['fileNumber'] == '' || this.orgDetails['fileNumber'] == null || this.orgDetails['fileNumber'] == undefined
+            || this.orgDetails['orgName'] == '' || this.orgDetails['orgName'] == null || this.orgDetails['orgName'] == undefined
+            || this.orgDetails['nameOnForms'] == '' || this.orgDetails['nameOnForms'] == null || this.orgDetails['nameOnForms'] == undefined
+            || this.orgDetails['status'] == '' || this.orgDetails['status'] == null || this.orgDetails['status'] == undefined
+            || this.orgDetails['email'] == '' || this.orgDetails['email'] == null || this.orgDetails['email'] == undefined) {
+            this.warningMessage = true;
+        } else {
+            this.warningMessage = false;
+            this.organizationService.saveOrgDetails(this.orgDetails, this.appService.user.userId)
+                .subscribe((res) => {
+                    this.isProfileEdit = true;
+                    if (res['organizationDetails']) {
+                        this.orgDetails = res['organizationDetails'];
+                    }
 
-                if (res['statusCode'] == "FAILURE") {
-                                    this.dialogService.addDialog(ConfirmComponent, {
-                                        title: 'Error..!',
-                                        message: 'Organization has Active Clients Associated..'
-                                    });
-                                }
-            });
+                    if (res['statusCode'] == "FAILURE") {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Organization has Active Clients Associated..'
+                        });
+                    }
+                });
+        }
+       
 
     }
 
