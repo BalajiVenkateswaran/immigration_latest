@@ -45,6 +45,7 @@ export interface ConfirmModel {
 })
 export class ImmigrationviewQuestionnaireComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     //1st table of quotionaries
+    sfmQuestionnaire: boolean = false;
     confirmResult: boolean = null;
     private message: string;
     private user: User;
@@ -201,9 +202,17 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     }
     questionnaireSave() {
         this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
-        this.appService.newQuestionnaireitem = this.newQuestionnaireitem;
-        this.result = true;
-        this.close();
+
+        if (this.newQuestionnaireitem['formId'] == '' || this.newQuestionnaireitem['formId'] == null || this.newQuestionnaireitem['formId'] == undefined || this.newQuestionnaireitem['questionnaireName'] == '' || this.newQuestionnaireitem['questionnaireName'] == null || this.newQuestionnaireitem['questionnaireName'] == undefined) {
+            this.sfmQuestionnaire = true;
+        } else {
+            this.sfmQuestionnaire = false;
+            this.appService.newQuestionnaireitem = this.newQuestionnaireitem;
+            this.result = true;
+            this.close();
+        }
+
+        
     }
     cancel() {
         this.result = false;

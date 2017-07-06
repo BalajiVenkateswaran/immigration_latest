@@ -177,23 +177,28 @@
                     <div class="col-md-10">
                         <div class="row">
                             
-                            <div class="col-md-5" *ngIf="addquspopup">Form Name :</div>
-                            <div class="col-md-7" *ngIf="addquspopup">
-                                <select [(ngModel)]="newQuestionnaireitem.formId"  class="form-control">
+                            <div class="col-md-6" *ngIf="addquspopup"><span class="redstar">*</span> Form Name :</div>
+                            <div class="col-md-6" *ngIf="addquspopup">
+                                <select [(ngModel)]="newQuestionnaireitem.formId"  class="form-control" [ngClass]="newQuestionnaireitem.formId == '' ? 'redborder': ''">
                                     <option *ngFor="let x of formsList" [ngValue]="x.applicationFormsId" [selected]="x.applicationFormsId === questionnaire.formId">{{x.formName}}</option>
                                 </select>
                             </div>
-                            <div class="col-md-5">Questionnaire Name :</div>
-                            <div class="col-md-7">
-                                <input type="text" [(ngModel)]="newQuestionnaireitem.questionnaireName" class="form-control" />
+                            <div class="col-md-6"><span class="redstar">*</span> Questionnaire Name :</div>
+                            <div class="col-md-6">
+                                <input type="text" [(ngModel)]="newQuestionnaireitem.questionnaireName" class="form-control" [ngClass]="newQuestionnaireitem.questionnaireName == '' ? 'redborder': ''" />
                             </div>
-                            <div class="col-md-5" *ngIf="editquspopup">Status :</div>
-                            <div class="col-md-7" *ngIf="editquspopup">
+                            <div class="col-md-6" *ngIf="editquspopup"><span class="redstar">*</span> Status :</div>
+                            <div class="col-md-6" *ngIf="editquspopup">
                                 <select [(ngModel)]="newQuestionnaireitem.clientStatus" class="form-control">
                                     <option *ngFor="let x of status">{{x.clientStatus}}</option>
                                 </select>
                             </div>
                           </div>
+                        <div class="row sfm" *ngIf="sfmQuestionnaire">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
