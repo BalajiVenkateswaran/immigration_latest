@@ -189,7 +189,6 @@ label {
   display: block; }
 
 .redstar {
-  color: red;
   font-size: 14px;
   font-weight: bold; }
 
@@ -1471,7 +1470,8 @@ tr.i129htblRow:nth-child(even) {
 
 .sfm {
   margin-bottom: 12px;
-  margin-top: 12px; }
+  font-size: 12px;
+  color: red; }
 
 @media (min-width: 576px) {
   .modal-dialog {
