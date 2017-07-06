@@ -173,6 +173,7 @@ import {SuperUserViewInvoicestabService} from './components/superuserview-invoic
 
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
+import { ManageAccountInvoiceService } from "./components/manageaccount-invoices/manageaccount-invoices.service";
 
 @NgModule({
     imports: [
@@ -365,7 +366,8 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
 
         SuperuserViewAccountpreferencessService,
 
-        ManageAccountpreferencessService
+        ManageAccountpreferencessService,
+        ManageAccountInvoiceService
     ],
     bootstrap: [AppComponent]
 })

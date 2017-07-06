@@ -7,7 +7,7 @@ import {ImmigrationViewPetitionNotes} from "../../models/ImmigrationViewPetition
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
-
+import {ImmigrationViewPetitionInformation} from "../../models/ImmigrationViewPetitionInformation";
 export interface formControl {
     name: string;
     value: FormControl;
@@ -21,6 +21,7 @@ export class ImmigrationviewPetitionNotesComponent implements OnInit {
     private user: User;
     private notes: string;
     private petitionDetails: any = {};
+    petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
         private beforeCancelPetition;
     //Profile section variables
     isNotesEdit;
