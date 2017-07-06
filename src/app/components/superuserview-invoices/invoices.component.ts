@@ -86,7 +86,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
         }
     };
     constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
-        super(dialogService); 
+        super(dialogService);
     }
     source: LocalDataSource = new LocalDataSource();
     getCliData() {
@@ -97,15 +97,15 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
             });
     }
       ngOnInit() {
-          this.appService.showSideBarMenu(null, "invoices");
-    this.superuserviewInvoicestabService.getInvoices(this.appService.orgId)
-      .subscribe((res: any) => {
-          this.invoicesList = res.invoices;
-        this.source.load(this.invoicesList);
-        });
-    if (this.appService.user) {
-        this.user = this.appService.user;
-    }
+      this.appService.showSideBarMenu(null, "invoices");
+      this.superuserviewInvoicestabService.getInvoices(this.appService.orgId)
+        .subscribe((res: any) => {
+            this.invoicesList = res.invoices;
+          this.source.load(this.invoicesList);
+          });
+      if (this.appService.user) {
+          this.user = this.appService.user;
+      }
   }
     //addNewCli() {
     //    this.dialogService.addDialog(SuperUserViewInvoicestabComponent, {
@@ -201,7 +201,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
       this.menuComponent.highlightSBLink('Account Details Invoices');
       this.appService.moveToPage("accountdetails-invoice");
     this.appService.clientId = event.data.clientId;
-      
+
   }
 
 }

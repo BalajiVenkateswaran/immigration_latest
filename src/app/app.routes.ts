@@ -311,7 +311,7 @@ export const appRoutes: Routes = [
     },
     //superuserview
     {
-        path: 'accounts',
+        path: 'superuser-accounts',
         component: superuserViewAccountsComponent
     },
   {

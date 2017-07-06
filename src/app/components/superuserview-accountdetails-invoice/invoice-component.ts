@@ -30,7 +30,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     public getInvoice: boolean = true;
     public addInvoice: boolean;
     public accountInvoice: boolean = false;
-    private user: User;  
+    private user: User;
     public AccountInvoices: any;
     public viewRowDetails: any = {};
     public isEditInvoice:boolean=true;
@@ -79,7 +79,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     //        },
     //        viewDetails: {
     //            title:'View Details'
-    //        }      
+    //        }
     //    },
     //    pager: {
     //        display: true,
@@ -95,7 +95,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     }
    // source: LocalDataSource = new LocalDataSource();
     ngOnInit() {
-        this.appService.showSideBarMenu("accounts", "accounts");
+        //this.appService.showSideBarMenu("accounts", "accounts");
         this.accountInvoiceService.getAccountInvoice(this.user.accountId)
             .subscribe((res) => {
                 console.log("getinoices%o", res);
@@ -103,11 +103,11 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
                     this.AccountInvoices = res['invoices'];
                 }
                 console.log(this.AccountInvoices);
-                
+
             });
         //this.source.load(this.AccountInvoices);
     }
-    
+
     onDeleteConfirm(event): void { }
     onEditConfirm(event): void { }
     //addNewInvoice(){
@@ -117,7 +117,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     //        title: 'Add Invoice'
     //    }).subscribe((isConfirmed) => {
     //        if (isConfirmed) {
-             
+
     //        }
     //    });
     //}

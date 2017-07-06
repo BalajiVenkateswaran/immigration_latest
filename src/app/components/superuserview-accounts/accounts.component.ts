@@ -27,7 +27,14 @@ export interface ConfirmModel {
     templateUrl: './accounts.component.html'
 })
 export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-
+    private outlet: any = {
+        breadcrumbs: null,
+        header: 'header',
+        message: null,
+        carousel: null,
+        menu: 'menu',
+        footer: null
+    };
     public accountList=[];
     public addClient: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
@@ -85,7 +92,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             storageType:{
                 title: 'Storage Type',
             },
-            
+
         },
         pager: {
             display: true,
@@ -96,52 +103,25 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     constructor(private clientService: superUserviewAccountService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
         super(dialogService);
     }
-    
+
     getAccountDetail() {
         this.appService.showSideBarMenu(null, "accounts");
         this.clientService.getAccountDetails().subscribe((res) => {
-            if(res['statusCode']=='SUCCESS'){              
+            if(res['statusCode']=='SUCCESS'){
                 console.log(res['accountInfoList']);
                 this.source.load(res['accountInfoList']);
 
             }
         });
-    }   
-   
+    }
+
     ngOnInit() {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
-        this.appService.showSideBarMenu(null, "accounts");
+        //this.appService.showSideBarMenu("superuser-accounts", "account-details");
+        this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
         this.getAccountDetail();
-     
-    //    this.accountList=[
-    //        {
-    //            "accountName":"Balaji Venkateswaran",
-    //            "accountNumber":"545465646",
-    //            "firstName":"Balaji",
-    //            "lastName":"Venkateswaran",
-    //            "email":"balaji@gmail.com",
-    //            "phone":"9490017854",
-    //            "status":"Active",
-    //            "createdOn":"07-03-2017",
-    //            "storageType":"S3"
-
-    //        },
-    //        {
-    //            "accountName":"Raja",
-    //            "accountNumber":"545465646",
-    //            "firstName":"Raja",
-    //            "lastName":"Raja",
-    //            "email":"Raja@gmail.com",
-    //            "phone":"949001794",
-    //            "status":"Active",
-    //            "createdOn":"07-03-2017",
-    //            "storageType":"S3"
-
-    //        }
-    //];
-
     }
     addNewCli() {
         this.dialogService.addDialog(superuserViewAccountsComponent, {
@@ -150,12 +130,12 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             title: 'Add Client',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                
+
                 this.clientService.createAccount(this.appService.newclitem).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getAccountDetail();
                     }
-                    
+
                 });
             }
         });

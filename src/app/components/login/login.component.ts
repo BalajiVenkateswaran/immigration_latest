@@ -96,13 +96,13 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
 
   loginSubmit(model: User, isValid: boolean) {
     if (isValid) {
-        this.ManageAccountUserService.login(model).subscribe((res: any) => {          
-            console.log("Login User %o", res);        
+        this.ManageAccountUserService.login(model).subscribe((res: any) => {
+            console.log("Login User %o", res);
             if (res.statusCode == "FAILURE") {
                 this.message = res.statusDescription;
-            } else {               
-                if (res.hasMultipleRoles == true) {                
-                
+            } else {
+                if (res.hasMultipleRoles == true) {
+
                     this.dialogService.addDialog(LoginComponent, {
                         selectrole: true,
                         getloginpage: false,
@@ -110,12 +110,12 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                         userRoles: res['userAccountRoleList'],
                     }).subscribe((isConfirmed) => {
                         if (isConfirmed) {
-                  
+
 
                         }
                         });
                     this.appService.user = res.user;
-                 
+
                 }
                 if (res.hasMultipleRoles == false) {
                     this.appService.user = res.user;
@@ -139,11 +139,10 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                         this.appService.currentTab = 'clientview-petitions';
                         this.appService.moveToPage("clientview-petitions");
                     }
-                  //TODO - Need To change super user routing
                     if (res.userAccountRoleList[0].roleName == "SUPER USER") {
                         this.appService.applicationViewMode = "Superuser";
-                        this.appService.currentTab = 'accounts';
-                        this.appService.moveToPage("superuser-account");
+                        this.appService.currentTab = 'superuser-accounts';
+                        this.appService.moveToPage("superuser-accounts");
                     }
                 }
             }
@@ -156,12 +155,12 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
 
   }
 
-  selectedRole(userdet) {    
+  selectedRole(userdet) {
       this.appService.selacntId = userdet.accountId;
       this.appService.selroleId = userdet.roleId;
       this.appService.rolemultiple = true;
-      this.result = true;     
-      this.appService.user['roleName'] = userdet.roleName;    
+      this.result = true;
+      this.appService.user['roleName'] = userdet.roleName;
       if (userdet.roleName == "CLIENT") {
           this.appService.applicationViewMode = "Client";
           this.appService.clientId = this.appService.user.userId;
@@ -169,16 +168,14 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
           this.appService.moveToPage("clientview-petitions");
       }
       if (userdet.roleName == "IMMIGRATION MANAGER" || userdet.roleName == "IMMIGRATION OFFICER") {
-          this.appService.applicationViewMode = "Immigration";       
+          this.appService.applicationViewMode = "Immigration";
           this.appService.currentTab = 'petitions';
           this.appService.moveToPage("petitions");
       }
-                        //TODO - Need To change super user routing
-
       if (userdet.roleName == "SUPER USER") {
-          this.appService.applicationViewMode = "Superuser";                 
-          this.appService.currentTab = 'accounts';
-          this.appService.moveToPage("superuser-account");
+          this.appService.applicationViewMode = "Superuser";
+          this.appService.currentTab = 'superuser-accounts';
+          this.appService.moveToPage("superuser-accounts");
       }
       this.close();
   }

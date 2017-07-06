@@ -91,7 +91,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
 
         }
     }
-    
+
     getPaymentDetails(){
         this.accountsPaymentService.getPaymentDetails(this.user.accountId).subscribe(
             res=>{
@@ -103,7 +103,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         )
     }
     ngOnInit() {
-        this.appService.showSideBarMenu("accounts", "accounts");
+        //this.appService.showSideBarMenu("accounts", "accounts");
         this.getPaymentDetails();
     }
     addNewPayments() {
@@ -149,13 +149,13 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
               });
            }
            else{
-               
-               //this.editFlag = false;  
+
+               //this.editFlag = false;
            }
         });
     }
     editpaymentsInfo(){
-      this.isEditpayments = !this.isEditpayments;    
+      this.isEditpayments = !this.isEditpayments;
     }
     cancelpaymentsInfo(){
       this.isEditpayments = !this.isEditpayments;

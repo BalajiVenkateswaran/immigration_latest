@@ -17,7 +17,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     isEdit;
     isEditstorage;
     public cancelUserEdit: boolean = false;
-    private user: User;  
+    private user: User;
     public createdOn: any;
     constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService) {
         if (this.appService.user) {
@@ -32,7 +32,8 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     };
     private beforeCancelAccountdetails;
     ngOnInit() {
-        this.appService.showSideBarMenu("accounts", "accounts");
+        this.appService.showSideBarMenu("superuser-accounts", null);
+        //this.appService.showSideBarMenu("accounts", "accounts");
         this.storagenable();
         this.getAcountDetails();
     }
@@ -72,14 +73,14 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
         this.cancelUserEdit = true;
         this.storagenable();
         this.createdOn = this.accountDetails.createdOn;
-      
+
     }
     //cancel button function
     cancelEdit(event, i) {
         this.accountDetails = this.beforeCancelAccountdetails;
         if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
             this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
-        }        
+        }
      if (this.cancelUserEdit == true) {
             this.ngOnInit();
             this.isEdit[i] = !this.isEdit[i];
@@ -91,7 +92,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
         if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
             this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
         }
-       
+
         this.accountDetails['accountId'] = this.user.accountId;
         this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
             .subscribe((res) => {

@@ -121,7 +121,7 @@
                   <span>I -797 History</span>
               </a>
           </li>
-          
+
       </ul>
 
       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
@@ -304,7 +304,7 @@
           </li>
       </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='accounts'">   
+    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-accounts'">
          <li>
               <a (click)="appservice.moveToPage('account-details');highlightSBLink('Account Details')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-history"></span>
@@ -335,10 +335,10 @@
                 <span>Payments</span>
             </a>
         </li>
-        
-    </ul>  
 
-       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">   
+    </ul>
+
+       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">
           <li>
               <a (click)="appservice.moveToPage('superuserview-productcatalog');highlightSBLink('Products')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-history"></span>
@@ -351,6 +351,6 @@
                   <span>Discounts</span>
               </a>
           </li>
-    </ul>  
+    </ul>
   </div>
 
