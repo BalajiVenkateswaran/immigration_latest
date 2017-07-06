@@ -35,10 +35,6 @@
                         <div class="col-md-4"><label for="wa-name">Type</label></div>
                         <div class="col-md-8">
                             <input type="text" *ngIf="isProfileEdit==false" id="wa-state" [readonly]="true" [(ngModel)]="orgDetails.orgType" />
-                        <!--<select *ngIf="isProfileEdit==false" [(ngModel)]="orgDetails.orgType" [readonly]="true">
-                            <option value="Regular">Regular</option>
-                            <option value="Delegated">Delegated</option>
-                        </select>-->
                         <span *ngIf="isProfileEdit==true">{{orgDetails.orgType}}</span></div>
                     </div>
                     <div class="row">
