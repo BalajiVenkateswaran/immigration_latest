@@ -398,7 +398,7 @@
                         <div class="col-md-4"><label for="pi-petitiondescription">Valid Thru Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.validThruDate" [selDate]="validThruDate"></my-date-picker>
-                            <!--<span *ngIf="isLCAInfoEdit==true">{{lcaInfo.validThruDate}}</span>-->
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.validThruDate}}</span>
                         </div>
                     </div>
                     <div class="row">

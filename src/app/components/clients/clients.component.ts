@@ -94,7 +94,22 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                 }
             },
             openPetitions:{
-                title:'Open Petitions',
+                title: 'Open Petitions',
+                editor: {
+                    type: 'list',
+                    config: {
+                        list: [
+                            {
+                                value: "Yes",
+                                title: "Yes",
+                            },
+                            {
+                                value: "No",
+                                title: "No"
+                            }
+                        ]
+                    }
+                }
             }
         },
         pager: {
@@ -172,7 +187,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         this.newclitem['accountId'] = this.appService.user.accountId;
         this.newclitem['orgId'] = this.appService.orgId;
         this.newclitem['createdBy'] = this.appService.user.userId;
-        if(this.newclitem['firstName']==''||this.newclitem['lastName']==''||this.newclitem['email']==''||this.newclitem['phone']==''){
+        if (this.newclitem['status'] == '' || null || undefined) {
+            this.newclitem['status'] = "Active";
+        }
+        if (this.newclitem['firstName'] == '' || this.newclitem['firstName'] == null || this.newclitem['firstName'] == undefined || this.newclitem['lastName'] == '' || this.newclitem['lastName'] == null || this.newclitem['lastName'] == undefined || this.newclitem['email'] == '' || this.newclitem['email'] == null || this.newclitem['email'] == undefined || this.newclitem['phone'] == '' || this.newclitem['phone'] == null || this.newclitem['phone'] == undefined) {
           this.warningMessage=true;
         }
         else{
@@ -181,9 +199,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             this.result = true;
             this.close();
         }
-        if (this.newclitem['status'] == '' || null || undefined) {
-            this.newclitem['status'] = "Active";
-        }
+        
        
     }
     cancel() {

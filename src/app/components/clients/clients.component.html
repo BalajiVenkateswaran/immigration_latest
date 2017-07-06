@@ -22,11 +22,7 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <div class="row" *ngIf="warningMessage">
-                            <div class="col-md-12">
-                                <span class="redstar">* Fields are Mandatory.</span>
-                            </div>
-                        </div>
+                        
                         <div class="row">
                             <div class="col-md-4">First Name:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="newclitem.firstName" [ngClass]="newclitem.firstName == '' ? 'redborder': ''"
@@ -40,13 +36,11 @@
                             <div class="col-md-4">Phone:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="newclitem.phone" [ngClass]="newclitem.phone == '' ? 'redborder': ''"
                                     class="form-control"></div>
-                            <!--<div class="col-md-4">Status:</div>
-                            <div class="col-md-8">
-                            <select [(ngModel)]="newclitem.status" class="form-control">
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                            </div>-->
+                        </div>
+                        <div class="row sfm" *ngIf="warningMessage">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-1"></div>

@@ -189,9 +189,9 @@ label {
   display: block; }
 
 .redstar {
-  color: red;
   font-size: 14px;
-  font-weight: bold; }
+  font-weight: bold;
+  color: red; }
 
 .login_side h2 {
   margin-bottom: 25px;
@@ -1471,7 +1471,7 @@ tr.i129htblRow:nth-child(even) {
 
 .sfm {
   margin-bottom: 12px;
-  margin-top: 12px; }
+  font-size: 12px; }
 
 @media (min-width: 576px) {
   .modal-dialog {
