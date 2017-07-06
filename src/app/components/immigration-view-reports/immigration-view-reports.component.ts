@@ -32,6 +32,7 @@ export class ImmigrationViewReportsComponent implements OnInit {
   }
  
   public randomize():void {
+    
     // Only Change 3 values
     let data = [
       Math.round(Math.random() * 100),

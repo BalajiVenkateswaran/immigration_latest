@@ -179,7 +179,7 @@ import {AccountPreferencesComponent} from './components/superuserview-accountpre
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
 import { ManageAccountInvoiceService } from "./components/manageaccount-invoices/manageaccount-invoices.service";
-
+import {ImmigrationviewPetitionNotesComponent } from './components/immigrationview-petition-notes/petition-notes.component'
 @NgModule({
     imports: [
         BrowserModule,
@@ -290,7 +290,8 @@ import { ManageAccountInvoiceService } from "./components/manageaccount-invoices
 
 
 
-        ImmigrationViewReportsComponent
+        ImmigrationViewReportsComponent,
+        ImmigrationviewPetitionNotesComponent
 
     ],
     providers: [
