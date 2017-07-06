@@ -56,12 +56,14 @@
           <li><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');"   [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"   routerLinkActive="active">Organization</a></li>
           <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
           <li><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"   routerLinkActive="active">Manage Account</a></li>
-          <li><a (click)="appService.moveToPage('accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']"  routerLinkActive="active">Accounts</a></li>
-          <!--<li><a (click)="appService.moveToPage('superuserview-managersaccount'); highlightTab('superuserview-managersaccount');" [ngClass]="[checkForCurrentTab('superuserview-managersaccount') ? 'active': '']"  routerLinkActive="active">Accounts</a></li>-->
-           <li><a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('productcatalog');" [ngClass]="[checkForCurrentTab('productcatalog') ? 'active': '']"  routerLinkActive="active">Product Catalog</a></li>
-            <li><a (click)="appService.moveToPage('invoices'); highlightTab('invoices');" [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']" routerLinkActive="active">Invoices</a></li>
-            <li><a (click)="appService.moveToPage('payments'); highlightTab('payments');" [ngClass]="[checkForCurrentTab('payments') ? 'active': '']" routerLinkActive="active">Payments</a></li>
-        </ul>
+            </ul>
+            <ul *ngIf="applicationViewMode=='Superuser'">
+                <li><a (click)="appService.moveToPage('accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']" routerLinkActive="active">Accounts</a></li>
+                <!--<li><a (click)="appService.moveToPage('superuserview-managersaccount'); highlightTab('superuserview-managersaccount');" [ngClass]="[checkForCurrentTab('superuserview-managersaccount') ? 'active': '']"  routerLinkActive="active">Accounts</a></li>-->
+                <li><a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('productcatalog');" [ngClass]="[checkForCurrentTab('productcatalog') ? 'active': '']" routerLinkActive="active">Product Catalog</a></li>
+                <li><a (click)="appService.moveToPage('invoices'); highlightTab('invoices');" [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']" routerLinkActive="active">Invoices</a></li>
+                <li><a (click)="appService.moveToPage('payments'); highlightTab('payments');" [ngClass]="[checkForCurrentTab('payments') ? 'active': '']" routerLinkActive="active">Payments</a></li>
+            </ul>
         <ul *ngIf="applicationViewMode=='Client'">
           <li><a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');" [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']" routerLinkActive="active">Petitions</a></li>
           <li><a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');" [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']" routerLinkActive="active">Client Details</a></li>

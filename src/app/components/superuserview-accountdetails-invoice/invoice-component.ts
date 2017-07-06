@@ -129,7 +129,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     getInvoiceInfo(rowdata) {
         //this.invoice=rowdata;
         this.dialogService.addDialog(AccountInvoiceComponent, {
-            title: 'View Innvoice Details',
+            title: 'View Invoice Details',
             viewPopup: true,
             getInvoice: false,
             addInvoice:false,
