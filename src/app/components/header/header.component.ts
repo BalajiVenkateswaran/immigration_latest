@@ -48,15 +48,28 @@ export class HeaderComponent implements AfterViewChecked{
     if(this.appService.user) {
       this.user = this.appService.user;
       }
-    this.orgNamelist = this.appService.organizations;
-    if (this.orgNamelist) {
-        this.selectedOrg = this.orgNamelist[0];
-        if (this.selectedOrg == undefined) {
-            this.selectedOrg = {};
+    if (this.appService.rolemultiple == true) {
+        this.headerservice.getUserOrgs(this.appService.selacntId, this.appService.user.userId, this.appService.selroleId).subscribe((res: any) => {
+            this.appService.organizations = res.orgs;
+            this.orgNamelist = this.appService.organizations;
+            if (this.orgNamelist) {
+                this.selectedOrg = this.orgNamelist[0];
+                if (this.selectedOrg == undefined) {
+                    this.selectedOrg = {};
+                }
+                this.appService.orgId = this.selectedOrg.orgId;
+            }
+        });
+    }
+    else {
+        this.orgNamelist = this.appService.organizations;
+        if (this.orgNamelist) {
+            this.selectedOrg = this.orgNamelist[0];
+            if (this.selectedOrg == undefined) {
+                this.selectedOrg = {};
+            }
+            this.appService.orgId = this.selectedOrg.orgId;
         }
-        this.appService.orgId = this.selectedOrg.orgId;
-
-
     }
   }
   editorgname() {
@@ -81,15 +94,15 @@ export class HeaderComponent implements AfterViewChecked{
     this.appService.menuSlider = (this.appService.menuSlider)? false: true;
   }
   ngDoCheck() {  
-      this.orgNamelist = this.appService.organizations;
-      if (this.orgNamelist) {
-          this.selectedOrg = this.orgNamelist[0];
-          if (this.selectedOrg == undefined) {
-              this.selectedOrg = {};
-          }
-          this.appService.orgId = this.selectedOrg.orgId;    
+      //this.orgNamelist = this.appService.organizations;
+      //if (this.orgNamelist) {
+      //    this.selectedOrg = this.orgNamelist[0];
+      //    if (this.selectedOrg == undefined) {
+      //        this.selectedOrg = {};
+      //    }
+      //    this.appService.orgId = this.selectedOrg.orgId;    
                   
-      }
+      //}
       this.applicationViewMode = this.appService.applicationViewMode;
       this.immigrationManager = this.appService.user.roleName;
       if (this.appService.getorgMenu != undefined) {

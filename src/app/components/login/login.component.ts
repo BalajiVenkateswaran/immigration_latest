@@ -139,13 +139,12 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                         this.appService.currentTab = 'clientview-petitions';
                         this.appService.moveToPage("clientview-petitions");
                     }
-                    // To Do
-                    //if (res.userAccountRoleList[0].roleName == "SUPERUSER") {
-                    //    this.appService.applicationViewMode = "Superuser";
-                    //    this.appService.clientId = this.appService.user.userId;
-                    //    this.appService.currentTab = 'accounts';
-                    //    this.appService.moveToPage("superuser-accounts");
-                    //}
+                  //TODO - Need To change super user routing
+                    if (res.userAccountRoleList[0].roleName == "SUPER USER") {
+                        this.appService.applicationViewMode = "Superuser";
+                        this.appService.currentTab = 'accounts';
+                        this.appService.moveToPage("superuser-account");
+                    }
                 }
             }
         }
@@ -157,11 +156,10 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
 
   }
 
-  selectedRole(userdet) {   
-      this.loginservice.getUserOrgs(userdet.accountId, this.appService.user.userId, userdet.roleId).subscribe((res: any) => {
-          this.appService.organizations = res.orgs;
-         
-      }); 
+  selectedRole(userdet) {    
+      this.appService.selacntId = userdet.accountId;
+      this.appService.selroleId = userdet.roleId;
+      this.appService.rolemultiple = true;
       this.result = true;     
       this.appService.user['roleName'] = userdet.roleName;    
       if (userdet.roleName == "CLIENT") {
@@ -174,7 +172,14 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
           this.appService.applicationViewMode = "Immigration";       
           this.appService.currentTab = 'petitions';
           this.appService.moveToPage("petitions");
-      }    
+      }
+                        //TODO - Need To change super user routing
+
+      if (userdet.roleName == "SUPER USER") {
+          this.appService.applicationViewMode = "Superuser";                 
+          this.appService.currentTab = 'accounts';
+          this.appService.moveToPage("superuser-account");
+      }
       this.close();
   }
 }
