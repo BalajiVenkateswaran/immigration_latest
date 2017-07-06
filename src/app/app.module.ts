@@ -9,6 +9,12 @@ import {APP_BASE_HREF, CurrencyPipe} from '@angular/common';
 import {RouterModule, Router}   from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { ChartsModule } from 'ng2-charts';
+import Chart from 'chart.js';
+import '../../node_modules/chart.js/dist/Chart.bundle.min.js'; 
+//import { ChartsModule } from 'ng2-charts/components/charts/charts';
+
+
 //import {Ng2PaginationModule} from 'ng2-pagination';
 
 import {AppComponent}  from './components/app/app.component';
@@ -171,9 +177,11 @@ import {SuperUserViewInvoicestabService} from './components/superuserview-invoic
 
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
+import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
 @NgModule({
     imports: [
         BrowserModule,
+        ChartsModule,
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
@@ -275,7 +283,12 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
 
 
 
-        SuperuserviewProductcatalogDiscountsComponent
+        SuperuserviewProductcatalogDiscountsComponent,
+
+
+
+
+        ImmigrationViewReportsComponent
 
     ],
     providers: [

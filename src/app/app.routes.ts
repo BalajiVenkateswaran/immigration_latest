@@ -81,6 +81,7 @@ import {SuperUserViewInvoicestabComponent} from './components/superuserview-invo
 
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
+import { ImmigrationViewReportsComponent } from "./components/immigration-view-reports/immigration-view-reports.component";
 
 
 
@@ -298,6 +299,10 @@ export const appRoutes: Routes = [
     {
         path: 'reset-password',
         component: ResetPasswordComponent
+    },
+    {
+        path:'immigrationview-reports',
+        component:ImmigrationViewReportsComponent
     },
     //superuserview
     {
