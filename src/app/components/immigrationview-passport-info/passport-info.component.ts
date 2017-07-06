@@ -69,6 +69,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
     }
     //cancel button function
     cancelEdit(event, i) {
+        this.warningMessage = false;
         this.passport = this.beforeCancelPassport;
         if (this.passport['isuanceDate'] && this.passport['isuanceDate']['formatted']) {
             this.passport['isuanceDate'] = this.passport['isuanceDate']['formatted'];
