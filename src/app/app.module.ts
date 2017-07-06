@@ -159,7 +159,7 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import { AccountManagersService } from './components/superuserview-accountdetails-managers/accountmanagers.service';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
-
+import { ManageAccountpreferencessService } from "./components/manageaccount-preferences/manageaccount-preferences.service";
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 import {markfordeletionservice} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.service';
@@ -173,6 +173,7 @@ import {SuperUserViewInvoicestabService} from './components/superuserview-invoic
 
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -362,7 +363,9 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
         AccountDetailsPaymentsService,
 
 
-        SuperuserViewAccountpreferencessService
+        SuperuserViewAccountpreferencessService,
+
+        ManageAccountpreferencessService
     ],
     bootstrap: [AppComponent]
 })

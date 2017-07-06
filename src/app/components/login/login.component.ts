@@ -119,6 +119,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                 if (res.hasMultipleRoles == false) {
                     this.appService.user = res.user;
                     this.appService.organizations = res.organizationList;
+                    this.appService.user.accountId=res.userAccountRoleList[0].accountId;
                     this.appService.user['roleName'] = res.userAccountRoleList[0].roleName;
                 //Reset password
                 if (res['resetPassword'] != undefined
@@ -167,6 +168,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
       }
       if (userdet.roleName == "IMMIGRATION MANAGER" || userdet.roleName == "IMMIGRATION OFFICER") {
           this.appService.applicationViewMode = "Immigration";
+          this.appService.user.accountId=userdet.accountId;
           this.appService.orgId = "2c9fc60d5c090bae015c0aab9958002b";
           this.appService.currentTab = 'petitions';
           this.appService.moveToPage("petitions");
