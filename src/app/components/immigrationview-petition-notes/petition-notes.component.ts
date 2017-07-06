@@ -15,8 +15,7 @@ export interface formControl {
 
 @Component({
     selector: 'app-petition-notes',
-    templateUrl: './petition-notes.component.html',
-    styleUrls: ['./petition-notes.component.sass']
+    templateUrl: './petition-notes.component.html'
 })
 export class ImmigrationviewPetitionNotesComponent implements OnInit {
     private user: User;

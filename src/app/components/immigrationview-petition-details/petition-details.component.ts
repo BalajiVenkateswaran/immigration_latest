@@ -195,6 +195,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
         ]
 
+        if (this.petitionDetails['markForDeletion'] == true) {
+            this.petitionDetails['status'] == "MFD";
+        }
         this.defaultSelected = this.receiptNumber[1].name;
         console.log(this.defaultSelected);
 
@@ -240,6 +243,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         }
         if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
             this.petitionDetails['withdrawDate'] = this.petitionDetails['withdrawDate']['formatted'];
+        }
+        if (this.petitionDetails['markForDeletion'] == true) {
+            this.petitionDetails['status'] == "MFD";
         }
         if (this.petitionDetails['name'] == '' || this.petitionDetails['name'] == null || this.petitionDetails['name'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined) {
             this.sfmpi = true;
