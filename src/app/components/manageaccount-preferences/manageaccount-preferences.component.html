@@ -57,18 +57,23 @@
                         <td><input type="text" name="" /></td>
                         <td><input type="text" name="" /></td>
                     </tr>
-                    <tr>
-                        <td>NPS Tier 1 </td>
-                        <td>17-01-2017</td>
-                        <td>6</td>
-                        <td>4</td>
-                        <td>6</td>
-                        <td>4</td>
-                        <td>6</td>
-                        <td>4</td>
-                        <td>6</td>
-                        <td>4</td>
-                    </tr>
+                    
+                    <tr *ngFor="let product of products">
+                    <td class="actions">
+                        <a (click)="addEditProduct('edit')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.code}}</td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.startDate}}</td>
+                    <td>{{product.endDate}}</td>
+                    <td>{{product.maxUsers}}</td>
+                    <td>{{product.maxClientsPerMonth}}</td>
+                    <td>{{product.maxPetitionsPerMonth}}</td>
+                    <td>{{product.maxS3Storage}}</td>
+                    <td>{{product.cost}}</td>
+                </tr> 
+                   
                 </tbody>
             </table>
 
@@ -111,18 +116,97 @@
                         <td><input type="text" name="" /></td>
                         <td><input type="text" name="" /></td>
                     </tr>
-                    <tr>
-                        <td>NPS Tier 1 </td>
-                        <td>17-01-2017</td>
-                        <td>6</td>
-                        <td>4</td>
-                        <td>6</td>
-                        <td>4</td>
-                        <td>6</td>
-                    </tr>
+                   <tr *ngFor="let discount of discounts">
+                    
+                    <td>{{discount.name}}</td>
+                    <td>{{discount.code}}</td>
+                    <td>{{discount.description}}</td>
+                    <td>{{discount.startDate}}</td>
+                    <td>{{discount.endDate}}</td>
+                    <td>{{discount.cost}}</td>
+                    <td>{{discount.percentage}}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
 
 
     </div>
+<!--    <div *ngIf="adddprdctPref">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+               
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-4">Code:</div>
+                                <div class="col-md-8"><input type="text" class="form-control" [disabled]="editprdct" [(ngModel)]="productcode"></div>
+                                <div class="col-md-4">Start Date:</div>
+                                <div class="col-md-8">
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)" [(ngModel)]="productstartDate"
+                                                    [selDate]="startDate"></my-date-picker>
+                                </div>
+                                <div class="col-md-4">End Date:</div>
+                                <div class="col-md-8">
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)" [(ngModel)]="productendDate"
+                                                    [selDate]="endDate"></my-date-picker>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+         
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="productSave()">Save</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="adddiscntPref">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Code:</div>
+                            <div class="col-md-8"><input type="text" class="form-control" [disabled]="editdscnt" [(ngModel)]="disconutcode"></div>
+                            <div class="col-md-4">Start Date:</div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="discountstartDate"
+                                                [selDate]="startDtae"></my-date-picker>
+                            </div>
+                            <div class="col-md-4">End Date:</div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="discountendDate"
+                                                [selDate]="endDate"></my-date-picker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="discountSave()">Save</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>-->
