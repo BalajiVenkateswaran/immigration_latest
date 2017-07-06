@@ -23,11 +23,7 @@
                 <h4 class="modal-title">{{title}}</h4>
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
-            <div class="row" *ngIf="warningMessage">
-                        <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span> 
-                        </div>
-                    </div>
+            
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-1"></div>
@@ -41,6 +37,11 @@
                             <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.lastName" [ngClass]="addDependents.lastName == '' ? 'redborder': ''" class="form-control"></div>
                             <div class="col-md-4">Relation:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addDependents.relation" [ngClass]="addDependents.relation == '' ? 'redborder': ''" class="form-control"></div>
+                        </div>
+                        <div class="row sfm" *ngIf="warningMessage">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
+                            </div>
                         </div>
                         </div>
                     <div class="col-md-1"></div>
