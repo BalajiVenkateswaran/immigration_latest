@@ -101,8 +101,8 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
             if (res.statusCode == "FAILURE") {
                 this.message = res.statusDescription;
             } else {               
-                if (res.hasMultipleRoles == true) {
-                    
+                if (res.hasMultipleRoles == true) {                
+                
                     this.dialogService.addDialog(LoginComponent, {
                         selectrole: true,
                         getloginpage: false,
@@ -115,6 +115,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                         }
                         });
                     this.appService.user = res.user;
+                 
                 }
                 if (res.hasMultipleRoles == false) {
                     this.appService.user = res.user;
@@ -156,9 +157,13 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
 
   }
 
-  selectedRole(userdet) {    
-      this.result = true;
-      this.appService.user['roleName'] = userdet.roleName;
+  selectedRole(userdet) {   
+      this.loginservice.getUserOrgs(userdet.accountId, this.appService.user.userId, userdet.roleId).subscribe((res: any) => {
+          this.appService.organizations = res.orgs;
+         
+      }); 
+      this.result = true;     
+      this.appService.user['roleName'] = userdet.roleName;    
       if (userdet.roleName == "CLIENT") {
           this.appService.applicationViewMode = "Client";
           this.appService.clientId = this.appService.user.userId;
@@ -166,13 +171,10 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
           this.appService.moveToPage("clientview-petitions");
       }
       if (userdet.roleName == "IMMIGRATION MANAGER" || userdet.roleName == "IMMIGRATION OFFICER") {
-          this.appService.applicationViewMode = "Immigration";
-          this.appService.orgId = "2c9fc60d5c090bae015c0aab9958002b";
+          this.appService.applicationViewMode = "Immigration";       
           this.appService.currentTab = 'petitions';
           this.appService.moveToPage("petitions");
-      }
+      }    
       this.close();
   }
-
-
 }
