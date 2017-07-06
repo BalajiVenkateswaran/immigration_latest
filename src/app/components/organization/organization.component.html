@@ -16,83 +16,85 @@
                         </div>
 
                     </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-name">Id</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-name" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.orgDetailsId"  /><span *ngIf="isProfileEdit==true">{{orgDetails.orgDetailsId}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-taxid">Name</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-taxid" [readonly]=true  [(ngModel)]="orgDetails.orgName" /><span *ngIf="isProfileEdit==true">{{orgDetails.orgName}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-door">Name Of Forms</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-door" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.nameOnForms" /><span *ngIf="isProfileEdit==true">{{orgDetails.nameOnForms}}</span></div>
-                    </div>
-                  <div class="row">
-                    <div class="col-md-4"><label for="wa-email">Email</label></div>
-                    <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-email" [readonly]="isProfileEdit"  [(ngModel)]="orgDetails.email"  /><span *ngIf="isProfileEdit==true">{{orgDetails.email}}</span></div>
-                  </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-status">Status</label></div>
-                        <div class="col-md-8">
-                          <select *ngIf="isProfileEdit==false" [(ngModel)]="orgDetails.status">
-                            <option *ngFor="let orgStatus of status">{{orgStatus.name}}</option>
-                          </select>
-                          <span *ngIf="isProfileEdit==true">{{orgDetails.status}}</span>
+                    <div class="row sfm" *ngIf="warningMessage">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
                         </div>
                     </div>
-
-
-
                     <div class="row">
-                      <!--  <div class="col-md-4"><label for="wa-city">Open Date</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-city" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.openDate"  /><span *ngIf="isProfileEdit==true">{{orgDetails.openDate}}</span></div> -->
-
-
+                        <div class="col-md-4"><label for="wa-county">File Number <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input type="text" [ngClass]="orgDetails.fileNumber == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-county" [(ngModel)]="orgDetails.fileNumber" />
+                        <span *ngIf="isProfileEdit==true">{{orgDetails.fileNumber}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-taxid">Name <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input type="text" [ngClass]="orgDetails.orgName == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-taxid" [(ngModel)]="orgDetails.orgName" />
+                        <span *ngIf="isProfileEdit==true">{{orgDetails.orgName}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-name">Type</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isProfileEdit==false" id="wa-state" [readonly]="true" [(ngModel)]="orgDetails.orgType" />
+                        <!--<select *ngIf="isProfileEdit==false" [(ngModel)]="orgDetails.orgType" [readonly]="true">
+                            <option value="Regular">Regular</option>
+                            <option value="Delegated">Delegated</option>
+                        </select>-->
+                        <span *ngIf="isProfileEdit==true">{{orgDetails.orgType}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-door">Name Of Forms <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input type="text" [ngClass]="orgDetails.nameOnForms == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-door" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.nameOnForms" />
+                        <span *ngIf="isProfileEdit==true">{{orgDetails.nameOnForms}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-status">Status <span class="redstar">*</span></label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isProfileEdit==false" [ngClass]="orgDetails.status == '' ? 'redborder': ''" [(ngModel)]="orgDetails.status">
+                                <option *ngFor="let orgStatus of status">{{orgStatus.name}}</option>
+                            </select>
+                            <span *ngIf="isProfileEdit==true">{{orgDetails.status}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4"><label>Open Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isProfileEdit==false" id="wa-openDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="orgDetails.openDate" [selDate]="openDate">
                             </my-date-picker>
-
-                          <!--<input type="text" *ngIf="isProfileEdit==false" [readonly]="true" id="wa-openDate" [(ngModel)]="orgDetails.openDate" />-->
-
-                          <span *ngIf="isProfileEdit==true">{{orgDetails.openDate}}</span>
+                            <span *ngIf="isProfileEdit==true">{{orgDetails.openDate}}</span>
                         </div>
-
-
-                    </div>
-
-
-
-
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-county">File Number</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-county"  [readonly]="true"  [(ngModel)]="orgDetails.fileNumber" /><span *ngIf="isProfileEdit==true">{{orgDetails.fileNumber}}</span></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-state">FED ID</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-state"  [readonly]="isProfileEdit" [(ngModel)]="orgDetails.fedId" /><span *ngIf="isProfileEdit==true">{{orgDetails.fedId}}</span></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-state" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.fedId" /><span *ngIf="isProfileEdit==true">{{orgDetails.fedId}}</span></div>
                     </div>
-
-                  <div class="row">
-                    <div class="col-md-4"><label for="wa-country">Mark for Deletion</label></div>
-                    <div class="col-md-8">
-                      <select *ngIf="isProfileEdit==false" [(ngModel)]="orgDetails.markForDeletion">
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                      </select>
-                      <span *ngIf="isProfileEdit==true">{{orgDetails.markForDeletion ? 'Yes' : 'No'}}</span>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-email">Communication email <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input type="text" [ngClass]="orgDetails.email == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-email" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.email" />
+                        <span *ngIf="isProfileEdit==true">{{orgDetails.email}}</span></div>
                     </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-4"><label for="wa-country">Marked For Deletion By</label></div>
-                    <div class="col-md-8">
-                      <input type="text" *ngIf="isProfileEdit==false" [readonly]=true
-                             [(ngModel)]="orgDetails.markedForDeletionBy"/>
-                      <span *ngIf="isProfileEdit==true">{{orgDetails.markedForDeletionBy}}</span>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-country">Mark for Deletion</label></div>
+                        <div class="col-md-8">
+                            <select *ngIf="isProfileEdit==false" [(ngModel)]="orgDetails.markForDeletion">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                            <span *ngIf="isProfileEdit==true">{{orgDetails.markForDeletion ? 'Yes' : 'No'}}</span>
+                        </div>
                     </div>
-                  </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-country">Mark For Deletion details # By User on MM/DD/YYYY</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isProfileEdit==false" [readonly]=true
+                                   [(ngModel)]="orgDetails.markedForDeletionBy" />
+                            <span *ngIf="isProfileEdit==true">{{orgDetails.markedForDeletionBy}}</span>
+                        </div>
+                    </div>
+                    <div class="row sfm" *ngIf="warningMessage">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
