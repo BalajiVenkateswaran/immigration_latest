@@ -44,17 +44,26 @@ export class petitionsclientviewComponent implements OnInit {
             organization: {
                 title: 'Organization'
             },
-            startDate: {
-                title: 'Start Date'
-            },
             status: {
                 title: 'Status'
             },
             petitionStage: {
-                title: 'Petition Stage'
+                title: 'Stage'
+            },
+            startDate: {
+                title: 'Start Date'
+            },
+            lastUpdated: {
+                title: 'Last Updated'
             },
             recieptNumber: {
                 title: 'Reciept Number'
+            },
+            shippingCarrier: {
+                title: 'Shipping Carrier'
+            },
+            trackingNumber: {
+                title: 'Tracking Number'
             }
         },
         pager: {
