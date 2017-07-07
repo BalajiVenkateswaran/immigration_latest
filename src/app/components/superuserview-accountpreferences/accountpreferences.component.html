@@ -76,7 +76,7 @@
             </tbody>
         </table>
         <h2 style="margin-top: 50px;">
-            Discounts<button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right"(click)="addEditDiscount('add')">Add</button>
+            Discounts<button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right"(click)="addEditDiscount('add',discount)">Add</button>
         </h2>
         <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
         <table class="smarttable" cellpadding="0" cellspacing="0">
@@ -118,10 +118,10 @@
 
                 <tr *ngFor="let discount of Discounts">
                     <td class="actions">
-                        <a (click)="addEditDiscount('edit')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a (click)="addEditDiscount('edit',discount)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </td>
-                    <td>{{discount.name}}</td>
-                    <td>{{discount.code}}</td>
+                    <td>{{discount.discountName}}</td>
+                    <td>{{discount.discountCode}}</td>
                     <td>{{discount.description}}</td>
                     <td>{{discount.startDate}}</td>
                     <td>{{discount.endDate}}</td>
@@ -151,13 +151,13 @@
                                 <div class="col-md-4">Start Date:</div>
                                 <div class="col-md-8">
                                     <my-date-picker [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)" [(ngModel)]="productstartDate"
+                                                    [(ngModel)]="productstartDate"
                                                     [selDate]="startDate"></my-date-picker>
                                 </div>
                                 <div class="col-md-4">End Date:</div>
                                 <div class="col-md-8">
                                     <my-date-picker [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)" [(ngModel)]="productendDate"
+                                                   [(ngModel)]="productendDate"
                                                     [selDate]="endDate"></my-date-picker>
                                 </div>
                             </div>
@@ -190,13 +190,13 @@
                             <div class="col-md-4">Start Date:</div>
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="discountstartDate"
+                                                [(ngModel)]="discountstartDate"
                                                 [selDate]="startDtae"></my-date-picker>
                             </div>
                             <div class="col-md-4">End Date:</div>
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="discountendDate"
+                                                 [(ngModel)]="discountendDate"
                                                 [selDate]="endDate"></my-date-picker>
                             </div>
                         </div>

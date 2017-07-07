@@ -1,17 +1,17 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import {client} from "../../models/client";
-import {FormGroup, FormControl} from "@angular/forms";
+import { client } from "../../models/client";
+import { FormGroup, FormControl } from "@angular/forms";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { LocalDataSource } from 'ng2-smart-table';
-import {AppService} from "../../services/app.service";
-import {Router} from "@angular/router";
-import {User} from "../../models/user";
+import { AppService } from "../../services/app.service";
+import { Router } from "@angular/router";
+import { User } from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {MenuComponent} from "../menu/menu.component";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {SuperuserViewAccountpreferencessService} from "./accountpreferences.service";
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { MenuComponent } from "../menu/menu.component";
+import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
+import { SuperuserViewAccountpreferencessService } from "./accountpreferences.service";
 
 
 export interface ConfirmModel {
@@ -22,6 +22,7 @@ export interface ConfirmModel {
     adddiscntPref: boolean;
     editprdct: boolean;
     editdscnt: boolean;
+    editRecord:Object;
 }
 
 @Component({
@@ -41,7 +42,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         showClearDateBtn: false,
     };
     public editproduct: any;
-    public editdiscount: any;
+    public editdiscount: boolean;
     public adddprdctPref: any;
     public adddiscntPref: any;
     public Products: any = [];
@@ -54,7 +55,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public disconutcode: any;
     public discountstartDate: string;
     public discountendDate: string;
-
+    public record:any;
     //settings = {
 
     //    add: {
@@ -102,6 +103,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             this.user = this.appService.user;
 
         }
+        this.editdiscount=false;
     }
     addEditProduct(value) {
         if (value == "edit") {
@@ -116,14 +118,14 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             adddprdctPref: true,
             getacntpref: false,
             title: productlable + ' Product',
-            editprdct: this.editproduct    
+            editprdct: this.editproduct
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-              
+
             }
         });
     }
-    addEditDiscount(value) {
+    addEditDiscount(value,data) {
         if (value == "edit") {
             var productlable = "Edit";
             this.editdiscount = true;
@@ -132,15 +134,21 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             var productlable = "Add";
             this.editdiscount = false;
         }
+        if(data){
+            this.record=data;
+            this.disconutcode=data.discountCode;
+            this.discountstartDate=data.startDate;
+            this.discountendDate=data.endDate
+        }
         this.dialogService.addDialog(AccountPreferencesComponent, {
             adddiscntPref: true,
             getacntpref: false,
             title: productlable + ' Discount',
-            editdscnt: this.editdiscount    
+            editdscnt: this.editdiscount
 
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-
+                
             }
         });
     }
@@ -148,25 +156,31 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         this.addproduct['code'] = this.productcode;
         this.addproduct['startDate'] = this.productstartDate['formatted'];
         this.addproduct['endDate'] = this.productendDate['formatted'];
-        this.superuserViewAccountpreferencessService.saveproduct(this.addproduct,this.user.accountId).subscribe((res) => {
+        this.superuserViewAccountpreferencessService.saveproduct(this.addproduct, this.user.accountId).subscribe((res) => {
             if (res['statusCode'] = "SUCCESS") {
                 this.result = true;
                 this.close();
-              
-            }              
+
+            }
         });
-         
+
     }
     discountSave() {
         this.adddiscount['discountCode'] = this.disconutcode;
         this.adddiscount['startDate'] = this.discountstartDate['formatted'];
         this.adddiscount['endDate'] = this.discountendDate['formatted'];
-        this.superuserViewAccountpreferencessService.savediscount(this.adddiscount, this.user.accountId).subscribe((res) => {
-            if (res['statusCode'] = "SUCCESS") {
-                this.result = true;
-                this.close();        
-            }
-        });
+        if(this.record){
+            this.superuserViewAccountpreferencessService.savediscount(this.adddiscount, this.user.accountId).subscribe((res) => {
+                    if (res['statusCode'] = "SUCCESS") {
+                        this.result = true;
+                        this.result=true;
+                        this.close();
+                    }
+                });
+
+        }
+        
+      
 
     }
     cancel() {
