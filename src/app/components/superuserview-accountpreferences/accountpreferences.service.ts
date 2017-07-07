@@ -11,20 +11,20 @@ export class SuperuserViewAccountpreferencessService {
  public getdiscountsAccount(accountid: string) {
      return this.restService.getData("/superuser/account/" + accountid + "/discounts");
  }
- public saveproduct(addproduct: any,accountid:string) {
-     
+ public saveproduct(addproduct: any[],accountid:string) {
+
      var req = {
          "accountId": accountid,
          "products": addproduct
      }
      console.log(req);
-     return this.restService.postData("/superuser/accounts/products", req);
+     return this.restService.postData("/superuser/account/products", req);
  }
  public savediscount(adddiscount: any,accountid:string) {
      var req = {
          "accountId": accountid,
          "discounts": [adddiscount]
      }
-     return this.restService.postData("/superuser/accounts/discounts", req);
+     return this.restService.postData("/superuser/account/discounts", req);
  }
  }

@@ -6,6 +6,8 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {AccountManagersService} from './accountmanagers.service';
+import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -75,7 +77,6 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         },
         mode:'external'
     };
-    private user: User;
     public addUsers: any = {};
     public addPopups: boolean = false;
     public viewUsers:boolean=true;
@@ -86,19 +87,17 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         "IMMIGRATION OFFICER": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
         "IMMIGRATION MANAGER": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
     };
-    constructor(public appService:AppService,public managersAccountService:AccountManagersService,public dialogService: DialogService){
+    constructor(public appService:AppService,public managersAccountService:AccountManagersService,public dialogService: DialogService,
+    private accountDetailsCommonService: AccountDetailsCommonService){
          super(dialogService);
-         if (this.appService.user) {
-            this.user = this.appService.user;
 
-        }
     }
     ngOnInit(){
         this.getAccountsManagers();
     }
     getAccountsManagers() {
 
-        this.managersAccountService.getUsers('a2604ec8-e0f2-11e5-a291-34e6d7382cac')
+        this.managersAccountService.getUsers(this.accountDetailsCommonService.accountId)
             .subscribe((res) => {
                 for (var user of res['users']) {
                     user['roleName'] = user['role'];
@@ -124,7 +123,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     }
     accountmanagersSave(){
         this.addUsers['role'] = this.roles[this.addUsers['role']];
-        this.addUsers['accountId'] = this.appService.user.accountId;
+        this.addUsers['accountId'] = this.accountDetailsCommonService.accountId;
         this.appService.addUsers = this.addUsers;
         this.result = true;
         this.close();

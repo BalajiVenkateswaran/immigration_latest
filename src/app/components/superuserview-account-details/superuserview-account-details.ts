@@ -6,6 +6,8 @@ import {RestService} from "../../services/rest.service";
 import {SuperuserViewAccountDetailsService} from "./superuserview-account-details.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {MenuComponent} from "../menu/menu.component";
+import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
+
 @Component({
     selector: 'app-account-details',
     templateUrl: './superuserview-account-details.html',
@@ -17,13 +19,9 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     isEdit;
     isEditstorage;
     public cancelUserEdit: boolean = false;
-    private user: User;
     public createdOn: any;
     constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
-    private menuComponent:MenuComponent) {
-        if (this.appService.user) {
-            this.user = appService.user;
-        }
+    private menuComponent:MenuComponent, private accountDetailsCommonService: AccountDetailsCommonService) {
     }
 
     private myDatePickerOptions: IMyOptions = {
@@ -34,14 +32,13 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     private beforeCancelAccountdetails;
     ngOnInit() {
         this.appService.showSideBarMenu("superuser-accounts", null);
-        //this.appService.showSideBarMenu("accounts", "accounts");
         this.storagenable();
         this.getAcountDetails();
         this.menuComponent.highlightSBLink('Account Details');
     }
     getAcountDetails() {
 
-        this.superuserviewAccountDetailsService.getAccountdetails(this.user.accountId)
+        this.superuserviewAccountDetailsService.getAccountdetails(this.accountDetailsCommonService.accountId)
             .subscribe((res) => {
                 console.log("filesGetmethod%o", res);
                 this.accountDetails = res;
@@ -95,13 +92,11 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
             this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
         }
 
-        this.accountDetails['accountId'] = this.user.accountId;
+        this.accountDetails['accountId'] = this.accountDetailsCommonService.accountId;
         this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
             .subscribe((res) => {
                 this.isEditstorage = true;
                 this.getAcountDetails();
-
             });
-
     }
 }

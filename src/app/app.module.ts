@@ -11,7 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { ChartsModule } from 'ng2-charts';
 import Chart from 'chart.js';
-import '../../node_modules/chart.js/dist/Chart.bundle.min.js'; 
+import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 //import { ChartsModule } from 'ng2-charts/components/charts/charts';
 
 
@@ -184,6 +184,8 @@ import { ManageAccountpreferencessService } from "./components/manageaccount-pre
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
+import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service'
+
 
 @NgModule({
     imports: [
@@ -384,7 +386,9 @@ import { ImmigrationViewReportsComponent } from './components/immigration-view-r
         AccountDetailsPaymentsService,
 
 
-        SuperuserViewAccountpreferencessService
+        SuperuserViewAccountpreferencessService,
+        AccountDetailsCommonService
+
     ],
     bootstrap: [AppComponent]
 })

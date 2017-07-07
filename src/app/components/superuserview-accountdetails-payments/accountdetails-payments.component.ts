@@ -11,6 +11,7 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import {AccountDetailsPaymentsService} from './accountdetails-payments.service';
+import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
 
 export interface ConfirmModel {
     title: string;
@@ -82,28 +83,21 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
             perPage: 10
         }
     };
-    //source: LocalDataSource = new LocalDataSource();
-    private user: User;
-    constructor(private appService: AppService,public accountsPaymentService:AccountDetailsPaymentsService,public dialogService: DialogService) {
+    constructor(private appService: AppService,public accountsPaymentService:AccountDetailsPaymentsService,public dialogService: DialogService,
+    private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
-        if (this.appService.user) {
-            this.user = this.appService.user;
-
-        }
     }
 
     getPaymentDetails(){
-        this.accountsPaymentService.getPaymentDetails(this.user.accountId).subscribe(
+        this.accountsPaymentService.getPaymentDetails(this.accountDetailsCommonService.accountId).subscribe(
             res=>{
                 if(res['statusCode']=='SUCCESS'){
                     this.paymentList=res['payments'];
-                   /* this.appService.paymentId=res['payments']['paymentId']*/
                 }
             }
         )
     }
     ngOnInit() {
-        //this.appService.showSideBarMenu("accounts", "accounts");
         this.getPaymentDetails();
     }
     addNewPayments() {
@@ -115,7 +109,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
 
-                this.accountsPaymentService.savePaymentDetails(this.user.accountId,this.appService.addUsers).subscribe((res) => {
+                this.accountsPaymentService.savePaymentDetails(this.accountDetailsCommonService.accountId,this.appService.addUsers).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getPaymentDetails();
                     }
@@ -125,7 +119,6 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     }
     savePayments() {
         this.appService.addUsers = this.payments;
-        //this.appService.addUsers=this.appService.paymentId;
         this.result = true;
         this.close();
     }
@@ -142,7 +135,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
             payment:data,
         }).subscribe((isConfirmed) => {
            if(isConfirmed){
-                  this.accountsPaymentService.editpaymentss(this.user.accountId,this.appService.addUsers).subscribe((res) => {
+                  this.accountsPaymentService.editpaymentss(this.accountDetailsCommonService.accountId,this.appService.addUsers).subscribe((res) => {
                   if (res['statusCode'] == 'SUCCESS') {
                       this.getPaymentDetails();
                   }

@@ -12,6 +12,7 @@ import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import { MenuComponent } from "../menu/menu.component";
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { SuperuserViewAccountpreferencessService } from "./accountpreferences.service";
+import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
 
 
 export interface ConfirmModel {
@@ -56,53 +57,10 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public discountstartDate: string;
     public discountendDate: string;
     public record:any;
-    //settings = {
 
-    //    add: {
-    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmCreate: true
-    //    },
-    //    edit: {
-    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmSave: true
-    //    },
-    //    actions: {
-    //        delete: false
-    //    },
-    //    columns: {
-    //        firstName: {
-    //            title: 'First Name'
-    //        },
-    //        lastName: {
-    //            title: 'Last Name'
-    //        },
-    //        email: {
-    //            title: 'Email'
-    //        },
-    //        phone: {
-    //            title: 'Phone'
-    //        },
-    //        status: {
-    //            title: 'Status',
-    //        }
-    //    },
-    //    pager: {
-    //        display: true,
-    //        perPage: 10
-    //    }
-    //};
-    //source: LocalDataSource = new LocalDataSource();
-    private user: User;
-    constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService) {
+    constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService,
+    private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
-        if (this.appService.user) {
-            this.user = this.appService.user;
-
-        }
         this.editdiscount=false;
     }
     addEditProduct(value) {
@@ -148,15 +106,16 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
 
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                
+
             }
         });
     }
     productSave() {
-        this.addproduct['code'] = this.productcode;
-        this.addproduct['startDate'] = this.productstartDate['formatted'];
-        this.addproduct['endDate'] = this.productendDate['formatted'];
-        this.superuserViewAccountpreferencessService.saveproduct(this.addproduct, this.user.accountId).subscribe((res) => {
+        this.addproduct = [new Object()];
+        this.addproduct[0]['code'] = this.productcode;
+        this.addproduct[0]['startDate'] = this.productstartDate['formatted'];
+        this.addproduct[0]['endDate'] = this.productendDate['formatted'];
+        this.superuserViewAccountpreferencessService.saveproduct(this.addproduct, this.accountDetailsCommonService.accountId).subscribe((res) => {
             if (res['statusCode'] = "SUCCESS") {
                 this.result = true;
                 this.close();
@@ -166,36 +125,34 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
 
     }
     discountSave() {
-        this.adddiscount['discountCode'] = this.disconutcode;
-        this.adddiscount['startDate'] = this.discountstartDate['formatted'];
-        this.adddiscount['endDate'] = this.discountendDate['formatted'];
+        this.adddiscount = [new Object()];
+        this.adddiscount[0]['discountCode'] = this.disconutcode;
+        this.adddiscount[0]['startDate'] = this.discountstartDate['formatted'];
+        this.adddiscount[0]['endDate'] = this.discountendDate['formatted'];
         if(this.record){
-            this.superuserViewAccountpreferencessService.savediscount(this.adddiscount, this.user.accountId).subscribe((res) => {
-                    if (res['statusCode'] = "SUCCESS") {
-                        this.result = true;
-                        this.result=true;
-                        this.close();
-                    }
-                });
+            this.superuserViewAccountpreferencessService.savediscount(this.adddiscount, this.accountDetailsCommonService.accountId).subscribe((res) => {
+                if (res['statusCode'] = "SUCCESS") {
+                    this.result = true;
+                    this.result=true;
+                    this.close();
+                }
+            });
 
         }
-        
-      
-
     }
     cancel() {
         this.result = false;
         this.close();
     }
     getproducts() {
-        this.superuserViewAccountpreferencessService.getproductsAccount(this.user.accountId).subscribe((res) => {
+        this.superuserViewAccountpreferencessService.getproductsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
                 this.Products = res['products'];
             }
         });
     }
     getdiscounts() {
-        this.superuserViewAccountpreferencessService.getdiscountsAccount(this.user.accountId).subscribe((res) => {
+        this.superuserViewAccountpreferencessService.getdiscountsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
                 this.Discounts = res['discounts'];
 
