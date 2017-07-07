@@ -10,13 +10,14 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
-
+import {ManageAccountPaymentsService} from './manageaccount-payments.service'
 
 export interface ConfirmModel {
     title: string;
     message: string;
-    addNewClient: boolean;
-    getClientsData: boolean;
+    getPayments: boolean;
+    viewAccountPopup:boolean;
+    payment:Object;
 
 }
 @Component({
@@ -24,10 +25,15 @@ export interface ConfirmModel {
     templateUrl: './manageaccount-payments.component.html',
     styleUrls: ['./manageaccount-payments.component.sass']
 })
-export class ManageAccountPaymentsComponent implements OnInit {
+export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
     public invoiceDetailsForm: boolean = false;
     public DefaultResponse = { "status": "Active" };
+    public paymentList:any;
+    public payments:any={};
+    public getPayments:boolean=true;
+    public viewAccountPopup:boolean;
+    public isEditpayments:boolean=true;
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -76,17 +82,56 @@ export class ManageAccountPaymentsComponent implements OnInit {
     };
     //source: LocalDataSource = new LocalDataSource();
     private user: User;
-    constructor(private appService: AppService) {
+    constructor(private appService: AppService,public manageAccountPaymentsService:ManageAccountPaymentsService,public dialogService: DialogService) {
+        super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
 
         }
     }
-    
+    getPaymentDetails(){
+        this.manageAccountPaymentsService.getPaymentDetails(this.user.accountId).subscribe(
+            res=>{
+                if(res['statusCode']=='SUCCESS'){
+                    this.paymentList=res['payments'];
+                   /* this.appService.paymentId=res['payments']['paymentId']*/
+                }
+            }
+        )
+    }
 
     ngOnInit() {
+        this.getPaymentDetails();
     }
-    getDetails() {
-        this.invoiceDetailsForm = true;
+    
+    
+    viewDetails(data,index){
+        this.dialogService.addDialog(ManageAccountPaymentsComponent, {
+            viewAccountPopup: true,
+            getPayments: false,
+            title: 'View  Details',
+            payment:data,
+        }).subscribe((isConfirmed) => {
+           if(isConfirmed){
+                  
+            
+           }
+           else{
+
+               //this.editFlag = false;
+           }
+        });
     }
+    editpaymentsInfo(){
+        this.isEditpayments = !this.isEditpayments;
+    }
+    cancelpaymentsInfo(){
+        this.isEditpayments = !this.isEditpayments;
+    }
+    savepaymentsInfo(){
+     this.isEditpayments = !this.isEditpayments;
+     //this.appService.addUsers = this.payment;
+     this.result = true;
+     this.close();
+    }    
 }
