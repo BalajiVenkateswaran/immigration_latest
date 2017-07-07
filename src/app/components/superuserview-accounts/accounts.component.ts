@@ -214,7 +214,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             });
     }*/
     onUserRowClick(event): void {
-        this.menuComponent.highlightSBLink('Account Details');
+        this.menuComponent.highlightSBLink('accounts');
         this.appService.moveToPage("account-details");
         this.appService.user.accountId = event.data.accountId;
     }

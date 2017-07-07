@@ -165,6 +165,11 @@ import { AccountManagersService } from './components/superuserview-accountdetail
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
 import { ManageAccountPaymentsService } from "./components/manageaccount-payments/manageaccount-payments.service";
 
+import { ManageAccountInvoiceService } from "./components/manageaccount-invoices/manageaccount-invoices.service";
+import {ImmigrationviewPetitionNotesComponent } from './components/immigrationview-petition-notes/petition-notes.component';
+import { ManageaccountUserDetailsComponent } from './components/manageaccount-user-details/manageaccount-user-details.component'
+import { ImmigrationViewPetitionNotesService } from "./components/immigrationview-petition-notes/petition-notes.service";
+
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 import {markfordeletionservice} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.service';
@@ -179,8 +184,6 @@ import { ManageAccountpreferencessService } from "./components/manageaccount-pre
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
-import { ManageAccountInvoiceService } from "./components/manageaccount-invoices/manageaccount-invoices.service";
-import {ImmigrationviewPetitionNotesComponent } from './components/immigrationview-petition-notes/petition-notes.component'
 
 @NgModule({
     imports: [
@@ -293,7 +296,8 @@ import {ImmigrationviewPetitionNotesComponent } from './components/immigrationvi
 
 
         ImmigrationViewReportsComponent,
-        ImmigrationviewPetitionNotesComponent
+        ImmigrationviewPetitionNotesComponent,
+        ManageaccountUserDetailsComponent
 
     ],
     providers: [
@@ -354,6 +358,7 @@ import {ImmigrationviewPetitionNotesComponent } from './components/immigrationvi
         MenuComponent,
         SmartTableFrameworkService,
         //
+        ImmigrationViewPetitionNotesService,
         ManageAccountInvoiceService,
         ManageAccountpreferencessService,
         ProductCatalogProductService,

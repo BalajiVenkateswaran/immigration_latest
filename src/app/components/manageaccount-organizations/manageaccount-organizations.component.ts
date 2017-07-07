@@ -89,11 +89,11 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private user: User;
-
+    private selectedOrg: any = {};
     public showAddOrgpopup: boolean;
     public getOrgsData: boolean = true;
     public neworgitem: any = {};
-
+    private orgNamelist;
 
     constructor(private manageaccountorganizationService: ManageAccountOrganizationsService,
         private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent) {
@@ -236,10 +236,11 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
         }
 
     }
-    onUserRowClick(event): void {
+    onUserRowClick(event, Orgname): void {
         this.menuComponent.highlightSBLink('Org Details');
         this.appService.moveToPage("organization");
         this.appService.clientId = event.data.orgDetailsId;
+        console.log(event.data.orgName);
         //todo this.appService.getorgName(Orgname);
         //this.changeOrgName(Orgname);
     }

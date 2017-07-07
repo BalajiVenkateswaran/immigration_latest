@@ -83,6 +83,7 @@ import {SuperUserViewInvoicestabComponent} from './components/superuserview-invo
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
 import { ImmigrationViewReportsComponent } from "./components/immigration-view-reports/immigration-view-reports.component";
+import { ManageaccountUserDetailsComponent } from "./components/manageaccount-user-details/manageaccount-user-details.component";
 
 
 
@@ -308,6 +309,10 @@ export const appRoutes: Routes = [
     {
         path:'immigrationview-reports',
         component:ImmigrationViewReportsComponent
+    },
+    {
+        path:'user-details',
+        component:ManageaccountUserDetailsComponent
     },
     //superuserview
     {

@@ -5,7 +5,7 @@ import {AppService} from "../../services/app.service";
 import {RestService} from "../../services/rest.service";
 import {SuperuserViewAccountDetailsService} from "./superuserview-account-details.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-
+import {MenuComponent} from "../menu/menu.component";
 @Component({
     selector: 'app-account-details',
     templateUrl: './superuserview-account-details.html',
@@ -19,7 +19,8 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     public cancelUserEdit: boolean = false;
     private user: User;
     public createdOn: any;
-    constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService) {
+    constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
+    private menuComponent:MenuComponent) {
         if (this.appService.user) {
             this.user = appService.user;
         }
@@ -36,6 +37,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
         //this.appService.showSideBarMenu("accounts", "accounts");
         this.storagenable();
         this.getAcountDetails();
+        this.menuComponent.highlightSBLink('Account Details');
     }
     getAcountDetails() {
 

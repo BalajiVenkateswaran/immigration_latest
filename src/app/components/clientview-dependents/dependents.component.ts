@@ -86,15 +86,17 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
     getCVDpntData() {
         this.dependentService.getDependentSummary(this.appService.user.userId).subscribe((res) => {
             this.source.load(res['dependents']);
+            this.appService.dependents = res['dependents'];
         });
     }
 
     ngOnInit() {
-        this.dependentService.getDependentSummary(this.appService.user.userId)
+       /* this.dependentService.getDependentSummary(this.appService.user.userId)
             .subscribe((res) => {
                 this.source.load(res['dependents']);
-                this.appService.dependents = res['dependents'];
-            });
+               
+            });*/
+        this.getCVDpntData();
     }
 
     addNewDependent() {
@@ -200,7 +202,8 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
                     this.dependentService.removeDependentsSummary(event.data['dependentId']).subscribe((res) => {
                         this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
-                            event.confirm.resolve();
+                            //event.confirm.resolve();
+                            this.getCVDpntData();
                         } else {
                             event.confirm.reject();
                         }

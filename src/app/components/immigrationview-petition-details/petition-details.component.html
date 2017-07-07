@@ -322,7 +322,7 @@
                         <div class="col-md-12">
                             <h2 class="no-pad-left">Additional Details</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editAdditionalDetailsForm()" *ngIf="isAdditionalDetailsEdit==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
+                            <div class="tbl-head-btn" [hidden]="isAdditionalDetailsEdit">
                                 <button type="button" (click)="cancelAdditionalDetailsEdit()" class="editbtn tbl-head-btn" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
                                 <button type="submit" value="Save" class="savebtn" (click)="saveAdditionalDetails()" *ngIf="isAdditionalDetailsEdit==false">Save</button>
                             </div>
@@ -331,35 +331,35 @@
                     <div class="row">
                         <div class="col-md-4"><label>Shipping Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isAdditionalDetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="receiptInfo.sentToGovAgencyOn" [selDate]="sentToGovAgencyOn"></my-date-picker>
-                            <span *ngIf="isAdditionalDetailsEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
+                            <my-date-picker *ngIf="isAdditionalDetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="petitionAdditionalDetails.shippingDate" [selDate]="shippingDate"></my-date-picker>
+                            <span *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.shippingDate}}</span>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-4"><label>Shipping Carrier</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="receiptInfo.comments" />
-                            <span *ngIf="isAdditionalDetailsEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
+                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="petitionAdditionalDetails.shippingCarrier" />
+                            <span *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.shippingCarrier}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Tracking Number</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="receiptInfo.comments" />
-                            <span *ngIf="isAdditionalDetailsEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
+                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="petitionAdditionalDetails.trackingNumber" />
+                            <span *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.trackingNumber}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Check Number</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="receiptInfo.comments" />
-                            <span *ngIf="isAdditionalDetailsEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
+                            <input type="text" *ngIf="isAdditionalDetailsEdit==false" [(ngModel)]="petitionAdditionalDetails.checkNumber" />
+                            <span *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.checkNumber}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
+                            <div class="tbl-head-btn" [hidden]="isAdditionalDetailsEdit">
                                 <button type="button" (click)="cancelAdditionalDetailsEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
                                 <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveAdditionalDetails()" *ngIf="isAdditionalDetailsEdit==false">Save</button>
                             </div>

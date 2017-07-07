@@ -125,11 +125,15 @@
       </ul>
 
       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
-          <li>
-              <a (click)="appservice.moveToPage('manageaccount-user');highlightSBLink('User')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-flight"></span>
+          <li ngbDropdown class="dropdown">
+              <a (click)="appservice.moveToPage('manageaccount-user');highlightSBLink('User')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+                  <span class="ico-users"></span>
                   <span>User</span>
+                  <span class="ico-arrow"></span>
               </a>
+              <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl *ngIf="appservice.usersList&&manageuser" [(ngModel)]="appservice.usersList">
+                  <li *ngFor='let value of appservice.usersList'><a (click)="appservice.moveToPageWithParams('user-details',value);highlightSBLink(value.firstName)" [ngClass]="[checkForCurrentSBLink(value.firstName) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
+              </ul>
           </li>
           <li>
               <a (click)="appservice.moveToPage('manageaccount-organizations');highlightSBLink('Organizations')" [ngClass]="[checkForCurrentSBLink('Organizations') ? 'active': '']" routerLinkActive="active">
