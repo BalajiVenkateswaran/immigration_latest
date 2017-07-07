@@ -125,8 +125,12 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
     editpaymentsInfo(){
         this.isEditpayments = !this.isEditpayments;
     }
-    cancelpaymentsInfo(){
-        this.isEditpayments = !this.isEditpayments;
+    //cancelpaymentsInfo(){
+    //    this.isEditpayments = !this.isEditpayments;
+    //}
+    cancel() {
+        this.close();
+
     }
     savepaymentsInfo(){
      this.isEditpayments = !this.isEditpayments;
