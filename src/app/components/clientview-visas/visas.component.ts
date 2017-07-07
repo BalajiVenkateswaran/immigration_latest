@@ -208,10 +208,9 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
                     this.visasService.deleteClientVisa(event.data['visaId']).subscribe((res) => {
                         this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
-                            event.confirm.resolve();
-                        } else {
-                            event.confirm.reject();
-                        }
+                        this.getClientviewvisa();
+
+                        } 
                     });
                 }
             });

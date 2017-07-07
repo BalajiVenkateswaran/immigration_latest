@@ -33,8 +33,9 @@
                     <div class="row">
                         <div class="col-md-4"><label for="wa-door">Creation Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isProfileEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="dependentProfile.creationDate" [selDate]="creationDate"></my-date-picker>
-                            <span *ngIf="isProfileEdit==true">{{dependentProfile.creationDate}}</span>
+                          <!--  <my-date-picker *ngIf="isProfileEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="dependentProfile.creationDate" [selDate]="creationDate"></my-date-picker>-->
+                          <!--  <span *ngIf="isProfileEdit==true">{{dependentProfile.creationDate}}</span>-->
+                            <span>{{dependentProfile.creationDate}}</span>
                         </div>
 
                   </div>
