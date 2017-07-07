@@ -163,6 +163,7 @@ import { SuperuserviewProductcatalogComponent } from './components/superuserview
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import { AccountManagersService } from './components/superuserview-accountdetails-managers/accountmanagers.service';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
+import { ManageAccountPaymentsService } from "./components/manageaccount-payments/manageaccount-payments.service";
 
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
@@ -356,6 +357,7 @@ import {ImmigrationviewPetitionNotesComponent } from './components/immigrationvi
         ManageAccountInvoiceService,
         ManageAccountpreferencessService,
         ProductCatalogProductService,
+        ManageAccountPaymentsService,
         //superuserview
         superUserviewAccountService,
         SuperuserViewAccountDetailsService,

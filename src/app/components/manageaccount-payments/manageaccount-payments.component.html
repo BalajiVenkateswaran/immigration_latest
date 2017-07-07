@@ -1,4 +1,4 @@
-    <div class="main-content">
+    <div class="main-content" *ngIf="getPayments">
         <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
         <ul class="breadcrumb">
             <li><a href="#">Account Preferences</a></li>
@@ -51,113 +51,163 @@
                         <td><input type="text" name="" /></td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td>NPS Tier 1 </td>
-                        <td>17-01-2017</td>
-                        <td>6</td>
-                        <td>4</td>
-                        <td>17-01-2017</td>
-                        <td>6</td>
-                        <td>6</td>
-                        <td>548</td>
-                        <td><a (click)="getDetails()"><i class="fa fa-eye"></i></a></td>
+                   <tr *ngFor="let payment of paymentList">
+                        <td>
+                            <span>{{payment.paymentId}}</span>                                  
+                        </td>
+                        <td>
+                            <span>{{payment.accountNumber}}</span>                                  
+                        </td>
+                        <td>
+                            <span>{{payment.invoiceDate}}</span>                                  
+                        </td>
+                        <td>
+                            <span>{{payment.invoiceAmount}}</span>                                  
+                        </td>
+                        <td>
+                            <span>{{payment.transactionId}}</span>                                  
+                        </td>
+                        <td>
+                            <span>{{payment.paymentDate}}</span>                                  
+                        </td>
+                        <td>
+                            <span>{{payment.paymentAmount}}</span>                                  
+                        </td>
+                        <td>
+                            <span>{{payment.paymentStatus}}</span>                                  
+                        </td>
+                        <td>
+                            <span class="pull-left" (click)="viewDetails(payment,i)"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="table-data-forms" *ngIf="invoiceDetailsForm" style="margin-top: 30px;">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-sm-offset-3">
-                    <div class="col-md-12 addresbox box-shadow">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h2 class="no-pad-left">Payment Details </h2>
-                                <button type="submit" class="editbtn  no-marg-right" (click)="editForm()" *ngIf="isEdit==true">Edit</button>
-                                <div class="tbl-head-btn" [hidden]="isEdit">
-                                    <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn" *ngIf="isEdit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="savebtn" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
+    </div>   
+<div class="table-data-forms" *ngIf="viewAccountPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6 col-xs-12 col-sm-offset-3">
+                        <div class="col-md-12 addresbox box-shadow">
+                            <div class="row">
+                                <div class="col-md-4">Payment Id:</div>
+                                <div class="col-md-8">
+                                    <input type="text" [disabled]="true" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentId" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.paymentId}}</span>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-Passport">Payment Id</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span>{{passport.passportNumber}}</span><!--<span *ngIf="isEdit==true">{{passport.passportNumber}}</span>--></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-Passport">Transaction Type</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span>{{passport.passportNumber}}</span><!--<span *ngIf="isEdit==true">{{passport.passportNumber}}</span>--></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-Passport">Transaction Id</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-name" [(ngModel)]="passport.passportNumber" /><span>{{passport.passportNumber}}</span><!--<span *ngIf="isEdit==true">{{passport.passportNumber}}</span>--></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-issuance-place">Account Name</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-taxid" [(ngModel)]="passport.issuancePlace" /><span>{{passport.issuancePlace}}</span></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-issuance-state">Account Number</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-door" [(ngModel)]="passport.issuanceState" /><span>{{passport.issuanceState}}</span></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-issuance-country">Invoice Date</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-issuance-country" [(ngModel)]="passport.issuanceCountry" /><span>{{passport.issuanceCountry}}</span></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-issuing-country">Invoice Number</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-city" [(ngModel)]="passport.issuingCountry" /><span>{{passport.issuingCountry}}</span></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-issuance-date">Invoice Amount</label></div>
-                            <div class="col-md-8">
-                                <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.isuanceDate" [selDate]="isuanceDate">
-                                </my-date-picker>
-                                <span>{{passport.isuanceDate}}</span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-issuance-date">Product Codes</label></div>
-                            <div class="col-md-8">
-                                <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.expirationDate" [selDate]="expirationDate">
-                                </my-date-picker>
-                                <span>{{passport.expirationDate}}</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="pInfo-issuance-date">Discount Codes</label></div>
-                            <div class="col-md-8">
-                                <my-date-picker *ngIf="isEdit==false" id="wa-door" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.dateOfBirth" [selDate]="dateOfBirth">
-                                </my-date-picker>
-                                <span>{{passport.dateOfBirth}}</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="wa-city-of-birth">Payment Date</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-country" [(ngModel)]="passport.cityOfBirth" /><span>{{passport.cityOfBirth}}</span></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="wa-city-of-birth">Payment Amount</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-country" [(ngModel)]="passport.cityOfBirth" /><span>{{passport.cityOfBirth}}</span></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="wa-city-of-birth">Payment Status</label></div>
-                            <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="wa-country" [(ngModel)]="passport.cityOfBirth" /><span>{{passport.cityOfBirth}}</span></div>
-                        </div>
-                       
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="tbl-head-btn" [hidden]="isEdit">
-                                    <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isEdit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
+                            <div class="row">
+                                <div class="col-md-4">Transaction Type:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false"   [(ngModel)]="payment.transactionType" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.transactionType}}</span>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-md-4">Transaction Id:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.transactionId" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.transactionId}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Account Name:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountName" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.accountName}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Account Number:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountNumber" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.accountNumber}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Invoice Date:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceDate" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.invoiceDate}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Invoice Number:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.invoiceNumber" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.invoiceNumber}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Invoice Amount:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.invoiceAmount" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.invoiceAmount}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Product Codes:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.productCodes" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.productCodes}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Discount Codes:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.discountCodes" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.discountCodes}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Payment Date:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.paymentDate" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.paymentDate}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Payment Amount:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.paymentAmount" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.paymentAmount}}</span>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-md-4">Payment Status:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.paymentStatus" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.paymentStatus}}</span>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-md-4">Comments:</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.comments" class="form-control">
+                                    <span *ngIf="isEditpayments==true">{{payment.comments}}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+             <div class="modal-footer">
+                  <!--  <div class="row">
+                    <button type="submit" class="editinpopup" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
+                    <div class="tbl-head-btn" [hidden]="isEditDiscount">
+                        <button type="button" (click)="cancelpaymentsInfo()" class="editinpopup" *ngIf="isEditpayments==false">Cancel</button>
+                        <button type="submit" value="Save" class="savebtn" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
+                    </div>
+                </div>-->
+                <button type="button" class="btn btn-default" (click)="cancel()">Close</button>
+            </div>
         </div>
     </div>
+</div>
