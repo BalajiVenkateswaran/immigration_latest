@@ -33,8 +33,8 @@ export class DependentDetailsComponent implements OnInit {
     isPersonalInfoEdit;
     dependentFirstName;
     dependentLastName;
-    private dependentDetails: any = {};
-    private dependentProfile: ImmigrationdependentProfile = new ImmigrationdependentProfile();
+    public dependentDetails: any = {};
+    public dependentProfile: ImmigrationdependentProfile = new ImmigrationdependentProfile();
     private dependentPersonalInfo: ImmigrationdependentPersonalInfo = new ImmigrationdependentPersonalInfo();
     private creationDate: string;
     private dateOfBirth: string;

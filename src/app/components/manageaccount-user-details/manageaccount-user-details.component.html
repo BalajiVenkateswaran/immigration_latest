@@ -20,11 +20,11 @@
                         </div>
 
                     </div>
-                    <div class="row" *ngIf="warningMessage">
+                    <!--<div class="row" *ngIf="warningMessage">
                         <div class="col-md-12">
                             <span class="redstar">* Fields are Mandatory.</span>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="row">
                         <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8"><input type="text" *ngIf="isUserEdit==false" id="wa-county" [(ngModel)]="userList.firstName" [ngClass]="dependentProfile.firstName == '' ? 'redborder': ''"
