@@ -31,6 +31,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
     private notes: string;
     private receiptInfo: any = {};
+    private petitionAdditionalDetails: any = {};
     private lcaInfo: any = {};
     private sponsorInfo: any = {};
     private sponsorInfoAddress: any = {};
@@ -41,6 +42,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private receiptNumber: any[];
     isLCAInfoEdit: boolean = true;
     isReceiptInfoEdit: boolean = true;
+    ispetitionAdditionalDetailsEdit: boolean = true;
     isAdditionalDetailsEdit: boolean = true;
     isSponsorInfoEdit: boolean = true;
     private defaultSelected: string;
@@ -54,6 +56,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private effectiveOn:string;
     private effectiveTill: string;
     private receiptDate: string;
+    private shippingDate: string;
     private receiptNoticeDate: string;
     private approvedOn: string;
     private validFrom: string;
@@ -130,8 +133,10 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                     this.notes = this.petitionDetails['notes'];
                 }
                 if (res['receiptInfo'] != undefined) {
-
                     this.receiptInfo = res['receiptInfo'];
+                }
+                if (res['petitionAdditionalDetails'] != undefined) {
+                    this.petitionAdditionalDetails = res['petitionAdditionalDetails'];
                 }
                 if (res['lcaInfo'] != undefined) {
                     this.lcaInfo = res['lcaInfo'];
@@ -148,6 +153,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                 this.isNotesEdit = true;
                 this.isLCAInfoEdit = true;
                 this.isReceiptInfoEdit = true;
+                this.isAdditionalDetailsEdit = true;
                 this.isSponsorInfoEdit = true;
                 this.selDate = this.petitionDetails.startDate;
                 this.selDate1 = this.petitionDetails.deniedDate;
@@ -513,5 +519,53 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
                 }
             });
+    }
+
+    //edit petitionAdditionalDetails Details
+    editAdditionalDetailsForm() {
+        this.backendReceiptInfo = (<any>Object).assign({}, this.petitionAdditionalDetails);
+        this.receiptDate = this.petitionAdditionalDetails.receiptDate;
+        this.receiptNoticeDate = this.petitionAdditionalDetails.receiptNoticeDate;
+        this.approvedOn = this.petitionAdditionalDetails.approvedOn;
+        this.validFrom = this.petitionAdditionalDetails.validFrom;
+        this.expiresOn = this.petitionAdditionalDetails.expiresOn;
+        this.isAdditionalDetailsEdit = !this.isAdditionalDetailsEdit;
+    }
+
+    //cancel button function
+    cancelAdditionalDetailsEdit() {
+        this.petitionAdditionalDetails = this.backendReceiptInfo;
+        if (this.petitionAdditionalDetails['shippingDate'] && this.petitionAdditionalDetails['shippingDate']['formatted']) {
+            this.petitionAdditionalDetails['shippingDate'] = this.petitionAdditionalDetails['shippingDate']['formatted'];
+        }
+        this.isAdditionalDetailsEdit = !this.isAdditionalDetailsEdit;
+    }
+
+    //Save petitionAdditionalDetails Details
+    saveAdditionalDetails() {
+        this.petitionAdditionalDetails.petitionId = this.appService.petitionId;
+
+        if (this.petitionAdditionalDetails['shippingDate'] && this.petitionAdditionalDetails['shippingDate']['formatted']) {
+            this.petitionAdditionalDetails['shippingDate'] = this.petitionAdditionalDetails['shippingDate']['formatted'];
+        }
+        this.petitionAdditionalDetails['petitionId'] = this.appService.petitionId;
+        this.petitionAdditionalDetails['petitionReceiptId'] = this.petitionAdditionalDetails['petitionReceiptId'];
+
+        if (this.petitionAdditionalDetails['showReceiptNumberToClient'] == '' || null || undefined) {
+            this.sfmRI = true;
+        } else {
+            this.sfmRI = false;
+            this.petitionDetailsService.savePetitionAdditionalDetails(this.petitionAdditionalDetails)
+                .subscribe((res) => {
+                    console.log(this.petitionAdditionalDetails);
+                    console.log(res);
+                    this.isAdditionalDetailsEdit = true;
+                    if (res['petitionAdditionalDetails'] != undefined) {
+                        this.petitionAdditionalDetails = res['petitionAdditionalDetails'];
+                    }
+                });
+        }
+
+
     }
 }

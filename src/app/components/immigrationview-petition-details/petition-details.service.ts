@@ -29,6 +29,14 @@ export class ImmigrationViewPetitionDetailsService {
         return this.restService.postData("/petition/petitionInfo", req);
     }
 
+    public savePetitionAdditionalDetails(petitionAdditionalDetails: any) {
+        var req = {
+            "petitionAdditionalDetails": petitionAdditionalDetails
+        };
+        return this.restService.postData("/petition/additionaldetails/", req);
+    }
+
+
     public saveReceiptInfo(receiptInfo: any) {
         var req = {
             "receiptInfo": receiptInfo
