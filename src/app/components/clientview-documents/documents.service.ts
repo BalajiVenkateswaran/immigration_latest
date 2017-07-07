@@ -33,4 +33,7 @@ export class documentService {
         return this.restService.getFile("/file/" + fileId);
 
     }
+    public getOrgNames(userid: string) {
+        return this.restService.getData("/client/organizations/" + userid);
+    }
 }

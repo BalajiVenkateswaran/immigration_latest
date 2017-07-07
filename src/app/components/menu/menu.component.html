@@ -261,96 +261,99 @@
               </a>
           </li>
           </ul>
-
-      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-Questionnaire'">
-          <li ngbDropdown class="dropdown">
-              <a (click)="appservice.moveToPage('clientview-Questionnaries');highlightSBLink('Questionnaires')" [ngClass]="[checkForCurrentSBLink('Questionnaires') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-questionnaires" routerLinkActive="active">
-                  <span class="ico-flight"></span>
-                  <span>Questionnaires</span>
-                  <span class="ico-arrow"></span>
-              </a>
-              <ul class="listsidemenu" *ngIf="clientQuest" role="menu" aria-labelledby="clientView-questionnaires">
-                  <!--<li><a (click)="appservice.moveToPage('questionnaire-i129');" routerLinkActive="active">Questionnaire Name A</a></li>
-                  <li><a (click)="appservice.moveToPage('QuestionnairenameB');" routerLinkActive="active">Questionnaire Name B</a></li>-->
-                  <!--<li>
-                      <a (click)="appservice.moveToPage('questionnaire-i129');" routerLinkActive="active">
-                          <span class="ico-client-details"></span>
-                          <span>Questionnaire I-129</span>
-                      </a>
-                  </li>-->
-                  <!--<li>
-                      <a (click)="appservice.moveToPage('questionnaire-i129clientView');" routerLinkActive="active">
-                          <span>Questionnaire I-129(Client View)</span>
-                      </a>
-
-                      <a (click)="appservice.moveToPage('questionnaire-i129hclientView');" routerLinkActive="active">
-                          <span>Questionnaire I-129H(Client View)</span>
-                      </a>
-                  </li>-->
-
-
-                  <!--<li>
-                      <a (click)="appservice.moveToPage('questionnaire-i129dc');" routerLinkActive="active">
-                          <span>I-129 DC</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a (click)="appservice.moveToPage('questionnaire-i129h');" routerLinkActive="active">
-                          <span>I-129 H</span>
-                      </a>
-                  </li>-->
-                  <li *ngFor='let value of appservice.dependentsname'><a (click)="appservice.questionaryName=value.questionnaireId;appservice.moveToQuestionnaire(value);highlightSBLink(value.questionnaireName)" [ngClass]="[checkForCurrentSBLink(value.questionnaireName) ? 'active': '']" routerLinkActive="active">{{value.questionnaireName}}</a></li>
-              </ul>
+      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-document'">
+          <li *ngFor='let value of docsideBarMenu'>
+          <a (click)="appservice.selectedOrgClienttId=value.clientId;appservice.moveToPage('clientview-documents');highlightSBLink(value.orgName)" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" routerLinkActive="active">{{value.orgName}}</a>
           </li>
+        
       </ul>
+          <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-Questionnaire'">
+              <li ngbDropdown class="dropdown">
+                  <a (click)="appservice.moveToPage('clientview-Questionnaries');highlightSBLink('Questionnaires')" [ngClass]="[checkForCurrentSBLink('Questionnaires') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-questionnaires" routerLinkActive="active">
+                      <span class="ico-flight"></span>
+                      <span>Questionnaires</span>
+                      <span class="ico-arrow"></span>
+                  </a>
+                  <ul class="listsidemenu" *ngIf="clientQuest" role="menu" aria-labelledby="clientView-questionnaires">
+                      <!--<li><a (click)="appservice.moveToPage('questionnaire-i129');" routerLinkActive="active">Questionnaire Name A</a></li>
+                    <li><a (click)="appservice.moveToPage('QuestionnairenameB');" routerLinkActive="active">Questionnaire Name B</a></li>-->
+                      <!--<li>
+                        <a (click)="appservice.moveToPage('questionnaire-i129');" routerLinkActive="active">
+                            <span class="ico-client-details"></span>
+                            <span>Questionnaire I-129</span>
+                        </a>
+                    </li>-->
+                      <!--<li>
+                        <a (click)="appservice.moveToPage('questionnaire-i129clientView');" routerLinkActive="active">
+                            <span>Questionnaire I-129(Client View)</span>
+                        </a>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-accounts'">
-         <li>
-              <a (click)="appservice.moveToPage('account-details');highlightSBLink('Account Details')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Account Details</span>
-              </a>
-          </li>
-          <li>
-              <a (click)="appservice.moveToPage('superuserview-accountmanagers');highlightSBLink('Account Managers')" [ngClass]="[checkForCurrentSBLink('Account Managers') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Account Managers</span>
-              </a>
-          </li>
-           <li>
-              <a (click)="appservice.moveToPage('superuserview-preference');highlightSBLink('superuserview-preference')" [ngClass]="[checkForCurrentSBLink('superuserview-preference') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Account Preferences</span>
-              </a>
-          </li>
-           <li>
-              <a (click)="appservice.moveToPage('accountdetails-invoice');highlightSBLink('Account Details Invoices')" [ngClass]="[checkForCurrentSBLink('Account Details Invoices') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Invoices</span>
-              </a>
-          </li>
-        <li>
-            <a (click)="appservice.moveToPage('accountdetails-payments');highlightSBLink('Payments')" [ngClass]="[checkForCurrentSBLink('Payments') ? 'active': '']" routerLinkActive="active">
-                <span class="ico-flight"></span>
-                <span>Payments</span>
-            </a>
-        </li>
+                        <a (click)="appservice.moveToPage('questionnaire-i129hclientView');" routerLinkActive="active">
+                            <span>Questionnaire I-129H(Client View)</span>
+                        </a>
+                    </li>-->
+                      <!--<li>
+                        <a (click)="appservice.moveToPage('questionnaire-i129dc');" routerLinkActive="active">
+                            <span>I-129 DC</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="appservice.moveToPage('questionnaire-i129h');" routerLinkActive="active">
+                            <span>I-129 H</span>
+                        </a>
+                    </li>-->
+                      <li *ngFor='let value of appservice.dependentsname'><a (click)="appservice.questionaryName=value.questionnaireId;appservice.moveToQuestionnaire(value);highlightSBLink(value.questionnaireName)" [ngClass]="[checkForCurrentSBLink(value.questionnaireName) ? 'active': '']" routerLinkActive="active">{{value.questionnaireName}}</a></li>
+                  </ul>
+              </li>
+          </ul>
 
-    </ul>
+          <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-accounts'">
+              <li>
+                  <a (click)="appservice.moveToPage('account-details');highlightSBLink('Account Details')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-history"></span>
+                      <span>Account Details</span>
+                  </a>
+              </li>
+              <li>
+                  <a (click)="appservice.moveToPage('superuserview-accountmanagers');highlightSBLink('Account Managers')" [ngClass]="[checkForCurrentSBLink('Account Managers') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-history"></span>
+                      <span>Account Managers</span>
+                  </a>
+              </li>
+              <li>
+                  <a (click)="appservice.moveToPage('superuserview-preference');highlightSBLink('superuserview-preference')" [ngClass]="[checkForCurrentSBLink('superuserview-preference') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-history"></span>
+                      <span>Account Preferences</span>
+                  </a>
+              </li>
+              <li>
+                  <a (click)="appservice.moveToPage('accountdetails-invoice');highlightSBLink('Account Details Invoices')" [ngClass]="[checkForCurrentSBLink('Account Details Invoices') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-history"></span>
+                      <span>Invoices</span>
+                  </a>
+              </li>
+              <li>
+                  <a (click)="appservice.moveToPage('accountdetails-payments');highlightSBLink('Payments')" [ngClass]="[checkForCurrentSBLink('Payments') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-flight"></span>
+                      <span>Payments</span>
+                  </a>
+              </li>
 
-       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">
-          <li>
-              <a (click)="appservice.moveToPage('superuserview-productcatalog');highlightSBLink('Products')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Products</span>
-              </a>
-          </li>
-           <li>
-              <a (click)="appservice.moveToPage('superuserview-productcatalog-discounts');highlightSBLink('Discounts')" [ngClass]="[checkForCurrentSBLink('Discounts') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Discounts</span>
-              </a>
-          </li>
-    </ul>
-  </div>
+          </ul>
+
+          <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">
+              <li>
+                  <a (click)="appservice.moveToPage('superuserview-productcatalog');highlightSBLink('Products')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-history"></span>
+                      <span>Products</span>
+                  </a>
+              </li>
+              <li>
+                  <a (click)="appservice.moveToPage('superuserview-productcatalog-discounts');highlightSBLink('Discounts')" [ngClass]="[checkForCurrentSBLink('Discounts') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-history"></span>
+                      <span>Discounts</span>
+                  </a>
+              </li>
+          </ul>
+</div>
 

@@ -24,7 +24,7 @@ export class DocumentsComponent implements OnInit {
     private message: string;
     private user: any;
     private accountId;
-
+    public orgNames: any = [];
     constructor(private Documentservice: documentService, private http: Http, public appService: AppService, private dialogService: DialogService) {
         if (this.appService.user) {
             this.user = this.appService.user;
@@ -39,7 +39,16 @@ export class DocumentsComponent implements OnInit {
 
     files = [];
     ngOnInit() {
+     
+
+        this.Documentservice.getOrgNames(this.appService.user.userId).subscribe((res) => {
+            this.orgNames = res['orgs'];
+            this.appService.documentSideMenu(this.orgNames);
+        });
+        this.appService.showSideBarMenu("clientview-document", "clientview-document");
+
         this.getFilesList();
+
     }
 
     private deleterow;

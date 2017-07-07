@@ -63,8 +63,10 @@
                 <ul *ngIf="applicationViewMode=='Client'">
                     <li><a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');" [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']" routerLinkActive="active">Petitions</a></li>
                     <li><a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');" [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']" routerLinkActive="active">Client Details</a></li>
+                    <li><a (click)="appService.moveToPage('clientview-documents'); highlightTab('clientview-documents');" [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']" routerLinkActive="active">Documents</a></li>
                     <li><a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');" [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']" routerLinkActive="active">Questionnaires</a></li>
                     <li><a (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');" [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']" routerLinkActive="active">Requests</a></li>
+
                 </ul>
                 <ul *ngIf="applicationViewMode=='Superuser'">
                     <li><a (click)="appService.moveToPage('superuser-accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('superuser-accounts') ? 'active': '']" routerLinkActive="active">Accounts</a></li>

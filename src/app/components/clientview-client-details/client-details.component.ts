@@ -57,16 +57,16 @@ export class ClientDetailsComponent implements OnInit {
             this.user = this.appService.user;
         }
     }
-    getSideMenu = function () {
+    //getSideMenu = function () {
 
-        this.ClientDetailsService.getOrgNames(this.appService.user.userId).subscribe((res) => {
-            this.orgNames = res.orgs;
-            this.appService.documentSideMenu(this.orgNames);
-        });
+    //    this.ClientDetailsService.getOrgNames(this.appService.user.userId).subscribe((res) => {
+    //        this.orgNames = res.orgs;
+    //        this.appService.documentSideMenu(this.orgNames);
+    //    });
 
-    };
+    //};
     ngOnInit() {
-        this.getSideMenu();
+       // this.getSideMenu();
         this.appService.showSideBarMenu("clientView-client", "clientview-client-details");
         this.clientDetailsService.getClientDetails(this.user.userId)
             .subscribe((res) => {

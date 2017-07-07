@@ -19,7 +19,7 @@ export class ClientDetailsService {
 
         return this.restService.postData("/clientview/details", req);
     }
-    public getOrgNames(userid: string) {
-        return this.restService.getData("/client/organizations/" + userid);
-    }
+    //public getOrgNames(userid: string) {
+    //    return this.restService.getData("/client/organizations/" + userid);
+    //}
 }
