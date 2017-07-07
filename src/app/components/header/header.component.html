@@ -68,7 +68,7 @@
                 </ul>
                 <ul *ngIf="applicationViewMode=='Superuser'">
                     <li><a (click)="appService.moveToPage('superuser-accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('superuser-accounts') ? 'active': '']" routerLinkActive="active">Accounts</a></li>
-                    <li><a (click)="appService.moveToPage('ProductCatalog'); highlightTab('ProductCatalog');" [ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']" routerLinkActive="active">Product Catalog</a></li>
+                    <li><a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('ProductCatalog');" [ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']" routerLinkActive="active">Product Catalog</a></li>
                   <li><a (click)="appService.moveToPage('invoices'); highlightTab('invoices');" [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']" routerLinkActive="active">Invoices</a></li>
                   <li><a (click)="appService.moveToPage('payments'); highlightTab('payments');" [ngClass]="[checkForCurrentTab('payments') ? 'active': '']" routerLinkActive="active">Payments</a></li>
                   <li><a (click)="appService.moveToPage('dashboards'); highlightTab('dashboards');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('dashboards') ? 'active' : '']" routerLinkActive="active">Dashboards</a></li>

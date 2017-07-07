@@ -129,6 +129,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                     user['roleName'] = user['role'];
                 }
                 this.source.load(res['users']);
+                this.appService.usersList=res['users'];
             });
     }
     ngOnInit() {
@@ -243,6 +244,10 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                     });
                 }
             });
+    }
+    userDetails(event){
+        this.appService.moveToPageWithParams('user-details', event.data); 
+        this.appService.currentSBLink = event.data.firstName;
     }
 
 }
