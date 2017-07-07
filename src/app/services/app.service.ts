@@ -49,6 +49,7 @@ export class AppService {
     public immidep: boolean = false;
     public clntqstn: boolean = false;
     public immiqstn: boolean = false;
+    public manageUser:boolean=true;
     public orgClientId;
     public addNewDocExp: any = {};
     public _subtypes: any[] = [];
@@ -71,6 +72,7 @@ export class AppService {
     public selacntId: string;
     public selroleId: string;
     public rolemultiple: boolean;
+    public usersList:any;
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {
@@ -182,6 +184,16 @@ export class AppService {
               this.immiqstn = true;
               return;
           }
+      }
+      if(pageLink=='manageaccount-user'){
+        if(this.manageUser==true){
+            this.manageUser=false;
+            return;
+        }
+        if(this.manageUser==false){
+            this.manageUser=true;
+            return;
+        }
       }
     }
 

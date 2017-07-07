@@ -39,8 +39,8 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     //public isEdit:boolean=true;
 
     ngOnInit() {
-        this.menuComponent.highlightSBLink('Products');
-      this.appService.showSideBarMenu("superuserview-product", "productcatalog");
+      this.menuComponent.highlightSBLink('Products');
+      this.appService.showSideBarMenu("superuserview-product", "ProductCatalog");
  
   }
   getProducts(){
