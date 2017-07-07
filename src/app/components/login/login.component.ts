@@ -121,6 +121,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                     this.appService.user = res.user;
                     this.appService.organizations = res.organizationList;
                     this.appService.user['roleName'] = res.userAccountRoleList[0].roleName;
+                    this.appService.user.accountId=res.userAccountRoleList[0].accountId;
                 //Reset password
                 if (res['resetPassword'] != undefined
                     && res['resetPassword'] == true) {
@@ -157,6 +158,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
 
   selectedRole(userdet) {
       this.appService.selacntId = userdet.accountId;
+      this.appService.user.accountId=userdet.accountId;
       this.appService.selroleId = userdet.roleId;
       this.appService.rolemultiple = true;
       this.result = true;

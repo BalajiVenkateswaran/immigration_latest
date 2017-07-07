@@ -5,7 +5,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {markfordeletion} from "../../models/markfordeletion";
 import {markfordeletionservice} from "./manageaccount-markfordeletion.service";
-
+import {User} from "../../models/user";
 
 @Component({
     selector: 'mark for deletion',
@@ -13,8 +13,21 @@ import {markfordeletionservice} from "./manageaccount-markfordeletion.service";
     styleUrls: ['./manageaccount-markfordeletion.component.sass']
 })
 export class MarkforDeletionComponent implements OnInit {
-    ngOnInit() { }
-    constructor() { }
+    public user:User;
+    public markForDeletionInfoList;
+    ngOnInit() { 
+        if (this.appService.user) {
+            this.user = this.appService.user;
+
+        }
+        this.markForDeletionservice.getMarkForDeletion(this.appService.user.accountId).subscribe(
+            res=>{
+               this.markForDeletionInfoList=res['markForDeletionInfoList'];
+               this.source.load(this.markForDeletionInfoList); 
+            }
+        )
+    }
+    constructor(public markForDeletionservice:markfordeletionservice,public appService:AppService) { }
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -40,19 +53,19 @@ export class MarkforDeletionComponent implements OnInit {
             entityType: {
                 title: 'Entity type'
             },
-            deletedBy: {
+            deletedByUser: {
                 title: 'Deleted by'
             },
-            mfdOn: {
+            markedForDeletionDate: {
                 title: 'MFD on'
             },
-            deletedOn: {
+            deletionDate: {
                 title: 'Deleted on'
             },
-            organization: {
+            orgName: {
                 title: 'Organization'
             },
-            clientName: {
+            firstName: {
                 title: 'Client Name'
             },
             petitionName: {

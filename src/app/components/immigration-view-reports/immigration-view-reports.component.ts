@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chartjs';
+
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @Component({

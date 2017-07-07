@@ -7,4 +7,7 @@ export class markfordeletionservice {
     constructor(private restService: RestService) {
 
     }
+    getMarkForDeletion(accountId:string){
+        return this.restService.getData("/immigration/account/"+accountId+"/getMarkForDeletion");
+    }
 }

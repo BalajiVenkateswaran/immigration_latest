@@ -174,12 +174,13 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview-paym
 import {SuperUserViewPaymentstabService} from './components/superuserview-payments/payments.service';
 import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
 import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
-
+import { ManageAccountpreferencessService } from "./components/manageaccount-preferences/manageaccount-preferences.service";
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
 import { ManageAccountInvoiceService } from "./components/manageaccount-invoices/manageaccount-invoices.service";
 import {ImmigrationviewPetitionNotesComponent } from './components/immigrationview-petition-notes/petition-notes.component'
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -352,7 +353,8 @@ import {ImmigrationviewPetitionNotesComponent } from './components/immigrationvi
         MenuComponent,
         SmartTableFrameworkService,
         //
-
+        ManageAccountInvoiceService,
+        ManageAccountpreferencessService,
         ProductCatalogProductService,
         //superuserview
         superUserviewAccountService,
