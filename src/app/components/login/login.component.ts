@@ -181,4 +181,11 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
       }
       this.close();
   }
+
+  /**
+  *
+  */
+  getRoleName(user){
+    return user.accountName == null ? user.roleName : user.roleName+' in '+user.accountName;
+  }
 }
