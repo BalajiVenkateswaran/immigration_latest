@@ -22,12 +22,12 @@
                     </div>
                     <div class="row" *ngIf="warningMessage">
                         <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span> 
+                            <span class="redstar">* Fields are Mandatory.</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-name">File Number<span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-name"  [(ngModel)]="dependentProfile.fileNumber" [ngClass]="dependentProfile.fileNumber == '' ? 'redborder': ''"/><span *ngIf="isProfileEdit==true">{{dependentProfile.fileNumber}}</span></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-name"  [readonly]="true" [(ngModel)]="dependentProfile.fileNumber" [ngClass]="dependentProfile.fileNumber == '' ? 'redborder': ''"/><span *ngIf="isProfileEdit==true">{{dependentProfile.fileNumber}}</span></div>
                     </div>
 
                     <div class="row">
