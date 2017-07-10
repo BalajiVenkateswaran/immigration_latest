@@ -49,7 +49,7 @@
             <td>{{invoice.invoiceAmount}}</td>
             <td>{{invoice.paymentRecieved}}</td>           
             <td>{{invoice.fileName}}</td>          
-            <td><button type="button" class="btn btn-primary" (click)="downloadInvoice(invoice)">Downdload</button></td>
+            <td><button type="button" class="btn btn-primary" (click)="downloadInvoice(invoice)">Download</button></td>
             <td><a (click)="getInvoiceInfo(invoice)"><i class="fa fa-eye"></i></a></td>
         </tr>
                 </tbody>
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">invoice Codes:</div>
+                                <div class="col-md-4">Product Codes:</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.invoiceCodes"
                                         class="form-control">
                                     <span *ngIf="isEditInvoice==true">{{invoice.invoiceCodes}}</span>
@@ -125,9 +125,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">Downdload:</div>
+                                <div class="col-md-4">Invoice (PDF Name):</div>
                                 <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary" (click)="downloadInvoice(invoice)">Downdload</button>
+                                    <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.fileName"
+                                           class="form-control">
+                                    <span *ngIf="isEditInvoice==true">{{invoice.fileName}}</span>
                                 </div>
                             </div>
                             

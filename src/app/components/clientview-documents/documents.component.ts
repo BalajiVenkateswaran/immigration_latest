@@ -10,7 +10,9 @@ import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService } from "ng2-bootstrap-modal";
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as FileSaver from 'file-saver';
+
 
 @Component({
   selector: 'app-documents',
@@ -25,7 +27,8 @@ export class DocumentsComponent implements OnInit {
     private user: any;
     private accountId;
     public orgNames: any = [];
-    constructor(private Documentservice: documentService, private http: Http, public appService: AppService, private dialogService: DialogService) {
+    public clientid: string;
+    constructor(private Documentservice: documentService, private http: Http, public appService: AppService, private dialogService: DialogService, private router: Router, private route: ActivatedRoute) {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
@@ -40,15 +43,20 @@ export class DocumentsComponent implements OnInit {
     files = [];
     ngOnInit() {
      
+        this.route.params.subscribe(params => {
+            if (params['clientId'] == "") {
+                this.Documentservice.getOrgNames(this.appService.user.userId).subscribe((res) => {
+                    this.orgNames = res['orgs'];
+                    this.appService.documentSideMenu(this.orgNames);
+                    this.appService.selectedOrgClienttId = this.orgNames[0].clientId;                 
+                    this.getFilesList();
+                });
+            } else {
+                this.getFilesList();
+            }
+            this.appService.showSideBarMenu("clientview-document", "clientview-document");
 
-        this.Documentservice.getOrgNames(this.appService.user.userId).subscribe((res) => {
-            this.orgNames = res['orgs'];
-            this.appService.documentSideMenu(this.orgNames);
         });
-        this.appService.showSideBarMenu("clientview-document", "clientview-document");
-
-        this.getFilesList();
-
     }
 
     private deleterow;
