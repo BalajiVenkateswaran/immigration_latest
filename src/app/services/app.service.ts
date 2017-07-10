@@ -53,7 +53,6 @@ export class AppService {
     public orgClientId;
     public addNewDocExp: any = {};
     public _subtypes: any[] = [];
-
     public questionnaireEmployee: any = {};
     public newi797item: any = {};
     public newArvdInfoitem: any = {};

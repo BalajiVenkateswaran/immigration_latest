@@ -217,7 +217,7 @@
                   <li *ngFor='let value of appservice.dependents'><a (click)="appservice.moveToPageWithParams('dependentDetails',value.dependentId);highlightSBLink(value.firstName)" [ngClass]="[checkForCurrentSBLink(value.firstName) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
               </ul>
           </li>
-          <li ngbDropdown class="dropdown">
+          <!--<li ngbDropdown class="dropdown">
               <a (click)="clientDocClick();highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-documents" routerLinkActive="active">
                   <span class="ico-documents"></span>
                   <span>Documents</span>
@@ -227,7 +227,7 @@
                   <li (click)="appservice.selectedOrgClienttId=value.clientId;appservice.moveToPage('clientview-documents');highlightSBLink(value.orgName)" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" *ngFor='let value of docsideBarMenu'><a routerLinkActive="active">{{value.orgName}}</a></li>
 
               </ul>
-          </li>
+          </li>-->
           <li>
               <a (click)="appservice.moveToPage('clientview-document-expirations');highlightSBLink('Documents Expirations')" [ngClass]="[checkForCurrentSBLink('Documents Expirations') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-documents-expirations"></span>
@@ -267,7 +267,7 @@
           </ul>
       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-document'">
           <li *ngFor='let value of docsideBarMenu'>
-          <a (click)="appservice.selectedOrgClienttId=value.clientId;appservice.moveToPage('clientview-documents');highlightSBLink(value.orgName)" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" routerLinkActive="active">{{value.orgName}}</a>
+          <a (click)="appservice.selectedOrgClienttId=value.clientId;appservice.moveToPageWithParams('clientview-documents',value.clientId);highlightSBLink(value.orgName)" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" routerLinkActive="active">{{value.orgName}}</a>
           </li>
         
       </ul>
