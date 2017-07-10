@@ -201,7 +201,7 @@ export const appRoutes: Routes = [
         component: DocumentExpirationsComponent
     },
     {
-        path: 'clientview-documents',
+        path: 'clientview-documents/:clientId',
         component: DocumentsComponent
     },
     {
