@@ -33,6 +33,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         menu: 'menu',
         footer: null
     };
+    errormsg: boolean = false;
     public accountList=[];
     public addClient: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
@@ -58,7 +59,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
                 title: 'Account Number'
             },
             firstName: {
-                title: 'Account Number'
+                title: 'First Name'
             },
             lastName: {
                 title: 'Last Name',
@@ -69,13 +70,22 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             phone:{
                 title: 'Phone',
             },
-            status:{
+            status: {
                 title: 'Status',
+            },
+            clients : {
+                title: 'Clients',
+            },
+            petitions: {
+                title: 'Petitions',
             },
             createdOn:{
                 title: 'Created On',
             },
-            storageType:{
+            lastPaymentStatus:{
+                title: 'Last Payment Status',
+            },
+            storageType: {
                 title: 'Storage Type',
             }
 
@@ -113,7 +123,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         this.dialogService.addDialog(superuserViewAccountsComponent, {
             addAccounts: true,
             getAccountsData: false,
-            title: 'Add Client',
+            title: 'Add New Account',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
 
@@ -130,9 +140,19 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         if (this.accountDetails['status'] == "" || this.accountDetails['status'] == undefined) {
             this.accountDetails['status'] = "Active";
         }
-        this.appService.newclitem = this.accountDetails;
-        this.result = true;
-        this.close();
+        if (this.accountDetails['accountName'] == '' || this.accountDetails['accountName'] == null || this.accountDetails['accountName'] == undefined
+            || this.accountDetails['firstName'] == '' || this.accountDetails['firstName'] == null || this.accountDetails['firstName'] == undefined
+            || this.accountDetails['lastName'] == '' || this.accountDetails['lastName'] == null || this.accountDetails['lastName'] == undefined
+            || this.accountDetails['email'] == '' || this.accountDetails['email'] == null || this.accountDetails['email'] == undefined
+            || this.accountDetails['phone'] == '' || this.accountDetails['phone'] == null || this.accountDetails['phone'] == undefined
+            || this.accountDetails['objectStore'] == '' || this.accountDetails['objectStore'] == null || this.accountDetails['objectStore'] == undefined) {
+            this.errormsg = true;
+        } else {
+            this.appService.newclitem = this.accountDetails;
+            this.result = true;
+            this.close();
+        }
+        
     }
     cancel() {
         this.result = false;

@@ -7,92 +7,7 @@
     <div class="table-data">
         <h2>Accounts<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewCli()">ADD</button></h2>
         <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event)"></ng2-smart-table>
-         <!--<table class="smarttable document-management" cellpadding="0" cellspacing="0">
-            <thead>
-                <tr>
-                    <td class="actions" style="width:100px;">
-                        <span>Actions</span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>Account Name  </span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>Account Number</span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>First Name </span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>Last Name </span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>Email </span> <span class="pull-right"></span>
-                    </td>
-                     <td>
-                        <span>Phone </span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>Status </span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>Created On </span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>Storage Type</span> <span class="pull-right"></span>
-                    </td>
-                    <td>
-                        <span>Last Payment Status </span> <span class="pull-right"></span>
-                    </td>
-                     <td>
-                        <span>Clients  </span> <span class="pull-right"></span>
-                    </td>
-                     <td>
-                        <span>Petitions   </span> <span class="pull-right"></span>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-               
-                <tr *ngFor="let account of accountList; let i=index">
-                    <td class="actions">
-                        <ul class="edit-delete">
-                            <li *ngIf="rowEdit[i]==true"><a (click)="editQuestionnaire(i,questionnaireClient)"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                            <li *ngIf="rowEdit[i]==false"><a (click)="saveQuestionnaire(i,questionnaireClient)"><i class="fa fa-check" aria-hidden="true"></i></a></li>
-                            <li *ngIf="rowEdit[i]==false"><a (click)="cancelQuestionnaire(i,questionnaireClient)"><i class="fa fa-times" aria-hidden="true"></i></a></li>
-                            <li *ngIf="rowEdit[i]==true"><a (click)="deleteConfirm(i,questionnaireClient)"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                        </ul>
-                    </td>
-                   <td>
-                       <span>{{account.accountName}}</span>  
-                    </td>
-                    <td>
-                       <span>{{account.accountNumber}}</span>  
-                    </td>
-                    <td>
-                       <span>{{account.firstName}}</span>  
-                    </td>
-                    <td>
-                       <span>{{account.lastName}}</span>  
-                    </td>
-                    <td>
-                       <span>{{account.email}}</span>  
-                    </td>
-                    <td>
-                       <span>{{account.phone}}</span>  
-                    </td>
-                    <td>
-                       <span>{{account.status}}</span>  
-                    </td>
-                    <td>
-                       <span>{{account.createdOn}}</span>  
-                    </td>
-                    <td>
-                       <span>{{account.storageType}}</span>  
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-         -->
+         
     </div>
 </div>
 
@@ -108,22 +23,27 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">Account Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.accountName" class="form-control"></div>
-                            <div class="col-md-4">First Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.firstName" class="form-control"></div>
-                            <div class="col-md-4">Last Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.lasstName" class="form-control"></div>
-                            <div class="col-md-4">Email:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.email" class="form-control"></div>
-                            <div class="col-md-4">Phone:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.phone" class="form-control"></div>
-                            <div class="col-md-4">Storage Type::</div>
+                            <div class="col-md-4"><span class="redstar">*</span> Account Name:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.accountName" class="form-control" [ngClass]="accountDetails.accountName == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-4"><span class="redstar">*</span> First Name:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.firstName" class="form-control" [ngClass]="accountDetails.firstName == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-4"><span class="redstar">*</span> Last Name:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.lastName" class="form-control" [ngClass]="accountDetails.lastName == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-4"><span class="redstar">*</span> Email:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.email" class="form-control" [ngClass]="accountDetails.email == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-4"><span class="redstar">*</span> Phone:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.phone" class="form-control" [ngClass]="accountDetails.phone == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-4"><span class="redstar">*</span> Storage Type::</div>
                             <div class="col-md-8">
-                            <select [(ngModel)]="accountDetails.objectStore" class="form-control">
+                            <select [(ngModel)]="accountDetails.objectStore" class="form-control" [ngClass]="accountDetails.objectStore == '' ? 'redborder': ''">
                                 <option value="S3">S3</option>
                                 <option value="GD">GD</option>
                             </select>
+                            </div>
+                        </div>
+                        <div class="row sfm" *ngIf="errormsg">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
                             </div>
                         </div>
                     </div>
