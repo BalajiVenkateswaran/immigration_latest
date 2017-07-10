@@ -119,7 +119,7 @@
                             <div class="row">
                                 <div class="col-md-4">Account Name:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountName" class="form-control">
+                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountName" class="form-control" [disabled]="true">
                                     <span *ngIf="isEditpayments==true">{{payment.accountName}}</span>
                                 </div>
                             </div>
@@ -133,14 +133,14 @@
                             <div class="row">
                                 <div class="col-md-4">Invoice Date:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceDate" class="form-control">
+                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceDate" class="form-control" [disabled]="true">
                                     <span *ngIf="isEditpayments==true">{{payment.invoiceDate}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Invoice Number:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.invoiceNumber" class="form-control">
+                                    <input type="text" *ngIf="isEditpayments==false"  [(ngModel)]="payment.invoiceNumber" class="form-control">
                                     <span *ngIf="isEditpayments==true">{{payment.invoiceNumber}}</span>
                                 </div>
                             </div>
@@ -168,28 +168,28 @@
                             <div class="row">
                                 <div class="col-md-4">Payment Date:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.paymentDate" class="form-control">
+                                    <input type="text" *ngIf="isEditpayments==false"  [(ngModel)]="payment.paymentDate" class="form-control">
                                     <span *ngIf="isEditpayments==true">{{payment.paymentDate}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Payment Amount:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.paymentAmount" class="form-control">
+                                    <input type="text" *ngIf="isEditpayments==false"  [(ngModel)]="payment.paymentAmount" class="form-control">
                                     <span *ngIf="isEditpayments==true">{{payment.paymentAmount}}</span>
                                 </div>
                             </div>
                              <div class="row">
                                 <div class="col-md-4">Payment Status:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.paymentStatus" class="form-control">
+                                    <input type="text" *ngIf="isEditpayments==false"  [(ngModel)]="payment.paymentStatus" class="form-control">
                                     <span *ngIf="isEditpayments==true">{{payment.paymentStatus}}</span>
                                 </div>
                             </div>
                              <div class="row">
                                 <div class="col-md-4">Comments:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.comments" class="form-control">
+                                    <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.comments" class="form-control">
                                     <span *ngIf="isEditpayments==true">{{payment.comments}}</span>
                                 </div>
                             </div>

@@ -36,6 +36,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     public isEditProducts:boolean=true;
     public editFlag: boolean = true;
     public beforeEdit: any;
+    public warningMessage:boolean=false;
     //public isEdit:boolean=true;
 
     ngOnInit() {
@@ -75,6 +76,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
                   this.productCatalogProductService.editProducts(this.appService.addUsers).subscribe((res) => {
                   if (res['statusCode'] == 'SUCCESS') {
                       this.getProducts();
+                      
                   }
               });
            }
@@ -99,16 +101,27 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
                 this.productCatalogProductService.saveProductDetails(this.appService.addUsers).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getProducts();
+                        this.addProduct={};
                     }
                 });
+            }
+            else{
+                this.addProduct={};
             }
         });
   }
   saveProduct(){
        /* this.addUsers['accountId'] = this.appService.user.accountId;*/
-        this.appService.addUsers = this.addProduct;
-        this.result = true;
-        this.close();
+        if (this.addProduct['name'] == '' || this.addProduct['name'] == null || this.addProduct['name'] == undefined || this.addProduct['code'] == '' || this.addProduct['code'] == null || this.addProduct['code'] == undefined || this.addProduct['cost'] == '' || this.addProduct['cost'] == null || this.addProduct['cost'] == undefined) {
+          this.warningMessage=true;
+        }
+        else{
+            this.warningMessage=false;
+            this.appService.addUsers = this.addProduct;
+            this.result = true;
+            this.close();
+        }
+        
   }
   cancel(){
        this.result = false;
@@ -128,6 +141,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     this.isEditProducts = !this.isEditProducts;
     this.appService.addUsers = this.product;
     this.result = true;
+    this.close();
   }
 }
 

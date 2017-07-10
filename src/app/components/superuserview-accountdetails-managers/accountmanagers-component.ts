@@ -48,9 +48,6 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
             emailId: {
                 title: 'Email'
             },
-            phone:{
-                title:'Phone'
-            },
              roleName: {
                 title: 'Role',
                 editor: {
@@ -83,6 +80,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     public beforeEdit: any;
     public editFlag: boolean = true;
     source: LocalDataSource = new LocalDataSource();
+    public warningMessage:boolean=false;
      private roles: any = {
         "IMMIGRATION OFFICER": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
         "IMMIGRATION MANAGER": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
@@ -124,9 +122,15 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     accountmanagersSave(){
         this.addUsers['role'] = this.roles[this.addUsers['role']];
         this.addUsers['accountId'] = this.accountDetailsCommonService.accountId;
-        this.appService.addUsers = this.addUsers;
-        this.result = true;
-        this.close();
+        if (this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || this.addUsers['role'] == '' || this.addUsers['role'] == null || this.addUsers['role'] == undefined) {
+          this.warningMessage=true;
+        }
+        else{
+            this.appService.addUsers = this.addUsers;
+            this.result = true;
+            this.close();
+        }
+   
     }
     cancel(){
         this.result = false;

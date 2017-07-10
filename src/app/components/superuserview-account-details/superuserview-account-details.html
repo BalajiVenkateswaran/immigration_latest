@@ -16,31 +16,42 @@
                         </div>
 
                     </div>
+                    <div class="row sfm" *ngIf="errormsg">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
+                        </div>
+                    </div>
+
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-name">Account Name </label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-name" [(ngModel)]="accountDetails.accountName" /><span *ngIf="isEdit==true">{{accountDetails.accountName}}</span></div>
+                        <div class="col-md-4"><label for="accountdetails-name">Account Name <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-name" [ngClass]="accountDetails.accountName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.accountName" />
+                        <span *ngIf="isEdit==true">{{accountDetails.accountName}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-number">Account Number</label></div>
+                        <div class="col-md-4"><label for="accountdetails-number">Account Number <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
                             <span>{{accountDetails.accountNumber}}</span>
                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-firstname">First Name</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-fname" [(ngModel)]="accountDetails.firstName" /><span *ngIf="isEdit==true">{{accountDetails.firstName}}</span></div>
+                        <div class="col-md-4"><label for="accountdetails-firstname">First Name <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-fname" [ngClass]="accountDetails.firstName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.firstName" />
+                        <span *ngIf="isEdit==true">{{accountDetails.firstName}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-lastname">Last Name</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-lname" [(ngModel)]="accountDetails.lastName" /><span *ngIf="isEdit==true">{{accountDetails.lastName}}</span></div>
+                        <div class="col-md-4"><label for="accountdetails-lastname">Last Name <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-lname" [ngClass]="accountDetails.lastName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.lastName" />
+                        <span *ngIf="isEdit==true">{{accountDetails.lastName}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-email">Email</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-email" [(ngModel)]="accountDetails.email" /><span *ngIf="isEdit==true">{{accountDetails.email}}</span></div>
+                        <div class="col-md-4"><label for="accountdetails-email">Email <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-email" [ngClass]="accountDetails.email == '' ? 'redborder': ''" [(ngModel)]="accountDetails.email" />
+                        <span *ngIf="isEdit==true">{{accountDetails.email}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-phone">Phone</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-phone" [(ngModel)]="accountDetails.phone" /><span *ngIf="isEdit==true">{{accountDetails.phone}}</span></div>
+                        <div class="col-md-4"><label for="accountdetails-phone">Phone <span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-phone" [ngClass]="accountDetails.phone == '' ? 'redborder': ''" [(ngModel)]="accountDetails.phone" />
+                        <span *ngIf="isEdit==true">{{accountDetails.phone}}</span></div>
                     </div>
                     <div class="row">
                        <div class="col-md-4"><label for="accountdetails-createdon">Created On</label></div>
@@ -52,9 +63,9 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-status">Status </label></div>
+                        <div class="col-md-4"><label for="accountdetails-status">Status <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.status" class="form-control" (change)="statuschange()">
+                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.status" [ngClass]="accountDetails.status == '' ? 'redborder': ''" class="form-control" (change)="statuschange()">
                                 <option value="PreAct">Pre-Act</option>
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
@@ -64,21 +75,22 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="accountdetails-lastpay">Last Payment Status</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-lastpay" [(ngModel)]="accountDetails.lastPaymentStatus" /><span *ngIf="isEdit==true">{{accountDetails.lastPaymentStatus}}</span></div>
+                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-lastpay" [(ngModel)]="accountDetails.lastPaymentStatus" />
+                        <span *ngIf="isEdit==true">{{accountDetails.lastPaymentStatus}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-storage">Storage Type</label></div>
+                        <div class="col-md-4"><label for="accountdetails-storage">Storage Type <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isEditstorage==false" [(ngModel)]="accountDetails.storageType" class="form-control">
+                            <select *ngIf="isEditstorage==false" [(ngModel)]="accountDetails.storageType" [ngClass]="accountDetails.storageType == '' ? 'redborder': ''" class="form-control">
                                 <option value="S3">S3</option>
                                 <option value="GD">GD</option>
                             </select>
                         <span *ngIf="isEditstorage==true">{{accountDetails.storageType}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-mark">Mark for Deletion</label></div>
+                        <div class="col-md-4"><label for="accountdetails-mark">Mark for Deletion <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.markForDeletion" class="form-control">
+                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.markForDeletion" [ngClass]="accountDetails.markForDeletion == '' ? 'redborder': ''" class="form-control">
                                 <option value="true">YES</option>
                                 <option value="false">NO</option>
                             </select>
@@ -94,7 +106,11 @@
                         <div class="col-md-4"><label for="accountdetails-comments">Notes/Comments</label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="ad-comment" [(ngModel)]="accountDetails.notes" /><span *ngIf="isEdit==true">{{accountDetails.notes}}</span></div>
                     </div>
-
+                    <div class="row sfm" *ngIf="errormsg">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
+                        </div>
+                    </div>
                   
                 </div>
             </div>
