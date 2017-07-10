@@ -121,6 +121,12 @@
                   <span>I -797 History</span>
               </a>
           </li>
+           <li>
+              <a (click)="appservice.moveToPage('smarttable-i797');highlightSBLink('smarttable-i797')" [ngClass]="[checkForCurrentSBLink('I -797 History') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>I -797 History Smarttable</span>
+              </a>
+          </li>
 
       </ul>
 

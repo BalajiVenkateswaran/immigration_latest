@@ -186,7 +186,7 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
 import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service'
 
-
+import {SmartTableImmigrationViewI797HistoryComponent} from './components/smarttable-i-797-history/smarttable-i-797-history.component'
 @NgModule({
     imports: [
         BrowserModule,
@@ -209,6 +209,7 @@ import {AccountDetailsCommonService} from './components/superuserview/accounts-t
         ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
+        SmartTableImmigrationViewI797HistoryComponent,
         CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, /*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
