@@ -70,7 +70,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private petitionStages;
     private users;
     private assignedToName;
-
+    public isDelegatedOrgsEdit: boolean = true;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
