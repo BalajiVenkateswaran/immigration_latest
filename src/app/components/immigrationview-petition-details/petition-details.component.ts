@@ -41,6 +41,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private status: any[];
     private receiptNumber: any[];
     isLCAInfoEdit: boolean = true;
+    isDelegatedOrgsEdit: boolean = true;
     isReceiptInfoEdit: boolean = true;
     ispetitionAdditionalDetailsEdit: boolean = true;
     isAdditionalDetailsEdit: boolean = true;
@@ -152,6 +153,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                 this.isPetitionInformationEdit = true;
                 this.isNotesEdit = true;
                 this.isLCAInfoEdit = true;
+                this.isDelegatedOrgsEdit = true;
                 this.isReceiptInfoEdit = true;
                 this.isAdditionalDetailsEdit = true;
                 this.isSponsorInfoEdit = true;

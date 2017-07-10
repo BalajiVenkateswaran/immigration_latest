@@ -7,7 +7,6 @@ import { Ng2SmartTableModule, ServerDataSource  } from 'ng2-smart-table';
 import {User} from "../../models/user";
 import {clientviewPetitionsService} from "./clientview-petitions.service";
 import { LocalDataSource } from 'ng2-smart-table';
-import { viewallColumnsComponent } from './viewallColumns.component';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 
