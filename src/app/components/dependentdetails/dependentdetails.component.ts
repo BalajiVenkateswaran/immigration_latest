@@ -144,7 +144,9 @@ export class DependentDetailsComponent implements OnInit {
         if (this.dependentProfile['creationDate'] && this.dependentProfile['creationDate']['formatted']) {
             this.dependentProfile['creationDate'] = this.dependentProfile['creationDate']['formatted'];
         }
-        if(this.dependentProfile['firstName']==undefined || this.dependentProfile['lastName']==undefined || this.dependentProfile['relation']==undefined || this.dependentProfile['fileNumber']==undefined){
+        if (this.dependentProfile['firstName'] == undefined || this.dependentProfile['lastName'] == undefined || this.dependentProfile['relation'] == undefined || this.dependentProfile['fileNumber'] == undefined || 
+            this.dependentProfile['firstName'] == "" || this.dependentProfile['lastName'] == "" || this.dependentProfile['relation'] == "" || this.dependentProfile['fileNumber'] == "" ||
+            this.dependentProfile['firstName'] == null || this.dependentProfile['lastName'] == null || this.dependentProfile['relation'] == null || this.dependentProfile['fileNumber'] == null){
             this.warningMessage=true;
         }
         else{
