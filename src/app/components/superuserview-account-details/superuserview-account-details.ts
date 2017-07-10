@@ -14,7 +14,7 @@ import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account
     styleUrls: ['./superuserview-account-details.sass']
 })
 export class SuperuserViewAccountDetailsComponent implements OnInit {
-
+    errormsg: boolean = false;
     public accountDetails: any = {};
     isEdit;
     isEditstorage;
@@ -91,12 +91,25 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
         if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
             this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
         }
-
-        this.accountDetails['accountId'] = this.accountDetailsCommonService.accountId;
-        this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
-            .subscribe((res) => {
-                this.isEditstorage = true;
-                this.getAcountDetails();
-            });
+        if (this.accountDetails['accountName'] == '' || this.accountDetails['accountName'] == null || this.accountDetails['accountName'] == undefined
+            || this.accountDetails['accountNumber'] == '' || this.accountDetails['accountNumber'] == null || this.accountDetails['accountNumber'] == undefined
+            || this.accountDetails['firstName'] == '' || this.accountDetails['firstName'] == null || this.accountDetails['firstName'] == undefined
+            || this.accountDetails['lastName'] == '' || this.accountDetails['lastName'] == null || this.accountDetails['lastName'] == undefined
+            || this.accountDetails['email'] == '' || this.accountDetails['email'] == null || this.accountDetails['email'] == undefined
+            || this.accountDetails['phone'] == '' || this.accountDetails['phone'] == null || this.accountDetails['phone'] == undefined
+            || this.accountDetails['storageType'] == '' || this.accountDetails['storageType'] == null || this.accountDetails['storageType'] == undefined
+            || this.accountDetails['markForDeletion'] == '' || this.accountDetails['markForDeletion'] == null || this.accountDetails['markForDeletion'] == undefined
+            || this.accountDetails['status'] == '' || this.accountDetails['status'] == null || this.accountDetails['status'] == undefined) {
+            this.errormsg = true;
+        } else {
+            this.errormsg = false;
+            this.accountDetails['accountId'] = this.accountDetailsCommonService.accountId;
+            this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
+                .subscribe((res) => {
+                    this.isEditstorage = true;
+                    this.getAcountDetails();
+                });
+        }
+        
     }
 }
