@@ -14,42 +14,42 @@
                     <!--<td class="actions" style="width:100px;">
 <span>Actions</span> <span class="pull-right"></span>
 </td>-->
-<td>
-    <span>Name</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>Code</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>Max Users</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>Max Clients/Month</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>Max Petitions/Month</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>Max S3 Storage</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>Cost</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>Status</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>Created On</span> <span class="pull-right"></span>
-</td>
-<td>
-    <span>View Details</span> <span class="pull-right"></span>
-</td>
-</tr>
-</thead>
-<tbody>
+                    <td>
+                        <span>Name</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Code</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Max Users</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Max Clients/Month</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Max Petitions/Month</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Max S3 Storage</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Cost</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Status</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>Created On</span> <span class="pull-right"></span>
+                    </td>
+                    <td>
+                        <span>View Details</span> <span class="pull-right"></span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
 
-    <tr *ngFor="let productDet of products; let i=index">
-       <!-- <td class="actions">
+                <tr *ngFor="let productDet of products; let i=index">
+                    <!-- <td class="actions">
             <ul class="edit-delete">
                 <li *ngIf="rowEdit[i]==true"><a (click)="editQuestionnaire(i,questionnaireClient)"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
                 <li *ngIf="rowEdit[i]==false"><a (click)="saveQuestionnaire(i,questionnaireClient)"><i class="fa fa-check" aria-hidden="true"></i></a></li>
@@ -57,43 +57,43 @@
                 <li *ngIf="rowEdit[i]==true"><a (click)="deleteConfirm(i,questionnaireClient)"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
             </ul>
         </td>-->
-        <td>
-            <span>{{productDet.name}}</span>
-        </td>
-        <td>
-            <span>{{productDet.code}}</span>
-        </td>
-        <td>
-            <span>{{productDet.maxUsers}}</span>
-        </td>
-        <td>
-            <span>{{productDet.maxClientsPerMonth}}</span>
-        </td>
-        <td>
-            <span>{{productDet.maxPetitionsPerMonth}}</span>
-        </td>
-        <td>
-            <span>{{productDet.maxS3Storage}}</span>
-        </td>
-        <td>
-            <span>{{productDet.cost}}</span>
-        </td>
-        <td>
-            <span>{{productDet.status}}</span>
-        </td>
-        <td>
-            <span>{{productDet.startDate}}</span>
-        </td>
-        <td>
-            <a><i class="fa fa-eye" aria-hidden="true" (click)="viewDetails(productDet,i)"></i></a>
-        </td>
-    </tr>
+                    <td>
+                        <span>{{productDet.name}}</span>
+                    </td>
+                    <td>
+                        <span>{{productDet.code}}</span>
+                    </td>
+                    <td>
+                        <span>{{productDet.maxUsers}}</span>
+                    </td>
+                    <td>
+                        <span>{{productDet.maxClientsPerMonth}}</span>
+                    </td>
+                    <td>
+                        <span>{{productDet.maxPetitionsPerMonth}}</span>
+                    </td>
+                    <td>
+                        <span>{{productDet.maxS3Storage}}</span>
+                    </td>
+                    <td>
+                        <span>{{productDet.cost}}</span>
+                    </td>
+                    <td>
+                        <span>{{productDet.status}}</span>
+                    </td>
+                    <td>
+                        <span>{{productDet.startDate}}</span>
+                    </td>
+                    <td>
+                        <a><i class="fa fa-eye" aria-hidden="true" (click)="viewDetails(productDet,i)"></i></a>
+                    </td>
+                </tr>
 
-</tbody>
-</table>
+            </tbody>
+        </table>
 
-<div class="clearfix"></div>
-</div>
+        <div class="clearfix"></div>
+    </div>
 </div>
 
 <div *ngIf="viewPopup">
@@ -101,7 +101,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                
+
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
@@ -124,15 +124,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Description:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.description"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.description" class="form-control">
                                     <span *ngIf="isEditProducts==true">{{product.description}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Max Users:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxUsers"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxUsers" class="form-control">
                                     <span *ngIf="isEditProducts==true">{{product.maxUsers}}</span>
                                 </div>
                             </div>
@@ -152,22 +150,23 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Max S3 Storage:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxS3Storage"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxS3Storage" class="form-control">
                                     <span *ngIf="isEditProducts==true">{{product.maxS3Storage}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Cost:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.cost"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.cost" class="form-control">
                                     <span *ngIf="isEditProducts==true">{{product.cost}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Status:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.status"
-                                        class="form-control">
+                                <div class="col-md-8">
+                                    <select *ngIf="isEditProducts==false" [(ngModel)]="product.status" class="form-control">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
                                     <span *ngIf="isEditProducts==true">{{product.status}}</span>
                                 </div>
                             </div>
@@ -208,15 +207,20 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">Name:</div>
+                            <div class="col-md-4">Name:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addProduct.name" class="form-control"></div>
-                            <div class="col-md-4">Code:</div>
+                            <div class="col-md-4">Code:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addProduct.code" class="form-control"></div>
-                            <div class="col-md-4">Cost:</div>
+                            <div class="col-md-4">Cost:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addProduct.cost" class="form-control"></div>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
+                </div>
+                <div class="row sfm" *ngIf="warningMessage">
+                    <div class="col-md-12">
+                        <span class="redstar">* Fields are Mandatory.</span>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

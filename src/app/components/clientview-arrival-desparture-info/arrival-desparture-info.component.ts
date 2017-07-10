@@ -31,7 +31,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
 
     public beforeEdit: any;
     public editFlag: boolean = true;
-    public addArrDeparture: any = {};
+    public newArvdInfoitem: any = {};
     public addArrDep: boolean;
     settings = {
         add: {
@@ -58,7 +58,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
             departureCountry: {
                 title: 'Departure Country'
             },
-            arrivaldate: {
+            arrivalDate: {
                 title: 'Arrival date'
             },
             arrivalCountry: {
@@ -82,7 +82,6 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     public getArvdInfoData: boolean = true;
-    public newArvdInfoitem: any = {};
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -137,7 +136,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
         }
         if(this.newArvdInfoitem['arrivalDate'] && this.newArvdInfoitem['arrivalDate']['formatted']){
         this.newArvdInfoitem['arrivalDate'] = this.newArvdInfoitem['arrivalDate']['formatted'];
-        }
+      }
         this.appService.newArvdInfoitem = this.newArvdInfoitem;
         this.result = true;
         this.close();
@@ -158,7 +157,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
             } else {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
-                    message: 'Unable to Add Arrival Desparture Info..!'
+                    message: 'Unable to Add Arrival Departue Info..!'
                 });
                 event.confirm.reject();
             }
@@ -204,9 +203,9 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
                         this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
                             this.getarvdptData();
-                            event.confirm.resolve();
+                            //event.confirm.resolve();
                         } else {
-                            event.confirm.reject();
+                            //event.confirm.reject();
                         }
                     });
                 }
