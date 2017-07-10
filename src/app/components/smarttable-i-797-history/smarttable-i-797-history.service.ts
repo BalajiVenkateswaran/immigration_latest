@@ -3,7 +3,7 @@ import {RestService} from "../../services/rest.service";
 import {i797history} from "../../models/i797history";
 
 @Injectable()
-export class ImmigrationViewI797HistoryService {
+export class SmartTableI797HistoryService {
 
     constructor(private restService: RestService) {
 

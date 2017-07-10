@@ -1,5 +1,5 @@
 import { Component, OnInit,Input} from '@angular/core';
-//import {ImmigrationViewI797HistoryService} from "./i-797-history.service";
+import {SmartTableI797HistoryService} from "./smarttable-i-797-history.service";
 import {i797history} from "../../models/i797history";
 import {FormGroup, FormControl} from "@angular/forms";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -19,51 +19,53 @@ import {SmartTableFramework} from '../smarttableframework/SmartTableFramework';
 })
 export class SmartTableImmigrationViewI797HistoryComponent   {
     public settings;
-   constructor(){
-       this.settings=[
+    public data: any = {
+                        		"i797HistoryId": "2c9fc60d5caecc99015caf9e07090000",
+                        		"clientId": "2c9fc60d5c7e1f31015c9adda135003a",
+                        		"receiptNumber": "1234777773423",
+                        		"receiptDate": "06-28-2017",
+                        		"status": "H1B",
+                        		"approvedOn": "06-28-2017",
+                        		"validFrom": "06-28-2017",
+                        		"validTill": "06-28-2017"
+                        	};
+   constructor(private smartTableI797HistoryService: SmartTableI797HistoryService, public appService: AppService){
+       this.settings={
+       'columnsettings': [
             {
-             
                 headerName: "Approved on",
                 field: "approvedOn",
                 width: 100,
             },
             {
-               
                 headerName: "Receipt Number",
                 field: "receiptNumber",
                 width: 100,
-               
-               
-                
             },
             {
-                
                 headerName: "Status",
                 field: "status",
-                width: 100,  
-               
+                width: 100,
             },
             {
-              
                 headerName: "Valid From",
                 field: "validFrom",
                 width: 100,
-               
             },
             {
-               
                 headerName: "Valid Till",
                 field: "validTill",
-                width: 100,
-               
+                width: 100
             },
             {
-               
                 headerName: "Receipt Date",
                 field: "receiptDate",
                 width: 100,
-               
-            },
+            }
        ]
+       }
+       this.smartTableI797HistoryService.getI797Details(this.appService.clientId).subscribe((res) => {
+          this.data = res['i797HistoryList'];
+       });
    }
 }

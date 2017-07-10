@@ -1,11 +1,7 @@
-import { Component, OnInit,Injector,Input } from '@angular/core';
+import { Component, OnInit,Injector,Input, SimpleChange, OnChanges } from '@angular/core';
 import {SmartTableFrameworkService} from "./SmartTableFramework-service";
 import {i797history} from "../../models/i797history";
 import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
-import {User} from "../../models/user";
-import {AppService} from "../../services/app.service";
 import {CustomFilterRow} from './CustomFilterRow';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
@@ -32,13 +28,29 @@ export interface ConfirmModel {
 @Component({
   selector: 'smart-table',
   templateUrl: './SmartTableFramework.html',
- 
+
 })
-export class SmartTableFramework  {
-    @Input('settings')sample: Object;
-   
+export class SmartTableFramework implements OnChanges {
+    @Input() settings: Object = {};
+    @Input() data: Object = {};
+    public gridOptions;
     constructor(){
-       console.log(this.sample);
+       console.log('constructor %o', this.settings);
+       this.gridOptions = <GridOptions>{};
+    }
+
+    ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+      console.log('ngOnChanges %o',this.settings);
+      if (changes['settings']) {
+          console.log('Settings Changed');
+          this.gridOptions['columnDefs'] = this.settings['columnsettings'];
+          this.gridOptions.api.refreshView();
+      }
+      if(changes['data']){
+        console.log('Data changed');
+        this.gridOptions.api.setRowData(this.data);
+        this.gridOptions.api.sizeColumnsToFit();
+      }
     }
 }
 
