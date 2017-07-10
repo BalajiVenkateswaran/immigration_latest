@@ -53,7 +53,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             confirmCreate: true
         },
         edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+            editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
             saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
             cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
             confirmSave: true
@@ -199,7 +199,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         //        event.confirm.resolve(event.data);
         //      }
         //});
-        this.editFlag = true;
+        /*this.editFlag = true;
         if (this.editFlag) {
             this.beforeEdit = (<any>Object).assign({}, event.data);
         }
@@ -221,7 +221,9 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             else {
                 this.editFlag = false;
             }
-        });
+        });*/
+        this.appService.moveToPageWithParams('user-details', event.data); 
+        this.appService.currentSBLink = event.data.firstName;
     }
 
     onDeleteConfirm(event): void {

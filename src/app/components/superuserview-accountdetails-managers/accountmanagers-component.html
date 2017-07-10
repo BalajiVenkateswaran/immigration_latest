@@ -1,19 +1,20 @@
 <div class="main-content" *ngIf="viewUsers">
-      <!--  <h1>{{user.lastName}} {{user.firstName}}</h1>-->
-        <ul class="breadcrumb">
-            <li><a href="#">Account Managers</a></li>
-        </ul>
+    <!--  <h1>{{user.lastName}} {{user.firstName}}</h1>-->
+    <ul class="breadcrumb">
+        <li><a href="#">Account Managers</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2>
+            <span>Account Managers</span>
+            <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewUser()">ADD</button>
+        </h2>
+        <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)"
+            (create)="onCreateConfirm($event)"></ng2-smart-table>
         <div class="clearfix"></div>
-        <div class="table-data">
-            <h2>
-                <span>Account Managers</span>
-                <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewUser()">ADD</button>
-            </h2>
-                <ng2-smart-table [settings]="settings" [source]="source" (delete) = "onDeleteConfirm($event)" (edit) = "onEditConfirm($event)" (create)="onCreateConfirm($event)" ></ng2-smart-table>
-            <div class="clearfix"></div>
-        </div>
     </div>
- <div *ngIf="addPopups">
+</div>
+<div *ngIf="addPopups">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -25,15 +26,13 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">First Name:</div>
+                            <div class="col-md-4">First Name:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.firstName" class="form-control"></div>
-                            <div class="col-md-4">Last Name:</div>
+                            <div class="col-md-4">Last Name:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.lastName" class="form-control"></div>
-                            <div class="col-md-4">Email</div>
+                            <div class="col-md-4">Email:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.emailId" class="form-control"></div>
-                            <div class="col-md-4">Phone</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.phone" class="form-control"></div>
-                            <div class="col-md-4">Role:</div>
+                            <div class="col-md-4">Role:<span class="redstar">*</span></div>
                             <div class="col-md-8">
                                 <select [(ngModel)]="addUsers.role" class="form-control">
                                     <option value="IMMIGRATION OFFICER">IMMIGRATION OFFICER</option>
@@ -43,6 +42,12 @@
                         </div>
                     </div>
                     <div class="col-md-1"></div>
+
+                </div>
+                <div class="row sfm" *ngIf="warningMessage">
+                    <div class="col-md-12">
+                        <span class="redstar">* Fields are Mandatory.</span>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

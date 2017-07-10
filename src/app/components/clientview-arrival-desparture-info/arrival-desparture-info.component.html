@@ -2,7 +2,7 @@
     <h1>{{appService.firstName}} {{appService.lastName}}</h1>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2>Arrival Desparture Info<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewArvdInfo()">ADD</button></h2>
+        <h2>Arrival Departure Info<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewArvdInfo()">ADD</button></h2>
         <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
         <div class="clearfix"></div>
     </div>
@@ -30,8 +30,8 @@
                             <div class="col-md-5">Arrival date :</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newArvdInfoitem.arrivaldate"
-                                                [selDate]="arrivaldate"></my-date-picker>
+                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newArvdInfoitem.arrivalDate"
+                                                [selDate]="arrivalDate"></my-date-picker>
                             
                             </div>
                             <div class="col-md-5">Arrival Country :</div>

@@ -6,7 +6,7 @@
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2>Discounts<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addProducts()">ADD</button></h2>
+        <h2>Discounts<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addDiscounts()">ADD</button></h2>
         <!--   <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
         <table class="smarttable document-management" cellpadding="0" cellspacing="0">
             <thead>
@@ -84,7 +84,7 @@
                             <div class="row">
                                 <div class="col-md-4">Code:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditDiscount==false"   [(ngModel)]="discount.discountCode" class="form-control">
+                                    <input type="text" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.discountCode" class="form-control">
                                     <span *ngIf="isEditDiscount==true">{{discount.discountCode}}</span>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                             <div class="row">
                                 <div class="col-md-4">Created On:</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditDiscount==false" [disabled]="true"  [(ngModel)]="discount.createdOn" class="form-control">
+                                    <input type="text" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.createdOn" class="form-control">
                                     <span *ngIf="isEditDiscount==true">{{discount.createdOn}}</span>
                                 </div>
                             </div>
@@ -156,13 +156,18 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
-                            <div class="col-md-4">Code:</div>
+                            <div class="col-md-4">Name:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountName" class="form-control"></div>
+                            <div class="col-md-4">Code:<span class="redstar">*</span></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
 
                         </div>
                         <div class="col-md-1"></div>
+                    </div>
+                </div>
+                <div class="row sfm" *ngIf="warningMessage">
+                    <div class="col-md-12">
+                        <span class="redstar">* Fields are Mandatory.</span>
                     </div>
                 </div>
                 <div class="modal-footer">
