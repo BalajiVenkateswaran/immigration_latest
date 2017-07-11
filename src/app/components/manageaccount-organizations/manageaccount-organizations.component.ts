@@ -269,11 +269,12 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
 
     }
     onUserRowClick(event, Orgname): void {
+        this.appService.getorgName(event.data);
         this.menuComponent.highlightSBLink('Org Details');
         this.appService.moveToPage("organization");
         this.appService.orgId = event.data.orgId;
         console.log(event.data.orgName);
-      
+        this.appService.selectedOrg = event.data.orgName;
    // this.headerComponent.orgChange(event.data.orgId, event.data.orgName);
         //todo this.appService.getorgName(Orgname);
         //this.changeOrgName(Orgname);

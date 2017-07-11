@@ -10,8 +10,8 @@ export class AppService {
     private _sideBarMenu: string;
     private _documentSideMenu;
     private _orgNamesMenu;
-    private _getorgmenu;
-    private getorgmenu;
+    public _getorgmenu;
+    public getorgmenu;
     public docsidemenu;
     public orgnamemenu;
     private _user: User;
@@ -72,7 +72,7 @@ export class AppService {
     public selroleId: string;
     public rolemultiple: boolean;
     public usersList: any;
-
+    public selectedOrg: string;
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {

@@ -23,7 +23,7 @@ export class HeaderComponent implements AfterViewChecked{
   private orgNamevisible;
   private editorg;
   private tab;
-  private selectedOrg: any = {};
+  //private selectedOrg: any = {};
   private i;
   public orgnames: any = {};
 
@@ -53,22 +53,22 @@ export class HeaderComponent implements AfterViewChecked{
             this.appService.organizations = res.orgs;
             this.orgNamelist = this.appService.organizations;
             if (this.orgNamelist) {
-                this.selectedOrg = this.orgNamelist[0];
-                if (this.selectedOrg == undefined) {
-                    this.selectedOrg = {};
+                this.appService.selectedOrg = this.orgNamelist[0].orgName;
+                if (this.appService.selectedOrg == undefined) {
+                    this.appService.selectedOrg = "";
                 }
-                this.appService.orgId = this.selectedOrg.orgId;
+                this.appService.orgId = this.orgNamelist[0].orgId;
             }
         });
     }
     else {
         this.orgNamelist = this.appService.organizations;
         if (this.orgNamelist) {
-            this.selectedOrg = this.orgNamelist[0];
-            if (this.selectedOrg == undefined) {
-                this.selectedOrg = {};
+            this.appService.selectedOrg = this.orgNamelist[0].orgName;
+            if (this.appService.selectedOrg == undefined) {
+                this.appService.selectedOrg = "";
             }
-            this.appService.orgId = this.selectedOrg.orgId;
+            this.appService.orgId = this.orgNamelist[0].orgId;
         }
     }
   }
@@ -93,17 +93,14 @@ export class HeaderComponent implements AfterViewChecked{
   public slideMenu() {
     this.appService.menuSlider = (this.appService.menuSlider)? false: true;
   }
-  orgChange(orgID, orgname) {
-      this.appService.orgId = orgID;
-      this.selectedOrg.orgName = orgname;
-  }
+
   ngDoCheck() {  
  
       this.applicationViewMode = this.appService.applicationViewMode;
       this.immigrationManager = this.appService.user.roleName;
       if (this.appService.getorgMenu != undefined) {
-          this.selectedOrg = this.appService.getorgMenu;
-          this.appService.orgId = this.selectedOrg.orgId;
+          this.appService.selectedOrg = this.appService.getorgMenu.orgName;
+          this.appService.orgId = this.appService.getorgMenu.orgId;
       }       
   }
   logOut() {
