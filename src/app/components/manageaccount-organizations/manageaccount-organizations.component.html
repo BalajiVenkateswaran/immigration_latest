@@ -8,8 +8,8 @@
         <h2>
             Organizations<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewOrganization()">ADD</button>
         </h2>
-            <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
-                             (editConfirm)="onEditConfirm($event)"
+            <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)"
+                             (edit)="onEditConfirm($event)"
                              (createConfirm)="onCreateConfirm($event)"
                              (userRowSelect)="onUserRowClick($event);"></ng2-smart-table>
         <div class="clearfix"></div>
@@ -26,20 +26,32 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
+                        <div class="row" *ngIf="warningMessage">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
+                            </div>
+                        </div>
                         <div class="row">
-                            <div class="col-md-4">Org Name :</div>
+                            <div class="col-md-4">Org Name :<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.orgName" class="form-control"></div>
-                            <div class="col-md-4">Display Name :</div>
+                            <div class="col-md-4">Display Name :<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.displayName" class="form-control"></div>
-                            <div class="col-md-4">Status :</div>
+                            <div class="col-md-4">Status :<span class="redstar">*</span></div>
                             <div class="col-md-8">
                                 <select [(ngModel)]="neworgitem.orgStatus" class="form-control">
                                     <option value="Active">Active</option>
                                     <option value="Inactive">Inactive</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">Email :</div>
+                            <div class="col-md-4">Email :<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.email" class="form-control"></div>
+                            <div class="col-md-4">Type :<span class="redstar">*</span></div>
+                            <div class="col-md-8">
+                                <select [(ngModel)]="neworgitem.orgType" class="form-control" [disabled]="editorg">
+                                    <option value="Regular">Regular</option>
+                                    <option value="Delegated">Delegated</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-1"></div>

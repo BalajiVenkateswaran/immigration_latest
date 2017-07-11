@@ -11,6 +11,7 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import { ConfirmorgComponent } from '../confirmbox/confirmorg.component';
+//import {HeaderComponent} from "../header/header.component";
 
 
 export interface ConfirmModel {
@@ -18,7 +19,8 @@ export interface ConfirmModel {
     message: string;
     showAddOrgpopup: boolean;
     getOrgsData: boolean;
-
+    editorg: boolean;
+    neworgitem: Object;
 }
 
 @Component({
@@ -78,10 +80,14 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
                 title: 'Type',
             }
         },
+        actions: {
+            delete: false
+        },
         pager: {
             display: true,
             perPage: 10
-        }
+        },
+        mode: 'external'
     };
     public delmessage;
     private manageaccountorganizationList: manageaccountorganization[];
@@ -94,6 +100,9 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     public getOrgsData: boolean = true;
     public neworgitem: any = {};
     private orgNamelist;
+    public editiorgsFlag: boolean = true;
+    public beforeorgsEdit: any;
+    public warningMessage: boolean = false;
 
     constructor(private manageaccountorganizationService: ManageAccountOrganizationsService,
         private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent) {
@@ -132,6 +141,8 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             showAddOrgpopup: true,
             getOrgsData: false,
             title: 'Add Organization',
+            editorg: false,
+
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.manageaccountorganizationService.saveNewOrganization(this.appService.neworgitem).subscribe((res) => {
@@ -150,10 +161,17 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
         });
     }
     OrganizationSave() {
-        this.neworgitem['accountId'] = this.appService.user.accountId;
-        this.appService.neworgitem = this.neworgitem;
-        this.result = true;
-        this.close();
+        if (this.neworgitem['orgName'] == undefined || this.neworgitem['displayName'] == undefined || this.neworgitem['orgStatus'] == undefined || this.neworgitem['email'] == undefined || this.neworgitem['orgType'] == undefined || 
+            this.neworgitem['orgName'] == "" || this.neworgitem['displayName'] == "" || this.neworgitem['orgStatus'] == "" || this.neworgitem['email'] == "" || this.neworgitem['orgType'] == "" ||
+            this.neworgitem['orgName'] == null || this.neworgitem['displayName'] == null || this.neworgitem['orgStatus'] == null || this.neworgitem['email'] == null || this.neworgitem['orgType'] == null) {
+            this.warningMessage = true;
+        } else {
+            this.warningMessage = false;
+            this.neworgitem['accountId'] = this.appService.user.accountId;
+            this.appService.neworgitem = this.neworgitem;
+            this.result = true;
+            this.close();
+        }
     }
     cancel() {
         this.result = false;
@@ -162,43 +180,58 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
 
 
 
-  onCreateConfirm(event) : void {
-      console.log("User table onCreateConfirm event: %o",event.newData);
-      event.newData['accountId'] = this.appService.user.accountId;
-      this.manageaccountorganizationService.saveNewOrganization(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            event.newData = res['org'];
-            if (this.message == "SUCCESS") {
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Add Organization..!'
-                });
-                event.confirm.reject();
-            }
+  //onCreateConfirm(event) : void {
+  //    console.log("User table onCreateConfirm event: %o",event.newData);
+  //    event.newData['accountId'] = this.appService.user.accountId;
+  //    this.manageaccountorganizationService.saveNewOrganization(event.newData).subscribe((res) => {
+  //          this.message = res['statusCode'];
+  //          event.newData = res['org'];
+  //          if (this.message == "SUCCESS") {
+  //              event.confirm.resolve(event.newData);
+  //          } else {
+  //              this.dialogService.addDialog(ConfirmComponent, {
+  //                  title: 'Error..!',
+  //                  message: 'Unable to Add Organization..!'
+  //              });
+  //              event.confirm.reject();
+  //          }
 
 
 
-      });
-    }
+  //    });
+  //  }
 
-    onEditConfirm(event) : void {
+    onEditConfirm(event): void {
+        this.editiorgsFlag = true;
+        if (this.editiorgsFlag) {
+            this.beforeorgsEdit = (<any>Object).assign({}, event.data);
+        }
         console.log("User table onEditConfirm event: %o",event.newData);
-        event.newData['orgName'] = event.data['orgName'];
-        event.newData['userId'] = this.appService.user.userId;
-        this.manageaccountorganizationService.updateOrganization(event.newData).subscribe((res) => {
-              this.message = res['statusCode'];
-              if(this.message === "SUCCESS"){
-                event.newData = res['org'];
-                event.confirm.resolve(event.newData);
-              } else {
-                  this.dialogService.addDialog(ConfirmComponent, {
-                      title: 'Error..!',
-                      message: 'Unable to Edit Organization..!'
-                  });
-                event.confirm.resolve(event.data);
-              }
+       this.neworgitem['orgName'] = event.data['orgName'];
+       this.neworgitem['userId'] = this.appService.user.userId;
+        this.dialogService.addDialog(ManageAccountOrganizationsComponent, {
+            showAddOrgpopup: true,
+            getOrgsData: false,
+            title: 'Edit Organization',
+            editorg: true,
+            neworgitem: this.editiorgsFlag ? this.beforeorgsEdit : this.neworgitem,
+
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.manageaccountorganizationService.updateOrganization(this.appService.neworgitem).subscribe((res) => {
+                    this.message = res['statusCode'];
+                    if (this.message === "SUCCESS") {
+
+                        this.getorganizationData();
+
+                    } else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Unable to Edit Organization..!'
+                        });
+                    }
+                });
+          }
         });
       }
 
@@ -215,10 +248,9 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
                     this.manageaccountorganizationService.deleteOrganization(event.data['orgId'], this.appService.user.userId).subscribe((res) => {
                           this.message = res['statusCode'];
                            if (this.message == 'SUCCESS') {
-                            event.confirm.resolve();
-                           } else {
-                            event.confirm.reject();
-                          }
+                        this.getorganizationData();
+                      
+                           } 
                     });
 
                 }
@@ -239,8 +271,10 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     onUserRowClick(event, Orgname): void {
         this.menuComponent.highlightSBLink('Org Details');
         this.appService.moveToPage("organization");
-        this.appService.clientId = event.data.orgDetailsId;
+        this.appService.orgId = event.data.orgId;
         console.log(event.data.orgName);
+      
+   // this.headerComponent.orgChange(event.data.orgId, event.data.orgName);
         //todo this.appService.getorgName(Orgname);
         //this.changeOrgName(Orgname);
     }

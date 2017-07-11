@@ -71,7 +71,8 @@ export class AppService {
     public selacntId: string;
     public selroleId: string;
     public rolemultiple: boolean;
-    public usersList:any;
+    public usersList: any;
+
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {

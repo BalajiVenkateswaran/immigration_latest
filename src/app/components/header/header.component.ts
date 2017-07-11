@@ -93,16 +93,12 @@ export class HeaderComponent implements AfterViewChecked{
   public slideMenu() {
     this.appService.menuSlider = (this.appService.menuSlider)? false: true;
   }
+  orgChange(orgID, orgname) {
+      this.appService.orgId = orgID;
+      this.selectedOrg.orgName = orgname;
+  }
   ngDoCheck() {  
-      //this.orgNamelist = this.appService.organizations;
-      //if (this.orgNamelist) {
-      //    this.selectedOrg = this.orgNamelist[0];
-      //    if (this.selectedOrg == undefined) {
-      //        this.selectedOrg = {};
-      //    }
-      //    this.appService.orgId = this.selectedOrg.orgId;    
-                  
-      //}
+ 
       this.applicationViewMode = this.appService.applicationViewMode;
       this.immigrationManager = this.appService.user.roleName;
       if (this.appService.getorgMenu != undefined) {

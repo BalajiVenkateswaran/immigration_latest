@@ -84,6 +84,7 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview-paym
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
 import { ImmigrationViewReportsComponent } from "./components/immigration-view-reports/immigration-view-reports.component";
 import { ManageaccountUserDetailsComponent } from "./components/manageaccount-user-details/manageaccount-user-details.component";
+import { SmartTableImmigrationViewI797HistoryComponent } from "./components/smarttable-i-797-history/smarttable-i-797-history.component";
 
 
 
@@ -358,6 +359,10 @@ export const appRoutes: Routes = [
     {
         path: 'superuserview-productcatalog-discounts',
         component: SuperuserviewProductcatalogDiscountsComponent
+    },
+    {
+        path:'smarttable-i797',
+        component:SmartTableImmigrationViewI797HistoryComponent
     },
     {
         path: '',
