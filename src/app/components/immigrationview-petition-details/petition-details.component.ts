@@ -40,7 +40,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     isNotesEdit;
     private status: any[];
     private receiptNumber: any[];
-    private delegatedOrgsList: any[];
+    public delegatedOrgsList: any[];
     isLCAInfoEdit: boolean = true;
     isDelegatedOrgsEdit: boolean = true;
     isReceiptInfoEdit: boolean = true;

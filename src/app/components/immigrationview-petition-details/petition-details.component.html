@@ -137,14 +137,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4"><label for="pi-lastupdatedby">Created # User on MM/DD/YYYY</label></div>
+                            <div class="col-md-4"><label for="pi-lastupdatedby">Created By</label></div>
                             <div class="col-md-8">
                                 <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.createdBy" disabled />
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.createdBy}}</span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4"><label for="pi-lastupdatedby">Last Updated # User on MM/DD/YYYY</label></div>
+                            <div class="col-md-4"><label for="pi-lastupdatedby">Last Updated By</label></div>
                             <div class="col-md-8">
                                 <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.lastUpdatedBy" disabled />
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.lastUpdatedBy}}</span>
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4"><label for="pi-markfordeletiondetailsbyuser">Mark For Deletion details # By User on MM/DD/YYYY</label></div>
+                            <div class="col-md-4"><label for="pi-markfordeletiondetailsbyuser">Mark For Deletion details</label></div>
                             <div class="col-md-8">
                                 <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.deletedOn" disabled />
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deletedOn}}</span>
