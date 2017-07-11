@@ -88,7 +88,7 @@
           <li>
               <a (click)="appservice.moveToPage('immigrationview-document-expirations');highlightSBLink('Documents Expirations')" [ngClass]="[checkForCurrentSBLink('Documents Expirations') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-documents-expirations"></span>
-                  <span>Documents Expirations</span>
+                  <span>Document Expirations</span>
               </a>
           </li>
           <li>
@@ -106,7 +106,7 @@
           <li>
               <a (click)="appservice.moveToPage('immigrationview-arrival-departure-info');highlightSBLink('Arrival Desparture Inf')" [ngClass]="[checkForCurrentSBLink('Arrival Desparture Inf') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-arrival-desparture-info"></span>
-                  <span>Arrival Desparture Info</span>
+                  <span>Arrival Departure Info</span>
               </a>
           </li>
           <li>
@@ -122,9 +122,15 @@
               </a>
           </li>
            <li>
-              <a (click)="appservice.moveToPage('smarttable-i797');highlightSBLink('smarttable-i797')" [ngClass]="[checkForCurrentSBLink('I -797 History') ? 'active': '']" routerLinkActive="active">
+              <a (click)="appservice.moveToPage('smarttable-i797');highlightSBLink('smarttable-i797')" [ngClass]="[checkForCurrentSBLink('smarttable-i797') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-history"></span>
                   <span>I -797 History Smarttable</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('smarttable-visas');highlightSBLink('smarttable-visas')" [ngClass]="[checkForCurrentSBLink('smarttable-visas') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-history"></span>
+                  <span>Smart Table Visas</span>
               </a>
           </li>
 
@@ -237,7 +243,7 @@
           <li>
               <a (click)="appservice.moveToPage('clientview-document-expirations');highlightSBLink('Documents Expirations')" [ngClass]="[checkForCurrentSBLink('Documents Expirations') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-documents-expirations"></span>
-                  <span>Documents Expirations</span>
+                  <span>Document Expirations</span>
               </a>
           </li>
           <li>
