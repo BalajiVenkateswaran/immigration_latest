@@ -12,7 +12,11 @@ export class ImmigrationViewPetitionDetailsService {
     }
 
     public getPetitionStages(accountId: string, petitionTypeId: string) {
-         return this.restService.getData("/account/petitionStage/accountId/"+accountId+"/petitionType/"+ petitionTypeId);
+        return this.restService.getData("/account/petitionStage/accountId/" + accountId + "/petitionType/" + petitionTypeId);
+    }
+
+    public getDelegatedOrgs(accountId: string, petitionId: string) {
+        return this.restService.getData("/immigration/orgs/account/" + accountId + "/petition/" + petitionId);
     }
 
     public getUsersForAccount(accountId: string){

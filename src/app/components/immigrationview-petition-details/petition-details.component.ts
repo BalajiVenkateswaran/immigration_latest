@@ -40,6 +40,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     isNotesEdit;
     private status: any[];
     private receiptNumber: any[];
+    private delegatedOrgsList: any[];
     isLCAInfoEdit: boolean = true;
     isDelegatedOrgsEdit: boolean = true;
     isReceiptInfoEdit: boolean = true;
@@ -188,7 +189,18 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
 
             });
-        console.log(this.petitionDetails);
+
+
+
+        this.petitionDetailsService.getDelegatedOrgs(this.appService.user.accountId, this.appService.petitionId).subscribe((res) => {
+                if (res['orgs'] != undefined) {
+                    this.delegatedOrgsList = res['orgs'];
+                }
+            });
+
+
+
+        console.log(this.delegatedOrgsList);
 
 
         this.status = [
