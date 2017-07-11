@@ -85,6 +85,7 @@ import {SuperuserviewProductcatalogDiscountsComponent} from './components/superu
 import { ImmigrationViewReportsComponent } from "./components/immigration-view-reports/immigration-view-reports.component";
 import { ManageaccountUserDetailsComponent } from "./components/manageaccount-user-details/manageaccount-user-details.component";
 import { SmartTableImmigrationViewI797HistoryComponent } from "./components/smarttable-i-797-history/smarttable-i-797-history.component";
+import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas";
 
 
 
@@ -363,6 +364,10 @@ export const appRoutes: Routes = [
     {
         path:'smarttable-i797',
         component:SmartTableImmigrationViewI797HistoryComponent
+    },
+    {
+        path:'smarttable-visas',
+        component:SmartTableVisas
     },
     {
         path: '',

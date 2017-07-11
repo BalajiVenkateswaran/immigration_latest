@@ -188,6 +188,8 @@ import {AccountDetailsCommonService} from './components/superuserview/accounts-t
 
 import {SmartTableImmigrationViewI797HistoryComponent} from './components/smarttable-i-797-history/smarttable-i-797-history.component';
 import {SmartTableI797HistoryService} from './components/smarttable-i-797-history/smarttable-i-797-history.service'
+import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas";
+import { SmartTableVisasService } from "./components/smarttable-visas/smarttable-visas.service";
 @NgModule({
     imports: [
         BrowserModule,
@@ -261,7 +263,7 @@ import {SmartTableI797HistoryService} from './components/smarttable-i-797-histor
 
         LoginComponent,
         QuestionnaireI129Component,
-
+        SmartTableVisas,
         petitionsclientviewComponent,
         requestclientviewcomponent,
         clientviewQuestionnaireComponent,
@@ -390,7 +392,8 @@ import {SmartTableI797HistoryService} from './components/smarttable-i-797-histor
 
         SuperuserViewAccountpreferencessService,
         AccountDetailsCommonService,
-        SmartTableI797HistoryService
+        SmartTableI797HistoryService,
+        SmartTableVisasService
 
     ],
     bootstrap: [AppComponent]

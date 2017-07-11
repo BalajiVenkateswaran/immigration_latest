@@ -1,1 +1,72 @@
-<smart-table [settings]="settings" [data]="data"></smart-table>
+<div *ngIf="getI797History">
+<div>
+            <div style="display:inline" *ngFor="let x of filterWholeArray let i=index">
+                <span style="margin-left:10px;">{{x.headingName}}</span>:<span>{{x.filterValue}}</span><span style="position:absolute;top: 118px;" class="close" (click)="delete(i,x)">&times;</span>
+            </div>
+            
+</div>
+ <!--<div *ngIf="pagniationDynamicEnable" style="position: fixed; top: 160px; right: 32px; padding: 10px;">
+            Page Size:
+            <select  #pages (change)="onPageSizeChanged(pages.value)">
+                <option value="10" [selected]>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                
+            </select>
+</div>-->
+<smart-table [settings]="settings" [data]="data" [pagination]="true" [paginationPageSize]="10" [headerNumber]="50" 
+[paginationRandomPage]="true" [rowSelection]="single"  [addButton]="true" (addButtonClicked)="addFunction($event)"></smart-table>
+
+</div>
+<div *ngIf="addI797">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Receipt Number:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewI797.receiptNumber" class="form-control"></div>
+                            <div class="col-md-4">Receipt Date:</div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                [(ngModel)]="addNewI797.receiptDate"
+                                                [selDate]="receiptDate"></my-date-picker>
+                            </div>
+                            <div class="col-md-4">Status On I-797:</div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewI797.status" class="form-control"></div>
+                            <div class="col-md-4">Approved on:</div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                [(ngModel)]="addNewI797.approvedOn"
+                                                [selDate]="approvedOn"></my-date-picker>                            
+                            </div>
+                            <div class="col-md-4">Valid From:</div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                [(ngModel)]="addNewI797.validFrom"
+                                                [selDate]="validFrom"></my-date-picker> 
+                            </div>
+                            <div class="col-md-4">valid Till:</div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                [(ngModel)]="addNewI797.validTill"
+                                                [selDate]="validTill"></my-date-picker>
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="I797HistorySave()">Save</button>
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
