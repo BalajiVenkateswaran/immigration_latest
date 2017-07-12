@@ -5,8 +5,9 @@
         <div class="col-md-4 pull-left">
             <div class="logo">
                 <a (click)="appService.moveToPage('petitions'); highlightTab('petitions');">
-                    <img src="assets/images/immigration-hub-logo.png" style="height: 50px" />
-                    <span id="logobeta">Beta</span>
+                    <!--<img src="assets/images/immigration-hub-logo.png" style="height: 50px" />-->
+                    <img src="assets/images/logo.png" />
+                    <!--<span id="logobeta">Beta</span>-->
                 </a>
             </div>
             <div *ngIf="appService.isBurgerMenuVisible" class="burger-menu">
@@ -14,12 +15,12 @@
             </div>
         </div>
         <div class="col-md-4 text-center pull-left">
-            <div class="datails-holder-name">
+            <div class="datails-holder-name" *ngIf="applicationViewMode=='Immigration'">
                 <div class="pull-left">
-                    <h4 *ngIf="applicationViewMode=='Immigration'"><strong>{{appService.selectedOrg}}</strong></h4>
+                    <h4>{{appService.selectedOrg}}</h4>
                 </div>
                 <div class="pull-left">
-                    <a class="ico-edit" *ngIf="applicationViewMode=='Immigration'" (click)="editorgname(orgSelect)"></a>
+                    <a class="ico-edit" (click)="editorgname(orgSelect)"></a>
                 </div>
             </div>
         </div>
@@ -34,7 +35,7 @@
                     <div ngbDropdown class="d-inline-block float-right">
                         <button class="btn" id="dropdownMenu1" ngbDropdownToggle>
                             <div class="profile-pic">
-                                <img src="assets/images/user-menu.png" alt="profile-img">
+                                <img src="assets/images/user_icon.png" alt="profile-img">
                             </div>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -49,31 +50,116 @@
         <div class="row">
             <div class="mainmenu">
                 <ul *ngIf="applicationViewMode=='Immigration'">
-                    <li><a (click)="appService.moveToPage('petitions'); highlightTab('petitions');" [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']" routerLinkActive="active">Petitions</a></li>
-                    <li><a (click)="appService.moveToPage('clients'); highlightTab('clients');" [ngClass]="[checkForCurrentTab('clients') ? 'active': '']" routerLinkActive="active">Clients</a></li>
-                    <li><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']" routerLinkActive="active">Organization</a></li>
+                    <li><a (click)="appService.moveToPage('petitions'); highlightTab('petitions');" [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']" routerLinkActive="active">
+                        <span class="maintab-Petitions"></span>
+                        <div class="clearfix"></div>
+                        Petitions
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
+                    <li><a (click)="appService.moveToPage('clients'); highlightTab('clients');" [ngClass]="[checkForCurrentTab('clients') ? 'active': '']" routerLinkActive="active">
+                            <span class="maintab-Clients"></span>
+                            <div class="clearfix"></div>
+                        Clients
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
+                    <li><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']" routerLinkActive="active">
+                            <span class="maintab-Organization"></span>
+                            <div class="clearfix"></div>
+                        Organization
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
                     <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
-                    <li *ngIf="immigrationManager=='IMMIGRATION MANAGER'"><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']" routerLinkActive="active">Manage Account</a></li>
-                    <li><a (click)="appService.moveToPage('immigrationview-reports'); highlightTab('immigrationview-reports');highlightSBLink('immigrationview-reports');" [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']" routerLinkActive="active">Reports</a></li>
+                    <li *ngIf="immigrationManager=='IMMIGRATION MANAGER'"><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']" routerLinkActive="active">
+                        <span class="maintab-Manageaccount"></span>
+                         <div class="clearfix"></div>
+                        Manage Account
+                         <div class="arrow-up"></div>
+                        </a>
+                    </li>
+                    <li><a (click)="appService.moveToPage('immigrationview-reports'); highlightTab('Reports');" [ngClass]="[checkForCurrentTab('Reports') ? 'active' : '']" routerLinkActive="active">
+                            <span class="maintab-Reports"></span>
+                            <div class="clearfix"></div>
+                        Reports
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
                     <!--<li><a (click)="appService.moveToPage('accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']" routerLinkActive="active">Accounts</a></li>-->
                     <!--<li><a (click)="appService.moveToPage('superuserview-managersaccount'); highlightTab('superuserview-managersaccount');" [ngClass]="[checkForCurrentTab('superuserview-managersaccount') ? 'active': '']"  routerLinkActive="active">Accounts</a></li>-->
                     <!--<li><a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('productcatalog');" [ngClass]="[checkForCurrentTab('productcatalog') ? 'active': '']" routerLinkActive="active">Product Catalog</a></li>-->
 
                 </ul>
                 <ul *ngIf="applicationViewMode=='Client'">
-                    <li><a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');" [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']" routerLinkActive="active">Petitions</a></li>
-                    <li><a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');" [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']" routerLinkActive="active">Client Details</a></li>
-                    <li><a (click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');" [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']" routerLinkActive="active">Documents</a></li>
-                    <li><a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');" [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']" routerLinkActive="active">Questionnaires</a></li>
-                    <li><a (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');" [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']" routerLinkActive="active">Requests</a></li>
+                    <li><a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');" [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']" routerLinkActive="active">
+                            <span class="maintab-Petitions"></span>
+                            <div class="clearfix"></div>
+                            Petitions
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
+                    <li><a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');" [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']" routerLinkActive="active">
+                            <span class="maintab-Clients"></span>
+                            <div class="clearfix"></div>
+                            Client Details
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
+                    <li><a (click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');" [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']" routerLinkActive="active">
+                            <span class="maintab-Organization"></span>
+                            <div class="clearfix"></div>
+                            Documents
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
+                    <li><a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');" [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']" routerLinkActive="active">
+                            <span class="maintab-Manageaccount"></span>
+                            <div class="clearfix"></div>
+                            Questionnaires
+                            <div class="arrow-up"></div>
+                        </a></li>
+                    <li><a (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');" [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']" routerLinkActive="active">
+                            <span class="maintab-Reports"></span>
+                            <div class="clearfix"></div>
+                            Requests
+                            <div class="arrow-up"></div>
+                        </a></li>
 
                 </ul>
                 <ul *ngIf="applicationViewMode=='Superuser'">
-                    <li><a (click)="appService.moveToPage('superuser-accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']" routerLinkActive="active">Accounts</a></li>
-                    <li><a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('ProductCatalog');" [ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']" routerLinkActive="active">Product Catalog</a></li>
-                  <li><a (click)="appService.moveToPage('invoices'); highlightTab('invoices');" [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']" routerLinkActive="active">Invoices</a></li>
-                  <li><a (click)="appService.moveToPage('payments'); highlightTab('payments');" [ngClass]="[checkForCurrentTab('payments') ? 'active': '']" routerLinkActive="active">Payments</a></li>
-                  <li><a (click)="appService.moveToPage('dashboards'); highlightTab('dashboards');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('dashboards') ? 'active' : '']" routerLinkActive="active">Dashboards</a></li>
+                    <li><a (click)="appService.moveToPage('superuser-accounts'); highlightTab('accounts');" [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']" routerLinkActive="active">
+                            <span class="maintab-Petitions"></span>
+                            <div class="clearfix"></div>
+                            Accounts
+                            <div class="arrow-up"></div>
+                        </a></li>
+                    <li><a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('ProductCatalog');" [ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']" routerLinkActive="active">
+                            <span class="maintab-Clients"></span>
+                            <div class="clearfix"></div>
+                            Product Catalog
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
+                  <li><a (click)="appService.moveToPage('invoices'); highlightTab('invoices');" [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']" routerLinkActive="active">
+                          <span class="maintab-Organization"></span>
+                          <div class="clearfix"></div>
+                          Invoices
+                          <div class="arrow-up"></div>
+                      </a>
+                    </li>
+                  <li><a (click)="appService.moveToPage('payments'); highlightTab('payments');" [ngClass]="[checkForCurrentTab('payments') ? 'active': '']" routerLinkActive="active">
+                          <span class="maintab-Manageaccount"></span>
+                          <div class="clearfix"></div>
+                          Payments
+                          <div class="arrow-up"></div>
+                      </a></li>
+                  <li><a (click)="appService.moveToPage('dashboards'); highlightTab('dashboards');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('dashboards') ? 'active' : '']" routerLinkActive="active">
+                          <span class="maintab-Reports"></span>
+                          <div class="clearfix"></div>
+                          Dashboards
+                          <div class="arrow-up"></div>
+                      </a></li>
                 </ul>
                 <div class="clearfix"></div>
             </div>

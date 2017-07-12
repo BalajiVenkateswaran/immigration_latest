@@ -15,40 +15,53 @@
                             <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isUserEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isUserEdit">
                                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveClientProfile()" *ngIf="isUserEdit==false">Save</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
                             </div>
                         </div>
 
                     </div>
-                    <!--<div class="row" *ngIf="warningMessage">
-                        <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span>
+                 
+                        <div class="row" *ngIf="warningMessage">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
+                            </div>
                         </div>
-                    </div>-->
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isUserEdit==false" id="wa-county" [(ngModel)]="userList.firstName" [ngClass]="dependentProfile.firstName == '' ? 'redborder': ''"
-                            /><span *ngIf="isUserEdit==true">{{userList.firstName}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-zip">Last Name<span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isUserEdit==false" id="wa-zip" [(ngModel)]="userList.lastName" [ngClass]="dependentProfile.lastName == '' ? 'redborder': ''"
-                            /><span *ngIf="isUserEdit==true">{{userList.lastName}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-city">Email</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isUserEdit==false" id="wa-city" [(ngModel)]="userList.email" /><span *ngIf="isUserEdit==true">{{userList.emailId}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-country">Phone Number</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isUserEdit==false" id="wa-country" [(ngModel)]="userList.phoneNumber" />
-                            <span *ngIf="isUserEdit==true">{{userList.phoneNumber}}</span>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isUserEdit==false" id="wa-county" [(ngModel)]="userList.firstName" [ngClass]="userList.firstName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userList.firstName}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-city">Role</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isUserEdit==false" id="wa-city" [(ngModel)]="userList.role" /><span *ngIf="isUserEdit==true">{{userList.role}}</span></div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-zip">Last Name<span class="redstar">*</span></label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isUserEdit==false" id="wa-zip" [(ngModel)]="userList.lastName" [ngClass]="userList.lastName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userList.lastName}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
+                            <div class="col-md-8"><input type="text" *ngIf="isUserEdit==false" id="wa-city" [(ngModel)]="userList.emailId"/><span *ngIf="isUserEdit==true">{{userList.emailId}}</span></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-country">Phone Number</label></div>
+                            <div class="col-md-8">
+                                <input type="text" *ngIf="isUserEdit==false" id="wa-country" [(ngModel)]="userList.phoneNumber" />
+                                <span *ngIf="isUserEdit==true">{{userList.phoneNumber}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="wa-city">Role<span class="redstar">*</span></label></div>
+                            <div class="col-md-8">
+                                <!--<input type="text" *ngIf="isUserEdit==false" id="wa-city" [(ngModel)]="userList.role" [ngClass]="userList.role == '' ? 'redborder': ''" />-->
+                                <select [(ngModel)]="userList.role" class="form-control" *ngIf="isUserEdit==false">
+                                    <option value="IMMIGRATION OFFICER">IMMIGRATION OFFICER</option>
+                                    <option value="IMMIGRATION MANAGER">IMMIGRATION MANAGER</option>
+                                </select>
+                            <span *ngIf="isUserEdit==true">{{userList.role}}</span>
+                            </div>
+                        </div>
+                 
                 </div>
             </div>
 
@@ -59,11 +72,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2 class="no-pad-left">Orgs Accessible:</h2>
-                            <!--<button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isUserEdit==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isUserEdit">
-                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveClientProfile()" *ngIf="isUserEdit==false">Save</button>
-                            </div>-->
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editOrgsAccess()" *ngIf="isAccessEdit==true">Edit</button>
+                            <div class="tbl-head-btn">
+                                <button type="button" (click)="cancelOrgsAccess()" class="editbtn tbl-head-btn" *ngIf="isAccess==true">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveOrgsAccess()" *ngIf="isAccess==true">Save</button>
+                            </div>
                         </div>
 
                     </div>
@@ -72,7 +85,7 @@
                         <div class="clearfix"></div>
                         <div class="scrollpurpus">
                             <div class="chkbox" *ngFor="let x of orgList">
-                                <input #orgcheckBox [checked]="true" type="checkbox" name="orgName" id="{{x.fileId}}" /><span>{{x.orgName}}</span>
+                                <input #orgcheckBox type="checkbox" [checked]="" name="orgName"/><span>{{x.orgName}}</span>
                             </div>
                         </div>
                     </div>

@@ -150,19 +150,20 @@ export class DependentDetailsComponent implements OnInit {
             this.warningMessage=true;
         }
         else{
-            this.warningMessage=false;
+            this.warningMessage = false;
+            this.mapFromClientProfile();
             this.dependentDetailsService.saveDependentDetails(this.dependent)
             .subscribe((res) => {
                 this.isProfileEdit = true;
                 if (res['dependent']) {
                     this.dependent = res['dependent'];
-                    //this.mapToClientProfile();
+                  this.mapToClientProfile();
 
                 }
 
             });
         }
-        this.mapFromClientProfile();
+       // this.mapFromClientProfile();
 
         
     }
@@ -174,14 +175,14 @@ export class DependentDetailsComponent implements OnInit {
             this.dependentPersonalInfo['dateOfBirth'] = this.dependentPersonalInfo['dateOfBirth']['formatted'];
         }
 
-          //this.mapFromClientPersonalInfo();
+        this.mapFromClientPersonalInfo();
 
           this.dependentDetailsService.saveDependentDetails(this.dependent)
             .subscribe((res) => {
                 this.isPersonalInfoEdit = true;
                 if (res['dependent']) {
                     this.dependent = res['dependent'];
-                    //this.mapToClientPersonalInfo();
+               this.mapToClientPersonalInfo();
                 }
         });
     }

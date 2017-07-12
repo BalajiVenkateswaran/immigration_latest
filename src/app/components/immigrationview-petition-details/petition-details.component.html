@@ -631,18 +631,17 @@
                     <div class="row" *ngFor="let dOrgName of delegatedOrgsList">
                         <div class="col-md-4"><label for="pi-petitiondescription">{{dOrgName.orgName}}</label></div>
                         <div class="col-md-8">
-                            <input type="checkbox" [(ngModel)]="petitionInformation.name" />
+                            <input type="checkbox" [(ngModel)]="dOrgName.orgName" />
                         </div>
                     </div>
                     
-                    <!--<div class="row">
+                    <div class="row">
                         <div class="col-md-12">
-                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
-                                <button type="button" (click)="cancelNotesEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveNotes()" *ngIf="isDelegatedOrgsEdit==false">Save</button>
+                            <div class="tbl-head-btn">
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="savedelOrgs()">Save</button>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
             </div>
         </div>

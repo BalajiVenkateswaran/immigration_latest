@@ -68,4 +68,11 @@ export class ImmigrationViewPetitionDetailsService {
     public getAllPetitionTypesAndSubTypes() {
         return this.restService.getData("/petition/config/all/types/subtypes");
     }
+
+    public saveDelegatedOrgs(orgs: any) {
+        var req = {
+            "orgs": orgs
+        };
+        return this.restService.postData("/immigration/orgs/petition", req);
+    }
 }

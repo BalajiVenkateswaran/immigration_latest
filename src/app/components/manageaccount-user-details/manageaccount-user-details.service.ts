@@ -11,5 +11,7 @@ export class ManageAccountUserDetailsService {
       return this.restService.putData("/user", userData);
     }
 
-    
+    public getUserDet(userid, accountid) {
+        return this.restService.getData("/userorgs/" + userid + "/accounts/" + accountid);
+    }
 }

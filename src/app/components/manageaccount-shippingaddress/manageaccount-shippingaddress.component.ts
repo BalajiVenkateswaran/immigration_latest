@@ -81,8 +81,12 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
     getShippingDetails() {
         this.manageAccountShippingAddressService.getShipmentAddress(this.appService.user.accountId)
             .subscribe((res) => {
-                for (var address in res) {
-                    res[address]['slNo'] = address;
+
+                //for (var address in res) {
+                //    res[address]['slNo'] = address+1;
+                //}
+                for (var i = 0; i < res.length; i++) {
+                    res[i]['slNo'] = i + 1;
                 }
                 this.source.load(res);
                 console.log(res);
