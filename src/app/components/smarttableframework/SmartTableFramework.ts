@@ -31,6 +31,12 @@ export interface ConfirmModel {
 
 })
 export class SmartTableFramework implements OnChanges {
+    /*
+    * following options are available in IH smart table
+    *    - columnsettings : columnsettings
+    *
+    */
+
     @Input() settings: Object = {};
     @Input() data: Object = {};
     @Input() pagination:boolean;

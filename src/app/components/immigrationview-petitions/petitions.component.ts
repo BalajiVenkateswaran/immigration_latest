@@ -167,12 +167,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     sourceForPetitionTypes: LocalDataSource = new LocalDataSource();
     private user: User;
 
-    private petitionTypes: any = {"H1B": "14a8e52f-2f5a-11e7-bf66-0aac8eb8f426"};
-    private petitionSubTypes: any = {
-      "New": "45b99d86-2f5a-11e7-bf66-0aac8eb8f426",
-      "Extension": "4a83aff2-2f5a-11e7-bf66-0aac8eb8f426",
-      "Transfer": "4ef8b482-2f5a-11e7-bf66-0aac8eb8f426"
-    };
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
@@ -255,11 +249,44 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
           }
       });
   }
+
+  getPetitionTypeId(petitionType: string) : string{
+    for(let petitionTypeObj of this.allPetitionTypesAndSubTypes){
+      if(petitionTypeObj['petitiontype'] === petitionType){
+        return petitionTypeObj['petitionTypeId'];
+      }
+    }
+  }
+
+  getPetitionSubTypeId(petitionType: string, petitionSubType: string) : string{
+      for(let petitionTypeObj of this.allPetitionTypesAndSubTypes){
+        if(petitionTypeObj['petitiontype'] === petitionType){
+          if(petitionTypeObj['petitionSubTypes'].length == 0){
+            return;
+          }
+          for(let petitionSubTypeObj of petitionTypeObj['petitionSubTypes']){
+            if(petitionSubTypeObj['petitionSubType'] === petitionSubType){
+              return petitionSubTypeObj['petitionSubTypeId'];
+            }
+          }
+        }
+      }
+    }
+
+    isPetitionSubTypeExists(petitionType: string){
+      for(let petitionTypeObj of this.allPetitionTypesAndSubTypes){
+            if(petitionTypeObj['petitiontype'] === petitionType && petitionTypeObj['petitionSubTypes'].length > 0){
+              return true;
+            }
+      }
+      return false;
+    }
+
   petitionSave() {
       this.newpetitionitem['clientId'] = this.appService.clientId;
       this.newpetitionitem['orgId'] = this.appService.orgId;
-      this.newpetitionitem['petitionTypeId'] = this.petitionTypes[this.newpetitionitem['petitiontype']];
-      this.newpetitionitem['petitionSubTypeId'] = this.petitionSubTypes[this.newpetitionitem['petitionSubType']];
+      this.newpetitionitem['petitionTypeId'] = this.getPetitionTypeId(this.newpetitionitem['petitiontype']);
+      this.newpetitionitem['petitionSubTypeId'] = this.getPetitionSubTypeId(this.newpetitionitem['petitiontype'], this.newpetitionitem['petitionSubType']);
       this.newpetitionitem['userId'] = this.user.userId;
       this.newpetitionitem['accountId'] = this.user.accountId;
 
@@ -271,7 +298,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
           var currentYear = new Date().getFullYear();
           this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
       }
-      if(this.newpetitionitem['petitionSubType']==undefined||this.newpetitionitem['petitiontype']==undefined||this.newpetitionitem['petitionName']==''){
+      if((this.isPetitionSubTypeExists(this.newpetitionitem['petitiontype']) && this.newpetitionitem['petitionSubType']==undefined)||this.newpetitionitem['petitiontype']==undefined||this.newpetitionitem['petitionName']==''){
           this.warningMessage=true;
       }
       else{
@@ -280,41 +307,14 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
           this.result = true;
           this.close();
       }
-     
+
   }
   cancel() {
       this.result = false;
       this.close();
   }
 
-  onCreateConfirm(event) : void {
-     console.log("Petition table onCreateConfirm event: %o",event.newData);
-     event.newData['clientId'] = this.appService.clientId;
-     event.newData['orgId'] = this.appService.orgId;
-     //this.petitionTypes[event.newData['petitionType']];
-     event.newData['petitionTypeId'] = this.petitionTypes[event.newData['petitionType']];
-     event.newData['petitionSubTypeId'] = this.petitionSubTypes[event.newData['petitionSubType']];
-     event.newData['userId'] = this.user.userId;
-     event.newData['accountId'] = this.user.accountId;
 
-     //Set default values
-     if(event.newData['status'] == undefined){
-        event.newData['status'] = "Open";
-      }
-
-     this.immigrationviewpetitionService.saveNewImmigrationViewPetition(event.newData).subscribe((res) => {
-        if(res['statusCode'] == "SUCCESS"){
-          event.newData = res['petition'];
-          event.confirm.resolve(event.newData);
-        } else {
-            this.dialogService.addDialog(ConfirmComponent, {
-                title: 'Error..!',
-                message: 'Please request the client to accept the invite.'
-            });
-          event.confirm.reject();
-        }
-     });
-    }
 
     onEditConfirm(event) : void {
       console.log("Client table onEditConfirm event: %o",event.newData);
@@ -332,10 +332,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       });
     }
 
-    //onDeleteConfirm(event) : void {
-    //  console.log("Client table onDeleteConfirm event: %o",event.data);
-    //  //TODO - call delete backend
-    //}
     onDeleteConfirm(immViewpetitions) {
         this.delmessage = immViewpetitions.data.petitionName;
         this.dialogService.addDialog(ConfirmComponent, {
