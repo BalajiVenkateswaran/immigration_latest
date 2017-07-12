@@ -38,7 +38,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             confirmCreate: true
         },
         edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+            editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
             saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
             cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
             confirmSave: true
@@ -201,39 +201,39 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
   //    });
   //  }
 
-    onEditConfirm(event): void {
-        this.editiorgsFlag = true;
-        if (this.editiorgsFlag) {
-            this.beforeorgsEdit = (<any>Object).assign({}, event.data);
-        }
-        console.log("User table onEditConfirm event: %o",event.newData);
-       this.neworgitem['orgName'] = event.data['orgName'];
-       this.neworgitem['userId'] = this.appService.user.userId;
-        this.dialogService.addDialog(ManageAccountOrganizationsComponent, {
-            showAddOrgpopup: true,
-            getOrgsData: false,
-            title: 'Edit Organization',
-            editorg: true,
-            neworgitem: this.editiorgsFlag ? this.beforeorgsEdit : this.neworgitem,
+    //onEditConfirm(event): void {
+    //    this.editiorgsFlag = true;
+    //    if (this.editiorgsFlag) {
+    //        this.beforeorgsEdit = (<any>Object).assign({}, event.data);
+    //    }
+    //    console.log("User table onEditConfirm event: %o",event.newData);
+    //   this.neworgitem['orgName'] = event.data['orgName'];
+    //   this.neworgitem['userId'] = this.appService.user.userId;
+    //    this.dialogService.addDialog(ManageAccountOrganizationsComponent, {
+    //        showAddOrgpopup: true,
+    //        getOrgsData: false,
+    //        title: 'Edit Organization',
+    //        editorg: true,
+    //        neworgitem: this.editiorgsFlag ? this.beforeorgsEdit : this.neworgitem,
 
-        }).subscribe((isConfirmed) => {
-            if (isConfirmed) {
-                this.manageaccountorganizationService.updateOrganization(this.appService.neworgitem).subscribe((res) => {
-                    this.message = res['statusCode'];
-                    if (this.message === "SUCCESS") {
+    //    }).subscribe((isConfirmed) => {
+    //        if (isConfirmed) {
+    //            this.manageaccountorganizationService.updateOrganization(this.appService.neworgitem).subscribe((res) => {
+    //                this.message = res['statusCode'];
+    //                if (this.message === "SUCCESS") {
 
-                        this.getorganizationData();
+    //                    this.getorganizationData();
 
-                    } else {
-                        this.dialogService.addDialog(ConfirmComponent, {
-                            title: 'Error..!',
-                            message: 'Unable to Edit Organization..!'
-                        });
-                    }
-                });
-          }
-        });
-      }
+    //                } else {
+    //                    this.dialogService.addDialog(ConfirmComponent, {
+    //                        title: 'Error..!',
+    //                        message: 'Unable to Edit Organization..!'
+    //                    });
+    //                }
+    //            });
+    //      }
+    //    });
+    //  }
 
     onDeleteConfirm(event) : void {
         console.log("User table onDeleteConfirm event: %o", event.data);
@@ -268,7 +268,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
         }
 
     }
-    onUserRowClick(event, Orgname): void {
+    onEditConfirm(event): void {
         this.appService.getorgName(event.data);
         this.menuComponent.highlightSBLink('Org Details');
         this.appService.moveToPage("organization");
