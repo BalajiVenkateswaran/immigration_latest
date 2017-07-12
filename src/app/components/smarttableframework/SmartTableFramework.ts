@@ -12,19 +12,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-export interface ConfirmModel {
-    title: string;
-    message: string;
-    editI797:boolean;
-    getI797:boolean;
-    i797:Object;
-    approvedOn:string;
-    validFrom:string;
-    validTill:string;
-    receiptDate:string;
-    beforeEdit:Object;
-}
-
 @Component({
   selector: 'smart-table',
   templateUrl: './SmartTableFramework.html',
@@ -40,13 +27,23 @@ export class SmartTableFramework implements OnChanges {
     @Input() paginationRandomPage:boolean;
     @Input() rowSelection;
     @Input() addButton:boolean;
-    @Output()  addButtonClicked = new EventEmitter();
+    @Input() swapping:boolean;
+    @Input() actionsColumn:boolean;
+    @Output() addButtonClicked = new EventEmitter();
+    @Output() rowClick=new EventEmitter();
+    @Output() deleteClick=new EventEmitter();
     public gridOptions;
     public pagniationDynamicEnable:boolean;
+    public rowClickDone:boolean=false;
+    public editableData:any;
+    public clickFlag:boolean=false;
     public static sendCustomFilterValue = new Subject<boolean>();
     constructor(){
        console.log('constructor %o', this.settings);
        this.gridOptions = <GridOptions>{};
+       if(this.rowClickDone){
+           console.log("rowClicked");
+       }
        //this.gridOptions.pagination=this.pagination;
        //this.gridOptions.paginationPageSize=this.paginationPageSize;
     }
@@ -54,38 +51,48 @@ export class SmartTableFramework implements OnChanges {
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
       console.log('ngOnChanges %o',this.settings);
       if (changes['settings']) {
+          this.addButton=this.settings['addButton'];
           console.log('Settings Changed');
-          this.gridOptions.headerHeight=this.headerNumber;
-          this.gridOptions.pagination=this.pagination;
-          this.gridOptions.paginationPageSize=this.paginationPageSize;
-          this.gridOptions.rowSelection='single';
+          this.gridOptions.headerHeight=this.settings['headerNumber'];
+          this.gridOptions.pagination=this.settings['pagination'];
+          this.gridOptions.paginationPageSize=this.settings['paginationPageSize'];
+          this.gridOptions.rowSelection=this.settings['rowSelection'];
+          this.pagniationDynamicEnable=this.settings['paginationRandomPage'];
+          this.gridOptions.suppressMovableColumns=this.settings['swapping'];
           this.gridOptions.onSelectionChanged=this.onSelectionChanged;
-          SmartTableFramework.sendCustomFilterValue.next(this.customFilter);
+          this.gridOptions.suppressRowClickSelection=true;
+          //SmartTableFramework.sendCustomFilterValue.next(this.customFilter);
           this.gridOptions['columnDefs'] = this.settings['columnsettings'];
           //this.gridOptions.api.refreshView();
-          this.pagniationDynamicEnable=this.paginationRandomPage;
+         
         
       }
+      
       if(changes['data']){
         console.log('Data changed');
-        this.gridOptions.api.setRowData(this.data);
-        this.gridOptions.api.sizeColumnsToFit();
-        
+        if(this.data!=undefined){
+            this.gridOptions.api.setRowData(this.data);
+            this.gridOptions.api.sizeColumnsToFit();
+            this.gridOptions.columnApi.setColumnVisible('actions',this.settings['actionsColumn']);
+        }
       }
-    
     }
     onPageSizeChanged(newPageSize) {
         this.gridOptions.api.paginationSetPageSize(Number(newPageSize));
     } 
     onSelectionChanged(){
-        if(this.gridOptions){
-            let x=this.gridOptions.api.getSelectedRows();
-        }
-        /*let selectedRows=this.gridOptions.api.getSelectedRows();*/
-        
+        let selectedRows=this['api'].getSelectedRows();      
     }
     addRecord(){
         this.addButtonClicked.emit(this.addButton);
+    }
+    onRowClicked(data){
+        this.clickFlag=true;
+        this.rowClick.emit({'data':data,'flag':this.clickFlag});
+    }
+    onDelete(data){
+        this.clickFlag=false;
+        this.deleteClick.emit({'data':data,'flag':this.clickFlag});
     }
     
 }

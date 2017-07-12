@@ -2,9 +2,8 @@
             Page Size:
             <select  #pages (change)="onPageSizeChanged(pages.value)">
                 <option value="10" [selected]>10</option>
-                <option value="15">15</option>
                 <option value="20">20</option>
-                
+                <option value="30">30</option>
             </select>
 </div>
 <div *ngIf="addButton">
@@ -12,6 +11,6 @@
            
 </div>
  <div style="width:100%;">
-<ag-grid-angular #agGrid style="width: 100%; height:400px; margin-top:100px;" class="ag-fresh" [gridOptions]="gridOptions" >
+<ag-grid-angular #agGrid style="width: 100%; height:400px; margin-top:100px;" class="ag-fresh" [gridOptions]="gridOptions" (rowClicked)="onRowClicked($event)" (cellClicked)="onDelete($event)">
 </ag-grid-angular>
  </div>
