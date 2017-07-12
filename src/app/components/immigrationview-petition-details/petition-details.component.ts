@@ -578,7 +578,15 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                     }
                 });
         }
-
-
+    }
+    savedelOrgs() {
+        this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
+        this.delegatedOrgsList['orgId'] = this.appService.orgId;
+        this.petitionDetailsService.saveDelegatedOrgs(this.appService.user.userId)
+            .subscribe((res) => {
+                if (res['orgs'] != undefined) {
+                    this.delegatedOrgsList = res['orgs'];
+                }
+            });
     }
 }
