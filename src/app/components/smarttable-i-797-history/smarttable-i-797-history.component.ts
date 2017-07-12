@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Renderer, ElementRef, ViewChild } from '@angular/core';
 import { SmartTableI797HistoryService } from "./smarttable-i-797-history.service";
+import {ActionColumns} from '../../components/smarttableframework/ActionColumns';
 import { i797history } from "../../models/i797history";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -60,7 +61,6 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-     @ViewChild('fileInput') del:ElementRef;
     constructor(private smartTableI797HistoryService: SmartTableI797HistoryService, public appService: AppService, public dialogService: DialogService,private renderer:Renderer) {
         super(dialogService);
         this.getI797historys();
@@ -76,11 +76,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
             'columnsettings': [
                 {
                     headerName: "Actions",
-                    field:"actions",
-                    cellRenderer: function (params) {      // Function cell renderer
-                        return myRenderedView(params);
-                    },
-
+                    cellRendererFramework:ActionColumns, 
                     width: 50
                 },
                 {
@@ -121,10 +117,6 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
                 }
             ]
         }
-        function myRenderedView(params) {
-            return '<span #del><i class="fa fa-trash" aria-hidden="true" (click)="delRow()"></i></span>'
-        }
-
         this.subscription = CustomFilterRow.fillValues.subscribe(res => {
             if (res) {
                 this.filterValues = res;
@@ -193,9 +185,6 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
     }
     editRecord(event) {
         console.log(event);
-        if(event.flag==true){
-            console.log('edit clicked');
-        }
        /*  this.editi797Flag = true;
        if (this.editi797Flag) {
            this.beforei797Edit = (<any>Object).assign({}, event.data.data);
@@ -224,19 +213,10 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
   
         
     }
-   /* dele(){
-        console.log("deleted");
-    }*/
-    deleteRecord(event){
-        console.log(event);
-         if( event.data['column']['colId']==0){
-             console.log('deleted clicked');
-
-        }
-        
+    deleteRecord(data){
+        console.log(data);
     }
-    delRow(){
-
-    }
+   
+    
     
 }

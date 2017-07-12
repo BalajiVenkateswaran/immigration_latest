@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {ActionColumns} from './ActionColumns';
 @Component({
   selector: 'smart-table',
   templateUrl: './SmartTableFramework.html',
@@ -37,12 +38,14 @@ export class SmartTableFramework implements OnChanges {
     @Input() actionsColumn:boolean;
     @Output() addButtonClicked = new EventEmitter();
     @Output() rowClick=new EventEmitter();
-    @Output() deleteClick=new EventEmitter();
+    @Output() deleteClicked=new EventEmitter();
     public gridOptions;
     public pagniationDynamicEnable:boolean;
     public rowClickDone:boolean=false;
     public editableData:any;
     public clickFlag:boolean=false;
+    public subscription;
+    public deleteData;
     public static sendCustomFilterValue = new Subject<boolean>();
     constructor(){
        console.log('constructor %o', this.settings);
@@ -50,8 +53,12 @@ export class SmartTableFramework implements OnChanges {
        if(this.rowClickDone){
            console.log("rowClicked");
        }
-       //this.gridOptions.pagination=this.pagination;
-       //this.gridOptions.paginationPageSize=this.paginationPageSize;
+       this.subscription=ActionColumns.sendDeleteData.subscribe(res=>{
+           if(res!=undefined){
+               this.deleteData=res;
+               this.deleteClicked.emit(this.deleteData);
+           }
+       })
     }
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
@@ -96,9 +103,12 @@ export class SmartTableFramework implements OnChanges {
         this.clickFlag=true;
         this.rowClick.emit({'data':data,'flag':this.clickFlag});
     }
-    onDelete(data){
+    /*onDelete(data){
         this.clickFlag=false;
         this.deleteClick.emit({'data':data,'flag':this.clickFlag});
+    }*/
+    deleing(event){
+        console.log(event);
     }
     
 }

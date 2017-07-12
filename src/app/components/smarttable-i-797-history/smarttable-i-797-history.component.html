@@ -15,7 +15,7 @@
             </select>
 </div>-->
 <smart-table [settings]="settings" [data]="data" 
-  (addButtonClicked)="addFunction($event)" (rowClick)="editRecord($event)" (deleteClick)="deleteRecord($event)"></smart-table>
+  (addButtonClicked)="addFunction($event)" (rowClick)="editRecord($event)"  (deleteClicked)="deleteRecord($event)"></smart-table>
 
 </div>
 <div *ngIf="addI797">
