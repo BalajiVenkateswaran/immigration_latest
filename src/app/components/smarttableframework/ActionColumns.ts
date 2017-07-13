@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ActionColumns implements ICellRendererAngularComp    {
     public params: any;
-    public static sendDeleteData = new Subject<boolean>();
+    public static sendDeleteData = new Subject<Object>();
     agInit(params: any): void {
         this.params = params;
     }
@@ -21,7 +21,7 @@ export class ActionColumns implements ICellRendererAngularComp    {
        
     }
     delRow(){
-        ActionColumns.sendDeleteData.next(this.params.data);
+        ActionColumns.sendDeleteData.next({'data':this.params.data,'value':'delClicked'});
     }
     
 }
