@@ -84,8 +84,8 @@
                     <div class="fieldset">
                         <div class="clearfix"></div>
                         <div class="scrollpurpus">
-                            <div class="chkbox" *ngFor="let x of orgList">
-                                <input #orgcheckBox type="checkbox" [checked]="" name="orgName"/><span>{{x.orgName}}</span>
+                            <div class="chkbox" *ngFor="let x of orgsList">
+                                <input #orgcheckBox type="checkbox" [checked]="x.orgAccessible" name="orgName" [disabled]="orgsAcces"/><span>{{x.orgName}}</span>
                             </div>
                         </div>
                     </div>

@@ -72,6 +72,9 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             emailId: {
                 title: 'Email'
             },
+            phone: {
+                title: 'Phone'
+            },
             roleName: {
                 title: 'Role',
                 editor: {

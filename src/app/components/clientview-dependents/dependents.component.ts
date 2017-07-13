@@ -49,7 +49,7 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
             confirmCreate: true
         },
         edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+            editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
             saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
             cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
             confirmSave: true
@@ -151,46 +151,35 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
         });
     }
 
-    onEditConfirm(event): void {
-        //event.newData['clientId'] = this.appService.user.userId;
-        //this.dependentService.saveDependentsSummary(event.newData).subscribe((res) => {
-        //    this.message = res['statusCode'];
-        //    if (this.message == 'SUCCESS') {
-        //        event.newData = res['dependentsSummary'];
-        //        event.confirm.resolve(event.newData);
-        //    } else {
-        //        this.dialogService.addDialog(ConfirmComponent, {
-        //            title: 'Error..!',
-        //            message: 'Unable to Edit Dependent..!'
-        //        });
-        //        event.confirm.reject();
-        //    }
-        //});
-        this.editFlag = true;
-        if (this.editFlag) {
-            this.beforeEdit = (<any>Object).assign({}, event.data);
-        }
+    //onEditConfirm(event): void {
+    //    this.editFlag = true;
+    //    if (this.editFlag) {
+    //        this.beforeEdit = (<any>Object).assign({}, event.data);
+    //    }
 
-        this.dialogService.addDialog(DependentsComponent, {
-            showAddCVdependentpopup: true,
-            getCVDependentData: false,
-            title: 'Edit Dependent',
-            newCVdependentitem: this.editFlag ? this.beforeEdit : this.newCVdependentitem,
+    //    this.dialogService.addDialog(DependentsComponent, {
+    //        showAddCVdependentpopup: true,
+    //        getCVDependentData: false,
+    //        title: 'Edit Dependent',
+    //        newCVdependentitem: this.editFlag ? this.beforeEdit : this.newCVdependentitem,
             
-        }).subscribe((isConfirmed) => {
-            if (isConfirmed) {
-                this.dependentService.saveDependentsSummary(this.appService.newCVdependentitem).subscribe((res) => {
-                    if (res['statusCode'] == 'SUCCESS') {
-                        this.getCVDpntData();
-                    }
+    //    }).subscribe((isConfirmed) => {
+    //        if (isConfirmed) {
+    //            this.dependentService.saveDependentsSummary(this.appService.newCVdependentitem).subscribe((res) => {
+    //                if (res['statusCode'] == 'SUCCESS') {
+    //                    this.getCVDpntData();
+    //                }
 
-                });
-            } else {
-                this.editFlag = false;
-            }
-        });
+    //            });
+    //        } else {
+    //            this.editFlag = false;
+    //        }
+    //    });
+    //}
+    onEditConfirm(event): void {
+          this.appService.moveToPageWithParams('dependentDetails', event.data.dependentId); 
+        this.appService.currentSBLink = event.data.firstName;
     }
-
     onDeleteConfirm(event): void {
         this.delmessage = event.data.firstName
         this.dialogService.addDialog(ConfirmComponent, {

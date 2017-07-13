@@ -20,6 +20,8 @@ export class ManageaccountUserDetailsComponent implements OnInit {
   public isAccessEdit: boolean;
   public isAccess: boolean = false;
   public userid: string;
+  public orgsList: any = [];
+  public orgsAcces: boolean = true;
   constructor( private appService: AppService,
       private route: ActivatedRoute, public manageAccountUserDetailsService: ManageAccountUserDetailsService) {
            if (this.appService.user) {
@@ -35,7 +37,7 @@ export class ManageaccountUserDetailsComponent implements OnInit {
           this.manageAccountUserDetailsService.getUserDet(this.userid, this.user.accountId).subscribe((res) => {
               this.userList = res['userOrgsDetail']['userProfileInfo'];
               this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName'];
-         // this.userList = res;
+              this.orgsList = res['userOrgsDetail']['organizationsInfo'];
               if (this.userList.role == "IMMIGRATION OFFICER") {
                   this.isAccessEdit = true;
               }
@@ -59,10 +61,13 @@ export class ManageaccountUserDetailsComponent implements OnInit {
   editOrgsAccess() {
       this.isAccess = !this.isAccess;
       this.isAccessEdit = !this.isAccessEdit;
+      this.orgsAcces = false;
   }
   cancelOrgsAccess() {
       this.isAccess = !this.isAccess;
       this.isAccessEdit = !this.isAccessEdit;
+      this.orgsAcces = true;
+
   }
   saveUserProfile() {
       if (this.userList['firstName'] == '' || this.userList['firstName'] == null || this.userList['firstName'] == undefined
