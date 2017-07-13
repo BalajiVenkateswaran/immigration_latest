@@ -30,9 +30,6 @@
         <h2>
             <span>I-797 History</span><!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>-->
         </h2>
-        <div class="addedfilter" style="display:inline" *ngFor="let x of filterWholeArray let i=index">
-            <span>{{x.headingName}}</span>:<span>{{x.filterValue}}</span><span class="close" (click)="delete(i,x)">&times;</span>
-        </div>
         <smart-table [settings]="settings" [data]="data"
                      (addButtonClicked)="addFunction($event)" (rowClick)="editRecord($event)" (deleteClicked)="deleteRecord($event)"></smart-table>
         <!--<ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->

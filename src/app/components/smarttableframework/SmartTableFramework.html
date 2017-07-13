@@ -10,6 +10,11 @@
      <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addRecord()">ADD</button>
            
 </div>
+<div *ngIf="filterWholeArray">
+<div class="addedfilter" style="display:inline" *ngFor="let x of filterWholeArray let i=index">
+            <span>{{x.headingName}}</span>:<span>{{x.filterValue}}</span><span class="close" (click)="delete(i,x)">&times;</span>
+</div>
+</div>
  <div style="width:100%;">
 <ag-grid-angular #agGrid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (rowClicked)="onRowClicked($event)">
 </ag-grid-angular>
