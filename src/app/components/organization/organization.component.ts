@@ -111,6 +111,7 @@ export class OrganizationComponent implements OnInit {
                             title: 'Error..!',
                             message: 'Organization has Active Clients Associated..'
                         });
+                        this.orgDetails['markForDeletion'] = false;
                     }
                 });
         }
