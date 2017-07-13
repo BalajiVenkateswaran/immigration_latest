@@ -57,6 +57,9 @@ export class OrganizationComponent implements OnInit {
         .subscribe((res) => {
             if (res['organizationDetails']) {
                 this.orgDetails = res['organizationDetails'];
+                if (this.orgDetails['markForDeletion'] == true) {
+                    this.orgDetails['status'] = "Mark for Deletion";
+                }
                 console.log(this.orgDetails);
             }
             for (var i = 0; i < res['contactDetails'].length; i++) {
@@ -88,8 +91,8 @@ export class OrganizationComponent implements OnInit {
         }
         this.orgDetails['orgId'] = this.appService.orgId;
 
-        if (this.orgDetails['markForDeletion'] == true) {
-            this.orgDetails['status'] == "MFD";
+        if (this.orgDetails['markForDeletion'] == "true") {
+            this.orgDetails['status'] = "Mark for Deletion";
         }
         if (this.orgDetails['fileNumber'] == '' || this.orgDetails['fileNumber'] == null || this.orgDetails['fileNumber'] == undefined
             || this.orgDetails['orgName'] == '' || this.orgDetails['orgName'] == null || this.orgDetails['orgName'] == undefined
