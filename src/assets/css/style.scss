@@ -102,12 +102,12 @@ label {
 
 header {
     background-color: #2f323a;
-    height:210px;
+    height:155px;
     display: block;
     .logo {
         display: block;
         float: left;
-        margin: 20px 0 0 10px;
+        margin:10px 0 0 0px;
     }
     .burger-menu {
         display: block;
@@ -162,8 +162,7 @@ header {
     }
 .datails-holder-name {
         display: inline-block;
-        margin-top: 20px;
-        border: solid 2px #585b60;
+        margin-top: 10px;
         padding: 4px 10px;
         border-radius: 5px;
         text-align:left;
@@ -172,7 +171,6 @@ header {
             color: $White;
             h4 {
                 margin:0px 0 0 0;
-                min-width:220px;
                 font-size:18px;
                 text-transform:capitalize;
             }
@@ -258,7 +256,7 @@ header {
         display: block;
         width: 100%;
         ul {
-            margin: 20px 0 0 200px;
+            margin: 0px 0 0 200px;
             padding: 0px;
             display: flex;
             display: -webkit-flex; /* Safari */
@@ -281,32 +279,37 @@ header {
                       width: 0; 
                       height: 0; 
                       margin:0px auto;
-                      border-left: 12px solid transparent;
-                      border-right: 12px solid transparent;
-                      border-bottom: 12px solid #fff;
+                      border-left: 10px solid transparent;
+                      border-right: 10px solid transparent;
+                      border-bottom: 10px solid #fff;
                       margin-top: 3px;
                       display:none;
                     }
                     span.maintab-Petitions, span.maintab-Clients, span.maintab-Organization, span.maintab-Manageaccount, span.maintab-Reports {
-                        width:75px;
-                        height:75px;
+                        width:50px;
+                        height:50px;
                         margin:0px auto;
                         background:url(../images/Petitions.png) no-repeat center center #ffa812;
                         display:block;
                         border-radius:5px;
                         margin-bottom: 8px;
+                        background-size: 50%;
                     }
                     span.maintab-Clients {
                         background:url(../images/Clients.png) no-repeat center center #f66955;
+                            background-size: 65%;
                     }
                     span.maintab-Organization {
                         background:url(../images/Organization.png) no-repeat center center #00c0ef;
+                            background-size: 70%;
                     }
                     span.maintab-Manageaccount {
                         background:url(../images/Manage_account.png) no-repeat center center #01b29e;
+                            background-size: 70%;
                     }
                     span.maintab-Reports {
                         background:url(../images/Reports.png) no-repeat center center #ec3b83;
+                        background-size: 50%;
                     }
                 }
                 a.active {
@@ -335,9 +338,9 @@ header {
 section {
     .left-opened, .rightwithmenu {
         position: absolute;
-        top: 210px;
+        top: 155px;
         bottom: 0px;
-        height: calc(100vh - 210px);
+        height: calc(100vh - 155px);
     }
     .left-opened {
         left: 0px;
@@ -348,7 +351,7 @@ section {
         left: -200px;
         width: 200px;
         position: absolute;
-        top: 210px;
+        top: 155px;
     }
     .rightwithmenu {
         left: 200px;
@@ -358,7 +361,7 @@ section {
         left: 0px;
         right: 0;
         position: absolute;
-        top: 210px;
+        top: 155px;
     }
 }
 .navbar-nav {
@@ -488,7 +491,7 @@ section {
     float: left;
     /*height:100%;*/
 
-    height: calc(100vh - 210px);
+    height: calc(100vh - 155px);
     overflow-y: auto;
     padding-bottom: 30px;
     h1 {

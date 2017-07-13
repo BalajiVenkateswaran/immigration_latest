@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AppService} from "../../services/app.service";
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -65,9 +66,10 @@ export class ImmigrationViewReportsComponent implements OnInit {
   public polarAreaChartType:string = 'polarArea';
 
    mode: 'external'
-  constructor() { }
+   constructor(public appService: AppService) { }
 
   ngOnInit() {
+      this.appService.showSideBarMenu(null, "immigrationview-reports");
   }
 
 }
