@@ -1673,6 +1673,7 @@ confirm {
     color: red;
     text-shadow: 0 1px 0 #fff;
     opacity: .8;
+    cursor:pointer;
 }
     .plus {
     float: right;
@@ -1682,6 +1683,7 @@ confirm {
     color:green;
     text-shadow: 0 1px 0 #fff;
     opacity: .8;
+    cursor:pointer;
 }
 }
 .addedfilter {
@@ -1690,8 +1692,16 @@ confirm {
     border-radius:4px;
     color:#fff;
     font-size:14px;
-    margin:0px 5px 5px 0;
+    margin:0px 10px 5px 0;
     float:left;
+
+    .filtretype {
+        font-weight:600;
+        margin-right:5px;
+    }
+    .filtrename {
+        margin-right:5px;
+    }
 }
 .agridadd {
     margin-top:-52px;

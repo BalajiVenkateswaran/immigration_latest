@@ -1575,7 +1575,8 @@ tr.i129htblRow:nth-child(even) {
     line-height: 1;
     color: red;
     text-shadow: 0 1px 0 #fff;
-    opacity: .8; }
+    opacity: .8;
+    cursor: pointer; }
   .addremovefilter .plus {
     float: right;
     font-size: 26px;
@@ -1583,7 +1584,8 @@ tr.i129htblRow:nth-child(even) {
     line-height: 1;
     color: green;
     text-shadow: 0 1px 0 #fff;
-    opacity: .8; }
+    opacity: .8;
+    cursor: pointer; }
 
 .addedfilter {
   background: #5093e1 !important;
@@ -1591,8 +1593,13 @@ tr.i129htblRow:nth-child(even) {
   border-radius: 4px;
   color: #fff;
   font-size: 14px;
-  margin: 0px 5px 5px 0;
+  margin: 0px 10px 5px 0;
   float: left; }
+  .addedfilter .filtretype {
+    font-weight: 600;
+    margin-right: 5px; }
+  .addedfilter .filtrename {
+    margin-right: 5px; }
 
 .agridadd {
   margin-top: -52px; }
