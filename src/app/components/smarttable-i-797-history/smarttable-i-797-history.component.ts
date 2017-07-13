@@ -65,16 +65,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         super(dialogService);
         this.getI797historys();
         this.settings = {
-            'pagination': true,
-            'paginationPageSize': 10,
-            'headerHeight': 35,
-            'headerHeightwithFilters': 60,
-            'paginationRandomPage': true,
-            'addButton': true,
-            'rowSelection': 'single',
-            'swapping': true,
-            'actionsColumn': true,
-            'customFilter': true,
+            'customFilter':true,
             'columnsettings': [
 
                 {
