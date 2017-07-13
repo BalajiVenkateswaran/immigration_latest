@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
     </div>
     <div class="addremovefilter" *ngIf="clsaddFilter">
         <span class="close" (click)="delete(filterText)">&times;</span>
-        <span class="close" (click)="add(filterText)">+</span>
+        <span class="plus" (click)="add(filterText)">+</span>
     </div>`,
 
 

@@ -1632,12 +1632,21 @@ confirm {
 .ag-fresh .ag-ltr .ag-cell-no-focus {
     padding: .5em 1em;
     border-right: 1px solid #e0e0e0 !important;
+    border-bottom:1px solid #e0e0e0 !important
 }
 .ag-fresh .ag-row-odd {
     background: #fff !important;
+    cursor:pointer;
+}
+.ag-fresh .ag-row-odd:hover {
+    background: #e4e3e3 !important;
 }
 .ag-fresh .ag-row-even {
     background: #f6f9fd !important;
+    cursor:pointer;
+}
+.ag-fresh .ag-row-even:hover {
+    background: #d4e6fd !important;
 }
 .ag-layout-auto-height .ag-header-row {
         background: #eaeaeb !important;
@@ -1646,6 +1655,7 @@ confirm {
 .customfilterinput {
     padding-top:3px;
     padding-bottom:3px;
+    padding-right:34px;
 }
 
 .addremovefilter {
@@ -1660,9 +1670,18 @@ confirm {
     font-size: 26px;
     font-weight: 700;
     line-height: 1;
-    color: #000;
+    color: red;
     text-shadow: 0 1px 0 #fff;
-    opacity: .5;
+    opacity: .8;
+}
+    .plus {
+    float: right;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    color:green;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .8;
 }
 }
 .addedfilter {
