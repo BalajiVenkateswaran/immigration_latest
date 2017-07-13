@@ -1,4 +1,4 @@
-<div class="main-content" *ngIf="getOrgsData">
+    <div class="main-content" *ngIf="getOrgsData">
     <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
     <ul class="breadcrumb">
         <li><a href="#">Organizations</a></li>
@@ -11,7 +11,7 @@
             <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)"
                              (edit)="onEditConfirm($event)"
                              (createConfirm)="onCreateConfirm($event)"
-                             (userRowSelect)="onUserRowClick($event);"></ng2-smart-table>
+                             ></ng2-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>

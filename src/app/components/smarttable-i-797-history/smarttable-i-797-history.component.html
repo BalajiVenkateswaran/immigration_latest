@@ -14,8 +14,8 @@
                 
             </select>
 </div>-->
-<smart-table [settings]="settings" [data]="data" [pagination]="true" [paginationPageSize]="10" [headerNumber]="50" 
-[paginationRandomPage]="true" [rowSelection]="single"  [addButton]="true" (addButtonClicked)="addFunction($event)"></smart-table>
+<smart-table [settings]="settings" [data]="data" 
+  (addButtonClicked)="addFunction($event)" (rowClick)="editRecord($event)"  (deleteClicked)="deleteRecord($event)"></smart-table>
 
 </div>
 <div *ngIf="addI797">

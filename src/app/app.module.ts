@@ -12,6 +12,7 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { ChartsModule } from 'ng2-charts';
 import Chart from 'chart.js';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
+import {ActionColumns} from './components/smarttableframework/ActionColumns';
 //import { ChartsModule } from 'ng2-charts/components/charts/charts';
 
 
@@ -190,6 +191,8 @@ import {SmartTableImmigrationViewI797HistoryComponent} from './components/smartt
 import {SmartTableI797HistoryService} from './components/smarttable-i-797-history/smarttable-i-797-history.service'
 import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas";
 import { SmartTableVisasService } from "./components/smarttable-visas/smarttable-visas.service";
+import { ManageAccountUserDetailsService } from "./components/manageaccount-user-details/manageaccount-user-details.service";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -209,7 +212,7 @@ import { SmartTableVisasService } from "./components/smarttable-visas/smarttable
 
 
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
         SmartTableImmigrationViewI797HistoryComponent,
@@ -253,7 +256,7 @@ import { SmartTableVisasService } from "./components/smarttable-visas/smarttable
         ImmigrationViewClientDetailsComponent,
         ImmigrationViewAddressinfoComponent,
         ImmigrationViewDependentsComponent,
-
+        ActionColumns,
         ImmigrationViewPassportInfoComponent,
         ImmigrationViewJobDetailsComponent,
         ImmigrationViewArrivalDepartureInfoComponent,
@@ -388,7 +391,7 @@ import { SmartTableVisasService } from "./components/smarttable-visas/smarttable
         markfordeletionservice,
         SuperUserViewPaymentstabService,
         AccountDetailsPaymentsService,
-
+        ManageAccountUserDetailsService,
 
         SuperuserViewAccountpreferencessService,
         AccountDetailsCommonService,

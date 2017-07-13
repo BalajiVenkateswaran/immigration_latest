@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Renderer, ElementRef, ViewChild } from '@angular/core';
 import { SmartTableI797HistoryService } from "./smarttable-i-797-history.service";
+import { ActionColumns } from '../../components/smarttableframework/ActionColumns';
 import { i797history } from "../../models/i797history";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -25,6 +26,7 @@ export interface ConfirmModel {
     validFrom: string;
     validTill: string;
     addNewI797: Object;
+
 }
 @Component({
     selector: 'app-i-797-history',
@@ -50,59 +52,72 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
     public filteredData;
     public filterKeys = [];
     public filterWholeArray = [];
-    public addI797: boolean=false;
+    public addI797: boolean = false;
     public addNewI797: any = {};
     public getI797History: boolean = true;
+    public editi797Flag: boolean = true;
+    public beforei797Edit: any;
+    public deleteData;
+    public deleteBoolean = false;
+    public delmessage: string;
+    public message;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    constructor(private smartTableI797HistoryService: SmartTableI797HistoryService, public appService: AppService, public dialogService: DialogService) {
+    constructor(private smartTableI797HistoryService: SmartTableI797HistoryService, public appService: AppService, public dialogService: DialogService, private renderer: Renderer) {
         super(dialogService);
         this.getI797historys();
         this.settings = {
+            'pagination': true,
+            'paginationPageSize': 10,
+            'headerNumber': 50,
+            'paginationRandomPage': true,
+            'addButton': true,
+            'rowSelection': 'single',
+            'swapping': true,
+            'actionsColumn': true,
+            'customFilter': true,
             'columnsettings': [
+
                 {
-                    headerComponentFramework: CustomFilterRow,
                     headerName: "Approved on",
                     field: "approvedOn",
                     width: 100,
                 },
                 {
-                    headerComponentFramework: CustomFilterRow,
+
                     headerName: "Receipt Number",
                     field: "receiptNumber",
                     width: 100,
                 },
                 {
-                    headerComponentFramework: CustomFilterRow,
+
                     headerName: "Status",
                     field: "status",
                     width: 100,
                 },
                 {
-                    headerComponentFramework: CustomFilterRow,
+
                     headerName: "Valid From",
                     field: "validFrom",
                     width: 100,
                 },
                 {
-                    headerComponentFramework: CustomFilterRow,
+
                     headerName: "Valid Till",
                     field: "validTill",
                     width: 100
                 },
                 {
-                    headerComponentFramework: CustomFilterRow,
+
                     headerName: "Receipt Date",
                     field: "receiptDate",
                     width: 100,
                 }
             ]
         }
-
-
         this.subscription = CustomFilterRow.fillValues.subscribe(res => {
             if (res) {
                 this.filterValues = res;
@@ -113,11 +128,12 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
                         this.filterValues.splice(i, 1);
                     }
                 }
-
+                
             }
         });
+
     }
-    
+
     getI797historys() {
         this.smartTableI797HistoryService.getI797Details(this.appService.clientId).subscribe((res) => {
             this.data = res['i797HistoryList'];
@@ -127,7 +143,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         this.filterWholeArray.splice(index, 1);
     }
     addFunction(addDiv) {
-        
+
         this.dialogService.addDialog(SmartTableImmigrationViewI797HistoryComponent, {
             addI797: addDiv,
             getI797History: false,
@@ -168,4 +184,70 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         this.result = false;
         this.close();
     }
+    editRecord(event) {
+        if (this.deleteBoolean == false) {
+            if (this.editi797Flag) {
+                this.beforei797Edit = (<any>Object).assign({}, event.data.data);
+            }
+            this.dialogService.addDialog(SmartTableImmigrationViewI797HistoryComponent, {
+                addI797: true,
+                getI797History: false,
+                title: 'Edit I-797 History',
+                addNewI797: this.editi797Flag ? this.beforei797Edit : this.addNewI797,
+                receiptDate: event.data.data.receiptDate,
+                approvedOn: event.data.data.approvedOn,
+                validFrom: event.data.data.validFrom,
+                validTill: event.data.data.validTill
+            }).subscribe((isConfirmed) => {
+                if (isConfirmed) {
+
+                    this.smartTableI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
+                        if (res['statusCode'] == 'SUCCESS') {
+
+                            this.getI797historys();
+                           
+
+                        }
+                    });
+                }
+            });
+        }
+        else {
+            this.delmessage = event.data.data.receiptNumber
+            this.dialogService.addDialog(ConfirmComponent, {
+                title: 'Confirmation',
+                message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+            })
+                .subscribe((isConfirmed) => {
+                    //Get dialog result
+                    //this.confirmResult = isConfirmed;
+                    if (isConfirmed) {
+                        this.smartTableI797HistoryService.removeI797Details(event.data.data['i797HistoryId']).subscribe((res) => {
+                            this.message = res['statusCode'];
+                            if (this.message == 'SUCCESS') {
+                                this.getI797historys();
+                               
+                                //immViewi797.confirm.resolve();
+                            }
+
+                        });
+                    }
+                });
+                this.deleteBoolean=false;
+        }
+
+
+
+    }
+    deleteRecord(data) {
+        if (data.value == 'delClicked') {
+            this.deleteBoolean = true;
+        }
+        else {
+            this.deleteBoolean = false;
+        }
+    }
+
+
+
 }
