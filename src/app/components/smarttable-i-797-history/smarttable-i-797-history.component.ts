@@ -72,7 +72,8 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         this.settings = {
             'pagination': true,
             'paginationPageSize': 10,
-            'headerNumber': 50,
+            'headerHeight': 35,
+            'headerHeightwithFilters': 60,
             'paginationRandomPage': true,
             'addButton': true,
             'rowSelection': 'single',
@@ -84,37 +85,31 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
                 {
                     headerName: "Approved on",
                     field: "approvedOn",
-                    width: 100,
                 },
                 {
 
                     headerName: "Receipt Number",
                     field: "receiptNumber",
-                    width: 100,
                 },
                 {
 
                     headerName: "Status",
                     field: "status",
-                    width: 100,
                 },
                 {
 
                     headerName: "Valid From",
                     field: "validFrom",
-                    width: 100,
                 },
                 {
 
                     headerName: "Valid Till",
                     field: "validTill",
-                    width: 100
                 },
                 {
 
                     headerName: "Receipt Date",
                     field: "receiptDate",
-                    width: 100,
                 }
             ]
         }

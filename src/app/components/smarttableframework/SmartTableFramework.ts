@@ -29,7 +29,8 @@ export class SmartTableFramework implements OnChanges {
     @Input() data: Object = {};
     @Input() pagination: boolean;
     @Input() paginationPageSize: number;
-    @Input() headerNumber: number;
+    @Input() headerHeight: number;
+    @Input() headerHeightwithFilters: number;
     @Input() customFilter: boolean;
     @Input() paginationRandomPage: boolean;
     @Input() rowSelection;
@@ -66,7 +67,9 @@ export class SmartTableFramework implements OnChanges {
         if (changes['settings']) {
             this.addButton = this.settings['addButton'];
             console.log('Settings Changed');
-            this.gridOptions.headerHeight = this.settings['headerNumber'];
+            this.gridOptions.headerHeight = this.settings['headerHeight'];
+            this.gridOptions.rowHeight = 35;
+            this.gridOptions.domLayout = 'autoHeight'
             this.gridOptions.pagination = this.settings['pagination'];
             this.gridOptions.paginationPageSize = this.settings['paginationPageSize'];
             this.gridOptions.rowSelection = this.settings['rowSelection'];
@@ -78,6 +81,9 @@ export class SmartTableFramework implements OnChanges {
             //this.gridOptions.api.refreshView();
             if (this.settings['actionsColumn'] == true || this.settings['customFilter'] == true) {
                 this.prepareSettings(this.gridOptions);
+            }
+            if (this.settings['customFilter'] == true) {
+                this.gridOptions.headerHeight = this.settings['headerHeightwithFilters'];
             }
 
 

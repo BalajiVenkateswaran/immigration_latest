@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
     selector: 'params-cell',
     template: `<span style="word-wrap:break-word">{{params.displayName}}</span>
     <div>
-        <input type="text" style="width:83px" [(ngModel)]="filterText" (keyup)="addFilters(filterText)">
+        <input type="text" class="form-control customfilterinput" [(ngModel)]="filterText" (keyup)="addFilters(filterText)">
     </div>
-    <div class="clsadd" *ngIf="clsaddFilter" style="width: 40px;position: absolute;z-index: 10;top: 20px;left: 72px;">
+    <div class="addremovefilter" *ngIf="clsaddFilter">
         <span class="close" (click)="delete(filterText)">&times;</span>
         <span class="close" (click)="add(filterText)">+</span>
     </div>`,

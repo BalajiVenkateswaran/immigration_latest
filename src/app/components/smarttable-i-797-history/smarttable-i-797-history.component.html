@@ -1,11 +1,11 @@
-<div *ngIf="getI797History">
+<!--<div *ngIf="getI797History">
 <div>
             <div style="display:inline" *ngFor="let x of filterWholeArray let i=index">
                 <span style="margin-left:10px;">{{x.headingName}}</span>:<span>{{x.filterValue}}</span><span style="position:absolute;top: 118px;" class="close" (click)="delete(i,x)">&times;</span>
             </div>
             
 </div>
- <!--<div *ngIf="pagniationDynamicEnable" style="position: fixed; top: 160px; right: 32px; padding: 10px;">
+ <div *ngIf="pagniationDynamicEnable" style="position: fixed; top: 160px; right: 32px; padding: 10px;">
             Page Size:
             <select  #pages (change)="onPageSizeChanged(pages.value)">
                 <option value="10" [selected]>10</option>
@@ -13,11 +13,33 @@
                 <option value="20">20</option>
                 
             </select>
-</div>-->
+</div>
 <smart-table [settings]="settings" [data]="data" 
   (addButtonClicked)="addFunction($event)" (rowClick)="editRecord($event)"  (deleteClicked)="deleteRecord($event)"></smart-table>
 
+</div>-->
+
+<div class="main-content" *ngIf="getI797History">
+    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+    <ul class="breadcrumb">
+        <li><a href="#">Clients</a></li>
+        <li><a href="#">I-797 History</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2>
+            <span>I-797 History</span><!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>-->
+        </h2>
+        <div class="addedfilter" style="display:inline" *ngFor="let x of filterWholeArray let i=index">
+            <span>{{x.headingName}}</span>:<span>{{x.filterValue}}</span><span class="close" (click)="delete(i,x)">&times;</span>
+        </div>
+        <smart-table [settings]="settings" [data]="data"
+                     (addButtonClicked)="addFunction($event)" (rowClick)="editRecord($event)" (deleteClicked)="deleteRecord($event)"></smart-table>
+        <!--<ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
+        <div class="clearfix"></div>
+    </div>
 </div>
+
 <div *ngIf="addI797">
     <div class="modal-dialog">
         <div class="modal-content">
