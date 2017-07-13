@@ -47,11 +47,6 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
                                    "validTill": "06-28-2017"
                                };*/
     public data: any;
-    public subscription;
-    public filterValues: any;
-    public filteredData;
-    public filterKeys = [];
-    public filterWholeArray = [];
     public addI797: boolean = false;
     public addNewI797: any = {};
     public getI797History: boolean = true;
@@ -72,7 +67,8 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         this.settings = {
             'pagination': true,
             'paginationPageSize': 10,
-            'headerNumber': 50,
+            'headerHeight': 35,
+            'headerHeightwithFilters': 60,
             'paginationRandomPage': true,
             'addButton': true,
             'rowSelection': 'single',
@@ -84,54 +80,34 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
                 {
                     headerName: "Approved on",
                     field: "approvedOn",
-                    width: 100,
                 },
                 {
 
                     headerName: "Receipt Number",
                     field: "receiptNumber",
-                    width: 100,
                 },
                 {
 
                     headerName: "Status",
                     field: "status",
-                    width: 100,
                 },
                 {
 
                     headerName: "Valid From",
                     field: "validFrom",
-                    width: 100,
                 },
                 {
 
                     headerName: "Valid Till",
                     field: "validTill",
-                    width: 100
                 },
                 {
 
                     headerName: "Receipt Date",
                     field: "receiptDate",
-                    width: 100,
                 }
             ]
         }
-        this.subscription = CustomFilterRow.fillValues.subscribe(res => {
-            if (res) {
-                this.filterValues = res;
-                for (let i = 0; i < this.filterValues.length; i++) {
-                    if (this.filterWholeArray.indexOf(this.filterValues[i]) == -1) {
-                        this.filterWholeArray.push(this.filterValues[i]);
-                        this.filterKeys.push(this.filterValues[i]['filterValue']);
-                        this.filterValues.splice(i, 1);
-                    }
-                }
-                
-            }
-        });
-
     }
 
     getI797historys() {
@@ -139,9 +115,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
             this.data = res['i797HistoryList'];
         });
     }
-    delete(index, x) {
-        this.filterWholeArray.splice(index, 1);
-    }
+    
     addFunction(addDiv) {
 
         this.dialogService.addDialog(SmartTableImmigrationViewI797HistoryComponent, {
