@@ -147,6 +147,9 @@ export class SmartTableFramework implements OnChanges {
         }
 
     }
+    ngOnDestroy(){
+        this.subscription.unsubscribe();
+    }
 
 }
 
