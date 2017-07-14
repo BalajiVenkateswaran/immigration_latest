@@ -40,10 +40,8 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     public adduser: boolean;
     public beforeEdit: any;
     public editFlag: boolean = true;
+    public warningMessage: boolean = false;
     //roles : LocalDataSource = new LocalDataSource();
-
-
-
 
     settings = {
         add: {
@@ -125,7 +123,6 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
 
     }
     getManageUsers() {
-
         this.manageAccountUserService.getUsers(this.appService.user.accountId)
             .subscribe((res) => {
                 for (var user of res['users']) {
@@ -160,9 +157,15 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     manageUserSave() {
         this.addUsers['role'] = this.roles[this.addUsers['role']];
         this.addUsers['accountId'] = this.appService.user.accountId;
-        this.appService.addUsers = this.addUsers;
-        this.result = true;
-        this.close();
+        if (this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined) {
+            this.warningMessage = true;
+        } else {
+            this.warningMessage = false;
+            this.appService.addUsers = this.addUsers;
+            this.result = true;
+            this.close();
+        }
+        
     }
     cancel() {
         this.result = false;

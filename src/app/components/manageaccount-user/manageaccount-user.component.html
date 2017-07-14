@@ -25,20 +25,25 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">First Name:</div>
+                            <div class="col-md-4"><span class="redstar">*</span>First Name:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.firstName" class="form-control"></div>
-                            <div class="col-md-4">Last Name:</div>
+                            <div class="col-md-4"><span class="redstar">*</span>Last Name:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.lastName" class="form-control"></div>
-                            <div class="col-md-4">Email</div>
+                            <div class="col-md-4"><span class="redstar">*</span>Email</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.emailId" class="form-control"></div>
                             <div class="col-md-4">Phone</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.phone" class="form-control"></div>
-                            <div class="col-md-4">Role:</div>
+                            <div class="col-md-4"><span class="redstar">*</span>Role:</div>
                             <div class="col-md-8">
                                 <select [(ngModel)]="addUsers.role" class="form-control">
                                     <option value="IMMIGRATION OFFICER">IMMIGRATION OFFICER</option>
                                     <option value="IMMIGRATION MANAGER">IMMIGRATION MANAGER</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row sfm" *ngIf="warningMessage">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
                             </div>
                         </div>
                     </div>
