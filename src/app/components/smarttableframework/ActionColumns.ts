@@ -21,7 +21,7 @@ export class ActionColumns implements ICellRendererAngularComp    {
        
     }
     delRow(){
-        ActionColumns.sendDeleteData.next({'data':this.params.data,'value':'delClicked'});
+        ActionColumns.sendDeleteData.next(this.params);
     }
     
 }

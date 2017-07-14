@@ -1,5 +1,4 @@
 import { Component, OnInit, Injector, Input, SimpleChange, OnChanges, EventEmitter, Output } from '@angular/core';
-import { SmartTableFrameworkService } from "./SmartTableFramework-service";
 import { i797history } from "../../models/i797history";
 import { FormGroup, FormControl } from "@angular/forms";
 import { CustomFilterRow } from './CustomFilterRow';
@@ -50,8 +49,12 @@ export class SmartTableFramework implements OnChanges {
         this.deleteSubscription = ActionColumns.sendDeleteData.subscribe(res => {
             if (res != undefined) {
                 this.deleteData = res;
-                this.onDeleteClick.emit(this.deleteData);
+                this.clickFlag=true;
             }
+            else{
+                this.clickFlag=false;
+            }
+           
         })
         this.filterSubscription = CustomFilterRow.fillValues.subscribe(res => {
             if (res) {
@@ -93,9 +96,14 @@ export class SmartTableFramework implements OnChanges {
     addRecord() {
         this.onAddClick.emit(this.isAddButtonEnable);
     }
-    onRowClicked(data) {
-        this.clickFlag = true;
-        this.onRowClick.emit({ 'data': data, 'flag': this.clickFlag });
+    onCellClick(data) {
+        if( this.clickFlag==true){
+            this.onDeleteClick.emit(data);
+            this.clickFlag=false;
+        }
+        else{
+            this.onRowClick.emit(data);
+        }
     }
     prepareSettings() {
         //default setting for framework
@@ -133,7 +141,8 @@ export class SmartTableFramework implements OnChanges {
         else {
             this.gridOptions.isDeleteEnable = true;
             this.settings['columnsettings'].unshift({
-                headerName: "Actions",
+                headerName:"",
+                headerTooltip: "Actions",
                 width: 80,
                 cellRendererFramework: ActionColumns,
 
@@ -158,7 +167,7 @@ export class SmartTableFramework implements OnChanges {
             this.settings['columnFilter'] = false;
             this.settings['headerHeight']=35;
         }
-        if (this.settings.hasOwnProperty('isisAddButtonEnableEnable')) {
+        if (this.settings.hasOwnProperty('isAddButtonEnable')) {
             this.isAddButtonEnable = this.settings['isAddButtonEnable'];
         }
         else {

@@ -28,7 +28,7 @@ export interface ConfirmModel {
   styleUrls: ['./i-797-history.component.sass']
 })
 export class ImmigrationViewI797HistoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    settings = {
+    /*settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
             createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
@@ -72,7 +72,9 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
         },
         mode: 'external'
 
-    };
+    };*/
+    public settings;
+    public data;
     private delmessage;
     private user: User;
     public addI797History: FormGroup; // our model driven form
@@ -93,12 +95,54 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
         if (this.appService.user) {
             this.user = this.appService.user;
         }
+        this.settings={
+            'columnsettings': [
+                {
+
+                    headerName: "Receipt Number",
+                    field: "receiptNumber",
+                },
+                {
+
+                    headerName: "Status",
+                    field: "status",
+                    width:100
+                },
+                {
+
+                    headerName: "Receipt Date",
+                    field: "receiptDate",
+                    width: 100
+                },
+                {
+                    headerName: "Approved on",
+                    field: "approvedOn",
+                    width: 100
+                },
+                {
+
+                    headerName: "Valid From",
+                    field: "validFrom",
+                    width: 100
+                },
+                {
+
+                    headerName: "Valid Till",
+                    field: "validTill",
+                    width: 100
+                },
+                
+            ]
+        }
+
+        
     }
-    source: LocalDataSource = new LocalDataSource();
+    //source: LocalDataSource = new LocalDataSource();
     get1797history() {
         this.immigrationViewI797HistoryService.getI797Details(this.appService.clientId)
             .subscribe((res) => {
-                this.source.load(res['i797HistoryList']);
+                this.data=res['i797HistoryList'];
+                //this.source.load(res['i797HistoryList']);
             });
 
     }
@@ -109,14 +153,13 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
        this.appService.currentSBLink = link;
 
    }
-   addNewI797History() {
+   addFunction() {
        this.dialogService.addDialog(ImmigrationViewI797HistoryComponent, {
            addI797His: true,
            getI797History: false,
            title: 'Add I-797 History',
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
-           ;
                this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
                    if (res['statusCode'] == 'SUCCESS') {
        this.get1797history();
@@ -168,7 +211,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
    //    });
    //}
 
-   onEditConfirm(event): void {
+   editRecord(event): void {
        this.editi797Flag = true;
        if (this.editi797Flag) {
            this.beforei797Edit = (<any>Object).assign({}, event.data);
@@ -196,7 +239,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
        });
   
    }
-   onDeleteConfirm(immViewi797) {
+   deleteRecord(immViewi797) {
        this.delmessage = immViewi797.data.receiptNumber
        this.dialogService.addDialog(ConfirmComponent, {
            title: 'Confirmation',

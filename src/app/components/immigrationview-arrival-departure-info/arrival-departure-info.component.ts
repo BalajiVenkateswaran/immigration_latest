@@ -35,74 +35,66 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   public beforeEdit: any;
   public editFlag: boolean = true;
   public rowClicked: boolean ;
+  public data;
+  public settings;
   onDateChanged(event: IMyDateModel) {}
   private myDatePickerOptions: IMyOptions = {
       // other options...
       dateFormat: 'mm-dd-yyyy',
       showClearDateBtn: false,
   };
-  settings = {
-      add: {
-          addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-          createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-          cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-          confirmCreate: true
-      },
-      edit: {
-          editButtonContent: '<i class="fa fa-pencil" aria-hidden="false"></i>',
-          saveButtonContent: '<i class="fa fa-check" aria-hidden="false"></i>',
-          cancelButtonContent: '<i class="fa fa-times" aria-hidden="false"></i>',
-          confirmSave: false
-      },
-      delete: {
-          deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-          confirmDelete: true
-      },
-      columns: {
-          departureDate: {
-              title: 'Departure date',
-              
-          },
-          departureCountry: {
-              title: 'Departure Country',
-              
-          },
-          arrivalDate: {
-              title: 'Arrival date',
-              
-          },
-          arrivalCountry: {
-              title: 'Arrival Country',
-              
-          },
-          visaType: {
-              title: 'Visa Type',
-              
-          },
-          i94: {
-              title: 'I-94',
-              
-          }
-      },
-      pager: {
-          display: true,
-          perPage: 10
-      },
-      mode:'external'
-  };
-
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
       public appService: AppService, public dialogService: DialogService) {
       super(dialogService);
       if (this.appService.user) {
           this.user = this.appService.user;
       }
+      this.settings = {
+          
+            'columnsettings': [
+                {
+
+                    headerName: "Departure Date",
+                    field: "departureDate",
+                },
+                {
+
+                    headerName: "Departure Country",
+                    field: "departureCountry",
+                    width:100
+                },
+                {
+
+                    headerName: "Arrival Date",
+                    field: "arrivalDate",
+                    width: 100
+                },
+                {
+                    headerName: "Arrival Country",
+                    field: "arrivalCountry",
+                    width: 100
+                },
+                {
+
+                    headerName: "Visa Type",
+                    field: "visaType",
+                    width: 100
+                },
+                {
+
+                    headerName: "I94",
+                    field: "i94",
+                    width: 100
+                },
+                
+            ]
+        }
   }
-  source: LocalDataSource = new LocalDataSource();
   getArrivalDepartueInfo() {
       this.arrivalDepartureInfoService.getArrivalDepartureInfo(this.appService.clientId)
           .subscribe((res) => {
-              this.source.load(res['arrivalDepartures']);
+              this.data=res['arrivalDepartures'];
+             
           });
   }
   ngOnInit() {
@@ -145,41 +137,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       this.result = false;
       this.close();
   }
-/*
-  onCreateConfirm(event): void {
-      event.newData['clientId'] = this.appService.clientId;
-      this.arrivalDepartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {
-          this.message = res['statusCode'];
-          if (this.message == 'SUCCESS') {
-              event.confirm.resolve();
-          } else {
-              this.dialogService.addDialog(ConfirmComponent, {
-                  title: 'Error..!',
-                  message: 'Unable to Add Arrival Desparture Info.'
-              });
-              event.confirm.reject();
-          }
-      });
-
-  }
-  onEditConfirm(event): void {
-      event.newData['clientId'] = this.appService.clientId;
-      this.arrivalDepartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {
-          this.message = res['statusCode'];
-          if (this.message == 'SUCCESS') {
-              event.newData = res['arrivalDepartureInfo'];
-              event.confirm.resolve(event.newData);
-          } else {
-              this.dialogService.addDialog(ConfirmComponent, {
-                  title: 'Error..!',
-                  message: 'Unable to Edit Arrival Desparture Info.'
-              });
-              event.confirm.resolve(event.data);
-          }
-      });
-  }*/
-
-  onDeleteConfirm(arrivalDeprtInfo) {
+  deleteArrivalInfo(arrivalDeprtInfo) {
       this.delmessage = arrivalDeprtInfo.data.departureCountry;
       this.dialogService.addDialog(ConfirmComponent, {
           title: 'Confirmation',
@@ -188,12 +146,6 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
           .subscribe((isConfirmed) => {
               if (isConfirmed) {
                   this.arrivalDepartureInfoService.removeClientArrivalDeparture(arrivalDeprtInfo.data['arrivalDepartureInfoId']).subscribe((res) => {
-                      //this.message = res['statusCode'];
-                      //if (this.message == 'SUCCESS') {
-                      //    arrivalDeprtInfo.confirm.resolve();
-                      //} else {
-                      //    arrivalDeprtInfo.confirm.reject();
-                      //}
                       if (res['statusCode'] == 'SUCCESS') {
                           this.getArrivalDepartueInfo();
                       }
@@ -201,7 +153,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
               }
           });
   }
-  onEditConfirm(arrivalDeptInfo) {
+  editArrivalInfo(arrivalDeptInfo) {
       this.editFlag = true;
       if (this.editFlag) {
           this.beforeEdit = (<any>Object).assign({}, arrivalDeptInfo.data);
