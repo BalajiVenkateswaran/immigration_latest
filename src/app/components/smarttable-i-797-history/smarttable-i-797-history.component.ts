@@ -65,15 +65,6 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         super(dialogService);
         this.getI797historys();
         this.settings = {
-            'pagination': true,
-            'paginationPageSize': 10,
-            'headerHeight': 35,
-            'headerHeightwithFilters': 60,
-            'paginationRandomPage': true,
-            'addButton': true,
-            'rowSelection': 'single',
-            'swapping': true,
-            'actionsColumn': true,
             'customFilter': true,
             'columnsettings': [
 
@@ -115,7 +106,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
             this.data = res['i797HistoryList'];
         });
     }
-    
+
     addFunction(addDiv) {
 
         this.dialogService.addDialog(SmartTableImmigrationViewI797HistoryComponent, {
@@ -179,47 +170,44 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
                         if (res['statusCode'] == 'SUCCESS') {
 
                             this.getI797historys();
-                           
+
 
                         }
                     });
                 }
             });
         }
-        else {
-            this.delmessage = event.data.data.receiptNumber
-            this.dialogService.addDialog(ConfirmComponent, {
-                title: 'Confirmation',
-                message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-            })
-                .subscribe((isConfirmed) => {
-                    //Get dialog result
-                    //this.confirmResult = isConfirmed;
-                    if (isConfirmed) {
-                        this.smartTableI797HistoryService.removeI797Details(event.data.data['i797HistoryId']).subscribe((res) => {
-                            this.message = res['statusCode'];
-                            if (this.message == 'SUCCESS') {
-                                this.getI797historys();
-                               
-                                //immViewi797.confirm.resolve();
-                            }
-
-                        });
-                    }
-                });
-                this.deleteBoolean=false;
-        }
-
-
-
     }
     deleteRecord(data) {
         if (data.value == 'delClicked') {
             this.deleteBoolean = true;
+
         }
         else {
             this.deleteBoolean = false;
         }
+        this.delmessage = data.data.receiptNumber
+        this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Confirmation',
+            message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+        })
+            .subscribe((isConfirmed) => {
+                //Get dialog result
+                //this.confirmResult = isConfirmed;
+                if (isConfirmed) {
+                    this.smartTableI797HistoryService.removeI797Details(data.data['i797HistoryId']).subscribe((res) => {
+                        this.message = res['statusCode'];
+                        if (this.message == 'SUCCESS') {
+                            this.getI797historys();
+
+                            //immViewi797.confirm.resolve();
+                        }
+
+                    });
+                }
+                this.deleteBoolean = false;
+            });
+
     }
 
 

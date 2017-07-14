@@ -31,7 +31,7 @@
             <span>I-797 History</span><!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>-->
         </h2>
         <smart-table [settings]="settings" [data]="data"
-                     (addButtonClicked)="addFunction($event)" (rowClick)="editRecord($event)" (deleteClicked)="deleteRecord($event)"></smart-table>
+                     (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
         <!--<ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
         <div class="clearfix"></div>
     </div>

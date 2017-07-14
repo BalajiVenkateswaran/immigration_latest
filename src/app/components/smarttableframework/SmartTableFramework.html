@@ -1,7 +1,6 @@
 
-
-     <button *ngIf="addButton" type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="addRecord()">ADD</button>
-<div *ngIf="pagniationDynamicEnable" class="itemsperpage">
+<button *ngIf="isAddButtonEnable" type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="addRecord()">ADD</button>
+<div *ngIf="paginationTemplate" class="itemsperpage">
     Page Size:
     <select #pages (change)="onPageSizeChanged(pages.value)">
         <option value="10" [selected]>10</option>

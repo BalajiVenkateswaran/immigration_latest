@@ -27,41 +27,33 @@ export class SmartTableFramework implements OnChanges {
 
     @Input() settings: Object = {};
     @Input() data: Object = {};
-    @Input() pagination: boolean;
-    @Input() paginationPageSize: number;
-    @Input() headerHeight: number;
-    @Input() headerHeightwithFilters: number;
-    @Input() customFilter: boolean;
-    @Input() paginationRandomPage: boolean;
-    @Input() rowSelection;
-    @Input() addButton: boolean;
-    @Input() swapping: boolean;
-    @Input() actionsColumn: boolean;
-    @Output() addButtonClicked = new EventEmitter();
-    @Output() rowClick = new EventEmitter();
-    @Output() deleteClicked = new EventEmitter();
+    @Output() onAddClick = new EventEmitter();
+    @Output() onRowClick = new EventEmitter();
+    @Output() onDeleteClick = new EventEmitter();
     public gridOptions;
-    public pagniationDynamicEnable: boolean;
+    public paginationTemplate: boolean;
     public rowClickDone: boolean = false;
     public editableData: any;
     public clickFlag: boolean = false;
-    public subscription;
+    public filterSubscription;
+    public deleteSubscription;
     public deleteData;
     public filterValues: any;
     public filteredData;
     public filterKeys = [];
     public filterWholeArray = [];
+    public isAddButtonEnable: boolean;
     public static sendCustomFilterValue = new Subject<boolean>();
     constructor() {
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
-        this.subscription = ActionColumns.sendDeleteData.subscribe(res => {
+        this.deleteSubscription = ActionColumns.sendDeleteData.subscribe(res => {
             if (res != undefined) {
                 this.deleteData = res;
-                this.deleteClicked.emit(this.deleteData);
+                this.onDeleteClick.emit(this.deleteData);
             }
         })
-        this.subscription = CustomFilterRow.fillValues.subscribe(res => {
+        this.filterSubscription = CustomFilterRow.fillValues.subscribe(res => {
             if (res) {
                 this.filterValues = res;
                 for (let i = 0; i < this.filterValues.length; i++) {
@@ -71,7 +63,7 @@ export class SmartTableFramework implements OnChanges {
                         this.filterValues.splice(i, 1);
                     }
                 }
-                
+
             }
         });
     }
@@ -79,36 +71,13 @@ export class SmartTableFramework implements OnChanges {
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         console.log('ngOnChanges %o', this.settings);
         if (changes['settings']) {
-            this.addButton = this.settings['addButton'];
-            console.log('Settings Changed');
-            this.gridOptions.headerHeight = this.settings['headerHeight'];
-            this.gridOptions.rowHeight = 35;
-            this.gridOptions.domLayout = 'autoHeight'
-            this.gridOptions.pagination = this.settings['pagination'];
-            this.gridOptions.paginationPageSize = this.settings['paginationPageSize'];
-            this.gridOptions.rowSelection = this.settings['rowSelection'];
-            this.pagniationDynamicEnable = this.settings['paginationRandomPage'];
-            this.gridOptions.suppressMovableColumns = this.settings['swapping'];
-            this.gridOptions.onSelectionChanged = this.onSelectionChanged;
-            this.gridOptions.suppressRowClickSelection = true;
-            this.gridOptions['columnDefs'] = this.settings['columnsettings'];
-            //this.gridOptions.api.refreshView();
-            if (this.settings['actionsColumn'] == true || this.settings['customFilter'] == true) {
-                this.prepareSettings(this.gridOptions);
-            }
-            if (this.settings['customFilter'] == true) {
-                this.gridOptions.headerHeight = this.settings['headerHeightwithFilters'];
-            }
-
-
+            this.prepareSettings();
         }
-
         if (changes['data']) {
             console.log('Data changed');
             if (this.data != undefined) {
                 this.gridOptions.api.setRowData(this.data);
                 this.gridOptions.api.sizeColumnsToFit();
-                //this.gridOptions.columnApi.setColumnVisible('actions',this.settings['actionsColumn']);
             }
         }
     }
@@ -122,33 +91,91 @@ export class SmartTableFramework implements OnChanges {
         let selectedRows = this['api'].getSelectedRows();
     }
     addRecord() {
-        this.addButtonClicked.emit(this.addButton);
+        this.onAddClick.emit(this.isAddButtonEnable);
     }
     onRowClicked(data) {
         this.clickFlag = true;
-        this.rowClick.emit({ 'data': data, 'flag': this.clickFlag });
+        this.onRowClick.emit({ 'data': data, 'flag': this.clickFlag });
     }
-    prepareSettings(gridOptions) {
-        console.log(gridOptions);
-        if (this.settings['actionsColumn'] == true) {
-            gridOptions.columnDefs.unshift({
-                headerName: "Actions",
-                cellRendererFramework: ActionColumns,
-                width: 100
-            });
-        }
-        if (this.settings['customFilter'] == true) {
-            for (var i = 0; i < gridOptions.columnDefs.length; i++) {
-                if (i > 0) {
-                    gridOptions.columnDefs[i]['headerComponentFramework'] = CustomFilterRow;
-                }
-
+    prepareSettings() {
+        //default setting for framework
+        if (this.settings.hasOwnProperty('pagination')) {
+            this.gridOptions['pagination'] = this.settings['pagination'];
+            if (this.gridOptions['pagination'] == true) {
+                this.paginationTemplate = true;
             }
         }
+        else {
+            this.gridOptions.pagination = true;
+            this.paginationTemplate = true;
+        }
+        if (this.settings.hasOwnProperty('paginationPageSize')) {
+            this.gridOptions['paginationPageSize'] = this.settings['paginationPageSize'];
+        }
+        else {
+            this.gridOptions.paginationPageSize = 10;
+        }
+        if (this.settings.hasOwnProperty('headerHeight')) {
+            this.gridOptions['headerHeight'] = this.settings['headerHeight'];
+        }
+        else {
+            this.gridOptions.headerHeight = 35;
+        }
+        if (this.settings.hasOwnProperty('suppressMovableColumns')) {
+            this.gridOptions['suppressMovableColumns'] = this.settings['suppressMovableColumns'];
+        }
+        else {
+            this.gridOptions.suppressMovableColumns = true;
+        }
+        if (this.settings.hasOwnProperty('isDeleteEnable')) {
+            this.gridOptions['isDeleteEnable'] = this.settings['isDeleteEnable'];
+        }
+        else {
+            this.gridOptions.isDeleteEnable = true;
+            this.settings['columnsettings'].unshift({
+                headerName: "Actions",
+                cellRendererFramework: ActionColumns,
+
+            });
+        }
+        if (this.settings.hasOwnProperty('columnFilter')) {
+            this.settings['columnFilter'] = this.settings['columnFilter'];
+            if (this.settings['columnFilter'] == true) {
+                this.gridOptions['headerHeight']=60;
+                for (var i = 0; i < this.settings['columnsettings'].length; i++) {
+                    if (i > 0) {
+                        this.settings['columnsettings'][i]['headerComponentFramework'] = CustomFilterRow;
+                    }
+
+                }
+            }
+            else{
+                this.gridOptions['headerHeight']=35;
+            }
+        }
+        else {
+            this.settings['columnFilter'] = false;
+            this.settings['headerHeight']=35;
+        }
+        if (this.settings.hasOwnProperty('isisAddButtonEnableEnable')) {
+            this.isAddButtonEnable = this.settings['isAddButtonEnable'];
+        }
+        else {
+            this.isAddButtonEnable = true;
+        }
+        this.gridOptions.domLayout = 'autoHeight';
+  
+        if (this.settings.hasOwnProperty('rowHeight')) {
+            this.gridOptions['rowHeight'] = this.settings['rowHeight'];
+        }
+        else {
+            this.gridOptions['rowHeight'] = 35;
+        }
+        this.gridOptions['columnDefs'] = this.settings['columnsettings'];
 
     }
-    ngOnDestroy(){
-        this.subscription.unsubscribe();
+    ngOnDestroy() {
+        this.filterSubscription.unsubscribe();
     }
 
 }
