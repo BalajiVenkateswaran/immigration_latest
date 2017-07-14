@@ -116,7 +116,6 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
            title: 'Add I-797 History',
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
-           ;
                this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
                    if (res['statusCode'] == 'SUCCESS') {
        this.get1797history();

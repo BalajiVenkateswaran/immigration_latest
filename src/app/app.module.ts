@@ -1,6 +1,5 @@
 import { viewAddressInfo } from './models/viewAddressInfo';
 import { CustomFilterRow } from './components/smarttableframework/CustomFilterRow';
-import { SmartTableFrameworkService } from './components/smarttableframework/SmartTableFramework-service';
 import { SmartTableFramework } from './components/smarttableframework/SmartTableFramework';
 import {NgModule}      from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
@@ -365,7 +364,6 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
         ResetPasswordService,
         ClientQuestionnaireService,
         MenuComponent,
-        SmartTableFrameworkService,
         //
         ImmigrationViewPetitionNotesService,
         ManageAccountInvoiceService,

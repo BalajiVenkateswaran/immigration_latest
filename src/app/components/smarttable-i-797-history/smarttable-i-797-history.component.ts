@@ -65,7 +65,6 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         super(dialogService);
         this.getI797historys();
         this.settings = {
-            'customFilter': true,
             'columnsettings': [
 
                 {
@@ -114,21 +113,21 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
 
     addFunction(addDiv) {
 
-        this.dialogService.addDialog(SmartTableImmigrationViewI797HistoryComponent, {
-            addI797: addDiv,
-            getI797History: false,
-            title: 'Add I-797 History',
-        }).subscribe((isConfirmed) => {
-            if (isConfirmed) {
+         this.dialogService.addDialog(SmartTableImmigrationViewI797HistoryComponent, {
+           addI797: true,
+           getI797History: false,
+           title: 'Add I-797 History',
+       }).subscribe((isConfirmed) => {
+           if (isConfirmed) {
+           
+               this.smartTableI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
+                   if (res['statusCode'] == 'SUCCESS') {
+       this.getI797historys();
 
-                this.smartTableI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
-                    if (res['statusCode'] == 'SUCCESS') {
-                        this.getI797historys();
-
-                    }
-                });
-            }
-        });
+                   }
+               });
+           }
+       });
     }
     I797HistorySave() {
         this.addNewI797['clientId'] = this.appService.clientId;
@@ -155,42 +154,34 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         this.close();
     }
     editRecord(event) {
-        if (this.deleteBoolean == false) {
-            if (this.editi797Flag) {
-                this.beforei797Edit = (<any>Object).assign({}, event.data.data);
-            }
-            this.dialogService.addDialog(SmartTableImmigrationViewI797HistoryComponent, {
-                addI797: true,
-                getI797History: false,
-                title: 'Edit I-797 History',
-                addNewI797: this.editi797Flag ? this.beforei797Edit : this.addNewI797,
-                receiptDate: event.data.data.receiptDate,
-                approvedOn: event.data.data.approvedOn,
-                validFrom: event.data.data.validFrom,
-                validTill: event.data.data.validTill
-            }).subscribe((isConfirmed) => {
-                if (isConfirmed) {
+        this.editi797Flag = true;
+       if (this.editi797Flag) {
+           this.beforei797Edit = (<any>Object).assign({}, event.data);
+       }
+       this.dialogService.addDialog(SmartTableImmigrationViewI797HistoryComponent, {
+           addI797: true,
+           getI797History: false,
+           title: 'Edit I-797 History',
+           addNewI797: this.editi797Flag ? this.beforei797Edit : this.addNewI797,
+           receiptDate: event.data.receiptDate,
+           approvedOn: event.data.approvedOn,
+           validFrom: event.data.validFrom,
+           validTill: event.data.validTill
+       }).subscribe((isConfirmed) => {
+           if (isConfirmed) {
+              
+             this.smartTableI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
+                 if (res['statusCode'] == 'SUCCESS') {
+                 
+       this.getI797historys();
 
-                    this.smartTableI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
-                        if (res['statusCode'] == 'SUCCESS') {
-
-                            this.getI797historys();
-
-
-                        }
-                    });
-                }
-            });
-        }
+                   }
+               });
+           }
+       });
     }
     deleteRecord(data) {
-        if (data.value == 'delClicked') {
-            this.deleteBoolean = true;
-
-        }
-        else {
-            this.deleteBoolean = false;
-        }
+        
         this.delmessage = data.data.receiptNumber
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
