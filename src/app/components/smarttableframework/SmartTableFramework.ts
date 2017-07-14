@@ -141,7 +141,8 @@ export class SmartTableFramework implements OnChanges {
         else {
             this.gridOptions.isDeleteEnable = true;
             this.settings['columnsettings'].unshift({
-                headerName: "Actions",
+                headerName:"",
+                headerTooltip: "Actions",
                 width: 80,
                 cellRendererFramework: ActionColumns,
 

@@ -7,7 +7,8 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Visas<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewVisa()">ADD</button></h2>
-            <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+           <smart-table [settings]="settings" [data]="data"
+                     (onAddClick)="addNewVisa($event)" (onRowClick)="editVisas($event)" (onDeleteClick)="deleteVisas($event)"></smart-table>
         <div class="clearfix"></div>
     </div>
 </div>

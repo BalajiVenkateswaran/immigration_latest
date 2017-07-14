@@ -33,7 +33,6 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     public addVisa: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-    private data
     private user: User;
     public showAddVisapopup: boolean;
     public getVisasData: boolean = true;
@@ -42,6 +41,8 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     public beforevisaEdit: any;
     public expiresOn;
     public issuedOn;
+    public settings;
+    public data;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -53,7 +54,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
         this.myDatePickerOptions.disableSince=event.date;
         // event properties are: event.date, event.jsdate, event.formatted and event.epoc
     }
-    settings = {
+    /*settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
             createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
@@ -95,14 +96,58 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
             perPage: 10
         },
         mode: 'external'
-    };
+    };*/
     constructor(private immigrationviewVisasService: ImmigrationViewVisasService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
+        this.settings = {
+            'columnsettings': [
+                {
+
+                    headerName: "Country",
+                    field: "country",
+                },
+                {
+
+                    headerName: "Petition Number",
+                    field: "petitionNumber",
+                    width:100
+                },
+                {
+
+                    headerName: "Visa Number",
+                    field: "visaNumber",
+                    width: 100
+                },
+                {
+                    headerName: "Visa Type",
+                    field: "visaType",
+                    width: 100
+                },
+                {
+
+                    headerName: "Issued On",
+                    field: "issuedOn",
+                    width: 100
+                },
+                {
+
+                    headerName: "Expires On",
+                    field: "expiresOn",
+                    width: 100
+                },
+                
+            ]
+        }
+
+        
+    
+    
     }
-    source: LocalDataSource = new LocalDataSource();
+    //source: LocalDataSource = new LocalDataSource();
     getVisaaData() {
         this.immigrationviewVisasService.getClientVisas(this.appService.clientId).subscribe((res) => {
-            this.source.load(res['visas']);
+            //this.source.load(res['visas']);
+            this.data=res['visas'];
             
          });
     }
@@ -110,9 +155,9 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     ngOnInit() {
         this.immigrationviewVisasService.getClientVisas(this.appService.clientId)
             .subscribe((res) => {
-                this.source.load(res['visas']);
+                //this.source.load(res['visas']);
             });
-          
+          this.getVisaaData();
     }
 
     addNewVisa() {
@@ -174,7 +219,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     //    });
     //}
 
-    onEditConfirm(event): void {
+    editVisas(event): void {
         this.editvisaFlag = true;
         if (this.editvisaFlag) {
             this.beforevisaEdit = (<any>Object).assign({}, event.data);
@@ -214,7 +259,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
         //});
     }
     public delmesage;
-    onDeleteConfirm(event): void {
+    deleteVisas(event): void {
         this.delmesage=event.data.country
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
