@@ -378,14 +378,17 @@ section {
     @include border-radius(0);
 }
 .navbar-fixed-left {
-    width: 100%;
+    width:calc(100% - 15px);
    @include border-radius(0);
-    height: 100%;
+    height:calc(100% - 15px);
     border: none;
     overflow: auto;
     background-color:#2f323a;
     position: absolute;
-    margin: 0px;
+    padding: 0px;
+    background: #fff;
+    border-radius: 4px;
+    margin:0px 0px 0 15px;
     .navbar-nav {
         > li {
             float: none;
@@ -412,21 +415,26 @@ section {
             text-shadow: none;
             font-size: 12px;
             text-decoration: none;
-            color: #fff;
+            color: #2f323a !important;
             padding-left: 45px;
             height: auto;
             line-height: 29px;
         }
         li .dropdown-menu li a:hover,
-        li .dropdown-menu li a:focus {
-            background-color: transparent;
-            color: $active-color;
+        li .dropdown-menu li a:focus,
+        li .dropdown-menu li a.active {
+            background-color: #5093e1 !important;
+            color:#fff;
+            border-right:solid 3px #5093e1;
         }
         li.active a,
         li a.active,
         li.active a:hover > span,
         li.active a:focus > span {
-            color: $active-color;
+            color: #5093e1;
+            display:block;
+            border-right:solid 3px #5093e1;
+            
         }
     }
 }
@@ -443,9 +451,9 @@ section {
         height: 42px !important;
         padding: 0 0 0 13px !important;
         text-shadow: none;
-        font-size: 12px !important;
+        font-size: 14px !important;
         text-decoration: none;
-        color: #fff;
+        color: #2f323a;
         line-height: 42px !important;
         white-space: nowrap;
         overflow: hidden;
@@ -467,8 +475,9 @@ section {
         }*/
     }
     .navbar-nav>li>a:hover,
-    .navbar-nav>li>a:focus {
-        color: $active-color;
+    .navbar-nav>li>a:focus, .navbar-nav>li>a.active {
+        color: #fff;
+        background-color: #5093e1 !important;
     }
     li.dropdown span.ico-arrow {
         position: absolute;
@@ -490,16 +499,16 @@ section {
 .main-content {
     /*background:url(../images/bg-maincontent.jpg) no-repeat left top #485499;*/
 
-    background: #edeff5;
+    background: #2f323a;
     background-size: cover;
-    padding: 20px 15px 0px 15px;
+    padding:0px 15px 0px 15px;
     width: 100%;
     float: left;
     /*height:100%;*/
 
     height: calc(100vh - 155px);
     overflow-y: auto;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     h1 {
         /*display:none;*/
         color: #0c1c3e;
@@ -532,6 +541,7 @@ section {
         @include border-radius(4px);
         width: 100%;
         padding:20px 15px;
+            height: 100%;
         .submitbtn {
             float: right;
             margin: 20px 0px 0 0;
@@ -1494,7 +1504,7 @@ confirm {
 
 
 .listsidemenu{
-    color: white;
+    color:#2f323a;
     list-style: none;
 }
 .listsidemenu li{ padding:5px 2px }
