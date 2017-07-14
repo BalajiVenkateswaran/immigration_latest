@@ -27,7 +27,7 @@ export class SmartTableFramework implements OnChanges {
 
     @Input() settings: Object = {};
     @Input() data: Object = {};
-    @Output() onisAddButtonEnableClick = new EventEmitter();
+    @Output() onAddClick = new EventEmitter();
     @Output() onRowClick = new EventEmitter();
     @Output() onDeleteClick = new EventEmitter();
     public gridOptions;
@@ -91,7 +91,7 @@ export class SmartTableFramework implements OnChanges {
         let selectedRows = this['api'].getSelectedRows();
     }
     addRecord() {
-        this.onisAddButtonEnableClick.emit(this.isAddButtonEnable);
+        this.onAddClick.emit(this.isAddButtonEnable);
     }
     onRowClicked(data) {
         this.clickFlag = true;
