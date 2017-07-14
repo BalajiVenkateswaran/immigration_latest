@@ -185,13 +185,6 @@
             </div>
 
 
-
-
-
-
-
-
-
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
@@ -312,7 +305,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="clearfix"></div>
         <div class="row">
@@ -621,25 +613,18 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="no-pad-left">Delegated Orgs</h2>
-                            <!--<button type="submit" class="editbtn  no-marg-right" (click)="editNotesForm()" *ngIf="isDelegatedOrgsEdit==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
-                                <button type="button" (click)="cancelNotesEdit()" class="editbtn tbl-head-btn" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveNotes()" *ngIf="isDelegatedOrgsEdit==false">Save</button>
-                            </div>-->
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editdelOrgs()" *ngIf="isDelegatedOrgsEdit==true">Edit</button>
+                            <div class="tbl-head-btn">
+                                <button type="button" (click)="canceldelOrgs()" class="editbtn tbl-head-btn" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="savedelOrgs()" *ngIf="isDelegatedOrgsEdit==false">Save</button>
+                            </div>
                         </div>
                     </div>
                     <div class="row" *ngFor="let dOrgName of delegatedOrgsList">
                         <div class="col-md-4"><label for="pi-petitiondescription">{{dOrgName.orgName}}</label></div>
                         <div class="col-md-8">
-                            <input type="checkbox" [(ngModel)]="dOrgName.orgName" />
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="tbl-head-btn">
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="savedelOrgs()">Save</button>
-                            </div>
+                            <input type="checkbox" [disabled]="isDelegatedOrgsEdit == true" />
+                            <!--<span *ngIf="isDelegatedOrgsEdit==true">{{dOrgName.markForDeletion}}</span>-->
                         </div>
                     </div>
                 </div>

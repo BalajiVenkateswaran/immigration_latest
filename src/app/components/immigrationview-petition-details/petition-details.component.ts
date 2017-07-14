@@ -579,6 +579,19 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                 });
         }
     }
+
+
+    editdelOrgs() {
+        this.beforeCancelPetition = (<any>Object).assign({}, this.petitionDetails);
+        this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
+    }
+
+    //cancel button function
+    canceldelOrgs() {
+        this.petitionDetails = this.beforeCancelPetition;
+        this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
+    }
+    
     savedelOrgs() {
         this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
         this.delegatedOrgsList['orgId'] = this.appService.orgId;
