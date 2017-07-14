@@ -30,7 +30,8 @@
                     <div class="row">
                         <div class="col-md-4"><label for="accountdetails-number">Account Number <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <span>{{accountDetails.accountNumber}}</span>
+                            <input *ngIf="isEdit==false" type="text" [(ngModel)]="accountDetails.accountNumber" disabled />
+                            <span *ngIf="isEdit==true">{{accountDetails.accountNumber}}</span>
                        </div>
                     </div>
                     <div class="row">
@@ -97,9 +98,10 @@
                         <span *ngIf="isEdit==true">{{accountDetails.markForDeletion}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="accountdetails-byuser">Mark For Deletion details # By User on MM/DD/YYYY</label></div>
+                        <div class="col-md-4"><label for="accountdetails-byuser">Mark For Deletion details</label></div>
                         <div class="col-md-8">
-                            <span>{{accountDetails.mfdBy}}</span>
+                            <input *ngIf="isEdit==false" type="text" [(ngModel)]="accountDetails.mfdBy" disabled />
+                            <span *ngIf="isEdit==true">{{accountDetails.mfdBy}}</span>
                       </div>
                     </div>
                     <div class="row">

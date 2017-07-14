@@ -40,6 +40,7 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
     public newCVdependentitem: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
+    public warningMessage: boolean = false;
     settings = {
         mode: 'external',
         add: {
@@ -123,9 +124,15 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
     }
     dependentSave() {
         this.newCVdependentitem['clientId'] = this.appService.clientId;
-        this.appService.newCVdependentitem = this.newCVdependentitem;
-        this.result = true;
-        this.close();
+        if (this.newCVdependentitem['firstName'] == '' || this.newCVdependentitem['firstName'] == null || this.newCVdependentitem['firstName'] == undefined || this.newCVdependentitem['lastName'] == '' || this.newCVdependentitem['lastName'] == null || this.newCVdependentitem['lastName'] == undefined || this.newCVdependentitem['relation'] == '' || this.newCVdependentitem['relation'] == null || this.newCVdependentitem['relation'] == undefined) {
+            this.warningMessage = true;
+        } else {
+            this.appService.newCVdependentitem = this.newCVdependentitem;
+            this.result = true;
+            this.close();
+        }
+
+        
     }
     cancel() {
         this.result = false;

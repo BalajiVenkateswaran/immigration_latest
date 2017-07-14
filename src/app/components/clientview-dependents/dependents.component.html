@@ -22,14 +22,19 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">First Name :</div>
+                            <div class="col-md-4"><span class="redstar">*</span>First Name :</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="newCVdependentitem.firstName" class="form-control"></div>
                             <div class="col-md-4">Middle Name :</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="newCVdependentitem.middleName" class="form-control"></div>
-                            <div class="col-md-4">Last Name :</div>
+                            <div class="col-md-4"><span class="redstar">*</span>Last Name :</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="newCVdependentitem.lastName" class="form-control"></div>
-                            <div class="col-md-4">Relation :</div>
+                            <div class="col-md-4"><span class="redstar">*</span>Relation :</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="newCVdependentitem.relation" class="form-control"></div>
+                        </div>
+                        <div class="row sfm" *ngIf="warningMessage">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
