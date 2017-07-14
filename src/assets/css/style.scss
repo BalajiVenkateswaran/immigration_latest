@@ -26,6 +26,12 @@
     margin-top: 10vh;
     margin-left: 100px;
 }
+a.more {
+    text-decoration:underline !important;
+}
+a.more:hover {
+    text-decoration:none !important;
+}
 label {
     display: block;
 }
