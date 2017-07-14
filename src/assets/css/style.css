@@ -1541,10 +1541,11 @@ tr.i129htblRow:nth-child(even) {
   text-align: left;
   padding: .5em 1em; }
 
-.ag-fresh .ag-ltr .ag-cell-no-focus {
+.ag-fresh .ag-ltr .ag-cell-no-focus, .ag-fresh .ag-ltr .ag-cell-focus {
   padding: .5em 1em;
   border-right: 1px solid #e0e0e0 !important;
-  border-bottom: 1px solid #e0e0e0 !important; }
+  border-bottom: 1px solid #e0e0e0 !important;
+  outline: none; }
 
 .ag-fresh .ag-row-odd {
   background: #fff !important;
