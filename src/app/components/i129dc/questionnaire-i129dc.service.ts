@@ -22,6 +22,6 @@ export class QuestionnaireI129DCService {
     }
     public populateQuestionnaireDC(questionnaireID: string) {
         console.log(questionnaireID);
-        return this.restService.postData("/questionnaire/populate/", questionnaireID);
+        return this.restService.postData("/questionnaire/populate/"+questionnaireID, {});
     }
 }

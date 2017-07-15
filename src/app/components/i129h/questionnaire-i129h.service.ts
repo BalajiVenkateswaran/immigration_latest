@@ -16,17 +16,17 @@ export class QuestionnaireI129HService {
         var req = {
             "i129H": questionnairei129h,
             "questionnaireId": questionnaireId
-        }       
+        }
 
-        return this.restService.postData("/questionnaire/i129H", req);      
+        return this.restService.postData("/questionnaire/i129H", req);
     }
     public populateI129H(questionnaireID: string) {
         console.log(questionnaireID);
-        return this.restService.postData("/questionnaire/populate/", questionnaireID);
+        return this.restService.postData("/questionnaire/populate/"+ questionnaireID,{});
     }
       }
 
-    
+
 
 
 

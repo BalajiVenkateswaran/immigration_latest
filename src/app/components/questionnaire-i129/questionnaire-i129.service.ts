@@ -11,15 +11,15 @@ export class Quetionairervice {
     }
 
     public getQuestionare(questionnaireId: string) {
-      
+
         console.log("PetitionsService|getPetitions|orgId:%o", questionnaireId);
 
         return this.restService.getData("/questionnaire/i129/" + questionnaireId);
-               
-    } 
- 
+
+    }
+
     public savequetionaire(petitonerInfo: any, contact: any, petitionInfo: any, beneficiaryInfo: any, processingInfo: any, processingInfoAddress: any, basicInfoAboutEmployeer: any, basicInfoAboutEmployeerAddress: any, petitionerSignatureDetails: any, questionnaireId: string,certificationRequired:boolean) {
-          
+
 
 
         var req = {
@@ -37,21 +37,21 @@ export class Quetionairervice {
             "questionnaireId": questionnaireId
         };
 
-        
+
         console.log(req);
-      
 
-        return this.restService.postData("/questionnaire/i129", req);  
-    
 
-    } 
+        return this.restService.postData("/questionnaire/i129", req);
+
+
+    }
 
     public populateQuestionnaireI129(questionnaireID: string) {
         console.log(questionnaireID);
-        return this.restService.postData("/questionnaire/populate/", questionnaireID);  
+        return this.restService.postData("/questionnaire/populate/"+ questionnaireID, {});
     }
-   
 
-  
+
+
 
 }
