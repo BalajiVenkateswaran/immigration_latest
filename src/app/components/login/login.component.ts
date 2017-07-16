@@ -134,13 +134,13 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                         this.appService.currentTab = 'petitions';
                         this.appService.moveToPage("petitions");
                     }
-                    if (res.userAccountRoleList[0].roleName == "CLIENT") {
+                    if (res.userAccountRoleList[0].roleName == "Client") {
                         this.appService.applicationViewMode = "Client";
                         this.appService.clientId = this.appService.user.userId;
                         this.appService.currentTab = 'clientview-petitions';
                         this.appService.moveToPage("clientview-petitions");
                     }
-                    if (res.userAccountRoleList[0].roleName == "SUPER USER") {
+                    if (res.userAccountRoleList[0].roleName == "Super User") {
                         this.appService.applicationViewMode = "Superuser";
                         this.appService.currentTab = 'superuser-accounts';
                         this.appService.moveToPage("superuser-accounts");
@@ -163,7 +163,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
       this.appService.rolemultiple = true;
       this.result = true;
       this.appService.user['roleName'] = userdet.roleName;
-      if (userdet.roleName == "CLIENT") {
+      if (userdet.roleName == "Client") {
           this.appService.applicationViewMode = "Client";
           this.appService.clientId = this.appService.user.userId;
           this.appService.currentTab = 'clientview-petitions';
@@ -174,7 +174,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
           this.appService.currentTab = 'petitions';
           this.appService.moveToPage("petitions");
       }
-      if (userdet.roleName == "SUPER USER") {
+      if (userdet.roleName == "Super User") {
           this.appService.applicationViewMode = "Superuser";
           this.appService.currentTab = 'superuser-accounts';
           this.appService.moveToPage("superuser-accounts");
