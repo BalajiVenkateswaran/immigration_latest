@@ -127,8 +127,8 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                     && res['resetPassword'] == true) {
                     this.appService.moveToPage('reset-password');
                 } else {
-                    if (res.userAccountRoleList[0].roleName == "IMMIGRATION MANAGER"
-                        || res.userAccountRoleList[0].roleName == "IMMIGRATION OFFICER") {
+                    if (res.userAccountRoleList[0].roleName == "Immigration Manager"
+                        || res.userAccountRoleList[0].roleName == "Immigration Officer") {
                         this.appService.applicationViewMode = "Immigration";
                         this.appService.orgId = res.organizationList[0].orgId;
                         this.appService.currentTab = 'petitions';
@@ -169,7 +169,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
           this.appService.currentTab = 'clientview-petitions';
           this.appService.moveToPage("clientview-petitions");
       }
-      if (userdet.roleName == "IMMIGRATION MANAGER" || userdet.roleName == "IMMIGRATION OFFICER") {
+      if (userdet.roleName == "Immigration Manager" || userdet.roleName == "Immigration Officer") {
           this.appService.applicationViewMode = "Immigration";
           this.appService.currentTab = 'petitions';
           this.appService.moveToPage("petitions");

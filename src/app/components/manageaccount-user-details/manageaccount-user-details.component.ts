@@ -31,28 +31,28 @@ export class ManageaccountUserDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
       this.route.params.subscribe((res) => {
           this.userid = res['userId'];
           this.manageAccountUserDetailsService.getUserDet(this.userid, this.user.accountId).subscribe((res) => {
               this.userList = res['userOrgsDetail']['userProfileInfo'];
               this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName'];
               this.orgsList = res['userOrgsDetail']['organizationsInfo'];
-              if (this.userList.role == "IMMIGRATION OFFICER") {
+              if (this.userList.role == "Immigration Officer") {
                   this.isAccessEdit = true;
               }
-              if (this.userList.role == "IMMIGRATION MANAGER") {
+              if (this.userList.role == "Immigration Manager") {
                   this.isAccessEdit = false;
                   this.isAccess = false;
               }
        });
       })
-  
+
   }
   editProfileForm() {
       this.beforeCancelUserProfile = (<any>Object).assign({}, this.userList);
       this.isUserEdit = !this.isUserEdit;
-    
+
   }
   cancelProfileEdit() {
       this.userList = this.beforeCancelUserProfile;

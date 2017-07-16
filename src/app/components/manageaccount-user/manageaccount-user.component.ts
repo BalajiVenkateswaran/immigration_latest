@@ -32,8 +32,8 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     private message: string;
     private user: User;
     private roles: any = {
-        "IMMIGRATION OFFICER": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
-        "IMMIGRATION MANAGER": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
+        "Immigration Officer": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
+        "Immigration Manager": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
     };
     public getUsers: boolean = true;
     public addUsers: any = {};
@@ -80,12 +80,12 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                     config: {
                         list: [
                             {
-                                value: "IMMIGRATION OFFICER",
-                                title: "IMMIGRATION OFFICER"
+                                value: "Immigration Officer",
+                                title: "Immigration Officer"
                             },
                             {
-                                value: "IMMIGRATION MANAGER",
-                                title: "IMMIGRATION MANAGER"
+                                value: "Immigration Manager",
+                                title: "Immigration Manager"
                             }
                         ]
                     }
@@ -165,7 +165,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             this.result = true;
             this.close();
         }
-        
+
     }
     cancel() {
         this.result = false;
@@ -228,7 +228,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                 this.editFlag = false;
             }
         });*/
-        this.appService.moveToPageWithParams('user-details', event.data); 
+        this.appService.moveToPageWithParams('user-details', event.data);
         this.appService.currentSBLink = event.data.firstName;
     }
 
@@ -254,7 +254,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             });
     }
     userDetails(event){
-        this.appService.moveToPageWithParams('user-details', event.data); 
+        this.appService.moveToPageWithParams('user-details', event.data);
         this.appService.currentSBLink = event.data.firstName;
     }
 

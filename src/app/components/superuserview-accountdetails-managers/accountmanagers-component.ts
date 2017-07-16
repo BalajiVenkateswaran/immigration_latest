@@ -55,12 +55,12 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
                     config: {
                         list: [
                             {
-                                value: "IMMIGRATION OFFICER",
-                                title: "IMMIGRATION OFFICER"
+                                value: "Immigration Officer",
+                                title: "Immigration Officer"
                             },
                             {
-                                value: "IMMIGRATION MANAGER",
-                                title: "IMMIGRATION MANAGER"
+                                value: "Immigration Manager",
+                                title: "Immigration Manager"
                             }
                         ]
                     }
@@ -82,8 +82,8 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     source: LocalDataSource = new LocalDataSource();
     public warningMessage:boolean=false;
      private roles: any = {
-        "IMMIGRATION OFFICER": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
-        "IMMIGRATION MANAGER": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
+        "Immigration Officer": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
+        "Immigration Manager": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
     };
     constructor(public appService:AppService,public managersAccountService:AccountManagersService,public dialogService: DialogService,
     private accountDetailsCommonService: AccountDetailsCommonService){
@@ -130,7 +130,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
             this.result = true;
             this.close();
         }
-   
+
     }
     cancel(){
         this.result = false;

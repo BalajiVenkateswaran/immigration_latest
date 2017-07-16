@@ -20,7 +20,7 @@
                         </div>
 
                     </div>
-                 
+
                         <div class="row" *ngIf="warningMessage">
                             <div class="col-md-12">
                                 <span class="redstar">* Fields are Mandatory.</span>
@@ -55,13 +55,13 @@
                             <div class="col-md-8">
                                 <!--<input type="text" *ngIf="isUserEdit==false" id="wa-city" [(ngModel)]="userList.role" [ngClass]="userList.role == '' ? 'redborder': ''" />-->
                                 <select [(ngModel)]="userList.role" class="form-control" *ngIf="isUserEdit==false">
-                                    <option value="IMMIGRATION OFFICER">IMMIGRATION OFFICER</option>
-                                    <option value="IMMIGRATION MANAGER">IMMIGRATION MANAGER</option>
+                                    <option value="Immigration Officer">Immigration Officer</option>
+                                    <option value="Immigration Manager">Immigration Manager</option>
                                 </select>
                             <span *ngIf="isUserEdit==true">{{userList.role}}</span>
                             </div>
                         </div>
-                 
+
                 </div>
             </div>
 
