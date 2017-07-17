@@ -83,7 +83,7 @@ export class SmartTableFramework implements OnChanges {
                 return arr;
             }
             else{
-                alert("Only one filter per column");
+                alert("Only one filter Allowed Per column");
             }
 
         });
@@ -186,7 +186,9 @@ export class SmartTableFramework implements OnChanges {
             this.settings['headerHeight'] = 35;
         }
         this.settings['columnsettings'].map(function (item) {
-            item['headerTooltip'] = item['headerName'];
+            if(item['headerName']!=''){
+                item['headerTooltip'] = item['headerName'];
+            }  
         })
         if (this.settings.hasOwnProperty('isAddButtonEnable')) {
             this.isAddButtonEnable = this.settings['isAddButtonEnable'];
