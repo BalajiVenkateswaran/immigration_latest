@@ -70,8 +70,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
 
                 {
                     headerName: "Approved on",
-                    field: "approvedOn",
-                    width: 100
+                    field: "approvedOn"
                 },
                 {
 
@@ -81,26 +80,22 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
                 {
 
                     headerName: "Status",
-                    field: "status",
-                    width:100
+                    field: "status"
                 },
                 {
 
                     headerName: "Valid From",
-                    field: "validFrom",
-                    width: 100
+                    field: "validFrom"
                 },
                 {
 
                     headerName: "Valid Till",
-                    field: "validTill",
-                    width: 100
+                    field: "validTill"
                 },
                 {
 
                     headerName: "Receipt Date",
-                    field: "receiptDate",
-                    width: 100
+                    field: "receiptDate"
                 }
             ]
         }
