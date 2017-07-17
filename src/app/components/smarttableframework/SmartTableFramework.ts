@@ -104,6 +104,7 @@ export class SmartTableFramework implements OnChanges {
     }
     delete(index, x) {
         this.filterWholeArray.splice(index, 1);
+        this.onColumnFilterClick.emit(this.filterWholeArray);
     }
     onPageSizeChanged(newPageSize) {
         this.gridOptions.api.paginationSetPageSize(Number(newPageSize));
@@ -197,7 +198,6 @@ export class SmartTableFramework implements OnChanges {
             this.isAddButtonEnable = true;
         }
         this.gridOptions.domLayout = 'autoHeight';
-
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         }

@@ -38,135 +38,14 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public addPetition: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-    private data
     private allPetitionTypesAndSubTypes;
     public showAddPetitionpopup: boolean;
     public getPetitionsData: boolean = true;
     public newpetitionitem: any = {};
     public warningMessage:boolean=false;
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        actions: {
-          delete :  false
-        },
-        columns: {
-            petitionName: {
-                title: 'Name'
-            },
-            petitionType: {
-                title: 'Type',
-                class:'addPetition-Type',
-                //type: 'html',
-                //editor: {
-                //    type: 'custom',
-                //    component: CustomEditorComponent,
-                //}
-                editor: {
-                    type: 'list',
-                    config: {
-                        list: [
-                            {
-                                value: "H1B",
-                                title: "H1B"
-                            },
-                            {
-                                value: "L1",
-                                title: "L1"
-                            },
-                            {
-                                value: "H1B-RFE",
-                                title: "H1B-RFE"
-                            }
-                        ]
-                    }
-                }
-            },
-            petitionSubType: {
-                title: 'Subtype',
-                class: 'addPetition-subType',
-                //type: 'html',
-                //editor: {
-                //    type: 'custom',
-                //    component: PetitionSubTypeCustomEditorComponent
-                editor: {
-                  type: 'list',
-                  config: {
-                      list: [
-                        {
-                          value: "New",
-                          title: "New"
-                        },
-                        {
-                          value: "Extension",
-                          title: "Extension"
-                        },
-                        {
-                          value: "Transfer",
-                          title: "Transfer"
-                        }
-                      ]
-                  }
-                }
-            },
-
-            status: {
-                title: 'Status',
-                class: 'addPetition-status',
-                 editor: {
-                  type: 'list',
-                  config: {
-                      list: [
-                        {
-                          value: "Open",
-                          title: "Open"
-                        },
-                        {
-                          value: "Close",
-                          title: "Close"
-                        }
-                      ]
-                  }
-                }
-            },
-            stage: {
-                title: 'Stage',
-                editable: false
-            },
-            createdOn: {
-               title: 'Created',
-               editable: false,
-               class: 'addPetition-createdon'
-            },
-            lastUpdate: {
-               title: 'Last Updated',
-               editable: false,
-               class: 'addPetition-updatedon'
-            },
-            assignedToName: {
-                title: 'Assigned To',
-                editable: false
-            }
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        }
-    };
-    source: LocalDataSource = new LocalDataSource();
-    sourceForPetitionTypes: LocalDataSource = new LocalDataSource();
+    public settings;
+    public data;
     private user: User;
-
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
@@ -191,11 +70,61 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
             userId: new FormControl(''),
             accountId: new FormControl('')
         });
+         this.settings={
+            'isDeleteEnable':false,
+            'columnsettings': [
+                {
+
+                    headerName: "Name",
+                    field: "petitionName",
+                },
+                {
+
+                    headerName: "Type",
+                    field: "petitionType",
+                },
+                {
+
+                    headerName: "Subtype",
+                    field: "petitionSubType"
+                },
+                {
+
+                    headerName: "Status",
+                    field: "status"
+                },
+                {
+
+                    headerName: "Stage",
+                    field: "stage"
+                },
+                {
+
+                    headerName: "Created On",
+                    field: "createdOn",
+                    width:350,
+                },
+                {
+
+                    headerName: "Last Updated",
+                    field: "lastUpdate",
+                    width:350,
+                },
+                {
+
+                    headerName: "Assigned To",
+                    field: "assignedToName"
+                },
+                
+                
+            ]
+        }
     }
 
     getPetitionData() {
         this.immigrationviewpetitionService.getPetitions(this.appService.orgId, this.appService.clientId).subscribe((res) => {
-            this.source.load(res['petitions']);
+            //this.source.load(res['petitions']);
+            this.data=res['petitions'];
         });
         this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
             .subscribe((res) => {
@@ -218,7 +147,8 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
   ngOnInit() {
       this.immigrationviewpetitionService.getPetitions(this.appService.orgId, this.appService.clientId)
           .subscribe((res) => {
-              this.source.load(res['petitions']);
+              //this.source.load(res['petitions']);
+              this.data=res['petitions'];
           });
 
       this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
@@ -316,21 +246,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
 
 
-    onEditConfirm(event) : void {
-      console.log("Client table onEditConfirm event: %o",event.newData);
-      this.immigrationviewpetitionService.updatePetition(event.newData).subscribe((res) => {
-                this.message = res['statusCode'];
-                if(this.message === "SUCCESS"){
-                  event.confirm.resolve(event.newData);
-                } else {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Error..!',
-                        message: 'Unable to Edit Petition.'
-                    });
-                  event.confirm.resolve(event.data);
-                }
-      });
-    }
+   
 
     onDeleteConfirm(immViewpetitions) {
         this.delmessage = immViewpetitions.data.petitionName;

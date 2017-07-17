@@ -176,8 +176,12 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
            }
        });
     }
-    filterData(data){
-        this.smartTableI797HistoryService.getI797FilterData(this.appService.clientId,data).subscribe(res=>{
+    filterData(filterQueries){
+        var x=filterQueries.map(function(item){
+            return item.headingName+":"+item.filterValue;
+        });
+        console.log(x);
+        this.smartTableI797HistoryService.getI797FilterData(this.appService.clientId,x).subscribe(res=>{
             this.data=res['i797HistoryList'];
         })
     }
