@@ -33,50 +33,52 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     public editFlag: boolean = true;
     public newArvdInfoitem: any = {};
     public addArrDep: boolean;
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
+    //settings = {
+    //    add: {
+    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmCreate: true
+    //    },
+    //    edit: {
+    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmSave: true
+    //    },
+    //    delete: {
+    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //        confirmDelete: true
+    //    },
+    //    columns: {
 
-            departureDate: {
-                title: 'Departure date'
-            },
-            departureCountry: {
-                title: 'Departure Country'
-            },
-            arrivalDate: {
-                title: 'Arrival date'
-            },
-            arrivalCountry: {
-                title: 'Arrival Country'
-            },
-            visaType: {
-                title: 'Visa Type'
-            },
-            i94: {
-                title: 'I-94'
-            }
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        },
-        mode:'external'
-    };
+    //        departureDate: {
+    //            title: 'Departure date'
+    //        },
+    //        departureCountry: {
+    //            title: 'Departure Country'
+    //        },
+    //        arrivalDate: {
+    //            title: 'Arrival date'
+    //        },
+    //        arrivalCountry: {
+    //            title: 'Arrival Country'
+    //        },
+    //        visaType: {
+    //            title: 'Visa Type'
+    //        },
+    //        i94: {
+    //            title: 'I-94'
+    //        }
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    },
+    //    mode:'external'
+    //};
+    public settings;
+    public data;
     public delmessage;
     public addArrivalDespartureInfo: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
@@ -89,24 +91,64 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     };
     constructor(private arrivalDespartureInfoService: ArrivalDespartureInfoService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
+        this.settings = {
+            'columnsettings': [
+                {
+
+                    headerName: "Departure date",
+                    field: "departureDate",
+                },
+                {
+
+                    headerName: "Departure Country",
+                    field: "departureCountry",
+                
+                },
+                {
+
+                    headerName: "Arrival date",
+                    field: "arrivalDate",
+                  
+                },
+                {
+                    headerName: "Arrival Country",
+                    field: "arrivalCountry",
+                  
+                },
+                {
+
+                    headerName: "Visa Type",
+                    field: "visaType",
+                },
+                {
+
+                    headerName: "I-94",
+                    field: "i94",
+                },
+
+            ]
+        }
+
     }
 
-    source: LocalDataSource = new LocalDataSource();
+   // source: LocalDataSource = new LocalDataSource();
 
     getarvdptData() {
         this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.appService.user.userId).subscribe((res) => {
-            this.source.load(res['arrivalDepartures']);
+            this.data = res['arrivalDepartures'];
+          //  this.source.load(res['arrivalDepartures']);
         });
     }
 
     ngOnInit() {
         this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.appService.user.userId)
             .subscribe((res) => {
-                this.source.load(res['arrivalDepartures']);
+                this.data = res['arrivalDepartures'];
+             //   this.source.load(res['arrivalDepartures']);
             });
 
     }
-    addNewArvdInfo() {
+    addFunction() {
         this.dialogService.addDialog(ArrivalDespartureInfoComponent, {
             addArrDep: true,
             getArvdInfoData: false,
@@ -148,23 +190,23 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
 
 
 
-    onCreateConfirm(event): void {
-        event.newData['clientId'] = this.appService.user.userId;
-        this.arrivalDespartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.confirm.resolve();
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Add Arrival Departue Info..!'
-                });
-                event.confirm.reject();
-            }
-        });
+    //onCreateConfirm(event): void {
+    //    event.newData['clientId'] = this.appService.user.userId;
+    //    this.arrivalDespartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {
+    //        this.message = res['statusCode'];
+    //        if (this.message == 'SUCCESS') {
+    //            event.confirm.resolve();
+    //        } else {
+    //            this.dialogService.addDialog(ConfirmComponent, {
+    //                title: 'Error..!',
+    //                message: 'Unable to Add Arrival Departue Info..!'
+    //            });
+    //            event.confirm.reject();
+    //        }
+    //    });
 
-    }
-    onEditConfirm(event): void {
+    //}
+    editRecord(event): void {
        this.editFlag = true;
       if (this.editFlag) {
           this.beforeEdit = (<any>Object).assign({}, event.data);
@@ -191,7 +233,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
       });
   }
     
-    onDeleteConfirm(event): void {
+    deleteRecord(event): void {
         this.delmessage = event.data.arrivalCountry
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',

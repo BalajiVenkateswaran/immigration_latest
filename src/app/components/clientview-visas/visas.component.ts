@@ -29,7 +29,6 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     public addVisa: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-    private data
     public getCleintVisa: boolean = true;
     public addCleintVisa: boolean;
     public addNewVisa: any = {};
@@ -40,52 +39,54 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     };
     public editvisaFlag: boolean = true;
     public beforevisaEdit: any;
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
-            country: {
-                title: 'Country'
+    public settings;
+    public data;
+    //settings = {
+    //    add: {
+    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmCreate: true
+    //    },
+    //    edit: {
+    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmSave: true
+    //    },
+    //    delete: {
+    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //        confirmDelete: true
+    //    },
+    //    columns: {
+    //        country: {
+    //            title: 'Country'
 
-            },
-            petitionNumber: {
-                title: 'Petition Number'
-            },
-            visaNumber: {
-                title: 'Visa Number'
-            },
-            visaType: {
-                title: 'Visa Type'
-            },
-            issuedOn: {
-                title: 'Issued On'
-            },
-            expiresOn: {
-                 title: 'Expires On'
-            }
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        },
-        mode: 'external'
-    };
+    //        },
+    //        petitionNumber: {
+    //            title: 'Petition Number'
+    //        },
+    //        visaNumber: {
+    //            title: 'Visa Number'
+    //        },
+    //        visaType: {
+    //            title: 'Visa Type'
+    //        },
+    //        issuedOn: {
+    //            title: 'Issued On'
+    //        },
+    //        expiresOn: {
+    //             title: 'Expires On'
+    //        }
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    },
+    //    mode: 'external'
+    //};
 
-    source: LocalDataSource = new LocalDataSource();
+    //source: LocalDataSource = new LocalDataSource();
     constructor(private visasService: VisasService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         this.addVisa = new FormGroup({
@@ -96,12 +97,49 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
             issuedOn: new FormControl(''),
             expiresOn: new FormControl('')
         });
+        this.settings = {
+            'columnsettings': [
+                {
+
+                    headerName: "Country",
+                    field: "country",
+                },
+                {
+
+                    headerName: "Petition Number",
+                    field: "petitionNumber",
+                   
+                },
+                {
+
+                    headerName: "Visa Number",
+                    field: "visaNumber",
+                },
+                {
+                    headerName: "Visa Type",
+                    field: "visaType",
+                },
+                {
+
+                    headerName: "Issued On",
+                    field: "issuedOn",
+                },
+                {
+
+                    headerName: "Expires On",
+                    field: "expiresOn",
+                },
+
+            ]
+        }
     }
 
     getClientviewvisa() {
         this.visasService.getClientVisas(this.appService.user.userId)
             .subscribe((res) => {
-                this.source.load(res['visas']);
+             //   this.source.load(res['visas']);
+                this.data = res['visas'];
+
             });
 
     }
@@ -111,7 +149,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
         this.getClientviewvisa();
 
     }
-    addNewClientVisa() {
+    addFunction() {
         this.dialogService.addDialog(VisasComponent, {
             addCleintVisa: true,
             getCleintVisa: false,
@@ -157,7 +195,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     //    });
     //}
 
-    onEditConfirm(event): void {
+    editRecord(event): void {
         this.editvisaFlag = true;
         if (this.editvisaFlag) {
             this.beforevisaEdit = (<any>Object).assign({}, event.data);
@@ -197,7 +235,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
         //});
     }
     public delmesage;
-    onDeleteConfirm(event): void {
+    deleteRecord(event): void {
         this.delmesage=event.data.country
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
