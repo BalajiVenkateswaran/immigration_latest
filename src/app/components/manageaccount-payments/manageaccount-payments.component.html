@@ -56,7 +56,7 @@
                             <span>{{payment.paymentId}}</span>                                  
                         </td>
                         <td>
-                            <span>{{payment.accountNumber}}</span>                                  
+                            <span>{{payment.invoiceNumber}}</span>                                  
                         </td>
                         <td>
                             <span>{{payment.invoiceDate}}</span>                                  
@@ -187,13 +187,13 @@
                                     <span *ngIf="isEditpayments==true">{{payment.paymentStatus}}</span>
                                 </div>
                             </div>
-                             <div class="row">
+                             <!--<div class="row">
                                 <div class="col-md-4">Comments:</div>
                                 <div class="col-md-8">
                                     <input type="text" *ngIf="isEditpayments==false" [disabled]="true"  [(ngModel)]="payment.comments" class="form-control">
                                     <span *ngIf="isEditpayments==true">{{payment.comments}}</span>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
