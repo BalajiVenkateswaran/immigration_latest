@@ -65,6 +65,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         super(dialogService);
         this.getI797historys();
         this.settings = {
+            'columnFilter':true,
             'columnsettings': [
 
                 {
@@ -179,6 +180,11 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
                });
            }
        });
+    }
+    filterData(data){
+        this.smartTableI797HistoryService.getI797FilterData(this.appService.clientId,data).subscribe(res=>{
+            this.data=res['i797HistoryList'];
+        })
     }
     deleteRecord(data) {
         
