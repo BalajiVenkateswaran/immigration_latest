@@ -153,7 +153,7 @@ export class SmartTableFramework implements OnChanges {
             if (this.settings['columnFilter'] == true) {
                 this.gridOptions['headerHeight']=60;
                 for (var i = 0; i < this.settings['columnsettings'].length; i++) {
-                    if (i > 0) {
+                    if (i > 0 || this.settings['isDeleteEnable']==false) {
                         this.settings['columnsettings'][i]['headerComponentFramework'] = CustomFilterRow;
                     }
 
@@ -167,6 +167,9 @@ export class SmartTableFramework implements OnChanges {
             this.settings['columnFilter'] = false;
             this.settings['headerHeight']=35;
         }
+        this.settings['columnsettings'].map(function(item){
+            item['headerTooltip']=item['headerName'];
+        })
         if (this.settings.hasOwnProperty('isAddButtonEnable')) {
             this.isAddButtonEnable = this.settings['isAddButtonEnable'];
         }
