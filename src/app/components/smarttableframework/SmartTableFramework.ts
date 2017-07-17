@@ -29,6 +29,7 @@ export class SmartTableFramework implements OnChanges {
     @Output() onAddClick = new EventEmitter();
     @Output() onRowClick = new EventEmitter();
     @Output() onDeleteClick = new EventEmitter();
+    @Output() onColumnFilterClick=new EventEmitter();
     public gridOptions;
     public paginationTemplate: boolean;
     public rowClickDone: boolean = false;
@@ -40,8 +41,9 @@ export class SmartTableFramework implements OnChanges {
     public filterValues: any;
     public filteredData;
     public filterKeys = [];
-    public filterWholeArray = [];
+    public filterWholeArray = new Array();
     public isAddButtonEnable: boolean;
+    public fillData;
     public static sendCustomFilterValue = new Subject<boolean>();
     constructor() {
         console.log('constructor %o', this.settings);
@@ -49,25 +51,41 @@ export class SmartTableFramework implements OnChanges {
         this.deleteSubscription = ActionColumns.sendDeleteData.subscribe(res => {
             if (res != undefined) {
                 this.deleteData = res;
-                this.clickFlag=true;
+                this.clickFlag = true;
             }
-            else{
-                this.clickFlag=false;
+            else {
+                this.clickFlag = false;
             }
-           
+
         })
         this.filterSubscription = CustomFilterRow.fillValues.subscribe(res => {
+            let that = this;
             if (res) {
                 this.filterValues = res;
                 for (let i = 0; i < this.filterValues.length; i++) {
                     if (this.filterWholeArray.indexOf(this.filterValues[i]) == -1) {
                         this.filterWholeArray.push(this.filterValues[i]);
-                        this.filterKeys.push(this.filterValues[i]['filterValue']);
                         this.filterValues.splice(i, 1);
+
                     }
                 }
-
+                that.filterWholeArray = this.removeDuplicates(this.filterWholeArray);
+                this.onColumnFilterClick.emit(that.filterWholeArray);
             }
+
+
+        });
+
+    }
+    removeDuplicates(data) {
+        return data.filter((obj, pos, arr) => {
+            if(arr.map(mapObj => mapObj['headingName']).indexOf(obj['headingName']) === pos){
+                return arr;
+            }
+            else{
+                alert("Only one filter per column");
+            }
+
         });
     }
 
@@ -97,11 +115,11 @@ export class SmartTableFramework implements OnChanges {
         this.onAddClick.emit(this.isAddButtonEnable);
     }
     onCellClick(data) {
-        if( this.clickFlag==true){
+        if (this.clickFlag == true) {
             this.onDeleteClick.emit(data);
-            this.clickFlag=false;
+            this.clickFlag = false;
         }
-        else{
+        else {
             this.onRowClick.emit(data);
         }
     }
@@ -141,7 +159,7 @@ export class SmartTableFramework implements OnChanges {
         else {
             this.gridOptions.isDeleteEnable = true;
             this.settings['columnsettings'].unshift({
-                headerName:"",
+                headerName: "",
                 headerTooltip: "Actions",
                 width: 80,
                 cellRendererFramework: ActionColumns,
@@ -151,24 +169,24 @@ export class SmartTableFramework implements OnChanges {
         if (this.settings.hasOwnProperty('columnFilter')) {
             this.settings['columnFilter'] = this.settings['columnFilter'];
             if (this.settings['columnFilter'] == true) {
-                this.gridOptions['headerHeight']=60;
+                this.gridOptions['headerHeight'] = 60;
                 for (var i = 0; i < this.settings['columnsettings'].length; i++) {
-                    if (i > 0 || this.settings['isDeleteEnable']==false) {
+                    if (i > 0 || this.settings['isDeleteEnable'] == false) {
                         this.settings['columnsettings'][i]['headerComponentFramework'] = CustomFilterRow;
                     }
 
                 }
             }
-            else{
-                this.gridOptions['headerHeight']=35;
+            else {
+                this.gridOptions['headerHeight'] = 35;
             }
         }
         else {
             this.settings['columnFilter'] = false;
-            this.settings['headerHeight']=35;
+            this.settings['headerHeight'] = 35;
         }
-        this.settings['columnsettings'].map(function(item){
-            item['headerTooltip']=item['headerName'];
+        this.settings['columnsettings'].map(function (item) {
+            item['headerTooltip'] = item['headerName'];
         })
         if (this.settings.hasOwnProperty('isAddButtonEnable')) {
             this.isAddButtonEnable = this.settings['isAddButtonEnable'];
@@ -177,7 +195,7 @@ export class SmartTableFramework implements OnChanges {
             this.isAddButtonEnable = true;
         }
         this.gridOptions.domLayout = 'autoHeight';
-  
+
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         }
