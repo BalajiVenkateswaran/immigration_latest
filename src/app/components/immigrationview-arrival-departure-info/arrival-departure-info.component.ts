@@ -60,31 +60,26 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
                 {
 
                     headerName: "Departure Country",
-                    field: "departureCountry",
-                    width:100
+                    field: "departureCountry"
                 },
                 {
 
                     headerName: "Arrival Date",
-                    field: "arrivalDate",
-                    width: 100
+                    field: "arrivalDate"
                 },
                 {
                     headerName: "Arrival Country",
-                    field: "arrivalCountry",
-                    width: 100
+                    field: "arrivalCountry"
                 },
                 {
 
                     headerName: "Visa Type",
-                    field: "visaType",
-                    width: 100
+                    field: "visaType"
                 },
                 {
 
                     headerName: "I94",
-                    field: "i94",
-                    width: 100
+                    field: "i94"
                 },
                 
             ]

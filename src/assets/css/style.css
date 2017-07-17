@@ -186,7 +186,8 @@ placeholder :-ms-input-placeholder {
   margin-left: 100px; }
 
 a.more {
-  text-decoration: underline !important; }
+  text-decoration: underline !important;
+  color: #1e6bb8 !important; }
 
 a.more:hover {
   text-decoration: none !important; }

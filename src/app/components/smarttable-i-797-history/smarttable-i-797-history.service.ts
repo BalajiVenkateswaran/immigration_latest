@@ -21,4 +21,7 @@ export class SmartTableI797HistoryService {
     public removeI797Details(i797DetailsId: string) {
         return this.restService.deleteData("/client/i797details/" + i797DetailsId);
     }
+    public getI797FilterData(clientId:string,filterData:any){
+        return this.restService.getData("/client/i797details/"+clientId+'?'+"filter"+filterData);
+    }
 }

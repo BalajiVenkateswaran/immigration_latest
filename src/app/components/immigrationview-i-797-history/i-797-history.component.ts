@@ -106,30 +106,25 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
 
                     headerName: "Status",
                     field: "status",
-                    width:100
                 },
                 {
 
                     headerName: "Receipt Date",
-                    field: "receiptDate",
-                    width: 100
+                    field: "receiptDate"
                 },
                 {
                     headerName: "Approved on",
-                    field: "approvedOn",
-                    width: 100
+                    field: "approvedOn"
                 },
                 {
 
                     headerName: "Valid From",
-                    field: "validFrom",
-                    width: 100
+                    field: "validFrom"
                 },
                 {
 
                     headerName: "Valid Till",
-                    field: "validTill",
-                    width: 100
+                    field: "validTill"
                 },
                 
             ]
