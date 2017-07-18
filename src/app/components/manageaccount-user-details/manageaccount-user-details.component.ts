@@ -29,14 +29,13 @@ export class ManageaccountUserDetailsComponent implements OnInit {
             this.orgList=this.appService.organizations;
         }
   }
-
-  ngOnInit() {
-
+  getuserdetails() {
       this.route.params.subscribe((res) => {
           this.userid = res['userId'];
           this.manageAccountUserDetailsService.getUserDet(this.userid, this.user.accountId).subscribe((res) => {
               this.userList = res['userOrgsDetail']['userProfileInfo'];
               this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName'];
+        this.userList['roleId'] = res['userOrgsDetail']['userRoleInfo']['roleId'];
               this.orgsList = res['userOrgsDetail']['organizationsInfo'];
               if (this.userList.role == "Immigration Officer") {
                   this.isAccessEdit = true;
@@ -45,8 +44,12 @@ export class ManageaccountUserDetailsComponent implements OnInit {
                   this.isAccessEdit = false;
                   this.isAccess = false;
               }
-       });
+          });
       })
+  }
+  ngOnInit() {
+
+      this.getuserdetails();
 
   }
   editProfileForm() {
@@ -75,10 +78,24 @@ export class ManageaccountUserDetailsComponent implements OnInit {
           || this.userList['role'] == '' || this.userList['role'] == null || this.userList['role'] == undefined
           || this.userList['emailId'] == '' || this.userList['emailId'] == null || this.userList['emailId'] == undefined) {
           this.warningMessage = true;
+
       }
       else {
           this.warningMessage = false;
           this.isUserEdit = true;
+         this.userList['accountId'] = this.user.accountId;
+          this.manageAccountUserDetailsService.updateUser(this.userList).subscribe((res) => {
+            //  if (res['statusCode'] == "SUCCESS") {
+                  this.getuserdetails();
+             // }
+
+          });
       }
+  }
+  saveOrgsAccess() {
+      this.isAccessEdit = true;
+      this.isAccess = false;
+      var asdf = this.orgsList;
+      this.orgsAcces = true;
   }
 }

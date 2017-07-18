@@ -1,0 +1,14 @@
+﻿<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <canvas responsive="true" maintainAspectRatio="false" height="200" baseChart
+                        [data]="pieChartData"
+                        [labels]="pieChartLabels"
+                        [chartType]="pieChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
