@@ -1,11 +1,9 @@
 <div class="main-content" *ngIf="getI797History">
-    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">I-797 History</a></li>
-    </ul>
-    <div class="clearfix"></div>
+
     <div class="table-data">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+
+        <div class="clearfix"></div>
         <h2>
             <span>I-797 History</span><button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>
         </h2>

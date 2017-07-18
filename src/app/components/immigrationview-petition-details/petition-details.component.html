@@ -1,16 +1,18 @@
 <div class="main-content">
-   <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
-    
-     <h1 style="float:right;">{{petitionInformation.name}}</h1>
+   
  
-    <div class="clearfix"></div>
+    
     <div class="table-data-forms">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
+
+        <h1 style="float:right;">{{petitionInformation.name}}</h1>
+        <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h2 class="no-pad-left">Petition Information</h2>
+                                <h2>Petition Information</h2>
                                 <button type="submit" class="editbtn  no-marg-right" (click)="editPetitionInfoForm()" *ngIf="isPetitionInformationEdit==true">Edit</button>
                                 <div class="tbl-head-btn" [hidden]="isPetitionInformationEdit">
                                     <button type="button" (click)="cancelPetitionInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isPetitionInformationEdit==false">Cancel</button>
@@ -189,7 +191,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="no-pad-left">Receipt Information</h2>
+                            <h2>Receipt Information</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editReceiptInfoForm()" *ngIf="isReceiptInfoEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isReceiptInfoEdit">
                                 <button type="button" (click)="cancelReceiptInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isReceiptInfoEdit==false">Cancel</button>
@@ -309,7 +311,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="no-pad-left">Additional Details</h2>
+                            <h2>Additional Details</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editAdditionalDetailsForm()" *ngIf="isAdditionalDetailsEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isAdditionalDetailsEdit">
                                 <button type="button" (click)="cancelAdditionalDetailsEdit()" class="editbtn tbl-head-btn" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
@@ -361,7 +363,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Sponsor Information On Form</h2>
+                            <h2>Sponsor Information On Form</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editSponsorInfoForm()" *ngIf="isSponsorInfoEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
                                 <button type="button" (click)="cancelSponsorInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isSponsorInfoEdit==false">Cancel</button>
@@ -519,7 +521,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="no-pad-left">LCA Information</h2>
+                            <h2>LCA Information</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editLCAInfoForm()" *ngIf="isLCAInfoEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isLCAInfoEdit">
                                 <button type="button" (click)="cancelLCAInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isLCAInfoEdit==false">Cancel</button>
@@ -605,7 +607,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="no-pad-left">Delegated Orgs</h2>
+                            <h2>Delegated Orgs</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editdelOrgs()" *ngIf="isDelegatedOrgsEdit==true">Edit</button>
                             <div class="tbl-head-btn">
                                 <button type="button" (click)="canceldelOrgs()" class="editbtn tbl-head-btn" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>

@@ -1,11 +1,9 @@
 <div class="main-content" *ngIf="getVisasData">
-    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">Visas</a></li>
-    </ul>
-    <div class="clearfix"></div>
+
     <div class="table-data">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+
+        <div class="clearfix"></div>
         <h2>Visas<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewVisa()">ADD</button></h2>
            <smart-table [settings]="settings" [data]="data"
                      (onAddClick)="addNewVisa($event)" (onRowClick)="editVisas($event)" (onDeleteClick)="deleteVisas($event)"></smart-table>

@@ -87,6 +87,9 @@ import { ManageaccountUserDetailsComponent } from "./components/manageaccount-us
 import { SmartTableImmigrationViewI797HistoryComponent } from "./components/smarttable-i-797-history/smarttable-i-797-history.component";
 import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas";
 
+//immigrationview reports
+import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
+
 
 
 export const appRoutes: Routes = [
@@ -369,6 +372,11 @@ export const appRoutes: Routes = [
         path:'smarttable-visas',
         component:SmartTableVisas
     },
+    {
+        path: 'immiview-petitionreports',
+        component: petitionsstatusreportscomponent
+    },
+    
     {
         path: '',
         component: LoginComponent

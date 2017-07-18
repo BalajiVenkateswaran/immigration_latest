@@ -193,6 +193,11 @@ import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas"
 import { SmartTableVisasService } from "./components/smarttable-visas/smarttable-visas.service";
 import { ManageAccountUserDetailsService } from "./components/manageaccount-user-details/manageaccount-user-details.service";
 
+//immigrationview reports tab
+import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
+import {petitionsstatusreportsservice} from './components/immigrationview-petitions-statusreports/petitions-statusreports.service';
+
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -307,7 +312,10 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
 
         ImmigrationViewReportsComponent,
         ImmigrationviewPetitionNotesComponent,
-        ManageaccountUserDetailsComponent
+        ManageaccountUserDetailsComponent,
+
+        //reports
+        petitionsstatusreportscomponent
 
     ],
     providers: [
@@ -396,7 +404,10 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
         SuperuserViewAccountpreferencessService,
         AccountDetailsCommonService,
         SmartTableI797HistoryService,
-        SmartTableVisasService
+        SmartTableVisasService,
+
+        //reports
+        petitionsstatusreportsservice
 
     ],
     bootstrap: [AppComponent]

@@ -1,10 +1,8 @@
     <div class="main-content">
-        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1><h1 style="float:right;">{{appService.petitionDetails}}</h1>
-        <ul class="breadcrumb">
-            <li><a href="#">Document Management</a></li>
-        </ul>
-        <div class="clearfix"></div>
         <div class="table-data">
+            <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
+            <h1 style="float:right;">{{appService.petitionDetails}}</h1>
+            <div class="clearfix"></div>
             <h2>Document Repository</h2>
             <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
                 <div class="pull-right uplodbtn">

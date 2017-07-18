@@ -8,7 +8,7 @@ export class ManageAccountUserDetailsService {
     constructor(private restService: RestService) {
     }
     public updateUser(userData: User) {
-      return this.restService.putData("/user", userData);
+      return this.restService.putData("/userorgs", userData);
     }
 
     public getUserDet(userid, accountid) {
