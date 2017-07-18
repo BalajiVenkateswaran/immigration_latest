@@ -16,7 +16,7 @@ export class MarkforDeletionComponent implements OnInit {
     public user:User;
     public markForDeletionInfoList;
     public settings;   
-    private data;
+    public data;
     ngOnInit() { 
         if (this.appService.user) {
             this.user = this.appService.user;
