@@ -924,7 +924,7 @@ section .rightwithoutmenu {
       color: #dfdfdf !important;
       background: #44474e;
       font-size: 18px;
-      text-transform: uppercase;
+      text-transform: capitalize;
       border-bottom: solid 1px #edeff5;
       /*border-color: rgba(255, 255, 255, 0.2);*/
       padding: 10px 20px;

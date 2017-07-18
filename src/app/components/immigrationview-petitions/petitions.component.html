@@ -1,10 +1,7 @@
 <div class="main-content" *ngIf="getPetitionsData">
-    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Petitions</a></li>
-    </ul>
-    <div class="clearfix"></div>
     <div class="table-data">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+        <div class="clearfix"></div>
         <h2>Petitions<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewPetition()">ADD</button></h2>
        <smart-table [settings]="settings" [data]="data"
                      (onAddClick)="addNewPetition($event)" (onRowClick)="onUserRowClick($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
