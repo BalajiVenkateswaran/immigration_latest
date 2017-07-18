@@ -31,6 +31,7 @@ export interface ConfirmModel {
 @Component({
     selector: 'app-i-797-history',
     templateUrl: './smarttable-i-797-history.component.html',
+    styleUrls: ['./smarttable-i-797-history.component.scss']
 
 })
 export class SmartTableImmigrationViewI797HistoryComponent extends DialogComponent<ConfirmModel, boolean> {
@@ -115,7 +116,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
            title: 'Add I-797 History',
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
-           
+
                this.smartTableI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
                    if (res['statusCode'] == 'SUCCESS') {
        this.getI797historys();
@@ -165,10 +166,10 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
            validTill: event.data.validTill
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
-              
+
              this.smartTableI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
                  if (res['statusCode'] == 'SUCCESS') {
-                 
+
        this.getI797historys();
 
                    }
@@ -182,7 +183,7 @@ export class SmartTableImmigrationViewI797HistoryComponent extends DialogCompone
         })
     }
     deleteRecord(data) {
-        
+
         this.delmessage = data.data.receiptNumber
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
