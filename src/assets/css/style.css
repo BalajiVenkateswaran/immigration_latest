@@ -689,7 +689,7 @@ section .rightwithoutmenu {
         margin-top: -10px !important; }
     .main-content .table-data .editbtn, .main-content .table-data-forms .editbtn {
       float: right;
-      margin: -48px 0 0 0;
+      margin: -50px 0 0 0;
       width: 80px;
       height: 30px;
       border: solid 1px #e0e0e0;
@@ -789,15 +789,15 @@ section .rightwithoutmenu {
       max-width: 100px;
       width: 70px; }
     .main-content .table-data .addresbox, .main-content .table-data-forms .addresbox {
-      /*border: solid 1px;*/
+      border: solid 1px #44474e;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       -ms-border-radius: 5px;
       border-radius: 5px;
       /*border-color: rgba(255, 255, 255, 0.3);*/
-      padding: 10px 28px 16px 28px;
+      padding: 0px 20px 15px;
       /*min-height: 459px;*/
-      background: #fff;
+      background: none;
       margin-bottom: 25px; }
       .main-content .table-data .addresbox .row .col-md-8 span, .main-content .table-data-forms .addresbox .row .col-md-8 span {
         width: 100%;
@@ -919,8 +919,19 @@ section .rightwithoutmenu {
           border-color: #036 !important;
           color: #fff !important; }
   .main-content .table-data-forms {
-    background: none !important;
-    padding: 0px !important; }
+    overflow-y: auto; }
+    .main-content .table-data-forms h2 {
+      color: #dfdfdf !important;
+      background: #44474e;
+      font-size: 18px;
+      text-transform: capitalize;
+      border-bottom: solid 1px #edeff5;
+      /*border-color: rgba(255, 255, 255, 0.2);*/
+      padding: 10px 20px;
+      font-weight: 500;
+      margin: 0px -20px 15px -20px; }
+      .main-content .table-data-forms h2 button.iportal-btn {
+        margin-top: -10px !important; }
   .main-content .uplodbtn {
     margin-top: -56px; }
     .main-content .uplodbtn .fileUpload {
@@ -1376,7 +1387,7 @@ aside.left-opened.smoothness.loginScreen {
 .tbl-head-btn {
   float: right; }
   .tbl-head-btn .savebtn {
-    margin: -48px 10px 0 0;
+    margin: -50px 10px 0 0;
     float: left; }
   .tbl-head-btn .savelaterbtn {
     float: left;
@@ -1390,7 +1401,10 @@ confirm .modal-dialog {
   confirm .modal-dialog .modal-content .modal-header {
     display: block !important; }
     confirm .modal-dialog .modal-content .modal-header .close {
-      float: right; }
+      float: right;
+      color: #e9eaec !important;
+      text-shadow: none !important;
+      opacity: 10 !important; }
     confirm .modal-dialog .modal-content .modal-header .modal-title {
       float: left;
       color: #000; }
@@ -1398,31 +1412,51 @@ confirm .modal-dialog {
 .modal {
   background: rgba(0, 0, 0, 0.5); }
 
-.orgnamebox .modal-content .modal-header p {
-  color: #5093e1;
-  font-size: 18px;
-  /* border-color: rgba(255, 255, 255, 0.2); */
-  font-weight: 500;
-  margin-bottom: 0px !important; }
-.orgnamebox .modal-content .modal-body ul {
-  margin: 0px;
-  padding: 0px;
-  max-height: 232px;
-  overflow-y: auto; }
-  .orgnamebox .modal-content .modal-body ul li {
-    list-style: none;
-    background: #2f323a;
-    color: #fff;
+.orgnamebox .modal-content {
+  background: #32353e;
+  border: solid 2px #000;
+  padding-bottom: 15px; }
+  .orgnamebox .modal-content .modal-header .close {
+    color: #e9eaec !important;
+    text-shadow: none !important;
+    opacity: 10 !important; }
+  .orgnamebox .modal-content .modal-header p {
+    color: #e9eaec;
     font-size: 18px;
-    font-weight: 600;
-    padding: 6px 15px;
-    margin: 0 0 2px 0;
+    /* border-color: rgba(255, 255, 255, 0.2); */
+    font-weight: 500;
+    margin-bottom: 0px !important; }
+  .orgnamebox .modal-content .modal-body {
+    margin: 0px 15px;
     border-radius: 5px;
-    cursor: pointer;
-    text-transform: capitalize; }
-    .orgnamebox .modal-content .modal-body ul li:hover, .orgnamebox .modal-content .modal-body ul li:focus {
-      background: #f6f9fd;
-      color: #2f323a; }
+    background: #fff; }
+    .orgnamebox .modal-content .modal-body ul {
+      margin: 0px;
+      padding: 0px;
+      max-height: 232px;
+      overflow-y: auto; }
+      .orgnamebox .modal-content .modal-body ul li {
+        list-style: none;
+        color: #32353e;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 6px 15px;
+        margin: 0 0 2px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        text-transform: capitalize; }
+      .orgnamebox .modal-content .modal-body ul li:nth-child(odd) {
+        background: #d8d8da;
+        color: #32353e; }
+        .orgnamebox .modal-content .modal-body ul li:nth-child(odd):hover, .orgnamebox .modal-content .modal-body ul li:nth-child(odd):focus {
+          background: #32353e;
+          color: #fff; }
+      .orgnamebox .modal-content .modal-body ul li:nth-child(even) {
+        background: #f6f5f5;
+        color: #32353e; }
+        .orgnamebox .modal-content .modal-body ul li:nth-child(even):hover, .orgnamebox .modal-content .modal-body ul li:nth-child(even):focus {
+          background: #32353e;
+          color: #fff; }
 
 .petition-type-stages-left .iportal-btn {
   margin-top: 20px;
@@ -1466,24 +1500,26 @@ tr.i129htblRow:nth-child(even) {
   margin-bottom: 12px;
   cursor: not-allowed; }
 
-.modal-header .modal-title {
-  float: left;
-  color: #5093e1;
-  font-size: 18px;
-  /* border-color: rgba(255, 255, 255, 0.2); */
-  font-weight: 500;
-  margin-bottom: 0px !important; }
-.modal-header .editinpopup {
-  float: right;
-  margin: 0;
-  width: 80px;
-  height: 30px;
-  border: solid 1px #e0e0e0;
-  background: #edeff5;
-  color: #585155;
-  border-radius: 5px; }
-.modal-header .savebtn {
-  margin-top: 0px !important; }
+.modal-header {
+  border: none; }
+  .modal-header .modal-title {
+    float: left;
+    color: #e9eaec;
+    font-size: 18px;
+    /* border-color: rgba(255, 255, 255, 0.2); */
+    font-weight: 500;
+    margin-bottom: 0px !important; }
+  .modal-header .editinpopup {
+    float: right;
+    margin: 0;
+    width: 80px;
+    height: 30px;
+    border: solid 1px #e0e0e0;
+    background: #edeff5;
+    color: #585155;
+    border-radius: 5px; }
+  .modal-header .savebtn {
+    margin-top: 0px !important; }
 
 .modal-footer .editinpopup {
   float: right;

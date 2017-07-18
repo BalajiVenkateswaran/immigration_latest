@@ -23,5 +23,8 @@ export class PetitionsService {
            console.log("PetitionsService|usersForAssignedTo|accountId:%o", accountId);
            return this.restService.getData("/user/immigration/"+accountId);
       }
+  public getPetitionsFilteredData(orgId:string,filterQueries:any){
+      return this.restService.getData("/petitions/immigration/"+orgId+'?'+"filter="+filterQueries)
+  }
 
 }
