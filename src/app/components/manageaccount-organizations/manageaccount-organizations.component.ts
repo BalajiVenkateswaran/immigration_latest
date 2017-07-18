@@ -29,7 +29,7 @@ export interface ConfirmModel {
     styleUrls: ['./manageaccount-organizations.component.sass']
 })
 export class ManageAccountOrganizationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-
+/* 
     settings = {
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -88,7 +88,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             perPage: 10
         },
         mode: 'external'
-    };
+    }; */
     public delmessage;
     private manageaccountorganizationList: manageaccountorganization[];
     public addOrganization: FormGroup; // our model driven form
@@ -103,7 +103,8 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     public editiorgsFlag: boolean = true;
     public beforeorgsEdit: any;
     public warningMessage: boolean = false;
-
+    public settings;
+    public data;
     constructor(private manageaccountorganizationService: ManageAccountOrganizationsService,
         private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent) {
         super(dialogService);
@@ -120,12 +121,48 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             this.user = this.appService.user;
 
         }
+        this.settings={
+            'columnsettings': [
+                {
+
+                    headerName: "Org Name",
+                    field: "orgName",
+                },
+                {
+
+                    headerName: "Display Name",
+                    field: "displayName",
+              
+                },
+                {
+
+                    headerName: "Status",
+                    field: "orgStatus",
+                },
+                {
+                    headerName: "Email",
+                    field: "email",
+               
+                },
+                {
+
+                    headerName: "Role",
+                    field: "roleName",
+                
+                },
+              
+                
+            ]
+        }
+    
+        
 
     }
-    source: LocalDataSource = new LocalDataSource();
+    //source: LocalDataSource = new LocalDataSource();
     getorganizationData() {
         this.manageaccountorganizationService.getManageAccountOrganizations(this.appService.user.accountId).subscribe((res: any) => {
-            this.source.load(res['orgs']);
+            //this.source.load(res['orgs']);
+            this.data=res['orgs'];
         });
     }
     ngOnInit() {
@@ -133,7 +170,8 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             .getManageAccountOrganizations(this.appService.user.accountId)
             .subscribe((res: any) => {
                 console.log("PetitionsComponent|ngOnInit|res:%o", res);
-                this.source.load(res.orgs);
+                //this.source.load(res.orgs);
+                this.data=res['orgs'];
             });
   }
     addNewOrganization() {

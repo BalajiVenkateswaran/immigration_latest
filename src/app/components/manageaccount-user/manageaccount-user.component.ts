@@ -41,66 +41,68 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     public beforeEdit: any;
     public editFlag: boolean = true;
     public warningMessage: boolean = false;
+    public settings;
+    public data;
     //roles : LocalDataSource = new LocalDataSource();
 
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
-            firstName: {
-                title: 'First Name'
-            },
-            lastName: {
-                title: 'Last Name'
-            },
-            emailId: {
-                title: 'Email'
-            },
-            phone: {
-                title: 'Phone'
-            },
-            roleName: {
-                title: 'Role',
-                editor: {
-                    type: 'list',
-                    config: {
-                        list: [
-                            {
-                                value: "Immigration Officer",
-                                title: "Immigration Officer"
-                            },
-                            {
-                                value: "Immigration Manager",
-                                title: "Immigration Manager"
-                            }
-                        ]
-                    }
-                }
-            }
+    // settings = {
+    //     add: {
+    //         addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //         createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //         cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //         confirmCreate: true
+    //     },
+    //     edit: {
+    //         editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
+    //         saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //         cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //         confirmSave: true
+    //     },
+    //     delete: {
+    //         deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //         confirmDelete: true
+    //     },
+    //     columns: {
+    //         firstName: {
+    //             title: 'First Name'
+    //         },
+    //         lastName: {
+    //             title: 'Last Name'
+    //         },
+    //         emailId: {
+    //             title: 'Email'
+    //         },
+    //         phone: {
+    //             title: 'Phone'
+    //         },
+    //         roleName: {
+    //             title: 'Role',
+    //             editor: {
+    //                 type: 'list',
+    //                 config: {
+    //                     list: [
+    //                         {
+    //                             value: "Immigration Officer",
+    //                             title: "Immigration Officer"
+    //                         },
+    //                         {
+    //                             value: "Immigration Manager",
+    //                             title: "Immigration Manager"
+    //                         }
+    //                     ]
+    //                 }
+    //             }
+    //         }
 
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        },
-        mode:'external'
-    };
+    //     },
+    //     pager: {
+    //         display: true,
+    //         perPage: 10
+    //     },
+    //     mode:'external'
+    // };
 
-    source: LocalDataSource = new LocalDataSource();
+  //  source: LocalDataSource = new LocalDataSource();
 
     constructor(private manageAccountUserService: ManageAccountUserService,
         private appService: AppService, public dialogService: DialogService) {
@@ -120,7 +122,39 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             this.user = this.appService.user;
 
         }
+ this.settings={
+            'columnsettings': [
+                {
 
+                    headerName: "First Name",
+                    field: "firstName",
+                },
+                {
+
+                    headerName: "Last Name",
+                    field: "lastName",
+              
+                },
+                {
+
+                    headerName: "Email",
+                    field: "emailId",
+                },
+                {
+                    headerName: "Phone",
+                    field: "phone",
+               
+                },
+                {
+
+                    headerName: "Role",
+                    field: "roleName",
+                
+                },
+              
+                
+            ]
+        }
     }
     getManageUsers() {
         this.manageAccountUserService.getUsers(this.appService.user.accountId)
@@ -128,7 +162,8 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                 for (var user of res['users']) {
                     user['roleName'] = user['role'];
                 }
-                this.source.load(res['users']);
+                                this.data=res['users'];
+               // this.source.load(res['users']);
                 this.appService.usersList=res['users'];
             });
     }
@@ -138,7 +173,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         //this.roles = new ServerDataSource(this.http, { endPoint: 'http://ec2-34-192-10-166.compute-1.amazonaws.com:8080/immigrationPortal/user/roles', dataKey: 'users' });
     }
 
-    addNewUser() {
+    addFunction() {
         this.dialogService.addDialog(ManageAccountUserComponent, {
             adduser: true,
             getUsers: false,
@@ -190,7 +225,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         });
     }
 
-    onEditConfirm(event): void {
+    editRecord(event): void {
         //console.log("User table onEditConfirm event: %o",event.newData);
         //event.newData['role'] = this.roles[event.newData['roleName']];
         //this.manageAccountUserService.updateUser(event.newData).subscribe((res) => {
@@ -232,7 +267,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         this.appService.currentSBLink = event.data.firstName;
     }
 
-    onDeleteConfirm(event): void {
+    deleteRecord(event): void {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
             message: 'Are you sure you want to Delete ' + event.data['emailId'] + '?'

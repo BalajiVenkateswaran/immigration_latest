@@ -33,49 +33,73 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
     public addShippingAdress: boolean;
     public editshippingFlag: boolean = true;
     public beforeshippingEdit: any;
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
-            slNo: {
-                 title: 'SL.NO'
-            },
-            addressName: {
-                title: ' Address Name'
-            },
-            address: {
-                title: 'Address'
-            }
+    public settings;
+ 
+    // settings = {
+    //     add: {
+    //         addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //         createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //         cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //         confirmCreate: true
+    //     },
+    //     edit: {
+    //         editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+    //         saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //         cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //         confirmSave: true
+    //     },
+    //     delete: {
+    //         deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //         confirmDelete: true
+    //     },
+    //     columns: {
+    //         slNo: {
+    //              title: 'SL.NO'
+    //         },
+    //         addressName: {
+    //             title: ' Address Name'
+    //         },
+    //         address: {
+    //             title: 'Address'
+    //         }
 
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        }
-        , mode: 'external'
-    };
+    //     },
+    //     pager: {
+    //         display: true,
+    //         perPage: 10
+    //     }
+    //     , mode: 'external'
+    // };
 
     constructor(private manageAccountShippingAddressService: ManageAccountShippingAddressService, private appService: AppService, public dialogService: DialogService) {
         super(dialogService);
       if (this.appService.user) {
           this.user = this.appService.user;
       }
+     this.settings={
+            'columnsettings': [
+                {
+
+                    headerName: "SL.NO",
+                    field: "slNo",
+                },
+                {
+
+                    headerName: "Address Name",
+                    field: "addressName",
+              
+                },
+                {
+
+                    headerName: "Address",
+                    field: "address",
+                }
+              
+            ]
+        }
+
      }
-    source: LocalDataSource = new LocalDataSource();
+   // source: LocalDataSource = new LocalDataSource();
     getaccountid = function (accountid) {
     }
     getShippingDetails() {
@@ -88,16 +112,17 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
                 for (var i = 0; i < res.length; i++) {
                     res[i]['slNo'] = i + 1;
                 }
-                this.source.load(res);
+                //this.source.load(res);
+                 this.data=res;
                 console.log(res);
             });
 
     }
   ngOnInit() {
       this.getShippingDetails();
-
+        //this.data=res;
     }
-  addNewAdress() {
+  addFunction() {
       this.dialogService.addDialog(ManageAccountShippingAddressComponent, {
           addShippingAdress: true,
           getShipping: false,
@@ -140,7 +165,7 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
   //    });
 
   //}
-  onEditConfirm(event): void {
+  editRecord(event): void {
       this.editshippingFlag = true;
       if (this.editshippingFlag) {
           this.beforeshippingEdit = (<any>Object).assign({}, event.data);
@@ -174,7 +199,7 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
       //    }
       //});
   }
-  onDeleteConfirm(event): void {
+  deleteRecord(event): void {
       console.log("User table onDeleteConfirm event: %o", event.data);
       this.manageAccountShippingAddressService.deleteShipmentAddress(event.data['shippmentAddressId']).subscribe((res) => {
           this.message = res['statusCode'];

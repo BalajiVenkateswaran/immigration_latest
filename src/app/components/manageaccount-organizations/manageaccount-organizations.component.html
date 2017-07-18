@@ -6,12 +6,24 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>
-            Organizations<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewOrganization()">ADD</button>
+            Organizations
+            <!-- <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewOrganization()">ADD</button> -->
         </h2>
-            <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)"
-                             (edit)="onEditConfirm($event)"
-                             (createConfirm)="onCreateConfirm($event)"
-                             ></ng2-smart-table>
+            <!-- <ng2-smart-table 
+            [settings]="settings" 
+            [source]="source" 
+            (delete)="onDeleteConfirm($event)"
+            (edit)="onEditConfirm($event)"
+            (createConfirm)="onCreateConfirm($event)"></ng2-smart-table> -->
+
+            <smart-table 
+            [settings]="settings" 
+            [data]="data"
+            (onAddClick)="addNewOrganization($event)"
+            (onRowClick)="onEditConfirm($event)" 
+            (onDeleteClick)="onDeleteConfirm($event)">
+            </smart-table>
+      
         <div class="clearfix"></div>
     </div>
 </div>
@@ -28,7 +40,7 @@
                     <div class="col-md-10">
                         <div class="row" *ngIf="warningMessage">
                             <div class="col-md-12">
-                                <span class="redstar">* Fields are Mandatory.</span>
+                                <span class="redstar">* Fields are Mandatory Buddy Fill it now!!!!.</span>
                             </div>
                         </div>
                         <div class="row">
@@ -44,7 +56,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">Email :<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.email" class="form-control"></div>
+                            <div class="col-md-8"><input type="email" [(ngModel)]="neworgitem.email" class="form-control" [email]="true"></div>
                             <div class="col-md-4">Type :<span class="redstar">*</span></div>
                             <div class="col-md-8">
                                 <select [(ngModel)]="neworgitem.orgType" class="form-control" [disabled]="editorg">

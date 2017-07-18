@@ -7,9 +7,17 @@
         <div class="table-data">
             <h2>
                 <span>Users</span>
-                <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewUser()">ADD</button>
+                <!-- <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewUser()">ADD</button> -->
             </h2>
-                <ng2-smart-table [settings]="settings" [source]="source" (delete) = "onDeleteConfirm($event)" (edit) = "onEditConfirm($event)" (create)="onCreateConfirm($event)" (userRowSelect)="userDetails($event)"></ng2-smart-table>
+                 <!-- <ng2-smart-table [settings]="settings" [source]="source" (delete) = "onDeleteConfirm($event)" (edit) = "onEditConfirm($event)" 
+                    (create)="onCreateConfirm($event)" (userRowSelect)="userDetails($event)"></ng2-smart-table>  -->
+                 <smart-table 
+                    [settings]="settings" 
+                    [data]="data"
+                    (onAddClick)="addFunction($event)"  
+                    (onRowClick)="editRecord($event)" 
+                    (onDeleteClick)="deleteRecord($event)">
+                </smart-table> 
             <div class="clearfix"></div>
         </div>
     </div>

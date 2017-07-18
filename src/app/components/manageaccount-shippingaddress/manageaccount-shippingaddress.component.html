@@ -11,167 +11,24 @@
                <!-- <button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right">Add</button> -->
             </h2>
 
-            <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
-          <!--  <table class="smarttable" cellpadding="0" cellspacing="0">
-                <thead>
-                    <tr>
-                        <td class="actions">Action</td>
-                        <td><span>SL.NO</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span></td>
-                        <td>
-                            <span>Address Name </span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Address</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
+            <!-- <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table> -->
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="actions">
-                            <ul class="add">
-                                <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td><input type="text" name="shipping-address-number" /></td>
-                        <td><input type="text" name="shipping-address-Name" /></td>
-                        <td><input type="text" name="shipping-address" /></td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
-                    <tr>
-                        <td class="actions">
-                            <ul class="edit-delete">
-                                <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>01</td>
-                        <td>abc</td>
-                        <td>123-xyz</td>
-                    </tr>
+            <smart-table 
+            [settings]="settings" 
+            [data]="data"
+            (onAddClick)="addFunction($event)"
+            (onRowClick)="editRecord($event)" 
+            (onDeleteClick)="deleteRecord($event)">
+            </smart-table>
 
-
-
-
-                </tbody>
-            </table>  -->
-            <ul class="pagenation">
+            <!-- <ul class="pagenation">
                 <li><a href="#"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
                 <li><a href="#">1</a></li>
                 <li><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
                 <li><a href="#" class="act">4</a></li>
                 <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
-            </ul>
+            </ul> -->
             <div class="clearfix"></div>
         </div>
     </div>
