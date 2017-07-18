@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {questionnaireclient} from "../../models/questionnaireclient";
-import {QuestionnaireService} from "./questionnaire.service";
-import {questionnaireEmp} from "../../models/questionnaireEmp";
-import {FormGroup, FormControl} from "@angular/forms";
-import {User} from "../../models/user";
-import {ImmigrationViewPetitionInformation} from "../../models/ImmigrationViewPetitionInformation";
-import {AppService} from "../../services/app.service";
-import { Ng2SmartTableModule, LocalDataSource, ServerDataSource  } from 'ng2-smart-table';
+import { questionnaireclient } from "../../models/questionnaireclient";
+import { QuestionnaireService } from "./questionnaire.service";
+import { questionnaireEmp } from "../../models/questionnaireEmp";
+import { FormGroup, FormControl } from "@angular/forms";
+import { User } from "../../models/user";
+import { ImmigrationViewPetitionInformation } from "../../models/ImmigrationViewPetitionInformation";
+import { AppService } from "../../services/app.service";
+import { Ng2SmartTableModule, LocalDataSource, ServerDataSource } from 'ng2-smart-table';
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 
 
 
@@ -74,7 +74,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     private formsList = [];
 
     private questionnaireEmployerList: questionnaireEmp[];
-    private data;
     private empQuestionnaire;
     private selectedForm: string;
     source: LocalDataSource = new LocalDataSource();
@@ -85,50 +84,118 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     private isEditEmpQuestionnaire: boolean[] = [];
     private rowEditEmp: boolean[] = [];
     private checkboxDisable: boolean = false;
-    questionnaireList: any;
+    questionnaireList=[];
     private questionnaire = {};
     private questionnaireClient = {};
     private questionnaireId;
     private beforeCancel;
     private empBeforeCancel;
     sendQuestionnaire: boolean = true;
-    private clientCheck: boolean[]=[];
-    private sentQuestionnaireClient=[];
+    private clientCheck: boolean[] = [];
+    private sentQuestionnaireClient = [];
     public delmessage;
     public editFlag: boolean = true;
     public beforeEdit: any;
+    public settings;
+    public data;
+    public settings1;
+    public data1;
+    public formattedData = [];
     private status = [
-            {
-                "id": "0",
-                "clientStatus": "Open"
-            },
-            {
-                "id": "1",
-                "clientStatus": "Completed"
-            }
-        ];
-        private employerStatus = [
-            {
-                "id": "0",
-                "employerStatus": "Open"
-            },
-            {
-                "id": "1",
-                "employerStatus": "Accepted"
-            }
-        ];
+        {
+            "id": "0",
+            "clientStatus": "Open"
+        },
+        {
+            "id": "1",
+            "clientStatus": "Completed"
+        }
+    ];
+    private employerStatus = [
+        {
+            "id": "0",
+            "employerStatus": "Open"
+        },
+        {
+            "id": "1",
+            "employerStatus": "Accepted"
+        }
+    ];
 
 
-        constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService) {
-            super(dialogService);
+    constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
         if (this.appService.user) {
             this.user = appService.user;
         }
+        this.settings = {
+            'questionnaireTable':true,
+            'columnsettings': [
+                
+                {
+                    headerName: "Form Name",
+                    field: "formName"
+                },
+                {
+
+                    headerName: "Questionnaire Name",
+                    field: "questionnaireName",
+                    width: 250,
+                },
+                {
+
+                    headerName: "Status",
+                    field: "clientStatus"
+                },
+                {
+
+                    headerName: "Sent To Client",
+                    field: "sentToClient"
+                },
+                {
+
+                    headerName: "Status Date",
+                    field: "clientStatusDate"
+                }
+            ]
+        }
+          this.settings1 = {
+            'columnsettings': [
+
+                {
+                    headerName: "Questionnaire Name",
+                    field: "questionnaireName"
+                },
+                {
+
+                    headerName: "Form Name",
+                    field: "formName",
+                    width: 250,
+                },
+                {
+
+                    headerName: "Status",
+                    field: "employerStatus"
+                },
+                {
+
+                    headerName: "Sent To Client",
+                    field: "sentToClient"
+                },
+                {
+
+                    headerName: "Status Date",
+                    field: "employerStatusDate"
+                }
+            ]
         }
 
 
-        deleteConfirm(i, questions) {
-            this.delmessage = questions.questionnaireName;
+    }
+
+
+    deleteConfirm(questions) {
+        this.delmessage = questions.data.questionnaireName;
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
             message: 'Are you sure you want to Delete ' + this.delmessage + '?'
@@ -137,11 +204,11 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 //Get dialog result
                 //this.confirmResult = isConfirmed;
                 if (isConfirmed) {
-                    this.deleteQuestionnaire(i, questions);
+                    this.deleteQuestionnaire(questions);
                 }
             });
     }
-  highlightSBLink(link) {
+    highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
     ngOnInit() {
@@ -174,7 +241,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         });
     }
     getquesnreData() {
-        this.questionnaireList = '';
+        //this.questionnaireList = '';
         this.questionnaireService.getQuestionnaireForms(this.appService.petitionId).subscribe((res) => {
             if (res['statusCode'] == 'SUCCESS') {
                 this.formsList = res['applicationForms'];
@@ -184,21 +251,30 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                     if (res['statusCode'] == 'SUCCESS') {
                         this.questionnaireList = res['questionnaires']['content'];
                         this.appService.questionnaireName = res['questionnaires']['content'];
-                        for (var i = 0; i < this.questionnaireList.length; i++) {
-                            this.rowEdit[i] = true;
-                            this.isEditQuestionnaire[i] = true;
-                            this.rowEditEmp[i] = true;
-                            this.isEditEmpQuestionnaire[i] = true;
-                            this.clientCheck[i] = false;
-                            this.appService.formId = this.questionnaireList[i].formId;
-                            this.questionnaireList.map(function (item) {
-                                item.clientCheck = false;
-                            });
-                        }
+                        let that = this;
+                        this.formattedData = this.objectMapper(this.questionnaireList);
                     }
+                    this.data=this.formattedData;
+                    this.data1=this.formattedData;
                 });
             }
+          
+
         });
+    }
+    objectMapper(data) {
+        let formNames = this.formsList.map(function (item) {
+            return item.formName;
+        })
+        for (var i = 0; i < data.length; i++) {
+            data[i]['formName'] = formNames[i];
+            if (data[i]['sentToClient'] == false) {
+                data[i]['sentToClient'] = 'No';
+            } else {
+                data[i]['sentToClient'] = 'Yes';
+            }
+        }
+        return data;
     }
     questionnaireSave() {
         this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
@@ -212,30 +288,30 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
             this.close();
         }
 
-        
+
     }
     cancel() {
         this.result = false;
         this.close();
     }
 
-    enableOrDisableCheckBox(questionnaire: any){
-      var formName = this.getFormName(questionnaire['formId']);
-      var formNameBasedCheck = true;
-      if(this.checkboxDisable){
-        formNameBasedCheck = false;
-      } else if(formName == "I-129 DC"){
-        formNameBasedCheck = false;
-      }
-      return formNameBasedCheck;
+    enableOrDisableCheckBox(questionnaire: any) {
+        var formName = this.getFormName(questionnaire['formId']);
+        var formNameBasedCheck = true;
+        if (this.checkboxDisable) {
+            formNameBasedCheck = false;
+        } else if (formName == "I-129 DC") {
+            formNameBasedCheck = false;
+        }
+        return formNameBasedCheck;
     }
 
-    getFormName(formId: string){
-      for(let form of this.formsList){
-        if(form.applicationFormsId === formId){
-          return form.formName;
+    getFormName(formId: string) {
+        for (let form of this.formsList) {
+            if (form.applicationFormsId === formId) {
+                return form.formName;
+            }
         }
-      }
     }
 
     addQuestionnaire() {
@@ -253,16 +329,16 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         this.selectedForm = name;
 
     }
-    editQuestionnaire(i, newQuestionnaireitem) {
-        //this.beforeCancel = (<any>Object).assign({}, questions);
-        //this.checkboxDisable = true;
-        //this.statusDate = questions.statusDate;
-        //this.rowEdit[i] = !this.rowEdit[i];
-        //this.isEditQuestionnaire[i] = !this.isEditQuestionnaire[i];
-
+    editQuestionnaire(newQuestionnaireitem) {
+        if (newQuestionnaireitem.data['sentToClient'] == 'Yes') {
+            newQuestionnaireitem.data['sentToClient'] = true;
+        }
+        else {
+            newQuestionnaireitem.data['sentToClient'] = false;
+        }
         this.editFlag = true;
         if (this.editFlag) {
-            this.beforeEdit = (<any>Object).assign({}, newQuestionnaireitem);
+            this.beforeEdit = (<any>Object).assign({}, newQuestionnaireitem.data);
         }
 
         this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
@@ -272,9 +348,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
             editquspopup: true,
             title: 'Edit Questionnaire',
             newQuestionnaireitem: this.editFlag ? this.beforeEdit : this.newQuestionnaireitem,
-            //newQuestionnaireitem: questions.questionnaireName,
-            //clientStatus: questions.clientStatus,
-
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.questionnaireService.saveNewQuestionnaireClient(this.appService.newQuestionnaireitem).subscribe((res) => {
@@ -289,14 +362,15 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         });
 
     }
-    deleteQuestionnaire(i, questions) {
-        this.rowEdit[i] = true;
-        console.log(questions.questionnaireId);
-        this.questionnaireService.deleteQuestionnaire(questions.questionnaireId).subscribe(
+    deleteQuestionnaire(questions) {
+        //this.rowEdit[i] = true;
+        console.log(questions.data.questionnaireId);
+        this.questionnaireService.deleteQuestionnaire(questions.data.questionnaireId).subscribe(
             res => {
                 console.log(res);
-                if(res['statusCode'] == 'SUCCESS'){
-                    this.questionnaireList.splice(i,1);
+                if (res['statusCode'] == 'SUCCESS') {
+                    this.getquesnreData();
+                    //this.questionnaireList.splice(,1);
                     //this.appService.questionnaireName.splice(i,1);
                 }
             }
@@ -305,18 +379,18 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     saveQuestionnaire(i, questions) {
         this.checkboxDisable = false;
         this.questionnaireService.saveNewQuestionnaireClient(questions)
-          .subscribe((res) => {
-            if(res['statusCode'] == 'SUCCESS'){
-              this.questionnaireList[i] = res['questionnaire'];
-              this.isEditQuestionnaire[i] = !this.isEditQuestionnaire[i];
-              this.rowEdit[i] = true;
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Edit Questionnaire..!'
-                });
-            }
-          });
+            .subscribe((res) => {
+                if (res['statusCode'] == 'SUCCESS') {
+                    this.questionnaireList[i] = res['questionnaire'];
+                    this.isEditQuestionnaire[i] = !this.isEditQuestionnaire[i];
+                    this.rowEdit[i] = true;
+                } else {
+                    this.dialogService.addDialog(ConfirmComponent, {
+                        title: 'Error..!',
+                        message: 'Unable to Edit Questionnaire..!'
+                    });
+                }
+            });
     }
     cancelQuestionnaire(i, questions) {
         this.questionnaireList[i] = this.beforeCancel;
@@ -326,7 +400,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     }
 
     //Employee Questionnaire
-    editEmpQuestionnaire(i, questionnaireEmployee) {
+    editEmpQuestionnaire(questionnaireEmployee) {
         //this.empBeforeCancel = (<any>Object).assign({}, question);
         //this.rowEditEmp[i] = !this.rowEditEmp[i];
         //this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
@@ -334,9 +408,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
 
         this.editFlag = true;
         if (this.editFlag) {
-            this.beforeEdit = (<any>Object).assign({}, questionnaireEmployee);
+            this.beforeEdit = (<any>Object).assign({}, questionnaireEmployee.data);
         }
-
         this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
             showAddEmpQuespopup: true,
             getQuestionnaireData: false,
@@ -357,7 +430,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
             } else {
                 this.editFlag = false;
             }
-            });
+        });
 
 
     }
@@ -372,69 +445,69 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         this.result = false;
         this.close();
     }
-    saveEmpQuestionnaire(i, question) {
-
+    /*saveEmpQuestionnaire(i, question) {
         this.questionnaireService.saveNewQuestionnaireClient(question)
-          .subscribe((res) => {
-            if(res['statusCode'] == 'SUCCESS'){
-              this.questionnaireList[i] = res['questionnaire'];
-              this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
-              this.rowEditEmp[i] = true;
-            }
-          });
-    }
+            .subscribe((res) => {
+                if (res['statusCode'] == 'SUCCESS') {
+                    this.questionnaireList[i] = res['questionnaire'];
+                    this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
+                    this.rowEditEmp[i] = true;
+                }
+            });
+    }*/
 
-    cancelEmpQuestionnaire(i, question) {
+   /* cancelEmpQuestionnaire(i, question) {
         this.questionnaireList[i] = this.empBeforeCancel;
         this.rowEditEmp[i] = !this.rowEditEmp[i];
         this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
-    }
+    }*/
 
-    deleteEmpQuestionnaire(i, questions) {
-        var questionaireName = questions.questionnaireName;
-        var questionaireId = questions.questionnaireId;
+    deleteEmpQuestionnaire(questions) {
+        var questionaireName = questions.data.questionnaireName;
+        var questionaireId = questions.data.questionnaireId;
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
-            message: 'Are you sure you want to Delete ' + questionaireName+'?'
+            message: 'Are you sure you want to Delete ' + questionaireName + '?'
         })
             .subscribe((isConfirmed) => {
                 //Get dialog result
                 //this.confirmResult = isConfirmed;
                 if (isConfirmed) {
                     this.questionnaireService.deleteQuestionnaire(questionaireId).subscribe(
-            res => {
-                console.log(res);
-                if(res['statusCode'] == 'SUCCESS'){
-                    this.questionnaireList.splice(i,1);
-                    this.appService.questionnaireName.splice(i,1);
-                }
-            }
-        );
+                        res => {
+                            console.log(res);
+                            if (res['statusCode'] == 'SUCCESS') {
+                                //this.questionnaireList.splice(i, 1);
+                                //this.appService.questionnaireName.splice(i, 1);
+                                this.getquesnreData();
+                            }
+                        }
+                    );
                 }
             });
     }
     sendQuestionnaireClient() {
         var questionnaries = [];
-        for(var questionnaire of this.sentQuestionnaireClient){
-          questionnaries.push(questionnaire['questionnaireId']);
+        for (var questionnaire of this.sentQuestionnaireClient) {
+            questionnaries.push(questionnaire['questionnaireId']);
         }
         var req = {
-          questionnaireIds : questionnaries
+            questionnaireIds: questionnaries
         };
 
         this.questionnaireService.sentQuestionnaireEmailToClient(req)
-          .subscribe((res) => {
-            if(res['statusCode'] == 'SUCCESS'){
-              //reset client Check
-              this.ngOnInit();
-              this.sendQuestionnaire = true;
-            }
-          });
+            .subscribe((res) => {
+                if (res['statusCode'] == 'SUCCESS') {
+                    //reset client Check
+                    this.ngOnInit();
+                    this.sendQuestionnaire = true;
+                }
+            });
         console.log(this.sentQuestionnaireClient);
     }
     questionnaireChecked(i, questionnaire) {
-        if (questionnaire.clientCheck){
-           this.sendQuestionnaire = false;
+        if (questionnaire.clientCheck) {
+            this.sendQuestionnaire = false;
         }
         var filterLength = this.questionnaireList.filter(function (obj) {
             return obj.clientCheck;

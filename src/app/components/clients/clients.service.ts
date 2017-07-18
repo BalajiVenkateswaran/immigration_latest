@@ -28,4 +28,7 @@ export class ClientsService {
   public removeclient(clientId: string, immigrationOfficerId: string) {
       return this.restService.deleteData("/client/" + clientId +"/immigrationOfficerId/"+immigrationOfficerId);
   }
+  public getClientsFilteredData(orgId:string,filterQueries:any){
+    return this.restService.getData("/clients/immigration/"+orgId+'?'+"filter="+filterQueries);
+  }
 }

@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
+import { SendToClientQuestionnaire } from './SendToClientQuestionnaire';
 @Component({
     selector: 'smart-table',
     templateUrl: './SmartTableFramework.html',
@@ -29,45 +30,82 @@ export class SmartTableFramework implements OnChanges {
     @Output() onAddClick = new EventEmitter();
     @Output() onRowClick = new EventEmitter();
     @Output() onDeleteClick = new EventEmitter();
+    @Output() onColumnFilterClick = new EventEmitter();
+    @Output() onItemChecked = new EventEmitter();
     public gridOptions;
     public paginationTemplate: boolean;
     public rowClickDone: boolean = false;
     public editableData: any;
     public clickFlag: boolean = false;
+    public checkFlag: boolean = false;
     public filterSubscription;
     public deleteSubscription;
     public deleteData;
+    public checkedData;
     public filterValues: any;
     public filteredData;
     public filterKeys = [];
-    public filterWholeArray = [];
+    public filterWholeArray = new Array();
     public isAddButtonEnable: boolean;
+    public filterQueries = [];
     public static sendCustomFilterValue = new Subject<boolean>();
+    public checkSubscription;
     constructor() {
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
         this.deleteSubscription = ActionColumns.sendDeleteData.subscribe(res => {
             if (res != undefined) {
                 this.deleteData = res;
-                this.clickFlag=true;
+                this.clickFlag = true;
             }
-            else{
-                this.clickFlag=false;
+            else {
+                this.clickFlag = false;
             }
-           
+
         })
         this.filterSubscription = CustomFilterRow.fillValues.subscribe(res => {
+            let that = this;
             if (res) {
                 this.filterValues = res;
                 for (let i = 0; i < this.filterValues.length; i++) {
                     if (this.filterWholeArray.indexOf(this.filterValues[i]) == -1) {
                         this.filterWholeArray.push(this.filterValues[i]);
-                        this.filterKeys.push(this.filterValues[i]['filterValue']);
                         this.filterValues.splice(i, 1);
+
                     }
                 }
-
+                that.filterWholeArray = this.removeDuplicates(this.filterWholeArray);
+                this.filterQueries = this.filterWholeArray.map(function (item) {
+                    return item.headingName + ":" + item.filterValue;
+                })
+                this.onColumnFilterClick.emit(that.filterQueries);
             }
+
+
+        });
+        this.checkSubscription = SendToClientQuestionnaire.sendToClient.subscribe(res => {
+            var formNameBasedCheck = true;
+            if (res['data'] !=undefined) {
+                if (res['data']['formName'] == 'I-129 H') {
+                    formNameBasedCheck = false;
+                } else if (res['data']['formName'] == "I-129 DC") {
+                    formNameBasedCheck = false;
+                }
+                return formNameBasedCheck;
+            }
+            this.checkSubscription.unsubscribe();
+        })
+
+    }
+    removeDuplicates(data) {
+        return data.filter((obj, pos, arr) => {
+            if (arr.map(mapObj => mapObj['headingName']).indexOf(obj['headingName']) === pos) {
+                return arr;
+            }
+            else {
+                alert("Only one filter Allowed Per column");
+            }
+
         });
     }
 
@@ -86,6 +124,8 @@ export class SmartTableFramework implements OnChanges {
     }
     delete(index, x) {
         this.filterWholeArray.splice(index, 1);
+        this.filterQueries.splice(index, 1);
+        this.onColumnFilterClick.emit(this.filterQueries);
     }
     onPageSizeChanged(newPageSize) {
         this.gridOptions.api.paginationSetPageSize(Number(newPageSize));
@@ -97,11 +137,11 @@ export class SmartTableFramework implements OnChanges {
         this.onAddClick.emit(this.isAddButtonEnable);
     }
     onCellClick(data) {
-        if( this.clickFlag==true){
+        if (this.clickFlag == true) {
             this.onDeleteClick.emit(data);
-            this.clickFlag=false;
+            this.clickFlag = false;
         }
-        else{
+        else {
             this.onRowClick.emit(data);
         }
     }
@@ -141,34 +181,54 @@ export class SmartTableFramework implements OnChanges {
         else {
             this.gridOptions.isDeleteEnable = true;
             this.settings['columnsettings'].unshift({
-                headerName:"",
+                headerName: "",
                 headerTooltip: "Actions",
                 width: 80,
                 cellRendererFramework: ActionColumns,
 
             });
         }
+        if (this.settings.hasOwnProperty('questionnaireTable')) {
+            this.settings['questionnaireTable'] = this.settings['questionnaireTable'];
+            /* this.settings['columnsettings'].unshift({
+                 headerName: "Checkbox",
+                 headerTooltip: "Checkbox",
+                 width: 80,
+                 cellRendererFramework: SendToClientQuestionnaire,
+             });*/
+            this.settings['columnsettings'].splice(1, 0, {
+                headerName: "Checkbox",
+                headerTooltip: "Checkbox",
+                width: 80,
+                cellRendererFramework: SendToClientQuestionnaire,
+            })
+        }
+
+
+
         if (this.settings.hasOwnProperty('columnFilter')) {
             this.settings['columnFilter'] = this.settings['columnFilter'];
             if (this.settings['columnFilter'] == true) {
-                this.gridOptions['headerHeight']=60;
+                this.gridOptions['headerHeight'] = 60;
                 for (var i = 0; i < this.settings['columnsettings'].length; i++) {
-                    if (i > 0 || this.settings['isDeleteEnable']==false) {
+                    if (i > 0 || this.settings['isDeleteEnable'] == false) {
                         this.settings['columnsettings'][i]['headerComponentFramework'] = CustomFilterRow;
                     }
 
                 }
             }
-            else{
-                this.gridOptions['headerHeight']=35;
+            else {
+                this.gridOptions['headerHeight'] = 35;
             }
         }
         else {
             this.settings['columnFilter'] = false;
-            this.settings['headerHeight']=35;
+            this.settings['headerHeight'] = 35;
         }
-        this.settings['columnsettings'].map(function(item){
-            item['headerTooltip']=item['headerName'];
+        this.settings['columnsettings'].map(function (item) {
+            if (item['headerName'] != '') {
+                item['headerTooltip'] = item['headerName'];
+            }
         })
         if (this.settings.hasOwnProperty('isAddButtonEnable')) {
             this.isAddButtonEnable = this.settings['isAddButtonEnable'];
@@ -177,7 +237,6 @@ export class SmartTableFramework implements OnChanges {
             this.isAddButtonEnable = true;
         }
         this.gridOptions.domLayout = 'autoHeight';
-  
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         }

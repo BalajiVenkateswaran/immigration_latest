@@ -12,6 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 import Chart from 'chart.js';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 import {ActionColumns} from './components/smarttableframework/ActionColumns';
+import {SendToClientQuestionnaire} from './components/smarttableframework/SendToClientQuestionnaire';
 //import { ChartsModule } from 'ng2-charts/components/charts/charts';
 
 
@@ -192,6 +193,11 @@ import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas"
 import { SmartTableVisasService } from "./components/smarttable-visas/smarttable-visas.service";
 import { ManageAccountUserDetailsService } from "./components/manageaccount-user-details/manageaccount-user-details.service";
 
+//immigrationview reports tab
+import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
+import {petitionsstatusreportsservice} from './components/immigrationview-petitions-statusreports/petitions-statusreports.service';
+
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -211,7 +217,7 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
 
 
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns,SendToClientQuestionnaire/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
         SmartTableImmigrationViewI797HistoryComponent,
@@ -256,6 +262,7 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
         ImmigrationViewAddressinfoComponent,
         ImmigrationViewDependentsComponent,
         ActionColumns,
+        SendToClientQuestionnaire,
         ImmigrationViewPassportInfoComponent,
         ImmigrationViewJobDetailsComponent,
         ImmigrationViewArrivalDepartureInfoComponent,
@@ -305,7 +312,10 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
 
         ImmigrationViewReportsComponent,
         ImmigrationviewPetitionNotesComponent,
-        ManageaccountUserDetailsComponent
+        ManageaccountUserDetailsComponent,
+
+        //reports
+        petitionsstatusreportscomponent
 
     ],
     providers: [
@@ -394,7 +404,10 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
         SuperuserViewAccountpreferencessService,
         AccountDetailsCommonService,
         SmartTableI797HistoryService,
-        SmartTableVisasService
+        SmartTableVisasService,
+
+        //reports
+        petitionsstatusreportsservice
 
     ],
     bootstrap: [AppComponent]

@@ -32,7 +32,8 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
     public addI797History: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-
+    public settings;
+    public data;
     public showAddi797popup: boolean;
     public getCvi797Data: boolean = true;
     public newi797item: any = {};
@@ -44,50 +45,50 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
         showClearDateBtn: false,
     };
 
-    settings = {
-        mode: 'external',
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
+    //settings = {
+    //    mode: 'external',
+    //    add: {
+    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmCreate: true
+    //    },
+    //    edit: {
+    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmSave: true
+    //    },
+    //    delete: {
+    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //        confirmDelete: true
+    //    },
+    //    columns: {
 
-            receiptNumber: {
-                title: 'Receipt Number'
-            },
-            receiptDate: {
-                title: 'Receipt Date'
-            },
-            status: {
-                title: 'Status On I-797'
-            },
-            approvedOn: {
-                title: 'Approved on'
-            },
-            validFrom: {
-                title: 'Valid From'
-            },
-            validTill: {
-                title: 'Valid Till'
-            }
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        }
-    };
+    //        receiptNumber: {
+    //            title: 'Receipt Number'
+    //        },
+    //        receiptDate: {
+    //            title: 'Receipt Date'
+    //        },
+    //        status: {
+    //            title: 'Status On I-797'
+    //        },
+    //        approvedOn: {
+    //            title: 'Approved on'
+    //        },
+    //        validFrom: {
+    //            title: 'Valid From'
+    //        },
+    //        validTill: {
+    //            title: 'Valid Till'
+    //        }
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    }
+    //};
 
     constructor(private i797HistoryService: I797HistoryService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
@@ -99,12 +100,54 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
         //    validFrom: new FormControl(''),
         //    validTill: new FormControl('')
         //});
+        this.settings = {
+            'columnsettings': [
+                {
+
+                    headerName: "Receipt Number",
+                    field: "receiptNumber",
+                },
+               
+                {
+
+                    headerName: "Receipt Date",
+                    field: "receiptDate",
+                 
+                },
+                {
+
+                    headerName: "Status On I-797",
+                    field: "status",
+                   
+                },
+                {
+                    headerName: "Approved on",
+                    field: "approvedOn",
+                    width: 100
+                },
+                {
+
+                    headerName: "Valid From",
+                    field: "validFrom",
+                    width: 100
+                },
+                {
+
+                    headerName: "Valid Till",
+                    field: "validTill",
+                    width: 100
+                },
+
+            ]
+        }
     }
     source: LocalDataSource = new LocalDataSource();
 
     geti797Data() {
         this.i797HistoryService.getI797Details(this.appService.user.userId).subscribe((res) => {
-            this.source.load(res['i797HistoryList']);
+            this.data = res['i797HistoryList'];
+
+           // this.source.load(res['i797HistoryList']);
         });
     }
     ngOnInit() {
@@ -114,7 +157,7 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
         //        this.source.load(res['i797HistoryList']);
         //    });
     }
-    addNewi797() {
+    addFunction() {
         this.dialogService.addDialog(I797HistoryComponent, {
             showAddi797popup: true,
             getCvi797Data: false,
@@ -157,25 +200,25 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
 
 
 
-    onCreateConfirm(event): void {
-        event.newData['clientId'] = this.appService.user.userId;
-        event.newData['i797HistoryId'] = this.appService.user.userId;
-        this.i797HistoryService.saveI797Details(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-                event.newData = res['i797HistoryList'];
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Add I-797 History..!'
-                });
-                event.confirm.reject();
-            }
-        });
-    }
+    //onCreateConfirm(event): void {
+    //    event.newData['clientId'] = this.appService.user.userId;
+    //    event.newData['i797HistoryId'] = this.appService.user.userId;
+    //    this.i797HistoryService.saveI797Details(event.newData).subscribe((res) => {
+    //        this.message = res['statusCode'];
+    //        if (this.message == 'SUCCESS') {
+    //            event.newData = res['i797HistoryList'];
+    //            event.confirm.resolve(event.newData);
+    //        } else {
+    //            this.dialogService.addDialog(ConfirmComponent, {
+    //                title: 'Error..!',
+    //                message: 'Unable to Add I-797 History..!'
+    //            });
+    //            event.confirm.reject();
+    //        }
+    //    });
+    //}
 
-    onEditConfirm(event): void {
+    editRecord(event): void {
         //event.newData['clientId'] = this.appService.user.userId;
         //this.i797HistoryService.saveI797Details(event.newData).subscribe((res) => {
         //    this.message = res['statusCode'];
@@ -217,7 +260,7 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
             }
         });
     }
-    onDeleteConfirm(event): void {
+    deleteRecord(event): void {
         this.delmessage=event.data.receiptNumber
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',

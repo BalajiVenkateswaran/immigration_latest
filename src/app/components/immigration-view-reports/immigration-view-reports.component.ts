@@ -69,7 +69,7 @@ export class ImmigrationViewReportsComponent implements OnInit {
    constructor(public appService: AppService) { }
 
   ngOnInit() {
-      this.appService.showSideBarMenu(null, "immigrationview-reports");
+      this.appService.showSideBarMenu("immiview-reports", "immigrationview-reports");
   }
 
 }

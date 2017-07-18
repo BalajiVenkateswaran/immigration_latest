@@ -34,59 +34,89 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
     public addDependent: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-
+    public settings;
+    public data;
     public showAddCVdependentpopup: boolean;
     public getCVDependentData: boolean = true;
     public newCVdependentitem: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
     public warningMessage: boolean = false;
-    settings = {
-        mode: 'external',
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
+    //settings = {
+    //    mode: 'external',
+    //    add: {
+    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmCreate: true
+    //    },
+    //    edit: {
+    //        editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
+    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmSave: true
+    //    },
+    //    delete: {
+    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //        confirmDelete: true
+    //    },
+    //    columns: {
 
-            firstName: {
-                title: 'First Name'
-            },
-            middleName: {
-                title: 'Middle Name'
-            },
-            lastName: {
-                title: 'Last Name'
-            },
-            relation: {
-                title: 'Relation'
-            },
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        }
-    };
+    //        firstName: {
+    //            title: 'First Name'
+    //        },
+    //        middleName: {
+    //            title: 'Middle Name'
+    //        },
+    //        lastName: {
+    //            title: 'Last Name'
+    //        },
+    //        relation: {
+    //            title: 'Relation'
+    //        },
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    }
+    //};
     constructor(private dependentService: DependentService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
+        this.settings = {
+            'columnsettings': [
+                {
+
+                    headerName: "First Name",
+                    field: "firstName",
+                },
+                {
+
+                    headerName: "Middle Name",
+                    field: "middleName",
+                 
+                },
+                {
+
+                    headerName: "Last Name",
+                    field: "lastName",
+                 
+                },
+                {
+                    headerName: "Relation",
+                    field: "relation",
+                 
+                },
+                
+
+            ]
+        }
     }
 
-    source: LocalDataSource = new LocalDataSource();
+    //source: LocalDataSource = new LocalDataSource();
     getCVDpntData() {
         this.dependentService.getDependentSummary(this.appService.user.userId).subscribe((res) => {
-            this.source.load(res['dependents']);
+            this.data = res['dependents'];
+           // this.source.load(res['dependents']);
             this.appService.dependents = res['dependents'];
         });
     }
@@ -100,7 +130,7 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
         this.getCVDpntData();
     }
 
-    addNewDependent() {
+    addFunction() {
         this.dialogService.addDialog(DependentsComponent, {
             showAddCVdependentpopup: true,
             getCVDependentData: false,
@@ -183,11 +213,11 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
     //        }
     //    });
     //}
-    onEditConfirm(event): void {
+    editRecord(event): void {
           this.appService.moveToPageWithParams('dependentDetails', event.data.dependentId); 
         this.appService.currentSBLink = event.data.firstName;
     }
-    onDeleteConfirm(event): void {
+    deleteRecord(event): void {
         this.delmessage = event.data.firstName
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',

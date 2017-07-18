@@ -34,7 +34,8 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     public getDocExpirations: boolean = true;
     public addDocExpiration: boolean;
     public addNewDocExp: any = {};
-
+    public settings;
+    public data;
     public editFlag: boolean = true;
     public beforeEdit: any;
     private myDatePickerOptions: IMyOptions = {
@@ -42,7 +43,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    settings = {
+   /* settings = {
         mode: 'external',
         add: {
             addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
@@ -81,11 +82,38 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
         }
 
     };
-
+*/
  
     constructor(private ImmigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);if (this.appService.user) {
             this.user = this.appService.user;
+        }
+        this.settings={
+            'columnsettings': [
+                {
+
+                    headerName: "Document Type",
+                    field: "documentType",
+                },
+                {
+
+                    headerName: "Valid From",
+                    field: "validFrom",
+                  
+                },
+                {
+
+                    headerName: "Valid To",
+                    field: "validTo",
+                
+                },
+                {
+                    headerName: "Status",
+                    field: "status",
+                   
+                },
+
+            ]
         }
         this.addDocumentExpairation = new FormGroup({
             documentType: new FormControl(''),
@@ -95,17 +123,18 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
         });
 
     }
-    source: LocalDataSource = new LocalDataSource();
+    //source: LocalDataSource = new LocalDataSource();
     getDocumentsExpirations() {
         this.ImmigrationviewDocumentExpirationsService.getDocumentExpiration(this.appService.clientId)
             .subscribe((res) => {
-                this.source.load(res['documentExpiration']);
+                //this.source.load(res['documentExpiration']);
+                this.data=res['documentExpiration'];
             });
     }
     ngOnInit() {
         this.getDocumentsExpirations();
     }
-    addNewDocExps() {
+    addDocuments() {
         this.dialogService.addDialog(ImmigrationviewDocumentExpirationsComponent, {
             addDocExpiration: true,
             getDocExpirations:false,
@@ -159,7 +188,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
-    onEditConfirm(event): void {
+    editDocuments(event): void {
         this.editFlag = true;
         if (this.editFlag) {
             this.beforeEdit = (<any>Object).assign({}, event.data);
@@ -186,7 +215,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
         });
     }
 
-    onDeleteConfirm(event): void {
+    deleteDocuments(event): void {
         this.delmessage = event.data.documentType;
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',

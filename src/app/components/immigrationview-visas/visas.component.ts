@@ -109,31 +109,26 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
                 {
 
                     headerName: "Petition Number",
-                    field: "petitionNumber",
-                    width:100
+                    field: "petitionNumber"
                 },
                 {
 
                     headerName: "Visa Number",
-                    field: "visaNumber",
-                    width: 100
+                    field: "visaNumber"
                 },
                 {
                     headerName: "Visa Type",
-                    field: "visaType",
-                    width: 100
+                    field: "visaType"
                 },
                 {
 
                     headerName: "Issued On",
-                    field: "issuedOn",
-                    width: 100
+                    field: "issuedOn"
                 },
                 {
 
                     headerName: "Expires On",
-                    field: "expiresOn",
-                    width: 100
+                    field: "expiresOn"
                 },
                 
             ]

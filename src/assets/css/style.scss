@@ -28,6 +28,7 @@
 }
 a.more {
     text-decoration:underline !important;
+    color:#1e6bb8 !important;
 }
 a.more:hover {
     text-decoration:none !important;
@@ -579,7 +580,7 @@ section {
         }
         .editbtn {
             float: right;
-            margin:-48px 0 0 0;
+            margin:-50px 0 0 0;
             width: 80px;
             height: 30px;
             border: solid 1px #e0e0e0;
@@ -703,12 +704,12 @@ section {
             }
         }
         .addresbox {
-            /*border: solid 1px;*/
+            border: solid 1px #44474e;
             @include border-radius(5px);
             /*border-color: rgba(255, 255, 255, 0.3);*/
-            padding: 10px 28px 16px 28px;
+            padding:0px 20px 15px;
             /*min-height: 459px;*/
-            background: #fff;
+            background:none;
             margin-bottom: 25px;
 
             .row {
@@ -864,9 +865,22 @@ section {
 
 
     .table-data-forms {
-        background:none !important;
-        padding:0px !important;
+        overflow-y:auto;
+                h2 {
+            color: #dfdfdf !important;
+            background:#44474e;
+            font-size: 18px;
+            text-transform:capitalize;
+            border-bottom: solid 1px #edeff5;
+            /*border-color: rgba(255, 255, 255, 0.2);*/
+            padding: 10px 20px;
+            font-weight: 500;
+            margin:0px -20px 15px -20px;
+            button.iportal-btn {
+                margin-top: -10px !important;
+            }
         }
+            }
     .uplodbtn {
             margin-top:-56px;
 
@@ -1406,7 +1420,7 @@ aside.left-opened.smoothness.loginScreen{display:none;}
 .tbl-head-btn {
     float: right;
 .savebtn {
-    margin:-48px 10px 0 0;
+    margin:-50px 10px 0 0;
         float: left;
 }
 .savelaterbtn {
@@ -1425,10 +1439,14 @@ confirm {
     .modal-dialog {
     margin: 15% auto 0px auto;
         .modal-content {
+
             .modal-header {
                 display:block !important;
                 .close {
                     float:right;
+                    color: #e9eaec !important;
+                    text-shadow: none !important;
+                    opacity: 10 !important;
                 }
                 .modal-title {
                     float:left;
@@ -1446,16 +1464,28 @@ confirm {
 }
 .orgnamebox {
     .modal-content {
+        background:#32353e;
+        border:solid 2px #000;
+        padding-bottom:15px;
         .modal-header {
+            .close {
+                    color: #e9eaec !important;
+                    text-shadow: none !important;
+                    opacity: 10 !important;
+                }
+
             p {
-                color: #5093e1;
-    font-size: 18px;
-    /* border-color: rgba(255, 255, 255, 0.2); */
-                 font-weight: 500;
+                color: #e9eaec;
+                font-size: 18px;
+                /* border-color: rgba(255, 255, 255, 0.2); */
+                font-weight: 500;
                 margin-bottom:0px !important;
             }
         }
         .modal-body {
+            margin:0px 15px;
+            border-radius:5px;
+            background:#fff;
             ul {
                 margin:0px;
                 padding:0px;
@@ -1463,9 +1493,8 @@ confirm {
     overflow-y: auto;
                 li {
                     list-style:none;
-                    background:#2f323a;
-                    color:#fff;
-                    font-size:18px;
+                    color:#32353e;
+                    font-size:14px;
                     font-weight:600;
                     padding:6px 15px;
                     margin:0 0 2px 0;
@@ -1473,11 +1502,25 @@ confirm {
                     cursor:pointer;
                     text-transform:capitalize;
 
-                    &:hover, &:focus {
-                        background:#f6f9fd;
-                        color:#2f323a;
-                    }
+                    
                 }
+                li:nth-child(odd) {
+                    background:#d8d8da;
+                    color:#32353e;
+                    &:hover, &:focus {
+                        background:#32353e;
+                        color:#fff;
+                    }
+                    }
+                li:nth-child(even) {
+                    background:#f6f5f5;
+                    color:#32353e;
+                    &:hover, &:focus {
+                        background:#32353e;
+                        color:#fff;
+                    }
+                    }
+
             }
         }
     }
@@ -1525,10 +1568,10 @@ confirm {
     cursor:not-allowed;
 }
 .modal-header {
-
+    border:none;
     .modal-title {
         float:left;
-        color: #5093e1;
+        color: #e9eaec;
     font-size: 18px;
     /* border-color: rgba(255, 255, 255, 0.2); */
     font-weight: 500;
@@ -1656,7 +1699,7 @@ confirm {
     cursor:pointer;
 }
 .ag-fresh .ag-row-odd:hover {
-    background: #e4e3e3 !important;
+    background: #d4e6fd !important;
 }
 .ag-fresh .ag-row-even {
     background: #f6f9fd !important;

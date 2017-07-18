@@ -1,17 +1,15 @@
 <div class="main-content">
-    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">Passport</a></li>
-    </ul>
-    <div class="clearfix"></div>
+
     <div class="table-data-forms">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+
+        <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12 col-sm-offset-3">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Passport</h2>
+                            <h2>Passport</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editForm()" *ngIf="isEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isEdit">
                                 <button type="button" (click)="cancelEdit()" class="editbtn tbl-head-btn" *ngIf="isEdit==false">Cancel</button>

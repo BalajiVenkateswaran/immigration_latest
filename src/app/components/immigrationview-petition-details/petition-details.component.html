@@ -1,16 +1,18 @@
 <div class="main-content">
-   <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
-    
-     <h1 style="float:right;">{{petitionInformation.name}}</h1>
+   
  
-    <div class="clearfix"></div>
+    
     <div class="table-data-forms">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
+
+        <h1 style="float:right;">{{petitionInformation.name}}</h1>
+        <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h2 class="no-pad-left">Petition Information</h2>
+                                <h2>Petition Information</h2>
                                 <button type="submit" class="editbtn  no-marg-right" (click)="editPetitionInfoForm()" *ngIf="isPetitionInformationEdit==true">Edit</button>
                                 <div class="tbl-head-btn" [hidden]="isPetitionInformationEdit">
                                     <button type="button" (click)="cancelPetitionInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isPetitionInformationEdit==false">Cancel</button>
@@ -189,7 +191,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="no-pad-left">Receipt Information</h2>
+                            <h2>Receipt Information</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editReceiptInfoForm()" *ngIf="isReceiptInfoEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isReceiptInfoEdit">
                                 <button type="button" (click)="cancelReceiptInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isReceiptInfoEdit==false">Cancel</button>
@@ -304,15 +306,12 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="clearfix"></div>
-        <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="no-pad-left">Additional Details</h2>
+                            <h2>Additional Details</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editAdditionalDetailsForm()" *ngIf="isAdditionalDetailsEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isAdditionalDetailsEdit">
                                 <button type="button" (click)="cancelAdditionalDetailsEdit()" class="editbtn tbl-head-btn" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
@@ -359,101 +358,12 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="col-md-12 addresbox box-shadow">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="no-pad-left">LCA Information</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editLCAInfoForm()" *ngIf="isLCAInfoEdit==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isLCAInfoEdit">
-                                <button type="button" (click)="cancelLCAInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isLCAInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveLCAInforEidt()" *ngIf="isLCAInfoEdit==false">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">LCA Number</label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isLCAInfoEdit==false" [readonly]="isEdit" [(ngModel)]="lcaInfo.lcaNumber" />
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.lcaNumber}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Approved Date</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.approvedDate" [selDate]="approvedDate"></my-date-picker>
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.approvedDate}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Valid Thru Date</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.validThruDate" [selDate]="validThruDate"></my-date-picker>
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.validThruDate}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Type</label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isLCAInfoEdit==false" [readonly]="isEdit" [(ngModel)]="lcaInfo.type" />
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.type}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">LCA Group</label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isLCAInfoEdit==false" [readonly]="isEdit" [(ngModel)]="lcaInfo.lcaGroup" />
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.lcaGroup}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Assigned Date</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.assignedDate" [selDate]="assignedDate"></my-date-picker>
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.assignedDate}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Effective On</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.effectiveOn" [selDate]="effectiveOn"></my-date-picker>
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.effectiveOn}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Effective Till</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.effectiveTill" [selDate]="effectiveTill"></my-date-picker>
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.effectiveTill}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Comments</label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isLCAInfoEdit==false" [readonly]="isEdit" [(ngModel)]="lcaInfo.comments" />
-                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.comments}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="tbl-head-btn" [hidden]="isLCAInfoEdit">
-                                <button type="button" (click)="cancelLCAInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isLCAInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveLCAInforEidt()" *ngIf="isLCAInfoEdit==false">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           
-        </div>
-        <div class="row">
-            
+            <div class="clearfix"></div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Sponsor Information On Form</h2>
+                            <h2>Sponsor Information On Form</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editSponsorInfoForm()" *ngIf="isSponsorInfoEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
                                 <button type="button" (click)="cancelSponsorInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isSponsorInfoEdit==false">Cancel</button>
@@ -589,14 +499,14 @@
                             <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.phoneNumber}}</span>
                         </div>
                     </div>
-                  <!-- Not Needed -->
+                    <!-- Not Needed -->
                     <!--<div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Telephone #2</label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isSponsorInfoEdit==false" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.phoneNumber2" />
-                            <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.phoneNumber2}}</span>
-                        </div>
-                    </div>-->
+                <div class="col-md-4"><label for="pi-petitiondescription">Telephone #2</label></div>
+                <div class="col-md-8">
+                    <input type="text" *ngIf="isSponsorInfoEdit==false" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.phoneNumber2" />
+                    <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.phoneNumber2}}</span>
+                </div>
+            </div>-->
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
@@ -607,12 +517,97 @@
                     </div>
                 </div>
             </div>
-
-                <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="no-pad-left">Delegated Orgs</h2>
+                            <h2>LCA Information</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editLCAInfoForm()" *ngIf="isLCAInfoEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isLCAInfoEdit">
+                                <button type="button" (click)="cancelLCAInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isLCAInfoEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveLCAInforEidt()" *ngIf="isLCAInfoEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">LCA Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isLCAInfoEdit==false" [readonly]="isEdit" [(ngModel)]="lcaInfo.lcaNumber" />
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.lcaNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Approved Date</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.approvedDate" [selDate]="approvedDate"></my-date-picker>
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.approvedDate}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Valid Thru Date</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.validThruDate" [selDate]="validThruDate"></my-date-picker>
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.validThruDate}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Type</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isLCAInfoEdit==false" [readonly]="isEdit" [(ngModel)]="lcaInfo.type" />
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.type}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">LCA Group</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isLCAInfoEdit==false" [readonly]="isEdit" [(ngModel)]="lcaInfo.lcaGroup" />
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.lcaGroup}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Assigned Date</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.assignedDate" [selDate]="assignedDate"></my-date-picker>
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.assignedDate}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Effective On</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.effectiveOn" [selDate]="effectiveOn"></my-date-picker>
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.effectiveOn}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Effective Till</label></div>
+                        <div class="col-md-8">
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="lcaInfo.effectiveTill" [selDate]="effectiveTill"></my-date-picker>
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.effectiveTill}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="pi-petitiondescription">Comments</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isLCAInfoEdit==false" [readonly]="isEdit" [(ngModel)]="lcaInfo.comments" />
+                            <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.comments}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tbl-head-btn" [hidden]="isLCAInfoEdit">
+                                <button type="button" (click)="cancelLCAInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isLCAInfoEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveLCAInforEidt()" *ngIf="isLCAInfoEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Delegated Orgs</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editdelOrgs()" *ngIf="isDelegatedOrgsEdit==true">Edit</button>
                             <div class="tbl-head-btn">
                                 <button type="button" (click)="canceldelOrgs()" class="editbtn tbl-head-btn" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>
@@ -629,6 +624,8 @@
                     </div>
                 </div>
             </div>
+
+                
         </div>
     </div>
 

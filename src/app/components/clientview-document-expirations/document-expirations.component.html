@@ -5,8 +5,10 @@
         </ul>
         <div class="clearfix"></div>
         <div class="table-data">
-            <h2><span>Document Expirations</span><button type="button" class="iportal-btn pull-right no-marg-right" (click)="addClientExps()">ADD</button></h2>
-                <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (create)="onCreateConfirm($event)"></ng2-smart-table>
+            <h2><span>Document Expirations</span></h2>
+            <smart-table [settings]="settings" [data]="data"
+                         (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table> 
+            <!--   <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (create)="onCreateConfirm($event)"></ng2-smart-table>-->
                 <div class="clearfix"></div>
 </div>
     </div>

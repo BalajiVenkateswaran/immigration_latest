@@ -114,7 +114,18 @@ export class OrganizationComponent implements OnInit {
                             title: 'Error..!',
                             message: 'Organization has Active Clients Associated..'
                         });
-                        this.orgDetails['markForDeletion'] = false;
+                       // this.orgDetails['markForDeletion'] = false;
+
+                        this.organizationService.getOrganizationDetails(this.appService.orgId)
+                            .subscribe((res) => {
+                                if (res['organizationDetails']) {
+                                    this.orgDetails = res['organizationDetails'];
+                                    if (this.orgDetails['markForDeletion'] == true) {
+                                        this.orgDetails['status'] = "Mark for Deletion";
+                                    }
+                                    console.log(this.orgDetails);
+                                }
+                            });
                     }
                 });
         }
