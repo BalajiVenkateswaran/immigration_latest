@@ -6,7 +6,7 @@
     <h2>Petitions</h2>
       <!--    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event)"></ng2-smart-table>-->
        <smart-table [settings]="settings" [data]="data"
-                     (onRowClick)="moveTo($event)"></smart-table>
+                     (onRowClick)="moveTo($event)" (onColumnFilterClick)="filterData($event)" ></smart-table>
           <div class="clearfix"></div>
 </div>
 </div>

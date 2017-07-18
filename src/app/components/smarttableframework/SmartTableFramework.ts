@@ -43,7 +43,7 @@ export class SmartTableFramework implements OnChanges {
     public filterKeys = [];
     public filterWholeArray = new Array();
     public isAddButtonEnable: boolean;
-    public fillData;
+    public filterQueries=[];
     public static sendCustomFilterValue = new Subject<boolean>();
     constructor() {
         console.log('constructor %o', this.settings);
@@ -70,7 +70,10 @@ export class SmartTableFramework implements OnChanges {
                     }
                 }
                 that.filterWholeArray = this.removeDuplicates(this.filterWholeArray);
-                this.onColumnFilterClick.emit(that.filterWholeArray);
+                this.filterQueries=this.filterWholeArray.map(function(item){
+                    return item.headingName+":"+item.filterValue;
+                })
+                this.onColumnFilterClick.emit(that.filterQueries);
             }
 
 
@@ -103,8 +106,9 @@ export class SmartTableFramework implements OnChanges {
         }
     }
     delete(index, x) {
-        this.filterWholeArray.splice(index, 1);
-        this.onColumnFilterClick.emit(this.filterWholeArray);
+        this.filterWholeArray.splice(index,1);
+        this.filterQueries.splice(index, 1);
+        this.onColumnFilterClick.emit(this.filterQueries);
     }
     onPageSizeChanged(newPageSize) {
         this.gridOptions.api.paginationSetPageSize(Number(newPageSize));
