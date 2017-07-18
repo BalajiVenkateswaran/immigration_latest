@@ -1,17 +1,18 @@
 <div class="main-content">
-    <h1>{{userList.firstName}} {{userList.lastName}}</h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">Visas</a></li>
-    </ul>
-    <div class="clearfix"></div>
+
     <div class="table-data-forms">
+        <h1>{{userList.firstName}} {{userList.lastName}}</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">Visas</a></li>
+        </ul>
+        <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Profile</h2>
+                            <h2>Profile</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isUserEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isUserEdit">
                                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
@@ -71,7 +72,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Orgs Accessible:</h2>
+                            <h2>Orgs Accessible:</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editOrgsAccess()" *ngIf="isAccessEdit==true">Edit</button>
                             <div class="tbl-head-btn">
                                 <button type="button" (click)="cancelOrgsAccess()" class="editbtn tbl-head-btn" *ngIf="isAccess==true">Cancel</button>
