@@ -132,6 +132,12 @@ export class PetitionsComponent implements OnInit {
 
 
   }
+  filterData(filterQueries){
+        this.petitionService.getPetitionsFilteredData(this.appService.orgId,filterQueries).subscribe(res=>{
+            this.data=res['petitions'];
+        })
+    }
+
 
   ngDoCheck(){
     //console.log("Petitions|ngDoCheck|orgId:%o",this.appService.orgId);
