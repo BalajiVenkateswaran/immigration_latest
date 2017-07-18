@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
+import { SendToClientQuestionnaire } from './SendToClientQuestionnaire';
 @Component({
     selector: 'smart-table',
     templateUrl: './SmartTableFramework.html',
@@ -29,22 +30,26 @@ export class SmartTableFramework implements OnChanges {
     @Output() onAddClick = new EventEmitter();
     @Output() onRowClick = new EventEmitter();
     @Output() onDeleteClick = new EventEmitter();
-    @Output() onColumnFilterClick=new EventEmitter();
+    @Output() onColumnFilterClick = new EventEmitter();
+    @Output() onItemChecked = new EventEmitter();
     public gridOptions;
     public paginationTemplate: boolean;
     public rowClickDone: boolean = false;
     public editableData: any;
     public clickFlag: boolean = false;
+    public checkFlag: boolean = false;
     public filterSubscription;
     public deleteSubscription;
     public deleteData;
+    public checkedData;
     public filterValues: any;
     public filteredData;
     public filterKeys = [];
     public filterWholeArray = new Array();
     public isAddButtonEnable: boolean;
-    public filterQueries=[];
+    public filterQueries = [];
     public static sendCustomFilterValue = new Subject<boolean>();
+    public checkSubscription;
     constructor() {
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
@@ -70,22 +75,34 @@ export class SmartTableFramework implements OnChanges {
                     }
                 }
                 that.filterWholeArray = this.removeDuplicates(this.filterWholeArray);
-                this.filterQueries=this.filterWholeArray.map(function(item){
-                    return item.headingName+":"+item.filterValue;
+                this.filterQueries = this.filterWholeArray.map(function (item) {
+                    return item.headingName + ":" + item.filterValue;
                 })
                 this.onColumnFilterClick.emit(that.filterQueries);
             }
 
 
         });
+        this.checkSubscription = SendToClientQuestionnaire.sendToClient.subscribe(res => {
+            var formNameBasedCheck = true;
+            if (res['data'] !=undefined) {
+                if (res['data']['formName'] == 'I-129 H') {
+                    formNameBasedCheck = false;
+                } else if (res['data']['formName'] == "I-129 DC") {
+                    formNameBasedCheck = false;
+                }
+                return formNameBasedCheck;
+            }
+            this.checkSubscription.unsubscribe();
+        })
 
     }
     removeDuplicates(data) {
         return data.filter((obj, pos, arr) => {
-            if(arr.map(mapObj => mapObj['headingName']).indexOf(obj['headingName']) === pos){
+            if (arr.map(mapObj => mapObj['headingName']).indexOf(obj['headingName']) === pos) {
                 return arr;
             }
-            else{
+            else {
                 alert("Only one filter Allowed Per column");
             }
 
@@ -106,7 +123,7 @@ export class SmartTableFramework implements OnChanges {
         }
     }
     delete(index, x) {
-        this.filterWholeArray.splice(index,1);
+        this.filterWholeArray.splice(index, 1);
         this.filterQueries.splice(index, 1);
         this.onColumnFilterClick.emit(this.filterQueries);
     }
@@ -171,6 +188,24 @@ export class SmartTableFramework implements OnChanges {
 
             });
         }
+        if (this.settings.hasOwnProperty('questionnaireTable')) {
+            this.settings['questionnaireTable'] = this.settings['questionnaireTable'];
+            /* this.settings['columnsettings'].unshift({
+                 headerName: "Checkbox",
+                 headerTooltip: "Checkbox",
+                 width: 80,
+                 cellRendererFramework: SendToClientQuestionnaire,
+             });*/
+            this.settings['columnsettings'].splice(1, 0, {
+                headerName: "Checkbox",
+                headerTooltip: "Checkbox",
+                width: 80,
+                cellRendererFramework: SendToClientQuestionnaire,
+            })
+        }
+
+
+
         if (this.settings.hasOwnProperty('columnFilter')) {
             this.settings['columnFilter'] = this.settings['columnFilter'];
             if (this.settings['columnFilter'] == true) {
@@ -191,9 +226,9 @@ export class SmartTableFramework implements OnChanges {
             this.settings['headerHeight'] = 35;
         }
         this.settings['columnsettings'].map(function (item) {
-            if(item['headerName']!=''){
+            if (item['headerName'] != '') {
                 item['headerTooltip'] = item['headerName'];
-            }  
+            }
         })
         if (this.settings.hasOwnProperty('isAddButtonEnable')) {
             this.isAddButtonEnable = this.settings['isAddButtonEnable'];

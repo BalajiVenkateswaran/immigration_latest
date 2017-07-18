@@ -10,7 +10,7 @@ export class QuestionnaireService {
         return this.restService.getData("/questionnaire/forms/petitionType/" + petitionId);
     }
     public getQuestionnaires(petitionId: string) {
-        return this.restService.getData("/questionnaires/petition/" + petitionId + "?page=1&size=100");
+        return this.restService.getData("/questionnaires/petition/" + petitionId + "?page=1&size=10");
     }
     public saveNewQuestionnaireClient(questionnaireData: any) {
         var req = {

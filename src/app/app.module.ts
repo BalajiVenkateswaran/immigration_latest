@@ -12,6 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 import Chart from 'chart.js';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 import {ActionColumns} from './components/smarttableframework/ActionColumns';
+import {SendToClientQuestionnaire} from './components/smarttableframework/SendToClientQuestionnaire';
 //import { ChartsModule } from 'ng2-charts/components/charts/charts';
 
 
@@ -211,7 +212,7 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
 
 
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns,SendToClientQuestionnaire/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
         SmartTableImmigrationViewI797HistoryComponent,
@@ -256,6 +257,7 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
         ImmigrationViewAddressinfoComponent,
         ImmigrationViewDependentsComponent,
         ActionColumns,
+        SendToClientQuestionnaire,
         ImmigrationViewPassportInfoComponent,
         ImmigrationViewJobDetailsComponent,
         ImmigrationViewArrivalDepartureInfoComponent,
