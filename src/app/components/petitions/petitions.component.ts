@@ -33,7 +33,7 @@ export class PetitionsComponent implements OnInit {
     private users;
     public settings;
     public data;
-    
+
     //source: LocalDataSource = new LocalDataSource();
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService, private menuComponent: MenuComponent) {
@@ -60,17 +60,14 @@ export class PetitionsComponent implements OnInit {
             "isDeleteEnable":false,
             'columnsettings': [
                 {
-
                     headerName: "Name",
                     field: "petitionName",
                 },
                 {
-
                     headerName: "File No.",
                     field: "petitionNumber",
                 },
                 {
-
                     headerName: "First Name",
                     field: "firstName",
                 },
@@ -79,29 +76,25 @@ export class PetitionsComponent implements OnInit {
                     field: "lastName",
                 },
                 {
-
                     headerName: "Type",
                     field: "petitionType",
                 },
                 {
-
                     headerName: "Last Updated",
                     field: "lastUpdate",
                 },
                 {
-
                     headerName: "Status",
                     field: "status",
                 },
                 {
-
                     headerName: "Assigned To",
                     field: "assignedToName"
                 },
                 {
-
                     headerName: "# Days",
-                    field: "daysInStage"
+                    field: "daysInStage",
+                    headerTooltip: "Number of days in current stage"
                 },
                 {
 

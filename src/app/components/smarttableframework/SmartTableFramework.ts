@@ -226,7 +226,7 @@ export class SmartTableFramework implements OnChanges {
             this.settings['headerHeight'] = 35;
         }
         this.settings['columnsettings'].map(function (item) {
-            if (item['headerName'] != '') {
+            if (item['headerTooltip'] == null && item['headerName'] != '') {
                 item['headerTooltip'] = item['headerName'];
             }
         })
