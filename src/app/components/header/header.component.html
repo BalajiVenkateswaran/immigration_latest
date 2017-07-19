@@ -57,14 +57,14 @@
                             <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li><a (click)="appService.moveToPage('clients'); highlightTab('clients');" [ngClass]="[checkForCurrentTab('clients') ? 'active': '']" routerLinkActive="active">
+                    <li style="margin-right: 37px;"><a (click)="appService.moveToPage('clients'); highlightTab('clients');" [ngClass]="[checkForCurrentTab('clients') ? 'active': '']" routerLinkActive="active">
                             <span class="maintab-Clients"></span>
                             <div class="clearfix"></div>
                         Clients
                             <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']" routerLinkActive="active">
+                    <li style="margin-right: 10px;"><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']" routerLinkActive="active">
                             <span class="maintab-Organization"></span>
                             <div class="clearfix"></div>
                         Organization
@@ -72,7 +72,7 @@
                         </a>
                     </li>
                     <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
-                    <li *ngIf="immigrationManager=='Immigration Manager'"><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']" routerLinkActive="active">
+                    <li style="margin-right: 22px;" *ngIf="immigrationManager=='Immigration Manager'"><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']" routerLinkActive="active">
                         <span class="maintab-Manageaccount"></span>
                          <div class="clearfix"></div>
                         Manage Account
