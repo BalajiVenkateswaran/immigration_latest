@@ -1,17 +1,18 @@
 <div class="main-content">
-    <h1>{{clientDetails.firstName}} {{clientDetails.lastName}}</h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">Visas</a></li>
-    </ul>
-    <div class="clearfix"></div>
+
     <div class="table-data-forms">
+        <h1>{{clientDetails.firstName}} {{clientDetails.lastName}}</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">Visas</a></li>
+        </ul>
+        <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Profile</h2>
+                            <h2>Profile</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
                                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel</button>
@@ -64,7 +65,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Personal Info</h2>
+                            <h2>Personal Info</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editPersonalInfoForm()" *ngIf="isPersonalInfoEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
                                 <button type="button" (click)="cancelPersonalInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isPersonalInfoEdit==false">Cancel</button>

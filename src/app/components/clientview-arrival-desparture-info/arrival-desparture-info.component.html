@@ -1,7 +1,8 @@
 <div class="main-content" *ngIf="getArvdInfoData">
-    <h1>{{appService.firstName}} {{appService.lastName}}</h1>
-    <div class="clearfix"></div>
+
     <div class="table-data">
+        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+        <div class="clearfix"></div>
         <h2>Arrival Departure Info</h2>
         <smart-table [settings]="settings" [data]="data"
                      (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>

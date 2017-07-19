@@ -92,33 +92,36 @@
 
                 </ul>
                 <ul *ngIf="applicationViewMode=='Client'">
-                    <li><a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');" [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']" routerLinkActive="active">
+                    <li style="margin-right: 30px;"><a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');" [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']" routerLinkActive="active">
                             <span class="maintab-Petitions"></span>
                             <div class="clearfix"></div>
                             Petitions
                             <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li><a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');" [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']" routerLinkActive="active">
+                    <li style="margin-right:20px;"><a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');" [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']" routerLinkActive="active">
                             <span class="maintab-Clients"></span>
                             <div class="clearfix"></div>
                             Client Details
                             <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li><a (click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');" [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']" routerLinkActive="active">
+                    <li style="margin-right:15px;">
+                        <a (click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');" [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']" routerLinkActive="active">
                             <span class="maintab-Organization"></span>
                             <div class="clearfix"></div>
                             Documents
                             <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li><a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');" [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']" routerLinkActive="active">
+                    <li style="margin-right:20px;">
+                        <a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');" [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']" routerLinkActive="active">
                             <span class="maintab-Manageaccount"></span>
                             <div class="clearfix"></div>
                             Questionnaires
                             <div class="arrow-up"></div>
-                        </a></li>
+                        </a>
+                    </li>
                     <li><a (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');" [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']" routerLinkActive="active">
                             <span class="maintab-Reports"></span>
                             <div class="clearfix"></div>

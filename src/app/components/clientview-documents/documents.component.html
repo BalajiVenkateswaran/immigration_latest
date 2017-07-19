@@ -1,10 +1,11 @@
 <div class="main-content">
-    <h1>{{appService.firstName}} {{appService.lastName}}</h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Documents</a></li>
-    </ul>
-    <div class="clearfix"></div>
+    
     <div class="table-data">
+        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Documents</a></li>
+        </ul>
+        <div class="clearfix"></div>
         <h2>Documents</h2>
         <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
             <div class="pull-right uplodbtn">
