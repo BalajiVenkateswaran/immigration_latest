@@ -22,6 +22,7 @@ export class ManageaccountUserDetailsComponent implements OnInit {
   public userid: string;
   public orgsList: any = [];
   public orgsAcces: boolean = true;
+  public userProfOrgsList: any=[];
   constructor( private appService: AppService,
       private route: ActivatedRoute, public manageAccountUserDetailsService: ManageAccountUserDetailsService) {
            if (this.appService.user) {
@@ -33,9 +34,11 @@ export class ManageaccountUserDetailsComponent implements OnInit {
       this.route.params.subscribe((res) => {
           this.userid = res['userId'];
           this.manageAccountUserDetailsService.getUserDet(this.userid, this.user.accountId).subscribe((res) => {
+              this.userProfOrgsList = res['userOrgsDetail'];
               this.userList = res['userOrgsDetail']['userProfileInfo'];
-              this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName'];
-        this.userList['roleId'] = res['userOrgsDetail']['userRoleInfo']['roleId'];
+              this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName']; 
+              this.userList['roleId'] = res['userOrgsDetail']['userRoleInfo']['roleId'];    
+              this.userList['accountId'] = this.user.accountId;   
               this.orgsList = res['userOrgsDetail']['organizationsInfo'];
               if (this.userList.role == "Immigration Officer") {
                   this.isAccessEdit = true;
@@ -72,30 +75,33 @@ export class ManageaccountUserDetailsComponent implements OnInit {
       this.orgsAcces = true;
 
   }
+  saveUserProfOrgs() {
+      this.manageAccountUserDetailsService.updateUser(this.userProfOrgsList).subscribe((res) => {
+          if (res['statusCode'] == "SUCCESS") {
+              this.getuserdetails();
+          }
+
+      });
+  }
   saveUserProfile() {
       if (this.userList['firstName'] == '' || this.userList['firstName'] == null || this.userList['firstName'] == undefined
           || this.userList['lastName'] == '' || this.userList['lastName'] == null || this.userList['lastName'] == undefined
           || this.userList['role'] == '' || this.userList['role'] == null || this.userList['role'] == undefined
           || this.userList['emailId'] == '' || this.userList['emailId'] == null || this.userList['emailId'] == undefined) {
           this.warningMessage = true;
-
       }
       else {
           this.warningMessage = false;
           this.isUserEdit = true;
-         this.userList['accountId'] = this.user.accountId;
-          this.manageAccountUserDetailsService.updateUser(this.userList).subscribe((res) => {
-            //  if (res['statusCode'] == "SUCCESS") {
-                  this.getuserdetails();
-             // }
-
-          });
+          this.userProfOrgsList['userProfileInfo'] = this.userList;
+          this.saveUserProfOrgs();
       }
   }
   saveOrgsAccess() {
       this.isAccessEdit = true;
       this.isAccess = false;
-      var asdf = this.orgsList;
       this.orgsAcces = true;
+      this.userProfOrgsList['organizationsInfo'] = this.orgsList;
+      this.saveUserProfOrgs();
   }
 }
