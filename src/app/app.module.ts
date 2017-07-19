@@ -12,7 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 import Chart from 'chart.js';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 import {ActionColumns} from './components/smarttableframework/ActionColumns';
-import {SendToClientQuestionnaire} from './components/smarttableframework/SendToClientQuestionnaire';
+import {SendToClientQuestionnaire} from './components/immigrationview-questionnaire/SendToClientQuestionnaire';
 //import { ChartsModule } from 'ng2-charts/components/charts/charts';
 
 
@@ -196,7 +196,9 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
 //immigrationview reports tab
 import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
 import {petitionsstatusreportsservice} from './components/immigrationview-petitions-statusreports/petitions-statusreports.service';
-
+import {ActionIcons} from './components/immigrationview-client-document-repository/ActionsIcons'
+import { GenerateFormButton } from "./components/immigrationview-forms/GenerateFormButton";
+import { DownloadButton } from "./components/immigrationview-forms/DownloadButton";
 
 @NgModule({
     imports: [
@@ -217,11 +219,11 @@ import {petitionsstatusreportsservice} from './components/immigrationview-petiti
 
 
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns,SendToClientQuestionnaire/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns,SendToClientQuestionnaire,ActionIcons,GenerateFormButton,DownloadButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
         SmartTableImmigrationViewI797HistoryComponent,
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, /*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent,ActionIcons,GenerateFormButton,DownloadButton, /*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,

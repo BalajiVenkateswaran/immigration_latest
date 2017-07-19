@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {ClientDocumentRepositoryService} from "./client-document-repository.service";
-import {documentRepository} from "../../models/documentRepository";
-import {FormGroup, FormControl} from "@angular/forms";
-import {Http, Headers, RequestOptions, Response} from "@angular/http";
+import { ClientDocumentRepositoryService } from "./client-document-repository.service";
+import { documentRepository } from "../../models/documentRepository";
+import { FormGroup, FormControl } from "@angular/forms";
+import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
-import {User} from "../../models/user";
-import {AppService} from "../../services/app.service";
+import { User } from "../../models/user";
+import { AppService } from "../../services/app.service";
 import * as FileSaver from 'file-saver';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService } from "ng2-bootstrap-modal";
+import { ActionIcons } from './ActionsIcons';
 @Component({
     selector: 'app-document-repository',
-  templateUrl: './document-repository.component.html',
-  styleUrls: ['./document-repository.component.sass']
+    templateUrl: './document-repository.component.html',
+    styleUrls: ['./document-repository.component.sass']
 })
 export class ClientDocumentRepositoryComponent implements OnInit {
     public addDocumentRepository: FormGroup; // our model driven form
@@ -22,16 +23,58 @@ export class ClientDocumentRepositoryComponent implements OnInit {
     private message: string;
     private user: User;
     private accountId;
+    public settings;
+    public fileListData;
+    public downloadSubscription;
+    public deleteSubscription;
+    public data;
+    public getFiles;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, private dialogService: DialogService) {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
+        this.downloadSubscription = ActionIcons.onDownloadClick.subscribe(res => {
+            this.onDownloadFile(res);
+        })
+        this.deleteSubscription = ActionIcons.onDeleteClick.subscribe(res => {
+            this.onFileDelete(res);
+        })
         this.addDocumentRepository = new FormGroup({
             orderNo: new FormControl(''),
             fileName: new FormControl(''),
             updatedDate: new FormControl('')
         });
         this.accountId = this.user.accountId;
+        this.settings = {
+            'pagination': false,
+            'isDeleteEnable': false,
+            'isAddButtonEnable': false,
+            'columnsettings': [
+                {
+                    headerName: "Actions",
+                    cellRendererFramework: ActionIcons,
+                    width: 200
+
+                },
+                {
+                    headerName: "SL No",
+                    field: "orderNo",
+                    width: 70
+                },
+                {
+
+                    headerName: "File Name",
+                    field: "fileName",
+                },
+                {
+
+                    headerName: "Updated Date",
+                    field: "updatedDate",
+                    width: 100
+                }
+            ]
+        }
+
     }
     private deleterow;
     private FileId;
@@ -39,13 +82,16 @@ export class ClientDocumentRepositoryComponent implements OnInit {
         console.log("filesDelete%o", FileDetails);
         var index = this.files.indexOf(FileDetails);
         this.FileId = FileDetails.fileId;
-        this.files.splice(index, 1);
+        //this.files.splice(index, 1);
         this.clientdocumentrepositoryService.deleteFile(FileDetails.fileId).subscribe(res => {
-          console.log("FileDelete %o",res);
+            if (res['statusCode'] == 'SUCCESS') {
+                //this.data=this.getFilesList;
+                this.getFilesList();
+            }
         });
     }
 
-    private rowEdit: boolean[]=[];
+    private rowEdit: boolean[] = [];
     private onloadisEdit: boolean[] = [];
     onFileRename(i, fileDetails) {
         fileDetails.fileName = fileDetails.fileName.split(".")[0];
@@ -133,7 +179,7 @@ export class ClientDocumentRepositoryComponent implements OnInit {
         }
     }
     onReplaceFile(fileDetails) {
-        console.log(fileDetails+"replce")
+        console.log(fileDetails + "replce")
         this.FileId = fileDetails.fileId;
         console.log(event);
 
@@ -160,7 +206,7 @@ export class ClientDocumentRepositoryComponent implements OnInit {
             let headers = new Headers();
             headers.append("Content-Type", "multipart/ form - data");
             let options = new RequestOptions({ headers: headers });
-            this.clientdocumentrepositoryService.replaceFile(this.FileId,formData, headers)
+            this.clientdocumentrepositoryService.replaceFile(this.FileId, formData, headers)
                 .subscribe(
                 res => {
 
@@ -186,12 +232,13 @@ export class ClientDocumentRepositoryComponent implements OnInit {
 
     }
     onDownloadFile(fileDetails) {
+        console.log(fileDetails);
         this.FileId = fileDetails.fileId;
         this.fileName = fileDetails.fileName;
         this.clientdocumentrepositoryService.downloadFile(this.FileId).subscribe
             (data => this.downloadFiles(data, this.fileName)),
             error => console.log("Error Downloading....");
-            () => console.log("OK");
+        () => console.log("OK");
 
     }
 
@@ -205,27 +252,33 @@ export class ClientDocumentRepositoryComponent implements OnInit {
     private updatedDate;
     private SlNoCount;
     addrow() {
-        var SlNoCount=this.files.length;
-        this.files.push({orderNo: this.orderNo = SlNoCount, fileName: this.fileName, updatedDate: this.updatedDate = new Date() });
+        var SlNoCount = this.files.length;
+        this.files.push({ orderNo: this.orderNo = SlNoCount, fileName: this.fileName, updatedDate: this.updatedDate = new Date() });
 
     }
-    files=[];
+    files = [];
     ngOnInit() {
         this.getFilesList();
+        //this.data=this.getFilesList();
 
     }
-    getFilesList = function () {
-        return this.clientdocumentrepositoryService.getFile(this.appService.clientId)
-                .subscribe((res) => {
+    getFilesList() {
+        this.clientdocumentrepositoryService.getFile(this.appService.clientId)
+            .subscribe((res) => {
+                if (res != undefined) {
                     console.log("filesGetmethod%o", res);
-                    this.files = res['files'];
+                    //this.files = res['files'];
+                    this.getFiles = res['files'];
+                    //this.getFilesList=res['files'];
                     for (var i in this.files) {
                         this.rowEdit[i] = true;
                         this.onloadisEdit[i] = false;
                     }
+                }
 
-                });
-     }
+
+            });
+    }
 
     downloadFiles(data: any, fileName) {
         var blob = new Blob([data], {
@@ -235,12 +288,14 @@ export class ClientDocumentRepositoryComponent implements OnInit {
     }
 
 
-  addDocumentRepositorySubmit(model: documentRepository, isValid: boolean) {
-      if (isValid) {
-          this.clientdocumentrepositoryService.saveNewDocumentRepository(model).subscribe((status) => { this.message = status[0] });
-      } else {
-          this.message = "Filled Details are not correct! please correct...";
-      }
+    addDocumentRepositorySubmit(model: documentRepository, isValid: boolean) {
+        if (isValid) {
+            this.clientdocumentrepositoryService.saveNewDocumentRepository(model).subscribe((status) => { this.message = status[0] });
+        } else {
+            this.message = "Filled Details are not correct! please correct...";
+        }
 
-  }
+    }
+
+
 }

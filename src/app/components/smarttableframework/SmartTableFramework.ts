@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
-import { SendToClientQuestionnaire } from './SendToClientQuestionnaire';
 @Component({
     selector: 'smart-table',
     templateUrl: './SmartTableFramework.html',
@@ -83,18 +82,7 @@ export class SmartTableFramework implements OnChanges {
 
 
         });
-        this.checkSubscription = SendToClientQuestionnaire.sendToClient.subscribe(res => {
-            var formNameBasedCheck = true;
-            if (res['data'] !=undefined) {
-                if (res['data']['formName'] == 'I-129 H') {
-                    formNameBasedCheck = false;
-                } else if (res['data']['formName'] == "I-129 DC") {
-                    formNameBasedCheck = false;
-                }
-                return formNameBasedCheck;
-            }
-            this.checkSubscription.unsubscribe();
-        })
+       
 
     }
     removeDuplicates(data) {
@@ -188,22 +176,22 @@ export class SmartTableFramework implements OnChanges {
 
             });
         }
-        if (this.settings.hasOwnProperty('questionnaireTable')) {
+       /* if (this.settings.hasOwnProperty('questionnaireTable')) {
             this.settings['questionnaireTable'] = this.settings['questionnaireTable'];
-            /* this.settings['columnsettings'].unshift({
+             this.settings['columnsettings'].unshift({
                  headerName: "Checkbox",
                  headerTooltip: "Checkbox",
                  width: 80,
                  cellRendererFramework: SendToClientQuestionnaire,
-             });*/
-            this.settings['columnsettings'].splice(1, 0, {
+             });
+           this.settings['columnsettings'].splice(1, 0, {
                 headerName: "Checkbox",
                 headerTooltip: "Checkbox",
                 width: 80,
                 cellRendererFramework: SendToClientQuestionnaire,
             })
         }
-
+*/
 
 
         if (this.settings.hasOwnProperty('columnFilter')) {
