@@ -23,50 +23,110 @@ export class ManageAccountPreferencesComponent implements OnInit {
     public products:any=[];
     public discounts:any=[];
     public DefaultResponse = { "status": "Active" };
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        actions: {
-            delete: false
-        },
-        columns: {
-            firstName: {
-                title: 'First Name'
-            },
-            lastName: {
-                title: 'Last Name'
-            },
-            email: {
-                title: 'Email'
-            },
-            phone: {
-                title: 'Phone'
-            },
-            status: {
-                title: 'Status',
-            }
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        }
-    };
-    //source: LocalDataSource = new LocalDataSource();
+    public settings;
+    public data;   
+    public settings1;
+    public data1;   
     private user: User;
     constructor(private appService: AppService,private manageAccountpreferencessService:ManageAccountpreferencessService) {
         if (this.appService.user) {
             this.user = this.appService.user;
+        }
+        this.settings= {
+            "isAddButtonEnable": false,
+            "isDeleteEnable": false,
+            'columnsettings': [
+                {
 
+                    headerName: "Name",
+                    field: "name",
+                },
+                {
+
+                    headerName: "Code",
+                    field: "code",
+                },
+                {
+
+                    headerName: "Description",
+                    field: "description"
+                },
+                {
+                    headerName: "Start Date",
+                    field: "startDate"
+                },
+                {
+
+                    headerName: "End Date",
+                    field: "endDate"
+                },
+                {
+
+                    headerName: "Max Users",
+                    field: "maxUsers"
+                },
+                {
+
+                    headerName: "Max Clients/Month",
+                    field: "maxClientsPerMonth"
+                },
+                {
+                    headerName: "Max Petitions/Month",
+                    field: "maxPetitionsPerMonth"
+                },
+                {
+
+                    headerName: "Max S3 Storage",
+                    field: "maxS3Storage"
+                },
+                {
+
+                    headerName: "Cost",
+                    field: "cost"
+                },
+
+            ]
+        }
+        this.settings1 = {
+            "isAddButtonEnable": false,
+            "isDeleteEnable": false,
+            'columnsettings': [
+                {
+
+                    headerName: "Name",
+                    field: "discountName",
+                },
+                {
+
+                    headerName: "Code",
+                    field: "discountCode",
+                },
+                {
+
+                    headerName: "Description",
+                    field: "description"
+                },
+                {
+                    headerName: "Start Date",
+                    field: "startDate"
+                },
+                {
+
+                    headerName: "End Date",
+                    field: "endDate"
+                },
+                {
+
+                    headerName: "Cost",
+                    field: "cost"
+                },
+                {
+
+                    headerName: "Percentage",
+                    field: "percentage"
+                }
+
+            ]
         }
     }
 
@@ -77,14 +137,14 @@ export class ManageAccountPreferencesComponent implements OnInit {
     getproducts() {
         this.manageAccountpreferencessService.getproductsAccount(this.appService.user.accountId).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
-                this.products = res['products'];
+                this.data = res['products'];
             }
         });
     }
     getdiscounts() {
         this.manageAccountpreferencessService.getdiscountsAccount(this.appService.user.accountId).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
-                this.discounts = res['discounts'];
+                this.data1 = res['discounts'];
 
             }
         });

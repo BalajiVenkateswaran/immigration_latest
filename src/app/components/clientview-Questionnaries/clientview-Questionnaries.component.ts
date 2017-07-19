@@ -22,6 +22,8 @@ export class clientviewQuestionnaireComponent implements OnInit {
         menu: 'menu',
         footer: null
     };
+    public settings;
+    public data;
     public addclientviewQuestionnaire: FormGroup;
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
@@ -38,6 +40,39 @@ export class clientviewQuestionnaireComponent implements OnInit {
             StatusDate: new FormControl(''),
             View: new FormControl('')
         });
+        this.settings = {
+            "isAddButtonEnable": false,
+            "isDeleteEnable": false,
+            'columnsettings': [
+                {
+
+                    headerName: "Form Name",
+                    field: "formName",
+                },
+                {
+
+                    headerName: "Questionnaire Name",
+                    field: "questionnaireName",
+                },
+                {
+
+                    headerName: "Organization",
+                    field: "orgName"
+                },
+                {
+                    headerName: "Status",
+                    field: "clientStatus"
+                },
+                {
+
+                    headerName: "Status Date",
+                    field: "clientStatusDate"
+                },
+               
+
+            ]
+        }
+
     }
 
     ngOnInit() {
@@ -45,9 +80,9 @@ export class clientviewQuestionnaireComponent implements OnInit {
         this.clientQuestionnaireSerivce.getQuestionnaireForClient(this.appService.clientId).subscribe(
             (res) => {
                 if (res['statusCode'] == 'SUCCESS') {
-                    this.questionnaireClientViewList = res['questionnaires']['content'];
-                    this.appService.dependentsname = this.questionnaireClientViewList;
-                    console.log(this.questionnaireClientViewList);
+                    this.data = res['questionnaires']['content'];
+                    this.appService.dependentsname = this.data;
+                    console.log(this.data);
 
                 }
             }

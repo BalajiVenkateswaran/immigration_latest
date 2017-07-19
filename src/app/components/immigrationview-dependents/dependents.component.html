@@ -3,9 +3,11 @@
         <div class="table-data">
             <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h1>
             <div class="clearfix"></div>
-            <h2><span>Dependents</span><button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewDependents()">ADD</button>
+            <h2><span>Dependents</span>
 </h2>
-            <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+            <smart-table [settings]="settings" [data]="data"
+                         (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
+            <!--<ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
             <div class="clearfix"></div>
         </div>
 

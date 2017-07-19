@@ -95,6 +95,10 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
           "isDeleteEnable":false,
             'columnsettings': [
                 {
+                    headerName: "Payment ID",
+                    field: "paymentId",
+                },
+                {
                     headerName: "Invoice Number",
                     field: "invoiceNumber",
                 },
@@ -107,21 +111,22 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
                     field: "invoiceAmount",
                 },
                 {
-                    headerName: "Payment Received",
-                    field: "paymentReceived",
+                    headerName: "Transaction ID",
+                    field: "transactionId",
                 },
                 {
-                    headerName: "PDF uploaded",
-                    field: "pdfUploaded",
+                    headerName: "Payment Date",
+                    field: "paymentDate",
                 },
                 {
-                    headerName: "Download Button",
-                    field: "downloadButton",
+                    headerName: "Payment Amount",
+                    field: "paymentAmount",
                 },
-                // {
-                //     headerName: "View Details",
-                //     field: "viewDetails",
-                // },
+                {
+                    headerName: "Payment Status",
+                    field: "paymentStatus",
+                }
+                
                 
             ]
         }
@@ -131,8 +136,6 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
         this.manageAccountPaymentsService.getPaymentDetails(this.user.accountId).subscribe(
             res=>{
                 if(res['statusCode']=='SUCCESS'){
-                    //this.paymentList=res['payments'];
-                   //this.data=payments;
                    this.data=res['payments'];
                    /* this.appService.paymentId=res['payments']['paymentId']*/
                 }
@@ -144,38 +147,19 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
         this.getPaymentDetails();
     }
     
-    
-    viewDetails(data,index){
+    editRecord(event){
         this.dialogService.addDialog(ManageAccountPaymentsComponent, {
             viewAccountPopup: true,
             getPayments: false,
             title: 'View  Details',
-            payment:data,
+            payment: event.data,
         }).subscribe((isConfirmed) => {
            if(isConfirmed){
-                  
-            
-           }
-           else{
-
-               //this.editFlag = false;
+                   
            }
         });
     }
-    editRecord(){
-        this.isEditpayments = !this.isEditpayments;
-    }
-    //cancelpaymentsInfo(){
-    //    this.isEditpayments = !this.isEditpayments;
-    //}
     cancel() {
         this.close();
-
-    }
-    savepaymentsInfo(){
-     this.isEditpayments = !this.isEditpayments;
-     //this.appService.addUsers = this.payment;
-     this.result = true;
-     this.close();
     }    
 }

@@ -34,59 +34,88 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     public getDependents: boolean=true;
     public addedData: any = {};
     public addDependnts: any;
-    public warningMessage:boolean=false;
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
+    public warningMessage: boolean = false;
+    public settings;
+    public data;
+    //settings = {
+    //    add: {
+    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmCreate: true
+    //    },
+    //    edit: {
+    //        editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
+    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmSave: true
+    //    },
+    //    delete: {
+    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //        confirmDelete: true
+    //    },
+    //    columns: {
 
-            firstName: {
-                    title: 'First Name'
-            },
-            middleName: {
-                title: 'Middle Name'
-            },
-            lastName: {
-                title: 'Last Name'
-            },
-            relation: {
-                title: 'Relation'
-            },
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        },
-        mode:'external'
-        //actions: {
-        //    edit: false
-        //}
+    //        firstName: {
+    //                title: 'First Name'
+    //        },
+    //        middleName: {
+    //            title: 'Middle Name'
+    //        },
+    //        lastName: {
+    //            title: 'Last Name'
+    //        },
+    //        relation: {
+    //            title: 'Relation'
+    //        },
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    },
+    //    mode:'external'
+    //    //actions: {
+    //    //    edit: false
+    //    //}
 
-    };
+    //};
     constructor(private ImmigrationViewDependentService: ImmigrationViewDependentService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);if (this.appService.user) {
             this.user = this.appService.user;   
         }
+        this.settings = {
+            'columnsettings': [
+                {
+
+                    headerName: "First Name",
+                    field: "firstName",
+                },
+                {
+
+                    headerName: "Middle Name",
+                    field: "middleName",
+                },
+                {
+
+                    headerName: "Last Name",
+                    field: "lastName"
+                },
+                {
+                    headerName: "Approved on",
+                    field: "relation"
+                },
+               
+
+            ]
+        }
     }
-    source: LocalDataSource = new LocalDataSource();
+   // source: LocalDataSource = new LocalDataSource();
     getDepData() {
         this.ImmigrationViewDependentService.getDependentSummery(this.appService.clientId)
             .subscribe((res) => {
-                this.source.load(res['dependents']);
+                //this.source.load(res['dependents']);
+                this.data = res['dependents'];
+
                 this.appService.dependents = res['dependents'];
             });
     }
@@ -96,7 +125,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
-    addNewDependents() {
+    addFunction() {
         this.dialogService.addDialog(ImmigrationViewDependentsComponent, {
             addDependnts: true,
             getDependents: false,
@@ -129,7 +158,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
         this.close();
     }
 
-    onEditConfirm(event): void {    
+    editRecord(event): void {    
         this.appService.moveToPageWithParams('dependentDetails', event.data.dependentId); 
         this.appService.currentSBLink = event.data.firstName;
     }
@@ -168,7 +197,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     //    });
     //}
 
-    onDeleteConfirm(dependents) {
+    deleteRecord(dependents) {
         this.dependent = dependents.data.firstName;
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
