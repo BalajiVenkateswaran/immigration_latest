@@ -30,6 +30,7 @@ export class requestclientviewcomponent implements OnInit{
         });
       }
     ngOnInit() {
+        this.appService.showSideBarMenu(null, "clientview-Requests");
         this.clientviewrequestservice.getClientInvites(this.appService.user.userId)
             .subscribe((res) => {
                 this.clientRequests = res['clientInvite'];

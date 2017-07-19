@@ -1,17 +1,18 @@
 <div class="main-content">
-    <h1>{{appService.firstName}} {{appService.lastName}}</h1>
-    <ul class="breadcrumb">
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">Visas</a></li>
-    </ul>
-    <div class="clearfix"></div>
+
     <div class="table-data-forms">
+        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">Visas</a></li>
+        </ul>
+        <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Work Address</h2>
+                            <h2>Work Address</h2>
                             <button type="submit" (click)="addressedit('WORK')" value="Edit" class="editbtn  no-marg-right" *ngIf="workedit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="workedit">
                                 <button type="button" (click)="cancelEdit('WORK')" class="editbtn tbl-head-btn" *ngIf="workedit==false">Cancel</button>
@@ -89,7 +90,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Residence Address</h2>
+                            <h2>Residence Address</h2>
                             <button type="submit" (click)="addressedit('RESIDENCE')" value="Edit" class="editbtn  no-marg-right" *ngIf="residenceedit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="residenceedit">
                                 <button type="button" (click)="cancelEdit('RESIDENCE')" class="editbtn tbl-head-btn" *ngIf="residenceedit==false">Cancel</button>
@@ -168,7 +169,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Mailing Address</h2>
+                            <h2>Mailing Address</h2>
                             <button type="submit" (click)="addressedit('MAILING')" value="Edit" class="editbtn  no-marg-right" *ngIf="mailingedit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="mailingedit">
                                 <button type="button" (click)="cancelEdit('MAILING')" class="editbtn tbl-head-btn" *ngIf="mailingedit==false">Cancel</button>
@@ -240,7 +241,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="no-pad-left">Foreign Address</h2>
+                            <h2>Foreign Address</h2>
                             <button type="submit" (click)="addressedit('FOREIGN')" value="Edit" class="editbtn  no-marg-right" *ngIf="foreignedit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="foreignedit">
                                 <button type="button" (click)="cancelEdit('FOREIGN')" class="editbtn tbl-head-btn" *ngIf="foreignedit==false">Cancel</button>

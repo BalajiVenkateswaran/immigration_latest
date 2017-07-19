@@ -1,10 +1,11 @@
     <div class="main-content" *ngIf="getClientDocExp">
-        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
-        <ul class="breadcrumb">
-            <li><a href="#">Document Expirations</a></li>
-        </ul>
-        <div class="clearfix"></div>
+
         <div class="table-data">
+            <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+            <ul class="breadcrumb">
+                <li><a href="#">Document Expirations</a></li>
+            </ul>
+            <div class="clearfix"></div>
             <h2><span>Document Expirations</span></h2>
             <smart-table [settings]="settings" [data]="data"
                          (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table> 
