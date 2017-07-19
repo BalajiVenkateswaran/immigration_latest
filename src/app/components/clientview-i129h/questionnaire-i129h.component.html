@@ -21,18 +21,13 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Name of the Beneficiary</h2>
-                <!--<button type="submit" class="editbtn" (click)="editQuestinnairei129Form()" style="width:95px;margin-right:100px;" *ngIf="isquestionnairei129hEdit==true">Edit</button>
-                <button type="submit" class="editbtn  no-marg-right" style="width:95px;" *ngIf="isquestionnairei129hEdit==true">Re-Populate</button>-->
-
-                <!--<div class="tbl-head-btn" [hidden]="isquestionnairei129hEdit">-->
-                    <!--<button type="button" (click)="cancelQuestinnairei129Edit()" class="editbtn tbl-head-btn" *ngIf="isquestionnairei129hEdit==false">Cancel</button>-->
                 <div class="tbl-head-btn">
                     <button type="submit" value="Save" class="savebtn savelaterbtn" (click)="savequestionnairei129Information()" *ngIf="isquestionnairei129hEdit==false">Save for Later</button>
                     <button type="submit" value="Save" class="savebtn saveinformbtn" (click)="savequestionnairei129AndInform()" *ngIf="isquestionnairei129hEdit==false">Save and Inform Firm</button>
                     </div>
                 </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="col-md-12 addresbox box-shadow">
+                <div class="col-md-12 addresbox box-shadow clientview-ques129h">
 
 
                     <div class="row">
@@ -48,7 +43,7 @@
 
                     </div>
                     <button type="submit" (click)="addStayPeriodListItem()" class="iportal-btn pull-right no-marg-right" *ngIf="isquestionnairei129hEdit==false" style="margin-bottom:15px;">ADD</button>
-                    <table class="table-data" border="1" border-color="#e0e0e0" cellpadding="0" cellspacing="0">
+                    <table class="table-data" border="1" border-color="#e0e0e0" cellpadding="0" cellspacing="0" style="margin-bottom:15px;">
                         <tr style="background: #eaeaeb;">
                             <th width="40%">Beneficiary's Name</th>
                             <th width="60%">

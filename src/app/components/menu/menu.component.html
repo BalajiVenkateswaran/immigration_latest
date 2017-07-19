@@ -381,33 +381,7 @@
                       <span class="ico-arrow"></span>
                   </a>
                   <ul class="listsidemenu" *ngIf="clientQuest" role="menu" aria-labelledby="clientView-questionnaires">
-                      <!--<li><a (click)="appservice.moveToPage('questionnaire-i129');" routerLinkActive="active">Questionnaire Name A</a></li>
-                    <li><a (click)="appservice.moveToPage('QuestionnairenameB');" routerLinkActive="active">Questionnaire Name B</a></li>-->
-                      <!--<li>
-                        <a (click)="appservice.moveToPage('questionnaire-i129');" routerLinkActive="active">
-                            <span class="ico-client-details"></span>
-                            <span>Questionnaire I-129</span>
-                        </a>
-                    </li>-->
-                      <!--<li>
-                        <a (click)="appservice.moveToPage('questionnaire-i129clientView');" routerLinkActive="active">
-                            <span>Questionnaire I-129(Client View)</span>
-                        </a>
-
-                        <a (click)="appservice.moveToPage('questionnaire-i129hclientView');" routerLinkActive="active">
-                            <span>Questionnaire I-129H(Client View)</span>
-                        </a>
-                    </li>-->
-                      <!--<li>
-                        <a (click)="appservice.moveToPage('questionnaire-i129dc');" routerLinkActive="active">
-                            <span>I-129 DC</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a (click)="appservice.moveToPage('questionnaire-i129h');" routerLinkActive="active">
-                            <span>I-129 H</span>
-                        </a>
-                    </li>-->
+                    
                       <li *ngFor='let value of appservice.dependentsname'><a (click)="appservice.questionaryName=value.questionnaireId;appservice.moveToQuestionnaire(value);highlightSBLink(value.questionnaireName)" [ngClass]="[checkForCurrentSBLink(value.questionnaireName) ? 'active': '']" routerLinkActive="active">{{value.questionnaireName}}</a></li>
                   </ul>
               </li>

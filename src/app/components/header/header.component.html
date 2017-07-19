@@ -10,9 +10,7 @@
                     <!--<span id="logobeta">Beta</span>-->
                 </a>
             </div>
-            <div *ngIf="appService.isBurgerMenuVisible" class="burger-menu">
-                <input type="checkbox" (click)="slideMenu()" /><label></label>
-            </div>
+            
         </div>
         <div class="col-md-4 text-center pull-left">
             <div class="datails-holder-name" *ngIf="applicationViewMode=='Immigration'">
@@ -49,6 +47,9 @@
         <!--Mani Menu Start-->
         <div class="row">
             <div class="mainmenu">
+                <div *ngIf="appService.isBurgerMenuVisible" class="burger-menu">
+                    <input type="checkbox" (click)="slideMenu()" /><label></label>
+                </div>
                 <ul *ngIf="applicationViewMode=='Immigration'">
                     <li><a (click)="appService.moveToPage('petitions'); highlightTab('petitions');" [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']" routerLinkActive="active">
                         <span class="maintab-Petitions"></span>
