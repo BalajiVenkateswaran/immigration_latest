@@ -11,17 +11,48 @@ import {petitionsstatusreportsservice} from "./petitions-statusreports.service";
     templateUrl: './petitions-statusreports.component.html',
     styleUrls: ['./petitions-statusreports.component.sass']
 })
-
+  
 export class petitionsstatusreportscomponent implements OnInit {
   
-    public pieChartLabels: string[] = ['Closed Petitons', 'Opened Petitions'];
-    public pieChartData: number[] = [1,4];
+    public pieChartLabels: string[] = ['Opened Petitons', 'Closed Petitions'];
+    public pieChartData: number[] = [0, 0];
     public pieChartType: string = 'pie';
+    public orgsList: any = {};
+    public orgsNames: any = [];
+    public closed: any;
+    public opened: any;
     ngOnInit() {
         this.appService.showSideBarMenu("immiview-reports", "immiview-petitionreports");
         this.petitionsStatusreportsservice.getpetitonstatusreports(this.appService.user.accountId)
             .subscribe((res) => {
-                        
+                this.orgsList = res['orgs'];
+                for (var item in this.orgsList) {
+                    this.orgsNames.push(item);
+                    if (res['orgs'][item][0] != undefined) {
+                        if (res['orgs'][item][0].status == "Open") {
+                            this.opened = res['orgs'][item][0].count;
+                        }
+                        if (res['orgs'][item][0].status == "Close") {
+                            this.closed = res['orgs'][item][0].count;
+                        }
+                    }
+                    else {
+                        this.opened = 0;
+                        this.closed = 0;
+                    }
+                    if (res['orgs'][item][1] != undefined) {
+                        if (res['orgs'][item][1].status == "Open") {
+                            this.opened = res['orgs'][item][1].count;
+                        }
+                        if (res['orgs'][item][1].status == "Close") {
+                            this.closed = res['orgs'][item][1].count;
+                        }
+                    }
+                    else {
+                        this.closed = 0;
+                    }
+                    this.pieChartData[item] = [this.opened,this.closed];
+                }
             });
     }
     // events
