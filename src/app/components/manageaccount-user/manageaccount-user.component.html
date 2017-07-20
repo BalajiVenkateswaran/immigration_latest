@@ -1,26 +1,15 @@
-    <div class="main-content" *ngIf="getUsers">
-        <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
-        <ul class="breadcrumb">
-            <li><a href="#">Users</a></li>
-        </ul>
+<div class="main-content" *ngIf="getUsers">
+    <ul class="breadcrumb">
+        <li><a href="#">Users</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2><span>Users</span></h2>
+        <smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+        </smart-table>
         <div class="clearfix"></div>
-        <div class="table-data">
-            <h2>
-                <span>Users</span>
-                <!-- <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewUser()">ADD</button> -->
-            </h2>
-                 <!-- <ng2-smart-table [settings]="settings" [source]="source" (delete) = "onDeleteConfirm($event)" (edit) = "onEditConfirm($event)" 
-                    (create)="onCreateConfirm($event)" (userRowSelect)="userDetails($event)"></ng2-smart-table>  -->
-                 <smart-table 
-                    [settings]="settings" 
-                    [data]="data"
-                    (onAddClick)="addFunction($event)"  
-                    (onRowClick)="editRecord($event)" 
-                    (onDeleteClick)="deleteRecord($event)">
-                </smart-table> 
-            <div class="clearfix"></div>
-        </div>
     </div>
+</div>
 <div *ngIf="adduser">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -37,7 +26,8 @@
                             <div class="col-md-5"><span class="redstar">*</span>Last Name:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addUsers.lastName" class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Email</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addUsers.emailId" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addUsers.emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                    required #emailId="ngModel" class="form-control"></div>
                             <div class="col-md-5">Phone</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addUsers.phone" class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Role:</div>
@@ -55,20 +45,27 @@
                                         <span class="redstar">* Fields are Mandatory.</span>
                                     </div>
                                 </div>
+                                <div class="row sfm" [hidden]="emailId.valid || emailId.untouched">
+                                    <div class="col-md-12">
+                                        <div class="redstar" *ngIf="emailId.errors && emailId.errors.required">
+                                            * Email is required
+                                        </div>
+                                        <div class="redstar" *ngIf="emailId.errors && emailId.errors.pattern">
+                                            * Email is invalid
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="manageUserSave()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"> <button type="button" class="btn btn-primary" (click)="manageUserSave()">Save</button></div>
+                                    <div class="col-md-6"> <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button> </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-           
         </div>
     </div>
 </div>
