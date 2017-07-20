@@ -103,6 +103,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     public formattedData = [];
     public checkedSubscription;
     public checked = false;
+    public questionnireChecked;
     private status = [
         {
             "id": "0",
@@ -205,6 +206,16 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 else {
                     this.checked = false;
                 }
+
+                this.questionnaireList.map(function (item) {
+                    if (item.questionnaireId == res['data']['questionnaireId'] || (res['check'] == true && item.checked!=true) ) {
+                        return item.checked = true;
+                    }
+                    else {
+                        return item.checked = false;
+                    }
+                })
+
             }
         })
     }
@@ -277,6 +288,9 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                         let that = this;
                         this.formattedData = this.objectMapper(this.questionnaireList);
                     }
+                    this.questionnaireList.map(item => {
+                        return item.checked = false;
+                    })
                     this.data = this.formattedData;
                     this.officerData = this.formattedData;
                 });
@@ -334,6 +348,10 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
 
     }
     editQuestionnaire(newQuestionnaireitem) {
+        this.sentQuestionnaireClient.push(newQuestionnaireitem.data);
+        /* this.questionnaireList.map(item=>{
+             return item.checked=false;
+         })*/
         if (!this.checked) {
             if (newQuestionnaireitem.data['sentToClient'] == 'Yes') {
                 newQuestionnaireitem.data['sentToClient'] = true;
@@ -364,16 +382,21 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 } else {
                     this.editFlag = false;
                 }
-                this.checked=false;
+                this.checked = false;
             });
         }
-        else{
-            
-            this.checked=false;
-            
+        else {
+            var checkedLength = this.questionnaireList.filter(item => {
+                return item.checked;
+            }).length;
+            this.checked = false;
+            if (newQuestionnaireitem.data.checked && checkedLength!=0) {
+                this.sendQuestionnaire = false;
+            }
+            else {
+                this.sendQuestionnaire = true;
+            }
         }
-
-
     }
 
     deleteQuestionnaire(questions) {
@@ -447,7 +470,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 });
             } else {
                 this.editFlag = false;
-                this.sendQuestionnaire=true;
+
 
             }
         });
@@ -521,6 +544,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                     //reset client Check
                     this.ngOnInit();
                     this.sendQuestionnaire = true;
+
                 }
             });
         console.log(this.sentQuestionnaireClient);

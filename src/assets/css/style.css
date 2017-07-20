@@ -628,10 +628,10 @@ section .rightwithoutmenu {
   .main-content h1.clickname {
     cursor: pointer;
     color: #5093e1 !important;
-    text-decoration: underline; }
+    text-decoration: none; }
     .main-content h1.clickname:hover {
       color: #5093e1;
-      text-decoration: none; }
+      text-decoration: underline; }
   .main-content .sendinvite {
     float: right;
     padding: 5px 15px;
@@ -1613,7 +1613,8 @@ tr.i129htblRow:nth-child(even) {
     margin: 10% auto; } }
 /*ag-grid Table Styles*/
 .ag-fresh .ag-root {
-  border: 1px solid #e0e0e0 !important; }
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 5px; }
 
 .ag-fresh .ag-header {
   border-bottom: 1px solid #e0e0e0 !important; }
@@ -1737,5 +1738,23 @@ tr.i129htblRow:nth-child(even) {
         border: none; }
       .modal-dialog .modal-content .modal-body .btn-default {
         background: #ea4335 !important; }
+
+.ag-cell span.actions span.edit-delete .fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 0px;
+  display: inline-block; }
+  .ag-cell span.actions span.edit-delete .fileUpload i {
+    font-size: 18px  !important;
+    color: #2f323a !important; }
+  .ag-cell span.actions span.edit-delete .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0; }
 
 /*# sourceMappingURL=style.css.map */

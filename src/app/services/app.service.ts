@@ -66,6 +66,7 @@ export class AppService {
     public addUsers: any = {};
     public addAdress: any = {};
     public addClientNewDocExp: any = {};
+    public formListData:any={};
     public addNewVisa: any = {};
     public addNewI797: any = {};
     public selacntId: string;

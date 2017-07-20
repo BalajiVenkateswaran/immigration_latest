@@ -122,7 +122,8 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             this.user = this.appService.user;
 
         }
- this.settings={
+        this.settings = {
+            'paginationPageSize':2,
             'columnsettings': [
                 {
 

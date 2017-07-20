@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DownloadButton implements ICellRendererAngularComp {
     public params: any;
-    public static onDownloadClick = new Subject<any[]>();
+    public static onDownloadClick = new Subject<any>();
     agInit(params: any): void {
         this.params = params;
     }
@@ -21,7 +21,7 @@ export class DownloadButton implements ICellRendererAngularComp {
 
     }
     onDonwloadClicked(){
-        DownloadButton.onDownloadClick.next(this.params.data);
+        DownloadButton.onDownloadClick.next({'data':this.params.data,'downloadFlag':true});
     }
 
 
