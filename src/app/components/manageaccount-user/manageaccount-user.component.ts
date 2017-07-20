@@ -144,7 +144,6 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                 {
                     headerName: "Phone",
                     field: "phone",
-                    width:50
                
                 },
                 {

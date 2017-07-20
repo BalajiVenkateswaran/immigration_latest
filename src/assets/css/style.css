@@ -1739,4 +1739,22 @@ tr.i129htblRow:nth-child(even) {
       .modal-dialog .modal-content .modal-body .btn-default {
         background: #ea4335 !important; }
 
+.ag-cell span.actions span.edit-delete .fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 0px;
+  display: inline-block; }
+  .ag-cell span.actions span.edit-delete .fileUpload i {
+    font-size: 18px  !important;
+    color: #2f323a !important; }
+  .ag-cell span.actions span.edit-delete .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0; }
+
 /*# sourceMappingURL=style.css.map */

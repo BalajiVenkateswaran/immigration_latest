@@ -1865,4 +1865,31 @@ confirm {
             }
         }
     }
+.ag-cell {
+    span.actions {
+        span.edit-delete {
+            .fileUpload {
+                            position: relative;
+                            overflow: hidden;
+                            margin: 0px;
+                            display:inline-block;
 
+                            i {
+                                font-size:18px  !important;
+                                color:#2f323a !important
+                            }
+
+                            input.upload {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            margin: 0;
+                            padding: 0;
+                            font-size: 20px;
+                            cursor: pointer;
+                            opacity: 0;
+                        }
+                        }
+        }
+    }
+}
