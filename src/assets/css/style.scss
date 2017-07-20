@@ -525,10 +525,10 @@ section {
     h1.clickname {
         cursor:pointer;
         color: #5093e1 !important;
-        text-decoration:underline;
+        text-decoration:none;
         &:hover {
             color: #5093e1;
-            text-decoration:none;
+            text-decoration:underline;
         }
         }
     .sendinvite {
