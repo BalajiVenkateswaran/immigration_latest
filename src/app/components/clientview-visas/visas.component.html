@@ -26,38 +26,48 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-4">Country:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewVisa.country" class="form-control"></div>
-                            <div class="col-md-4">Petition Number:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewVisa.petitionNumber" class="form-control"></div>
-                            <div class="col-md-4">Visa Number:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewVisa.visaNumber" class="form-control"></div>
-                            <div class="col-md-4">Visa Type:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addNewVisa.visaType" class="form-control"></div>
-                            <div class="col-md-4">Issued On:</div>
-                            <div class="col-md-8">
+                            <div class="col-md-5">Country:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addNewVisa.country" class="form-control"></div>
+                            <div class="col-md-5">Petition Number:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addNewVisa.petitionNumber" class="form-control"></div>
+                            <div class="col-md-5">Visa Number:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addNewVisa.visaNumber" class="form-control"></div>
+                            <div class="col-md-5">Visa Type:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addNewVisa.visaType" class="form-control"></div>
+                            <div class="col-md-5">Issued On:</div>
+                            <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewVisa.issuedOn"
                                                 [selDate]="issuedOn"></my-date-picker>
                             </div>
-                            <div class="col-md-4">Expires On:</div>
-                            <div class="col-md-8">
+                            <div class="col-md-5">Expires On:</div>
+                            <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewVisa.expiresOn"
                                                 [selDate]="expiresOn"></my-date-picker>                         
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <!--<div class="row sfm" *ngIf="warningMessage">
+                <div class="col-md-12">
+                    <span class="redstar">* Fields are Mandatory.</span>
+                </div>
+            </div>-->
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="clientVisaSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="clientVisaSave()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-            </div>
+           
         </div>
     </div>
 </div>

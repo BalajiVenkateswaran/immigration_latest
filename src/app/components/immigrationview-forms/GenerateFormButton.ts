@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class GenerateFormButton implements ICellRendererAngularComp {
     public params: any;
-    public static onGenerateClick = new Subject<any[]>();
+    public static onGenerateClick = new Subject<any>();
     agInit(params: any): void {
         this.params = params;
     }
@@ -21,7 +21,7 @@ export class GenerateFormButton implements ICellRendererAngularComp {
 
     }
     onGenerateFormClick(){
-        GenerateFormButton.onGenerateClick.next(this.params.data);
+        GenerateFormButton.onGenerateClick.next({'data':this.params.data,'generateFlag':true});
     }
 
 

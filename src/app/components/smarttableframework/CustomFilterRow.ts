@@ -38,7 +38,8 @@ export class CustomFilterRow implements IHeaderAngularComp  {
     }
     public add(text) {
         
-        this.filterArray.push({ 'headingName': this.params.column.colId, 'filterValue': text });
+        this.filterArray.push({ 'headingName': this.params.column.colId, 'filterValue': text,'headerName':this.params.displayName});
+        
         CustomFilterRow.fillValues.next(this.filterArray);
         this.clsaddFilter = false;
         this.filterText = '';
