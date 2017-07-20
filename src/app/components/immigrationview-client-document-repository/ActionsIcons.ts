@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
     <i class="fa fa-trash" aria-hidden="true" (click)="delete()"></i>
     <div class="fileUpload">
                                             <i class="fa fa-files-o"  aria-hidden="true"></i>
-                                            <input type="file" (change)="onReplaceFile($event,data)" class="upload" name="file"  />
+                                            <input type="file" (change)="onReplaceFile($event)" class="upload" name="file"  />
                                         </div>
     <i class="fa fa-download" aria-hidden="true" (click)="download()"></i>
     </span>
@@ -43,8 +43,8 @@ export class ActionIcons implements ICellRendererAngularComp {
     delete(){
         ActionIcons.onDeleteClick.next(this.params.data);
     }
-    onReplaceFile(event,data){
-        data=this.params.data;
+    onReplaceFile(event){
+        let data=this.params.data;
         ActionIcons.onReplaceClick.next({'event':event,'data':data});
     }
 

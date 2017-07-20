@@ -30,6 +30,7 @@ export class ClientDocumentRepositoryComponent implements OnInit {
     public replaceSubscription
     public data;
     public getFiles;
+    public editForms:boolean;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, private dialogService: DialogService) {
         if (this.appService.user) {
             this.user = this.appService.user;
