@@ -36,43 +36,49 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <div class="row" *ngIf="warningMessage">
-                            <div class="col-md-12">
-                                <span class="redstar">* Fields are Mandatory Buddy Fill it now!!!!.</span>
-                            </div>
-                        </div>
+                    <div class="col-md-12">
+                        
                         <div class="row">
-                            <div class="col-md-4">Org Name :<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.orgName" class="form-control"></div>
-                            <div class="col-md-4">Display Name :<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="neworgitem.displayName" class="form-control"></div>
-                            <div class="col-md-4">Status :<span class="redstar">*</span></div>
-                            <div class="col-md-8">
+                            <div class="col-md-5">Org Name :<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="neworgitem.orgName" class="form-control"></div>
+                            <div class="col-md-5">Display Name :<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="neworgitem.displayName" class="form-control"></div>
+                            <div class="col-md-5">Status :<span class="redstar">*</span></div>
+                            <div class="col-md-7">
                                 <select [(ngModel)]="neworgitem.orgStatus" class="form-control">
                                     <option value="Active">Active</option>
                                     <option value="Inactive">Inactive</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">Email :<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="email" [(ngModel)]="neworgitem.email" class="form-control" [email]="true"></div>
-                            <div class="col-md-4">Type :<span class="redstar">*</span></div>
-                            <div class="col-md-8">
+                            <div class="col-md-5">Email :<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="email" [(ngModel)]="neworgitem.email" class="form-control" [email]="true"></div>
+                            <div class="col-md-5">Type :<span class="redstar">*</span></div>
+                            <div class="col-md-7">
                                 <select [(ngModel)]="neworgitem.orgType" class="form-control" [disabled]="editorg">
                                     <option value="Regular">Regular</option>
                                     <option value="Delegated">Delegated</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="row sfm" *ngIf="warningMessage">
+                                    <div class="col-md-12">
+                                        <span class="redstar">* Fields are Mandatory.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="OrganizationSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="OrganizationSave()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-            </div>
+            
         </div>
     </div>
 </div>
