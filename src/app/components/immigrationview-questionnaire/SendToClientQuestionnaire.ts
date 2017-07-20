@@ -8,7 +8,7 @@ import { AppService } from "../../services/app.service";
 import { User } from "../../models/user";
 @Component({
     selector: 'actions-columns',
-    template: `<input type="checkbox" [disabled]="!enableOrDisableCheckBox()"  (change)="questionnaireChecked()" />`,
+    template: `<input type="checkbox" [disabled]="!enableOrDisableCheckBox()" [(ngModel)]="checked"  (change)="questionnaireChecked()" />`,
 })
 export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
     public params: any;
@@ -18,6 +18,7 @@ export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
     private formsList = [];
     private sentQuestionnaireClient = [];
     questionnaireList = [];
+    public checked;
     checkboxDisable;
     agInit(params: any): void {
         this.params = params;
@@ -26,7 +27,7 @@ export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
     constructor(private questionnaireService: QuestionnaireService,public appService: AppService){
     }
     questionnaireChecked(){
-        SendToClientQuestionnaire.onItemChecked.next({'data':this.params.data,'flag':true});
+        SendToClientQuestionnaire.onItemChecked.next({'data':this.params.data,'flag':true,"check":this.checked});
     }
     enableOrDisableCheckBox(){
       var formNameBasedCheck;
