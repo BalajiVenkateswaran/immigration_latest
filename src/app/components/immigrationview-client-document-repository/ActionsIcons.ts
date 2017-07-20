@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs/Subscription';
 
     template: `<span class="actions">
     <span  class="edit-delete">
-    <i class="fa fa-pencil" aria-hidden="true" (click)="edit()"></i>
     <i class="fa fa-trash" aria-hidden="true" (click)="delete()"></i>
     <div class="fileUpload">
                                             <i class="fa fa-files-o" (click)="onReplaceFile(fileDetails)" aria-hidden="true"></i>

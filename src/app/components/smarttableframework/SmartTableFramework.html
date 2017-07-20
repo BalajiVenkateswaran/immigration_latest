@@ -10,7 +10,7 @@
 </div>
 <div *ngIf="filterWholeArray">
 <div class="addedfilter"*ngFor="let x of filterWholeArray let i=index">
-            <span class="filtretype">{{x.headingName}} :</span><span class="filtrename">{{x.filterValue}}</span><span class="close" (click)="delete(i,x)">&times;</span>
+            <span class="filtretype">{{x.headerName}} :</span><span class="filtrename">{{x.filterValue}}</span><span class="close" (click)="delete(i,x)">&times;</span>
 </div>
 </div>
  <div style="width:100%;">
