@@ -27,6 +27,7 @@ export class ClientDocumentRepositoryComponent implements OnInit {
     public fileListData;
     public downloadSubscription;
     public deleteSubscription;
+    public replaceSubscription
     public data;
     public getFiles;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, private dialogService: DialogService) {
@@ -38,6 +39,9 @@ export class ClientDocumentRepositoryComponent implements OnInit {
         })
         this.deleteSubscription = ActionIcons.onDeleteClick.subscribe(res => {
             this.onFileDelete(res);
+        })
+        this.replaceSubscription=ActionIcons.onReplaceClick.subscribe(res=>{
+            this.fileReplace(res);
         })
         this.addDocumentRepository = new FormGroup({
             orderNo: new FormControl(''),
@@ -184,14 +188,19 @@ export class ClientDocumentRepositoryComponent implements OnInit {
         console.log(event);
 
     }
-    fileReplace(event, fileDetails) {
-        this.FileId = fileDetails.fileId;
-        let fileList: FileList = event.target.files;
+    fileReplace(event) {
+        this.dialogService.addDialog(ConfirmComponent,{
+             title: 'Do You Want to Replace this file',
+             
+        }).subscribe((isConfirmed)=>{
+            if(isConfirmed){
+                 this.FileId = event.data.fileId;
+        let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
         let formData: FormData = new FormData();
         var x = file.name;
         for (var j = 0; j < this.files.length; j++) {
-            if (fileDetails.orderNo != j) {
+            if (event.orderNo != j) {
                 if (x == this.files[j].fileName) {
 
                     var replace = false;
@@ -229,6 +238,9 @@ export class ClientDocumentRepositoryComponent implements OnInit {
                 });
             }
         }
+            }
+        })
+       
 
     }
     onDownloadFile(fileDetails) {
