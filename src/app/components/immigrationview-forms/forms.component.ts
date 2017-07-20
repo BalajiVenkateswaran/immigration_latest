@@ -8,12 +8,20 @@ import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import {GenerateFormButton} from './GenerateFormButton';
 import {DownloadButton} from './DownloadButton';
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getForms: boolean;
+    editForms: boolean;
+    formsList: Object;
+}
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.sass']
 })
-export class ImmigrationviewFormsComponent implements OnInit {
+export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     private user: User;
     public addForm: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
@@ -26,7 +34,14 @@ export class ImmigrationviewFormsComponent implements OnInit {
     public settings;
     public data;
     public generateSubscription;
-    constructor(private formsService: FormsService, public appService: AppService) {
+    public formsList: any = {};
+    public getForms:boolean=true;
+    public editFlag: boolean = true;
+    public beforeEdit: any;
+    constructor(private formsService: FormsService, public appService: AppService,public dialogService: DialogService) {
+        super(dialogService);if (this.appService.user) {
+            this.user = this.appService.user;
+        }
         if (this.appService.user) {
             this.user = this.appService.user;
         }
@@ -48,7 +63,7 @@ export class ImmigrationviewFormsComponent implements OnInit {
                 {
 
                     headerName: "Save Form As",
-                    field: "formName"
+                    field: "fileName"
                 },
                 {
 
@@ -77,7 +92,11 @@ export class ImmigrationviewFormsComponent implements OnInit {
         this.appService.currentSBLink = link;
     }
     ngOnInit() {
-        this.formsService.getForms(this.appService.petitionId).subscribe(
+       this.getFormsData()
+
+    }
+    getFormsData(){
+         this.formsService.getForms(this.appService.petitionId).subscribe(
             (res) => {
                 if (res['statusCode'] == "SUCCESS") {
                     this.formsData = res['forms'];
@@ -90,7 +109,6 @@ export class ImmigrationviewFormsComponent implements OnInit {
             }
 
         );
-
     }
 
     editForm(i, forms) {
@@ -115,5 +133,45 @@ export class ImmigrationviewFormsComponent implements OnInit {
                 console.log(res);
             }
         );
+    }
+    editFormsData(event){
+        this.editFlag = true;
+        if (this.editFlag) {
+            this.beforeEdit = (<any>Object).assign({}, event.data);
+        }
+
+        this.dialogService.addDialog(ImmigrationviewFormsComponent, {
+            getForms: false,
+            editForms: true,
+            title: 'Edit Forms',
+            formsList: this.editFlag ? this.beforeEdit : this.formsList
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.formsService.getForms(this.appService.formListData).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getFormsData();
+                    }
+
+                });
+            } else {
+                this.editFlag = false;
+            }
+        });
+    }
+     docExpSave() {
+         this.appService.formListData=this.formsList;
+      /*  if (this.addNewDocExp['status'] == '' || null || undefined) {
+            this.addNewDocExp['status'] == "Active";
+        }
+        this.addNewDocExp['clientId'] = this.appService.clientId;
+        this.addNewDocExp['validFrom'] = this.addNewDocExp['validFrom']['formatted'];
+        this.addNewDocExp['validTo'] = this.addNewDocExp['validTo']['formatted'];
+        this.appService.addNewDocExp = this.addNewDocExp;*/
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
     }
 }
