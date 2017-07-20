@@ -1,14 +1,11 @@
 <div class="main-content" *ngIf="getClientsData">
-    <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
     <ul class="breadcrumb">
         <li><a href="#">Clients</a></li>
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Clients</h2>
-        <smart-table [settings]="settings" [data]="data"
-                     (onAddClick)="addNewCli($event)" (onRowClick)="onUserRowClick($event)" (onColumnFilterClick)="filterData($event)"></smart-table>
-
+        <smart-table [settings]="settings" [data]="data" (onAddClick)="addNewCli($event)" (onRowClick)="onUserRowClick($event)" (onColumnFilterClick)="filterData($event)"></smart-table>
     </div>
 </div>
 
@@ -33,7 +30,8 @@
                             <div class="col-md-7"><input type="text" [(ngModel)]="newclitem.email" [ngClass]="newclitem.email == '' ? 'redborder': ''"
                                     class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel"></div>
                             <div class="col-md-5">Phone:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="tel" [(ngModel)]="newclitem.phone" [ngClass]="newclitem.phone == '' ? 'redborder': ''"  class="form-control"></div>
+                            <div class="col-md-7"><input type="tel" [(ngModel)]="newclitem.phone" [ngClass]="newclitem.phone == '' ? 'redborder': ''"
+                                    class="form-control"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
@@ -52,7 +50,6 @@
                                         </div>
                                     </div>
                                 </div>
-                    
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
@@ -64,7 +61,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
