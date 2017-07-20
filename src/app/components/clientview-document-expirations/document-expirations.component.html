@@ -22,36 +22,46 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-4">Document Type:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addClientNewDocExp.documentType" class="form-control"></div>
-                            <div class="col-md-4">Valid From:</div>
-                            <div class="col-md-8">
+                            <div class="col-md-5">Document Type:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addClientNewDocExp.documentType" class="form-control"></div>
+                            <div class="col-md-5">Valid From:</div>
+                            <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addClientNewDocExp.validFrom"
                                                 [selDate]="validFrom"></my-date-picker>
                          
                             </div>
-                            <div class="col-md-4">Valid To:</div>
-                            <div class="col-md-8">
+                            <div class="col-md-5">Valid To:</div>
+                            <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addClientNewDocExp.validTo"
                                                 [selDate]="validTo"></my-date-picker>
                           
                             </div>
-                            <div class="col-md-4">Status:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addClientNewDocExp.status" class="form-control"></div>
+                            <div class="col-md-5">Status:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addClientNewDocExp.status" class="form-control"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <!--<div class="row sfm" *ngIf="warningMessage">
+                                    <div class="col-md-12">
+                                        <span class="redstar">* Fields are Mandatory.</span>
+                                    </div>
+                                </div>-->
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="clientDocExpSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="clientDocExpSave()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-            </div>
+           
         </div>
     </div>
 </div>
