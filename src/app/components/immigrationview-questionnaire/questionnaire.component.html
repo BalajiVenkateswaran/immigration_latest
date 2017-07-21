@@ -24,7 +24,7 @@
         <button [(disabled)]="sendQuestionnaire" type="submit" class="submitbtn" (click)="sendQuestionnaireClient()" [ngClass]="{'myclass':sendQuestionnaire,'submitbtn':!sendQuestionnaire}">Send Questionnaire to client </button>
         <div class="clearfix"></div>
 
-        <h2>
+        <h2 style="margin-top: 20px;">
             <span>Immigration Officer</span>
         </h2>
          <smart-table [settings]="settings1" [data]="officerData"
