@@ -200,6 +200,8 @@ import {ActionIcons} from './components/immigrationview-client-document-reposito
 import { GenerateFormButton } from "./components/immigrationview-forms/GenerateFormButton";
 import { DownloadButton } from "./components/immigrationview-forms/DownloadButton";
 
+import { DeclineButton } from "./components/clientview-request/DeclineButton";
+import { RequestButton } from "./components/clientview-request/RequestButton";
 @NgModule({
     imports: [
         BrowserModule,
@@ -219,11 +221,11 @@ import { DownloadButton } from "./components/immigrationview-forms/DownloadButto
 
 
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns,SendToClientQuestionnaire,ActionIcons,GenerateFormButton,DownloadButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns,SendToClientQuestionnaire,ActionIcons,GenerateFormButton,DownloadButton,RequestButton,DeclineButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
         SmartTableImmigrationViewI797HistoryComponent,
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent,ActionIcons,GenerateFormButton,DownloadButton, /*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent,ActionIcons,GenerateFormButton,DownloadButton, RequestButton,DeclineButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,
