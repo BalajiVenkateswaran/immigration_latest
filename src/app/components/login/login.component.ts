@@ -101,52 +101,54 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
             if (res.statusCode == "FAILURE") {
                 this.message = res.statusDescription;
             } else {
-                if (res.hasMultipleRoles == true) {
 
-                    this.dialogService.addDialog(LoginComponent, {
-                        selectrole: true,
-                        getloginpage: false,
-                        title: 'Please Select User Role',
-                        userRoles: res['userAccountRoleList'],
-                    }).subscribe((isConfirmed) => {
-                        if (isConfirmed) {
-
-
-                        }
-                        });
-                    this.appService.user = res.user;
-
-                }
-                if (res.hasMultipleRoles == false) {
-                    this.appService.user = res.user;
-                    this.appService.organizations = res.organizationList;
-                    this.appService.user['roleName'] = res.userAccountRoleList[0].roleName;
-                    this.appService.user.accountId=res.userAccountRoleList[0].accountId;
                 //Reset password
                 if (res['resetPassword'] != undefined
                     && res['resetPassword'] == true) {
                     this.appService.moveToPage('reset-password');
-                } else {
-                    if (res.userAccountRoleList[0].roleName == "Immigration Manager"
-                        || res.userAccountRoleList[0].roleName == "Immigration Officer") {
-                        this.appService.applicationViewMode = "Immigration";
-                        this.appService.orgId = res.organizationList[0].orgId;
-                        this.appService.currentTab = 'petitions';
-                        this.appService.moveToPage("petitions");
+                } else{
+
+                    if (res.hasMultipleRoles == true) {
+                        this.dialogService.addDialog(LoginComponent, {
+                            selectrole: true,
+                            getloginpage: false,
+                            title: 'Please Select User Role',
+                            userRoles: res['userAccountRoleList'],
+                        }).subscribe((isConfirmed) => {
+                            if (isConfirmed) {
+
+                            }
+                        });
+                        this.appService.user = res.user;
+
                     }
-                    if (res.userAccountRoleList[0].roleName == "Client") {
-                        this.appService.applicationViewMode = "Client";
-                        this.appService.clientId = this.appService.user.userId;
-                        this.appService.currentTab = 'clientview-petitions';
-                        this.appService.moveToPage("clientview-petitions");
-                    }
-                    if (res.userAccountRoleList[0].roleName == "Super User") {
-                        this.appService.applicationViewMode = "Superuser";
-                        this.appService.currentTab = 'superuser-accounts';
-                        this.appService.moveToPage("superuser-accounts");
+                    if (res.hasMultipleRoles == false) {
+                        this.appService.user = res.user;
+                        this.appService.organizations = res.organizationList;
+                        this.appService.user['roleName'] = res.userAccountRoleList[0].roleName;
+                        this.appService.user.accountId=res.userAccountRoleList[0].accountId;
+
+                        if (res.userAccountRoleList[0].roleName == "Immigration Manager"
+                            || res.userAccountRoleList[0].roleName == "Immigration Officer") {
+                            this.appService.applicationViewMode = "Immigration";
+                            this.appService.orgId = res.organizationList[0].orgId;
+                            this.appService.currentTab = 'petitions';
+                            this.appService.moveToPage("petitions");
+                        }
+                        if (res.userAccountRoleList[0].roleName == "Client") {
+                            this.appService.applicationViewMode = "Client";
+                            this.appService.clientId = this.appService.user.userId;
+                            this.appService.currentTab = 'clientview-petitions';
+                            this.appService.moveToPage("clientview-petitions");
+                        }
+                        if (res.userAccountRoleList[0].roleName == "Super User") {
+                            this.appService.applicationViewMode = "Superuser";
+                            this.appService.currentTab = 'superuser-accounts';
+                            this.appService.moveToPage("superuser-accounts");
+                        }
+
                     }
                 }
-            }
         }
       });
 
