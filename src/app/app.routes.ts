@@ -89,6 +89,7 @@ import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas"
 
 //immigrationview reports
 import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
+import {clientscreatedreportscomponent} from './components/immigrationview-clients-createdreports/clients-createdreports.component';
 
 
 
@@ -376,7 +377,10 @@ export const appRoutes: Routes = [
         path: 'immiview-petitionreports',
         component: petitionsstatusreportscomponent
     },
-    
+    {
+        path: 'immiview-clientscreated',
+        component: clientscreatedreportscomponent
+    },
     {
         path: '',
         component: LoginComponent

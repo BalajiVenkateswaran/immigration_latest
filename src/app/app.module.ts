@@ -199,7 +199,8 @@ import {petitionsstatusreportsservice} from './components/immigrationview-petiti
 import {ActionIcons} from './components/immigrationview-client-document-repository/ActionsIcons'
 import { GenerateFormButton } from "./components/immigrationview-forms/GenerateFormButton";
 import { DownloadButton } from "./components/immigrationview-forms/DownloadButton";
-
+import {clientscreatedreportscomponent} from './components/immigrationview-clients-createdreports/clients-createdreports.component';
+import {clientscreatedreportsservice} from './components/immigrationview-clients-createdreports/clients-createdreports.service';
 @NgModule({
     imports: [
         BrowserModule,
@@ -317,7 +318,8 @@ import { DownloadButton } from "./components/immigrationview-forms/DownloadButto
         ManageaccountUserDetailsComponent,
 
         //reports
-        petitionsstatusreportscomponent
+        petitionsstatusreportscomponent,
+        clientscreatedreportscomponent
 
     ],
     providers: [
@@ -409,7 +411,8 @@ import { DownloadButton } from "./components/immigrationview-forms/DownloadButto
         SmartTableVisasService,
 
         //reports
-        petitionsstatusreportsservice
+        petitionsstatusreportsservice,
+        clientscreatedreportsservice
 
     ],
     bootstrap: [AppComponent]
