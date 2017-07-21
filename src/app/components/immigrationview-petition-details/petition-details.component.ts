@@ -72,6 +72,8 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private petitionStages;
     private users;
     private assignedToName;
+    public orgs: any = [];
+    public dummylist: any;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -190,13 +192,8 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
             });
 
+        this.getPetionDelOrgs();
 
-
-        this.petitionDetailsService.getDelegatedOrgs(this.appService.user.accountId, this.appService.petitionId).subscribe((res) => {
-                if (res['orgs'] != undefined) {
-                    this.delegatedOrgsList = res['orgs'];
-                }
-            });
 
 
 
@@ -227,6 +224,15 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
         console.log(this.petitionDetails['petitionTypeId'].petitionType);
     }
+    getPetionDelOrgs() {
+        this.petitionDetailsService.getDelegatedOrgs(this.appService.user.accountId, this.appService.petitionId).subscribe((res) => {
+            if (res['orgs'] != undefined) {
+                this.delegatedOrgsList = res['orgs'];
+              //  this.dummylist = JSON.parse(JSON.stringify(this.delegatedOrgsList));
+            }
+        });
+    }
+
 
     //is edit function for read only
     editPetitionInfoForm() {
@@ -594,12 +600,22 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     
     savedelOrgs() {
         this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
-        this.delegatedOrgsList['orgId'] = this.appService.orgId;
-        this.petitionDetailsService.saveDelegatedOrgs(this.appService.user.userId)
+        //  this.delegatedOrgsList['orgId'] = this.appService.orgId;
+        for (var i = 0; i < this.delegatedOrgsList.length; i++) {
+            if (this.delegatedOrgsList[i].petitionAssigned == true) {
+                this.orgs.push(this.delegatedOrgsList[i].orgId);
+            }
+            //if (this.dummylist[i].petitionAssigned != this.delegatedOrgsList[i].petitionAssigned) {
+            //    this.orgs.push(this.delegatedOrgsList[i].orgId);
+            //}
+        }
+        this.petitionDetailsService.saveDelegatedOrgs(this.orgs,this.appService.petitionId)
             .subscribe((res) => {
-                if (res['orgs'] != undefined) {
-                    this.delegatedOrgsList = res['orgs'];
+                if (res['statusCode'] == "SUCCESS") {
+                    this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
+                    this.getPetionDelOrgs();
                 }
+              
             });
     }
 }

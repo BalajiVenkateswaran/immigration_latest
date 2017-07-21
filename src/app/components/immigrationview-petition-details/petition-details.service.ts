@@ -69,9 +69,10 @@ export class ImmigrationViewPetitionDetailsService {
         return this.restService.getData("/petition/config/all/types/subtypes");
     }
 
-    public saveDelegatedOrgs(orgs: any) {
+    public saveDelegatedOrgs(orgs: any,petitonId) {
         var req = {
-            "orgs": orgs
+            "orgIds": orgs,
+            "petitionId": petitonId
         };
         return this.restService.postData("/immigration/orgs/petition", req);
     }

@@ -136,6 +136,8 @@ import {QuestionnaireI129HClentviewService} from "./components/clientview-i129h/
 import {ClientQuestionnaireService} from "./components/clientview-Questionnaries/clientview-Questionnaries.service";
 import {ClientsEnhansmentsComponent} from "./components/clients-enhancements/clients.component";
 
+import { DeclineButton } from "./components/clientview-request/DeclineButton";
+import { RequestButton } from "./components/clientview-request/RequestButton";
 
 
 //import { Typeahead } from 'ng2-typeahead';
@@ -199,9 +201,8 @@ import {petitionsstatusreportsservice} from './components/immigrationview-petiti
 import {ActionIcons} from './components/immigrationview-client-document-repository/ActionsIcons'
 import { GenerateFormButton } from "./components/immigrationview-forms/GenerateFormButton";
 import { DownloadButton } from "./components/immigrationview-forms/DownloadButton";
-
-import { DeclineButton } from "./components/clientview-request/DeclineButton";
-import { RequestButton } from "./components/clientview-request/RequestButton";
+import {clientscreatedreportscomponent} from './components/immigrationview-clients-createdreports/clients-createdreports.component';
+import {clientscreatedreportsservice} from './components/immigrationview-clients-createdreports/clients-createdreports.service';
 @NgModule({
     imports: [
         BrowserModule,
@@ -221,11 +222,11 @@ import { RequestButton } from "./components/clientview-request/RequestButton";
 
 
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns,SendToClientQuestionnaire,ActionIcons,GenerateFormButton,DownloadButton,RequestButton,DeclineButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
         SmartTableImmigrationViewI797HistoryComponent,
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent,ActionIcons,GenerateFormButton,DownloadButton, RequestButton,DeclineButton,/*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,
@@ -319,7 +320,8 @@ import { RequestButton } from "./components/clientview-request/RequestButton";
         ManageaccountUserDetailsComponent,
 
         //reports
-        petitionsstatusreportscomponent
+        petitionsstatusreportscomponent,
+        clientscreatedreportscomponent
 
     ],
     providers: [
@@ -411,7 +413,8 @@ import { RequestButton } from "./components/clientview-request/RequestButton";
         SmartTableVisasService,
 
         //reports
-        petitionsstatusreportsservice
+        petitionsstatusreportsservice,
+        clientscreatedreportsservice
 
     ],
     bootstrap: [AppComponent]
