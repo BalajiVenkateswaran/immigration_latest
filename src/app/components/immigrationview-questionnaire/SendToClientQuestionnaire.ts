@@ -13,7 +13,7 @@ import { User } from "../../models/user";
 export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
     public params: any;
     public static onItemChecked = new Subject<Object>();
-    sendQuestionnaire: boolean = true;
+    sendQuestionnaire: boolean = false  ;
     private user: User;
     private formsList = [];
     private sentQuestionnaireClient = [];
@@ -27,6 +27,7 @@ export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
     constructor(private questionnaireService: QuestionnaireService,public appService: AppService){
     }
     questionnaireChecked(){
+        this.params.data.itemChecked=this.checked;
         SendToClientQuestionnaire.onItemChecked.next({'data':this.params.data,'flag':true,"check":this.checked});
     }
     enableOrDisableCheckBox(){
