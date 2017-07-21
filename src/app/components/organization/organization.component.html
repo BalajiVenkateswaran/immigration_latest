@@ -27,10 +27,20 @@
                         <span *ngIf="isProfileEdit==true">{{orgDetails.fileNumber}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-taxid">Name <span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input type="text" [ngClass]="orgDetails.orgName == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-taxid" [(ngModel)]="orgDetails.orgName" />
-                        <span *ngIf="isProfileEdit==true">{{orgDetails.orgName}}</span></div>
+                        <div class="col-md-4"><label for="wa-taxid">Name</label></div>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="orgDetails.orgName == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-taxid" [(ngModel)]="orgDetails.orgName" />
+                            <span *ngIf="isProfileEdit==true">{{orgDetails.orgName}}</span>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-taxid">Display Name<span class="redstar">*</span></label></div>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="orgDetails.displayName == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-taxid" [(ngModel)]="orgDetails.displayName" />
+                            <span *ngIf="isProfileEdit==true">{{orgDetails.displayName}}</span>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-4"><label for="wa-name">Type</label></div>
                         <div class="col-md-8">
@@ -38,7 +48,7 @@
                         <span *ngIf="isProfileEdit==true">{{orgDetails.orgType}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-door">Name Of Forms <span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="wa-door">Name on Forms <span class="redstar">*</span></label></div>
                         <div class="col-md-8"><input type="text" [ngClass]="orgDetails.nameOnForms == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-door" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.nameOnForms" />
                         <span *ngIf="isProfileEdit==true">{{orgDetails.nameOnForms}}</span></div>
                     </div>
@@ -232,7 +242,7 @@
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>Adminstrative Person Details</h2>
+                            <h2>Administrative Person Details</h2>
                             <button type="submit" class="editbtn  no-marg-right" (click)="editAdminDetails()" *ngIf="isAdminEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isAdminEdit">
                                 <button type="button" (click)="cancelAdminEdit()" class="editbtn tbl-head-btn" *ngIf="isAdminEdit==false">Cancel</button>
