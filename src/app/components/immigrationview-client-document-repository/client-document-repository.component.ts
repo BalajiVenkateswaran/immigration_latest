@@ -44,11 +44,11 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public editFileObject: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
-    public checked:boolean=false;
-    public deleteFlag:boolean=false;
-    public replaceFlag:boolean=false;
-    public replacing:boolean=false;
-    public downloadFlag:boolean=false;
+    public checked: boolean = false;
+    public deleteFlag: boolean = false;
+    public replaceFlag: boolean = false;
+    public replacing: boolean = false;
+    public downloadFlag: boolean = false;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
@@ -56,45 +56,45 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         }
         this.downloadSubscription = ActionIcons.onDownloadClick.subscribe(res => {
             if (res.hasOwnProperty('downloadFlag')) {
-                    this.checked = true;
-                    this.downloadFlag=true;
-                }
-                else {
-                    this.checked = false;
-                }
+                this.checked = true;
+                this.downloadFlag = true;
+            }
+            else {
+                this.checked = false;
+            }
         })
         this.deleteSubscription = ActionIcons.onDeleteClick.subscribe(res => {
-             if (res.hasOwnProperty('deleteFlag')) {
+            if (res.hasOwnProperty('deleteFlag')) {
+                this.checked = true;
+                this.deleteFlag = true;
+
+            }
+            else {
+                this.checked = false;
+            }
+        })
+        this.subscription = ActionIcons.replace.subscribe(
+            res => {
+                console.log("re.............");
+                if (res.hasOwnProperty('flag')) {
                     this.checked = true;
-                    this.deleteFlag=true;
-                    
                 }
                 else {
                     this.checked = false;
-                }
-        })
-        this.subscription=ActionIcons.replace.subscribe(
-            res=>{
-                console.log("re.............");
-                if(res.hasOwnProperty('flag')){
-                    this.checked=true;
-                }
-                else{
-                    this.checked=false;
-                  
+
                 }
             }
         )
         this.replaceSubscription = ActionIcons.onReplaceClick.subscribe(res => {
             if (res.hasOwnProperty('replaceFlag')) {
-                    this.checked = true;
-                    this.replaceFlag=true;
-                    
-                }
-                else {
-                    this.checked = false;
-                    
-                }
+                this.checked = true;
+                this.replaceFlag = true;
+
+            }
+            else {
+                this.checked = false;
+
+            }
         })
         this.addDocumentRepository = new FormGroup({
             orderNo: new FormControl(''),
@@ -146,7 +146,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 this.getFilesList();
             }
         });
-        this.deleteFlag=false;
+        this.deleteFlag = false;
     }
 
     private rowEdit: boolean[] = [];
@@ -202,7 +202,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 });
             }
         }
-       
+
 
     }
     saveFile(i, fileDetails) {
@@ -225,16 +225,16 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 let file: File = fileList[0];
                 let formData: FormData = new FormData();
                 var x = file.name;
-                for (var j = 0; j < this.files.length; j++) {
+                /*for (var j = 0; j < this.files.length; j++) {
                     if (event.orderNo != j) {
                         if (x == this.files[j].fileName) {
 
                             var replace = false;
                         }
                     }
-                }
+                }*/
                 var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf" && replace != false) {
+                if (fileList.length > 0 && y[1] == "pdf") {
 
                     formData.append('file', file, file.name);
 
@@ -250,7 +250,19 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         );
 
                 }
-                else {
+               /* if (x == event.data.fileName) {
+                    this.dialogService.addDialog(ConfirmComponent, {
+                        title: 'Error..!',
+                        message: 'Filename is already exists.'
+                    });
+                }*/
+                if (y[1] !== 'pdf') {
+                    this.dialogService.addDialog(ConfirmComponent, {
+                        title: 'Error..!',
+                        message: 'Please Upload Only Pdf files.'
+                    });
+                }
+                /*else {
                     if (replace == false) {
                         this.dialogService.addDialog(ConfirmComponent, {
                             title: 'Error..!',
@@ -263,7 +275,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                             message: 'Please Upload Only Pdf files.'
                         });
                     }
-                }
+                }*/
             }
         })
     }
@@ -319,7 +331,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
-        this.downloadFlag=false;
+        this.downloadFlag = false;
     }
 
 
@@ -333,15 +345,15 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     }
     editFileName(event) {
         if (!this.checked) {
-        this.editFileObject.fileName = event.data.fileName.split(".")[0];
-        this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
-            editFiles: true,
-            getData: false,
-            title: 'Edit File Name',
-            editFileObject: this.editFileObject,
+            this.editFileObject.fileName = event.data.fileName.split(".")[0];
+            this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
+                editFiles: true,
+                getData: false,
+                title: 'Edit File Name',
+                editFileObject: this.editFileObject,
 
-        }).subscribe((isConfirmed) => {
-            if (isConfirmed) {
+            }).subscribe((isConfirmed) => {
+                if (isConfirmed) {
                     this.FileId = event.data.fileId;
                     this.fileName = this.editFileObject.fileName.concat(".pdf");
                     event.data.fileName = this.fileName;
@@ -365,29 +377,29 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                             }
                         }
                     );
-            }
-            else{
-                this.editFileObject.fileName=event.data.fileName;
-            }
-             this.checked = false;
-        });
-    }
-    else if(this.checked && this.deleteFlag){
+                }
+                else {
+                    this.editFileObject.fileName = event.data.fileName;
+                }
+                this.checked = false;
+            });
+        }
+        else if (this.checked && this.deleteFlag) {
             this.onFileDelete(event.data);
-            this.checked=false;
+            this.checked = false;
         }
-        else if(this.replaceFlag){
+        else if (this.replaceFlag && this.checked) {
             this.fileReplace(event);
-            this.checked=true;
-            this.replaceFlag=false;
-           
+            this.checked = true;
+            this.replaceFlag = false;
+
         }
-        else if(this.checked && this.downloadFlag){
+        else if (this.checked && this.downloadFlag) {
             this.onDownloadFile(event.data);
-            this.checked=false;
+            this.checked = false;
         }
-        else{
-           this.checked=false; 
+        else {
+            this.checked = false;
         }
 
 
