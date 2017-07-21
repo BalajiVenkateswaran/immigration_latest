@@ -136,6 +136,12 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
                 },
                 {
 
+                    headerName: "Type(Regular/Delegated)",
+                    field: "orgType",
+
+                },
+                {
+
                     headerName: "Status",
                     field: "orgStatus",
                 },
@@ -144,12 +150,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
                     field: "email",
                
                 },
-                {
-
-                    headerName: "Role",
-                    field: "roleName",
                 
-                },
               
                 
             ]

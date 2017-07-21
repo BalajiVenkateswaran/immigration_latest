@@ -90,7 +90,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     private questionnaireId;
     private beforeCancel;
     private empBeforeCancel;
-    sendQuestionnaire: boolean = true;
+    sendQuestionnaire:boolean=true;
     private clientCheck: boolean[] = [];
     private sentQuestionnaireClient = [];
     public delmessage;
@@ -199,28 +199,16 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         }
         this.checkedSubscription = SendToClientQuestionnaire.onItemChecked.subscribe(res => {
             if (res) {
-                console.log(res);
                 if (res.hasOwnProperty('flag')) {
                     this.checked = true;
+                    
                 }
                 else {
                     this.checked = false;
                 }
-
-                this.questionnaireList.map(function (item) {
-                    if (item.questionnaireId == res['data']['questionnaireId'] || (res['check'] == true && item.checked!=true) ) {
-                        return item.checked = true;
-                    }
-                    else {
-                        return item.checked = false;
-                    }
-                })
-
             }
         })
     }
-
-
     deleteConfirm(questions) {
         this.delmessage = questions.data.questionnaireName;
         this.dialogService.addDialog(ConfirmComponent, {
@@ -348,10 +336,16 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
 
     }
     editQuestionnaire(newQuestionnaireitem) {
-        this.sentQuestionnaireClient.push(newQuestionnaireitem.data);
-        /* this.questionnaireList.map(item=>{
-             return item.checked=false;
-         })*/
+        if(newQuestionnaireitem.data.itemChecked){
+            this.sentQuestionnaireClient.push(newQuestionnaireitem.data);
+        }
+        else{
+            this.sentQuestionnaireClient.splice(this.sentQuestionnaireClient.indexOf(newQuestionnaireitem.data,1));
+        }
+      
+        if(this.sentQuestionnaireClient.length==0){
+            this.sendQuestionnaire=true;
+        }
         if (!this.checked) {
             if (newQuestionnaireitem.data['sentToClient'] == 'Yes') {
                 newQuestionnaireitem.data['sentToClient'] = true;
@@ -386,16 +380,17 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
             });
         }
         else {
-            var checkedLength = this.questionnaireList.filter(item => {
-                return item.checked;
-            }).length;
+              for(let i=0;i<this.sentQuestionnaireClient.length;i++){
+            if(this.sentQuestionnaireClient[i]['itemChecked']==true){
+                this.sendQuestionnaire=false;
+            }
+            else{
+                this.sendQuestionnaire=true;
+            }
+            
+        }
             this.checked = false;
-            if (newQuestionnaireitem.data.checked && checkedLength!=0) {
-                this.sendQuestionnaire = false;
-            }
-            else {
-                this.sendQuestionnaire = true;
-            }
+            
         }
     }
 
@@ -543,7 +538,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 if (res['statusCode'] == 'SUCCESS') {
                     //reset client Check
                     this.ngOnInit();
-                    this.sendQuestionnaire = true;
+                
 
                 }
             });

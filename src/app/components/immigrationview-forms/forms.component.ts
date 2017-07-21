@@ -88,6 +88,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
         }
         this.generateSubscription = GenerateFormButton.onGenerateClick.subscribe(res => {
             if (res) {
+                console.log("Generate Clicked");
                 if (res.hasOwnProperty('generateFlag')) {
                     this.checked = true;
                 }

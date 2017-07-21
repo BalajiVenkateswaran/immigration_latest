@@ -43,28 +43,31 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-4">Petition Name:</div><div class="col-md-8"><span>{{cvpedit.petitionName}}</span></div>
-                            <div class="col-md-4">Petition Type:</div><div class="col-md-8"><span>{{cvpedit.petitionType}}</span></div>
-                            <div class="col-md-4">Organization:</div><div class="col-md-8"><span>{{cvpedit.organization}}</span></div>
-                            <div class="col-md-4">Status:</div><div class="col-md-8"><span>{{cvpedit.status}}</span></div>
-                            <div class="col-md-4">Stage:</div><div class="col-md-8"><span>{{cvpedit.petitionStage}}</span></div>
-                            <div class="col-md-4">Start Date:</div><div class="col-md-8"><span>{{cvpedit.startDate}}</span></div>
-                            <div class="col-md-4">Last Updated:</div><div class="col-md-8"><span>{{cvpedit.lastUpdated}}</span></div>
-                            <div class="col-md-4">Receipt Number:</div><div class="col-md-8"><span>{{cvpedit.recieptNumber}}</span></div>
-                            <div class="col-md-4">Shipping Carrier:</div><div class="col-md-8"><span>{{cvpedit.shippingCarrier}}</span></div>
-                            <div class="col-md-4">Tracking Number:</div><div class="col-md-8"><span>{{cvpedit.trackingNumber}}</span></div>
+                            <div class="col-md-5">Petition Name:</div><div class="col-md-7"><span>{{cvpedit.petitionName}}</span></div>
+                            <div class="col-md-5">Petition Type:</div><div class="col-md-7"><span>{{cvpedit.petitionType}}</span></div>
+                            <div class="col-md-5">Organization:</div><div class="col-md-7"><span>{{cvpedit.organization}}</span></div>
+                            <div class="col-md-5">Status:</div><div class="col-md-7"><span>{{cvpedit.status}}</span></div>
+                            <div class="col-md-5">Stage:</div><div class="col-md-7"><span>{{cvpedit.petitionStage}}</span></div>
+                            <div class="col-md-5">Start Date:</div><div class="col-md-7"><span>{{cvpedit.startDate}}</span></div>
+                            <div class="col-md-5">Last Updated:</div><div class="col-md-7"><span>{{cvpedit.lastUpdated}}</span></div>
+                            <div class="col-md-5">Receipt Number:</div><div class="col-md-7"><span>{{cvpedit.recieptNumber}}</span></div>
+                            <div class="col-md-5">Shipping Carrier:</div><div class="col-md-7"><span>{{cvpedit.shippingCarrier}}</span></div>
+                            <div class="col-md-5">Tracking Number:</div><div class="col-md-7"><span>{{cvpedit.trackingNumber}}</span></div>
                            
                         </div>
+                        <div class="row">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-6"></div>
+                                        <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <!--<button type="button" class="btn btn-primary" (click)="questionnaireSave()">Save</button>-->
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
             </div>
         </div>
     </div>

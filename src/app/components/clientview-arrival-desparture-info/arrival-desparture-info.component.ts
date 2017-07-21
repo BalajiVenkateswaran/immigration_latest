@@ -234,7 +234,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
   }
     
     deleteRecord(event): void {
-        this.delmessage = event.data.arrivalCountry
+        this.delmessage = event.data.i94
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
             message: 'Are you sure you want to Delete ' + this.delmessage + '?'

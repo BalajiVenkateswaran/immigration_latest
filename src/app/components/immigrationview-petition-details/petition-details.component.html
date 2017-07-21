@@ -88,7 +88,7 @@
                                     <option value="3">3</option>
                                     <option value="4">4</option>-->
                                 </select>
-                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.currentStageId}}</span>
+                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.currentStage}}</span>
                             </div>
                         </div>
                         <div class="row">
@@ -270,14 +270,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Approval Recieved On</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Approval Received On</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="receiptInfo.sentToGovAgencyOn" [selDate]="sentToGovAgencyOn"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Show Reciept Number to Client <span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Show Receipt Number to Client <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
                             <select *ngIf="isReceiptInfoEdit==false" [(ngModel)]="receiptInfo.showReceiptNumberToClient" [ngClass]="receiptInfo.showReceiptNumberToClient == '' ? 'redborder': ''">
                                 <!-- <option value="1">Yes</option>
@@ -429,7 +429,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Apt./Ste./Flr./Door</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Apt/Ste/Flr/Door</label></div>
                         <div class="col-md-8">
                             <select *ngIf="isSponsorInfoEdit==false" [(ngModel)]="sponsorInfoAddress.aptType">
                                 <option value="">Select</option>
@@ -444,7 +444,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Apt/Suite/Door No</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Apt/Ste/Door No</label></div>
                         <div class="col-md-8">
                             <input type="text" *ngIf="isSponsorInfoEdit==false" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.aptNo" />
                             <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.aptNo}}</span>
@@ -472,7 +472,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">ZIP Code/Postal Code</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Zip/Postal code</label></div>
                         <div class="col-md-8">
                             <input type="text" *ngIf="isSponsorInfoEdit==false" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.zipCode" />
                             <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.zipCode}}</span>
@@ -506,7 +506,7 @@
                     <input type="text" *ngIf="isSponsorInfoEdit==false" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.phoneNumber2" />
                     <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.phoneNumber2}}</span>
                 </div>
-            </div>-->
+                </div>-->
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">

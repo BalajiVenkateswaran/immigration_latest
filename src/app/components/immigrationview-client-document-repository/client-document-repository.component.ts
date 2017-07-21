@@ -10,14 +10,22 @@ import { User } from "../../models/user";
 import { AppService } from "../../services/app.service";
 import * as FileSaver from 'file-saver';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import { ActionIcons } from './ActionsIcons';
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    getData: boolean;
+    editFiles: boolean;
+    editFileObject: Object;
+
+}
 @Component({
     selector: 'app-document-repository',
     templateUrl: './document-repository.component.html',
     styleUrls: ['./document-repository.component.sass']
 })
-export class ClientDocumentRepositoryComponent implements OnInit {
+export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public addDocumentRepository: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
@@ -28,21 +36,65 @@ export class ClientDocumentRepositoryComponent implements OnInit {
     public downloadSubscription;
     public deleteSubscription;
     public replaceSubscription
+    public subscription;
     public data;
     public getFiles;
-    public editForms:boolean;
-    constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, private dialogService: DialogService) {
+    public getData: boolean = true;
+    public editFiles: boolean;
+    public editFileObject: any = {};
+    public editFlag: boolean = true;
+    public beforeEdit: any;
+    public checked: boolean = false;
+    public deleteFlag: boolean = false;
+    public replaceFlag: boolean = false;
+    public replacing: boolean = false;
+    public downloadFlag: boolean = false;
+    constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService) {
+        super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
         }
         this.downloadSubscription = ActionIcons.onDownloadClick.subscribe(res => {
-            this.onDownloadFile(res);
+            if (res.hasOwnProperty('downloadFlag')) {
+                this.checked = true;
+                this.downloadFlag = true;
+            }
+            else {
+                this.checked = false;
+            }
         })
         this.deleteSubscription = ActionIcons.onDeleteClick.subscribe(res => {
-            this.onFileDelete(res);
+            if (res.hasOwnProperty('deleteFlag')) {
+                this.checked = true;
+                this.deleteFlag = true;
+
+            }
+            else {
+                this.checked = false;
+            }
         })
-        this.replaceSubscription=ActionIcons.onReplaceClick.subscribe(res=>{
-            this.fileReplace(res);
+        this.subscription = ActionIcons.replace.subscribe(
+            res => {
+                console.log("re.............");
+                if (res.hasOwnProperty('flag')) {
+                    this.checked = true;
+                }
+                else {
+                    this.checked = false;
+
+                }
+            }
+        )
+        this.replaceSubscription = ActionIcons.onReplaceClick.subscribe(res => {
+            if (res.hasOwnProperty('replaceFlag')) {
+                this.checked = true;
+                this.replaceFlag = true;
+
+            }
+            else {
+                this.checked = false;
+
+            }
         })
         this.addDocumentRepository = new FormGroup({
             orderNo: new FormControl(''),
@@ -94,6 +146,7 @@ export class ClientDocumentRepositoryComponent implements OnInit {
                 this.getFilesList();
             }
         });
+        this.deleteFlag = false;
     }
 
     private rowEdit: boolean[] = [];
@@ -150,38 +203,10 @@ export class ClientDocumentRepositoryComponent implements OnInit {
             }
         }
 
+
     }
     saveFile(i, fileDetails) {
-        var filename = fileDetails.fileName.concat(".pdf");
-        for (var j = 0; j < this.files.length; j++) {
-            if (i != j) {
-                if (filename == this.files[j].fileName) {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Error..!',
-                        message: 'Filename is already exists.'
-                    });
-                    var save = false;
-                }
-            }
-        }
-        if (save != false) {
-            this.FileId = fileDetails.fileId;
-            this.fileName = fileDetails.fileName.concat(".pdf");
-            fileDetails.fileName = this.fileName;
-            this.rowEdit[i] = !this.rowEdit[i];
-            this.onloadisEdit[i] = !this.onloadisEdit[i];
-            var url = "/file/rename";
-            var data = {
-                "accountId": this.accountId,
-                "fileId": this.FileId,
-                "fileName": this.fileName
-            };
-            this.clientdocumentrepositoryService.renameFile(url, data).subscribe(
-                res => {
-                    console.log(res);
-                }
-            );
-        }
+
     }
     onReplaceFile(fileDetails) {
         console.log(fileDetails + "replce")
@@ -190,59 +215,69 @@ export class ClientDocumentRepositoryComponent implements OnInit {
 
     }
     fileReplace(event) {
-        this.dialogService.addDialog(ConfirmComponent,{
-             title: 'Do You Want to Replace this file',
-             
-        }).subscribe((isConfirmed)=>{
-            if(isConfirmed){
-                 this.FileId = event.data.fileId;
-        let fileList: FileList = event.event.target.files;
-        let file: File = fileList[0];
-        let formData: FormData = new FormData();
-        var x = file.name;
-        for (var j = 0; j < this.files.length; j++) {
-            if (event.orderNo != j) {
-                if (x == this.files[j].fileName) {
+        this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Do You Want to Replace this file',
 
-                    var replace = false;
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.FileId = event.data.fileId;
+                let fileList: FileList = event.event.target.files;
+                let file: File = fileList[0];
+                let formData: FormData = new FormData();
+                var x = file.name;
+                /*for (var j = 0; j < this.files.length; j++) {
+                    if (event.orderNo != j) {
+                        if (x == this.files[j].fileName) {
+
+                            var replace = false;
+                        }
+                    }
+                }*/
+                var y = x.split(".");
+                if (fileList.length > 0 && y[1] == "pdf") {
+
+                    formData.append('file', file, file.name);
+
+                    let headers = new Headers();
+                    headers.append("Content-Type", "multipart/ form - data");
+                    let options = new RequestOptions({ headers: headers });
+                    this.clientdocumentrepositoryService.replaceFile(this.FileId, formData, headers)
+                        .subscribe(
+                        res => {
+
+                            this.getFilesList();
+                        }
+                        );
+
                 }
-            }
-        }
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && replace != false) {
-
-            formData.append('file', file, file.name);
-
-            let headers = new Headers();
-            headers.append("Content-Type", "multipart/ form - data");
-            let options = new RequestOptions({ headers: headers });
-            this.clientdocumentrepositoryService.replaceFile(this.FileId, formData, headers)
-                .subscribe(
-                res => {
-
-                    this.getFilesList();
+               /* if (x == event.data.fileName) {
+                    this.dialogService.addDialog(ConfirmComponent, {
+                        title: 'Error..!',
+                        message: 'Filename is already exists.'
+                    });
+                }*/
+                if (y[1] !== 'pdf') {
+                    this.dialogService.addDialog(ConfirmComponent, {
+                        title: 'Error..!',
+                        message: 'Please Upload Only Pdf files.'
+                    });
                 }
-                );
-
-        }
-        else {
-            if (replace == false) {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Filename is already exists.'
-                });
-            }
-            else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Please Upload Only Pdf files.'
-                });
-            }
-        }
+                /*else {
+                    if (replace == false) {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Filename is already exists.'
+                        });
+                    }
+                    else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Error..!',
+                            message: 'Please Upload Only Pdf files.'
+                        });
+                    }
+                }*/
             }
         })
-       
-
     }
     onDownloadFile(fileDetails) {
         console.log(fileDetails);
@@ -272,8 +307,6 @@ export class ClientDocumentRepositoryComponent implements OnInit {
     files = [];
     ngOnInit() {
         this.getFilesList();
-        //this.data=this.getFilesList();
-
     }
     getFilesList() {
         this.clientdocumentrepositoryService.getFile(this.appService.clientId)
@@ -298,6 +331,7 @@ export class ClientDocumentRepositoryComponent implements OnInit {
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
+        this.downloadFlag = false;
     }
 
 
@@ -309,6 +343,75 @@ export class ClientDocumentRepositoryComponent implements OnInit {
         }
 
     }
+    editFileName(event) {
+        if (!this.checked) {
+            this.editFileObject.fileName = event.data.fileName.split(".")[0];
+            this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
+                editFiles: true,
+                getData: false,
+                title: 'Edit File Name',
+                editFileObject: this.editFileObject,
 
+            }).subscribe((isConfirmed) => {
+                if (isConfirmed) {
+                    this.FileId = event.data.fileId;
+                    this.fileName = this.editFileObject.fileName.concat(".pdf");
+                    event.data.fileName = this.fileName;
+                    var url = "/file/rename";
+                    var data = {
+                        "accountId": this.accountId,
+                        "fileId": this.FileId,
+                        "fileName": this.fileName
+                    };
+                    this.clientdocumentrepositoryService.renameFile(url, data).subscribe(
+                        res => {
+                            if (res['statusCode'] == 'SUCCESS') {
+                                this.getFilesList();
+
+                            }
+                            if (res['statusDescription'] == "File Name Exists, Use a different Name") {
+                                this.dialogService.addDialog(ConfirmComponent, {
+                                    title: 'Error..!',
+                                    message: 'File Name Exists, Use a different Name'
+                                });
+                            }
+                        }
+                    );
+                }
+                else {
+                    this.editFileObject.fileName = event.data.fileName;
+                }
+                this.checked = false;
+            });
+        }
+        else if (this.checked && this.deleteFlag) {
+            this.onFileDelete(event.data);
+            this.checked = false;
+        }
+        else if (this.replaceFlag && this.checked) {
+            this.fileReplace(event);
+            this.checked = true;
+            this.replaceFlag = false;
+
+        }
+        else if (this.checked && this.downloadFlag) {
+            this.onDownloadFile(event.data);
+            this.checked = false;
+        }
+        else {
+            this.checked = false;
+        }
+
+
+    }
+    save() {
+
+        this.result = true;
+        this.close();
+    }
+    cancel() {
+        this.result = false;
+        this.close();
+    }
 
 }
