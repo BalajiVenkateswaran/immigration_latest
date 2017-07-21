@@ -78,7 +78,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
                 },
                 {
 
-                    headerName: "I94",
+                    headerName: "I-94",
                     field: "i94"
                 },
                 
@@ -133,7 +133,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       this.close();
   }
   deleteArrivalInfo(arrivalDeprtInfo) {
-      this.delmessage = arrivalDeprtInfo.data.departureCountry;
+      this.delmessage = arrivalDeprtInfo.data.i94;
       this.dialogService.addDialog(ConfirmComponent, {
           title: 'Confirmation',
           message: 'Are you sure you want to Delete ' + this.delmessage+'?'
