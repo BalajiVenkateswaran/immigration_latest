@@ -39,6 +39,12 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     isPetitionInformationEdit;
     isNotesEdit;
     private status: any[];
+    private finalStatus: any[] = [
+      { name: 'Approved', value: 'Approved'},
+      { name: 'Denied', value: 'Denied'},
+      { name: 'Withdrawn', value: 'Withdrawn'},
+      { name: 'Rejected', value: 'Rejected'}
+    ];
     private receiptNumber: any[];
     public delegatedOrgsList: any[];
     isLCAInfoEdit: boolean = true;
@@ -304,6 +310,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionInformation.daysInCurrentStage = this.petitionDetails['daysInStage'];
         this.petitionInformation.petitionType = this.petitionDetails['petitionType'];
         this.petitionInformation.petitionSubType = this.petitionDetails['petitionSubType'];
+        this.petitionInformation.finalStatus = this.petitionDetails['finalStatus'];
     }
 
     mapFromPetitionInformation() {
@@ -324,6 +331,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionDetails['markForDeletion'] = this.petitionInformation.markForDeletion;
         this.petitionDetails['deletedBy'] = this.petitionInformation.deletedBy;
         //this.petitionDetails['deletedOn'] = this.petitionInformation.deletedOn;
+        this.petitionDetails['finalStatus'] = this.petitionInformation.finalStatus;
     }
 
     //is edit function for read only

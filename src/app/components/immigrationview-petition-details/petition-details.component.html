@@ -66,7 +66,7 @@
                             <div class="col-md-8">
 
                                 <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.status"  [ngClass]="petitionInformation.status == '' ? 'redborder': ''">
-                                    <option *ngFor="let clientstatus of status">{{clientstatus.name}}</option>
+                                    <option *ngFor="let petitionStatus of status">{{petitionStatus.name}}</option>
                                 </select>
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.status}}</span>
                             </div>
@@ -108,8 +108,10 @@
                     <div class="row">
                         <div class="col-md-4"><label for="pi-createdby">Final Action</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.nextStage" />
-                            <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.nextStage}}</span>
+                            <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.finalStatus"  [ngClass]="petitionInformation.finalStatus == '' ? 'redborder': ''">
+                              <option *ngFor="let petitionFinalStatus of finalStatus">{{petitionFinalStatus.name}}</option>
+                            </select>
+                            <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.finalStatus}}</span>
                         </div>
                     </div>
                         <div class="row">
