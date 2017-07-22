@@ -11,9 +11,7 @@ import { Observable } from 'rxjs';
     <div class="addremovefilter" *ngIf="clsaddFilter">
         <span class="close" (click)="delete(filterText)">&times;</span>
         <span class="plus" (click)="add(filterText)">+</span>
-    </div>`,
-
-
+    </div>`
 })
 export class CustomFilterRow implements IHeaderAngularComp  {
     public params: any;
@@ -37,16 +35,16 @@ export class CustomFilterRow implements IHeaderAngularComp  {
         }
     }
     public add(text) {
-        
+
         this.filterArray.push({ 'headingName': this.params.column.colId, 'filterValue': text,'headerName':this.params.displayName});
-        
+
         CustomFilterRow.fillValues.next(this.filterArray);
         this.clsaddFilter = false;
         this.filterText = '';
     }
     public delete(text) {
         this.deletedFilter = true;
-       
+
         if (text) {
             this.filterText = '';
             this.clsaddFilter = false;

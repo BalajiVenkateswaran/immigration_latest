@@ -14,8 +14,7 @@ import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
 @Component({
     selector: 'smart-table',
-    templateUrl: './SmartTableFramework.html',
-
+    templateUrl: './SmartTableFramework.html'
 })
 export class SmartTableFramework implements OnChanges {
     /*
@@ -82,7 +81,7 @@ export class SmartTableFramework implements OnChanges {
 
 
         });
-       
+
 
     }
     removeDuplicates(data) {
@@ -202,16 +201,15 @@ export class SmartTableFramework implements OnChanges {
                     if (i > 0 || this.settings['isDeleteEnable'] == false) {
                         this.settings['columnsettings'][i]['headerComponentFramework'] = CustomFilterRow;
                     }
-
                 }
             }
             else {
-                this.gridOptions['headerHeight'] = 35;
+                this.gridOptions['headerHeight'] = 25;
             }
         }
         else {
             this.settings['columnFilter'] = false;
-            this.settings['headerHeight'] = 35;
+            this.settings['headerHeight'] = 25;
         }
         this.settings['columnsettings'].map(function (item) {
             if (item['headerTooltip'] == null && item['headerName'] != '') {
@@ -229,7 +227,7 @@ export class SmartTableFramework implements OnChanges {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         }
         else {
-            this.gridOptions['rowHeight'] = 35;
+            this.gridOptions['rowHeight'] = 25;
         }
         this.gridOptions['columnDefs'] = this.settings['columnsettings'];
 

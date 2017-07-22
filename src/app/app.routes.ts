@@ -84,8 +84,6 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview-paym
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
 import { ImmigrationViewReportsComponent } from "./components/immigration-view-reports/immigration-view-reports.component";
 import { ManageaccountUserDetailsComponent } from "./components/manageaccount-user-details/manageaccount-user-details.component";
-import { SmartTableImmigrationViewI797HistoryComponent } from "./components/smarttable-i-797-history/smarttable-i-797-history.component";
-import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas";
 
 //immigrationview reports
 import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
@@ -297,7 +295,6 @@ export const appRoutes: Routes = [
     },
     {
         path: 'immigrationview-I-797-history',
-        //component: SmartTableFramework
         component:  ImmigrationViewI797HistoryComponent
     },
     {
@@ -364,14 +361,6 @@ export const appRoutes: Routes = [
     {
         path: 'superuserview-productcatalog-discounts',
         component: SuperuserviewProductcatalogDiscountsComponent
-    },
-    {
-        path:'smarttable-i797',
-        component:SmartTableImmigrationViewI797HistoryComponent
-    },
-    {
-        path:'smarttable-visas',
-        component:SmartTableVisas
     },
     {
         path: 'immiview-petitionreports',
