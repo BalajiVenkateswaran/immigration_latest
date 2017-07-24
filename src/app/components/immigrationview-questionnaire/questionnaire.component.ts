@@ -187,11 +187,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 },
                 {
 
-                    headerName: "Sent To Client",
-                    field: "sentToClient"
-                },
-                {
-
                     headerName: "Status Date",
                     field: "employerStatusDate"
                 }
@@ -279,6 +274,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                     this.questionnaireList.map(item => {
                         return item.checked = false;
                     })
+                    this.sendQuestionnaire=true;
                     this.data = this.formattedData;
                     this.officerData = this.formattedData;
                 });
@@ -538,6 +534,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 if (res['statusCode'] == 'SUCCESS') {
                     //reset client Check
                     this.ngOnInit();
+                    
                 
 
                 }

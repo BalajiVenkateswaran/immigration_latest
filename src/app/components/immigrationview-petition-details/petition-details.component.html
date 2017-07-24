@@ -1,7 +1,7 @@
 <div class="main-content">
-   
- 
-    
+
+
+
     <div class="table-data-forms">
         <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
 
@@ -22,7 +22,7 @@
                         </div>
                     <div class="row sfm" *ngIf="sfmpi">
                         <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span> 
+                            <span class="redstar">* Fields are Mandatory.</span>
                         </div>
                     </div>
                     <div class="row">
@@ -33,14 +33,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Petition Type </label></div>
+                        <div class="col-md-4"><label for="pi-petitiontype">Petition Type </label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitiontype" disabled />
-                            <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitiontype}}</span>
+                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitionType" disabled />
+                            <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitionType}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Petition Sub Type</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondesubtype">Petition Sub Type</label></div>
                         <div class="col-md-8">
                             <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitionSubType" disabled/>
                             <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitionSubType}}</span>
@@ -66,7 +66,7 @@
                             <div class="col-md-8">
 
                                 <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.status"  [ngClass]="petitionInformation.status == '' ? 'redborder': ''">
-                                    <option *ngFor="let clientstatus of status">{{clientstatus.name}}</option>
+                                    <option *ngFor="let petitionStatus of status">{{petitionStatus.name}}</option>
                                 </select>
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.status}}</span>
                             </div>
@@ -108,8 +108,10 @@
                     <div class="row">
                         <div class="col-md-4"><label for="pi-createdby">Final Action</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.nextStage" />
-                            <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.nextStage}}</span>
+                            <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.finalStatus"  [ngClass]="petitionInformation.finalStatus == '' ? 'redborder': ''">
+                              <option *ngFor="let petitionFinalStatus of finalStatus">{{petitionFinalStatus.name}}</option>
+                            </select>
+                            <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.finalStatus}}</span>
                         </div>
                     </div>
                         <div class="row">
@@ -171,7 +173,7 @@
                         </div>
                     <div class="row sfm" *ngIf="sfmpi">
                         <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span> 
+                            <span class="redstar">* Fields are Mandatory.</span>
                         </div>
                     </div>
 
@@ -625,7 +627,7 @@
                 </div>
             </div>
 
-                
+
         </div>
     </div>
 

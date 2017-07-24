@@ -13,10 +13,6 @@ import Chart from 'chart.js';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 import {ActionColumns} from './components/smarttableframework/ActionColumns';
 import {SendToClientQuestionnaire} from './components/immigrationview-questionnaire/SendToClientQuestionnaire';
-//import { ChartsModule } from 'ng2-charts/components/charts/charts';
-
-
-//import {Ng2PaginationModule} from 'ng2-pagination';
 
 import {AppComponent}  from './components/app/app.component';
 import {Quetionairervice} from "./components/questionnaire-i129/questionnaire-i129.service";
@@ -136,6 +132,8 @@ import {QuestionnaireI129HClentviewService} from "./components/clientview-i129h/
 import {ClientQuestionnaireService} from "./components/clientview-Questionnaries/clientview-Questionnaries.service";
 import {ClientsEnhansmentsComponent} from "./components/clients-enhancements/clients.component";
 
+import { DeclineButton } from "./components/clientview-request/DeclineButton";
+import { RequestButton } from "./components/clientview-request/RequestButton";
 
 
 //import { Typeahead } from 'ng2-typeahead';
@@ -187,10 +185,6 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
 import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service'
 
-import {SmartTableImmigrationViewI797HistoryComponent} from './components/smarttable-i-797-history/smarttable-i-797-history.component';
-import {SmartTableI797HistoryService} from './components/smarttable-i-797-history/smarttable-i-797-history.service'
-import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas";
-import { SmartTableVisasService } from "./components/smarttable-visas/smarttable-visas.service";
 import { ManageAccountUserDetailsService } from "./components/manageaccount-user-details/manageaccount-user-details.service";
 
 //immigrationview reports tab
@@ -209,6 +203,8 @@ import {petitionstagsreportscomponent} from './components/immigrationview-petiti
 import {petitionstagsreportsservice} from './components/immigrationview-petitiontagsreports/petitiontagsreports.service';
 import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
 import {clientstatusreportsservice} from './components/immigartioniew-clientsstatusreports/clientstatusreports.service';
+import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -223,16 +219,11 @@ import {clientstatusreportsservice} from './components/immigartioniew-clientssta
         BootstrapModalModule,
         AgGridModule.withComponents([SmartTableFramework]),
         NgbModule.forRoot()],
-
-
-
-
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework,ActionColumns,SendToClientQuestionnaire,ActionIcons,GenerateFormButton,DownloadButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        SmartTableImmigrationViewI797HistoryComponent,
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent,ActionIcons,GenerateFormButton,DownloadButton, /*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,
@@ -283,7 +274,6 @@ import {clientstatusreportsservice} from './components/immigartioniew-clientssta
 
         LoginComponent,
         QuestionnaireI129Component,
-        SmartTableVisas,
         petitionsclientviewComponent,
         requestclientviewcomponent,
         clientviewQuestionnaireComponent,
@@ -419,8 +409,6 @@ import {clientstatusreportsservice} from './components/immigartioniew-clientssta
 
         SuperuserViewAccountpreferencessService,
         AccountDetailsCommonService,
-        SmartTableI797HistoryService,
-        SmartTableVisasService,
 
         //reports
         petitionsstatusreportsservice,

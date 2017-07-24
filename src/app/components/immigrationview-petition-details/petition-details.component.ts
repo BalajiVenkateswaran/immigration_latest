@@ -39,6 +39,12 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     isPetitionInformationEdit;
     isNotesEdit;
     private status: any[];
+    private finalStatus: any[] = [
+      { name: 'Approved', value: 'Approved'},
+      { name: 'Denied', value: 'Denied'},
+      { name: 'Withdrawn', value: 'Withdrawn'},
+      { name: 'Rejected', value: 'Rejected'}
+    ];
     private receiptNumber: any[];
     public delegatedOrgsList: any[];
     isLCAInfoEdit: boolean = true;
@@ -124,7 +130,6 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         //this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
     }
     ngOnInit() {
-        
         this.appService.showSideBarMenu("immigrationview-petition", "petitions");
         this.petitionDetailsService.getPetitionDetails(this.appService.petitionId)
             .subscribe((res) => {
@@ -180,36 +185,28 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                         this.petitionStages = res['petitionStageList'];
                         });
                  }
-                this.petitionDetailsService.getUsersForAccount(this.appService.user.accountId)
-                                         .subscribe((res) => {
-                                         this.users = res['users'];
-                                         this.users.filter(user => {
-                                          if(user.emailId == this.petitionDetails['assignedTo'])
-                                              this.assignedToName =  user.firstName +', '+user.lastName;
-                                              });
-                                         });
-
-
+                this.petitionDetailsService
+                    .getUsersForAccount(this.appService.user.accountId)
+                    .subscribe((res) => {
+                      this.users = res['users'];
+                      this.users.filter(user => {
+                      if(user.emailId == this.petitionDetails['assignedTo'])
+                          this.assignedToName =  user.firstName +', '+user.lastName;
+                          });
+                    });
             });
-
         this.getPetionDelOrgs();
-
-
-
-
         console.log(this.delegatedOrgsList);
-
-
         this.status = [
             { value: '0', name: 'Open' },
             { value: '1', name: 'Close' },
 
-        ]
+        ];
         this.receiptNumber = [
             { value: '1', name: 'Yes' },
             { value: '0', name: 'No' },
 
-        ]
+        ];
 
         if (this.petitionDetails['markForDeletion'] == true) {
             this.petitionDetails['status'] == "MFD";
@@ -221,14 +218,11 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             .subscribe((res) => {
                 this.allPetitionTypesAndSubTypes = res['petitionTypes'];
             });
-
-        console.log(this.petitionDetails['petitionTypeId'].petitionType);
     }
     getPetionDelOrgs() {
         this.petitionDetailsService.getDelegatedOrgs(this.appService.user.accountId, this.appService.petitionId).subscribe((res) => {
             if (res['orgs'] != undefined) {
                 this.delegatedOrgsList = res['orgs'];
-              //  this.dummylist = JSON.parse(JSON.stringify(this.delegatedOrgsList));
             }
         });
     }
@@ -257,7 +251,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
     //Save Client Details
     savePetitionInformation() {
-        
+
         this.petitionDetails['petitionId'] = this.appService.petitionId;
         this.mapFromPetitionInformation();
         if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
@@ -314,8 +308,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionInformation.deletedBy = this.petitionDetails['deletedBy'];
         this.petitionInformation.deletedOn = this.petitionDetails['deletedByUserOn'];
         this.petitionInformation.daysInCurrentStage = this.petitionDetails['daysInStage'];
-
-
+        this.petitionInformation.petitionType = this.petitionDetails['petitionType'];
+        this.petitionInformation.petitionSubType = this.petitionDetails['petitionSubType'];
+        this.petitionInformation.finalStatus = this.petitionDetails['finalStatus'];
     }
 
     mapFromPetitionInformation() {
@@ -336,7 +331,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionDetails['markForDeletion'] = this.petitionInformation.markForDeletion;
         this.petitionDetails['deletedBy'] = this.petitionInformation.deletedBy;
         //this.petitionDetails['deletedOn'] = this.petitionInformation.deletedOn;
-
+        this.petitionDetails['finalStatus'] = this.petitionInformation.finalStatus;
     }
 
     //is edit function for read only
@@ -447,7 +442,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                 });
         }
 
-        
+
     }
     //For LCA form Section
     editLCAInfoForm() {
@@ -597,7 +592,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionDetails = this.beforeCancelPetition;
         this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
     }
-    
+
     savedelOrgs() {
         this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
         //  this.delegatedOrgsList['orgId'] = this.appService.orgId;
@@ -615,7 +610,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                     this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
                     this.getPetionDelOrgs();
                 }
-              
+
             });
     }
 }

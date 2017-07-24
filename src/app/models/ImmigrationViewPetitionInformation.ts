@@ -16,4 +16,7 @@ export class ImmigrationViewPetitionInformation {
     markForDeletion: string;
     deletedBy: string;
     deletedOn: string;
+    petitionType: string;
+    petitionSubType: string;
+    finalStatus: string;
 }
