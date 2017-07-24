@@ -23,6 +23,7 @@ export class requestclientviewcomponent implements OnInit {
     public requestSubscription;
     public declineSubscription;
     public checked: boolean = false;
+    public status;
     constructor(public appService: AppService, private clientviewrequestservice: ClientRequestService) {
         this.settings = {
             'isDeleteEnable': false,
@@ -60,11 +61,12 @@ export class requestclientviewcomponent implements OnInit {
             if (res) {
                 if (res.hasOwnProperty('requested')) {
                     this.checked = true;
+                    this.status="Accept";
+                    this.statusClick(res['data']);
                   
                 }
                 else {
-                    this.checked = false;
-                    
+                    this.checked = false; 
                 }
             }
         })
@@ -72,23 +74,27 @@ export class requestclientviewcomponent implements OnInit {
             if (res) {
                 if (!res.hasOwnProperty('requested')) {
                     this.checked = true;
+                    this.status="Decline";
+                    this.statusClick(res['data']);
                 }
-                else {
-                    this.checked = false;
+                else{
+                    this.checked=false;
                 }
             }
-
         })
 
     }
-
-    statusClick(Status, clientRequest) {
+    ngOnDestroy() {
+        this.requestSubscription.unsubscribe();
+        this.declineSubscription.unsubscribe();
+    }
+    statusClick(clientRequest) {
         if (this.checked) {
             this.updateStatus['clientInviteId'] = clientRequest.clientInviteId;
-            this.updateStatus['status'] = Status;
+            this.updateStatus['status'] = this.status;
             this.clientviewrequestservice.updateClientInviteStatus(this.updateStatus).subscribe((res) => {
                 if (res['statusCode'] == "SUCCESS") {
-                    clientRequest.status = Status;
+                    clientRequest.status = this.status;
                 }
             });
         }

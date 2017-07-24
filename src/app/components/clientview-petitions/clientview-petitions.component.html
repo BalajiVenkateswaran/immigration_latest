@@ -1,7 +1,8 @@
 ﻿<div class="main-content" *ngIf="getClientviewPetitionData">
     <div class="table-data">
         <h2>Petitions</h2>
-        <table class="smarttable document-management" cellpadding="0" cellspacing="0">
+          <smart-table [settings]="settings" [data]="data" (onColumnFilterClick)="filterData($event)"></smart-table>
+        <!--<table class="smarttable document-management" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
                     <td><span>Petition Name</span> <span class="pull-right"></span></td>
@@ -28,7 +29,7 @@
                     <td><a (click)="viewAllColumns(i, x)" class="more">More Details</a></td>
                 </tr>
                 </tbody>
-            </table>
+            </table>-->
 </div>
 </div>
 

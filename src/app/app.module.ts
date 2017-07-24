@@ -195,6 +195,8 @@ import { GenerateFormButton } from "./components/immigrationview-forms/GenerateF
 import { DownloadButton } from "./components/immigrationview-forms/DownloadButton";
 import {clientscreatedreportscomponent} from './components/immigrationview-clients-createdreports/clients-createdreports.component';
 import {clientscreatedreportsservice} from './components/immigrationview-clients-createdreports/clients-createdreports.service';
+import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -210,10 +212,10 @@ import {clientscreatedreportsservice} from './components/immigrationview-clients
         AgGridModule.withComponents([SmartTableFramework]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,/*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,

@@ -121,19 +121,6 @@
                   <span>I -797 History</span>
               </a>
           </li>
-           <li>
-              <a (click)="appservice.moveToPage('smarttable-i797');highlightSBLink('smarttable-i797')" [ngClass]="[checkForCurrentSBLink('smarttable-i797') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>I -797 History Smarttable</span>
-              </a>
-          </li>
-          <li>
-              <a (click)="appservice.moveToPage('smarttable-visas');highlightSBLink('smarttable-visas')" [ngClass]="[checkForCurrentSBLink('smarttable-visas') ? 'active': '']" routerLinkActive="active">
-                  <span class="ico-history"></span>
-                  <span>Smart Table Visas</span>
-              </a>
-          </li>
-
       </ul>
 
       <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">

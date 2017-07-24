@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
         <input type="text" class="form-control customfilterinput" [(ngModel)]="filterText" (keyup)="addFilters(filterText)">
     </div>
     <div class="addremovefilter" *ngIf="clsaddFilter">
-        <span class="close" (click)="delete(filterText)">&times;</span>
-        <span class="plus" (click)="add(filterText)">+</span>
+     
+        <span class="plus" (click)="add(filterText)">&#10004;</span>
     </div>`
 })
 export class CustomFilterRow implements IHeaderAngularComp  {
