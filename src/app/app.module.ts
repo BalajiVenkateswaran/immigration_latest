@@ -201,6 +201,14 @@ import { GenerateFormButton } from "./components/immigrationview-forms/GenerateF
 import { DownloadButton } from "./components/immigrationview-forms/DownloadButton";
 import {clientscreatedreportscomponent} from './components/immigrationview-clients-createdreports/clients-createdreports.component';
 import {clientscreatedreportsservice} from './components/immigrationview-clients-createdreports/clients-createdreports.service';
+import {petitionstypesreportscomponent} from './components/immigrationview-petitontypereports/petitiontypereports.component';
+import {petitionstypesreportsservice} from './components/immigrationview-petitontypereports/petitiontypereports.service';
+import {petitionstagesreportscomponent} from './components/immigrationview-petitionstagesreports/petitionstagesreports.component';
+import {petitionstagesreportsservice} from './components/immigrationview-petitionstagesreports/petitionstagesreports.service';
+import {petitionstagsreportscomponent} from './components/immigrationview-petitiontagsreports/petitiontagsreports.component';
+import {petitionstagsreportsservice} from './components/immigrationview-petitiontagsreports/petitiontagsreports.service';
+import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
+import {clientstatusreportsservice} from './components/immigartioniew-clientsstatusreports/clientstatusreports.service';
 @NgModule({
     imports: [
         BrowserModule,
@@ -319,7 +327,11 @@ import {clientscreatedreportsservice} from './components/immigrationview-clients
 
         //reports
         petitionsstatusreportscomponent,
-        clientscreatedreportscomponent
+        clientscreatedreportscomponent,
+        petitionstypesreportscomponent,
+        petitionstagesreportscomponent,
+        petitionstagsreportscomponent,
+        clientstatusreportscomponent
 
     ],
     providers: [
@@ -412,7 +424,11 @@ import {clientscreatedreportsservice} from './components/immigrationview-clients
 
         //reports
         petitionsstatusreportsservice,
-        clientscreatedreportsservice
+        clientscreatedreportsservice,
+        petitionstypesreportsservice,
+        petitionstagesreportsservice,
+        clientstatusreportsservice,
+        petitionstagsreportsservice,
 
     ],
     bootstrap: [AppComponent]

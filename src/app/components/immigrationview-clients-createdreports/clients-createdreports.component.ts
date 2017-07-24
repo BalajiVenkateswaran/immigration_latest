@@ -13,11 +13,27 @@ import {clientscreatedreportsservice} from "./clients-createdreports.service";
 })
 
 export class clientscreatedreportscomponent implements OnInit {
+    public data: any=[];
+    public Year: any = [];
+    public orgsList: any = {};
+    public orgsNames: any = [];
+
     ngOnInit() {
 
         this.clientsCreatedreportsservice.getClientCreationreports(this.appService.user.accountId)
             .subscribe((res) => {
-                var asdf = res;
+                this.orgsList = res['orgs'];
+                for (var item in this.orgsList) {
+                    this.data = [];
+                    this.Year = [];
+                    this.orgsNames.push(item);
+                    for (var i = 0; i < this.orgsList[item].length; i++) {
+                        this.data.push(this.orgsList[item][i]['count']);
+                        this.Year.push(this.orgsList[item][i]['year']);
+                    }
+                    this.barChartLabels[item] = this.Year;
+                    this.barChartData[item] = [{ data: this.data, label: 'Clients Created' }];
+                }
             });
     }
     constructor(public appService: AppService, private clientsCreatedreportsservice: clientscreatedreportsservice) { }
@@ -25,7 +41,7 @@ export class clientscreatedreportscomponent implements OnInit {
         scaleShowVerticalLines: false,
         responsive: true
     };
-    public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+    public barChartLabels: number[] = [];
     public barChartType: string = 'bar';
     public barChartLegend: boolean = true;
     // events
@@ -37,8 +53,5 @@ export class clientscreatedreportscomponent implements OnInit {
         console.log(e);
     }
 
-    public barChartData: any[] = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Visa Approvals' },
-        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Visa Deniels' }
-    ];
+    public barChartData: any[] = [];
 }

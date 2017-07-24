@@ -90,6 +90,10 @@ import { SmartTableVisas } from "./components/smarttable-visas/smarttable-visas"
 //immigrationview reports
 import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
 import {clientscreatedreportscomponent} from './components/immigrationview-clients-createdreports/clients-createdreports.component';
+import {petitionstypesreportscomponent} from './components/immigrationview-petitontypereports/petitiontypereports.component';
+import {petitionstagesreportscomponent} from './components/immigrationview-petitionstagesreports/petitionstagesreports.component';
+import {petitionstagsreportscomponent} from './components/immigrationview-petitiontagsreports/petitiontagsreports.component';
+import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
 
 
 
@@ -380,6 +384,22 @@ export const appRoutes: Routes = [
     {
         path: 'immiview-clientscreated',
         component: clientscreatedreportscomponent
+    },
+    {
+        path: 'immiview-petiontypes',
+        component: petitionstypesreportscomponent
+    },
+    {
+        path: 'immiview-petionstagereports',
+        component: petitionstagesreportscomponent
+    },
+    {
+        path: 'immiview-petiontagreports',
+        component: petitionstagsreportscomponent
+    },
+    {
+        path: 'immiview-clientstatusreports',
+        component: clientstatusreportscomponent
     },
     {
         path: '',
