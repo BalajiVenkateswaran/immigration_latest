@@ -44,90 +44,9 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     public settings;
     public data;
 
-   /* settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        actions: {
-            delete :  false
-        },
-        columns: {
-            firstName: {
-                title: 'First Name'
-            },
-            lastName: {
-                title: 'Last Name'
-            },
-            email: {
-                title: 'Email'
-            },
-            phone: {
-                title: 'Phone',
-                class: 'clientTable-phone'
-            },
-            status: {
-                title: 'Status',
-                class: 'clientTable-status',
-                 editor: {
-                  type: 'list',
-                  config: {
-                      list: [
-                        {
-                          value: "Active",
-                          title: "Active",
-                        },
-                        {
-                          value: "Inactive",
-                          title: "Inactive"
-                        }
-                      ]
-                  }
-                }
-            },
-            openPetitions:{
-                title: 'Open Petitions',
-                editor: {
-                    type: 'list',
-                    config: {
-                        list: [
-                            {
-                                value: "Yes",
-                                title: "Yes",
-                            },
-                            {
-                                value: "No",
-                                title: "No"
-                            }
-                        ]
-                    }
-                }
-            }
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        }
-    };*/
-    //source: LocalDataSource = new LocalDataSource();
     constructor(private clientService: ClientsService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
-        super(dialogService); 
-        //this.addClient = new FormGroup({
-        //    firstName: new FormControl(''),
-        //    lastName: new FormControl(''),
-        //    email: new FormControl(''),
-        //    phone: new FormControl(''),
-        //    statusId: new FormControl('')
+        super(dialogService);
 
-        //});
          this.settings = {
             'columnFilter':true,
             'isDeleteEnable':false,
@@ -153,17 +72,15 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                     field: "phone"
                 },
                 {
-
                     headerName: "Status",
                     field: "status"
                 },
                 {
-
                     headerName: "Open Petitions",
                     field: "openPetitions"
                 }
             ]
-        
+
     }
     }
     source: LocalDataSource = new LocalDataSource();
@@ -194,7 +111,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         this.clientList.forEach(client => {if(client.markForDeletion)
                                                  client.status = 'Mark for Deletion';
                                            });
-                                           
+
         this.data=this.clientList;
         console.log(this.data);
         console.log(this.clientList);
@@ -236,8 +153,8 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             this.result = true;
             this.close();
         }
-        
-       
+
+
     }
     cancel() {
         this.result = false;
@@ -269,7 +186,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       });
   }
 
- 
+
   onDeleteConfirm(clients) {
       this.clientName=clients.data.firstName;
       this.dialogService.addDialog(ConfirmComponent, {
@@ -294,7 +211,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.menuComponent.highlightSBLink('Client Details');
     this.appService.moveToPage("immigrationview-client-details");
     this.appService.clientId = event.data.clientId;
-      
+
   }
   filterData(filterQueries){
         this.clientService.getClientsFilteredData(this.appService.orgId,filterQueries).subscribe(res=>{

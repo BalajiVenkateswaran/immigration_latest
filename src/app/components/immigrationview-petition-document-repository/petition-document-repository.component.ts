@@ -27,8 +27,6 @@ export class PetitionDocumentRepositoryComponent implements OnInit {
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService, private dialogService: DialogService) {
         if (this.appService.user) {
             this.user = this.appService.user;
-
-
         }
         this.addDocumentRepository = new FormGroup({
             orderNo: new FormControl(''),
