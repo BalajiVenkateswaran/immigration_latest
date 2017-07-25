@@ -25,33 +25,42 @@ export class requestclientviewcomponent implements OnInit {
     public checked: boolean = false;
     public status;
     constructor(public appService: AppService, private clientviewrequestservice: ClientRequestService) {
+
         this.settings = {
             'isDeleteEnable': false,
             'pagination': false,
             'isAddButtonEnable': false,
+            'rowHeight': 45,//configuring the row height
             'columnsettings': [
                 {
 
                     headerName: "SL No",
                     field: "id",
+                    width: 10, //configuring the column width of grid manually
                 },
                 {
 
                     headerName: "Request Type",
                     field: "requestType",
+                    width: 30, //configuring the column width of grid manually
                 },
                 {
 
                     headerName: "Message",
-                    field: "message"
+                    field: "message",
+                    tooltipField:  "message", //enabling the tooltip for the message field
+                    width: 80, //configuring the column width of grid manually
+
                 },
                 {
                     headerName: "Request",
-                    cellRendererFramework: RequestButton
+                    cellRendererFramework: RequestButton,
+                    width: 15, //configuring the column width of grid manually
                 },
                 {
                     headerName: "Decline",
-                    cellRendererFramework: DeclineButton
+                    cellRendererFramework: DeclineButton,
+                    width: 15 //configuring the column width of grid manually
                 },
 
 
@@ -61,12 +70,12 @@ export class requestclientviewcomponent implements OnInit {
             if (res) {
                 if (res.hasOwnProperty('requested')) {
                     this.checked = true;
-                    this.status="Accept";
+                    this.status = "Accept";
                     this.statusClick(res['data']);
-                  
+
                 }
                 else {
-                    this.checked = false; 
+                    this.checked = false;
                 }
             }
         })
@@ -74,11 +83,11 @@ export class requestclientviewcomponent implements OnInit {
             if (res) {
                 if (!res.hasOwnProperty('requested')) {
                     this.checked = true;
-                    this.status="Decline";
+                    this.status = "Decline";
                     this.statusClick(res['data']);
                 }
-                else{
-                    this.checked=false;
+                else {
+                    this.checked = false;
                 }
             }
         })
