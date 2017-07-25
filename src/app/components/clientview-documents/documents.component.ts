@@ -54,6 +54,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     public replaceFlag: boolean = false;
     public replacing: boolean = false;
     public downloadFlag: boolean = false;
+    public count=0;
     constructor(private Documentservice: documentService, private http: Http, public appService: AppService, public dialogService: DialogService, private router: Router, private route: ActivatedRoute, private menuComponent: MenuComponent) {
         super(dialogService);
         if (this.appService.user) {
@@ -99,6 +100,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             if (res.hasOwnProperty('replaceFlag')) {
                 this.checked = true;
                 this.replaceFlag = true;
+                this.count++;
                 this.fileReplace(res);
 
             }

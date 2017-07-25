@@ -50,6 +50,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public replacing: boolean = false;
     public downloadFlag: boolean = false;
     public delmessage;
+    public count:number=0;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
@@ -85,10 +86,12 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 }
             }
         )
+        
         this.replaceSubscription = ActionIcons.onReplaceClick.subscribe(res => {
             if (res.hasOwnProperty('replaceFlag')) {
                 this.checked = true;
                 this.replaceFlag = true;
+                this.count++;
                 this.fileReplace(res);
 
             }
@@ -96,6 +99,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 this.checked = false;
 
             }
+            console.log(this.count);
         })
         this.addDocumentRepository = new FormGroup({
             orderNo: new FormControl(''),

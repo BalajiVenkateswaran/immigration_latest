@@ -52,6 +52,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     public replaceFlag: boolean = false;
     public replacing: boolean = false;
     public downloadFlag: boolean = false;
+    public count:number=0;
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
@@ -92,6 +93,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             if (res.hasOwnProperty('replaceFlag')) {
                 this.checked = true;
                 this.replaceFlag = true;
+                this.count++;
                 this.fileReplace(res);
 
             }

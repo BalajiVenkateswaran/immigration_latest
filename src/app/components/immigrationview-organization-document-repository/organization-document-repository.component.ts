@@ -52,6 +52,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     public replaceFlag: boolean = false;
     public replacing: boolean = false;
     public downloadFlag: boolean = false;
+    public count:number=0;
      constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService){
         super(dialogService);
         if (this.appService.user) {
@@ -97,6 +98,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
             if (res.hasOwnProperty('replaceFlag')) {
                 this.checked = true;
                 this.replaceFlag = true;
+                this.count++;
                 this.fileReplace(res);
 
             }
