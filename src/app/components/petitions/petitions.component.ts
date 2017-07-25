@@ -166,6 +166,7 @@ export class PetitionsComponent implements OnInit {
     this.appService.clientfirstName = event.data.firstName;
     console.log(this.appService.petitionfirstName);
     this.appService.clientlastName = event.data.lastName;
+    this.appService.petitionType=event.data.petitionType;
     this.appService.moveToPage("immigrationview-petition-details");
   }
 }

@@ -147,7 +147,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 {
 
                     headerName: "Questionnaire Name",
-                    field: "questionnaireName",
+                    field: "questionnairePetitionType",
                     width: 250,
                 },
                 {
@@ -274,6 +274,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                     this.questionnaireList.map(item => {
                         return item.checked = false;
                     })
+
                     this.sendQuestionnaire=true;
                     this.data = this.formattedData;
                     this.officerData = this.formattedData;
@@ -284,10 +285,10 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         });
     }
     objectMapper(data) {
-
         for (var i = 0; i < data.length; i++) {
             var x = this.getFormName(data[i].formId);
             data[i]['formName'] = x;
+            data[i]['questionnairePetitionType']=this.appService.petitionType+"  "+data[i]['formName'];
             if (data[i]['sentToClient'] == false) {
                 data[i]['sentToClient'] = 'No';
             } else {
