@@ -14,7 +14,7 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 })
 export class ImmigrationViewPassportInfoComponent implements OnInit {
 
-    private passport: any = {};
+    public passport: any = {};
     private fieldsList: passportinfo[];
     isEdit;
     countryofbirth;
