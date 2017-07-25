@@ -56,8 +56,6 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
-
-
         }
 
         this.downloadSubscription = ActionIcons.onDownloadClick.subscribe(res => {
