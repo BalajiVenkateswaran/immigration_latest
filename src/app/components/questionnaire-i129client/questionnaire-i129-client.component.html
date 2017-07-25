@@ -1,5 +1,5 @@
 ﻿<div class="main-content">
-    
+
     <div class="clearfix"></div>
     <div class="table-data-forms">
         <div class="row">
@@ -9,7 +9,7 @@
                 <div class="tbl-head-btn">
                     <!--<button type="button" (click)="cancelClientQuestionnaire()" class="editbtn tbl-head-btn" *ngIf="isQuestionnaireClientEdit==false">Cancel</button>-->
                     <button type="submit" value="Save" class="savebtn savelaterbtn" (click)="saveClientQuestionnaire(questionnaireClient)" *ngIf="isQuestionnaireClientEdit==false">Save for Later</button>
-                    <button type="submit" value="Save" class="savebtn saveinformbtn" (click)="saveClientQuestionnaire(questionnaireClient)" *ngIf="isQuestionnaireClientEdit==false">Save and inform firm</button>
+                    <button type="submit" value="Save" class="savebtn saveinformbtn" (click)="saveClientQuestionnaireInform(questionnaireClient)" *ngIf="isQuestionnaireClientEdit==false">Save and inform firm</button>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -56,7 +56,7 @@
                                     <option *ngFor="let genderTypes of gender" >{{genderTypes.name}}</option>
                                 </select>
                                 <span *ngIf="isQuestionnaireClientEdit==true">{{questionnaireClient.gender}}</span>
-                               
+
                             </div>
                         </div>
                         <div class="row">

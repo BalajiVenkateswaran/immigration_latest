@@ -53,7 +53,7 @@ export class QuestionnaireI129ClientComponent implements OnInit {
         ]
 
         this.getData();
-       
+
     }
     getData = function () {
         this.route.params.subscribe(params => {
@@ -68,10 +68,10 @@ export class QuestionnaireI129ClientComponent implements OnInit {
                         this.passportExpiryDate = this.questionnaireClient['passportExpiryDate'];
                         this.dateStatusExpires = this.questionnaireClient['dateStatusExpires'];
                         console.log(this.questionnaireClient);
-                       
+
                     }
                     else {
-                        this.questionnaireClient = [];
+                        this.questionnaireClient = {};
                         this.dateOfBirth = "";
                         this.dateOfLastArrival = "";
                         this.passportIssueDate = "";
@@ -80,55 +80,34 @@ export class QuestionnaireI129ClientComponent implements OnInit {
                     }
                 }
             );
-        }); 
+        });
     }
-    //editClientQuestionnaire() {
-    //    console.log("coming");
-    //    this.isQuestionnaireClientEdit = !this.isQuestionnaireClientEdit;
-    //    this.dateOfBirth = this.questionnaireClient['dateOfBirth'];
-    //    this.beforeCancelQuestionnaire = (<any>Object).assign({}, this.questionnaireClient);
-    //    this.dateOfLastArrival = this.questionnaireClient.dateOfLastArrival;
-    //    this.passportExpiryDate = this.questionnaireClient.passportExpiryDate;
-    //    this.passportIssueDate = this.questionnaireClient.passportIssueDate;
-    //    this.dateStatusExpires = this.questionnaireClient.dateStatusExpires;
-    //    this.dateOfBirth = this.questionnaireClient.dateOfBirth;
 
-    //}
-    //cancelClientQuestionnaire() {
-    //    this.questionnaireClient = this.beforeCancelQuestionnaire;
-    //    this.isQuestionnaireClientEdit = !this.isQuestionnaireClientEdit;
-    //    if (this.questionnaireClient['dateOfLastArrival'] && this.questionnaireClient['dateOfLastArrival']['formatted']) {
-    //        this.questionnaireClient['dateOfLastArrival'] = this.questionnaireClient['dateOfLastArrival']['formatted'];
-    //    }
-    //    if (this.questionnaireClient['passportIssueDate'] && this.questionnaireClient['passportIssueDate']['formatted']) {
-    //        this.questionnaireClient['passportIssueDate'] = this.questionnaireClient['passportIssueDate']['formatted'];
-    //    }
-    //    if (this.questionnaireClient['passportExpiryDate'] && this.questionnaireClient['passportExpiryDate']['formatted']) {
-    //        this.questionnaireClient['passportExpiryDate'] = this.questionnaireClient['passportExpiryDate']['formatted'];
-    //    }
-    //    if (this.questionnaireClient['dateStatusExpires'] && this.questionnaireClient['dateStatusExpires']['formatted']) {
-    //        this.questionnaireClient['dateStatusExpires'] = this.questionnaireClient['dateStatusExpires']['formatted'];
-    //    }
-    //    if (this.questionnaireClient['dateOfBirth'] && this.questionnaireClient['dateOfBirth']['formatted']) {
-    //        this.questionnaireClient['dateOfBirth'] = this.questionnaireClient['dateOfBirth']['formatted'];
-    //    }
-
-    //}
     saveClientQuestionnaire() {
-       // this.isQuestionnaireClientEdit = !this.isQuestionnaireClientEdit;
-        if (this.questionnaireClient['dateOfLastArrival'] && this.questionnaireClient['dateOfLastArrival']['formatted']) {
+
+        if(this.questionnaireClient['dateOfLastArrival'] == ""){
+          this.questionnaireClient['dateOfLastArrival'] = null;
+        } else if (this.questionnaireClient['dateOfLastArrival'] && this.questionnaireClient['dateOfLastArrival']['formatted']) {
             this.questionnaireClient['dateOfLastArrival'] = this.questionnaireClient['dateOfLastArrival']['formatted'];
         }
-        if (this.questionnaireClient['passportIssueDate'] && this.questionnaireClient['passportIssueDate']['formatted']) {
+        if(this.questionnaireClient['passportIssueDate'] == ""){
+            this.questionnaireClient['passportIssueDate'] = null;
+        } else if (this.questionnaireClient['passportIssueDate'] && this.questionnaireClient['passportIssueDate']['formatted']) {
             this.questionnaireClient['passportIssueDate'] = this.questionnaireClient['passportIssueDate']['formatted'];
         }
-        if (this.questionnaireClient['passportExpiryDate'] && this.questionnaireClient['passportExpiryDate']['formatted']) {
+        if(this.questionnaireClient['passportExpiryDate'] == ""){
+            this.questionnaireClient['passportExpiryDate'] = null;
+        } else if (this.questionnaireClient['passportExpiryDate'] && this.questionnaireClient['passportExpiryDate']['formatted']) {
             this.questionnaireClient['passportExpiryDate'] = this.questionnaireClient['passportExpiryDate']['formatted'];
         }
-        if (this.questionnaireClient['dateStatusExpires'] && this.questionnaireClient['dateStatusExpires']['formatted']) {
+        if(this.questionnaireClient['dateStatusExpires'] == ""){
+            this.questionnaireClient['dateStatusExpires'] = null;
+        } else if (this.questionnaireClient['dateStatusExpires'] && this.questionnaireClient['dateStatusExpires']['formatted']) {
             this.questionnaireClient['dateStatusExpires'] = this.questionnaireClient['dateStatusExpires']['formatted'];
         }
-        if (this.questionnaireClient['dateOfBirth'] && this.questionnaireClient['dateOfBirth']['formatted']) {
+        if(this.questionnaireClient['dateOfBirth'] == ""){
+            this.questionnaireClient['dateOfBirth'] = null;
+        } else if (this.questionnaireClient['dateOfBirth'] && this.questionnaireClient['dateOfBirth']['formatted']) {
             this.questionnaireClient['dateOfBirth'] = this.questionnaireClient['dateOfBirth']['formatted'];
         }
         this.questionnaireClientViewService.saveQuestionnaire(this.questionnaireClient,this.appService.questionaryName,'Save').subscribe(
@@ -165,6 +144,10 @@ saveClientQuestionnaireInform() {
             res => {
 
                 this.questionnaireClient = true;
+                if(res['statusCode'] === 'SUCCESS'){
+                  this.appService.moveToPage('clientview-Questionnaries');
+                }
+
                 if (res['beneficiaryInfo']) {
                     this.questionnaireClient = res['beneficiaryInfo'];
                 }

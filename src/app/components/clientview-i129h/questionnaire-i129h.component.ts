@@ -2,6 +2,7 @@
 import {QuestionnaireI129HClentviewService} from "./questionnaire-i129h.service";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {AppService} from "../../services/app.service";
 @Component({
     selector: 'app-questionnaire-i129h.component',
     templateUrl: './questionnaire-i129h.component.html',
@@ -27,7 +28,7 @@ export class QuestionnaireI129HclientviewComponent implements OnInit {
     public questionnairei129hstayPeriodList: any[] = [];
     onDateChanged(event: IMyDateModel) {
     }
-    constructor(private questionnaireI129HClentviewService: QuestionnaireI129HClentviewService,
+    constructor(private appService: AppService, private questionnaireI129HClentviewService: QuestionnaireI129HClentviewService,
         private route: ActivatedRoute,
         private router: Router) {
     }
@@ -41,7 +42,6 @@ export class QuestionnaireI129HclientviewComponent implements OnInit {
                       if (res['i129HbeneficiaryInfo']) {
                           this.questionnairei129h = res['i129HbeneficiaryInfo'];
                           console.log(this.questionnairei129h);
-                          // this.questionnairei129hsignature = res['i129H']['signature'];
                       }
                       else {
                           this.questionnairei129h = {};
@@ -57,7 +57,6 @@ export class QuestionnaireI129HclientviewComponent implements OnInit {
                               this.questionnairei129hstayPeriodList = [];
                           }
                       }
-                      //this.isquestionnairei129hEdit = true;
                   });
         });
     }
@@ -80,14 +79,10 @@ export class QuestionnaireI129HclientviewComponent implements OnInit {
         }
 
         this.questionnaireI129HClentviewService.saveQuestionnairei129(this.questionnairei129h, this.questionnaireId, this.questionnairei129hstayPeriodList,'Save').subscribe(res => {
-
             if (res['i129HbeneficiaryInfo']) {
-                //this.isquestionnairei129hEdit = true;
                 this.questionnairei129h = res['i129HbeneficiaryInfo'];
                 this.questionnairei129hsignature = res['i129HbeneficiaryInfo']['signature'];
             }
-            //this.isquestionnairei129hEdit = true;
-
         });
     }
 
@@ -109,42 +104,15 @@ export class QuestionnaireI129HclientviewComponent implements OnInit {
         }
 
         this.questionnaireI129HClentviewService.saveQuestionnairei129(this.questionnairei129h, this.questionnaireId, this.questionnairei129hstayPeriodList,'Inform').subscribe(res => {
-
+             if(res['statusCode'] === 'SUCCESS'){
+                this.appService.moveToPage('clientview-Questionnaries');
+             }
             if (res['i129HbeneficiaryInfo']) {
-                //this.isquestionnairei129hEdit = true;
                 this.questionnairei129h = res['i129HbeneficiaryInfo'];
                 this.questionnairei129hsignature = res['i129HbeneficiaryInfo']['signature'];
             }
-            //this.isquestionnairei129hEdit = true;
-
         });
     }
-
-    //editQuestinnairei129Form() {
-    //    this.from = this.questionnairei129hstayPeriodList.map(function (item) { return item.from; });
-    //    this.to = this.questionnairei129hstayPeriodList.map(function (item) { return item.to; });
-    //    this.isquestionnairei129hEdit = !this.isquestionnairei129hEdit;
-    //    this.beforecancelquestionnairei129H = (<any>Object).assign({}, this.questionnairei129h);
-    //    this.beforecanceli129HSignature = (<any>Object).assign({}, this.questionnairei129hsignature);
-
-    //}
-    //cancelQuestinnairei129Edit() {
-    //    this.questionnairei129hstayPeriodList = this.questionnairei129hstayPeriodList.filter(function (item) {
-    //        if (item.from != '' && item.to != '' && item.subjectName != '') {
-    //            return item;
-    //        }
-    //    })
-    //    this.questionnairei129hstayPeriodList.map(function (item) {
-    //        if (item['from'] && item['from']['formatted'] && item['to']['formatted'] && item['to']) {
-    //            item.from = item['from']['formatted'];
-    //            item.to = item['to']['formatted'];
-    //        }
-    //    })
-    //    this.isquestionnairei129hEdit = !this.isquestionnairei129hEdit;
-    //    this.questionnairei129h = this.beforecancelquestionnairei129H;
-    //    this.questionnairei129hsignature = this.beforecanceli129HSignature;
-
-    //}
     addStayPeriodListItem() {
         this.questionnairei129hstayPeriodList.push({ 'from': '', 'to': '', 'subjectName': '' });
     }
