@@ -49,6 +49,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public replaceFlag: boolean = false;
     public replacing: boolean = false;
     public downloadFlag: boolean = false;
+    public delmessage;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
@@ -136,13 +137,22 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     private deleterow;
     private FileId;
     onFileDelete(FileDetails) {
-        var index = this.files.indexOf(FileDetails);
         this.FileId = FileDetails.fileId;
-        this.clientdocumentrepositoryService.deleteFile(FileDetails.fileId).subscribe(res => {
-            if (res['statusCode'] == 'SUCCESS') {
-                this.getFilesList();
-            }
-        });
+        this.delmessage = FileDetails.fileName
+        this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Confirmation',
+            message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+        })
+            .subscribe((isConfirmed) => {
+                //Get dialog result
+                //this.confirmResult = isConfirmed;
+                if (isConfirmed) {
+                   
+                    this.clientdocumentrepositoryService.deleteFile(FileDetails.fileId).subscribe(res => {
+                        this.getFilesList();
+                    });
+                }
+            });
         this.deleteFlag = false;
     }
 
@@ -206,7 +216,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                    this.FileId = event.data.fileId;
+                this.FileId = event.data.fileId;
                 let fileList: FileList = event.event.target.files;
                 let file: File = fileList[0];
                 let formData: FormData = new FormData();
@@ -241,6 +251,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                     });
                 }
             }
+            this.checked = false;   
         })
     }
     onDownloadFile(fileDetails) {
@@ -271,21 +282,17 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     ngOnInit() {
         this.getFilesList();
     }
-    ngOnDestroy() {
-        this.replaceSubscription.unsubscribe();
-    }
+      
     getFilesList() {
         this.clientdocumentrepositoryService.getFile(this.appService.clientId)
             .subscribe((res) => {
                 if (res != undefined) {
                     console.log("filesGetmethod%o", res);
-                    //this.files = res['files'];
-                    this.getFiles = res['files'];
-                    //this.getFilesList=res['files'];
-                    for (var i in this.files) {
-                        this.rowEdit[i] = true;
-                        this.onloadisEdit[i] = false;
+                    let data= res['files'];
+                    for(var i=0;i<data.length;i++){
+                        data[i]['orderNo']=i+1;
                     }
+                    this.getFiles=data;
                 }
 
 
@@ -361,8 +368,6 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         else {
             this.checked = false;
         }
-
-
     }
     save() {
 
