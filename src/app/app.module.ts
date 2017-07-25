@@ -204,6 +204,7 @@ import {petitionstagsreportsservice} from './components/immigrationview-petition
 import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
 import {clientstatusreportsservice} from './components/immigartioniew-clientsstatusreports/clientstatusreports.service';
 import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
+import { DownloadInvoiceButton } from "./components/manageaccount-invoices/DownloadInvoiceButton";
 
 @NgModule({
     imports: [
@@ -220,10 +221,10 @@ import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
         AgGridModule.withComponents([SmartTableFramework]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,DownloadInvoiceButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,/*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,DownloadInvoiceButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,

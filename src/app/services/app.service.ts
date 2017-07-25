@@ -74,6 +74,7 @@ export class AppService {
     public rolemultiple: boolean;
     public usersList: any;
     public selectedOrg: string;
+    public petitionType:string;
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {

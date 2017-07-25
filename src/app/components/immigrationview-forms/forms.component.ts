@@ -53,6 +53,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
             'isAddButtonEnable': false,
             'pagination': false,
             'isDeleteEnable': false,
+            'rowHeight':45,
             'columnsettings': [
 
                 {

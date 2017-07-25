@@ -1,67 +1,20 @@
-    <div class="main-content" *ngIf="getInvoice">
-        <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
-        <ul class="breadcrumb">
-            <li><a href="#">Account Preferences</a></li>
-        </ul>
-        <div class="clearfix"></div>
-        <div class="table-data">
-            <h2>Invoices</h2>
-            <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
-
-            <table class="smarttable" cellpadding="0" cellspacing="0">
-                <thead>
-                    <tr>
-                        <td><span>Invoice Number</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span></td>
-                        <td>
-                            <span>Invoice Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Invoice Amount</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Payment Received</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>PDF uploaded</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Download</span>
-                        </td>
-                        <td>
-                            <span>View Details</span> 
-                        </td>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="text" name="" /></td>
-                        <td><input type="text" name="" /></td>
-                        <td><input type="text" name="" /></td>
-                        <td><input type="text" name="" /></td>
-                        <td><input type="text" name="" /></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                     <tr *ngFor="let invoice of AccountInvoices">
-            <td>{{invoice.invoiceNumber}}</td>
-            <td>{{invoice.invoiceDate}}</td>
-            <td>{{invoice.invoiceAmount}}</td>
-            <td>{{invoice.paymentRecieved}}</td>           
-            <td>{{invoice.fileName}}</td>          
-            <td><button type="button" class="btn btn-primary" (click)="downloadInvoice(invoice)">Download</button></td>
-            <td><a (click)="getInvoiceInfo(invoice)"><i class="fa fa-eye"></i></a></td>
-        </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="main-content" *ngIf="getInvoice">
+    <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
+    <ul class="breadcrumb">
+        <li><a href="#">Account Preferences</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2>Invoices</h2>
+        <smart-table [settings]="settings" [data]="data" (onRowClick)="viewRecord($event)"></smart-table>
     </div>
+</div>
 <div *ngIf="viewPopup">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                
+
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
@@ -84,55 +37,48 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Invoice Amount:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.invoiceAmount"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.invoiceAmount" class="form-control">
                                     <span *ngIf="isEditInvoice==true">{{invoice.invoiceAmount}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Account Name:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.accountName"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.accountName" class="form-control">
                                     <span *ngIf="isEditInvoice==true">{{invoice.accountName}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Account Number:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.accountNumber"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.accountNumber" class="form-control">
                                     <span *ngIf="isEditInvoice==true">{{invoice.accountNumber}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Product Codes:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.invoiceCodes"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.invoiceCodes" class="form-control">
                                     <span *ngIf="isEditInvoice==true">{{invoice.invoiceCodes}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Discount Codes:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.discountCodes"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.discountCodes" class="form-control">
                                     <span *ngIf="isEditInvoice==true">{{invoice.discountCodes}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Payment Status:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.paymentStatus"
-                                        class="form-control">
+                                <div class="col-md-8"><input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.paymentStatus" class="form-control">
                                     <span *ngIf="isEditInvoice==true">{{invoice.paymentStatus}}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Invoice (PDF Name):</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.fileName"
-                                           class="form-control">
+                                    <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.fileName" class="form-control">
                                     <span *ngIf="isEditInvoice==true">{{invoice.fileName}}</span>
                                 </div>
                             </div>
-                            
+
 
                         </div>
                     </div>
