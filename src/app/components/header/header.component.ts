@@ -26,7 +26,7 @@ export class HeaderComponent implements AfterViewChecked{
   //private selectedOrg: any = {};
   private i;
   public orgnames: any = {};
-
+  public delegatedOrg:boolean=false;
   @ViewChild('orgSelect') vc;
 
   public ngAfterViewChecked():void {
@@ -58,6 +58,12 @@ export class HeaderComponent implements AfterViewChecked{
                     this.appService.selectedOrg = "";
                 }
                 this.appService.orgId = this.orgNamelist[0].orgId;
+                if (this.orgNamelist[0].orgType == "Delegated") {
+                    this.delegatedOrg = true;
+                }
+                else {
+                    this.delegatedOrg = false;
+                }
             }
         });
     }
@@ -69,6 +75,12 @@ export class HeaderComponent implements AfterViewChecked{
                 this.appService.selectedOrg = "";
             }
             this.appService.orgId = this.orgNamelist[0].orgId;
+            if (this.orgNamelist[0].orgType == "Delegated") {
+                this.delegatedOrg = true;
+            }
+            else {
+                this.delegatedOrg = false;
+            }
         }
     }
   }
@@ -101,6 +113,12 @@ export class HeaderComponent implements AfterViewChecked{
       if (this.appService.getorgMenu != undefined) {
           this.appService.selectedOrg = this.appService.getorgMenu.orgName;
           this.appService.orgId = this.appService.getorgMenu.orgId;
+          if (this.appService.getorgMenu.orgType == "Delegated") {
+              this.delegatedOrg = true;
+          }
+          else {
+              this.delegatedOrg = false;
+          }
       }       
   }
   logOut() {

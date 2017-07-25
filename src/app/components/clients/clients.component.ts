@@ -43,7 +43,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     public DefaultResponse = {"status": "Active" };
     public settings;
     public data;
-
+   
     constructor(private clientService: ClientsService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
         super(dialogService);
 
@@ -144,8 +144,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         if (this.newclitem['status'] == '' || null || undefined) {
             this.newclitem['status'] = "Active";
         }
+ 
+
         if (this.newclitem['firstName'] == '' || this.newclitem['firstName'] == null || this.newclitem['firstName'] == undefined || this.newclitem['lastName'] == '' || this.newclitem['lastName'] == null || this.newclitem['lastName'] == undefined || this.newclitem['email'] == '' || this.newclitem['email'] == null || this.newclitem['email'] == undefined || this.newclitem['phone'] == '' || this.newclitem['phone'] == null || this.newclitem['phone'] == undefined) {
-          this.warningMessage=true;
+            this.warningMessage = true;
         }
         else{
             this.warningMessage=false;

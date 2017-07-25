@@ -96,7 +96,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
                 },
                 {
 
-                    headerName: "Reciept Number",
+                    headerName: "Receipt Number",
                     field: "recieptNumber"
                 },
                 {
@@ -155,7 +155,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
             this.dialogService.addDialog(petitionsclientviewComponent, {
                 showclientviewPetitionpopup: true,
                 getClientviewPetitionData: false,
-                title: 'Petition Full Details',
+                title: 'Petition Details',
                 cvpedit: this.editFlag ? this.beforeEdit : this.viewData,
 
             }).subscribe((isConfirmed) => {

@@ -155,7 +155,8 @@ export class AppService {
               this.clientdep = true;
               return;
           }
-      }
+        }
+
       if (pageLink == "immigrationview-dependents") {
           if (this.immidep == true) {
               this.immidep = false;

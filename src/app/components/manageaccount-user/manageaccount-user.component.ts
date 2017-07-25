@@ -265,7 +265,8 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             }
         });*/
         this.appService.moveToPageWithParams('user-details', event.data);
-        this.appService.currentSBLink = event.data.firstName;
+        this.appService.currentSBLink = event.data.userId;
+        this.appService.manageUser = true;
     }
 
     deleteRecord(event): void {

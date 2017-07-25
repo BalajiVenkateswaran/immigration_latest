@@ -42,7 +42,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
-                            <div class="col-md-8"><input type="text" *ngIf="isUserEdit==false" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" id="email" [(ngModel)]="userList.emailId" /><span *ngIf="isUserEdit==true">{{userList.emailId}}</span></div>
+                            <div class="col-md-8">
+                                <!--<input type="text" *ngIf="isUserEdit==false" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" id="email" [(ngModel)]="userList.emailId" />-->
+                            <span>{{userList.emailId}}</span>
+                            </div>
                            
                         </div>
                         <div class="row">

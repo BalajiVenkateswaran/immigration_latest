@@ -27,7 +27,7 @@
                   </a>
               </li>
               <li ngbDropdown class="dropdown">
-                  <a ngbDropdownToggle (click)="immiPetDoc();highlightSBLink(Documents)" [ngClass]="[checkForCurrentSBLink(Documents) ? 'active': '']" class="dropdown-toggle" id="petition-documents" data-toggle="dropdown">
+                  <a ngbDropdownToggle (click)="appservice.moveToPage('immigrationview-petition-document-repository');immiPetDoc();highlightSBLink(Documents)" [ngClass]="[checkForCurrentSBLink(Documents) ? 'active': '']" class="dropdown-toggle" id="petition-documents" data-toggle="dropdown">
                       <span class="ico-dependents"></span>
                       <span>Documents</span>
                       <span class="ico-arrow"></span>
@@ -130,8 +130,8 @@
                   <span>User</span>
                   <span class="ico-arrow"></span>
               </a>
-              <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl *ngIf="appservice.usersList&&manageuser" [(ngModel)]="appservice.usersList">
-                  <li *ngFor='let value of appservice.usersList'><a (click)="appservice.moveToPageWithParams('user-details',value);highlightSBLink(value.firstName);" [ngClass]="[checkForCurrentSBLink(value.firstName) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
+              <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl *ngIf="appservice.usersList&&appservice.manageUser" [(ngModel)]="appservice.usersList">
+                  <li *ngFor='let value of appservice.usersList'><a (click)="appservice.moveToPageWithParams('user-details',value);highlightSBLink(value.userId);" [ngClass]="[checkForCurrentSBLink(value.userId) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
               </ul>
           </li>
           <li>

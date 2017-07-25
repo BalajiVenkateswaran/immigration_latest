@@ -55,7 +55,7 @@ export class MenuComponent implements OnInit {
       this.immidependents = this.appservice.immidep;
       this.clientQuest = this.appservice.clntqstn;
       this.immiQstnre = this.appservice.immiqstn;
-      this.manageuser=this.appservice.manageUser
+     // this.manageuser=this.appservice.manageUser
   }
   checkForCurrentSBLink(sblink) {
       return this.appservice.currentSBLink == sblink;

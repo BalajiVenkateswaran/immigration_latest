@@ -105,6 +105,7 @@ export class DependentDetailsComponent implements OnInit {
       //  this.mapToClientPersonalInfo();
         this.dependent = this.beforeCancelProfile;
         this.isProfileEdit = !this.isProfileEdit;
+        this.warningMessage = false;
 
         if (this.dependentProfile['creationDate'] && this.dependentProfile['creationDate']['formatted']) {
             this.dependentProfile['creationDate'] = this.dependentProfile['creationDate']['formatted'];
@@ -128,7 +129,6 @@ export class DependentDetailsComponent implements OnInit {
         this.mapToClientPersonalInfo();
         this.dependent = this.beforeCancelPersonal;
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
-
         if (this.dependentPersonalInfo['dateOfBirth'] && this.dependentPersonalInfo['dateOfBirth']['formatted']) {
             this.dependentPersonalInfo['dateOfBirth'] = this.dependentPersonalInfo['dateOfBirth']['formatted'];
         }
