@@ -115,17 +115,18 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
             'pagination': false,
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
+            'rowHeight':30,
             'columnsettings': [
                 {
                     headerName: "Actions",
                     cellRendererFramework: ActionIcons,
-                    width: 200
+                    width:80
 
                 },
                 {
                     headerName: "SL No",
                     field: "orderNo",
-                    width: 70
+                    width:50
                 },
                 {
 
