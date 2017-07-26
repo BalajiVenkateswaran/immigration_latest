@@ -104,6 +104,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     public checkedSubscription;
     public checked = false;
     public questionnireChecked;
+    public questionnaireName;
     private status = [
         {
             "id": "0",
@@ -399,8 +400,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 console.log(res);
                 if (res['statusCode'] == 'SUCCESS') {
                     this.getquesnreData();
-                    //this.questionnaireList.splice(,1);
-                    //this.appService.questionnaireName.splice(i,1);
                 }
             }
         );
@@ -430,9 +429,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
 
     //Employee Questionnaire
     editEmpQuestionnaire(questionnaireEmployee) {
-        //this.empBeforeCancel = (<any>Object).assign({}, question);
-        //this.rowEditEmp[i] = !this.rowEditEmp[i];
-        //this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
         if (questionnaireEmployee.data['sentToClient'] == 'Yes') {
             questionnaireEmployee.data['sentToClient'] = true;
         }
@@ -450,8 +446,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
             editquspopup: true,
             title: 'Edit Questionnaire',
             questionnaireEmployee: this.editFlag ? this.beforeEdit : this.questionnaireEmployee,
-            //employerStatus: questionnaireEmployee.employerStatus,
-
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.questionnaireService.saveNewQuestionnaireClient(this.appService.questionnaireEmployee).subscribe((res) => {
@@ -471,7 +465,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     }
 
     empquestionnaireSave() {
-        //this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
         this.appService.questionnaireEmployee = this.questionnaireEmployee;
         this.result = true;
         this.close();
@@ -480,23 +473,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         this.result = false;
         this.close();
     }
-    /*saveEmpQuestionnaire(i, question) {
-        this.questionnaireService.saveNewQuestionnaireClient(question)
-            .subscribe((res) => {
-                if (res['statusCode'] == 'SUCCESS') {
-                    this.questionnaireList[i] = res['questionnaire'];
-                    this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
-                    this.rowEditEmp[i] = true;
-                }
-            });
-    }*/
-
-    /* cancelEmpQuestionnaire(i, question) {
-         this.questionnaireList[i] = this.empBeforeCancel;
-         this.rowEditEmp[i] = !this.rowEditEmp[i];
-         this.isEditEmpQuestionnaire[i] = !this.isEditEmpQuestionnaire[i];
-     }*/
-
     deleteEmpQuestionnaire(questions) {
         var questionaireName = questions.data.questionnaireName;
         var questionaireId = questions.data.questionnaireId;
@@ -535,12 +511,15 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 if (res['statusCode'] == 'SUCCESS') {
                     //reset client Check
                     this.ngOnInit();
-                    
-                
-
                 }
             });
         console.log(this.sentQuestionnaireClient);
+    }
+    onItemChanged(event){
+        let value:string=event.target.value;
+        let formId=value.split(":").toString().trim().split(",")[1];
+        let formName=this.getFormName(formId.trim());
+        this.newQuestionnaireitem.questionnaireName=this.appService.petitionType+" "+formName;
     }
 
 }
