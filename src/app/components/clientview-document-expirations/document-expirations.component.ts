@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {DocumentExpirationsService} from "./document-expirations.service";
 import {documentExpiration} from "../../models/documentExpiration";
 import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
@@ -24,44 +22,6 @@ export interface ConfirmModel {
   styleUrls: ['./document-expirations.component.sass']
 })
 export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel, boolean > implements OnInit {
-    //settings = {
-    //    add: {
-    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmCreate: true
-    //    },
-    //    edit: {
-    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmSave: true
-    //    },
-    //    delete: {
-    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-    //        confirmDelete: true
-    //    },
-    //    columns: {
-
-    //        documentType: {
-    //            title: 'Document Type'
-    //        },
-    //        validFrom: {
-    //            title: 'Valid Form'
-    //        },
-    //        validTo: {
-    //            title: 'Valid To'
-    //        },
-    //        status: {
-    //            title: 'Status'
-    //        },
-    //    },
-    //    pager: {
-    //        display: true,
-    //        perPage: 10
-    //    },
-    //    mode: 'external'
-    //};
     public settings;
     public data;
     public delmessage;
@@ -78,7 +38,6 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-  //  source: LocalDataSource = new LocalDataSource();
     constructor(private documentExpirationsService: DocumentExpirationsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         this.addDocumentExpiration = new FormGroup({
@@ -96,7 +55,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
                 },
                 {
 
-                    headerName: "Valid Form",
+                    headerName: "Valid From",
                     field: "validFrom",
                  
                 },
@@ -158,25 +117,6 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         this.result = false;
         this.close();
     }
-    //onCreateConfirm(event): void {
-    //    event.newData['clientId'] = this.appService.user.userId;
-    //    event.newData['clientDocumentExpirationId'] = event.newData['clientId'];
-    //    this.documentExpirationsService.saveDocumentExpairation(event.newData).subscribe((res) => {
-    //        this.message = res['statusCode'];
-    //        if (this.message == 'SUCCESS') {
-    //            event.newData = res['documentExpirations'];
-    //            event.confirm.resolve(event.newData);
-    //        }
-    //        else {
-    //            this.dialogService.addDialog(ConfirmComponent, {
-    //                title: 'Error..!',
-    //                message: 'Unable to Add Document Repository..!'
-    //            });
-    //            event.confirm.reject();
-    //        }
-    //    });
-    //}
-
     editRecord(event): void {
         this.editFlag = true;
         if (this.editFlag) {
@@ -203,20 +143,6 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
                 this.editFlag = false;
             }
         });
-        //this.documentExpirationsService.saveDocumentExpairation(event.newData).subscribe((res) => {
-        //    this.message = res['statusCode'];
-        //    if (this.message === "SUCCESS") {
-        //        event.newData = res['documentExpirations'];
-        //        event.confirm.resolve(event.newData);
-        //    }
-        //    else {
-        //        this.dialogService.addDialog(ConfirmComponent, {
-        //            title: 'Error..!',
-        //            message: 'Unable to Edit Document Repository..!'
-        //        });
-        //        event.confirm.reject();
-        //    }
-        //});
     }
 
     deleteRecord(event): void {
@@ -233,11 +159,6 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
                         if (res['statusCode'] == 'SUCCESS') {
                             this.getClientDocumentExp();
                         }
-                        //if (this.message == 'SUCCESS') {
-                        //    event.confirm.resolve();
-                        //} else {
-                        //    event.confirm.reject();
-                        //}
                     });
                 }
             });

@@ -42,14 +42,6 @@
               <span *ngIf="isProfileEdit==true">{{client.clientStatus}}</span>
             </div>
           </div>
-
-          <div class="row">
-            <div class="col-md-4"><label for="wa-street">Employee Id </label></div>
-            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-street" [(ngModel)]="clientProfile.employeeId" />
-              <span
-                *ngIf="isProfileEdit==true">{{clientProfile.employeeId}}</span>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
             <div class="col-md-8">

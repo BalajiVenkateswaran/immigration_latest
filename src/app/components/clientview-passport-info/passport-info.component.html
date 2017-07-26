@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-Passport">Passport</label></div>
+                        <div class="col-md-4"><label for="pInfo-Passport">Passport(#)</label></div>
                         <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="wa-name" [(ngModel)]="passportDetailsFileList.passportNumber" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.passportNumber}}</span></div>
                     </div>
                     <div class="row">
@@ -97,7 +97,7 @@
                         <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-lost-passport" [(ngModel)]="passportDetailsFileList.everLostPassport" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.everLostPassport}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-travel-document">Travel Document</label></div>
+                        <div class="col-md-4"><label for="pInfo-travel-document">Travel Document#</label></div>
                         <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="pInfo-travel-document" [(ngModel)]="passportDetailsFileList.travelDocumentNumber" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.travelDocumentNumber}}</span></div>
                     </div>
                     <div class="row">

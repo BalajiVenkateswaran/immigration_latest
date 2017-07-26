@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ClientDetailsService} from "./client-details.service";
-import {clientdetails} from "../../models/clientdetails";
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import {AppService} from "../../services/app.service";
-import {ImmigrationViewClientProfile} from "../../models/immigrationviewclientprofile";
-import {ImmigrationViewClientPersonalInfo} from "../../models/ImmigrationViewClientPersonalInfo";
+import { ClientDetailsService } from "./client-details.service";
+import { clientdetails } from "../../models/clientdetails";
+import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { AppService } from "../../services/app.service";
+import { ImmigrationViewClientProfile } from "../../models/immigrationviewclientprofile";
+import { ImmigrationViewClientPersonalInfo } from "../../models/ImmigrationViewClientPersonalInfo";
 
-import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {User} from "../../models/user";
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
+import { User } from "../../models/user";
 
 export interface formControl {
     name: string;
@@ -23,7 +23,7 @@ export interface formControl {
 export class ClientDetailsComponent implements OnInit {
 
     private clientdetailsList: any;
-    private client : any = {};
+    private client: any = {};
     public editUser: FormGroup; // our model driven form
     private fieldsList: clientdetails[];
     private status: any[];
@@ -34,7 +34,7 @@ export class ClientDetailsComponent implements OnInit {
     isProfileEdit;
     isPersonalInfoEdit;
     clientDetails: any = {};
-
+    public warningMessage: boolean = false;
     private clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
 
     private clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
@@ -66,7 +66,7 @@ export class ClientDetailsComponent implements OnInit {
 
     //};
     ngOnInit() {
-       // this.getSideMenu();
+        // this.getSideMenu();
         this.appService.showSideBarMenu("clientView-client", "clientview-client-details");
         this.clientDetailsService.getClientDetails(this.user.userId)
             .subscribe((res) => {
@@ -80,8 +80,8 @@ export class ClientDetailsComponent implements OnInit {
                     this.mapToClientProfile();
                     this.mapToClientPersonalInfo();
                 }
-                if(res['client']){
-                  this.client = res['client'];
+                if (res['client']) {
+                    this.client = res['client'];
                 }
                 this.isProfileEdit = true;
                 this.isPersonalInfoEdit = true;
@@ -110,7 +110,6 @@ export class ClientDetailsComponent implements OnInit {
 
     editProfileForm() {
         this.beforeCancelProfile = (<any>Object).assign({}, this.clientProfile);
-       /* this.creationDate = this.clientDetails.creationDate;*/
         this.isProfileEdit = !this.isProfileEdit;
         this.creationDate = this.clientDetails['creationDate'];
     }
@@ -149,15 +148,21 @@ export class ClientDetailsComponent implements OnInit {
         if (this.clientProfile['creationDate'] && this.clientProfile['creationDate']['formatted']) {
             this.clientDetails['creationDate'] = this.clientDetails['creationDate']['formatted'];
         }
+        if (this.clientDetails['lastName'] == '' || null || undefined && this.clientDetails['phoneNumber'] == '' || null || undefined) {
+            this.warningMessage = true;
+        }
+        else {
+            this.warningMessage=false;
+            this.clientDetailsService.saveClientDetails(this.clientDetails, this.client)
+                .subscribe((res) => {
+                    this.isProfileEdit = true;
+                    if (res['clientDetails']) {
+                        this.clientDetails = res['clientDetails'];
+                        this.mapToClientProfile();
+                    }
+                });
+        }
 
-        this.clientDetailsService.saveClientDetails(this.clientDetails, this.client)
-            .subscribe((res) => {
-                this.isProfileEdit = true;
-                if (res['clientDetails']) {
-                    this.clientDetails = res['clientDetails'];
-                    this.mapToClientProfile();
-                }
-            });
     }
 
     //Save Client Details
@@ -166,8 +171,6 @@ export class ClientDetailsComponent implements OnInit {
         if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
             this.clientDetails['dateOfBirth'] = this.clientDetails['dateOfBirth']['formatted'];
         }
-
-
         this.clientDetailsService.saveClientDetails(this.clientDetails, this.client)
             .subscribe((res) => {
                 this.isPersonalInfoEdit = true;
