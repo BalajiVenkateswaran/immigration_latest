@@ -68,7 +68,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 {
 
                     headerName: "Save Form As",
-                    field: "formName"
+                    field: "questionnaireName"
                 },
                 {
 

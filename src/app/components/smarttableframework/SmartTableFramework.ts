@@ -105,7 +105,6 @@ export class SmartTableFramework implements OnChanges {
             console.log('Data changed');
             if (this.data != undefined) {
                 this.gridOptions.api.setRowData(this.data);
-                this.gridOptions.api.sizeColumnsToFit();
             }
         }
     }
@@ -223,6 +222,7 @@ export class SmartTableFramework implements OnChanges {
             this.isAddButtonEnable = true;
         }
         this.gridOptions.domLayout = 'autoHeight';
+        this.gridOptions.suppressSizeToFit=true;
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         }
