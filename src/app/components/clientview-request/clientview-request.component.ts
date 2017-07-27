@@ -42,28 +42,22 @@ export class requestclientviewcomponent implements OnInit {
 
                     headerName: "Request Type",
                     field: "requestType",
-                    width: 30, //configuring the column width of grid manually
+                    width: 20, //configuring the column width of grid manually
                 },
                 {
 
                     headerName: "Message",
                     field: "message",
-                    tooltipField:  "message", //enabling the tooltip for the message field
+                    tooltipField: "message", //enabling the tooltip for the message field
                     width: 80, //configuring the column width of grid manually
 
                 },
                 {
                     headerName: "Request",
                     cellRendererFramework: RequestButton,
-                    width: 15, //configuring the column width of grid manually
-                },
-                {
-                    headerName: "Decline",
-                    cellRendererFramework: DeclineButton,
-                    width: 15 //configuring the column width of grid manually
-                },
+                    width: 30, //configuring the column width of grid manually
 
-
+                }
             ]
         }
         this.requestSubscription = RequestButton.onRequestClicked.subscribe(res => {
@@ -91,7 +85,6 @@ export class requestclientviewcomponent implements OnInit {
                 }
             }
         })
-
     }
     ngOnDestroy() {
         this.requestSubscription.unsubscribe();
@@ -110,6 +103,8 @@ export class requestclientviewcomponent implements OnInit {
 
     }
     ngOnInit() {
+        let columnArray = [];
+        columnArray.push(this.settings);
         this.appService.showSideBarMenu(null, "clientview-Requests");
         this.clientviewrequestservice.getClientInvites(this.appService.user.userId)
             .subscribe((res) => {
@@ -126,13 +121,8 @@ export class requestclientviewcomponent implements OnInit {
                         this.statusDec = true;
                     }
                 }
-                /* this.clientRequests.map(item=>{
-                     return item.id=0;
-                 }).map(item=>{
-                     return item.id+=1;
-                 })*/
                 this.data = this.clientRequests;
-
             });
     }
+
 }

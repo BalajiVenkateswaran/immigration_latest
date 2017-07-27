@@ -148,7 +148,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
                 {
 
                     headerName: "Questionnaire Name",
-                    field: "questionnairePetitionType",
+                    field: "questionnaireName",
                     width: 250,
                 },
                 {
