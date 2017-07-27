@@ -44,6 +44,8 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
     private ForiegnaddressinfoListspare: any = { address: {} };
     private workResidingSince: string;
     private resiResidingSince: string;
+    public checked: boolean;
+    public copyMailingList: any = [];
     private myDatePickerOptions: IMyOptions = {
             // other options...
             dateFormat: 'mm-dd-yyyy',
@@ -60,7 +62,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
                 console.log("clientaddress%o", res);
                 this.addressinfoList = res['clientAddress'];
                 this.addressType();
-                this.ClientDetailsforaddress = res['clientAddress'];
+                this.ClientDetailsforaddress = JSON.parse(JSON.stringify(this.addressinfoList));
 
             });
     }
@@ -84,19 +86,43 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
             }
             if (this.addressinfoList[key].addressType == "MAILING") {
                 this.MailingaddressinfoList = this.addressinfoList[key];
+                this.copyMailingList = JSON.parse(JSON.stringify(this.MailingaddressinfoList));
             }
             if (this.addressinfoList[key].addressType == "FOREIGN") {
                 this.ForiegnaddressinfoList = this.addressinfoList[key];
             }
+           
         }
-
+        //if (this.ResidenceaddressinfoList['telephone'] == this.MailingaddressinfoList['telephone'] &&
+        //    this.ResidenceaddressinfoList['fax'] == this.MailingaddressinfoList['fax']) {
+        //    this.checked = true;
+        //}
     }
 
        onDateChanged(event: IMyDateModel) {
 
 
           }
-
+       adressChange() {
+           if (this.checked == true) {
+               this.mailingedit = false;
+               this.MailingaddressinfoList['address'] = this.ResidenceaddressinfoList['address'];
+               this.MailingaddressinfoList['telephone'] = this.ResidenceaddressinfoList['telephone'];
+               this.MailingaddressinfoList['fax'] = this.ResidenceaddressinfoList['fax'];
+               if (this.copyMailingList.length!=0) {
+                   this.MailingaddressinfoList['address']['addressId'] = this.copyMailingList['address']['addressId'];
+               }
+               else {
+                   this.MailingaddressinfoList['address']['addressId'] = "";
+               }
+           }
+           if (this.checked == false) {
+               this.mailingedit = true;
+               this.MailingaddressinfoList['address'] = this.copyMailingList['address'];
+               this.MailingaddressinfoList['telephone'] = this.copyMailingList['telephone'];
+               this.MailingaddressinfoList['fax'] = this.copyMailingList['fax'];
+           }
+       }
     addressedit(addresstype) {
 
         this.addressinfoservice.getClientAddress(this.appService.clientId)
@@ -192,6 +218,8 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
                     this.mailingedit = true;
                     if (res['clientAddress']) {
                         this.MailingaddressinfoList = res['clientAddress'];
+                        //this.copyMailingList = JSON.parse(JSON.stringify(this.MailingaddressinfoList));
+
                     }
                 });
         }

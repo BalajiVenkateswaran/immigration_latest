@@ -4,8 +4,8 @@
         <h1>{{appService.firstName}} {{appService.lastName}}</h1>
         <div class="clearfix"></div>
         <h2>Questionnnaires</h2>
-        <smart-table [settings]="settings" [data]="data"
-                    ></smart-table>
+        <smart-table [settings]="settings" [data]="data" 
+                    (onRowClick)="editRecord($event)"></smart-table>
         <!--<table class="smarttable document-management" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>

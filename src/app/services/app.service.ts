@@ -200,7 +200,7 @@ export class AppService {
       }
     }
 
-    private moveToQuestionnaire(questionnaireData) {
+    public moveToQuestionnaire(questionnaireData) {
         this.QuestionnaireName = questionnaireData.questionnaireName;
         for (var i = 0; i < this._formList.length; i++) {
             if (questionnaireData.formId == this._formList[i].applicationFormsId) {
