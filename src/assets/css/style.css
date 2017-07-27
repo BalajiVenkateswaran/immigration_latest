@@ -324,8 +324,6 @@ header {
         padding: 0px;
         background: none;
         border: none;
-        height: 30px;
-        width: 30px;
         box-shadow: none; }
       header .profile-container .profile .dropdown-menu {
         background-color: #0891D4;
@@ -1611,4 +1609,5 @@ tr.i129htblRow:nth-child(even) {
 @media (min-width: 576px) {
   .modal-dialog {
     margin: 10% auto; } }
+
 /*# sourceMappingURL=style.css.map */
