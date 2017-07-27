@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, ResponseContentType} from "@angular/http";
+import {Http, ResponseContentType, RequestOptions} from "@angular/http";
 import {Observable}     from 'rxjs/Observable';
 import '../rxjs-operators';
 import {petition} from "../models/petitions";
@@ -13,36 +13,37 @@ export class RestService {
   }
 
   getData(url: string): Observable<petition[]> {
-    return this.http.get(this.immp_endpoint_url+url)
+    //let options = new RequestOptions();
+    return this.http.get(this.immp_endpoint_url+url, { withCredentials: true })
       .map(res => res.json() || {})
       .catch(this.handleError);
   }
 
   postData(url: string, data: any): Observable<any[]> {
-    return this.http.post(this.immp_endpoint_url+url, data)
+    return this.http.post(this.immp_endpoint_url+url, data, { withCredentials: true })
       .map(res => res.json() || {})
       .catch(this.handleError);
   }
 
   postDataWithHeaders(url: string, formData: any, headers: any): Observable<any[]>{
-    return this.http.post(this.immp_endpoint_url+url, formData, headers)
+    return this.http.post(this.immp_endpoint_url+url, formData, { withCredentials: true, headers: headers })
       .map(res => res.json() || {})
       .catch(this.handleError);
   }
 
   putData(url: string, data: any): Observable<any[]> {
-    return this.http.put(this.immp_endpoint_url+url, data)
+    return this.http.put(this.immp_endpoint_url+url, data, { withCredentials: true })
       .map(res => res.json() || {})
       .catch(this.handleError);
   }
 
   deleteData(url: string): Observable<any[]> {
-      return this.http.delete(this.immp_endpoint_url+url)
+      return this.http.delete(this.immp_endpoint_url+url, { withCredentials: true })
         .map(res => res.json() || {})
         .catch(this.handleError);
   }
   getFile(url: string): Observable<any[]> {
-      return this.http.get(this.immp_endpoint_url + url, { responseType: ResponseContentType.Blob })
+      return this.http.get(this.immp_endpoint_url + url, { withCredentials: true , responseType: ResponseContentType.Blob })
           .map((res) => {
               return new Blob([res.blob()], { type: 'application/pdf' })
           })
