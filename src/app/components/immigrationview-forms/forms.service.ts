@@ -16,4 +16,7 @@ export class FormsService {
     public generateForms(questionnaireId: string, accountId: string,data:any) {
         return this.restService.postData("/questionnaire/generateForm/" + questionnaireId + "/accountId" +"/"+accountId,data);
     }
+    public downloadFile(fileId:string){
+        return this.restService.getFile("/file/"+fileId);
+    }
 }
