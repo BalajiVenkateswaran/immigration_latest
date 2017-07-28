@@ -92,6 +92,11 @@ import {petitionstypesreportscomponent} from './components/immigrationview-petit
 import {petitionstagesreportscomponent} from './components/immigrationview-petitionstagesreports/petitionstagesreports.component';
 import {petitionstagsreportscomponent} from './components/immigrationview-petitiontagsreports/petitiontagsreports.component';
 import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
+//profile
+import {profileusercomponent} from './components/immigrationview-profileuser/profileuser.component';
+import {profileloginhiscomponent} from './components/immigrationview-profileloginhistory/profileloginhistory.component';
+import {profileswitchcomponent} from './components/immigrationview-profileswitch/profileswitch.component';
+
 
 
 
@@ -389,6 +394,18 @@ export const appRoutes: Routes = [
     {
         path: 'immiview-clientstatusreports',
         component: clientstatusreportscomponent
+    },
+    {
+        path: 'immiview-profileuser',
+        component: profileusercomponent
+    },
+    {
+        path: 'immiview-profileloginhis',
+        component: profileloginhiscomponent
+    },
+    {
+        path: 'immiview-profileswitch',
+        component: profileswitchcomponent
     },
     {
         path: '',

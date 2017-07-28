@@ -267,7 +267,38 @@
               </ul>
           </li>
           </ul>
-
+      <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immiview-profuser'">
+          <li>
+              <a (click)="appservice.moveToPage('immiview-profileuser');highlightSBLink('immiview-profileuser')" [ngClass]="[checkForCurrentSBLink('immiview-profileuser') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>User</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immiview-profilechangepwd');highlightSBLink('immiview-profilechangepwd')" [ngClass]="[checkForCurrentSBLink('immiview-profilechangepwd') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Change Password</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immiview-profileTodo');highlightSBLink('immiview-profileTodo')" [ngClass]="[checkForCurrentSBLink('immiview-profileTodo') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>TODO List</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immiview-profileswitch');highlightSBLink('immiview-profileswitch')" [ngClass]="[checkForCurrentSBLink('immiview-profileswitch') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Switch</span>
+              </a>
+          </li>
+          <li>
+              <a (click)="appservice.moveToPage('immiview-profileloginhis');highlightSBLink('immiview-profileloginhis')" [ngClass]="[checkForCurrentSBLink('immiview-profileloginhis') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Login History</span>
+              </a>
+          </li>
+      </ul>
           <ul class="nav navbar-nav" *ngIf="sideBarMenu=='organization'">
               <li>
                   <a (click)="appservice.moveToPage('organization');highlightSBLink('Org Details')" [ngClass]="[checkForCurrentSBLink('Org Details') ? 'active': '']" routerLinkActive="active">
