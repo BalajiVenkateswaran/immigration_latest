@@ -6,7 +6,10 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 
-    template: `<button class="iportal-btn"  [disabled]=downloadDisable (click)="onDonwloadClicked()">Download Form</button>`,
+    template: `<button class="iportal-btn"  [(disabled)]=downloadDisable 
+    
+
+ (click)="onDonwloadClicked()">Download Form</button>`,
 
 
 })

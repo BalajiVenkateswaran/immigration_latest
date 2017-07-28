@@ -47,6 +47,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
     public generateFormFlag:boolean=false;
     public generateChecked:boolean=true;
     public editForms: boolean;
+    public generateFormsPopup: boolean;
     public generateFormData: any = {};
     constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService); if (this.appService.user) {
@@ -74,7 +75,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 {
 
                     headerName: "Save Form As",
-                    field: "questionnaireName"
+                    field: "fileName"
                 },
                 {
 
@@ -186,7 +187,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
 
     }
     editFormsData(event) {
-        if(event.data.fileCreationDate ){
+        if(event.data.fileId ){
             this.generateChecked=false;
         }
         else{
