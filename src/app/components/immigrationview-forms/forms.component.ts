@@ -9,17 +9,20 @@ import { AppService } from "../../services/app.service";
 import { GenerateFormButton } from './GenerateFormButton';
 import { DownloadButton } from './DownloadButton';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import * as FileSaver from 'file-saver';
 export interface ConfirmModel {
     title: string;
     message: string;
     getForms: boolean;
     editForms: boolean;
+    generateFormsPopup: boolean;
     formsList: Object;
+    generateFormData: Object;
 }
 @Component({
     selector: 'app-forms',
     templateUrl: './forms.component.html',
-    styleUrls: ['./forms.component.sass']
+    styleUrls: ['./forms.component.scss']
 })
 export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     private user: User;
@@ -40,8 +43,11 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
     public editFlag: boolean = true;
     public beforeEdit: any;
     public checked: boolean = false;
-    public downloadFlag:boolean=false;
-    public editForms:boolean;
+    public downloadFlag: boolean = false;
+    public generateFormFlag:boolean=false;
+    public generateChecked:boolean=true;
+    public editForms: boolean;
+    public generateFormData: any = {};
     constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService); if (this.appService.user) {
             this.user = this.appService.user;
@@ -53,7 +59,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
             'isAddButtonEnable': false,
             'pagination': false,
             'isDeleteEnable': false,
-            'rowHeight':45,
+            'rowHeight': 45,
             'columnsettings': [
 
                 {
@@ -92,6 +98,8 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 console.log("Generate Clicked");
                 if (res.hasOwnProperty('generateFlag')) {
                     this.checked = true;
+                    this.generateFormFlag=true;
+                 
                 }
                 else {
                     this.checked = false;
@@ -103,13 +111,17 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 console.log("Download Clicked");
                 if (res.hasOwnProperty('downloadFlag')) {
                     this.checked = true;
-                    this.downloadFlag=true;
-                    
+                    this.downloadFlag = true;
+               /*     this.downloadForm(res.data);*/  
+               this.generateChecked=true;
+                  
+
                 }
                 else {
                     this.checked = false;
+
                 }
-                
+
             }
         })
     }
@@ -153,14 +165,35 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
     generateForm(forms) {
         var data;
         var questionnaireId = forms.questionnaireId;
-        this.formsService.generateForms(questionnaireId, 'a2604ec8-e0f2-11e5-a291-34e6d7382cac', data).subscribe(
-            res => {
-                console.log(res);
+        this.generateFormData.formName = forms.questionnaireName + "_" + forms.formName;
+        this.dialogService.addDialog(ImmigrationviewFormsComponent, {
+            getForms: false,
+            editForms: false,
+            generateFormsPopup: true,
+            title: 'Form Name',
+            generateFormData: this.generateFormData
+
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.formsService.generateForms(questionnaireId,this.user.accountId, forms).subscribe(
+                    res => {
+                        console.log(res);
+                    }
+                );
             }
-        );
+
+        })
+
     }
     editFormsData(event) {
-        if (!this.checked) {
+        if(event.data.fileCreationDate ){
+            this.generateChecked=false;
+        }
+        else{
+            this.generateChecked=true;
+            this.generateForm(event.data);
+        }
+        if (!this.generateChecked && !this.downloadFlag) {
             this.editFlag = true;
             if (this.editFlag) {
                 this.beforeEdit = (<any>Object).assign({}, event.data);
@@ -169,6 +202,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
             this.dialogService.addDialog(ImmigrationviewFormsComponent, {
                 getForms: false,
                 editForms: true,
+                generateFormsPopup: false,
                 title: 'Edit Forms',
                 formsList: this.editFlag ? this.beforeEdit : this.formsList
             }).subscribe((isConfirmed) => {
@@ -182,32 +216,44 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 } else {
                     this.editFlag = false;
                 }
-                 this.checked = false;
+                this.checked = false;
             });
         }
-        else if(this.checked && this.downloadFlag){
-            this.generateForm(event.data);
-            this.checked=false;
+        if(this.downloadFlag){
+            this.downloadForm(event.data);
+        }   
+    }
+    downloadForm(formData) {
+        if (formData.fileId) {
+            let fileName=formData.fileName;
+            this.formsService.downloadFile(formData.fileId).subscribe(data => this.downloadFiles(data,fileName)),
+                error => console.log("Error Downloading....");
+            () => console.log("OK");
+             this.downloadFlag=false;
         }
-        else{
-            this.generateForm(event.data);
-            this.checked=false;
-        }
+    }
+    downloadFiles(data: any, fileName) {
+        var blob = new Blob([data], {
+            type: 'application/pdf'
+        });
+        FileSaver.saveAs(blob, fileName);
+       
 
     }
     docExpSave() {
         this.appService.formListData = this.formsList;
-        /*  if (this.addNewDocExp['status'] == '' || null || undefined) {
-              this.addNewDocExp['status'] == "Active";
-          }
-          this.addNewDocExp['clientId'] = this.appService.clientId;
-          this.addNewDocExp['validFrom'] = this.addNewDocExp['validFrom']['formatted'];
-          this.addNewDocExp['validTo'] = this.addNewDocExp['validTo']['formatted'];
-          this.appService.addNewDocExp = this.addNewDocExp;*/
         this.result = true;
         this.close();
     }
     cancel() {
+        this.result = false;
+        this.close();
+    }
+    generateFormSave() {
+        this.result = true;
+        this.close();
+    }
+    generateFormCancel() {
         this.result = false;
         this.close();
     }
