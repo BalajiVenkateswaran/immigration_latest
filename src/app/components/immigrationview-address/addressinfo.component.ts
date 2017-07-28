@@ -46,6 +46,8 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
     private resiResidingSince: string;
     public checked: boolean;
     public copyMailingList: any = [];
+    public phoneAdd: boolean;
+    public faxAdd: boolean;
     private myDatePickerOptions: IMyOptions = {
             // other options...
             dateFormat: 'mm-dd-yyyy',
@@ -93,12 +95,33 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
             }
            
         }
-        //if (this.ResidenceaddressinfoList['telephone'] == this.MailingaddressinfoList['telephone'] &&
-        //    this.ResidenceaddressinfoList['fax'] == this.MailingaddressinfoList['fax']) {
-        //    this.checked = true;
-        //}
+        this.checkedAddress();
     }
-
+    checkedAddress() {
+        delete this.ResidenceaddressinfoList['address'].addressId;
+        delete this.MailingaddressinfoList['address'].addressId;
+        if (JSON.stringify(this.ResidenceaddressinfoList['address']) === JSON.stringify(this.MailingaddressinfoList['address'])) {
+            if (this.ResidenceaddressinfoList['telephone'] != undefined && this.MailingaddressinfoList['telephone'] != undefined) {
+                if (this.ResidenceaddressinfoList['telephone'] == this.MailingaddressinfoList['telephone']) {
+                    this.phoneAdd = true;
+                }
+            }
+            if (this.ResidenceaddressinfoList['fax'] != undefined && this.MailingaddressinfoList['fax'] != undefined) {
+                if (this.ResidenceaddressinfoList['fax'] == this.MailingaddressinfoList['fax']) {
+                    this.faxAdd = true;
+                }
+            }
+            if (this.phoneAdd == true && this.faxAdd == true) {
+                this.checked = true;
+            }
+            else {
+                this.checked = false;
+            }
+        }
+        else {
+            this.checked = false;
+        }
+    }
        onDateChanged(event: IMyDateModel) {
 
 
@@ -175,6 +198,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
         if (addresstype == "MAILING") {
             this.MailingaddressinfoList = this.MailingaddressinfoListspare
             this.mailingedit = true;
+            this.checkedAddress();
         }
         if (addresstype == "FOREIGN") {
             this.ForiegnaddressinfoList = this.ForiegnaddressinfoListspare
@@ -218,8 +242,8 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
                     this.mailingedit = true;
                     if (res['clientAddress']) {
                         this.MailingaddressinfoList = res['clientAddress'];
-                        //this.copyMailingList = JSON.parse(JSON.stringify(this.MailingaddressinfoList));
-
+                        this.copyMailingList = JSON.parse(JSON.stringify(this.MailingaddressinfoList));
+                        this.checkedAddress();
                     }
                 });
         }
