@@ -49,7 +49,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
     public editForms: boolean;
     public generateFormsPopup: boolean;
     public generateFormData: any = {};
-    public generateFormsPopup: boolean;
+    
     constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService); if (this.appService.user) {
             this.user = this.appService.user;
