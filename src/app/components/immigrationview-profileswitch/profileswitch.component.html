@@ -1,0 +1,7 @@
+﻿<div class="main-content">
+    <div class="clearfix"></div>
+        <div class="table-data">
+            <smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+            </smart-table>
+        </div>
+</div>

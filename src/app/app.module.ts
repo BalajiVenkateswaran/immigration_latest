@@ -205,6 +205,13 @@ import {clientstatusreportscomponent} from './components/immigartioniew-clientss
 import {clientstatusreportsservice} from './components/immigartioniew-clientsstatusreports/clientstatusreports.service';
 import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
 import { DownloadInvoiceButton } from "./components/manageaccount-invoices/DownloadInvoiceButton";
+//profiletab
+import {profileusercomponent} from './components/immigrationview-profileuser/profileuser.component';
+import {profileuserservice} from './components/immigrationview-profileuser/profileuser.service';
+import {profileloginhiscomponent} from './components/immigrationview-profileloginhistory/profileloginhistory.component';
+import {profileloginhisservice} from './components/immigrationview-profileloginhistory/profileloginhistory.service';
+import {profileswitchcomponent} from './components/immigrationview-profileswitch/profileswitch.component';
+import {profileswitchservice} from './components/immigrationview-profileswitch/profileswitch.service';
 
 @NgModule({
     imports: [
@@ -322,7 +329,11 @@ import { DownloadInvoiceButton } from "./components/manageaccount-invoices/Downl
         petitionstypesreportscomponent,
         petitionstagesreportscomponent,
         petitionstagsreportscomponent,
-        clientstatusreportscomponent
+        clientstatusreportscomponent,
+        //profile
+        profileusercomponent,
+        profileloginhiscomponent,
+        profileswitchcomponent
 
     ],
     providers: [
@@ -418,6 +429,10 @@ import { DownloadInvoiceButton } from "./components/manageaccount-invoices/Downl
         petitionstagesreportsservice,
         clientstatusreportsservice,
         petitionstagsreportsservice,
+        //profile
+        profileuserservice,
+        profileloginhisservice,
+        profileswitchservice
 
     ],
     bootstrap: [AppComponent]
