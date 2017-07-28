@@ -29,66 +29,7 @@ export interface ConfirmModel {
     styleUrls: ['./manageaccount-organizations.component.sass']
 })
 export class ManageAccountOrganizationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-/* 
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-eye" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
-            orgName: {
-                title: 'Org Name',
-                editable: true
-            },
-            displayName: {
-              title : 'Display Name'
-            },
-            orgStatus: {
-                title: 'Status',
-                editor: {
-                     type:'list',
-                    config: {
-                        list: [
-                            {
-                                value: "Active",
-                                title: "Active"
-                            },
-                            {
-                                value: "Inactive",
-                                title: "Inactive"
-                            }
-                        ]
-                    }
-                }
-            },
-            email: {
-                title: 'Email',
-            },
-            orgType: {
-                title: 'Type',
-            }
-        },
-        actions: {
-            delete: false
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        },
-        mode: 'external'
-    }; */
+
     public delmessage;
     private manageaccountorganizationList: manageaccountorganization[];
     public addOrganization: FormGroup; // our model driven form
@@ -216,64 +157,6 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
         this.result = false;
         this.close();
     }
-
-
-
-  //onCreateConfirm(event) : void {
-  //    console.log("User table onCreateConfirm event: %o",event.newData);
-  //    event.newData['accountId'] = this.appService.user.accountId;
-  //    this.manageaccountorganizationService.saveNewOrganization(event.newData).subscribe((res) => {
-  //          this.message = res['statusCode'];
-  //          event.newData = res['org'];
-  //          if (this.message == "SUCCESS") {
-  //              event.confirm.resolve(event.newData);
-  //          } else {
-  //              this.dialogService.addDialog(ConfirmComponent, {
-  //                  title: 'Error..!',
-  //                  message: 'Unable to Add Organization..!'
-  //              });
-  //              event.confirm.reject();
-  //          }
-
-
-
-  //    });
-  //  }
-
-    //onEditConfirm(event): void {
-    //    this.editiorgsFlag = true;
-    //    if (this.editiorgsFlag) {
-    //        this.beforeorgsEdit = (<any>Object).assign({}, event.data);
-    //    }
-    //    console.log("User table onEditConfirm event: %o",event.newData);
-    //   this.neworgitem['orgName'] = event.data['orgName'];
-    //   this.neworgitem['userId'] = this.appService.user.userId;
-    //    this.dialogService.addDialog(ManageAccountOrganizationsComponent, {
-    //        showAddOrgpopup: true,
-    //        getOrgsData: false,
-    //        title: 'Edit Organization',
-    //        editorg: true,
-    //        neworgitem: this.editiorgsFlag ? this.beforeorgsEdit : this.neworgitem,
-
-    //    }).subscribe((isConfirmed) => {
-    //        if (isConfirmed) {
-    //            this.manageaccountorganizationService.updateOrganization(this.appService.neworgitem).subscribe((res) => {
-    //                this.message = res['statusCode'];
-    //                if (this.message === "SUCCESS") {
-
-    //                    this.getorganizationData();
-
-    //                } else {
-    //                    this.dialogService.addDialog(ConfirmComponent, {
-    //                        title: 'Error..!',
-    //                        message: 'Unable to Edit Organization..!'
-    //                    });
-    //                }
-    //            });
-    //      }
-    //    });
-    //  }
-
     onDeleteConfirm(event) : void {
         console.log("User table onDeleteConfirm event: %o", event.data);
         this.delmessage = event.data.orgName
@@ -314,8 +197,5 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
         this.appService.orgId = event.data.orgId;
         console.log(event.data.orgName);
         this.appService.selectedOrg = event.data.orgName;
-   // this.headerComponent.orgChange(event.data.orgId, event.data.orgName);
-        //todo this.appService.getorgName(Orgname);
-        //this.changeOrgName(Orgname);
     }
 }
