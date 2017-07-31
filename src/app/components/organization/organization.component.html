@@ -75,9 +75,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-email">Communication email <span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input type="text" [ngClass]="orgDetails.email == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-email" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.email" />
-                        <span *ngIf="isProfileEdit==true">{{orgDetails.email}}</span></div>
+                        <div class="col-md-8">
+                            <input type="text" [formControl]="email" [ngClass]="orgDetails.email == '' ? 'redborder': ''" *ngIf="isProfileEdit==false" id="wa-email" required   [readonly]="isProfileEdit" [(ngModel)]="orgDetails.email" />
+                        <span *ngIf="isProfileEdit==true">{{orgDetails.email}}</span>
+                        </div>
                     </div>
+                  <div class="row sfm" *ngIf="email.touched">
+                                    <div class="col-md-12">
+                                        <div class="redstar" *ngIf="email.errors && email.errors.required">
+                                            * Email is required
+                                        </div>
+                                        <div class="redstar" *ngIf="email.errors && email.errors.pattern">
+                                            * Email is invalid
+                                        </div>
+                                    </div>
+                                </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-country">Mark for Deletion</label></div>
                         <div class="col-md-8">

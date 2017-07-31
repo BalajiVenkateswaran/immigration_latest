@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OrganizationService} from "./organization.service";
 import {organizations} from "../../models/organization";
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import {AppService} from "../../services/app.service";
 import {UiFieldService} from "../../services/uifield.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
@@ -39,7 +39,8 @@ export class OrganizationComponent implements OnInit {
     private beforeCancelOrg;
     private beforeCancelAdmin;
     private beforeCancelSignin;
-
+    email: FormControl;
+    public emailRegex;
     private status = [
                 { value: 'Active', name: 'Active' },
                 { value: 'Inactive', name: 'Inactive' },
@@ -48,6 +49,9 @@ export class OrganizationComponent implements OnInit {
 
     constructor(private uiFieldService: UiFieldService,
         private formBuilder: FormBuilder, private appService: AppService, private  organizationService: OrganizationService, private dialogService: DialogService) {
+            this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            this.email = new FormControl('', [Validators.required,Validators.pattern(this.emailRegex)]);
+            console.log(this.email);
     }
 
     ngOnInit() {
@@ -84,8 +88,6 @@ export class OrganizationComponent implements OnInit {
     }
 
     saveOrgProfile() {
-
-
         if (this.orgDetails['openDate'] && this.orgDetails['openDate']['formatted']) {
             this.orgDetails['openDate'] = this.orgDetails['openDate']['formatted'];
         }
@@ -100,6 +102,9 @@ export class OrganizationComponent implements OnInit {
             || this.orgDetails['status'] == '' || this.orgDetails['status'] == null || this.orgDetails['status'] == undefined
             || this.orgDetails['email'] == '' || this.orgDetails['email'] == null || this.orgDetails['email'] == undefined) {
             this.warningMessage = true;
+        }
+         else if(this.email.errors!=null){
+            this.warningMessage=false;
         } else {
             this.warningMessage = false;
             this.organizationService.saveOrgDetails(this.orgDetails, this.appService.user.userId)
@@ -134,6 +139,7 @@ export class OrganizationComponent implements OnInit {
     }
 
     editProfileForm() {
+        console.log(this.email);
         this.beforeCancelOrg = (<any>Object).assign({}, this.orgDetails);
         this.isProfileEdit = !this.isProfileEdit;
         this.openDate = this.orgDetails.openDate;
