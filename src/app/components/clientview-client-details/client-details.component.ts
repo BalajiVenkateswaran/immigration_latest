@@ -57,16 +57,7 @@ export class ClientDetailsComponent implements OnInit {
             this.user = this.appService.user;
         }
     }
-    //getSideMenu = function () {
-
-    //    this.ClientDetailsService.getOrgNames(this.appService.user.userId).subscribe((res) => {
-    //        this.orgNames = res.orgs;
-    //        this.appService.documentSideMenu(this.orgNames);
-    //    });
-
-    //};
     ngOnInit() {
-        // this.getSideMenu();
         this.appService.showSideBarMenu("clientView-client", "clientview-client-details");
         this.clientDetailsService.getClientDetails(this.user.userId)
             .subscribe((res) => {
@@ -148,7 +139,7 @@ export class ClientDetailsComponent implements OnInit {
         if (this.clientProfile['creationDate'] && this.clientProfile['creationDate']['formatted']) {
             this.clientDetails['creationDate'] = this.clientDetails['creationDate']['formatted'];
         }
-        if (this.clientDetails['lastName'] == '' || null || undefined && this.clientDetails['phoneNumber'] == '' || null || undefined) {
+        if (this.clientDetails['lastName'] == '' || this.clientDetails['lastName'] == null || this.clientDetails['lastName'] == undefined || this.clientDetails['phoneNumber'] == '' || this.clientDetails['phoneNumber'] == null || this.clientDetails['phoneNumber'] == undefined || this.clientDetails['firstName'] == '' || this.clientDetails['firstName'] == null || this.clientDetails['firstName'] == undefined) {
             this.warningMessage = true;
         }
         else {
