@@ -6,15 +6,25 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 
-    template: `<button class="iportal-btn" (click)="onDonwloadClicked()">Download Form</button>`,
+    template: `<button class="iportal-btn"  [(disabled)]=downloadDisable 
+    
+
+ (click)="onDonwloadClicked()">Download Form</button>`,
 
 
 })
 export class DownloadButton implements ICellRendererAngularComp {
     public params: any;
     public static onDownloadClick = new Subject<any>();
+    public downloadDisable:boolean=true;
     agInit(params: any): void {
         this.params = params;
+        if(this.params.data.fileId){
+            this.downloadDisable=false;
+        }
+        else{
+            this.downloadDisable=true;
+        }
     }
 
     constructor() {

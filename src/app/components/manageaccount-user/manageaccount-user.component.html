@@ -32,7 +32,7 @@
                             <div class="col-md-7"><input type="text" [(ngModel)]="addUsers.phone" class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Role:</div>
                             <div class="col-md-7">
-                                <select [(ngModel)]="addUsers.role" class="form-control">
+                                <select [(ngModel)]="addUsers.role" class="form-control" #roles>
                                     <option value="Immigration Officer">Immigration Officer</option>
                                     <option value="Immigration Manager">Immigration Manager</option>
                                 </select>
@@ -58,7 +58,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"> <button type="button" class="btn btn-primary" (click)="manageUserSave()">Save</button></div>
+                                    <div></div>          
+                                    <div class="col-md-6"> <button type="button" class="btn btn-primary" (click)="manageUserSave(emailId.errors,roles)">Save</button></div>
                                     <div class="col-md-6"> <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button> </div>
                                 </div>
                             </div>
