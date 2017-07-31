@@ -18,7 +18,8 @@ export interface ConfirmModel {
 @Component({
     selector: 'app-manageaccount-user',
     templateUrl: './manageaccount-user.component.html',
-    styleUrls: ['./manageaccount-user.component.sass']
+    styleUrls: ['./manageaccount-user.component.scss'],
+    //styleUrls: ['./manageaccount-user.component.css']
     //template: '<ng2-smart-table [settings]="settings"></ng2-smart-table>'
 })
 

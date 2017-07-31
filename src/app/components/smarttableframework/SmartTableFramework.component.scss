@@ -15,7 +15,7 @@
   font-size: 14px !important;
   font-weight: 700;
   text-align: left;
-  padding: .5em 1em; }
+  padding:0px 0px 0 10px; }
 
 .ag-fresh .ag-ltr .ag-cell-no-focus, .ag-fresh .ag-ltr .ag-cell-focus {
   padding: .5em 1em;
@@ -153,3 +153,39 @@
     font-size: 20px;
     cursor: pointer;
     opacity: 0; }
+
+.ag-header-container, ag-header-row, .ag-body-container {
+    width:100% !important;
+}
+.ag-layout-auto-height .ag-header-row {
+    width:100% !important;
+}
+.manageaccUser {
+    .ag-fresh .ag-ltr .ag-header-cell[title~="Actions"], .ag-fresh .ag-ltr .ag-cell-no-focus[colid~="0"] {
+    width:10% !important;
+    left:0% !important;
+}
+.ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-no-focus[colid~="firstName"] {
+    width:20% !important;
+    left:10% !important;
+}
+.ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-no-focus[colid~="lastName"] {
+    width:20% !important;
+    left:30% !important;
+}
+.ag-fresh .ag-ltr .ag-header-cell[colid~="emailId"], .ag-fresh .ag-ltr .ag-cell-no-focus[colid~="emailId"] {
+    width:20% !important;
+    left:50% !important;
+}
+.ag-fresh .ag-ltr .ag-header-cell[colid~="phone"], .ag-fresh .ag-ltr .ag-cell-no-focus[colid~="phone"] {
+    width:10% !important;
+    left:70% !important;
+}
+.ag-fresh .ag-ltr .ag-header-cell[colid~="roleName"], .ag-fresh .ag-ltr .ag-cell-no-focus[colid~="roleName"] {
+    width:20% !important;
+    left:80% !important;
+}
+
+}
+
+  
