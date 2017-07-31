@@ -203,6 +203,12 @@ import {petitionstagsreportscomponent} from './components/immigrationview-petiti
 import {petitionstagsreportsservice} from './components/immigrationview-petitiontagsreports/petitiontagsreports.service';
 import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
 import {clientstatusreportsservice} from './components/immigartioniew-clientsstatusreports/clientstatusreports.service';
+import {usertotalpetitionscomponent} from './components/immigrationview-userstotalpetreports/userstotalpetitionreports.component';
+import {usertotalpetitionservice} from './components/immigrationview-userstotalpetreports/userstotalpetitionreports.service';
+
+import {useropenpetitioncomponent} from './components/immigrationview-usersopenpetreports/usersopenreports.component';
+import {usersopenpetitionservice} from './components/immigrationview-usersopenpetreports/usersopenreports.service';
+
 import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
 import { DownloadInvoiceButton } from "./components/manageaccount-invoices/DownloadInvoiceButton";
 //profiletab
@@ -212,6 +218,10 @@ import {profileloginhiscomponent} from './components/immigrationview-profilelogi
 import {profileloginhisservice} from './components/immigrationview-profileloginhistory/profileloginhistory.service';
 import {profileswitchcomponent} from './components/immigrationview-profileswitch/profileswitch.component';
 import {profileswitchservice} from './components/immigrationview-profileswitch/profileswitch.service';
+import {profilechangepwdcomponent} from './components/immigrationview-profilechangepassword/profilechangepassword.component';
+import {profilechangepwdservice} from './components/immigrationview-profilechangepassword/profilechangepassword.service';
+import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
+import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
 
 @NgModule({
     imports: [
@@ -330,10 +340,14 @@ import {profileswitchservice} from './components/immigrationview-profileswitch/p
         petitionstagesreportscomponent,
         petitionstagsreportscomponent,
         clientstatusreportscomponent,
+        usertotalpetitionscomponent,
+        useropenpetitioncomponent,
         //profile
         profileusercomponent,
         profileloginhiscomponent,
-        profileswitchcomponent
+        profileswitchcomponent,
+        profilechangepwdcomponent,
+        profiletodolistcomponent
 
     ],
     providers: [
@@ -429,10 +443,15 @@ import {profileswitchservice} from './components/immigrationview-profileswitch/p
         petitionstagesreportsservice,
         clientstatusreportsservice,
         petitionstagsreportsservice,
+        usertotalpetitionservice,
+        usersopenpetitionservice,
         //profile
         profileuserservice,
         profileloginhisservice,
-        profileswitchservice
+        profileswitchservice,
+        profilechangepwdservice,
+        profiletodolistservice,
+
 
     ],
     bootstrap: [AppComponent]

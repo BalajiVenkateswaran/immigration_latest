@@ -16,28 +16,29 @@ export class profileswitchcomponent implements OnInit {
     public settings;
     public data;
     ngOnInit() {
-       
-
+        this.data = this.appService.userroleList;
     }
     constructor(public appService: AppService, private profileSwitchservice: profileswitchservice) {
 
         this.settings = {
+            "isAddButtonEnable": false,
+            "isDeleteEnable": false,
             'columnsettings': [
                 {
 
                     headerName: "Role Name",
-                    field: "",
+                    field: "roleName",
                 },
                 {
 
                     headerName: "Account Name",
-                    field: "",
+                    field: "accountName",
 
                 },
                 {
 
                     headerName: "Switch",
-                    field: "",
+                    field: "accountName",
                 },
             ]
         }

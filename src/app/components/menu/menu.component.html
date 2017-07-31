@@ -246,20 +246,20 @@
               </ul>
           </li>
           <li ngbDropdown class="dropdown">
-              <a (click)="appservice.moveToPage('manageaccount-user');highlightSBLink('User')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+              <a (click)="appservice.moveToPage('user-totalpetitions');highlightSBLink('user-totalpetitions')" [ngClass]="[checkForCurrentSBLink('user-totalpetitions') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                   <span class="ico-users"></span>
                   <span>Users</span>
                   <span class="ico-arrow"></span>
               </a>
               <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                   <li>
-                      <a (click)="appservice.moveToPage('manageaccount-invoices');highlightSBLink('Invoices')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
+                      <a (click)="appservice.moveToPage('user-totalpetitions');highlightSBLink('user-totalpetitions')" [ngClass]="[checkForCurrentSBLink('user-totalpetitions') ? 'active': '']" routerLinkActive="active">
                           <span class="ico-flight"></span>
                           <span>Total Petitions</span>
                       </a>
                   </li>
                   <li>
-                      <a (click)="appservice.moveToPage('manageaccount-invoices');highlightSBLink('Invoices')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
+                      <a (click)="appservice.moveToPage('user-openpetitions');highlightSBLink('user-openpetitions')" [ngClass]="[checkForCurrentSBLink('user-openpetitions') ? 'active': '']" routerLinkActive="active">
                           <span class="ico-flight"></span>
                           <span>Open petitions</span>
                       </a>

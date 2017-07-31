@@ -109,6 +109,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                 } else{
 
                     if (res.hasMultipleRoles == true) {
+                        this.appService.userroleList = res['userAccountRoleList'];
                         this.dialogService.addDialog(LoginComponent, {
                             selectrole: true,
                             getloginpage: false,
