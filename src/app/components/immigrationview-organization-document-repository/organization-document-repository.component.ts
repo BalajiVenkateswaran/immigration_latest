@@ -137,7 +137,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
                 },
                 {
 
-                    headerName: "Updated Date",
+                    headerName: "Uploaded Date",
                     field: "updatedDate",
                     width: 100
                 }

@@ -132,7 +132,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                 },
                 {
 
-                    headerName: "Updated Date",
+                    headerName: "Uploaded Date",
                     field: "updatedDate",
                     width: 100
                 }

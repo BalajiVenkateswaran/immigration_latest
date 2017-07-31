@@ -140,12 +140,15 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             }
         });
     }
-    OrganizationSave() {
+    OrganizationSave(email) {
         if (this.neworgitem['orgName'] == undefined || this.neworgitem['displayName'] == undefined || this.neworgitem['orgStatus'] == undefined || this.neworgitem['email'] == undefined || this.neworgitem['orgType'] == undefined || 
             this.neworgitem['orgName'] == "" || this.neworgitem['displayName'] == "" || this.neworgitem['orgStatus'] == "" || this.neworgitem['email'] == "" || this.neworgitem['orgType'] == "" ||
             this.neworgitem['orgName'] == null || this.neworgitem['displayName'] == null || this.neworgitem['orgStatus'] == null || this.neworgitem['email'] == null || this.neworgitem['orgType'] == null) {
             this.warningMessage = true;
-        } else {
+        }else if(email!=null){
+            this.warningMessage=false;
+        } 
+        else {
             this.warningMessage = false;
             this.neworgitem['accountId'] = this.appService.user.accountId;
             this.appService.neworgitem = this.neworgitem;

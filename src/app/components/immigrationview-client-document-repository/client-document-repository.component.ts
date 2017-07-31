@@ -131,7 +131,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 },
                 {
 
-                    headerName: "Updated Date",
+                    headerName: "Uploaded Date",
                     field: "updatedDate",
                     width: 100
                 }
