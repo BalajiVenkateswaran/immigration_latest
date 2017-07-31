@@ -37,8 +37,8 @@
                             /><span *ngIf="isProfileEdit==true">{{clientProfile.email}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-county">First Name</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-county" [(ngModel)]="clientProfile.firstName"
+                        <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-county" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''"
                             /><span *ngIf="isProfileEdit==true">{{clientProfile.firstName}}</span></div>
                     </div>
                     <div class="row">

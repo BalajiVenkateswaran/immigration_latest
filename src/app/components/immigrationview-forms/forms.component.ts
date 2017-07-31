@@ -46,9 +46,11 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
     public downloadFlag: boolean = false;
     public generateFormFlag:boolean=false;
     public generateChecked:boolean=true;
+    public generateChecked1:boolean=false;
     public editForms: boolean;
-    public generateFormData: any = {};
     public generateFormsPopup: boolean;
+    public generateFormData: any = {};
+    
     constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService); if (this.appService.user) {
             this.user = this.appService.user;
@@ -74,13 +76,13 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 },
                 {
 
-                    headerName: "Save Form As",
-                    field: "questionnaireName"
+                    headerName: "Generate Form",
+                    cellRendererFramework: GenerateFormButton,
                 },
                 {
 
-                    headerName: "Generate Form",
-                    cellRendererFramework: GenerateFormButton,
+                    headerName: "Save Form As",
+                    field: "fileName"
                 },
                 {
 
@@ -99,7 +101,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 console.log("Generate Clicked");
                 if (res.hasOwnProperty('generateFlag')) {
                     this.checked = true;
-                    this.generateFormFlag=true;
+                    this.generateChecked1=true;
                  
                 }
                 else {
@@ -113,7 +115,6 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 if (res.hasOwnProperty('downloadFlag')) {
                     this.checked = true;
                     this.downloadFlag = true;
-               /*     this.downloadForm(res.data);*/  
                this.generateChecked=true;
                   
 
@@ -178,21 +179,20 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
             if (isConfirmed) {
                 this.formsService.generateForms(questionnaireId,this.user.accountId, forms).subscribe(
                     res => {
-                        console.log(res);
+                         this.getFormsData();
                     }
                 );
             }
-
+            this.generateChecked1=false;
         })
 
     }
     editFormsData(event) {
-        if(event.data.fileCreationDate ){
+        if(event.data.fileId ){
             this.generateChecked=false;
         }
         else{
             this.generateChecked=true;
-            this.generateForm(event.data);
         }
         if (!this.generateChecked && !this.downloadFlag) {
             this.editFlag = true;
@@ -208,10 +208,17 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 formsList: this.editFlag ? this.beforeEdit : this.formsList
             }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    this.formsService.getForms(this.appService.formListData).subscribe((res) => {
+                    let url = "/file/rename";
+                    let data = {
+                        "accountId": this.user.accountId,
+                        "fileId": event.data.fileId,
+                        "fileName": this.beforeEdit.fileName
+                    };
+                    this.formsService.renameFile(url,data).subscribe((res) => {
                         if (res['statusCode'] == 'SUCCESS') {
                             this.getFormsData();
                         }
+
 
                     });
                 } else {
@@ -222,7 +229,11 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
         }
         if(this.downloadFlag){
             this.downloadForm(event.data);
-        }   
+        } 
+        if(this.generateChecked1){
+            this.generateForm(event.data);
+        }  
+       
     }
     downloadForm(formData) {
         if (formData.fileId) {

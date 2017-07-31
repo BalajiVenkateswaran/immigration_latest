@@ -133,7 +133,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                 },
                 {
 
-                    headerName: "Updated Date",
+                    headerName: "Uploaded Date",
                     field: "updatedDate",
                     width: 100
                 }

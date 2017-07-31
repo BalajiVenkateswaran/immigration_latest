@@ -2,10 +2,11 @@
     <ul class="breadcrumb">
         <li><a href="#">Users</a></li>
     </ul>
+    <!--<div class="tester">jkdgfwuhjy iweru gwiouf </div>-->
     <div class="clearfix"></div>
     <div class="table-data">
         <h2><span>Users</span></h2>
-        <smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+        <smart-table class="manageaccUser" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
         </smart-table>
         <div class="clearfix"></div>
     </div>
