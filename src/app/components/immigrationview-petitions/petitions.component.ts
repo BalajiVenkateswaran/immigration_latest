@@ -72,6 +72,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         });
          this.settings={
             'isDeleteEnable':false,
+            'newVariable':'abc',
             'columnsettings': [
                 {
 

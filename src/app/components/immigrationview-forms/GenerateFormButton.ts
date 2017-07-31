@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
 
     template: `<button class="iportal-btn" [(disabled)]=generateDisable  (click)="onGenerateFormClick()">Generate Form</button>`,
-
+    styleUrls: ['./forms.component.scss']
 
 })
 export class GenerateFormButton implements ICellRendererAngularComp {

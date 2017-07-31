@@ -19,4 +19,8 @@ export class FormsService {
     public downloadFile(fileId:string){
         return this.restService.getFile("/file/"+fileId);
     }
+    public renameFile(url: string, data: any) {
+        return this.restService.postData(url, data);
+
+    }
 }
