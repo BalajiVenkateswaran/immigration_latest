@@ -119,16 +119,12 @@ export class PetitionsComponent implements OnInit {
     this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     this.orgId = this.appService.orgId;
     this.petitionService
-      .getPetitions(this.appService.orgId)
+      .getPetitions(this.appService.orgId, this.appService.userLoginHistoryId)
       .subscribe((res: any) => {
           this.petitions = res['petitions'];
           this.petitionfirstName = this.petitions;
           console.log(this.petitions);
-          //this.source.load(this.petitions);
           this.data=this.petitions;
-          // shaym working on this
-          //this.appService.petitionfirstName = res['petitions'][0].firstName;
-          //this.appService.petitionDetails = res['petitionInfo']['name'];
           console.log("wnjfvsugh", this.appService.petitionfirstName);
       });
 

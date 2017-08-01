@@ -76,6 +76,7 @@ export class AppService {
     public selectedOrg: string;
     public petitionType: string;
     public userroleList: any = [];
+    public userLoginHistoryId: string;
     constructor(private _router: Router) { }
 
     allsubtypesarray(allSubTypes) {
