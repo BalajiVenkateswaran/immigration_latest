@@ -1,29 +1,65 @@
 ﻿<div class="main-content">
     <div class="clearfix"></div>
-    <div class="table-data">
+    <div class="table-data-forms">
         <div class="row">
+            <div _ngcontent-c4="" class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 _ngcontent-c4="">Todo List</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <form (submit)="addTodo($event)">
+                                <input [(ngModel)]="newTodo" type="text" (keyup.enter)="newTodo=''" name="newTodo" style="width: calc(100% - 40px);">
+                                <button type="submit" [disabled]="newTodo===''" class="addTodo">+</button>
+                            </form>                        </div>
+                        <div class="col-md-2"></div>
+
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <ul class="todolistItems">
+                                <li *ngFor="let todo of todos; let i=index">
+                                    <input type="checkbox" id="{{ todo.todoText }}" /><label for="{{ todo.todoText }}">{{ todo.todoText }}</label>
+                                    <a (click)="deleteTodo(i)" class="delete-icon pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2"></div>
+
+
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <!--<div class="row">
             <div class="todos">
 
                 <div>
-                    <form (submit)="addTodo($event)">
-                        <input [(ngModel)]="newTodo" (keyup.enter)="newTodo=''" class="textfield" name="newTodo">
-                        <button type="submit" [disabled]="newTodo===''">Add Todo</button>
-                    </form>
+                   
                 </div>
-                <ul>
-                    <li *ngFor="let todo of todos; let i=index">
-                        <input type="checkbox" class="checkbox" />
-                        <span>{{ todo.todoText }}</span>
-                        <span (click)="deleteTodo(i)" class="delete-icon pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-                    </li>
-                </ul>
+                
 
                 <div class="mtop20">
                     <button (click)="deleteSelectedTodos()">Delete Selected</button>
                 </div>
             </div>
 
-        </div>
+        </div>-->
     </div>
 </div>
 <style>
