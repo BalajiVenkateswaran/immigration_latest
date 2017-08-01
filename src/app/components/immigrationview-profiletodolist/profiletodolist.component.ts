@@ -9,7 +9,7 @@ import {profiletodolistservice} from "./profiletodolist.service";
 @Component({
     selector: 'app-profiletodolist',
     templateUrl: './profiletodolist.component.html',
-    styleUrls: ['./profiletodolist.component.sass']
+    styleUrls: ['./profiletodolist.component.scss']
 })
 
 export class profiletodolistcomponent implements OnInit {
