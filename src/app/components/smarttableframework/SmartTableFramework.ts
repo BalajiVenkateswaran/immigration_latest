@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
-import {RequestButton} from '../clientview-request/RequestButton';
+import { RequestButton } from '../clientview-request/RequestButton';
 @Component({
     selector: 'smart-table',
     templateUrl: './SmartTableFramework.html'
@@ -105,18 +105,19 @@ export class SmartTableFramework implements OnChanges {
         if (changes['data']) {
             console.log('Data changed');
             if (this.data != undefined) {
-                this.gridOptions.api.setRowData(this.data);
-                let eGridDiv = <HTMLElement>document.querySelectorAll('div.ag-header-row')[document.querySelectorAll('div.ag-header-row').length - 1];
-                /*let gridCells = document.querySelectorAll('.ag-header-cell');
-                let cellWidth: number = 0;
-                for (var i = 0; i < gridCells.length; i++) {
-                    cellWidth = cellWidth + parseInt(gridCells[i]['style']['width']);
-                }*/
+                if (this.gridOptions.api != undefined) {
+                    this.gridOptions.api.setRowData(this.data);
+                    let eGridDiv = <HTMLElement>document.querySelectorAll('div.ag-header-row')[document.querySelectorAll('div.ag-header-row').length - 1];
+                    /*let gridCells = document.querySelectorAll('.ag-header-cell');
+                    let cellWidth: number = 0;
+                    for (var i = 0; i < gridCells.length; i++) {
+                        cellWidth = cellWidth + parseInt(gridCells[i]['style']['width']);
+                    }*/
 
-                eGridDiv.style.width = "100%";
-                this.gridOptions.api.doLayout();
-                this.gridOptions.api.sizeColumnsToFit();
-                
+                    eGridDiv.style.width = "100%";
+                    this.gridOptions.api.doLayout();
+                    this.gridOptions.api.sizeColumnsToFit();
+                }
             }
         }
     }
@@ -209,7 +210,7 @@ export class SmartTableFramework implements OnChanges {
                 item['headerTooltip'] = item['headerName'];
             }
         })
-         this.settings['columnsettings'].map(function (item) {
+        this.settings['columnsettings'].map(function (item) {
             if (item['tooltipField'] == null && item['tooltipField'] != '') {
                 item['tooltipField'] = item['field'];
             }
