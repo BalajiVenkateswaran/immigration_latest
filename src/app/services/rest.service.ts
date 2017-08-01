@@ -1,62 +1,74 @@
 import {Injectable} from "@angular/core";
-import {Http, ResponseContentType, RequestOptions} from "@angular/http";
+import {Http, ResponseContentType, RequestOptions, Headers} from "@angular/http";
 import {Observable}     from 'rxjs/Observable';
 import '../rxjs-operators';
-import {petition} from "../models/petitions";
+import {AppService} from "./app.service";
 
 @Injectable()
 export class RestService {
       immp_endpoint_url: String = "http://34.200.77.115:8080/immigrationPortal";
       //immp_endpoint_url: String = "http://localhost:8080/immigrationPortal";
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private appService: AppService) {
   }
 
-  getData(url: string): Observable<petition[]> {
-    //let options = new RequestOptions();
-    return this.http.get(this.immp_endpoint_url+url, { withCredentials: true })
-      .map(res => res.json() || {})
-      .catch(this.handleError);
+  getData(url: string): Observable<any> {
+     let headers = new Headers();
+     headers.append('X-Requested-With', 'XMLHttpRequest' );
+     return this.intercept(this.http.get(this.immp_endpoint_url+url, { withCredentials: true, headers: headers})
+                                 .map(res => res.json() || {}));
   }
 
   postData(url: string, data: any): Observable<any[]> {
-    return this.http.post(this.immp_endpoint_url+url, data, { withCredentials: true })
-      .map(res => res.json() || {})
-      .catch(this.handleError);
+    let headers = new Headers();
+    headers.append('X-Requested-With', 'XMLHttpRequest' );
+    return this.intercept(this.http.post(this.immp_endpoint_url+url, data, { withCredentials: true, headers: headers })
+      .map(res => res.json() || {}));
   }
 
-  postDataWithHeaders(url: string, formData: any, headers: any): Observable<any[]>{
-    return this.http.post(this.immp_endpoint_url+url, formData, { withCredentials: true, headers: headers })
-      .map(res => res.json() || {})
-      .catch(this.handleError);
+  postDataWithHeaders(url: string, formData: any, headers: Headers): Observable<any[]>{
+    headers.append('X-Requested-With', 'XMLHttpRequest' );
+    return this.intercept(this.http.post(this.immp_endpoint_url+url, formData, { withCredentials: true, headers: headers })
+      .map(res => res.json() || {}));
   }
 
   putData(url: string, data: any): Observable<any[]> {
-    return this.http.put(this.immp_endpoint_url+url, data, { withCredentials: true })
-      .map(res => res.json() || {})
-      .catch(this.handleError);
+    let headers = new Headers();
+    headers.append('X-Requested-With', 'XMLHttpRequest' );
+    return this.intercept(this.http.put(this.immp_endpoint_url+url, data, { withCredentials: true, headers: headers })
+      .map(res => res.json() || {}));
   }
 
   deleteData(url: string): Observable<any[]> {
-      return this.http.delete(this.immp_endpoint_url+url, { withCredentials: true })
-        .map(res => res.json() || {})
-        .catch(this.handleError);
+      let headers = new Headers();
+      headers.append('X-Requested-With', 'XMLHttpRequest' );
+      return this.intercept(this.http.delete(this.immp_endpoint_url+url, { withCredentials: true, headers: headers })
+        .map(res => res.json() || {}));
   }
   getFile(url: string): Observable<any[]> {
-      return this.http.get(this.immp_endpoint_url + url, { withCredentials: true , responseType: ResponseContentType.Blob })
+      let headers = new Headers();
+      headers.append('X-Requested-With', 'XMLHttpRequest' );
+      return this.intercept(this.http.get(this.immp_endpoint_url + url, { withCredentials: true , headers: headers, responseType: ResponseContentType.Blob })
           .map((res) => {
               return new Blob([res.blob()], { type: 'application/pdf' })
-          })
-          .catch(this.handleError);
+          }));
 
   }
 
-  private handleError(error: any) {
-    // In a real world app, we might use a remote logging infrastructure
-    // We'd also dig deeper into the error to get a better message
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
-  }
+  intercept(observable: Observable<any>){
+        return observable.catch(err => {
+            if (err.status === 401){
+                return this.unauthorised();
+            } else {
+                return Observable.throw(err);
+            }
+        });
+    }
+
+    unauthorised(): Observable<any>
+    {
+        this.appService.destroy();
+        this.appService.moveToPage('');
+        return Observable.empty();
+    }
 }

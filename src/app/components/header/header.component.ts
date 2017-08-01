@@ -106,8 +106,8 @@ export class HeaderComponent implements AfterViewChecked{
     this.appService.menuSlider = (this.appService.menuSlider)? false: true;
   }
 
-  ngDoCheck() {  
- 
+  ngDoCheck() {
+
       this.applicationViewMode = this.appService.applicationViewMode;
       this.immigrationManager = this.appService.user.roleName;
       if (this.appService.getorgMenu != undefined) {
@@ -119,12 +119,10 @@ export class HeaderComponent implements AfterViewChecked{
           else {
               this.delegatedOrg = false;
           }
-      }       
+      }
   }
   logOut() {
       this.appService.destroy();
-    this.appService.moveToPage('');
-    //  this.router.navigate(['login'], { skipLocationChange: false });
-
+      this.appService.moveToPage('');
   }
 }
