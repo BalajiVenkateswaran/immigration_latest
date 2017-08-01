@@ -126,21 +126,6 @@
                             /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.citizenship}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-facebook">Facebook</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-facebook" [(ngModel)]="clientPersonalInfo.facebook"
-                            /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.facebook}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-twitter">Twitter</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-twitter" [(ngModel)]="clientPersonalInfo.twitter"
-                            /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.twitter}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-linkedin">Linked in </label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-linkedin" [(ngModel)]="clientPersonalInfo.linkedin"
-                            /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.linkedin}}</span></div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
                                 <button type="button" (click)="cancelPersonalInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isPersonalInfoEdit==false">Cancel</button>
