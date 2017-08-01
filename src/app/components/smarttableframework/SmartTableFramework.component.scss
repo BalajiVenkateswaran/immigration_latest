@@ -346,6 +346,35 @@
         left:80% !important;
     }
  }
+.immiviewClientsTable {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell[colid~="firstName"] {
+    width:20% !important;
+    left:0% !important;
+}
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell[colid~="lastName"] {
+        width:25% !important;
+        left:20% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="email"], .ag-fresh .ag-ltr .ag-cell[colid~="email"] {
+        width:25% !important;
+        left:45% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="phone"], .ag-fresh .ag-ltr .ag-cell[colid~="phone"] {
+        width:10% !important;
+        left:70% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell[colid~="status"] {
+        width:10% !important;
+        left:80% !important;
+    }
+   .ag-fresh .ag-ltr .ag-header-cell[colid~="openPetitions"], .ag-fresh .ag-ltr .ag-cell[colid~="openPetitions"] {
+        width:10% !important;
+        left:90% !important;
+    }
+ }
+
+
+
 .myclass {
   
     border: none;

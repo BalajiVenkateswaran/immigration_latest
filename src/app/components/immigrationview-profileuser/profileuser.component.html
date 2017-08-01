@@ -2,41 +2,46 @@
     <div class="clearfix"></div>
     <div class="table-data-forms">
         <div class="row">
-
-            <div class="col-md-12 addresbox box-shadow">
-                <h2>User Info</h2>
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-2"><label for="fname">First Name</label></div>
-                        <div class="col-md-4">
-                            <input type="text" [(ngModel)]="userInfo.firstName" />
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <h2>User Info</h2>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4"><label for="fname">First Name</label></div>
+                            <div class="col-md-8">
+                                <input type="text" [(ngModel)]="userInfo.firstName" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"><label for="lname">Last Name</label></div>
-                        <div class="col-md-4">
-                            <input type="text" [(ngModel)]="userInfo.lastName" />
+                        <div class="row">
+                            <div class="col-md-4"><label for="lname">Last Name</label></div>
+                            <div class="col-md-8">
+                                <input type="text" [(ngModel)]="userInfo.lastName" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"><label for="email">Email Id</label></div>
-                        <div class="col-md-4">
-                            <input type="text" [(ngModel)]="userInfo.emailId" readonly />
+                        <div class="row">
+                            <div class="col-md-4"><label for="email">Email Id</label></div>
+                            <div class="col-md-8">
+                                <input type="text" [(ngModel)]="userInfo.emailId" readonly />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"><label for="phone">Phone</label></div>
-                        <div class="col-md-4">
-                            <input type="text" [(ngModel)]="userInfo.phone" />
+                        <div class="row">
+                            <div class="col-md-4"><label for="phone">Phone</label></div>
+                            <div class="col-md-8">
+                                <input type="text" [(ngModel)]="userInfo.phone" />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <h2>Default Org</h2>
-              
-                <div class="row" *ngFor="let org of orgsList">
-                    <div class="col-md-4"><label for="pi-petitiondescription">{{org.orgName}}</label></div>
-                    <div class="col-md-8">
-                        <input type="radio" name="defaultorg" [checked]="org.orgId==defaultorg" [value]="org.orgId" (change)="selDefaultOrg(org)"/>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <h2>Default Org</h2>
+
+                    <div class="row" *ngFor="let org of orgsList">
+                        <div class="col-md-4"><label for="pi-petitiondescription">{{org.orgName}}</label></div>
+                        <div class="col-md-8">
+                            <input type="radio" name="defaultorg" [checked]="org.orgId==defaultorg" [value]="org.orgId" (change)="selDefaultOrg(org)" />
+                        </div>
                     </div>
                 </div>
             </div>
