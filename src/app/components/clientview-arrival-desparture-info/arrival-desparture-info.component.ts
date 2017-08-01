@@ -33,50 +33,6 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     public editFlag: boolean = true;
     public newArvdInfoitem: any = {};
     public addArrDep: boolean;
-    //settings = {
-    //    add: {
-    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmCreate: true
-    //    },
-    //    edit: {
-    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmSave: true
-    //    },
-    //    delete: {
-    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-    //        confirmDelete: true
-    //    },
-    //    columns: {
-
-    //        departureDate: {
-    //            title: 'Departure date'
-    //        },
-    //        departureCountry: {
-    //            title: 'Departure Country'
-    //        },
-    //        arrivalDate: {
-    //            title: 'Arrival date'
-    //        },
-    //        arrivalCountry: {
-    //            title: 'Arrival Country'
-    //        },
-    //        visaType: {
-    //            title: 'Visa Type'
-    //        },
-    //        i94: {
-    //            title: 'I-94'
-    //        }
-    //    },
-    //    pager: {
-    //        display: true,
-    //        perPage: 10
-    //    },
-    //    mode:'external'
-    //};
     public settings;
     public data;
     public delmessage;
@@ -130,13 +86,10 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
         }
 
     }
-
-   // source: LocalDataSource = new LocalDataSource();
-
     getarvdptData() {
         this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.appService.user.userId).subscribe((res) => {
             this.data = res['arrivalDepartures'];
-          //  this.source.load(res['arrivalDepartures']);
+         
         });
     }
 
@@ -144,7 +97,6 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
         this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.appService.user.userId)
             .subscribe((res) => {
                 this.data = res['arrivalDepartures'];
-             //   this.source.load(res['arrivalDepartures']);
             });
 
     }
@@ -187,25 +139,6 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
         this.result = false;
         this.close();
     }
-
-
-
-    //onCreateConfirm(event): void {
-    //    event.newData['clientId'] = this.appService.user.userId;
-    //    this.arrivalDespartureInfoService.saveClientArrivalDeparture(event.newData).subscribe((res) => {
-    //        this.message = res['statusCode'];
-    //        if (this.message == 'SUCCESS') {
-    //            event.confirm.resolve();
-    //        } else {
-    //            this.dialogService.addDialog(ConfirmComponent, {
-    //                title: 'Error..!',
-    //                message: 'Unable to Add Arrival Departue Info..!'
-    //            });
-    //            event.confirm.reject();
-    //        }
-    //    });
-
-    //}
     editRecord(event): void {
        this.editFlag = true;
       if (this.editFlag) {
@@ -214,7 +147,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
      this.dialogService.addDialog(ArrivalDespartureInfoComponent, {
           addArrDep: true,
           getArvdInfoData: false,
-          title: 'Edit Arrival Departue Info',
+          title: 'Edit Arrival Departure Info',
           newArvdInfoitem: this.editFlag ? this.beforeEdit : this.newArvdInfoitem,
           arrivalDate:event.data.arrivalDate,
           departureDate:event.data.departureDate,
@@ -245,10 +178,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
                         this.message = res['statusCode'];
                         if (this.message == 'SUCCESS') {
                             this.getarvdptData();
-                            //event.confirm.resolve();
-                        } else {
-                            //event.confirm.reject();
-                        }
+                        } 
                     });
                 }
             });
