@@ -19,7 +19,7 @@
         <h2>
             <span>Client</span>      
         </h2>
-        <smart-table [settings]="settings" [data]="data"
+        <smart-table class="immiview-ques-client" [settings]="settings" [data]="data"
                      (onAddClick)="addNewQuestionnaire($event)" (onRowClick)="editQuestionnaire($event)" (onDeleteClick)="deleteConfirm($event)" ></smart-table>
         <button [(disabled)]="sendQuestionnaire" type="submit" class="submitbtn" (click)="sendQuestionnaireClient()" [ngClass]="{'myclass':sendQuestionnaire,'submitbtn':!sendQuestionnaire}">Send Questionnaire to client </button>
         <div class="clearfix"></div>
@@ -27,7 +27,7 @@
         <h2 style="margin-top: 20px;">
             <span>Immigration Officer</span>
         </h2>
-         <smart-table [settings]="settings1" [data]="officerData"
+         <smart-table class="immiview-ques-emp" [settings]="settings1" [data]="officerData"
                      (onAddClick)="addNewQuestionnaire($event)" (onRowClick)="editEmpQuestionnaire($event)" (onDeleteClick)="deleteEmpQuestionnaire($event)" ></smart-table>
     </div>
 </div>

@@ -11,7 +11,7 @@
                         <input type="file" class="upload" name="file" (change)="fileUpload($event)"/>
                     </div>
                 </div>
-                <smart-table [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></smart-table>     
+                <smart-table class="immiview-petition-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></smart-table>     
               
                 </form>
                 <div class="clearfix"></div>
