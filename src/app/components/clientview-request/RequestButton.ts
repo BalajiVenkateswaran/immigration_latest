@@ -3,14 +3,15 @@ import { ICellRendererAngularComp } from 'ag-grid-angular/main';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
-
+import { ClientRequestService } from "./clientview-request.service";
+import { AppService } from "../../services/app.service";
 @Component({
     template: `
-    <div *ngIf="buttonVisible">
+    <div *ngIf="buttonVisible==true">
      <button class="iportal-btn" (click)="onRequestClick()">Accept</button>
     <button class="iportal-btn" (click)="onDeclineClick()">Decline</button>
     </div>
-    <div *ngIf="textVisisble">{{this.params.data.status}}</div>
+    <div *ngIf="textVisisble==true">{{displayStatus}}</div>
    `,
 
 })
@@ -20,29 +21,71 @@ export class RequestButton implements ICellRendererAngularComp {
     public static onDeclineClicked = new Subject<any>();
     public buttonVisible:boolean=false;
     public textVisisble:boolean=false;
+    public displayStatus;
+    public updateStatus: any = {};
     agInit(params: any): void {
         this.params = params;
-        if(this.params.data.status=="Accept" || this.params.data.status=="Decline"){
+        this.checkedIniviteStatus(this.params.data.status);
+    }
+    checkedIniviteStatus(status){
+        this.displayStatus=status;
+        if(status=="Accept" || status=="Decline"){
+           
             this.textVisisble=true;
+            
         }
         else{
             this.textVisisble=false;
          
         }
-        if(this.params.data.status=="" || this.params.data.status==null){
+        if(status=="" || status==null){
             this.buttonVisible=true;
         }else{
             this.buttonVisible=false;
         }
     }
-
-    constructor() {
+    constructor(private clientviewrequestservice: ClientRequestService,public appService: AppService) {
     }
     onRequestClick(){
-        RequestButton.onRequestClicked.next({'data':this.params.data,'requested':true});
+         this.updateStatus['clientInviteId'] = this.params.data.clientInviteId;
+         this.updateStatus['status'] = "Accept";
+            this.clientviewrequestservice.updateClientInviteStatus(this.updateStatus).subscribe((res) => {
+                if (res['statusCode'] == "SUCCESS") {
+                  this.clientviewrequestservice.getClientInvites(this.appService.user.userId).subscribe(res=>{
+                      if(res['statusCode']=="SUCCESS"){
+                           let invite=res['clientInvite'].filter(item=>{
+                               if(item['clientInviteId']==this.params.data.clientInviteId){
+                                   return item;
+                               }
+                           })
+                           invite.map(item=>{
+                               this.checkedIniviteStatus(item.status)
+                           })
+                      }
+                  })    
+                }
+            });
     }
     onDeclineClick(){
-        RequestButton.onDeclineClicked.next({'data':this.params.data});
+         this.updateStatus['clientInviteId'] = this.params.data.clientInviteId;
+         this.updateStatus['status'] = "Decline";
+            this.clientviewrequestservice.updateClientInviteStatus(this.updateStatus).subscribe((res) => {
+                if (res['statusCode'] == "SUCCESS") {
+                   this.clientviewrequestservice.getClientInvites(this.appService.user.userId).subscribe(res=>{
+                      if(res['statusCode']=="SUCCESS"){
+                           let invite=res['clientInvite'].filter(item=>{
+                               if(item['clientInviteId']==this.params.data.clientInviteId){
+                                   return item;
+                               }
+                           })
+                           invite.map(item=>{
+                               this.checkedIniviteStatus(item.status)
+                           })
+                      }
+                  })   ;
+                    
+                }
+            });
     }
 
 }

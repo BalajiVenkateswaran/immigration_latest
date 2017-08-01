@@ -24,8 +24,7 @@ export class requestclientviewcomponent implements OnInit {
     public declineSubscription;
     public checked: boolean = false;
     public status;
-    constructor(public appService: AppService, private clientviewrequestservice: ClientRequestService) {
-
+    constructor(public appService: AppService,private clientviewrequestservice: ClientRequestService) {
         this.settings = {
             'isDeleteEnable': false,
             'pagination': false,
@@ -48,7 +47,6 @@ export class requestclientviewcomponent implements OnInit {
 
                     headerName: "Message",
                     field: "message",
-                    tooltipField: "message", //enabling the tooltip for the message field
                     width: 80, //configuring the column width of grid manually
 
                 },
@@ -60,45 +58,12 @@ export class requestclientviewcomponent implements OnInit {
                 }
             ]
         }
-        this.requestSubscription = RequestButton.onRequestClicked.subscribe(res => {
-            if (res) {
-                if (res.hasOwnProperty('requested')) {
-                    this.checked = true;
-                    this.status = "Accept";
-                    this.statusClick(res['data']);
-
-                }
-                else {
-                    this.checked = false;
-                }
-            }
-        })
-        this.declineSubscription = DeclineButton.onDeclineClicked.subscribe(res => {
-            if (res) {
-                if (!res.hasOwnProperty('requested')) {
-                    this.checked = true;
-                    this.status = "Decline";
-                    this.statusClick(res['data']);
-                }
-                else {
-                    this.checked = false;
-                }
-            }
-        })
     }
     ngOnDestroy() {
-        this.requestSubscription.unsubscribe();
-        this.declineSubscription.unsubscribe();
     }
     statusClick(clientRequest) {
         if (this.checked) {
-            this.updateStatus['clientInviteId'] = clientRequest.clientInviteId;
-            this.updateStatus['status'] = this.status;
-            this.clientviewrequestservice.updateClientInviteStatus(this.updateStatus).subscribe((res) => {
-                if (res['statusCode'] == "SUCCESS") {
-                    clientRequest.status = this.status;
-                }
-            });
+           
         }
 
     }

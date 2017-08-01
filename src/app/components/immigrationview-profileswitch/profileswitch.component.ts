@@ -1,22 +1,24 @@
-﻿import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {User} from "../../models/user";
-import {AppService} from "../../services/app.service";
-import {RestService} from "../../services/rest.service";
-import {profileswitchservice} from "./profileswitch.service";
-
-
+﻿import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { User } from "../../models/user";
+import { AppService } from "../../services/app.service";
+import { RestService } from "../../services/rest.service";
+import { profileswitchservice } from "./profileswitch.service";
+import { SmartTableFramework } from '../smarttableframework/SmartTableFramework';
 @Component({
     selector: 'app-profileloginhistory',
     templateUrl: './profileswitch.component.html',
     styleUrls: ['./profileswitch.component.sass']
 })
 
-export class profileswitchcomponent implements OnInit {
+export class profileswitchcomponent implements OnInit,AfterViewInit {
     public settings;
     public data;
+    @ViewChild(SmartTableFramework) smarttable: SmartTableFramework;
     ngOnInit() {
-        this.data = this.appService.userroleList;
+    }
+    ngAfterViewInit() {
+        this.data=this.appService.userroleList
     }
     constructor(public appService: AppService, private profileSwitchservice: profileswitchservice) {
 
