@@ -5,6 +5,8 @@ import { AppService } from "../../services/app.service";
 import { RestService } from "../../services/rest.service";
 import { profileswitchservice } from "./profileswitch.service";
 import { SmartTableFramework } from '../smarttableframework/SmartTableFramework';
+import { switchButton } from './switchButton';
+
 @Component({
     selector: 'app-profileloginhistory',
     templateUrl: './profileswitch.component.html',
@@ -25,6 +27,7 @@ export class profileswitchcomponent implements OnInit,AfterViewInit {
         this.settings = {
             "isAddButtonEnable": false,
             "isDeleteEnable": false,
+            'rowHeight': 40,
             'columnsettings': [
                 {
 
@@ -40,7 +43,8 @@ export class profileswitchcomponent implements OnInit,AfterViewInit {
                 {
 
                     headerName: "Switch",
-                    field: "accountName",
+                    cellRendererFramework: switchButton,
+                   
                 },
             ]
         }

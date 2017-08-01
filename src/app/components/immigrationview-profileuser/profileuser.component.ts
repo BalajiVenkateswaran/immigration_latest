@@ -15,7 +15,14 @@ import {profileuserservice} from "./profileuser.service";
 export class profileusercomponent implements OnInit {
     public userInfo: any = {};
     public orgsList: any = [];
-    public defaultorg:any;
+    public defaultorg: any;
+    public isUserEdit: boolean = true;
+    public warningMessage: boolean;
+    public beforeCancelUserInfo: any = {};
+    public isUserorgEdit: boolean = true;
+    public orgdisable: boolean;
+    public beforeCancelorgid: any;
+    public selectedorg: any = {};
     ngOnInit() {
         this.orgsList = this.appService.organizations;
         this.appService.showSideBarMenu("immiview-profuser", "immiview-profileuser");
@@ -34,13 +41,58 @@ export class profileusercomponent implements OnInit {
                 }
             });
     }
+    constructor(public appService: AppService, private profileUserservice: profileuserservice) { }
+
+    editDefaultorg() {
+        this.beforeCancelorgid = this.defaultorg;
+        this.orgdisable = false;
+        this.isUserorgEdit = !this.isUserorgEdit;
+    }
+    cancelDefaultorg() {
+        this.defaultorg = this.beforeCancelorgid;
+        this.orgdisable = true;
+        this.isUserorgEdit = !this.isUserorgEdit;
+
+    }
     selDefaultOrg(selorg) {
-        var data = { "accountId": selorg.accountId, "creationDate": selorg.creationDate, "lastUpdate": selorg.lastUpdate, "orgId": selorg.orgId, "userId": this.appService.user.userId };
+        this.selectedorg = selorg;
+    }
+    saveDefaultorg() {
+        var data = { "accountId": this.selectedorg.accountId, "creationDate": this.selectedorg.creationDate, "lastUpdate": this.selectedorg.lastUpdate, "orgId": this.selectedorg.orgId, "userId": this.appService.user.userId };
         this.profileUserservice.setDefaultOrg(data)
             .subscribe((res) => {
                 console.log(res);
+                this.orgdisable = true;
+                this.isUserorgEdit = true;
             });
     }
+    editProfileForm() {
+        this.beforeCancelUserInfo = (<any>Object).assign({}, this.userInfo);
+        this.isUserEdit = !this.isUserEdit;
 
-    constructor(public appService: AppService, private profileUserservice: profileuserservice) { }
+    }
+    cancelProfileEdit() {
+        this.userInfo = this.beforeCancelUserInfo;
+        this.isUserEdit = !this.isUserEdit;
+        this.warningMessage = false;
+    }
+    saveUserProfile() {
+        if (this.userInfo['firstName'] == '' || this.userInfo['firstName'] == null || this.userInfo['firstName'] == undefined
+            || this.userInfo['lastName'] == '' || this.userInfo['lastName'] == null || this.userInfo['lastName'] == undefined
+            || this.userInfo['emailId'] == '' || this.userInfo['emailId'] == null || this.userInfo['emailId'] == undefined) {
+            this.warningMessage = true;
+        }
+        else {
+            this.warningMessage = false;
+            this.isUserEdit = true;
+            this.userInfo['accountId'] = this.appService.user.userId;
+            this.userInfo['role'] = this.appService.user.roleName;
+            this.userInfo['userId'] = this.appService.user.userId;
+            this.profileUserservice.updateUser(this.userInfo).subscribe((res) => {
+                if (res['statusCode'] == "SUCCESS") {
+                    console.log(res);
+                }
+            });
+        }
+    }
 }

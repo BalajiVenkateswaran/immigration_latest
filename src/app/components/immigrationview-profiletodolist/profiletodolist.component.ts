@@ -25,6 +25,16 @@ export class profiletodolistcomponent implements OnInit {
                 console.log(res);
                 if (res['statusCode'] == "SUCCESS") {
                     this.todos = res['userTodoList'];
+                    for (var i = 0; i < this.todos.length; i++) {
+                        if (this.todos[i]['completed']) {
+                            if (this.todos[i]['completed'] == "YES") {
+                                this.todos[i]['completed'] = true;
+                            }
+                            if (this.todos[i]['completed'] == "NO") {
+                                this.todos[i]['completed'] = false;
+                            }
+                        }
+                    }
                 }
             });
     }
@@ -32,12 +42,13 @@ export class profiletodolistcomponent implements OnInit {
         this.newTodo = '';
     }
     addTodo(event) {
-        var data = {"completed":"YES", "todoText": this.newTodo, "userId": this.appService.user.userId };
+        var data = {"completed":"NO", "todoText": this.newTodo, "userId": this.appService.user.userId };
         this.profileTodolistservice.addTodo(data)
             .subscribe((res) => {
                 console.log(res);
-                if (res['statuscode'] == "SUCCESS") {
+                if (res['statusCode'] == "SUCCESS") {
                     this.getTodos();
+                    this.newTodo = "";
                 }
             });
     }

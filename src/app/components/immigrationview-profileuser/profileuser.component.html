@@ -4,43 +4,66 @@
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
-                    <h2>User Info</h2>
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-4"><label for="fname">First Name</label></div>
-                            <div class="col-md-8">
-                                <input type="text" [(ngModel)]="userInfo.firstName" />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2>User Info</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isUserEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isUserEdit">
+                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="lname">Last Name</label></div>
-                            <div class="col-md-8">
-                                <input type="text" [(ngModel)]="userInfo.lastName" />
-                            </div>
+                    </div>
+                    <div class="row" *ngIf="warningMessage">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="email">Email Id</label></div>
-                            <div class="col-md-8">
-                                <input type="text" [(ngModel)]="userInfo.emailId" readonly />
-                            </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isUserEdit==false" id="wa-county" [(ngModel)]="userInfo.firstName" [ngClass]="userInfo.firstName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.firstName}}</span>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="phone">Phone</label></div>
-                            <div class="col-md-8">
-                                <input type="text" [(ngModel)]="userInfo.phone" />
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-zip">Last Name<span class="redstar">*</span></label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isUserEdit==false" id="wa-zip" [(ngModel)]="userInfo.lastName" [ngClass]="userInfo.lastName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.lastName}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
+                        <div class="col-md-8">
+                            <span>{{userInfo.emailId}}</span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="wa-country">Phone Number</label></div>
+                        <div class="col-md-8">
+                            <input type="text" *ngIf="isUserEdit==false" id="wa-country" [(ngModel)]="userInfo.phoneNumber" />
+                            <span *ngIf="isUserEdit==true">{{userInfo.phoneNumber}}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
-                    <h2>Default Org</h2>
-
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2>Default Org</h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editDefaultorg()" *ngIf="isUserorgEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isUserorgEdit">
+                                <button type="button" (click)="cancelDefaultorg()" class="editbtn tbl-head-btn" *ngIf="isUserorgEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveDefaultorg()" *ngIf="isUserorgEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row" *ngFor="let org of orgsList">
                         <div class="col-md-4"><label for="pi-petitiondescription">{{org.orgName}}</label></div>
                         <div class="col-md-8">
-                            <input type="radio" name="defaultorg" [checked]="org.orgId==defaultorg" [value]="org.orgId" (change)="selDefaultOrg(org)" />
+                            <input type="radio" name="defaultorg" [disabled]="orgdisable" [checked]="org.orgId==defaultorg" [value]="org.orgId" (change)="selDefaultOrg(org)" />
                         </div>
                     </div>
                 </div>

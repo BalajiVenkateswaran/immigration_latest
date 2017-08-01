@@ -12,7 +12,7 @@
                 </div>
                 <ul>
                     <li *ngFor="let todo of todos; let i=index">
-                        <input type="checkbox" class="checkbox" />
+                        <input type="checkbox" class="checkbox" [checked]="todo.completed" [(ngModel)]="todo.completed"/>
                         <span>{{ todo.todoText }}</span>
                         <span (click)="deleteTodo(i)" class="delete-icon pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
                     </li>

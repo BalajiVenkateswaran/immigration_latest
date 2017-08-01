@@ -134,6 +134,8 @@ import {ClientsEnhansmentsComponent} from "./components/clients-enhancements/cli
 
 import { DeclineButton } from "./components/clientview-request/DeclineButton";
 import { RequestButton } from "./components/clientview-request/RequestButton";
+import { switchButton } from "./components/immigrationview-profileswitch/switchButton";
+
 
 
 //import { Typeahead } from 'ng2-typeahead';
@@ -238,10 +240,10 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         AgGridModule.withComponents([SmartTableFramework]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,DownloadInvoiceButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,DownloadInvoiceButton,switchButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,DownloadInvoiceButton,/*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton, MoreDetails, DownloadInvoiceButton, switchButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,

@@ -11,6 +11,9 @@ export class profileuserservice {
     public getUserInfo(userid: string) {
         return this.restService.getData("/profile/user/" + userid);
     }
+    public updateUser(userData: any) {
+        return this.restService.putData("/user", userData);
+    }
     public getDefaultOrg(userid: string) {
         return this.restService.getData("/profile/user/defaultOrg/" + userid);
     }
