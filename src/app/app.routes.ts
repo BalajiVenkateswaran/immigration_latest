@@ -92,12 +92,16 @@ import {petitionstypesreportscomponent} from './components/immigrationview-petit
 import {petitionstagesreportscomponent} from './components/immigrationview-petitionstagesreports/petitionstagesreports.component';
 import {petitionstagsreportscomponent} from './components/immigrationview-petitiontagsreports/petitiontagsreports.component';
 import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
+import {usertotalpetitionscomponent} from './components/immigrationview-userstotalpetreports/userstotalpetitionreports.component';
+import {useropenpetitioncomponent} from './components/immigrationview-usersopenpetreports/usersopenreports.component';
+
+
 //profile
 import {profileusercomponent} from './components/immigrationview-profileuser/profileuser.component';
 import {profileloginhiscomponent} from './components/immigrationview-profileloginhistory/profileloginhistory.component';
 import {profileswitchcomponent} from './components/immigrationview-profileswitch/profileswitch.component';
-
-
+import {profilechangepwdcomponent} from './components/immigrationview-profilechangepassword/profilechangepassword.component';
+import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
 
 
 export const appRoutes: Routes = [
@@ -406,6 +410,22 @@ export const appRoutes: Routes = [
     {
         path: 'immiview-profileswitch',
         component: profileswitchcomponent
+    },
+    {
+        path: 'immiview-profilechangepwd',
+        component: profilechangepwdcomponent
+    },
+    {
+        path: 'immiview-profileTodo',
+        component: profiletodolistcomponent
+    },
+    {
+        path: 'user-totalpetitions',
+        component: usertotalpetitionscomponent
+    },
+    {
+        path: 'user-openpetitions',
+        component: useropenpetitioncomponent
     },
     {
         path: '',

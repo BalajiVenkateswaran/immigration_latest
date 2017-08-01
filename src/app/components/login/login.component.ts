@@ -107,8 +107,9 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                     && res['resetPassword'] == true) {
                     this.appService.moveToPage('reset-password');
                 } else{
-
+                    this.appService.userLoginHistoryId = res['userLoginHistoryId'];
                     if (res.hasMultipleRoles == true) {
+                        this.appService.userroleList = res['userAccountRoleList'];
                         this.dialogService.addDialog(LoginComponent, {
                             selectrole: true,
                             getloginpage: false,

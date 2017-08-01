@@ -209,6 +209,11 @@ export class SmartTableFramework implements OnChanges {
                 item['headerTooltip'] = item['headerName'];
             }
         })
+         this.settings['columnsettings'].map(function (item) {
+            if (item['tooltipField'] == null && item['tooltipField'] != '') {
+                item['tooltipField'] = item['field'];
+            }
+        })
         if (this.settings.hasOwnProperty('isAddButtonEnable')) {
             this.isAddButtonEnable = this.settings['isAddButtonEnable'];
         }

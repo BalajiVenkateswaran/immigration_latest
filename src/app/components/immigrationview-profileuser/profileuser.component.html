@@ -32,18 +32,13 @@
                     </div>
                 </div>
                 <h2>Default Org</h2>
-                <div class="row">
-                    <div class="col-md-4"><label for="">orgnames</label></div>
-                    <div class="col-md-4">
-                        <input type="checkbox" [checked]="true" />
+              
+                <div class="row" *ngFor="let org of orgsList">
+                    <div class="col-md-4"><label for="pi-petitiondescription">{{org.orgName}}</label></div>
+                    <div class="col-md-8">
+                        <input type="radio" name="defaultorg" [checked]="org.orgId==defaultorg" [value]="org.orgId" (change)="selDefaultOrg(org)"/>
                     </div>
                 </div>
-                <!--<div class="row" *ngFor="let dOrgName of delegatedOrgsList">
-                    <div class="col-md-4"><label for="pi-petitiondescription">{{dOrgName.orgName}}</label></div>
-                    <div class="col-md-8">
-                        <input type="checkbox" [disabled]="isDelegatedOrgsEdit == true" [checked]="dOrgName.petitionAssigned" [(ngModel)]="dOrgName.petitionAssigned" />
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>

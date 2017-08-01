@@ -14,7 +14,10 @@ import {profileuserservice} from "./profileuser.service";
 
 export class profileusercomponent implements OnInit {
     public userInfo: any = {};
+    public orgsList: any = [];
+    public defaultorg:any;
     ngOnInit() {
+        this.orgsList = this.appService.organizations;
         this.appService.showSideBarMenu("immiview-profuser", "immiview-profileuser");
         this.profileUserservice.getUserInfo(this.appService.user.userId)
             .subscribe((res) => {
@@ -26,8 +29,18 @@ export class profileusercomponent implements OnInit {
         this.profileUserservice.getDefaultOrg(this.appService.user.userId)
             .subscribe((res) => {
                 console.log(res);
-               
+                if (res['statusCode'] == "SUCCESS") {
+                    this.defaultorg = res['userDefaultOrg']['orgId'];
+                }
             });
     }
+    selDefaultOrg(selorg) {
+        var data = { "accountId": selorg.accountId, "creationDate": selorg.creationDate, "lastUpdate": selorg.lastUpdate, "orgId": selorg.orgId, "userId": this.appService.user.userId };
+        this.profileUserservice.setDefaultOrg(data)
+            .subscribe((res) => {
+                console.log(res);
+            });
+    }
+
     constructor(public appService: AppService, private profileUserservice: profileuserservice) { }
 }
