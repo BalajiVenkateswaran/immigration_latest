@@ -9,6 +9,7 @@ import { AppService } from "../../services/app.service";
 import { GenerateFormButton } from './GenerateFormButton';
 import { DownloadButton } from './DownloadButton';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { ConfirmComponent } from '../confirmbox/confirm.component';
 import * as FileSaver from 'file-saver';
 export interface ConfirmModel {
     title: string;
@@ -50,7 +51,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
     public editForms: boolean;
     public generateFormsPopup: boolean;
     public generateFormData: any = {};
-    
+    public errorMessage:boolean=false;
     constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService); if (this.appService.user) {
             this.user = this.appService.user;
@@ -179,8 +180,20 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
             if (isConfirmed) {
                 this.formsService.generateForms(questionnaireId,this.user.accountId, forms).subscribe(
                     res => {
-                         this.getFormsData();
+                        if(res['statusCode']=='FAILURE'){
+                            this.errorMessage=true;
+                        }
+                        else{
+                            this.dialogService.addDialog(ConfirmComponent,{
+                                title:'Please Wait...',
+                                message:'Form Generation takes sometime',
+                            }).subscribe(()=>{
+                                this.getFormsData();
+                            })
+                        }
+                         
                     }
+
                 );
             }
             this.generateChecked1=false;
@@ -252,7 +265,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
        
 
     }
-    docExpSave() {
+    fileNameSave() {
         this.appService.formListData = this.formsList;
         this.result = true;
         this.close();

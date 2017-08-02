@@ -132,7 +132,7 @@ import {QuestionnaireI129HClentviewService} from "./components/clientview-i129h/
 import {ClientQuestionnaireService} from "./components/clientview-Questionnaries/clientview-Questionnaries.service";
 import {ClientsEnhansmentsComponent} from "./components/clients-enhancements/clients.component";
 
-import { DeclineButton } from "./components/clientview-request/DeclineButton";
+
 import { RequestButton } from "./components/clientview-request/RequestButton";
 import { switchButton } from "./components/immigrationview-profileswitch/switchButton";
 
@@ -242,10 +242,10 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         AgGridModule.withComponents([SmartTableFramework]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton,MoreDetails,DownloadInvoiceButton,switchButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton,MoreDetails,DownloadInvoiceButton,switchButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, DeclineButton, MoreDetails, DownloadInvoiceButton, switchButton,/*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,

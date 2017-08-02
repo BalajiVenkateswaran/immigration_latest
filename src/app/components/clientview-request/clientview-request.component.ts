@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { AppService } from "../../services/app.service";
 import { ClientRequestService } from "./clientview-request.service";
 import { RequestButton } from './RequestButton';
-import { DeclineButton } from './DeclineButton';
+
 @Component({
     selector: 'app-clientview-request.component',
     templateUrl: './clientview-request.component.html',
@@ -74,6 +74,7 @@ export class requestclientviewcomponent implements OnInit {
         this.clientviewrequestservice.getClientInvites(this.appService.user.userId)
             .subscribe((res) => {
                 this.clientRequests = res['clientInvite'];
+               
                 for (var i = 0; i < this.clientRequests.length; i++) {
                     this.clientRequests[i]['id'] = i + 1;
                     if (this.clientRequests[i].status == null) {
