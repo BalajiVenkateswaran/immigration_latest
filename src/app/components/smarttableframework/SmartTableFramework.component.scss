@@ -323,7 +323,7 @@
     }
  }
 
-.immiview-petition-docrepo {
+.immiview-petition-docrepo, .clientViewDocRepo {
     .edit-delete {
         i {
             margin:0px 5px !important;
@@ -373,7 +373,85 @@
     }
  }
 
+.clientViewPetitions {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionName"], .ag-fresh .ag-ltr .ag-cell[colid~="petitionName"] {
+    width:15% !important;
+    left:0% !important;
+}
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionType"], .ag-fresh .ag-ltr .ag-cell[colid~="petitionType"] {
+        width:10% !important;
+        left:15% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="organization"], .ag-fresh .ag-ltr .ag-cell[colid~="organization"] {
+        width:15% !important;
+        left:25% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell[colid~="status"] {
+        width:10% !important;
+        left:40% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="stage"], .ag-fresh .ag-ltr .ag-cell[colid~="stage"] {
+        width:10% !important;
+        left:50% !important;
+    }
+   .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell[colid~="startDate"] {
+        width:10% !important;
+        left:60% !important;
+    }
+   .ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdated"], .ag-fresh .ag-ltr .ag-cell[colid~="lastUpdated"] {
+        width:10% !important;
+        left:70% !important;
+    }
+   .ag-fresh .ag-ltr .ag-header-cell[colid~="recieptNumber"], .ag-fresh .ag-ltr .ag-cell[colid~="recieptNumber"] {
+        width:10% !important;
+        left:80% !important;
+    }
+   .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
+        width:10% !important;
+        left:90% !important;
+    }
+ }
 
+.clientViewQuestionnnaires {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="formName"], .ag-fresh .ag-ltr .ag-cell[colid~="formName"] {
+    width:25% !important;
+    left:0% !important;
+}
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell[colid~="questionnaireName"] {
+        width:25% !important;
+        left:25% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="orgName"], .ag-fresh .ag-ltr .ag-cell[colid~="orgName"] {
+        width:25% !important;
+        left:50% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="clientStatus"], .ag-fresh .ag-ltr .ag-cell[colid~="clientStatus"] {
+        width:13% !important;
+        left:75% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="clientStatusDate"], .ag-fresh .ag-ltr .ag-cell[colid~="clientStatusDate"] {
+        width:12% !important;
+        left:88% !important;
+    }
+ }
+.clientViewRequests {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="id"], .ag-fresh .ag-ltr .ag-cell[colid~="id"] {
+    width:10% !important;
+    left:0% !important;
+}
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="requestType"], .ag-fresh .ag-ltr .ag-cell[colid~="requestType"] {
+        width:20% !important;
+        left:10% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="message"], .ag-fresh .ag-ltr .ag-cell[colid~="message"] {
+        width:50% !important;
+        left:30% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
+        width:20% !important;
+        left:80% !important;
+    }
+ }
 
 .myclass {
   
