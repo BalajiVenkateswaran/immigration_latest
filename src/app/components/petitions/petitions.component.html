@@ -1,10 +1,7 @@
 <div class="main-content">
-    <!--<h1>{{appService.firstName}} {{appService.lastName}}</h1>-->
-
   <div class="clearfix"></div>
   <div class="table-data">
     <h2>Petitions</h2>
-      <!--    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event)"></ng2-smart-table>-->
        <smart-table class="petitionslistTbl" [settings]="settings" [data]="data"
                      (onRowClick)="moveTo($event)" (onColumnFilterClick)="filterData($event)" ></smart-table>
           <div class="clearfix"></div>

@@ -89,9 +89,8 @@ export class PetitionsComponent implements OnInit {
                 },
                 {
                     headerName: "Final Action",
-                    field: "action",
+                    field: "finalStatus",
                 },
-
                 {
                     headerName: "Assigned To",
                     field: "assignedToName"
