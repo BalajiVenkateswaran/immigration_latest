@@ -74,7 +74,7 @@ export class requestclientviewcomponent implements OnInit {
         this.clientviewrequestservice.getClientInvites(this.appService.user.userId)
             .subscribe((res) => {
                 this.clientRequests = res['clientInvite'];
-                this.appService.clientInivtes=res['clientInvite'];
+               
                 for (var i = 0; i < this.clientRequests.length; i++) {
                     this.clientRequests[i]['id'] = i + 1;
                     if (this.clientRequests[i].status == null) {
