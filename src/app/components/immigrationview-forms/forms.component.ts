@@ -177,11 +177,12 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
             generateFormData: this.generateFormData
 
         }).subscribe((isConfirmed) => {
-            this.dialogService.addDialog(ConfirmComponent,{
+            
+            if (isConfirmed) {
+                this.dialogService.addDialog(ConfirmComponent,{
                                 title:'Please Wait...',
                                 message:'This may take sometime',
                             })
-            if (isConfirmed) {
                 this.formsService.generateForms(questionnaireId,this.user.accountId, forms).subscribe(
                     res => {
                         if(res['statusCode']=='FAILURE'){
