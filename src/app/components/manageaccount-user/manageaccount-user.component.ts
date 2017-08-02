@@ -126,6 +126,12 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getManageUsers();
                     }
+                    if(res['statusDescription']=='User already exists'){
+                        this.dialogService.addDialog(ConfirmComponent,{
+                              title: 'Error..!',
+                              message: 'User already Exists'
+                        })
+                    }
                 });
             }
         });

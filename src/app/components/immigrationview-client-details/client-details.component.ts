@@ -54,12 +54,26 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                }
            )
        }*/
+       this.getClientDetails();
     }
 
     ngOnInit() {
         this.appService.showSideBarMenu("immigrationview-client", "clients");
         this.appService.dependents = [];
+         this.status = [
+            { value: 'Active', name: 'Active' },
+            { value: 'Inactive', name: 'Inactive' }
+        ]
 
+        this.gender = [
+            { value: '0', name: 'Male' },
+            { value: '1', name: 'Female' }
+
+        ]
+
+    }
+    getClientDetails(){
+        
         this.clientDetailsService.getClientDetails(this.appService.clientId)
             .subscribe((res) => {
                 if (res['clientDetails']) {
@@ -87,16 +101,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                 this.getClientsInvitation(this.user1);  
             });
 
-        this.status = [
-            { value: 'Active', name: 'Active' },
-            { value: 'Inactive', name: 'Inactive' }
-        ]
-
-        this.gender = [
-            { value: '0', name: 'Male' },
-            { value: '1', name: 'Female' }
-
-        ]
+       
     }
     getClientsInvitation(userId) {
         this.clientDetailsService.getClientInvites(userId).subscribe(res => {

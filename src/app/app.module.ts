@@ -187,6 +187,8 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
 import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service'
 
+import {profileCommonService} from './components/immigrationview/profile/common/immigration-profile.service';
+
 import { ManageAccountUserDetailsService } from "./components/manageaccount-user-details/manageaccount-user-details.service";
 
 //immigrationview reports tab
@@ -437,7 +439,7 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
 
         SuperuserViewAccountpreferencessService,
         AccountDetailsCommonService,
-
+        profileCommonService,
         //reports
         petitionsstatusreportsservice,
         clientscreatedreportsservice,

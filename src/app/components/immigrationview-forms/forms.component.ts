@@ -177,6 +177,10 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
             generateFormData: this.generateFormData
 
         }).subscribe((isConfirmed) => {
+            this.dialogService.addDialog(ConfirmComponent,{
+                                title:'Please Wait...',
+                                message:'This may take sometime',
+                            })
             if (isConfirmed) {
                 this.formsService.generateForms(questionnaireId,this.user.accountId, forms).subscribe(
                     res => {
@@ -184,12 +188,9 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                             this.errorMessage=true;
                         }
                         else{
-                            this.dialogService.addDialog(ConfirmComponent,{
-                                title:'Please Wait...',
-                                message:'Form Generation takes sometime',
-                            }).subscribe(()=>{
+                           
                                 this.getFormsData();
-                            })
+                           
                         }
                          
                     }
@@ -207,7 +208,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
         else{
             this.generateChecked=true;
         }
-        if (!this.generateChecked && !this.downloadFlag) {
+        if (!this.generateChecked && !this.downloadFlag && !this.generateChecked1) {
             this.editFlag = true;
             if (this.editFlag) {
                 this.beforeEdit = (<any>Object).assign({}, event.data);

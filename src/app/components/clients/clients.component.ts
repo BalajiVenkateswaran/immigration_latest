@@ -130,6 +130,12 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getCliData();
                     }
+                     if(res['statusDescription']=='Duplicate client'){
+                        this.dialogService.addDialog(ConfirmComponent,{
+                              title: 'Error..!',
+                              message: 'User already Exists'
+                        })
+                    }
                 });
             }
         });
@@ -181,6 +187,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                 });
                 event.confirm.reject();
             }
+            
         });
     }
 
