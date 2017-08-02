@@ -52,11 +52,8 @@ export class HeaderComponent implements AfterViewChecked{
         this.headerservice.getUserOrgs(this.appService.selacntId, this.appService.user.userId, this.appService.selroleId).subscribe((res: any) => {
             this.appService.organizations = res.orgs;
             this.orgNamelist = this.appService.organizations;
-            if (this.orgNamelist) {
+            if (this.orgNamelist && this.orgNamelist.length != 0) {
                 this.appService.selectedOrg = this.orgNamelist[0].orgName;
-                if (this.appService.selectedOrg == undefined) {
-                    this.appService.selectedOrg = "";
-                }
                 this.appService.orgId = this.orgNamelist[0].orgId;
                 if (this.orgNamelist[0].orgType == "Delegated") {
                     this.delegatedOrg = true;
@@ -65,15 +62,15 @@ export class HeaderComponent implements AfterViewChecked{
                     this.delegatedOrg = false;
                 }
             }
+            else {
+                this.appService.selectedOrg = "";
+            }
         });
     }
     else {
         this.orgNamelist = this.appService.organizations;
-        if (this.orgNamelist) {
-            this.appService.selectedOrg = this.orgNamelist[0].orgName;
-            if (this.appService.selectedOrg == undefined) {
-                this.appService.selectedOrg = "";
-            }
+        if (this.orgNamelist && this.orgNamelist.length != 0) {
+            this.appService.selectedOrg = this.orgNamelist[0].orgName; 
             this.appService.orgId = this.orgNamelist[0].orgId;
             if (this.orgNamelist[0].orgType == "Delegated") {
                 this.delegatedOrg = true;
@@ -81,6 +78,9 @@ export class HeaderComponent implements AfterViewChecked{
             else {
                 this.delegatedOrg = false;
             }
+        }
+        else {
+            this.appService.selectedOrg = "";
         }
     }
   }

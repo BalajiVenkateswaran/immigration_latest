@@ -52,16 +52,26 @@ export class profiletodolistcomponent implements OnInit {
                 }
             });
     }
-
+    //changed(selectedtodo) {
+    //    if (selectedtodo.completed == true) {
+    //        selectedtodo.completed = "YES";
+    //    }
+    //    if (selectedtodo.completed == false) {
+    //        selectedtodo.completed = "NO";
+    //    }
+    //    var data = { "completed": selectedtodo.completed, "id": selectedtodo.id, "userId": this.appService.user.userId};
+    //    this.profileTodolistservice.addTodo(data)
+    //        .subscribe((res) => {
+    //            console.log(res);
+    //            if (res['statusCode'] == "SUCCESS") {
+    //                this.getTodos();
+    //                this.newTodo = "";
+    //            }
+    //        });
+    //}
     deleteTodo(index) {
         this.todos.splice(index, 1);
     }
 
-    deleteSelectedTodos() {
-        for (var i = (this.todos.length - 1); i > -1; i--) {
-            if (this.todos[i].completed) {
-                this.todos.splice(i, 1);
-            }
-        }
-    }
+   
 }

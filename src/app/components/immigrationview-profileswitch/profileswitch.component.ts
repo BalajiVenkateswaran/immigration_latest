@@ -10,7 +10,7 @@ import { switchButton } from './switchButton';
 @Component({
     selector: 'app-profileloginhistory',
     templateUrl: './profileswitch.component.html',
-    styleUrls: ['./profileswitch.component.sass']
+    styleUrls: ['./profileswitch.component.scss']
 })
 
 export class profileswitchcomponent implements OnInit,AfterViewInit {
@@ -20,7 +20,7 @@ export class profileswitchcomponent implements OnInit,AfterViewInit {
     ngOnInit() {
     }
     ngAfterViewInit() {
-        this.data=this.appService.userroleList
+        this.data = this.appService.userroleList;
     }
     constructor(public appService: AppService, private profileSwitchservice: profileswitchservice) {
 
