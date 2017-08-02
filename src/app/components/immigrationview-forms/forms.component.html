@@ -3,9 +3,14 @@
             <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
             <h1 style="float:right;">{{appService.petitionDetails}}</h1>
             <div class="clearfix"></div>
-            <h2>Forms</h2>
-          
-       
+            <h2>Forms
+                <div class="row sfm" *ngIf="errorMessage">
+                                    <div class="col-md-12">
+                                        <span class="redstar">PDF is not Generated please fill the form in Questionnaire</span>
+                                    </div>
+                                </div> 
+            </h2>
+           
         <smart-table class="immiview-formstbl" [settings]="settings" [data]="data" (onRowClick)="editFormsData($event)"></smart-table>
       
                 <div class="clearfix"></div>
@@ -44,7 +49,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="docExpSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="fileNameSave()">Save</button></div>
                                     <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
