@@ -24,4 +24,7 @@ export class ImmigrationViewClientDetailsService {
      public sendClientInvite(clientId: string){
         return this.restService.getData("/client/sendinvite/"+clientId);
      }
+     public getClientInvites(userId: string) {
+      return this.restService.getData("/client/invite/" + userId);
+  }
 }
