@@ -30,9 +30,8 @@ export class RequestButton implements ICellRendererAngularComp {
     checkedIniviteStatus(status){
         this.displayStatus=status;
         if(status=="Accept" || status=="Decline"){
-           
             this.textVisisble=true;
-            
+              
         }
         else{
             this.textVisisble=false;

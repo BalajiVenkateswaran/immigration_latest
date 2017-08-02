@@ -12,7 +12,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 @Component({
     selector: 'app-client-details',
     templateUrl: './client-details.component.html',
-    styleUrls: ['./client-details.component.sass']
+    styleUrls: ['./client-details.component.scss']
 })
 export class ImmigrationViewClientDetailsComponent implements OnInit {
 
@@ -30,6 +30,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     private dateOfBirth: string;
     private creationDate: string;
     public warningMessage: boolean = false;
+    public user1;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -37,10 +38,22 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     };
     private beforeCancelProfile;
     private beforeCancelPersonal;
+    public disableSendInvite: boolean;
     constructor(public appService: AppService, private clientDetailsService: ImmigrationViewClientDetailsService, private dialogService: DialogService) {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
+        /*if(this.appService.clientAcccepted){
+            this.disableSendInvite=true;
+        }*/
+        /* console.log(this.appService.clientInivtes);*/
+        /*if (this.user1) {
+           this.clientDetailsService.getClientInvites(this.user1).subscribe(
+               res => {
+                   let clientInvitesList = res['clientInvite'];
+               }
+           )
+       }*/
     }
 
     ngOnInit() {
@@ -52,8 +65,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                 if (res['clientDetails']) {
 
                     this.clientDetails = res['clientDetails'];
-
-                    console.log(this.clientDetails);
+                    this.user1 = res['clientDetails']['userId'];
                     this.appService.clientfirstName = res['clientDetails']['firstName'];
                     this.appService.clientlastName = res['clientDetails']['lastName'];
 
@@ -72,6 +84,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
                 this.isProfileEdit = true;
                 this.isPersonalInfoEdit = true;
+                this.getClientsInvitation(this.user1);  
             });
 
         this.status = [
@@ -84,6 +97,26 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
             { value: '1', name: 'Female' }
 
         ]
+    }
+    getClientsInvitation(userId) {
+        this.clientDetailsService.getClientInvites(userId).subscribe(res => {
+            let clientInviteList = res['clientInvite'];
+            let selectedClientInviteList=clientInviteList.filter(item=>{
+                if(item.userId==userId && item.orgId==this.appService.orgId){
+                    return item;
+                }
+            })
+            console.log(selectedClientInviteList);
+            selectedClientInviteList.map(item=>{
+                if(item.status=="Accept" || item.status=="Decline"){
+                    this.disableSendInvite=true;
+                }
+                else{
+                    this.disableSendInvite=false;
+                }
+            })
+        })
+        
     }
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
