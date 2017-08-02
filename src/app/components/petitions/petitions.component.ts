@@ -148,7 +148,7 @@ export class PetitionsComponent implements OnInit {
       if (isValid) {
           this.petitionService.saveNewPetition(model).subscribe((status) => { this.message = status[0] });
       } else {
-          this.message = "Filled etails are not correct! please correct...";
+          this.message = "Filled details are not correct! please correct...";
       }
 
   }

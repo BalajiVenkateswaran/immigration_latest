@@ -43,17 +43,6 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
-        /*if(this.appService.clientAcccepted){
-            this.disableSendInvite=true;
-        }*/
-        /* console.log(this.appService.clientInivtes);*/
-        /*if (this.user1) {
-           this.clientDetailsService.getClientInvites(this.user1).subscribe(
-               res => {
-                   let clientInvitesList = res['clientInvite'];
-               }
-           )
-       }*/
        this.getClientDetails();
     }
 
@@ -73,7 +62,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
     }
     getClientDetails(){
-        
+
         this.clientDetailsService.getClientDetails(this.appService.clientId)
             .subscribe((res) => {
                 if (res['clientDetails']) {
@@ -96,36 +85,22 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                     this.clientProfile.markForDeletion = this.client['markForDeletion'];
                 }
 
+                if(res['enableSendInvite'] != undefined){
+                  this.disableSendInvite = !res['enableSendInvite'];
+                }
+
+
                 this.isProfileEdit = true;
                 this.isPersonalInfoEdit = true;
-                this.getClientsInvitation(this.user1);  
             });
 
-       
+
     }
-    getClientsInvitation(userId) {
-        this.clientDetailsService.getClientInvites(userId).subscribe(res => {
-            let clientInviteList = res['clientInvite'];
-            let selectedClientInviteList=clientInviteList.filter(item=>{
-                if(item.userId==userId && item.orgId==this.appService.orgId){
-                    return item;
-                }
-            })
-            console.log(selectedClientInviteList);
-            selectedClientInviteList.map(item=>{
-                if(item.status=="Accept" || item.status=="Decline"){
-                    this.disableSendInvite=true;
-                }
-                else{
-                    this.disableSendInvite=false;
-                }
-            })
-        })
-        
-    }
+
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
+
     //is edit function for read only
     editProfileForm() {
         this.beforeCancelProfile = (<any>Object).assign({}, this.clientProfile);
@@ -134,7 +109,6 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         this.clientProfile.lastUpdatedByUserOn = this.clientProfile.lastUpdatedByUserOn;
         this.clientProfile.createdByUserOn = this.clientProfile.createdByUserOn;
         this.clientProfile.markForDeletion = this.clientProfile.markForDeletion;
-
     }
 
 
@@ -171,8 +145,6 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
             });
     }
     onDateChanged(event: IMyDateModel) {
-
-
     }
 
     //Save Client Details
