@@ -89,12 +89,9 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                   this.disableSendInvite = !res['enableSendInvite'];
                 }
 
-
                 this.isProfileEdit = true;
                 this.isPersonalInfoEdit = true;
             });
-
-
     }
 
     highlightSBLink(link) {
