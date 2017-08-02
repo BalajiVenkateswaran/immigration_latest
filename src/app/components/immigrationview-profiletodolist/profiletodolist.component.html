@@ -22,7 +22,9 @@
                         <div class="col-md-8">
                             <ul class="todolistItems">
                                 <li *ngFor="let todo of todos; let i=index">
-                                    <input type="checkbox" id="{{ todo.todoText }}" /><label for="{{ todo.todoText }}">{{ todo.todoText }}</label>
+                                    <!--<input type="checkbox" id="{{ todo.todoText }}" [checked]="todo.completed" [(ngModel)]="todo.completed" (change)="changed(todo)" />-->
+                                    <input type="checkbox" id="{{ todo.todoText }}" [checked]="todo.completed"/>
+                                    <label for="{{ todo.todoText }}">{{ todo.todoText }}</label>
                                     <a (click)="deleteTodo(i)" class="delete-icon pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                 </li>
                             </ul>
@@ -62,7 +64,7 @@
         </div>-->
     </div>
 </div>
-<style>
+<!--<style>
      .box1 {
     border: solid 1px #006699;
     padding: 20px;
@@ -99,4 +101,4 @@
     display: inline-block;
     cursor: pointer;
   }
-<!--</style>-->
+<!--</style>-->-->
