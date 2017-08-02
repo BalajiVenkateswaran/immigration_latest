@@ -119,15 +119,15 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
 
                 }
             }
-            
+
         })
     }
      ngOnDestroy() {
         this.viewSubscription.unsubscribe();
     }
-    
-    getclipetitionData() {
-        this.clientviewpetitionsService.getPetitions(this.appService.user.userId)
+
+    getClientPetitionData() {
+        this.clientviewpetitionsService.getPetitions(this.appService.user.userId, this.appService.userLoginHistoryId)
             .subscribe((res) => {
                 this.clientviewpetitionList = res['petitions'];
                 this.data = res['petitions'];
@@ -135,13 +135,13 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
             });
     }
     ngOnInit() {
-        this.getclipetitionData();
+        this.getClientPetitionData();
 
         this.appService.showSideBarMenu(null, "clientview-petitions");
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
     filterData(filterQueries){
-        this.clientviewpetitionsService.getPetitionsFilteredData(this.appService.user.userId,filterQueries).subscribe(res=>{
+        this.clientviewpetitionsService.getPetitionsFilteredData(this.appService.user.userId, this.appService.userLoginHistoryId, filterQueries).subscribe(res=>{
             this.data=res['petitions'];
         })
     }
@@ -160,9 +160,9 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
 
             }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    this.clientviewpetitionsService.getPetitions(this.appService.cvpmore).subscribe((res) => {
+                    this.clientviewpetitionsService.getPetitions(this.appService.cvpmore, this.appService.userLoginHistoryId).subscribe((res) => {
                         if (res['statusCode'] == 'SUCCESS') {
-                            this.getclipetitionData();
+                            this.getClientPetitionData();
                         }
 
                     });

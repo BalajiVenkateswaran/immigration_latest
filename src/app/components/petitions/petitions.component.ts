@@ -131,7 +131,7 @@ export class PetitionsComponent implements OnInit {
 
   }
   filterData(filterQueries){
-        this.petitionService.getPetitionsFilteredData(this.appService.orgId,filterQueries).subscribe(res=>{
+        this.petitionService.getPetitionsFilteredData(this.appService.orgId, this.appService.userLoginHistoryId,filterQueries).subscribe(res=>{
             this.data=res['petitions'];
         })
     }
@@ -145,7 +145,6 @@ export class PetitionsComponent implements OnInit {
   }
 
   addPetitionSubmit(model: petition, isValid: boolean) {
-      //console.log('formdata|account: %o|isValid:%o', model, isValid);
       if (isValid) {
           this.petitionService.saveNewPetition(model).subscribe((status) => { this.message = status[0] });
       } else {
