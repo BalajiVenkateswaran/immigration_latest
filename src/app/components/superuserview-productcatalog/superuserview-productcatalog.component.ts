@@ -37,7 +37,8 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     public editFlag: boolean = true;
     public beforeEdit: any;
     public warningMessage:boolean=false;
-    //public isEdit:boolean=true;
+    public settings;
+    public data;
 
     ngOnInit() {
       this.menuComponent.highlightSBLink('Products');
@@ -49,26 +50,81 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
        res=>{
            if(res['statusCode']=='SUCCESS'){
                this.products=res['products'];
+               this.data=res['products'];
            }
        }
      )
   }
   constructor(public appService: AppService, public dialogService: DialogService, public productCatalogProductService: ProductCatalogProductService, private menuComponent: MenuComponent) {
     super(dialogService);
-    
+      this.settings={
+            'isDeleteEnable':false,
+            'columnsettings': [
+                {
+
+                    headerName: "Name",
+                    field: "name",
+                },
+                {
+
+                    headerName: "Code",
+                    field: "code",
+                },
+                {
+
+                    headerName: "Max Users",
+                    field: "maxUsers"
+                },
+                {
+                    headerName: "Max Clients/Month",
+                    field: "maxClientsPerMonth"
+                },
+                {
+
+                    headerName: "Max Petitions/Month",
+                    field: "maxPetitionsPerMonth"
+                },
+                {
+
+                    headerName: "Max S3 Storage",
+                    field: "maxS3Storage"
+                },
+                {
+
+                    headerName: "Cost",
+                    field: "cost"
+                },
+                {
+
+                    headerName: "Type",
+                    field: "productType"
+                },
+                {
+
+                    headerName: "Status",
+                    field: "status"
+                },
+                {
+
+                    headerName: "Created On",
+                    field: "startDate"
+                }
+                
+            ]
+        }
     this.getProducts();
   }
-  viewDetails(data){
+  viewDetails(event){
       this.editFlag = true;
       if (this.editFlag) {
-          this.beforeEdit = (<any>Object).assign({},data);
+          this.beforeEdit = (<any>Object).assign({},event.data);
       }
       this.dialogService.addDialog(SuperuserviewProductcatalogComponent, {
             viewPopup: true,
             getData: false,
             addPopup:false,
             title: 'View Product Details',
-            product:this.editFlag ? this.beforeEdit : data,
+            product:this.editFlag ? this.beforeEdit : event.data,
 
 
         }).subscribe((isConfirmed) => {
@@ -89,7 +145,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   highlightSBLink(link) {
       this.appService.currentSBLink = link;
   }
-  addProducts(){
+  addProducts(event){
       this.dialogService.addDialog(SuperuserviewProductcatalogComponent, {
             addPopup: true,
             getData: false,

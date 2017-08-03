@@ -139,7 +139,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
 
-            this.documentservice.uploadFile(this.appService.clientId, formData)
+            this.documentservice.uploadFile(this.appService.selectedOrgClienttId, formData)
                 .subscribe(
                 res => {
                     this.getFilesList();

@@ -49,7 +49,7 @@ export class AppService {
     public immidep: boolean = false;
     public clntqstn: boolean = false;
     public immiqstn: boolean = false;
-    public manageUser:boolean=true;
+    public manageUser:boolean=false;
     public orgClientId;
     public addNewDocExp: any = {};
     public _subtypes: any[] = [];

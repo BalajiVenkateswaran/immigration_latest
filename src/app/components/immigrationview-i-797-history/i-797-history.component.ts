@@ -132,12 +132,12 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
 
         
     }
-    //source: LocalDataSource = new LocalDataSource();
+   
     get1797history() {
         this.immigrationViewI797HistoryService.getI797Details(this.appService.clientId)
             .subscribe((res) => {
                 this.data=res['i797HistoryList'];
-                //this.source.load(res['i797HistoryList']);
+               
             });
 
     }
@@ -188,24 +188,6 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
        this.result = false;
        this.close();
    }
-   //onCreateConfirm(event): void {
-   //    event.newData['clientId'] = this.appService.clientId;
-   //    event.newData['i797HistoryId'] = this.appService.clientId;
-   //    this.immigrationViewI797HistoryService.saveI797Details(event.newData).subscribe((res) => {
-   //        this.message = res['statusCode'];
-   //        if (this.message == 'SUCCESS') {
-   //            event.newData = res['i797HistoryList'];
-   //            event.confirm.resolve(event.newData);
-   //        } else {
-   //            this.dialogService.addDialog(ConfirmComponent, {
-   //                title: 'Error..!',
-   //                message: 'Unable to Add I-797.'
-   //            });
-   //            event.confirm.reject();
-   //        }
-   //    });
-   //}
-
    editRecord(event): void {
        this.editi797Flag = true;
        if (this.editi797Flag) {
@@ -248,11 +230,9 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
                        this.message = res['statusCode'];
                        if (this.message == 'SUCCESS') {
                            this.get1797history();
-                           //immViewi797.confirm.resolve();
+                           
                        }
-                          //  else {
-                       //    immViewi797.confirm.reject();
-                       //}
+                          
                    });
                }
            });
