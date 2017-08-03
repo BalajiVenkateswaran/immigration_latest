@@ -5,9 +5,10 @@
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
-        <h2>Accounts<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewCli()">ADD</button></h2>
-        <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event)"></ng2-smart-table>
-         
+        <h2>Accounts</h2>
+        <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event)"></ng2-smart-table>-->
+        <smart-table class="manageaccUser" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)">
+        </smart-table>
     </div>
 </div>
 

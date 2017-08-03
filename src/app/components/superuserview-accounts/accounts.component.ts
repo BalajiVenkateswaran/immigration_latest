@@ -38,7 +38,8 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     public addClient: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-    private data;
+    public data;
+    public settings;
     private user: User;
     private deleteclients: any;
     private clientName: any;
@@ -49,57 +50,132 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     public DefaultResponse = { "status": "Active" };
     public accountsList:any;
 
-    settings = {
-        actions:false,
-        columns: {
-            accountName: {
-                title: 'Account Name'
-            },
-            accountNumber: {
-                title: 'Account Number'
-            },
-            firstName: {
-                title: 'First Name'
-            },
-            lastName: {
-                title: 'Last Name',
-            },
-            email:{
-                title: 'Email',
-            },
-            phone:{
-                title: 'Phone',
-            },
-            status: {
-                title: 'Status',
-            },
-            clients : {
-                title: 'Clients',
-            },
-            petitions: {
-                title: 'Petitions',
-            },
-            createdOn:{
-                title: 'Created On',
-            },
-            lastPaymentStatus:{
-                title: 'Last Payment Status',
-            },
-            storageType: {
-                title: 'Storage Type',
-            }
+    //settings = {
+    //    actions:false,
+    //    columns: {
+    //        accountName: {
+    //            title: 'Account Name'
+    //        },
+    //        accountNumber: {
+    //            title: 'Account Number'
+    //        },
+    //        firstName: {
+    //            title: 'First Name'
+    //        },
+    //        lastName: {
+    //            title: 'Last Name',
+    //        },
+    //        email:{
+    //            title: 'Email',
+    //        },
+    //        phone:{
+    //            title: 'Phone',
+    //        },
+    //        status: {
+    //            title: 'Status',
+    //        },
+    //        clients : {
+    //            title: 'Clients',
+    //        },
+    //        petitions: {
+    //            title: 'Petitions',
+    //        },
+    //        createdOn:{
+    //            title: 'Created On',
+    //        },
+    //        lastPaymentStatus:{
+    //            title: 'Last Payment Status',
+    //        },
+    //        storageType: {
+    //            title: 'Storage Type',
+    //        }
 
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        }
-    };
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    }
+    //};
     source: LocalDataSource = new LocalDataSource();
     constructor(private clientService: superUserviewAccountService, private appService: AppService,
       private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
       private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
+        this.settings = {
+            'isDeleteEnable': false,
+            'columnsettings': [
+                {
+
+                    headerName: "Account Name",
+                    field: "accountName",
+                },
+                {
+
+                    headerName: "Account Number",
+                    field: "accountNumber",
+
+                },
+                {
+
+                    headerName: "First Name",
+                    field: "firstName",
+                },
+                {
+                    headerName: "Last Name",
+                    field: "lastName",
+
+                },
+                {
+
+                    headerName: "Email",
+                    field: "email",
+
+                },
+                {
+
+                    headerName: "Phone",
+                    field: "phone",
+
+                },
+                {
+
+                    headerName: "Status",
+                    field: "status",
+
+                },
+                {
+
+                    headerName: "Clients",
+                    field: "clients",
+
+                },
+                {
+
+                    headerName: "Petitions",
+                    field: "petitions",
+
+                },
+                {
+
+                    headerName: "Created On",
+                    field: "createdOn",
+
+                },
+                {
+
+                    headerName: "Last Payment Status",
+                    field: "lastPaymentStatus",
+
+                },
+                {
+
+                    headerName: "Storage Type",
+                    field: "storageType",
+
+                },
+
+            ]
+        }
     }
 
     getAccountDetail() {
@@ -107,7 +183,8 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         this.clientService.getAccountDetails().subscribe((res) => {
             if(res['statusCode']=='SUCCESS'){
                 console.log(res['accountInfoList']);
-                this.source.load(res['accountInfoList']);
+               // this.source.load(res['accountInfoList']);
+                this.data = res['accountInfoList'];
             }
         });
     }
@@ -119,7 +196,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
         this.getAccountDetail();
     }
-    addNewCli() {
+    addFunction(event) {
         this.dialogService.addDialog(superuserViewAccountsComponent, {
             addAccounts: true,
             getAccountsData: false,
@@ -159,7 +236,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         this.close();
     }
 
-    onUserRowClick(event): void {
+    editRecord(event): void {
         this.menuComponent.highlightSBLink('accounts');
         this.appService.moveToPage("account-details");
 
