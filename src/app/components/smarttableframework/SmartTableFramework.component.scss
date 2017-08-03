@@ -635,6 +635,34 @@
     }
 
  }
+
+.superUserViewaccInvoices {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell[colid~="invoiceNumber"] {
+        width:25% !important;
+        left:0% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell[colid~="invoiceDate"] {
+        width:15% !important;
+        left:25% !important;
+    }
+    
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell[colid~="invoiceAmount"] {
+        width:15% !important;
+        left:40% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentRecieved"], .ag-fresh .ag-ltr .ag-cell[colid~="paymentRecieved"] {
+      width:10% !important;
+        left:55% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="fileName"], .ag-fresh .ag-ltr .ag-cell[colid~="fileName"] {
+        width:25% !important;
+        left:65% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
+        width:10% !important;
+        left:90% !important;
+    }
+ }
 .myclass {
     border: none;
     background: darkgray;
