@@ -49,7 +49,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
         this.settings = {
-            'isDeleteEnable': false,  
+            'isDeleteEnable': false,
             'isAddButtonEnable': false,
             'columnsettings': [
                 {
@@ -70,7 +70,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
                 },
                 {
                     headerName: "Payment Received",
-                    field: "paymentRecieved", 
+                    field: "paymentRecieved",
 
                 },
                 {

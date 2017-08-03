@@ -7,10 +7,10 @@ import {AccountInvoiceService} from './invoice.service';
 import { AppService } from "../../services/app.service";
 @Component({
     template: `
-    <div *ngIf="buttonVisible==true">
+    <div>
      <button class="iportal-btn" (click)="downloadInvoice()">Download</button>
     </div>
-   
+
    `,
 
 })
