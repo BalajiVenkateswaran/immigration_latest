@@ -114,7 +114,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                             selectrole: true,
                             getloginpage: false,
                             title: 'Please Select User Role',
-                            userRoles: res['userAccountRoleList'],
+                            userRoles: res['userAccountRoleList']
                         }).subscribe((isConfirmed) => {
                             if (isConfirmed) {
 
@@ -128,6 +128,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                         this.appService.organizations = res.organizationList;
                         this.appService.user['roleName'] = res.userAccountRoleList[0].roleName;
                         this.appService.user.accountId=res.userAccountRoleList[0].accountId;
+                        this.appService.selacntId = res.userAccountRoleList[0].accountId;
 
                         if (res.userAccountRoleList[0].roleName == "Immigration Manager"
                             || res.userAccountRoleList[0].roleName == "Immigration Officer") {
@@ -176,12 +177,14 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
           this.appService.applicationViewMode = "Immigration";
           this.appService.currentTab = 'petitions';
           this.appService.moveToPage("petitions");
+
       }
       if (userdet.roleName == "Super User") {
           this.appService.applicationViewMode = "Superuser";
           this.appService.currentTab = 'superuser-accounts';
           this.appService.moveToPage("superuser-accounts");
       }
+      this.loginservice.updateLoginHistory(this.appService.userLoginHistoryId, userdet.roleId).subscribe((res: any) => {});
       this.close();
   }
 

@@ -12,5 +12,9 @@ export class loginService {
         console.log("loginService|updatePassword|email:%o", email);
         return this.restService.postData("/user/forgetPassword" , email);
     }
-  
+
+    public updateLoginHistory(userLoginHistoryId: string, roleId: string){
+      return this.restService.postData("/user/login/history/"+userLoginHistoryId, {roleId: roleId});
+
+    }
 }

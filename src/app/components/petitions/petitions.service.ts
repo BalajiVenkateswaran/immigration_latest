@@ -10,9 +10,9 @@ export class PetitionsService {
 
   }
 
-  public getPetitions (orgId: string, userLoginHistoryId: string) {
+  public getPetitions (orgId: string) {
     console.log("PetitionsService|getPetitions|orgId:%o", orgId);
-    return this.restService.getData("/petitions/immigration/"+orgId+"/userLoginHistoryId/"+userLoginHistoryId);
+    return this.restService.getData("/petitions/immigration/"+orgId);
   }
   public saveNewPetition(petitionData: petition) {
       return this.restService.postData("/petition", petitionData);
@@ -23,8 +23,8 @@ export class PetitionsService {
            console.log("PetitionsService|usersForAssignedTo|accountId:%o", accountId);
            return this.restService.getData("/user/immigration/"+accountId);
       }
-  public getPetitionsFilteredData(orgId:string, userLoginHistoryId: string, filterQueries:any){
-      return this.restService.getData("/petitions/immigration/"+orgId+"/userLoginHistoryId/"+userLoginHistoryId+'?'+"filter="+filterQueries)
+  public getPetitionsFilteredData(orgId:string, filterQueries:any){
+      return this.restService.getData("/petitions/immigration/"+orgId+'?'+"filter="+filterQueries)
   }
 
 }

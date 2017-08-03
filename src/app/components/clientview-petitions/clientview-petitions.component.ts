@@ -127,7 +127,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
     }
 
     getClientPetitionData() {
-        this.clientviewpetitionsService.getPetitions(this.appService.user.userId, this.appService.userLoginHistoryId)
+        this.clientviewpetitionsService.getPetitions(this.appService.user.userId)
             .subscribe((res) => {
                 this.clientviewpetitionList = res['petitions'];
                 this.data = res['petitions'];
@@ -141,7 +141,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
     filterData(filterQueries){
-        this.clientviewpetitionsService.getPetitionsFilteredData(this.appService.user.userId, this.appService.userLoginHistoryId, filterQueries).subscribe(res=>{
+        this.clientviewpetitionsService.getPetitionsFilteredData(this.appService.user.userId, filterQueries).subscribe(res=>{
             this.data=res['petitions'];
         })
     }
@@ -160,7 +160,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
 
             }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    this.clientviewpetitionsService.getPetitions(this.appService.cvpmore, this.appService.userLoginHistoryId).subscribe((res) => {
+                    this.clientviewpetitionsService.getPetitions(this.appService.cvpmore).subscribe((res) => {
                         if (res['statusCode'] == 'SUCCESS') {
                             this.getClientPetitionData();
                         }

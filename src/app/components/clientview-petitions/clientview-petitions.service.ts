@@ -10,12 +10,12 @@ export class clientviewPetitionsService {
 
     }
 
-    public getPetitions(userId: string, userLoginHistoryId: string) {
+    public getPetitions(userId: string) {
         console.log("PetitionsService|getPetitions|userId:%o", userId);
-        return this.restService.getData("/petitions/clientview/" + userId+"/userLoginHistoryId/"+userLoginHistoryId);
+        return this.restService.getData("/petitions/clientview/" + userId);
     }
-    public getPetitionsFilteredData(userId: string, userLoginHistoryId: string, filterQueries: any) {
-        return this.restService.getData("/petitions/clientview/" + userId +"/userLoginHistoryId/"+userLoginHistoryId+ '?' + "filter=" + filterQueries)
+    public getPetitionsFilteredData(userId: string, filterQueries: any) {
+        return this.restService.getData("/petitions/clientview/" + userId + '?' + "filter=" + filterQueries)
     }
 
 

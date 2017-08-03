@@ -34,7 +34,6 @@ export class PetitionsComponent implements OnInit {
     public settings;
     public data;
 
-    //source: LocalDataSource = new LocalDataSource();
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService, private menuComponent: MenuComponent) {
         if (this.appService.user) {
@@ -105,7 +104,6 @@ export class PetitionsComponent implements OnInit {
                     headerTooltip: "Number of days in current stage"
                 },
                 {
-
                     headerName: "Tag",
                     field: "tag"
                 },
@@ -118,19 +116,18 @@ export class PetitionsComponent implements OnInit {
     this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     this.orgId = this.appService.orgId;
     this.petitionService
-      .getPetitions(this.appService.orgId, this.appService.userLoginHistoryId)
+      .getPetitions(this.appService.orgId)
       .subscribe((res: any) => {
           this.petitions = res['petitions'];
           this.petitionfirstName = this.petitions;
           console.log(this.petitions);
           this.data=this.petitions;
-          console.log("wnjfvsugh", this.appService.petitionfirstName);
       });
 
 
   }
   filterData(filterQueries){
-        this.petitionService.getPetitionsFilteredData(this.appService.orgId, this.appService.userLoginHistoryId,filterQueries).subscribe(res=>{
+        this.petitionService.getPetitionsFilteredData(this.appService.orgId, filterQueries).subscribe(res=>{
             this.data=res['petitions'];
         })
     }
