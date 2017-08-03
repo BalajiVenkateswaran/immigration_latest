@@ -452,6 +452,152 @@
         left:80% !important;
     }
  }
+.superUserViewAccounts {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="accountName"], .ag-fresh .ag-ltr .ag-cell[colid~="accountName"] {
+    width:8% !important;
+    left:0% !important;
+}
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="accountNumber"], .ag-fresh .ag-ltr .ag-cell[colid~="accountNumber"] {
+    width:8% !important;
+    left:8% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell[colid~="firstName"] {
+    width:8% !important;
+    left:16% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell[colid~="lastName"] {
+    width:8% !important;
+    left:24% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="email"], .ag-fresh .ag-ltr .ag-cell[colid~="email"] {
+    width:12% !important;
+    left:32% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="phone"], .ag-fresh .ag-ltr .ag-cell[colid~="phone"] {
+    width:8% !important;
+    left:44% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell[colid~="status"] {
+    width:8% !important;
+    left:52% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="clients"], .ag-fresh .ag-ltr .ag-cell[colid~="clients"] {
+    width:8% !important;
+    left:60% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitions"], .ag-fresh .ag-ltr .ag-cell[colid~="petitions"] {
+    width:8% !important;
+    left:68% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="createdOn"], .ag-fresh .ag-ltr .ag-cell[colid~="createdOn"] {
+    width:8% !important;
+    left:76% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastPaymentStatus"], .ag-fresh .ag-ltr .ag-cell[colid~="lastPaymentStatus"] {
+    width:8% !important;
+    left:84% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="storageType"], .ag-fresh .ag-ltr .ag-cell[colid~="storageType"] {
+    width:8% !important;
+    left:92% !important;
+    }
+ }
+.superUserViewAccountManagers {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
+    width:10% !important;
+    left:0% !important;
+}
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell[colid~="firstName"] {
+        width:25% !important;
+        left:10% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell[colid~="lastName"] {
+        width:25% !important;
+        left:35% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="emailId"], .ag-fresh .ag-ltr .ag-cell[colid~="emailId"] {
+        width:20% !important;
+        left:60% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="roleName"], .ag-fresh .ag-ltr .ag-cell[colid~="roleName"] {
+        width:20% !important;
+        left:80% !important;
+    }
+ }
+.superUserViewaccprefProducts {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="name"], .ag-fresh .ag-ltr .ag-cell[colid~="name"] {
+    width:10% !important;
+    left:0% !important;
+}
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="code"], .ag-fresh .ag-ltr .ag-cell[colid~="code"] {
+        width:10% !important;
+        left:10% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="description"], .ag-fresh .ag-ltr .ag-cell[colid~="description"] {
+       width:10% !important;
+        left:20% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell[colid~="startDate"] {
+        width:10% !important;
+        left:30% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="endDate"], .ag-fresh .ag-ltr .ag-cell[colid~="endDate"] {
+      width:10% !important;
+        left:40% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxUsers"], .ag-fresh .ag-ltr .ag-cell[colid~="maxUsers"] {
+       width:10% !important;
+        left:50% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell[colid~="maxClientsPerMonth"] {
+        width:10% !important;
+        left:60% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell[colid~="maxPetitionsPerMonth"] {
+        width:10% !important;
+        left:70% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell[colid~="maxS3Storage"] {
+        width:10% !important;
+        left:80% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="cost"], .ag-fresh .ag-ltr .ag-cell[colid~="cost"] {
+        width:10% !important;
+        left:90% !important;
+    }
+ }
+
+
+.superUserViewaccprefDiscounts {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="discountName"], .ag-fresh .ag-ltr .ag-cell[colid~="discountName"] {
+        width:25% !important;
+        left:0% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="discountCode"], .ag-fresh .ag-ltr .ag-cell[colid~="discountCode"] {
+        width:10% !important;
+        left:25% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="description"], .ag-fresh .ag-ltr .ag-cell[colid~="description"] {
+       width:25% !important;
+        left:35% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell[colid~="startDate"] {
+        width:10% !important;
+        left:60% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="endDate"], .ag-fresh .ag-ltr .ag-cell[colid~="endDate"] {
+      width:10% !important;
+        left:70% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="cost"], .ag-fresh .ag-ltr .ag-cell[colid~="cost"] {
+        width:10% !important;
+        left:80% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="percentage"], .ag-fresh .ag-ltr .ag-cell[colid~="percentage"] {
+        width:10% !important;
+        left:90% !important;
+    }
+ }
 
 .myclass {
 
