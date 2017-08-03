@@ -113,7 +113,7 @@ import {passportInfoService} from './components/immigrationview-passport-info/pa
 import {ImmigrationViewClientDetailsService} from './components/immigrationview-client-details/client-details.service';
 import {PetitionDocumentRepositoryService} from './components/immigrationview-petition-document-repository/petition-document-repository.service';
 import {ClientDocumentRepositoryService} from './components/immigrationview-client-document-repository/client-document-repository.service';
-import {documentService} from './components/clientview-documents/documents.service';
+import {DocumentService} from './components/clientview-documents/documents.service';
 import {JobdetailsService} from './components/immigrationview-job-details/job-details-service';
 import {ImmigrationviewDocumentExpirationsService} from './components/immigrationview-document-expirations/document-expirations.service';
 import {QuestionnaireI129ClientComponent} from './components/questionnaire-i129client/questionnaire-i129-client.component';
@@ -387,7 +387,7 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         //DependentDepartmentOneService,
         //DependentDepartmentTwoService,
         ClientDocumentRepositoryService,
-        documentService,
+        DocumentService,
         ClientDetailsService,
         AddressInfoService,
         PassportInfoService,

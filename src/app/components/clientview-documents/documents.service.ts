@@ -3,7 +3,7 @@ import {RestService} from "../../services/rest.service";
 import {clientDocuments} from "../../models/documents";
 
 @Injectable()
-export class documentService {
+export class DocumentService {
     constructor(private restService: RestService) {
 
     }
