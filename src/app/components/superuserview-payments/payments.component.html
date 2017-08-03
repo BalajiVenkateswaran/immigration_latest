@@ -6,7 +6,9 @@
   <div class="clearfix"></div>
   <div class="table-data">
     <h2>Payments<!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewCli()">ADD</button>--></h2>
-          <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm) = "onDeleteConfirm($event)" (editConfirm) = "onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+      <smart-table class="manageaccUser" [settings]="settings" [data]="data" (onRowClick)="editRecord($event)">
+      </smart-table>    
+      <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm) = "onDeleteConfirm($event)" (editConfirm) = "onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
 </div>
 </div>
 
