@@ -21,59 +21,61 @@ export interface ConfirmModel {
     templateUrl:'./accountmanagers-component.html'
 })
 export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> implements OnInit{
-     settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
-            firstName: {
-                title: 'First Name'
-            },
-            lastName: {
-                title: 'Last Name'
-            },
-            emailId: {
-                title: 'Email'
-            },
-             roleName: {
-                title: 'Role',
-                editor: {
-                    type: 'list',
-                    config: {
-                        list: [
-                            {
-                                value: "Immigration Officer",
-                                title: "Immigration Officer"
-                            },
-                            {
-                                value: "Immigration Manager",
-                                title: "Immigration Manager"
-                            }
-                        ]
-                    }
-                }
-            }
+    // settings = {
+    //    add: {
+    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmCreate: true
+    //    },
+    //    edit: {
+    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmSave: true
+    //    },
+    //    delete: {
+    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
+    //        confirmDelete: true
+    //    },
+    //    columns: {
+    //        firstName: {
+    //            title: 'First Name'
+    //        },
+    //        lastName: {
+    //            title: 'Last Name'
+    //        },
+    //        emailId: {
+    //            title: 'Email'
+    //        },
+    //         roleName: {
+    //            title: 'Role',
+    //            editor: {
+    //                type: 'list',
+    //                config: {
+    //                    list: [
+    //                        {
+    //                            value: "Immigration Officer",
+    //                            title: "Immigration Officer"
+    //                        },
+    //                        {
+    //                            value: "Immigration Manager",
+    //                            title: "Immigration Manager"
+    //                        }
+    //                    ]
+    //                }
+    //            }
+    //        }
 
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        },
-        mode:'external'
-    };
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    },
+    //    mode:'external'
+    //};
+    public settings;
+    public data;
     public addUsers: any = {};
     public addPopups: boolean = false;
     public viewUsers:boolean=true;
@@ -87,7 +89,32 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     };
     constructor(public appService:AppService,public managersAccountService:AccountManagersService,public dialogService: DialogService,
     private accountDetailsCommonService: AccountDetailsCommonService){
-         super(dialogService);
+        super(dialogService);
+        this.settings = {
+            'columnsettings': [
+                {
+
+                    headerName: "First Name",
+                    field: "firstName",
+                },
+                {
+
+                    headerName: "Last Name",
+                    field: "lastName",
+
+                },
+                {
+
+                    headerName: "Email",
+                    field: "emailId",
+                },
+                {
+                    headerName: "Role",
+                    field: "roleName",
+
+                },
+            ]
+        }
 
     }
     ngOnInit(){
@@ -100,10 +127,12 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
                 for (var user of res['users']) {
                     user['roleName'] = user['role'];
                 }
-                this.source.load(res['users']);
+                this.data = res['users'];
+
+               // this.source.load(res['users']);
             });
     }
-    addNewUser() {
+    addFunction(event) {
         this.dialogService.addDialog(AccountsManagers, {
             addPopups: true,
             viewUsers: false,
@@ -136,7 +165,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         this.result = false;
         this.close();
     }
-    onEditConfirm(event): void {
+    editRecord(event): void {
         //console.log("User table onEditConfirm event: %o",event.newData);
         //event.newData['role'] = this.roles[event.newData['roleName']];
         //this.manageAccountUserService.updateUser(event.newData).subscribe((res) => {
@@ -176,7 +205,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         });
     }
 
-    onDeleteConfirm(event): void {
+    deleteRecord(event): void {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
             message: 'Are you sure you want to Delete ' + event.data['emailId'] + '?'

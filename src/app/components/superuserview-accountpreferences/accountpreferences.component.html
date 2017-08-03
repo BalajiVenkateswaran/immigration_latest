@@ -6,10 +6,13 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>
-            Products<button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right" (click)="addEditProduct('add')">Add</button>
+            Products
         </h2>
+        <!--<button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right" (click)="addEditProduct('add')">Add</button>-->
+        <smart-table class="manageaccUser" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)">
+        </smart-table>
         <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
-        <table class="smarttable" cellpadding="0" cellspacing="0">
+        <!--<table class="smarttable" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
                     <td class="actions">Action</td>
@@ -74,63 +77,66 @@
                     <td>{{product.cost}}</td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
         <h2 style="margin-top: 50px;">
-            Discounts<button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right"(click)="addEditDiscount('add',discount)">Add</button>
+            Discounts
         </h2>
-        <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
-        <table class="smarttable" cellpadding="0" cellspacing="0">
-            <thead>
-                <tr>
-                    <td class="actions">Action</td>
-                    <td><span>Name</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span></td>
-                    <td>
-                        <span>Code</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Description</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Start Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>End Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Cost</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Percentage</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                </tr>
+        <!--<button type="submit" value="Edit" class="iportal-btn pull-right no-marg-right" (click)="addEditDiscount('add',discount)">Add</button>-->
+        <smart-table class="manageaccUser" [settings]="discountsettings" [data]="discountdata" (onAddClick)="adddiscountFunction($event)" (onRowClick)="editdiscountRecord($event)">
+        </smart-table>
+            <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
+            <!--<table class="smarttable" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td class="actions">Action</td>
+                        <td><span>Name</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span></td>
+                        <td>
+                            <span>Code</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Description</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Start Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>End Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Cost</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                        <td>
+                            <span>Percentage</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                        <td><input type="text" name="" /></td>
+                    </tr>
 
-                <tr *ngFor="let discount of Discounts">
-                    <td class="actions">
-                        <a (click)="addEditDiscount('edit',discount)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    </td>
-                    <td>{{discount.discountName}}</td>
-                    <td>{{discount.discountCode}}</td>
-                    <td>{{discount.description}}</td>
-                    <td>{{discount.startDate}}</td>
-                    <td>{{discount.endDate}}</td>
-                    <td>{{discount.cost}}</td>
-                    <td>{{discount.percentage}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                    <tr *ngFor="let discount of Discounts">
+                        <td class="actions">
+                            <a (click)="addEditDiscount('edit',discount)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                        <td>{{discount.discountName}}</td>
+                        <td>{{discount.discountCode}}</td>
+                        <td>{{discount.description}}</td>
+                        <td>{{discount.startDate}}</td>
+                        <td>{{discount.endDate}}</td>
+                        <td>{{discount.cost}}</td>
+                        <td>{{discount.percentage}}</td>
+                    </tr>
+                </tbody>
+            </table>-->
+</div>
 
 </div>
 <div *ngIf="adddprdctPref">
