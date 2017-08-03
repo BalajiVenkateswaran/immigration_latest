@@ -8,73 +8,9 @@
             <h2>payments 
                
             </h2>
-            <!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewPayments()">ADD</button>-->
-            <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
-            <smart-table class="manageaccUser" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+            <smart-table class="superUserViewaccPayments" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
             </smart-table>
-            <!--<table class="smarttable" cellpadding="0" cellspacing="0">
-                <thead>
-                    <tr>
-                        <td><span>Payment ID</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span></td>
-                        <td>
-                            <span>Invoice Number</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Invoice Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Invoice Amount</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Transaction Id</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Payment Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Payment Amount</span><span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>Payment Status</span><span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                        </td>
-                        <td>
-                            <span>View Details</span> 
-                        </td>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let payment of paymentList">
-                        <td>
-                            <span>{{payment.paymentId}}</span>                                  
-                        </td>
-                        <td>
-                            <span>{{payment.invoiceNumber}}</span>                                  
-                        </td>
-                        <td>
-                            <span>{{payment.invoiceDate}}</span>                                  
-                        </td>
-                        <td>
-                            <span>{{payment.invoiceAmount}}</span>                                  
-                        </td>
-                        <td>
-                            <span>{{payment.transactionId}}</span>                                  
-                        </td>
-                        <td>
-                            <span>{{payment.paymentDate}}</span>                                  
-                        </td>
-                        <td>
-                            <span>{{payment.paymentAmount}}</span>                                  
-                        </td>
-                        <td>
-                            <span>{{payment.paymentStatus}}</span>                                  
-                        </td>
-                        <td>
-                            <span class="pull-left" (click)="viewDetails(payment,i)"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>-->
+           
         </div>
     </div>
     <div class="table-data-forms" *ngIf="viewAccountPopup">

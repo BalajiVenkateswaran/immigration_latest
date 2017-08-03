@@ -7,58 +7,10 @@
     <div class="table-data">
         <h2>
             <span>Invoices</span>
-            <!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewInvoice()">ADD</button>-->
         </h2>
-        <smart-table class="manageaccUser" [settings]="settings" [data]="data" (onRowClick)="editRecord($event)">
+        <smart-table class="superUserViewaccInvoices" [settings]="settings" [data]="data" (onRowClick)="editRecord($event)">
         </smart-table>
-        <!--<ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)"></ng2-smart-table>-->
-        <!--<table class="smarttable" cellpadding="0" cellspacing="0">
-    <thead>
-        <tr>
-            <td>
-                <span>Invoice Number</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-            </td>
-            <td>
-                <span>Invoice Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-            </td>
-            <td>
-                <span>Invoice Amount</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-            </td>
-            <td>
-                <span>Payment Received</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-            </td>
-            <td>
-                <span>PDF Uploaded</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-            </td>
-            <td>
-                <span>Download Button</span><span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-            </td> 
-            <td>
-                <span>View Details</span>
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><input type="text" name="" /></td>
-            <td><input type="text" name="" /></td>
-            <td><input type="text" name="" /></td>
-            <td><input type="text" name="" /></td>
-            <td><input type="text" name="" /></td>
-            <td><input type="text" name="" /></td>
-            <td></td>
-        </tr>
-        <tr *ngFor="let invoice of AccountInvoices">
-            <td>{{invoice.invoiceNumber}}</td>
-            <td>{{invoice.invoiceDate}}</td>
-            <td>{{invoice.invoiceAmount}}</td>
-            <td>{{invoice.paymentRecieved}}</td>           
-            <td>{{invoice.fileName}}</td>          
-            <td><button type="button" class="btn btn-primary" (click)="downloadInvoice(invoice)">Download</button></td>
-            <td><a (click)="getInvoiceInfo(invoice)"><i class="fa fa-eye"></i></a></td>
-        </tr>
-    </tbody>
-</table>-->
+       
         <div class="clearfix"></div>
     </div>
 
