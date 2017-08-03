@@ -167,7 +167,6 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         });
   }
   saveProduct(){
-       /* this.addUsers['accountId'] = this.appService.user.accountId;*/
         if (this.addProduct['name'] == '' || this.addProduct['name'] == null || this.addProduct['name'] == undefined || this.addProduct['code'] == '' || this.addProduct['code'] == null || this.addProduct['code'] == undefined || this.addProduct['cost'] == '' || this.addProduct['cost'] == null || this.addProduct['cost'] == undefined) {
           this.warningMessage=true;
         }
@@ -184,14 +183,12 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
        this.close();
   }
    editProductInfo(){
-    //this.beforeCancel = (<any>Object).assign({}, this.discount);
     this.isEditProducts = !this.isEditProducts;
   }
   cancelProductInfo(){
-    //this.discount=this.beforeCancel;
     this.isEditProducts = !this.isEditProducts;
     this.result = false;
-    //this.close();
+   
   }
   saveProductInfo(){
     this.isEditProducts = !this.isEditProducts;

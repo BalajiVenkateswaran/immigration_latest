@@ -31,18 +31,55 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     public editFlag: boolean = true;
     public beforeEdit: any;
     public warningMessage: boolean = false;
+    public settings;
+    public data;
     constructor(private appService: AppService, public productCatalogDiscountService: ProductCatalogDiscountService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
 
         }
+        this.settings={
+            'isDeleteEnable':false,
+            'columnsettings': [
+                {
+
+                    headerName: "Name",
+                    field: "discountName",
+                },
+                {
+
+                    headerName: "Code",
+                    field: "discountCode",
+                },
+                {
+
+                    headerName: "Cost",
+                    field: "cost"
+                },
+                {
+                    headerName: "Percentage",
+                    field: "discountPercentage"
+                },
+                {
+
+                    headerName: "Status",
+                    field: "status"
+                },
+                {
+
+                    headerName: "Created On",
+                    field: "createdOn"
+                }
+                
+            ]
+        }
     }
     getDiscountDetails() {
         this.productCatalogDiscountService.getDiscounts(this.user.accountId).subscribe(
             res => {
                 if (res['statusCode'] == 'SUCCESS') {
-                    //this.paymentList=res['payments'];
+                    this.data=res['discountCatalogs'];
                     this.discounts = res['discountCatalogs'];
                 }
             }
@@ -51,8 +88,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     ngOnInit() {
         this.getDiscountDetails();
     }
-    addDiscounts() {
-        //this.addDiscount=null;
+    addDiscounts(event) {
         this.dialogService.addDialog(SuperuserviewProductcatalogDiscountsComponent, {
             addDiscountPopup: true,
             viewDetails: false,
@@ -86,7 +122,6 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
 
 
         }
-        /* this.addUsers['accountId'] = this.appService.user.accountId;*/
 
     }
     cancel() {
@@ -96,17 +131,17 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     }
 
     //view 
-    viewDiscountDetails(record, index) {
+    viewDiscountDetails(event) {
         this.editFlag = true;
         if (this.editFlag) {
-            this.beforeEdit = (<any>Object).assign({}, record);
+            this.beforeEdit = (<any>Object).assign({}, event.data);
         }
         this.dialogService.addDialog(SuperuserviewProductcatalogDiscountsComponent, {
             viewDiscountPopup: true,
             viewDetails: false,
             addDiscountPopup: false,
             title: 'View  Details',
-            discount: this.editFlag ? this.beforeEdit : record,
+            discount: this.editFlag ? this.beforeEdit : event.data,
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.productCatalogDiscountService.editDiscounts(this.appService.addUsers).subscribe((res) => {
