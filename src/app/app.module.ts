@@ -135,6 +135,7 @@ import {ClientsEnhansmentsComponent} from "./components/clients-enhancements/cli
 
 import { RequestButton } from "./components/clientview-request/RequestButton";
 import { switchButton } from "./components/immigrationview-profileswitch/switchButton";
+import { InvoicedownloadButton } from "./components/superuserview-accountdetails-invoice/invoicedownloadbutton";
 
 
 
@@ -242,10 +243,10 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         AgGridModule.withComponents([SmartTableFramework]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton,MoreDetails,DownloadInvoiceButton,switchButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton,/*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,
