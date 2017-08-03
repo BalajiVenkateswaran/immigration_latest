@@ -9,8 +9,10 @@
             <span>Invoices</span>
             <!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewInvoice()">ADD</button>-->
         </h2>
+        <smart-table class="manageaccUser" [settings]="settings" [data]="data" (onRowClick)="editRecord($event)">
+        </smart-table>
         <!--<ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)"></ng2-smart-table>-->
-        <table class="smarttable" cellpadding="0" cellspacing="0">
+        <!--<table class="smarttable" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
             <td>
@@ -56,7 +58,7 @@
             <td><a (click)="getInvoiceInfo(invoice)"><i class="fa fa-eye"></i></a></td>
         </tr>
     </tbody>
-</table>
+</table>-->
         <div class="clearfix"></div>
     </div>
 
