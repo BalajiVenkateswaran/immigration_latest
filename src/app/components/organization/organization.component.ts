@@ -51,7 +51,6 @@ export class OrganizationComponent implements OnInit {
         private formBuilder: FormBuilder, private appService: AppService, private  organizationService: OrganizationService, private dialogService: DialogService) {
             this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             this.email = new FormControl('', [Validators.required,Validators.pattern(this.emailRegex)]);
-            console.log(this.email);
     }
 
     ngOnInit() {

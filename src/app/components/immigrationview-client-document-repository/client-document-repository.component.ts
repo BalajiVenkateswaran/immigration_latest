@@ -26,17 +26,11 @@ export interface ConfirmModel {
     styleUrls: ['./document-repository.component.sass']
 })
 export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    public addDocumentRepository: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
+    warningMessage: boolean;
     private message: string;
     private user: User;
     private accountId;
     public settings;
-    public fileListData;
-    public downloadSubscription;
-    public deleteSubscription;
-    public replaceSubscription
-    public subscription;
     public data;
     public getFiles;
     public getData: boolean = true;
@@ -44,27 +38,20 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public editFileObject: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
-    public count:number=0;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
         }
-
-        this.addDocumentRepository = new FormGroup({
-            orderNo: new FormControl(''),
-            fileName: new FormControl(''),
-            updatedDate: new FormControl('')
-        });
         this.accountId = this.user.accountId;
         this.settings = {
             'pagination': false,
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
-            'rowHeight':30,
+            'rowHeight': 30,
             'context': {
-                          'componentParent': this
-                       },
+                'componentParent': this
+            },
             'columnsettings': [
                 {
                     headerName: "Actions",
@@ -89,7 +76,6 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         }
 
     }
-
     onDeleteClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
@@ -104,30 +90,16 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 }
             });
     }
-
-    private rowEdit: boolean[] = [];
-    private onloadisEdit: boolean[] = [];
-    onFileRename(i, fileDetails) {
-        fileDetails.fileName = fileDetails.fileName.split(".")[0];
-        this.rowEdit[i] = !this.rowEdit[i];
-        this.onloadisEdit[i] = !this.onloadisEdit[i];
-
-    }
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
     fileUpload(event) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
-
         var x = file.name;
-        for (var j = 0; j < this.files.length; j++) {
-            if (x == this.files[j].fileName) {
-                var upload = false;
-            }
-        }
+        let fileExists = this.isfileExists(file);
         var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && upload != false) {
+        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
 
@@ -140,7 +112,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
         }
         else {
-            if (upload == false) {
+            if (fileExists == true) {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
                     message: 'Filename is already exists.'
@@ -155,6 +127,17 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         }
 
 
+    }
+    isfileExists(file) {
+        let upload: boolean = false;
+        this.getFiles.filter(item => {
+            if (file.name == item.fileName) {
+                upload = true;
+                return false;
+            }
+            return true;
+        })
+        return upload;
     }
     onReplaceClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
@@ -171,12 +154,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                     formData.append('file', file, file.name);
                     this.clientdocumentrepositoryService.replaceFile(event.data.fileId, formData)
                         .subscribe(
-                          res => {
-                              this.getFilesList();
-                          }
+                        res => {
+                            this.getFilesList();
+                        }
                         );
                 }
-                if (x == event.data.fileName) {
+                let fileExists = this.isfileExists(file);
+                if (fileExists) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'Filename is already exists.'
@@ -199,22 +183,6 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         () => console.log("OK");
 
     }
-
-    cancelFileupload(i) {
-        this.rowEdit[i] = !this.rowEdit[i];
-        this.onloadisEdit[i] = !this.onloadisEdit[i];
-        this.ngOnInit();
-    }
-    private orderNo;
-    private fileName;
-    private updatedDate;
-    private SlNoCount;
-    addrow() {
-        var SlNoCount = this.files.length;
-        this.files.push({ orderNo: this.orderNo = SlNoCount, fileName: this.fileName, updatedDate: this.updatedDate = new Date() });
-
-    }
-    files = [];
     ngOnInit() {
         this.getFilesList();
     }
@@ -224,11 +192,11 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             .subscribe((res) => {
                 if (res != undefined) {
                     console.log("filesGetmethod%o", res);
-                    let data= res['files'];
-                    for(var i=0;i<data.length;i++){
-                        data[i]['orderNo']=i+1;
+                    let data = res['files'];
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]['orderNo'] = i + 1;
                     }
-                    this.getFiles=data;
+                    this.getFiles = data;
                 }
 
 
@@ -240,16 +208,6 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
-    }
-
-
-    addDocumentRepositorySubmit(model: documentRepository, isValid: boolean) {
-        if (isValid) {
-            this.clientdocumentrepositoryService.saveNewDocumentRepository(model).subscribe((status) => { this.message = status[0] });
-        } else {
-            this.message = "Filled Details are not correct! please correct...";
-        }
-
     }
     editFileName(event) {
         if (event.colDef.headerName != 'Actions') {
@@ -292,9 +250,15 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         }
     }
     save() {
+        if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
+            this.warningMessage = true;
+        }
+        else {
+            this.warningMessage = false;
+            this.result = true;
+            this.close();
+        }
 
-        this.result = true;
-        this.close();
     }
     cancel() {
         this.result = false;

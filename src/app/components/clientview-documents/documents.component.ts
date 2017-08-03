@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from "@angular/forms";
-import {documentService} from "./documents.service";
+import {DocumentService} from "./documents.service";
 import {clientDocuments} from "../../models/documents";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import { Observable } from 'rxjs/Rx';
@@ -28,6 +28,7 @@ export interface ConfirmModel {
   styleUrls: ['./documents.component.sass']
 })
 export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+    warningMessage: boolean;
 
     public addDocumentRepository: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
@@ -50,7 +51,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     public editFlag: boolean = true;
     public beforeEdit: any;
     public count=0;
-    constructor(private Documentservice: documentService, private http: Http, public appService: AppService, public dialogService: DialogService, private router: Router, private route: ActivatedRoute, private menuComponent: MenuComponent) {
+    constructor(private documentservice: DocumentService, private http: Http, public appService: AppService, public dialogService: DialogService, private router: Router, private route: ActivatedRoute, private menuComponent: MenuComponent) {
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
@@ -99,7 +100,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     ngOnInit() {
         this.route.params.subscribe(params => {
             if (params['clientId'] == "") {
-                this.Documentservice.getOrgNames(this.appService.user.userId).subscribe((res) => {
+                this.documentservice.getOrgNames(this.appService.user.userId).subscribe((res) => {
                     this.orgNames = res['orgs'];
                     this.appService.documentSideMenu(this.orgNames);
                     this.appService.selectedOrgClienttId = this.orgNames[0].clientId;
@@ -115,41 +116,39 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     }
 
     onDeleteClick(event) {
-        var index = this.files.indexOf(event.data);
-        this.files.splice(index, 1);
-        this.Documentservice.deleteFile(event.data.fileId).subscribe(res => {
-            console.log("FileDelete %o", res);
-        });
+          this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Confirmation',
+            message: 'Are you sure you want to delete ' + event.data.fileName + '?'
+        })
+            .subscribe((isConfirmed) => {
+                //Get dialog result
+                if (isConfirmed) {
+                    this.documentservice.deleteFile(event.data.fileId).subscribe(res => {
+                        this.getFilesList();
+                    });
+                }
+            });
     }
-
-    private rowEdit: boolean[] = [];
-    private onloadisEdit: boolean[] = [];
-
     fileUpload(event) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
-        let formData: FormData = new FormData();
         var x = file.name;
-        for (var j = 0; j < this.files.length; j++) {
-            if (x == this.files[j].fileName) {
-                var upload = false;
-            }
-        }
+        let fileExists = this.isfileExists(file);
         var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && upload != false) {
-
+        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+            let formData: FormData = new FormData();
             formData.append('file', file, file.name);
 
-            this.Documentservice.uploadFile(this.appService.clientId, formData)
+            this.documentservice.uploadFile(this.appService.clientId, formData)
                 .subscribe(
-                  res => {
-                      this.getFilesList();
-                  }
+                res => {
+                    this.getFilesList();
+                }
                 );
 
         }
         else {
-            if (upload == false) {
+            if (fileExists == true) {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
                     message: 'Filename is already exists.'
@@ -163,31 +162,39 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             }
         }
     }
-
+    isfileExists(file) {
+        let upload: boolean = false;
+        this.getFiles.filter(item => {
+            if (file.name == item.fileName) {
+                upload = true;
+                return false;
+            }
+            return true;
+        })
+        return upload;
+    }
     onReplaceClick(event) {
-        this.dialogService.addDialog(ConfirmComponent, {
+         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
             message: 'Do You Want to Replace this file?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 let fileList: FileList = event.event.target.files;
                 let file: File = fileList[0];
-                let formData: FormData = new FormData();
                 var x = file.name;
                 var y = x.split(".");
                 if (fileList.length > 0 && y[1] == "pdf") {
-
+                    let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
-
-                    this.Documentservice.replaceFile(event.data.fileId, formData)
+                    this.documentservice.replaceFile(event.data.fileId, formData)
                         .subscribe(
-                          res => {
-                              this.getFilesList();
-                          }
+                        res => {
+                            this.getFilesList();
+                        }
                         );
-
                 }
-                if (x == event.data.fileName) {
+                let fileExists = this.isfileExists(file);
+                if (fileExists) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'Filename is already exists.'
@@ -203,30 +210,13 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         })
     }
     onDownloadClick(event) {
-        this.Documentservice.downloadFile(event.data.fileId).subscribe
+        this.documentservice.downloadFile(event.data.fileId).subscribe
             (data => this.downloadFiles(data, event.data.fileName)),
             error => console.log("Error Downloading....");
         () => console.log("OK");
     }
-
-    cancelFileupload(i) {
-        this.rowEdit[i] = !this.rowEdit[i];
-        this.onloadisEdit[i] = !this.onloadisEdit[i];
-        this.ngOnInit();
-    }
-    private orderNo;
-    private fileName;
-    private updatedDate;
-    private SlNoCount;
-    addrow() {
-        var SlNoCount = this.files.length;
-        this.files.push({ orderNo: this.orderNo = SlNoCount, fileName: this.fileName, updatedDate: this.updatedDate = new Date() });
-
-    }
-
-
     getFilesList = function () {
-           this.Documentservice.getFile(this.appService.selectedOrgClienttId)
+           this.documentservice.getFile(this.appService.selectedOrgClienttId)
             .subscribe((res) => {
                 if (res != undefined) {
                     let data= res['files'];
@@ -244,17 +234,6 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
-    }
-
-
-    addDocumentRepositorySubmit(model, isValid: boolean) {
-        console.log('formdata|account: %o|isValid:%o', model, isValid);
-        if (isValid) {
-            this.Documentservice.saveNewDocumentRepository(model).subscribe((status) => { this.message = status[0] });
-        } else {
-            this.message = "Filled etails are not correct! please correct...";
-        }
-
     }
     editFileName(event) {
         if (event.colDef.headerName != 'Actions') {
@@ -275,7 +254,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                         "fileId": event.data.fileId,
                         "fileName": fileName
                     };
-                    this.Documentservice.renameFile(url, data).subscribe(
+                    this.documentservice.renameFile(url, data).subscribe(
                         res => {
                             if (res['statusCode'] == 'SUCCESS') {
                                 this.getFilesList();
@@ -296,8 +275,15 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         }
     }
     save() {
-        this.result = true;
-        this.close();
+          if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
+            this.warningMessage = true;
+        }
+        else {
+            this.warningMessage = false;
+            this.result = true;
+            this.close();
+        }
+
     }
     cancel() {
         this.result = false;
