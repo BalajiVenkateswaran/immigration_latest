@@ -26,10 +26,15 @@ export class RestService {
       .map(res => res.json() || {}));
   }
 
-  postDataWithHeaders(url: string, formData: any, headers: Headers): Observable<any[]>{
+  postDataWithHeaders(url: string, formData: any): Observable<any[]>{
+    const headers = new Headers({});
     headers.append('X-Requested-With', 'XMLHttpRequest' );
-    return this.intercept(this.http.post(this.immp_endpoint_url+url, formData, { withCredentials: true, headers: headers })
-      .map(res => res.json() || {}));
+    let requestOptions = new RequestOptions({
+       withCredentials: true,
+       headers: headers
+    });
+    return this.intercept(this.http.post(this.immp_endpoint_url+url, formData, requestOptions)
+        .map(res => res.json() || {}));
   }
 
   putData(url: string, data: any): Observable<any[]> {
@@ -46,6 +51,7 @@ export class RestService {
         .map(res => res.json() || {}));
   }
   getFile(url: string): Observable<any[]> {
+
       let headers = new Headers();
       headers.append('X-Requested-With', 'XMLHttpRequest' );
       return this.intercept(this.http.get(this.immp_endpoint_url + url, { withCredentials: true , headers: headers, responseType: ResponseContentType.Blob })

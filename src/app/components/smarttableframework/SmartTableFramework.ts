@@ -156,6 +156,11 @@ export class SmartTableFramework implements OnChanges {
             this.gridOptions.pagination = true;
             this.paginationTemplate = true;
         }
+
+        if(this.settings.hasOwnProperty('context')){
+          this.gridOptions['context'] = this.settings['context'];
+        }
+
         if (this.settings.hasOwnProperty('paginationPageSize')) {
             this.gridOptions['paginationPageSize'] = this.settings['paginationPageSize'];
         }

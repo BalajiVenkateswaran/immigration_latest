@@ -44,63 +44,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public editFileObject: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
-    public checked: boolean = false;
-    public deleteFlag: boolean = false;
-    public replaceFlag: boolean = false;
-    public replacing: boolean = false;
-    public downloadFlag: boolean = false;
-    public delmessage;
     public count:number=0;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
         }
-        this.downloadSubscription = ActionIcons.onDownloadClick.subscribe(res => {
-            if (res.hasOwnProperty('downloadFlag')) {
-                this.checked = true;
-                this.downloadFlag = true;
-            }
-            else {
-                this.checked = false;
-            }
-        })
-        this.deleteSubscription = ActionIcons.onDeleteClick.subscribe(res => {
-            if (res.hasOwnProperty('deleteFlag')) {
-                this.checked = true;
-                this.deleteFlag = true;
 
-            }
-            else {
-                this.checked = false;
-            }
-        })
-        this.subscription = ActionIcons.replace.subscribe(
-            res => {
-                if (res.hasOwnProperty('flag')) {
-                    this.checked = true;
-                }
-                else {
-                    this.checked = false;
-
-                }
-            }
-        )
-        
-        this.replaceSubscription = ActionIcons.onReplaceClick.subscribe(res => {
-            if (res.hasOwnProperty('replaceFlag')) {
-                this.checked = true;
-                this.replaceFlag = true;
-                this.count++;
-                this.fileReplace(res);
-
-            }
-            else {
-                this.checked = false;
-
-            }
-            console.log(this.count);
-        })
         this.addDocumentRepository = new FormGroup({
             orderNo: new FormControl(''),
             fileName: new FormControl(''),
@@ -112,12 +62,14 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
             'rowHeight':30,
+            'context': {
+                          'componentParent': this
+                       },
             'columnsettings': [
                 {
                     headerName: "Actions",
                     cellRendererFramework: ActionIcons,
                     width: 80
-
                 },
                 {
                     headerName: "SL No",
@@ -125,12 +77,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                     width: 50
                 },
                 {
-
                     headerName: "File Name",
                     field: "fileName",
                 },
                 {
-
                     headerName: "Uploaded Date",
                     field: "updatedDate",
                     width: 100
@@ -139,26 +89,20 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         }
 
     }
-    private deleterow;
-    private FileId;
-    onFileDelete(FileDetails) {
-        this.FileId = FileDetails.fileId;
-        this.delmessage = FileDetails.fileName
+
+    onDeleteClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
-            message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+            message: 'Are you sure you want to delete ' + event.data.fileName + '?'
         })
             .subscribe((isConfirmed) => {
                 //Get dialog result
-                //this.confirmResult = isConfirmed;
                 if (isConfirmed) {
-                   
-                    this.clientdocumentrepositoryService.deleteFile(FileDetails.fileId).subscribe(res => {
+                    this.clientdocumentrepositoryService.deleteFile(event.data.fileId).subscribe(res => {
                         this.getFilesList();
                     });
                 }
             });
-        this.deleteFlag = false;
     }
 
     private rowEdit: boolean[] = [];
@@ -175,7 +119,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     fileUpload(event) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
-        let formData: FormData = new FormData();
+
         var x = file.name;
         for (var j = 0; j < this.files.length; j++) {
             if (x == this.files[j].fileName) {
@@ -184,13 +128,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         }
         var y = x.split(".");
         if (fileList.length > 0 && y[1] == "pdf" && upload != false) {
-
+            let formData: FormData = new FormData();
             formData.append('file', file, file.name);
 
-            let headers = new Headers();
-            headers.append("Content-Type", "multipart/ form - data");
-            let options = new RequestOptions({ headers: headers });
-            this.clientdocumentrepositoryService.uploadFile(this.appService.clientId, formData, headers)
+            this.clientdocumentrepositoryService.uploadFile(this.appService.clientId, formData)
                 .subscribe(
                 res => {
                     this.getFilesList();
@@ -215,33 +156,25 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
 
     }
-    fileReplace(event) {
+    onReplaceClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Do You Want to Replace this file',
-
+            title: 'Information',
+            message: 'Do You Want to Replace this file?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.FileId = event.data.fileId;
                 let fileList: FileList = event.event.target.files;
                 let file: File = fileList[0];
-                let formData: FormData = new FormData();
                 var x = file.name;
                 var y = x.split(".");
                 if (fileList.length > 0 && y[1] == "pdf") {
-
+                    let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
-
-                    let headers = new Headers();
-                    headers.append("Content-Type", "multipart/ form - data");
-                    let options = new RequestOptions({ headers: headers });
-                    this.clientdocumentrepositoryService.replaceFile(this.FileId, formData, headers)
+                    this.clientdocumentrepositoryService.replaceFile(event.data.fileId, formData)
                         .subscribe(
-                        res => {
-
-                            this.getFilesList();
-                        }
+                          res => {
+                              this.getFilesList();
+                          }
                         );
-
                 }
                 if (x == event.data.fileName) {
                     this.dialogService.addDialog(ConfirmComponent, {
@@ -256,14 +189,12 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                     });
                 }
             }
-            this.checked = false;   
         })
     }
-    onDownloadFile(fileDetails) {
-        this.FileId = fileDetails.fileId;
-        this.fileName = fileDetails.fileName;
-        this.clientdocumentrepositoryService.downloadFile(this.FileId).subscribe
-            (data => this.downloadFiles(data, this.fileName)),
+
+    onDownloadClick(event) {
+        this.clientdocumentrepositoryService.downloadFile(event.data.fileId).subscribe
+            (data => this.downloadFiles(data, event.data.fileName)),
             error => console.log("Error Downloading....");
         () => console.log("OK");
 
@@ -287,7 +218,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     ngOnInit() {
         this.getFilesList();
     }
-      
+
     getFilesList() {
         this.clientdocumentrepositoryService.getFile(this.appService.clientId)
             .subscribe((res) => {
@@ -309,7 +240,6 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
-        this.downloadFlag = false;
     }
 
 
@@ -322,7 +252,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
     }
     editFileName(event) {
-        if (!this.checked) {
+        if (event.colDef.headerName != 'Actions') {
             this.editFileObject.fileName = event.data.fileName.split(".")[0];
             this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
                 editFiles: true,
@@ -332,14 +262,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
             }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    this.FileId = event.data.fileId;
-                    this.fileName = this.editFileObject.fileName.concat(".pdf");
-                    event.data.fileName = this.fileName;
+                    var fileName = this.editFileObject.fileName.concat(".pdf");
+                    event.data.fileName = fileName;
                     var url = "/file/rename";
                     var data = {
                         "accountId": this.accountId,
-                        "fileId": this.FileId,
-                        "fileName": this.fileName
+                        "fileId": event.data.fileId,
+                        "fileName": fileName
                     };
                     this.clientdocumentrepositoryService.renameFile(url, data).subscribe(
                         res => {
@@ -359,19 +288,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 else {
                     this.editFileObject.fileName = event.data.fileName;
                 }
-                this.checked = false;
             });
-        }
-        else if (this.checked && this.deleteFlag) {
-            this.onFileDelete(event.data);
-            this.checked = false;
-        }
-        else if (this.checked && this.downloadFlag) {
-            this.onDownloadFile(event.data);
-            this.checked = false;
-        }
-        else {
-            this.checked = false;
         }
     }
     save() {
