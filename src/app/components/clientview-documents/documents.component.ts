@@ -49,11 +49,6 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     public editFileObject: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
-    public checked: boolean = false;
-    public deleteFlag: boolean = false;
-    public replaceFlag: boolean = false;
-    public replacing: boolean = false;
-    public downloadFlag: boolean = false;
     public count=0;
     constructor(private Documentservice: documentService, private http: Http, public appService: AppService, public dialogService: DialogService, private router: Router, private route: ActivatedRoute, private menuComponent: MenuComponent) {
         super(dialogService);
@@ -66,60 +61,20 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             updatedDate: new FormControl('')
         });
         this.accountId = this.user.accountId;
-        this.downloadSubscription = ActionIcons.onDownloadClick.subscribe(res => {
-            if (res.hasOwnProperty('downloadFlag')) {
-                this.checked = true;
-                this.downloadFlag = true;
-            }
-            else {
-                this.checked = false;
-            }
-        })
-        this.deleteSubscription = ActionIcons.onDeleteClick.subscribe(res => {
-            if (res.hasOwnProperty('deleteFlag')) {
-                this.checked = true;
-                this.deleteFlag = true;
 
-            }
-            else {
-                this.checked = false;
-            }
-        })
-        this.subscription = ActionIcons.replace.subscribe(
-            res => {
-                if (res.hasOwnProperty('flag')) {
-                    this.checked = true;
-                }
-                else {
-                    this.checked = false;
-
-                }
-            }
-        )
-        this.replaceSubscription = ActionIcons.onReplaceClick.subscribe(res => {
-            if (res.hasOwnProperty('replaceFlag')) {
-                this.checked = true;
-                this.replaceFlag = true;
-                this.count++;
-                this.fileReplace(res);
-
-            }
-            else {
-                this.checked = false;
-
-            }
-        })
          this.settings = {
             'pagination': false,
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
             'rowHeight':30,
+            'context': {
+                          'componentParent': this
+                       },
             'columnsettings': [
                 {
                     headerName: "Actions",
                     cellRendererFramework: ActionIcons,
                     width: 80
-
                 },
                 {
                     headerName: "SL No",
@@ -127,12 +82,10 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                     width: 50
                 },
                 {
-
                     headerName: "File Name",
                     field: "fileName",
                 },
                 {
-
                     headerName: "Uploaded Date",
                     field: "updatedDate",
                     width: 100
@@ -140,7 +93,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             ]
         }
     }
-    
+
 
     files = [];
     ngOnInit() {
@@ -150,7 +103,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                     this.orgNames = res['orgs'];
                     this.appService.documentSideMenu(this.orgNames);
                     this.appService.selectedOrgClienttId = this.orgNames[0].clientId;
-                    this.menuComponent.highlightSBLink(this.orgNames[0].orgName);              
+                    this.menuComponent.highlightSBLink(this.orgNames[0].orgName);
                     this.getFilesList();
                 });
             } else {
@@ -161,20 +114,17 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         });
     }
 
-    private deleterow;
-    private FileId;
-    onFileDelete(FileDetails) {
-        var index = this.files.indexOf(FileDetails);
-        this.FileId = FileDetails.fileId;
+    onDeleteClick(event) {
+        var index = this.files.indexOf(event.data);
         this.files.splice(index, 1);
-        this.Documentservice.deleteFile(FileDetails.fileId).subscribe(res => {
+        this.Documentservice.deleteFile(event.data.fileId).subscribe(res => {
             console.log("FileDelete %o", res);
         });
     }
 
     private rowEdit: boolean[] = [];
     private onloadisEdit: boolean[] = [];
-   
+
     fileUpload(event) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
@@ -190,14 +140,11 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
 
             formData.append('file', file, file.name);
 
-            let headers = new Headers();
-            headers.append("Content-Type", "multipart/ form - data");
-            let options = new RequestOptions({ headers: headers });
-            this.Documentservice.uploadFile(this.appService.clientId, formData, headers)
+            this.Documentservice.uploadFile(this.appService.clientId, formData)
                 .subscribe(
-                res => {
-                    this.getFilesList();
-                }
+                  res => {
+                      this.getFilesList();
+                  }
                 );
 
         }
@@ -216,20 +163,13 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             }
         }
     }
-    
-    onReplaceFile(fileDetails) {
-        console.log(fileDetails + "replce")
-        this.FileId = fileDetails.fileId;
-        console.log(event);
 
-    }
-    fileReplace(event) {
+    onReplaceClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Do You Want to Replace this file',
-
+            title: 'Information',
+            message: 'Do You Want to Replace this file?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.FileId = event.data.fileId;
                 let fileList: FileList = event.event.target.files;
                 let file: File = fileList[0];
                 let formData: FormData = new FormData();
@@ -239,15 +179,11 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
 
                     formData.append('file', file, file.name);
 
-                    let headers = new Headers();
-                    headers.append("Content-Type", "multipart/ form - data");
-                    let options = new RequestOptions({ headers: headers });
-                    this.Documentservice.replaceFile(this.FileId, formData, headers)
+                    this.Documentservice.replaceFile(event.data.fileId, formData)
                         .subscribe(
-                        res => {
-
-                            this.getFilesList();
-                        }
+                          res => {
+                              this.getFilesList();
+                          }
                         );
 
                 }
@@ -264,17 +200,13 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                     });
                 }
             }
-            this.checked = false;  
         })
     }
-    onDownloadFile(fileDetails) {
-        this.FileId = fileDetails.fileId;
-        this.fileName = fileDetails.fileName;
-        this.Documentservice.downloadFile(this.FileId).subscribe
-            (data => this.downloadFiles(data, this.fileName)),
+    onDownloadClick(event) {
+        this.Documentservice.downloadFile(event.data.fileId).subscribe
+            (data => this.downloadFiles(data, event.data.fileName)),
             error => console.log("Error Downloading....");
         () => console.log("OK");
-
     }
 
     cancelFileupload(i) {
@@ -312,7 +244,6 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
-        this.downloadFlag = false;
     }
 
 
@@ -326,7 +257,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
 
     }
     editFileName(event) {
-        if (!this.checked) {
+        if (event.colDef.headerName != 'Actions') {
             this.editFileObject.fileName = event.data.fileName.split(".")[0];
             this.dialogService.addDialog(DocumentsComponent, {
                 editFiles: true,
@@ -336,20 +267,18 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
 
             }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                        this.FileId = event.data.fileId;
-                    this.fileName = this.editFileObject.fileName.concat(".pdf");
-                    event.data.fileName = this.fileName;
+                    let fileName = this.editFileObject.fileName.concat(".pdf");
+                    event.data.fileName = fileName;
                     var url = "/file/rename";
                     var data = {
                         "accountId": this.accountId,
-                        "fileId": this.FileId,
-                        "fileName": this.fileName
+                        "fileId": event.data.fileId,
+                        "fileName": fileName
                     };
                     this.Documentservice.renameFile(url, data).subscribe(
                         res => {
                             if (res['statusCode'] == 'SUCCESS') {
                                 this.getFilesList();
-
                             }
                             if (res['statusDescription'] == "File Name Exists, Use a different Name") {
                                 this.dialogService.addDialog(ConfirmComponent, {
@@ -363,22 +292,8 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                 else {
                     this.editFileObject.fileName = event.data.fileName;
                 }
-                this.checked = false;
             });
         }
-        else if (this.checked && this.deleteFlag) {
-            this.onFileDelete(event.data);
-            this.checked = false;
-        }
-        else if (this.checked && this.downloadFlag) {
-            this.onDownloadFile(event.data);
-            this.checked = false;
-        }
-        else {
-            this.checked = false;
-        }
-
-
     }
     save() {
         this.result = true;
@@ -388,6 +303,4 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         this.result = false;
         this.close();
     }
-
-
 }

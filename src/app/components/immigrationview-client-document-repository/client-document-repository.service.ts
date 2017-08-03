@@ -18,12 +18,12 @@ export class ClientDocumentRepositoryService {
     public deleteFile(fileId: string) {
         return this.restService.deleteData("/file/" + fileId);
     }
-    public uploadFile(entityId: string, formData: FormData, headers: any) {
+    public uploadFile(entityId: string, formData: FormData) {
             return this.restService.postDataWithHeaders("/file/upload/entityId/"+entityId+"/entityType/CLIENT",
-              formData, headers);
+              formData);
     }
-    public replaceFile(fileId: string, formData: FormData, headers: any) {
-        return this.restService.postDataWithHeaders("/file/replace/" + fileId, formData, headers);
+    public replaceFile(fileId: string, formData: FormData) {
+        return this.restService.postDataWithHeaders("/file/replace/" + fileId, formData);
     }
     public renameFile(url: string, data: any) {
         return this.restService.postData(url, data);
