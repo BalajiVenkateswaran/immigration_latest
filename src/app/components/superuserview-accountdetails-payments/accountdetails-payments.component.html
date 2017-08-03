@@ -6,12 +6,13 @@
         <div class="clearfix"></div>
         <div class="table-data">
             <h2>payments 
-                <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewPayments()">ADD</button>
+               
             </h2>
-            
+            <!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewPayments()">ADD</button>-->
             <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
-
-            <table class="smarttable" cellpadding="0" cellspacing="0">
+            <smart-table class="manageaccUser" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+            </smart-table>
+            <!--<table class="smarttable" cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
                         <td><span>Payment ID</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span></td>
@@ -48,7 +49,7 @@
                             <span>{{payment.paymentId}}</span>                                  
                         </td>
                         <td>
-                            <span>{{payment.accountNumber}}</span>                                  
+                            <span>{{payment.invoiceNumber}}</span>                                  
                         </td>
                         <td>
                             <span>{{payment.invoiceDate}}</span>                                  
@@ -73,7 +74,7 @@
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </table>-->
         </div>
     </div>
     <div class="table-data-forms" *ngIf="viewAccountPopup">

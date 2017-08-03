@@ -36,63 +36,117 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     public DefaultResponse = { "status": "Active" };
     public paymentList:any;
     public payments:any={};
-    public isEditpayments:boolean=true;
-    settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        actions: {
-            delete: false,
-            add: false,
-            edit: false
-        },
-        columns: {
-            invoiceNumber: {
-                title: 'Invoice Number'
-            },
-            invoiceDate: {
-                title: 'Invoice Date'
-            },
-            invoiceAmount: {
-                title: 'Invoice Amount'
-            },
-            paymentReceived: {
-                title: 'Payment Received'
-            },
-            pdfUploaded: {
-                title: 'PDF uploaded',
-            },
-            downloadButton: {
-                title: 'Download Button',
-            },
-            viewDetails: {
-                title: 'View Details',
-            }
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        }
-    };
+    public isEditpayments: boolean = true;
+    public settings;
+    public data;
+    //settings = {
+    //    add: {
+    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmCreate: true
+    //    },
+    //    edit: {
+    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
+    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
+    //        confirmSave: true
+    //    },
+    //    actions: {
+    //        delete: false,
+    //        add: false,
+    //        edit: false
+    //    },
+    //    columns: {
+    //        invoiceNumber: {
+    //            title: 'Invoice Number'
+    //        },
+    //        invoiceDate: {
+    //            title: 'Invoice Date'
+    //        },
+    //        invoiceAmount: {
+    //            title: 'Invoice Amount'
+    //        },
+    //        paymentReceived: {
+    //            title: 'Payment Received'
+    //        },
+    //        pdfUploaded: {
+    //            title: 'PDF uploaded',
+    //        },
+    //        downloadButton: {
+    //            title: 'Download Button',
+    //        },
+    //        viewDetails: {
+    //            title: 'View Details',
+    //        }
+    //    },
+    //    pager: {
+    //        display: true,
+    //        perPage: 10
+    //    }
+    //};
     constructor(private appService: AppService,public accountsPaymentService:AccountDetailsPaymentsService,public dialogService: DialogService,
     private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
+        this.settings = {
+            'isDeleteEnable': false,
+            'columnsettings': [
+                {
+
+                    headerName: "Payment ID",
+                    field: "paymentId",
+                },
+                {
+
+                    headerName: "Invoice Number",
+                    field: "invoiceNumber",
+
+                },
+                {
+
+                    headerName: "Invoice Date",
+                    field: "invoiceDate",
+                },
+                {
+                    headerName: "Invoice Amount",
+                    field: "invoiceAmount",
+
+                },
+                {
+
+                    headerName: "Transaction Id",
+                    field: "transactionId",
+
+                },
+                {
+
+                    headerName: "Payment Date",
+                    field: "paymentDate",
+
+                },
+                {
+
+                    headerName: "Payment Amount",
+                    field: "paymentAmount",
+
+                },
+                {
+
+                    headerName: "Payment Status",
+                    field: "paymentStatus",
+
+                },
+
+            ]
+        }
     }
 
     getPaymentDetails(){
         this.accountsPaymentService.getPaymentDetails(this.accountDetailsCommonService.accountId).subscribe(
             res=>{
                 if(res['statusCode']=='SUCCESS'){
-                    this.paymentList=res['payments'];
+                    //this.paymentList = res['payments'];
+                    this.data = res['payments'];
                 }
             }
         )
@@ -100,7 +154,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     ngOnInit() {
         this.getPaymentDetails();
     }
-    addNewPayments() {
+    addFunction() {
         this.dialogService.addDialog(accountDetailsPaymentsComponent, {
             addPopups: true,
             getPayments: false,
@@ -126,13 +180,13 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         this.result = false;
         this.close();
     }
-    viewDetails(data,index){
+    editRecord(event){
         this.dialogService.addDialog(accountDetailsPaymentsComponent, {
             viewAccountPopup: true,
             getPayments: false,
             addPopups:false,
             title: 'View  Details',
-            payment:data,
+            payment:event.data,
         }).subscribe((isConfirmed) => {
            if(isConfirmed){
                   this.accountsPaymentService.editpaymentss(this.accountDetailsCommonService.accountId,this.appService.addUsers).subscribe((res) => {
