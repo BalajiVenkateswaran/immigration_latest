@@ -98,7 +98,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
             || this.accountDetails['email'] == '' || this.accountDetails['email'] == null || this.accountDetails['email'] == undefined
             || this.accountDetails['phone'] == '' || this.accountDetails['phone'] == null || this.accountDetails['phone'] == undefined
             || this.accountDetails['storageType'] == '' || this.accountDetails['storageType'] == null || this.accountDetails['storageType'] == undefined
-            || this.accountDetails['markForDeletion'] == '' || this.accountDetails['markForDeletion'] == null || this.accountDetails['markForDeletion'] == undefined
+            || /*this.accountDetails['markForDeletion'] == '' ||*/ this.accountDetails['markForDeletion'] == null || this.accountDetails['markForDeletion'] == undefined
             || this.accountDetails['status'] == '' || this.accountDetails['status'] == null || this.accountDetails['status'] == undefined) {
             this.errormsg = true;
         } else {
@@ -110,6 +110,6 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
                     this.getAcountDetails();
                 });
         }
-        
+
     }
 }

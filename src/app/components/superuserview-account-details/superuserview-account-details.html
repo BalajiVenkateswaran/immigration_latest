@@ -91,11 +91,11 @@
                     <div class="row">
                         <div class="col-md-4"><label for="accountdetails-mark">Mark for Deletion <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.markForDeletion" [ngClass]="accountDetails.markForDeletion == '' ? 'redborder': ''" class="form-control">
-                                <option value="true">YES</option>
-                                <option value="false">NO</option>
+                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.markForDeletion" [ngClass]="accountDetails.markForDeletion == undefined ? 'redborder': ''" class="form-control">
+                                <option [value]="true" [selected] = "accountDetails.markForDeletion == true">YES</option>
+                                <option [value]="false" [selected] = "accountDetails.markForDeletion == false">NO</option>
                             </select>
-                        <span *ngIf="isEdit==true">{{accountDetails.markForDeletion}}</span></div>
+                        <span *ngIf="isEdit==true">{{accountDetails.markForDeletion? 'YES' : 'NO'}}</span></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="accountdetails-byuser">Mark For Deletion details</label></div>
@@ -113,7 +113,7 @@
                             <span class="redstar">* Fields are Mandatory.</span>
                         </div>
                     </div>
-                  
+
                 </div>
             </div>
         </div>
