@@ -23,7 +23,11 @@ export interface ConfirmModel {
     adddiscntPref: boolean;
     editprdct: boolean;
     editdscnt: boolean;
-    editRecord:Object;
+    editRecord: Object;
+    productcode: string;
+    startDate: string;
+    endDate: string;
+    disconutcode: string;
 }
 
 @Component({
@@ -42,7 +46,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    public editproduct: any;
+  
     public editdiscount: boolean;
     public adddprdctPref: any;
     public adddiscntPref: any;
@@ -57,53 +61,203 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public discountstartDate: string;
     public discountendDate: string;
     public record:any;
-
+    public settings;
+    public data;
+    public editFlag: boolean;
+    public beforeEdit: any = {};
+    public product: any = {};
+    public discountsettings;
+    public discountdata;
     constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService,
     private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
-        this.editdiscount=false;
+        this.editdiscount = false;
+        this.settings = {
+            'isDeleteEnable': false,
+            'columnsettings': [
+                {
+
+                    headerName: "Name",
+                    field: "name",
+                },
+                {
+
+                    headerName: "Code",
+                    field: "code",
+
+                },
+                {
+
+                    headerName: "Description",
+                    field: "description",
+                },
+                {
+                    headerName: "Start Date",
+                    field: "startDate",
+
+                },
+                {
+
+                    headerName: "End Date",
+                    field: "endDate",
+
+                },
+                {
+
+                    headerName: "Max Users",
+                    field: "maxUsers",
+
+                },
+                {
+
+                    headerName: "Max Clients",
+                    field: "maxClientsPerMonth",
+
+                },
+                {
+
+                    headerName: "Max Petitions",
+                    field: "maxPetitionsPerMonth",
+
+                },
+                {
+
+                    headerName: "Max S3 Storage",
+                    field: "maxS3Storage",
+
+                },
+                {
+
+                    headerName: "Cost",
+                    field: "cost",
+
+                },
+
+            ]
+        }
+        this.discountsettings = {
+            'isDeleteEnable': false,
+            'columnsettings': [
+                {
+
+                    headerName: "Name",
+                    field: "discountName",
+                },
+                {
+
+                    headerName: "Code",
+                    field: "discountCode",
+
+                },
+                {
+
+                    headerName: "Description",
+                    field: "description",
+                },
+                {
+                    headerName: "Start Date",
+                    field: "startDate",
+
+                },
+                {
+
+                    headerName: "End Date",
+                    field: "endDate",
+
+                },
+                {
+
+                    headerName: "Cost",
+                    field: "cost",
+
+                },
+                {
+
+                    headerName: "Percentage",
+                    field: "percentage",
+
+                }
+            ]
+        }
     }
-    addEditProduct(value) {
-        if (value == "edit") {
-            var productlable = "Edit";
-            this.editproduct = true;
-        }
-        if (value == "add") {
-            var productlable = "Add";
-            this.editproduct = false;
-        }
+    addFunction(value) {    
         this.dialogService.addDialog(AccountPreferencesComponent, {
             adddprdctPref: true,
             getacntpref: false,
-            title: productlable + ' Product',
-            editprdct: this.editproduct
+            title: 'Add Product',
+            editprdct: false
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
 
             }
         });
     }
-    addEditDiscount(value,data) {
-        if (value == "edit") {
-            var productlable = "Edit";
-            this.editdiscount = true;
-        }
-        if (value == "add") {
-            var productlable = "Add";
-            this.editdiscount = false;
-        }
-        if(data){
-            this.record=data;
-            this.disconutcode=data.discountCode;
-            this.discountstartDate=data.startDate;
-            this.discountendDate=data.endDate
-        }
+
+    editRecord(event) {
+        this.dialogService.addDialog(AccountPreferencesComponent, {
+            adddprdctPref: true,
+            getacntpref: false,
+            title: 'Edit Product',
+            editprdct: true,         
+            productcode: event.data.code,
+            startDate: event.data.startDate,
+            endDate: event.data.endDate,
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
+
+            }
+        });
+    }
+
+    //addEditDiscount(value,data) {
+    //    if (value == "edit") {
+    //        var productlable = "Edit";
+    //        this.editdiscount = true;
+    //    }
+    //    if (value == "add") {
+    //        var productlable = "Add";
+    //        this.editdiscount = false;
+    //    }
+    //    if(data){
+    //        this.record=data;
+    //        this.disconutcode=data.discountCode;
+    //        this.discountstartDate=data.startDate;
+    //        this.discountendDate=data.endDate
+    //    }
+    //    this.dialogService.addDialog(AccountPreferencesComponent, {
+    //        adddiscntPref: true,
+    //        getacntpref: false,
+    //        title: productlable + ' Discount',
+    //        editdscnt: this.editdiscount
+
+    //    }).subscribe((isConfirmed) => {
+    //        if (isConfirmed) {
+
+    //        }
+    //    });
+    //}
+    adddiscountFunction(event) {
         this.dialogService.addDialog(AccountPreferencesComponent, {
             adddiscntPref: true,
             getacntpref: false,
-            title: productlable + ' Discount',
-            editdscnt: this.editdiscount
+            title: 'Add Discount',
+            editdscnt: false
+        }).subscribe((isConfirmed) => {
+            if (isConfirmed) {
 
+            }
+        });
+    }
+
+    editdiscountRecord(event) {
+        this.dialogService.addDialog(AccountPreferencesComponent, {
+            adddiscntPref: true,
+            getacntpref: false,
+            title: 'Edit Discount',
+            editdscnt: true,
+            disconutcode: event.data.code,
+            startDate: event.data.startDate,
+            endDate: event.data.endDate,
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
 
@@ -129,16 +283,14 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         this.adddiscount[0]['discountCode'] = this.disconutcode;
         this.adddiscount[0]['startDate'] = this.discountstartDate['formatted'];
         this.adddiscount[0]['endDate'] = this.discountendDate['formatted'];
-        if(this.record){
             this.superuserViewAccountpreferencessService.savediscount(this.adddiscount, this.accountDetailsCommonService.accountId).subscribe((res) => {
                 if (res['statusCode'] = "SUCCESS") {
                     this.result = true;
-                    this.result=true;
                     this.close();
                 }
             });
 
-        }
+       
     }
     cancel() {
         this.result = false;
@@ -147,15 +299,17 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     getproducts() {
         this.superuserViewAccountpreferencessService.getproductsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
-                this.Products = res['products'];
+              //  this.Products = res['products'];
+                this.data = res['products'];
+
             }
         });
     }
     getdiscounts() {
         this.superuserViewAccountpreferencessService.getdiscountsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
-                this.Discounts = res['discounts'];
-
+                //this.Discounts = res['discounts'];
+                this.discountdata = res['discounts'];
             }
         });
     }
