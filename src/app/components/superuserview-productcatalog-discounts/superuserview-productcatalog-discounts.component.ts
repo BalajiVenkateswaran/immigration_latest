@@ -62,6 +62,10 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
                     field: "discountPercentage"
                 },
                 {
+                    headerName:'Type',
+                    field:'type'
+                },
+                {
 
                     headerName: "Status",
                     field: "status"
@@ -111,7 +115,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
         });
     }
     saveDiscounts() {
-        if (this.addDiscount['discountCode'] == '' || this.addDiscount['discountCode'] == null || this.addDiscount['discountCode'] == undefined || this.addDiscount['discountName'] == '' || this.addDiscount['discountName'] == null || this.addDiscount['discountName'] == undefined) {
+        if (this.addDiscount['discountCode'] == '' || this.addDiscount['discountCode'] == null || this.addDiscount['discountCode'] == undefined || this.addDiscount['discountName'] == '' || this.addDiscount['discountName'] == null || this.addDiscount['discountName'] == undefined || this.addDiscount['type']==null || this.addDiscount['type']==undefined || this.addDiscount['type']=='') {
             this.warningMessage = true;
         }
         else {

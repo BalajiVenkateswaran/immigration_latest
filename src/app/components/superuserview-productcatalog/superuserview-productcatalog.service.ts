@@ -20,6 +20,6 @@ export class ProductCatalogProductService {
         var req={
             "product":products
         }
-        return this.restService.putData("/superuser/products",req)
+        return this.restService.postData("/superuser/products",req)
     }
 }

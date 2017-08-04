@@ -7,8 +7,8 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Discounts</h2>
-            <smart-table class="acctabprodcatDiscounts" [settings]="settings" [data]="data" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)"></smart-table>
-            <div class="clearfix"></div>
+        <smart-table class="acctabprodcatDiscounts" [settings]="settings" [data]="data" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)"></smart-table>
+        <div class="clearfix"></div>
     </div>
 </div>
 <div class="table-data-forms" *ngIf="viewDiscountPopup">
@@ -59,6 +59,18 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-5">Type:</div>
+                                    <div class="col-md-7">
+                                        <select *ngIf="isEditDiscount==false" class="form-control" [(ngModel)]="discount.type">
+                                          
+                                   <option value="DIS">DIS</option>
+                                   <option value="TRAIL">TRAIL</option>
+                            
+                                        </select>
+                                        <span *ngIf="isEditDiscount==true">{{discount.type}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-5">Status:</div>
                                     <div class="col-md-7">
                                         <select [(ngModel)]="discount.status" class="form-control" *ngIf="isEditDiscount==false">
@@ -86,10 +98,10 @@
                                     <div class="col-md-7">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <!--<button type="button" class="btn btn-primary" (click)="clientSave(emailId.errors)">Save</button>-->
+
                                                 <button type="submit" class="btn btn-primary" (click)="editDiscountInfo()" *ngIf="isEditDiscount==true">Edit</button>
 
-                                                <!--<button type="button" (click)="cancelProductInfo()" class="editinpopup" *ngIf="isEditProducts==false">Cancel</button>-->
+
                                                 <button type="submit" value="Save" class="btn btn-primary" (click)="saveDiscountInfo()" *ngIf="isEditDiscount==false">Save</button>
 
                                             </div>
@@ -123,6 +135,14 @@
                             <div class="col-md-7"><input type="text" [(ngModel)]="addDiscount.discountName" class="form-control"></div>
                             <div class="col-md-5">Code:<span class="redstar">*</span></div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
+                            <div class="col-md-5">Type:<span class="redstar">*</span></div>
+                            <div class="col-md-7">
+                                <select class="form-control" [(ngModel)]="addDiscount.type">
+                                   <option value="DIS">DIS</option>
+                                   <option value="TRAIL">TRAIL</option>
+                               </select>
+
+                            </div>
                         </div>
                     </div>
                 </div>
