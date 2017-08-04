@@ -1,8 +1,5 @@
-import { Component, OnDestroy, EventEmitter, Output, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular/main';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 

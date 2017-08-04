@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl} from "@angular/forms";
 import {DocumentService} from "./documents.service";
-import {clientDocuments} from "../../models/documents";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/Rx';
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
-import { ActionIcons } from '../immigrationview-client-document-repository/ActionsIcons'
+import {ActionIcons} from '../../components/smarttableframework/cellRenderer/ActionsIcons';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as FileSaver from 'file-saver';
 export interface ConfirmModel {
@@ -29,9 +24,6 @@ export interface ConfirmModel {
 })
 export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     warningMessage: boolean;
-
-    public addDocumentRepository: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private user: any;
     private accountId;
@@ -56,11 +48,6 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         if (this.appService.user) {
             this.user = this.appService.user;
         }
-        this.addDocumentRepository = new FormGroup({
-            orderNo: new FormControl(''),
-            fileName: new FormControl(''),
-            updatedDate: new FormControl('')
-        });
         this.accountId = this.user.accountId;
 
          this.settings = {

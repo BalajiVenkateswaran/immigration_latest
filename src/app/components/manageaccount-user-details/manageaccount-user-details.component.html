@@ -45,7 +45,7 @@
                     <div class="row">
                         <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                          
+
                             <span>{{userList.emailId}}</span>
                         </div>
 
@@ -60,7 +60,7 @@
                     <div class="row">
                         <div class="col-md-4"><label for="wa-city">Role<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                          
+
                             <select [(ngModel)]="userList.role" class="form-control" *ngIf="isUserEdit==false">
                                     <option value="Immigration Officer">Immigration Officer</option>
                                     <option value="Immigration Manager">Immigration Manager</option>
@@ -101,53 +101,18 @@
 
                 </div>
             </div>
-
-
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="col-md-12 addresbox box-shadow">
+           
+             
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Login History</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isUserEdit==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isUserEdit">
-                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
-                            </div>
                         </div>
 
                     </div>
-
-                    <div class="row" *ngIf="warningMessage">
-                        <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span>
-                        </div>
+                    <div class="table-data">
+                        <smart-table  [settings]="settings" [data]="data"></smart-table>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-county">Date<span class="redstar">*</span></label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" id="wa-county" [(ngModel)]="userList.firstName" [ngClass]="userList.firstName == '' ? 'redborder': ''"
-                            /><span *ngIf="isUserEdit==true">{{userList.firstName}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-zip">Time<span class="redstar">*</span></label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" id="wa-zip" [(ngModel)]="userList.lastName" [ngClass]="userList.lastName == '' ? 'redborder': ''"
-                            /><span *ngIf="isUserEdit==true">{{userList.lastName}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="wa-city">IP Address<span class="redstar">*</span></label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" id="email" [(ngModel)]="userList.emailId" />
-                            <span *ngIf="isUserEdit==true">{{userList.emailId}}</span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
+               
         </div>
     </div>
 </div>

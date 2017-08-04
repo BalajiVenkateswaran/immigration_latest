@@ -1,6 +1,6 @@
 import { viewAddressInfo } from './models/viewAddressInfo';
 import { CustomFilterRow } from './components/smarttableframework/CustomFilterRow';
-import { SmartTableFramework } from './components/smarttableframework/SmartTableFramework';
+import { SmartTableFramework } from './components/smarttableframework/smarttable-framework.component';
 import {NgModule}      from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule}   from '@angular/forms';
@@ -195,7 +195,7 @@ import { ManageAccountUserDetailsService } from "./components/manageaccount-user
 //immigrationview reports tab
 import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
 import {petitionsstatusreportsservice} from './components/immigrationview-petitions-statusreports/petitions-statusreports.service';
-import {ActionIcons} from './components/immigrationview-client-document-repository/ActionsIcons'
+import {ActionIcons} from './components/smarttableframework/cellRenderer/ActionsIcons';
 import { GenerateFormButton } from "./components/immigrationview-forms/GenerateFormButton";
 import { DownloadButton } from "./components/immigrationview-forms/DownloadButton";
 import {clientscreatedreportscomponent} from './components/immigrationview-clients-createdreports/clients-createdreports.component';
