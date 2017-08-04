@@ -7,12 +7,12 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Discounts</h2>
-            <smart-table [settings]="settings" [data]="data" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)"></smart-table>
-            <div class="clearfix"></div>
+        <smart-table class="acctabprodcatDiscounts" [settings]="settings" [data]="data" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)"></smart-table>
+        <div class="clearfix"></div>
     </div>
 </div>
 <div class="table-data-forms" *ngIf="viewDiscountPopup">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="margin-top:7% !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
@@ -20,73 +20,101 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12 col-sm-6 col-xs-12 col-sm-offset-3">
-                        <div class="col-md-12 addresbox box-shadow">
-                            <div class="row">
-                                <div class="col-md-4">Name:</div>
-                                <div class="col-md-8">
-                                    <input type="text" [disabled]="true" *ngIf="isEditDiscount==false" [(ngModel)]="discount.discountName" class="form-control">
-                                    <span *ngIf="isEditDiscount==true">{{discount.discountName}}</span>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 addresbox box-shadow">
+                                <div class="row">
+                                    <div class="col-md-5">Name:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" [disabled]="true" *ngIf="isEditDiscount==false" [(ngModel)]="discount.discountName" class="form-control">
+                                        <span *ngIf="isEditDiscount==true">{{discount.discountName}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Code:</div>
-                                <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.discountCode" class="form-control">
-                                    <span *ngIf="isEditDiscount==true">{{discount.discountCode}}</span>
+                                <div class="row">
+                                    <div class="col-md-5">Code:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.discountCode" class="form-control">
+                                        <span *ngIf="isEditDiscount==true">{{discount.discountCode}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Description:</div>
-                                <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.description" class="form-control">
-                                    <span *ngIf="isEditDiscount==true">{{discount.description}}</span>
+                                <div class="row">
+                                    <div class="col-md-5">Description:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.description" class="form-control">
+                                        <span *ngIf="isEditDiscount==true">{{discount.description}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Cost:</div>
-                                <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.cost" class="form-control">
-                                    <span *ngIf="isEditDiscount==true">{{discount.cost}}</span>
+                                <div class="row">
+                                    <div class="col-md-5">Cost:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.cost" class="form-control">
+                                        <span *ngIf="isEditDiscount==true">{{discount.cost}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Percentage:</div>
-                                <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.percentage" class="form-control">
-                                    <span *ngIf="isEditDiscount==true">{{discount.percentage}}</span>
+                                <div class="row">
+                                    <div class="col-md-5">Percentage:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.percentage" class="form-control">
+                                        <span *ngIf="isEditDiscount==true">{{discount.percentage}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Status:</div>
-                                <div class="col-md-8">
-                                    <select [(ngModel)]="discount.status" class="form-control" *ngIf="isEditDiscount==false">
-                                    <option value="Active">Active</option>
-                                    <option value="Inactive">Inactive</option>
-                                </select>
-                                    <span *ngIf="isEditDiscount==true">{{discount.status}}</span>
+                                <div class="row">
+                                    <div class="col-md-5">Type:</div>
+                                    <div class="col-md-7">
+                                        <select *ngIf="isEditDiscount==false" class="form-control" [(ngModel)]="discount.type">
+                                          
+                                   <option value="DIS">DIS</option>
+                                   <option value="TRAIL">TRAIL</option>
+                            
+                                        </select>
+                                        <span *ngIf="isEditDiscount==true">{{discount.type}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Created On:</div>
-                                <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.createdOn" class="form-control">
-                                    <span *ngIf="isEditDiscount==true">{{discount.createdOn}}</span>
+                                <div class="row">
+                                    <div class="col-md-5">Status:</div>
+                                    <div class="col-md-7">
+                                        <select [(ngModel)]="discount.status" class="form-control" *ngIf="isEditDiscount==false">
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                        <span *ngIf="isEditDiscount==true">{{discount.status}}</span>
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-5">Created On:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.createdOn" class="form-control">
+                                        <span *ngIf="isEditDiscount==true">{{discount.createdOn}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="row sfm" *ngIf="warningMessage">
+                                            <div class="col-md-12">
+                                                <span class="redstar">* Fields are Mandatory.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-6">
+
+                                                <button type="submit" class="btn btn-primary" (click)="editDiscountInfo()" *ngIf="isEditDiscount==true">Edit</button>
+
+
+                                                <button type="submit" value="Save" class="btn btn-primary" (click)="saveDiscountInfo()" *ngIf="isEditDiscount==false">Save</button>
+
+                                            </div>
+                                            <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <div class="row">
-                    <button type="submit" class="editinpopup" (click)="editDiscountInfo()" *ngIf="isEditDiscount==true">Edit</button>
-                    <div class="tbl-head-btn" [hidden]="isEditDiscount">
-                        <button type="button" (click)="cancelDiscountInfo()" class="editinpopup" *ngIf="isEditDiscount==false">Cancel</button>
-                        <button type="submit" value="Save" class="savebtn" (click)="saveDiscountInfo()" *ngIf="isEditDiscount==false">Save</button>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-default" (click)="cancel()">Close</button>
             </div>
         </div>
     </div>
@@ -101,27 +129,39 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-4">Name:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountName" class="form-control"></div>
-                            <div class="col-md-4">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
-
-                        </div>
-                        <div class="col-md-1"></div>
-                    </div>
-                </div>
-                <div class="row sfm" *ngIf="warningMessage">
                     <div class="col-md-12">
-                        <span class="redstar">* Fields are Mandatory.</span>
+                        <div class="row">
+                            <div class="col-md-5">Name:<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addDiscount.discountName" class="form-control"></div>
+                            <div class="col-md-5">Code:<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
+                            <div class="col-md-5">Type:<span class="redstar">*</span></div>
+                            <div class="col-md-7">
+                                <select class="form-control" [(ngModel)]="addDiscount.type">
+                                   <option value="DIS">DIS</option>
+                                   <option value="TRAIL">TRAIL</option>
+                               </select>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" (click)="saveDiscounts()">Save</button>
-                    <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row sfm" *ngIf="warningMessage">
+                            <div class="col-md-12">
+                                <span class="redstar">* Fields are Mandatory.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="saveDiscounts()">Save</button></div>
+                            <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

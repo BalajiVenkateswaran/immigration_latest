@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from "../../services/app.service";
 import {ManageAccountUserDetailsService} from "./manageaccount-user-details.service";
-
 import {User} from "../../models/user";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
@@ -23,11 +22,40 @@ export class ManageaccountUserDetailsComponent implements OnInit {
   public orgsList: any = [];
   public orgsAcces: boolean = true;
   public userProfOrgsList: any=[];
+  public settings;
+  public data;
   constructor( private appService: AppService,
       private route: ActivatedRoute, public manageAccountUserDetailsService: ManageAccountUserDetailsService) {
            if (this.appService.user) {
             this.user = this.appService.user;
             this.orgList=this.appService.organizations;
+        }
+          this.settings={
+            'isDeleteEnable':false,
+            'isAddButtonEnable':false,
+            'columnsettings': [
+                {
+
+                    headerName: "Date",
+                    field: "loginDate",
+                },
+                {
+
+                    headerName: "Time",
+                    field: "loginTime",
+                },
+                {
+
+                    headerName: "IP Address",
+                    field: ""
+                },
+                 {
+
+                    headerName: "Location",
+                    field: ""
+                }
+                
+            ]
         }
   }
   getuserdetails() {
@@ -47,13 +75,17 @@ export class ManageaccountUserDetailsComponent implements OnInit {
                   this.isAccessEdit = false;
                   this.isAccess = false;
               }
+              this.getUserLoginHistory();
           });
       })
   }
+  getUserLoginHistory(){
+      this.manageAccountUserDetailsService.getLoginHistory(this.userid).subscribe(res=>{
+          this.data=res['userLoginHistory'];
+      })
+  }
   ngOnInit() {
-
       this.getuserdetails();
-
   }
   editProfileForm() {
       this.beforeCancelUserProfile = (<any>Object).assign({}, this.userList);

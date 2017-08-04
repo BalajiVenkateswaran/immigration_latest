@@ -14,5 +14,8 @@ export class ManageAccountUserDetailsService {
     public getUserDet(userid, accountid) {
         return this.restService.getData("/userorgs/" + userid + "/accounts/" + accountid);
     }
+    public getLoginHistory(userId){
+        return this.restService.getData("/profile/user/loginHistory/"+userId);
+    }
 
 }

@@ -21,8 +21,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4"><span class="redstar">*</span> Account Name:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.accountName" class="form-control" [ngClass]="accountDetails.accountName == '' ? 'redborder': ''" ></div>
@@ -31,7 +30,7 @@
                             <div class="col-md-4"><span class="redstar">*</span> Last Name:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.lastName" class="form-control" [ngClass]="accountDetails.lastName == '' ? 'redborder': ''" ></div>
                             <div class="col-md-4"><span class="redstar">*</span> Email:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.email" class="form-control" [ngClass]="accountDetails.email == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.email" class="form-control" [ngClass]="accountDetails.email == '' ? 'redborder': ''" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel" /></div>
                             <div class="col-md-4"><span class="redstar">*</span> Phone:</div>
                             <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.phone" class="form-control" [ngClass]="accountDetails.phone == '' ? 'redborder': ''" ></div>
                             <div class="col-md-4"><span class="redstar">*</span> Storage Type::</div>
@@ -42,19 +41,36 @@
                             </select>
                             </div>
                         </div>
-                        <div class="row sfm" *ngIf="errormsg">
-                            <div class="col-md-12">
-                                <span class="redstar">* Fields are Mandatory.</span>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="row sfm" *ngIf="warningMessage">
+                                    <div class="col-md-12">
+                                        <span class="redstar">* Fields are Mandatory.</span>
+                                    </div>
+                                </div>
+                                <div class="row sfm" [hidden]="emailId.valid || emailId.untouched">
+                                    <div class="col-md-12">
+                                        <div class="redstar" *ngIf="emailId.errors && emailId.errors.required">
+                                            * Email is required
+                                        </div>
+                                        <div class="redstar" *ngIf="emailId.errors && emailId.errors.pattern">
+
+                                            * Email is invalid
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="accountSave(emailId.errors)">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="accountSave()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-            </div>
+            
         </div>
     </div>
 </div>

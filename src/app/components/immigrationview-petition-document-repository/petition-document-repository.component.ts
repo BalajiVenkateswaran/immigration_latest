@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PetitionDocumentRepositoryService } from "./petition-document-repository.service";
-import { documentRepository } from "../../models/documentRepository";
-import { FormGroup, FormControl } from "@angular/forms";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/Rx';
 import { User } from "../../models/user";
 import { AppService } from "../../services/app.service";
 import * as FileSaver from 'file-saver';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import { ActionIcons } from '../immigrationview-client-document-repository/ActionsIcons'
+import {ActionIcons} from '../../components/smarttableframework/cellRenderer/ActionsIcons';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -211,15 +206,6 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
-    }
-    addDocumentRepositorySubmit(model: documentRepository, isValid: boolean) {
-        console.log('formdata|account: %o|isValid:%o', model, isValid);
-        if (isValid) {
-            this.petitiondocumentrepositoryService.saveNewDocumentRepository(model).subscribe((status) => { this.message = status[0] });
-        } else {
-            this.message = "Filled etails are not correct! please correct...";
-        }
-
     }
     editFileName(event) {
         if (event.colDef.headerName != 'Actions') {

@@ -4,7 +4,7 @@ import { User } from "../../models/user";
 import { AppService } from "../../services/app.service";
 import { RestService } from "../../services/rest.service";
 import { profileswitchservice } from "./profileswitch.service";
-import { SmartTableFramework } from '../smarttableframework/SmartTableFramework';
+import { SmartTableFramework } from '../smarttableframework/smarttable-framework.component';
 import { switchButton } from './switchButton';
 
 @Component({
