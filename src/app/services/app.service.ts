@@ -199,6 +199,11 @@ export class AppService {
             this.manageUser=true;
             return;
         }
+      }else if(pageLink=='user-details' && !this.manageUser){
+          this.manageUser=false;
+      }
+      else{
+          this.manageUser=true;
       }
     }
 
