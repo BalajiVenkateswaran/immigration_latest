@@ -706,6 +706,47 @@
         left:90% !important;
     }
  }
+
+
+.superuserViewPaymentstab {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentId"], .ag-fresh .ag-ltr .ag-cell[colid~="paymentId"] {
+        width:25% !important;
+        left:0% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="accountName"], .ag-fresh .ag-ltr .ag-cell[colid~="accountName"] {
+        width:15% !important;
+        left:25% !important;
+    }
+    
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="accountNumber"], .ag-fresh .ag-ltr .ag-cell[colid~="accountNumber"] {
+        width:10% !important;
+        left:40% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell[colid~="invoiceNumber"] {
+      width:10% !important;
+        left:50% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell[colid~="invoiceDate"] {
+        width:10% !important;
+        left:60% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell[colid~="invoiceAmount"] {
+        width:10% !important;
+        left:70% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentStatus"], .ag-fresh .ag-ltr .ag-cell[colid~="paymentStatus"] {
+        width:10% !important;
+        left:80% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentDate"], .ag-fresh .ag-ltr .ag-cell[colid~="paymentDate"] {
+        width:10% !important;
+        left:90% !important;
+    }
+ }
+
+
+
+
 .myclass {
     border: none;
     background: darkgray;
