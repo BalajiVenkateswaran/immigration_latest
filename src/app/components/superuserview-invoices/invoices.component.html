@@ -5,8 +5,8 @@
   </ul>
   <div class="clearfix"></div>
   <div class="table-data">
-    <h2>Invoices<!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewCli()">ADD</button>--></h2>
-          <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm) = "onDeleteConfirm($event)" (editConfirm) = "onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+    <h2>Invoices</h2>
+              <smart-table [settings]="settings" [data]="data" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)"></smart-table>
 </div>
 </div>
 
