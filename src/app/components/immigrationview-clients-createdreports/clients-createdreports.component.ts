@@ -17,7 +17,8 @@ export class clientscreatedreportscomponent implements OnInit {
     public Year: any = [];
     public orgsList: any = {};
     public orgsNames: any = [];
-
+    public yearMonth: any = [];
+   
     ngOnInit() {
 
         this.clientsCreatedreportsservice.getClientCreationreports(this.appService.user.accountId)
@@ -25,13 +26,14 @@ export class clientscreatedreportscomponent implements OnInit {
                 this.orgsList = res['orgs'];
                 for (var item in this.orgsList) {
                     this.data = [];
-                    this.Year = [];
+                    this.yearMonth = [];
                     this.orgsNames.push(item);
                     for (var i = 0; i < this.orgsList[item].length; i++) {
                         this.data.push(this.orgsList[item][i]['count']);
-                        this.Year.push(this.orgsList[item][i]['year']);
+                        this.Year = [this.orgsList[item][i]['year'], this.orgsList[item][i]['month']];
+                        this.yearMonth.push(this.Year.join('-'));
                     }
-                    this.barChartLabels[item] = this.Year;
+                    this.barChartLabels[item] = this.yearMonth;
                     this.barChartData[item] = [{ data: this.data, label: 'Clients Created' }];
                 }
             });
