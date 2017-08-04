@@ -13,18 +13,5 @@ export class SuperUserViewInvoicestabService {
       return this.restService.getData("/superuser/invoices");
   }
 
-  //public saveNewClient(clientData: client) {
-  //    return this.restService.postData("/client", clientData);
-  //}
 
-  //public updateClient(clientData: client, updatedBy: string) {
-  //  var req = {
-  //    client : clientData,
-  //    updatedBy: updatedBy
-  //  };
-  //    return this.restService.postData("/clients/immigration", req);
-  //}
-  //public removeclient(clientId: string, immigrationOfficerId: string) {
-  //    return this.restService.deleteData("/client/" + clientId +"/immigrationOfficerId/"+immigrationOfficerId);
-  //}
 }
