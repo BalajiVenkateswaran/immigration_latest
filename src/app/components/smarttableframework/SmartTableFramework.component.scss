@@ -663,6 +663,49 @@
         left:90% !important;
     }
  }
+.acctabprodcatProducts {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="name"], .ag-fresh .ag-ltr .ag-cell[colid~="name"] {
+        width:12% !important;
+        left:0% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="code"], .ag-fresh .ag-ltr .ag-cell[colid~="code"] {
+        width:8% !important;
+        left:12% !important;
+    }
+    
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxUsers"], .ag-fresh .ag-ltr .ag-cell[colid~="maxUsers"] {
+        width:8% !important;
+        left:20% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell[colid~="maxClientsPerMonth"] {
+      width:14% !important;
+        left:28% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell[colid~="maxPetitionsPerMonth"] {
+        width:14% !important;
+        left:42% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell[colid~="maxS3Storage"] {
+        width:10% !important;
+        left:56% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="cost"], .ag-fresh .ag-ltr .ag-cell[colid~="cost"] {
+        width:8% !important;
+        left:66% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="productType"], .ag-fresh .ag-ltr .ag-cell[colid~="productType"] {
+        width:8% !important;
+        left:74% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell[colid~="status"] {
+        width:8% !important;
+        left:82% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell[colid~="startDate"] {
+        width:10% !important;
+        left:90% !important;
+    }
+ }
 .myclass {
     border: none;
     background: darkgray;

@@ -7,14 +7,14 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Products</h2>
-        <smart-table [settings]="settings" [data]="data"
+        <smart-table class="acctabprodcatProducts" [settings]="settings" [data]="data"
                      (onAddClick)="addProducts($event)" (onRowClick)="viewDetails($event)" ></smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
 
 <div *ngIf="viewPopup">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="margin-top:7% !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
@@ -23,95 +23,122 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12 col-sm-6 col-xs-12 col-sm-offset-3">
-                        <div class="col-md-12 addresbox box-shadow">
-                            <div class="row">
-                                <div class="col-md-4">Name:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.name"
-                                        class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.name}}</span>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 addresbox box-shadow">
+                                <div class="row">
+                                    <div class="col-md-5">Name:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.name"
+                                               class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.name}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Code:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.code"
+                                               class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.code}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Description:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.description" class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.description}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Max Users:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxUsers" class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.maxUsers}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Max Clients/Month:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxClientsPerMonth"
+                                               class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.maxClientsPerMonth}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Max Petitions/Month:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxPetitionsPerMonth"
+                                               class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.maxPetitionsPerMonth}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Max S3 Storage:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxS3Storage" class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.maxS3Storage}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Cost:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.cost" class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.cost}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Status:</div>
+                                    <div class="col-md-7">
+                                        <select *ngIf="isEditProducts==false" [(ngModel)]="product.status" class="form-control">
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                        <span *ngIf="isEditProducts==true">{{product.status}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Created On:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.startDate"
+                                               class="form-control">
+                                        <span *ngIf="isEditProducts==true">{{product.startDate}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="row sfm" *ngIf="warningMessage">
+                                            <div class="col-md-12">
+                                                <span class="redstar">* Fields are Mandatory.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <!--<button type="button" class="btn btn-primary" (click)="clientSave(emailId.errors)">Save</button>-->
+                                                <button type="submit" class="btn btn-primary" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
+                                                
+                                                    <!--<button type="button" (click)="cancelProductInfo()" class="editinpopup" *ngIf="isEditProducts==false">Cancel</button>-->
+                                                    <button type="submit" value="Save" class="btn btn-primary" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
+                                                
+                                            </div>
+                                            <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">Code:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.code"
-                                        class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.code}}</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Description:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.description" class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.description}}</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Max Users:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxUsers" class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.maxUsers}}</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Max Clients/Month:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxClientsPerMonth"
-                                        class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.maxClientsPerMonth}}</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Max Petitions/Month:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxPetitionsPerMonth"
-                                        class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.maxPetitionsPerMonth}}</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Max S3 Storage:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxS3Storage" class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.maxS3Storage}}</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Cost:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.cost" class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.cost}}</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Status:</div>
-                                <div class="col-md-8">
-                                    <select *ngIf="isEditProducts==false" [(ngModel)]="product.status" class="form-control">
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
-                                    </select>
-                                    <span *ngIf="isEditProducts==true">{{product.status}}</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">Created On:</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.startDate"
-                                        class="form-control">
-                                    <span *ngIf="isEditProducts==true">{{product.startDate}}</span>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
+                        </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <div class="row">
-                    <button type="submit" class="editinpopup" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
-                    <div class="tbl-head-btn" [hidden]="isEditProducts">
-                        <button type="button" (click)="cancelProductInfo()" class="editinpopup" *ngIf="isEditProducts==false">Cancel</button>
-                        <button type="submit" value="Save" class="savebtn" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-default" (click)="cancel()">Close</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
 <div *ngIf="addPopup">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -121,28 +148,32 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-4">Name:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addProduct.name" class="form-control"></div>
-                            <div class="col-md-4">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addProduct.code" class="form-control"></div>
-                            <div class="col-md-4">Cost:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addProduct.cost" class="form-control"></div>
+                            <div class="col-md-5">Name:<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addProduct.name" class="form-control"></div>
+                            <div class="col-md-5">Code:<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addProduct.code" class="form-control"></div>
+                            <div class="col-md-5">Cost:<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addProduct.cost" class="form-control"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="row sfm" *ngIf="warningMessage">
+                                    <div class="col-md-12">
+                                        <span class="redstar">* Fields are Mandatory.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="saveProduct()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
-                <div class="row sfm" *ngIf="warningMessage">
-                    <div class="col-md-12">
-                        <span class="redstar">* Fields are Mandatory.</span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="saveProduct()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         menu: 'menu',
         footer: null
     };
-    errormsg: boolean = false;
+    public warningMessage: boolean = false;
     public accountList=[];
     public addClient: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
@@ -213,7 +213,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             }
         });
     }
-    accountSave() {
+    accountSave(email) {
         if (this.accountDetails['status'] == "" || this.accountDetails['status'] == undefined) {
             this.accountDetails['status'] = "Active";
         }
@@ -223,8 +223,12 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             || this.accountDetails['email'] == '' || this.accountDetails['email'] == null || this.accountDetails['email'] == undefined
             || this.accountDetails['phone'] == '' || this.accountDetails['phone'] == null || this.accountDetails['phone'] == undefined
             || this.accountDetails['objectStore'] == '' || this.accountDetails['objectStore'] == null || this.accountDetails['objectStore'] == undefined) {
-            this.errormsg = true;
-        } else {
+            this.warningMessage = true;
+        } else if (email != null) {
+            this.warningMessage;
+        }
+        else {
+            this.warningMessage = false;
             this.appService.newclitem = this.accountDetails;
             this.result = true;
             this.close();
