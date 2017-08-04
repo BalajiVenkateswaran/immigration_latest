@@ -87,6 +87,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-5">Type:</div>
+                                    <div class="col-md-7">
+                                        <select *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.productType" class="form-control">
+                                            <option [value]="x.value" *ngFor="let x of typeValues">{{x.name}}</option>
+                                        </select>
+                                        <span *ngIf="isEditProducts==true">{{product.productType}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-5">Status:</div>
                                     <div class="col-md-7">
                                         <select *ngIf="isEditProducts==false" [(ngModel)]="product.status" class="form-control">
@@ -115,10 +124,10 @@
                                     <div class="col-md-7">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <!--<button type="button" class="btn btn-primary" (click)="clientSave(emailId.errors)">Save</button>-->
+                                               
                                                 <button type="submit" class="btn btn-primary" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
                                                 
-                                                    <!--<button type="button" (click)="cancelProductInfo()" class="editinpopup" *ngIf="isEditProducts==false">Cancel</button>-->
+                                                  
                                                     <button type="submit" value="Save" class="btn btn-primary" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
                                                 
                                             </div>
@@ -156,6 +165,12 @@
                             <div class="col-md-7"><input type="text" [(ngModel)]="addProduct.code" class="form-control"></div>
                             <div class="col-md-5">Cost:<span class="redstar">*</span></div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addProduct.cost" class="form-control"></div>
+                            <div class="col-md-5">Type:<span class="redstar">*</span></div>
+                            <div class="col-md-7">
+                                <select [(ngModel)]="addProduct.productType" class="form-control">
+                                    <option [value]="x.value" *ngFor="let x of typeValues">{{x.name}}</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">

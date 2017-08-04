@@ -84,6 +84,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
       this.superuserviewInvoicestabService.getInvoices(this.appService.orgId)
         .subscribe((res: any) => {
             this.invoicesList = res.invoices;
+            this.data=this.invoicesList;
           });
       if (this.appService.user) {
           this.user = this.appService.user;
@@ -106,8 +107,9 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
         this.close();
     }
 
-  onUserRowClick(event): void{
+  moveToInvoiceTab(event): void{
       this.menuComponent.highlightSBLink('Account Details Invoices');
+      this.appService.showSideBarMenu('superuser-accounts', "invoices");
       this.appService.moveToPage("accountdetails-invoice");
       this.appService.clientId = event.data.clientId;
 

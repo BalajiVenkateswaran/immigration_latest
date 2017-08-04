@@ -39,7 +39,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     public warningMessage:boolean=false;
     public settings;
     public data;
-
+    public typeValues;
     ngOnInit() {
       this.menuComponent.highlightSBLink('Products');
       this.appService.showSideBarMenu("superuserview-product", "ProductCatalog");
@@ -112,6 +112,28 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
                 
             ]
         }
+    this.typeValues=[
+        {
+            "value":"Plan",
+            "name":"Plan"
+        },
+         {
+            "value":"UserAdOn",
+            "name":"User Add On"
+        },
+         {
+            "value":"ClientAddOn",
+            "name":"Client Add On"
+        },
+         {
+            "value":"PetitionAddOn",
+            "name":"Petition Add On"
+        },
+        {
+            "value":"StorageAddOn",
+            "name":"Storage Add On"
+        },
+    ]
     this.getProducts();
   }
   viewDetails(event){
@@ -182,7 +204,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
        this.result = false;
        this.close();
   }
-   editProductInfo(){
+  editProductInfo(){
     this.isEditProducts = !this.isEditProducts;
   }
   cancelProductInfo(){
@@ -192,6 +214,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   }
   saveProductInfo(){
     this.isEditProducts = !this.isEditProducts;
+    this.appService.addUsers.accountProductId=this.product.accountProductId;    
     this.appService.addUsers = this.product;
     this.result = true;
     this.close();
