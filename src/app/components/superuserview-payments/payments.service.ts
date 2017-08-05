@@ -12,6 +12,9 @@ export class SuperUserViewPaymentstabService {
   public getPayments() {
     return this.restService.getData("/superuser/payments");
   }
+  public getClientsFilteredData(accountId:string,filterQueries:any){
+    return this.restService.getData("/superuser/payments"+accountId+'?'+"filter="+filterQueries);
+  }
 
 
 }

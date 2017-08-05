@@ -114,5 +114,9 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
       this.accountDetailsCommonService.accountId = event.data.accountId;
 
   }
-
+  filterData(filterQueries) {
+        this.superuserviewInvoicestabService.getClientsFilteredData(this.accountDetailsCommonService.accountId, filterQueries).subscribe(res => {
+            this.data = res['invoices'];
+        })
+    }
 }

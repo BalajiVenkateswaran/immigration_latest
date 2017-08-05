@@ -19,6 +19,6 @@ export class superUserviewAccountService {
     public createAccount(accountDetails) {
         return this.restService.postData("/superuser/account", accountDetails);
     }
-
+    
   
 }

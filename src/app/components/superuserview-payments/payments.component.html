@@ -6,7 +6,7 @@
   <div class="clearfix"></div>
   <div class="table-data">
     <h2>Payments</h2>
-      <smart-table class="superuserViewPaymentstab" [settings]="settings" [data]="data" (onRowClick)="editRecord($event)">
+      <smart-table class="superuserViewPaymentstab" [settings]="settings" [data]="data" (onRowClick)="editRecord($event)" (onColumnFilterClick)="filterData($event)">
       </smart-table>    
   
 </div>

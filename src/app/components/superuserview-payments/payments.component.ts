@@ -115,5 +115,10 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
       this.appService.showSideBarMenu("superuser-accounts","accounts");
       
   }
+  filterData(filterQueries) {
+        this.superuserviewPaymentstabService.getClientsFilteredData(this.accountDetailsCommonService.accountId, filterQueries).subscribe(res => {
+            this.data = res['payments'];
+        })
+    }
 
 }

@@ -192,5 +192,5 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         this.accountDetailsCommonService.destroy();
         this.accountDetailsCommonService.accountId = event.data.accountId;
     }
-
+    
 }
