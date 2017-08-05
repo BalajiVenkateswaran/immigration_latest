@@ -166,7 +166,8 @@ import { AccountsManagers } from './components/superuserview-accountdetails-mana
 import { AccountManagersService } from './components/superuserview-accountdetails-managers/accountmanagers.service';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
 import { ManageAccountPaymentsService } from "./components/manageaccount-payments/manageaccount-payments.service";
-
+import { SuperuserviewAccountdetailsMfdComponent } from './components/superuserview-accountdetails-mfd/superuserview-accountdetails-mfd.component';
+import { SuperUserViewMFDService } from "./components/superuserview-accountdetails-mfd/accountdetails-mfd-service";
 import { ManageAccountInvoiceService } from "./components/manageaccount-invoices/manageaccount-invoices.service";
 import {ImmigrationviewPetitionNotesComponent } from './components/immigrationview-petition-notes/petition-notes.component';
 import { ManageaccountUserDetailsComponent } from './components/manageaccount-user-details/manageaccount-user-details.component'
@@ -227,7 +228,6 @@ import {profilechangepwdcomponent} from './components/immigrationview-profilecha
 import {profilechangepwdservice} from './components/immigrationview-profilechangepassword/profilechangepassword.service';
 import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
 import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
-import { SuperuserviewAccountdetailsMfdComponent } from './components/superuserview-accountdetails-mfd/superuserview-accountdetails-mfd.component';
 
 @NgModule({
     imports: [
@@ -424,7 +424,7 @@ import { SuperuserviewAccountdetailsMfdComponent } from './components/superuserv
         SuperuserViewAccountDetailsService,
         AccountInvoiceService,
         AccountManagersService,
-
+        SuperUserViewMFDService,
         markfordeletionservice,
         SuperUserViewPaymentstabService,
         AccountDetailsPaymentsService,

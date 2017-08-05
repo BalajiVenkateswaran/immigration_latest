@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SuperUserViewMFDService} from './accountdetails-mfd-service';
+import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
 
 @Component({
   selector: 'app-superuserview-accountdetails-mfd',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
   public settings;
-  constructor() { 
+  public data;
+  constructor(public accountDetailsMFDService:SuperUserViewMFDService, private accountDetailsCommonService: AccountDetailsCommonService) { 
     this.settings={
             'isDeleteEnable':false,
             'isAddButtonEnable':false,
@@ -54,6 +57,9 @@ export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.accountDetailsMFDService.getMarkForDeletion(this.accountDetailsCommonService.accountId).subscribe(res=>{
+          this.data=res['markForDeletionInfoList'];
+      })
   }
 
 }

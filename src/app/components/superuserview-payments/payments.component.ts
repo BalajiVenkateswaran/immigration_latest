@@ -40,6 +40,7 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
         this.settings = {
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
+            'columnFilter':true,
             'columnsettings': [
                 {
 

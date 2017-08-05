@@ -1,7 +1,6 @@
 import {User} from "../../models/user";
 import { Component, OnInit } from '@angular/core';
 import {AppService} from "../../services/app.service";
-import { Ng2SmartTableModule, LocalDataSource, ServerDataSource  } from 'ng2-smart-table';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
@@ -21,59 +20,7 @@ export interface ConfirmModel {
     templateUrl:'./accountmanagers-component.html'
 })
 export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> implements OnInit{
-    // settings = {
-    //    add: {
-    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmCreate: true
-    //    },
-    //    edit: {
-    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmSave: true
-    //    },
-    //    delete: {
-    //        deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-    //        confirmDelete: true
-    //    },
-    //    columns: {
-    //        firstName: {
-    //            title: 'First Name'
-    //        },
-    //        lastName: {
-    //            title: 'Last Name'
-    //        },
-    //        emailId: {
-    //            title: 'Email'
-    //        },
-    //         roleName: {
-    //            title: 'Role',
-    //            editor: {
-    //                type: 'list',
-    //                config: {
-    //                    list: [
-    //                        {
-    //                            value: "Immigration Officer",
-    //                            title: "Immigration Officer"
-    //                        },
-    //                        {
-    //                            value: "Immigration Manager",
-    //                            title: "Immigration Manager"
-    //                        }
-    //                    ]
-    //                }
-    //            }
-    //        }
-
-    //    },
-    //    pager: {
-    //        display: true,
-    //        perPage: 10
-    //    },
-    //    mode:'external'
-    //};
+   
     public settings;
     public data;
     public addUsers: any = {};
@@ -81,7 +28,6 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     public viewUsers:boolean=true;
     public beforeEdit: any;
     public editFlag: boolean = true;
-    source: LocalDataSource = new LocalDataSource();
     public warningMessage:boolean=false;
      private roles: any = {
         "Immigration Officer": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
@@ -129,7 +75,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
                 }
                 this.data = res['users'];
 
-               // this.source.load(res['users']);
+        
             });
     }
     addFunction(event) {
@@ -166,20 +112,6 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         this.close();
     }
     editRecord(event): void {
-        //console.log("User table onEditConfirm event: %o",event.newData);
-        //event.newData['role'] = this.roles[event.newData['roleName']];
-        //this.manageAccountUserService.updateUser(event.newData).subscribe((res) => {
-        //      this.message = res['statusCode'];
-        //      if(this.message === "SUCCESS"){
-        //        event.confirm.resolve(event.newData);
-        //      } else {
-        //          this.dialogService.addDialog(ConfirmComponent, {
-        //              title: 'Error..!',
-        //              message: 'Unable to Edit User..!'
-        //          });
-        //        event.confirm.resolve(event.data);
-        //      }
-        //});
         this.editFlag = true;
         if (this.editFlag) {
             this.beforeEdit = (<any>Object).assign({}, event.data);

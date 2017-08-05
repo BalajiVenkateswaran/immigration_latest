@@ -38,6 +38,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
         this.settings={
             'isDeleteEnable':false,
             'isAddButtonEnable':false,
+            'columnFilter':true,
             'columnsettings': [
                 {
 

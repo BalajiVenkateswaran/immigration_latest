@@ -49,6 +49,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         super(dialogService);
         this.settings = {
             'isDeleteEnable': false,
+            'columnFilter':true,
             'columnsettings': [
                 {
 
