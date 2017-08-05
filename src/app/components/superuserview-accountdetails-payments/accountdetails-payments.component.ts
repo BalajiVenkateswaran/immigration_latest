@@ -39,52 +39,6 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     public isEditpayments: boolean = true;
     public settings;
     public data;
-    //settings = {
-    //    add: {
-    //        addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-    //        createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmCreate: true
-    //    },
-    //    edit: {
-    //        editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-    //        saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //        cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //        confirmSave: true
-    //    },
-    //    actions: {
-    //        delete: false,
-    //        add: false,
-    //        edit: false
-    //    },
-    //    columns: {
-    //        invoiceNumber: {
-    //            title: 'Invoice Number'
-    //        },
-    //        invoiceDate: {
-    //            title: 'Invoice Date'
-    //        },
-    //        invoiceAmount: {
-    //            title: 'Invoice Amount'
-    //        },
-    //        paymentReceived: {
-    //            title: 'Payment Received'
-    //        },
-    //        pdfUploaded: {
-    //            title: 'PDF uploaded',
-    //        },
-    //        downloadButton: {
-    //            title: 'Download Button',
-    //        },
-    //        viewDetails: {
-    //            title: 'View Details',
-    //        }
-    //    },
-    //    pager: {
-    //        display: true,
-    //        perPage: 10
-    //    }
-    //};
     constructor(private appService: AppService,public accountsPaymentService:AccountDetailsPaymentsService,public dialogService: DialogService,
     private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
@@ -145,7 +99,6 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         this.accountsPaymentService.getPaymentDetails(this.accountDetailsCommonService.accountId).subscribe(
             res=>{
                 if(res['statusCode']=='SUCCESS'){
-                    //this.paymentList = res['payments'];
                     this.data = res['payments'];
                 }
             }
@@ -195,10 +148,6 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
                   }
               });
            }
-           else{
-
-               //this.editFlag = false;
-           }
         });
     }
     editpaymentsInfo(){
@@ -209,6 +158,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     }
     savepaymentsInfo(){
      this.isEditpayments = !this.isEditpayments;
+    
      this.appService.addUsers = this.payment;
      this.result = true;
      this.close();

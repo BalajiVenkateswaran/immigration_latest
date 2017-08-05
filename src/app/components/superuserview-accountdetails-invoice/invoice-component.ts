@@ -1,19 +1,18 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import {AppService} from "../../services/app.service";
-import { Ng2SmartTableModule, LocalDataSource, ServerDataSource  } from 'ng2-smart-table';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {superuserinvoice} from "../../models/superuserinvoice";
 import {AccountInvoiceService} from './invoice.service';
 import {User} from "../../models/user";
-import {FormGroup, FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
+import * as FileSaver from 'file-saver';
 import {MenuComponent} from "../menu/menu.component";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
 import { InvoicedownloadButton } from './invoicedownloadbutton';
-
+import {InvoiceUploadButton} from './invoiceuploadbutton';
 
 export interface ConfirmModel {
     title: string;
@@ -51,6 +50,9 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         this.settings = {
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
+            'context':{
+                'componentParent':this
+            },
             'columnsettings': [
                 {
 
@@ -76,12 +78,12 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
                 {
 
                     headerName: "PDF Uploaded",
-                    field: "fileName",
+                    cellRendererFramework: InvoiceUploadButton
 
                 },
                 {
 
-                    headerName: "Download",
+                    headerName: "Download Button",
                     cellRendererFramework: InvoicedownloadButton
 
                 }
@@ -99,12 +101,8 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
                 console.log(this.AccountInvoices);
             });
     }
-
-    onDeleteConfirm(event): void { }
-    onEditConfirm(event): void { }
-
     editRecord(event) {
-        //this.invoice=rowdata;
+        if(event.colDef.headerName!='PDF Uploaded' && event.colDef.headerName!='Download Button')
         this.dialogService.addDialog(AccountInvoiceComponent, {
             title: 'View Invoice Details',
             viewPopup: true,
@@ -113,14 +111,63 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
             invoice:event.data,
         })
     }
-    //downloadInvoice(rowData) {
-    //    this.accountInvoiceService.downloadInvoice(rowData.invoiceId)
-    //        .subscribe((res) => {
-
-    //        });
-    //}
-
     cancel(){
          this.close();
+    }
+    onDownloadClick(event){
+       this.accountInvoiceService.downloadFile(event.data.invoiceId).subscribe
+            (data => this.downloadFiles(data, event.data.fileName)),
+            error => console.log("Error Downloading....");
+        () => console.log("OK");
+    }
+    downloadFiles(data: any, fileName) {
+        var blob = new Blob([data], {
+            type: 'application/pdf'
+        });
+        FileSaver.saveAs(blob, fileName);
+    }
+    onUploadClick(event){
+        let fileList: FileList = event.event.target.files;
+        let file: File = fileList[0];
+        var x = file.name;
+        let fileExists = this.isfileExists(file);
+        var y = x.split(".");
+        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+            let formData: FormData = new FormData();
+            formData.append('file', file, file.name);
+
+            this.accountInvoiceService.uploadFile(event.data.invoiceId, formData)
+                .subscribe(
+                res => {
+                   console.log(res);
+                }
+                );
+
+        }
+        else {
+            if (fileExists == true) {
+                this.dialogService.addDialog(ConfirmComponent, {
+                    title: 'Error..!',
+                    message: 'Filename is already exists.'
+                });
+            }
+            else {
+                this.dialogService.addDialog(ConfirmComponent, {
+                    title: 'Error..!',
+                    message: 'Please Upload Only Pdf files'
+                });
+            }
+        }
+    }
+     isfileExists(file) {
+        let upload: boolean = false;
+        this.AccountInvoices.filter(item => {
+            if (file.name == item.fileName) {
+                upload = true;
+                return false;
+            }
+            return true;
+        })
+        return upload;
     }
 }

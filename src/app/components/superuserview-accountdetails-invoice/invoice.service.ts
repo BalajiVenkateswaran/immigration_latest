@@ -13,4 +13,12 @@ export class AccountInvoiceService {
     public downloadInvoice(invoiceid: string) {
         return this.restService.getData("/superuser/invoice/" + invoiceid );
     }
+    public uploadFile(invoiceId: string, formData: FormData) {
+            return this.restService.postDataWithHeaders("/superuser/invoice/"+invoiceId+"/file/upload",
+              formData);
+    }
+    public downloadFile(invoiceId: string) {
+        return this.restService.getFile("/superuser/invoice/" + invoiceId);
+
+    }
 }

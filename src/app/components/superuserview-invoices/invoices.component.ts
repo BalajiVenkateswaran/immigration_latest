@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {invoice} from "../../models/invoice";
-import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {Router} from "@angular/router";
@@ -11,6 +9,7 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import {SuperUserViewInvoicestabService} from "./invoices.service";
+import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
 
 export interface ConfirmModel {
     title: string;
@@ -34,7 +33,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
     public newclitem: any = {};
     public settings;
     public data;
-    constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
+    constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
         this.settings={
             'isDeleteEnable':false,
@@ -109,9 +108,9 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
 
   moveToInvoiceTab(event): void{
       this.menuComponent.highlightSBLink('Account Details Invoices');
-      this.appService.showSideBarMenu('superuser-accounts', "invoices");
+      this.appService.showSideBarMenu('superuser-accounts', "accounts");
       this.appService.moveToPage("accountdetails-invoice");
-      this.appService.clientId = event.data.clientId;
+      this.accountDetailsCommonService.accountId = event.data.accountId;
 
   }
 

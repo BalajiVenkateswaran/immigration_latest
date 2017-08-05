@@ -18,6 +18,7 @@ export class AccountDetailsPaymentsService {
     }
     public editpaymentss(accountId:string,payment:any){
         var req = {
+            
             "payment": payment
         };
         return this.restService.putData("/superuser/account/"+accountId+"/payments", req);

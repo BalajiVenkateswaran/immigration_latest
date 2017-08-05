@@ -1,8 +1,5 @@
 ﻿import { Component, OnDestroy, EventEmitter, Output, Input } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular/main';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
 import {AccountInvoiceService} from './invoice.service';
 import { AppService } from "../../services/app.service";
 @Component({
@@ -22,9 +19,6 @@ export class InvoicedownloadButton implements ICellRendererAngularComp {
     constructor(private accountInvoiceService: AccountInvoiceService, public appService: AppService) {
     }
     downloadInvoice() {
-        this.accountInvoiceService.downloadInvoice(this.params.invoiceId)
-            .subscribe((res) => {
-
-            });
+        this.params.context.componentParent.onDownloadClick({'data':this.params.data});
     }
 }

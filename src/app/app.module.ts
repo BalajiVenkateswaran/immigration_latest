@@ -189,7 +189,7 @@ import { ImmigrationViewReportsComponent } from './components/immigration-view-r
 import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service'
 
 import {profileCommonService} from './components/immigrationview/profile/common/immigration-profile.service';
-
+import {InvoiceUploadButton} from './components/superuserview-accountdetails-invoice/invoiceuploadbutton';
 import { ManageAccountUserDetailsService } from "./components/manageaccount-user-details/manageaccount-user-details.service";
 
 //immigrationview reports tab
@@ -227,6 +227,7 @@ import {profilechangepwdcomponent} from './components/immigrationview-profilecha
 import {profilechangepwdservice} from './components/immigrationview-profilechangepassword/profilechangepassword.service';
 import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
 import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
+import { SuperuserviewAccountdetailsMfdComponent } from './components/superuserview-accountdetails-mfd/superuserview-accountdetails-mfd.component';
 
 @NgModule({
     imports: [
@@ -243,10 +244,10 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         AgGridModule.withComponents([SmartTableFramework]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,/*AdvancedExamplesCustomEditorComponent,*/
+        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,
@@ -352,7 +353,8 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         profileloginhiscomponent,
         profileswitchcomponent,
         profilechangepwdcomponent,
-        profiletodolistcomponent
+        profiletodolistcomponent,
+        SuperuserviewAccountdetailsMfdComponent
 
     ],
     providers: [

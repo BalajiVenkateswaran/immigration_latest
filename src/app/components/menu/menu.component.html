@@ -436,6 +436,12 @@
                       <span>Payments</span>
                   </a>
               </li>
+               <li>
+                  <a (click)="appservice.moveToPage('accountdetails-mfd');highlightSBLink('accountdetails-mfd')" [ngClass]="[checkForCurrentSBLink('accountdetails-mfd') ? 'active': '']" routerLinkActive="active">
+                      <span class="ico-flight"></span>
+                      <span>Payments</span>
+                  </a>
+              </li>
 
           </ul>
 

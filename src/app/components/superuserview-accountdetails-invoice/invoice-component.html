@@ -106,51 +106,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <!--<div class="row">
-                    <button type="submit" class="editinpopup" (click)="editinvoiceInfo()" *ngIf="isEditInvoice==true">Edit</button>
-                    <div class="tbl-head-btn" [hidden]="isEditInvoice">
-                        <button type="button" (click)="cancelinvoiceInfo()" class="editinpopup" *ngIf="isEditInvoice==false">Cancel</button>
-                        <button type="submit" value="Save" class="savebtn" (click)="saveinvoiceInfo()" *ngIf="isEditInvoice==false">Save</button>
-                    </div>
-                </div>-->
                 <button type="button" class="btn btn-default" (click)="cancel()">Close</button>
             </div>
         </div>
     </div>
 </div>
-<!--<div *ngIf="addInvoice">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">{{title}}</h4>
-                            <button type="button" class="close" (click)="close()">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-10">
-                                    <div class="row">
-                                        <div class="col-md-4">Invoice Number:</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.invoiceNumber" class="form-control"></div>
-                                        <div class="col-md-4">Invoice Date:</div>
-                                        <div class="col-md-8">
-                                            <my-date-picker [options]="myDatePickerOptions"
-                                                            (dateChanged)="onDateChanged($event)"
-                                                            [selDate]="invoiceDate"></my-date-picker>
-                                        </div>
-                                        <div class="col-md-4">Invoice Amount:</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.invoiceAmount" class="form-control"></div>
-                                        <div class="col-md-4">Payment Received:</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="newInvoice.paymentReceived" class="form-control"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-1"></div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" (click)="dependentSave()">Save</button>
-                            <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>-->

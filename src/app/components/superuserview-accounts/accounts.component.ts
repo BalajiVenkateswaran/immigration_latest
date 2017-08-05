@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {superUserviewAccountService} from "./accounts.component.service";
-import {client} from "../../models/client";
-import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {Router} from "@angular/router";
 import {User} from "../../models/user";
@@ -35,8 +31,6 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     };
     public warningMessage: boolean = false;
     public accountList=[];
-    public addClient: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     public data;
     public settings;
@@ -49,54 +43,6 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
 
     public DefaultResponse = { "status": "Active" };
     public accountsList:any;
-
-    //settings = {
-    //    actions:false,
-    //    columns: {
-    //        accountName: {
-    //            title: 'Account Name'
-    //        },
-    //        accountNumber: {
-    //            title: 'Account Number'
-    //        },
-    //        firstName: {
-    //            title: 'First Name'
-    //        },
-    //        lastName: {
-    //            title: 'Last Name',
-    //        },
-    //        email:{
-    //            title: 'Email',
-    //        },
-    //        phone:{
-    //            title: 'Phone',
-    //        },
-    //        status: {
-    //            title: 'Status',
-    //        },
-    //        clients : {
-    //            title: 'Clients',
-    //        },
-    //        petitions: {
-    //            title: 'Petitions',
-    //        },
-    //        createdOn:{
-    //            title: 'Created On',
-    //        },
-    //        lastPaymentStatus:{
-    //            title: 'Last Payment Status',
-    //        },
-    //        storageType: {
-    //            title: 'Storage Type',
-    //        }
-
-    //    },
-    //    pager: {
-    //        display: true,
-    //        perPage: 10
-    //    }
-    //};
-    source: LocalDataSource = new LocalDataSource();
     constructor(private clientService: superUserviewAccountService, private appService: AppService,
       private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
       private accountDetailsCommonService: AccountDetailsCommonService) {
@@ -177,13 +123,11 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
             ]
         }
     }
-
     getAccountDetail() {
         this.appService.showSideBarMenu(null, "accounts");
         this.clientService.getAccountDetails().subscribe((res) => {
             if(res['statusCode']=='SUCCESS'){
                 console.log(res['accountInfoList']);
-               // this.source.load(res['accountInfoList']);
                 this.data = res['accountInfoList'];
             }
         });
@@ -243,7 +187,6 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     editRecord(event): void {
         this.menuComponent.highlightSBLink('accounts');
         this.appService.moveToPage("account-details");
-
         //Destroy account details Common service and assign accountId
         this.accountDetailsCommonService.destroy();
         this.accountDetailsCommonService.accountId = event.data.accountId;
