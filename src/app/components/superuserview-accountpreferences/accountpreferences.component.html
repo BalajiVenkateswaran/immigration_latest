@@ -8,13 +8,13 @@
         <h2>
             Products
         </h2>
-        <smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)">
+        <smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)" (onRowClick)="editProducts($event)">
         </smart-table>
      
         <h2 style="margin-top: 50px;">
             Discounts
         </h2>
-        <smart-table class="superUserViewaccprefDiscounts" [settings]="discountsettings" [data]="discountdata" (onAddClick)="adddiscountFunction($event)" (onRowClick)="editdiscountRecord($event)">
+        <smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)" (onRowClick)="editDiscounts($event)">
         </smart-table>
 </div>
 
@@ -72,17 +72,17 @@
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-4">Code:</div>
-                            <div class="col-md-8"><input type="text" class="form-control" [disabled]="editdscnt" [(ngModel)]="disconutcode"></div>
+                            <div class="col-md-8"><input type="text" class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode"></div>
                             <div class="col-md-4">Start Date:</div>
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                [(ngModel)]="discountstartDate"
-                                                [selDate]="startDtae"></my-date-picker>
+                                                [(ngModel)]="discounts.startDate"
+                                                [selDate]="startDate"></my-date-picker>
                             </div>
                             <div class="col-md-4">End Date:</div>
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                 [(ngModel)]="discountendDate"
+                                                 [(ngModel)]="discounts.endDate"
                                                 [selDate]="endDate"></my-date-picker>
                             </div>
                         </div>
