@@ -102,6 +102,7 @@ import {profileloginhiscomponent} from './components/immigrationview-profilelogi
 import {profileswitchcomponent} from './components/immigrationview-profileswitch/profileswitch.component';
 import {profilechangepwdcomponent} from './components/immigrationview-profilechangepassword/profilechangepassword.component';
 import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
+import { ManageaccountChecklistComponent } from "./components/manageaccount-checklist/manageaccount-checklist.component";
 
 
 export const appRoutes: Routes = [
@@ -256,6 +257,10 @@ export const appRoutes: Routes = [
     {
         path: 'manageaccount-petitiontypestages',
         component: ManageAccountPetitionTypeStagesComponent
+    },
+    {
+        path:'manageaccount-checklist',
+        component:ManageaccountChecklistComponent
     },
     {
         path: 'manageaccount-shippingaddress',

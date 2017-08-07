@@ -1,6 +1,6 @@
-<div class="container-fluid login-bg no-pad" *ngIf="getloginpage">
-    <a (click)="hbidhb" class="loginbtn">Login</a>
-				<div class="login_side">
+ <div class="container-fluid login-bg no-pad" *ngIf="getloginpage">
+    <a (click)="loginPopup()" >Login</a>
+				<!--<div class="login_side">
                     <form action="" class="login-form" [formGroup]="login" (ngSubmit)="onSubmitClick(login.value, login.valid)">
                             <h2>Immigration Hub</h2>
                             <div class="form-group row" [hidden]="!message">
@@ -38,7 +38,7 @@
                                 </p>
                             </div>
                         </form>
-				</div>
+				</div>-->
 			<div class="login_main">
 				<div class="col-md-7 pull-right">
 					<div class="login_maintext">
@@ -47,9 +47,15 @@
 					</div>
 				</div>
 			</div>
+             <div class="login_text">
+                                <h4>Welcome to Immigration Hub </h4>
+                                <p>
+                                Next gen case management, automation and document management application for your immigration needs
+                                </p>
+                            </div>
 		</div>
-
-<div *ngIf="loginpopup">
+        
+<div *ngIf="loginPopupForm">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -59,21 +65,49 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <ul>
-                            <li *ngFor="let user of userRoles" (click)="selectedRole(user)">
-                                {{getRoleName(user)}}
-                            </li>
-                        </ul>
+                       <div >
+                    <form action=""  [formGroup]="login" (ngSubmit)="onSubmitClick(login.value, login.valid)">
+                            <h2>Immigration Hub</h2>
+                            <div class="form-group row" [hidden]="!message">
+                                {{message}}
+                            </div>
+                            <div class="form-group" *ngIf="forgotPwd==true">
+                                <div class="user_id">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" id="userId" placeholder="Email" formControlName="emailId">
+                                </div>
+                                <div class="password">
+                                    <label>PASSWORD</label>
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" formControlName="password">
+                                </div>
+                                <div class="sign_in">
+                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                </div>
+                                <div class="forgot_password">
+                                    <a (click)="frgtPwd()">Forgot Password?</a>
+                                </div>
+                            </div>
+                        <div class="form-group" *ngIf="forgotPwd==false">
+                            <div class="user_id">
+                                <label>Enter Registered Email Id</label>
+                                <input type="email" class="form-control" id="forgetPassword" placeholder="Email" formControlName="emailId">
+                            </div>
+                            <div class="sign_in">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                           
+                        </form>
+				</div>
+                        
                     </div>
                 </div>
             </div>
+           
         </div>
     </div>
 </div>
-
-
-
-<div *ngIf="selectrole">
+        <div *ngIf="selectrole">
     <div class="modal-dialog orgnamebox">
         <div class="modal-content">
             <div class="modal-header">

@@ -14,6 +14,7 @@ export interface ConfirmModel {
     message: string;
     getloginpage: boolean;
     selectrole: boolean;
+    loginPopupForm:boolean;
     userRoles: any;
 }
 @Component({
@@ -37,6 +38,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
   private frgtEmail;
   public getloginpage: boolean = true;
   public selectrole: boolean;
+  public loginPopupForm:boolean;
   public userRoles: any = [];
   constructor(
     private router: Router,
@@ -96,6 +98,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
 
   loginSubmit(model: User, isValid: boolean) {
     if (isValid) {
+        this.loginPopupForm=false;
         this.ManageAccountUserService.login(model).subscribe((res: any) => {
             console.log("Login User %o", res);
             if (res.statusCode == "FAILURE") {
@@ -193,5 +196,14 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
   */
   getRoleName(user){
     return user.accountName == null ? user.roleName : user.roleName+' in '+user.accountName;
+  }
+  loginPopup(){
+      this.dialogService.addDialog(LoginComponent, {
+                            selectrole: false,
+                            getloginpage: false,
+                            loginPopupForm:true,
+                            title: 'Login',
+                            
+                        })
   }
 }

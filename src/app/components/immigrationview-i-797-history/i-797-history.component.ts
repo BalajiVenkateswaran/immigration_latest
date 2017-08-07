@@ -28,51 +28,6 @@ export interface ConfirmModel {
   styleUrls: ['./i-797-history.component.sass']
 })
 export class ImmigrationViewI797HistoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    /*settings = {
-        add: {
-            addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-            createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmCreate: true
-        },
-        edit: {
-            editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-            saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-            cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-            confirmSave: true
-        },
-        delete: {
-            deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-            confirmDelete: true
-        },
-        columns: {
-
-            receiptNumber: {
-                title: 'Receipt Number'
-            },
-            receiptDate: {
-                title: 'Receipt Date'
-            },
-            status: {
-                title: 'Status On I-797'
-            },
-            approvedOn: {
-                title: 'Approved on'
-            },
-            validFrom: {
-                title: 'Valid From'
-            },
-            validTill: {
-                title: 'Valid Till'
-            }
-        },
-        pager: {
-            display: true,
-            perPage: 10
-        },
-        mode: 'external'
-
-    };*/
     public settings;
     public data;
     private delmessage;

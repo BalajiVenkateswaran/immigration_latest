@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
-
 import {ManageAccountShippingAddressService} from "./manageaccount-shippingaddress.service";
 import {AppService} from "../../services/app.service";
 import {User} from "../../models/user";
-import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 export interface ConfirmModel {
     title: string;
@@ -23,8 +17,6 @@ export interface ConfirmModel {
 })
 export class ManageAccountShippingAddressComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
-    public addShippingAddress: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private data;
     private user: User;
@@ -34,43 +26,6 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
     public editshippingFlag: boolean = true;
     public beforeshippingEdit: any;
     public settings;
- 
-    // settings = {
-    //     add: {
-    //         addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-    //         createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //         cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //         confirmCreate: true
-    //     },
-    //     edit: {
-    //         editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-    //         saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //         cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //         confirmSave: true
-    //     },
-    //     delete: {
-    //         deleteButtonContent: '<i class="fa fa-trash" aria-hidden="true"></i>',
-    //         confirmDelete: true
-    //     },
-    //     columns: {
-    //         slNo: {
-    //              title: 'SL.NO'
-    //         },
-    //         addressName: {
-    //             title: ' Address Name'
-    //         },
-    //         address: {
-    //             title: 'Address'
-    //         }
-
-    //     },
-    //     pager: {
-    //         display: true,
-    //         perPage: 10
-    //     }
-    //     , mode: 'external'
-    // };
-
     constructor(private manageAccountShippingAddressService: ManageAccountShippingAddressService, private appService: AppService, public dialogService: DialogService) {
         super(dialogService);
       if (this.appService.user) {
@@ -99,28 +54,25 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
         }
 
      }
-   // source: LocalDataSource = new LocalDataSource();
+ 
     getaccountid = function (accountid) {
     }
     getShippingDetails() {
         this.manageAccountShippingAddressService.getShipmentAddress(this.appService.user.accountId)
             .subscribe((res) => {
 
-                //for (var address in res) {
-                //    res[address]['slNo'] = address+1;
-                //}
                 for (var i = 0; i < res.length; i++) {
                     res[i]['slNo'] = i + 1;
                 }
-                //this.source.load(res);
+
                  this.data=res;
-                console.log(res);
+                
             });
 
     }
   ngOnInit() {
       this.getShippingDetails();
-        //this.data=res;
+       
     }
   addFunction() {
       this.dialogService.addDialog(ManageAccountShippingAddressComponent, {
@@ -148,23 +100,7 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
       this.result = false;
       this.close();
   }
-  //onCreateConfirm(event): void {
-  //    console.log("User table onCreateConfirm event: %o", event.newData);
-  //    event.newData['accountId'] = this.appService.user.accountId;
-  //    this.manageAccountShippingAddressService.createShipmentAddress(event.newData).subscribe((res) => {
-  //        this.message = res['statusCode'];
-  //        if (this.message == 'SUCCESS') {
-  //            event.confirm.resolve();
-  //        } else {
-  //            this.dialogService.addDialog(ConfirmComponent, {
-  //                title: 'Error..!',
-  //                message: 'Unable to Add Shipping Address..!'
-  //            });
-  //            event.confirm.reject();
-  //        }
-  //    });
-
-  //}
+  
   editRecord(event): void {
       this.editshippingFlag = true;
       if (this.editshippingFlag) {
@@ -185,19 +121,7 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
               });
           }
       });
-      //event.newData['accountId'] = this.appService.user.accountId;
-      //this.manageAccountShippingAddressService.updateShipmentAddress(event.newData).subscribe((res) => {
-      //    this.message = res['statusCode'];
-      //    if (this.message == 'SUCCESS') {
-      //        event.confirm.resolve(event.newData);
-      //    } else {
-      //        this.dialogService.addDialog(ConfirmComponent, {
-      //            title: 'Error..!',
-      //            message: 'Unable to Edit Shipping Address..!'
-      //        });
-      //        event.confirm.resolve(event.data);
-      //    }
-      //});
+     
   }
   deleteRecord(event): void {
       console.log("User table onDeleteConfirm event: %o", event.data);
@@ -205,11 +129,8 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
           this.message = res['statusCode'];
           if (this.message == 'SUCCESS') {
               this.getShippingDetails();
-             // event.confirm.resolve();
+            
           } 
-              //else {
-          //    event.confirm.reject();
-          //}
       });
   }
 
