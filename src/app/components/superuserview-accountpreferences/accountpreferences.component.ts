@@ -52,6 +52,10 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public productInfo = [];
     public discounts: any = {};
     public discountInfo: any = [];
+    public editProductFlag:boolean=true;
+    public beforeProductEdit; 
+    public editDiscountFlag:boolean=true;
+    public beforeDiscountEdit;
     constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService,
         private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
@@ -202,16 +206,23 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     }
 
     editProducts(event) {
+        this.editProductFlag=true;
+        if(this.editProductFlag){
+             this.beforeProductEdit = (<any>Object).assign({}, event.data);
+        }
         this.dialogService.addDialog(AccountPreferencesComponent, {
             adddprdctPref: true,
             getacntpref: false,
             title: 'Edit Product',
             editprdct: true,
-            addproduct: event.data,
+            addproduct: this.editProductFlag ? this.beforeProductEdit : event.data,
             startDate: event.data.startDate,
             endDate: event.data.endDate
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
+                if(this.editProductFlag){
+
+                }
                 this.accountDetailsCommonService.addProducts[0].productId = event.data.productId;
                 this.superuserViewAccountpreferencessService.saveproduct(this.accountDetailsCommonService.addProducts, this.accountDetailsCommonService.accountId).subscribe((res) => {
                     if (res['statusCode'] = "SUCCESS") {
@@ -242,12 +253,16 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     }
 
     editDiscounts(event) {
+        this.editDiscountFlag=true;
+        if(this.editDiscountFlag){
+            this.beforeDiscountEdit=(<any>Object).assign({}, event.data);
+        }
         this.dialogService.addDialog(AccountPreferencesComponent, {
             adddiscntPref: true,
             getacntpref: false,
             title: 'Edit Discount',
             editdscnt: true,
-            discounts: event.data,
+            discounts:this.editDiscountFlag ? this.beforeDiscountEdit : event.data,
             startDate: event.data.startDate,
             endDate: event.data.endDate,
         }).subscribe((isConfirmed) => {
