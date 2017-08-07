@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import {ManageAccountChecklistService} from './manageaccount-checklist.service';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -17,7 +18,7 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
   public addChecklists: boolean;
   public data;
   public addChecklist:any={};
-  constructor(public dialogService: DialogService) {
+  constructor(public dialogService: DialogService,public manageAccountCheckListService:ManageAccountChecklistService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -47,6 +48,9 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
 
   ngOnInit() {
     this.data = [];
+    /*this.manageAccountCheckListService.getChecklist("").subscribe(res=>{
+      this.data=res['checklist'];
+    })*/
 
   }
   addList(event) {

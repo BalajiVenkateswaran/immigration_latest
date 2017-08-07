@@ -229,6 +229,7 @@ import {profilechangepwdservice} from './components/immigrationview-profilechang
 import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
 import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
 import { ManageaccountChecklistComponent } from './components/manageaccount-checklist/manageaccount-checklist.component';
+import { ManageAccountChecklistService } from "./components/manageaccount-checklist/manageaccount-checklist.service";
 
 @NgModule({
     imports: [
@@ -421,6 +422,7 @@ import { ManageaccountChecklistComponent } from './components/manageaccount-chec
         ManageAccountpreferencessService,
         ProductCatalogProductService,
         ManageAccountPaymentsService,
+        ManageAccountChecklistService,
         //superuserview
         superUserviewAccountService,
         SuperuserViewAccountDetailsService,
