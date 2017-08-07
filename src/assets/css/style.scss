@@ -7,17 +7,8 @@
     background-size: cover;
     width: 100%;
     height: 100vh;
-    position:relative;
 
-    .loginbtn {
-        position:absolute;
-        right:30px;
-        top:20px;
-        background:#fff;
-        color:#4d4d4d;
-        padding:5px 15px;
-        border-radius:5px;
-    }
+    
 }
 .login_side {
     background-color: $Secindary-color;
@@ -87,7 +78,9 @@ label {
     }
 }
 .login_text {
-    margin-top:100px;
+        margin-top: 30%;
+    float: left;
+    margin-left: 25%;
     p {
         width: 300px;
         font-size: 12px;
@@ -98,6 +91,16 @@ label {
         font-weight: 400;
     }
 }
+.loginbtn {
+        background:#fff;
+        color:#4d4d4d;
+        padding:5px 15px;
+        border-radius:5px;
+        z-index:9999;
+        cursor:pointer;
+            float: right;
+    margin: 20px 0 0 0;
+    }
 .login_maintext {
     margin-top: 61vh;
     background: rgba(255, 255, 255, 0.5);
@@ -1731,4 +1734,66 @@ confirm {
 .modal-dialog {
     margin: 10% auto;
 }
+}
+.loginpopup {
+    .modal-header {
+        padding:0px 15px;
+    }
+    .modal-title {
+    background: #2f323a; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#2f323a, #44474e); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#2f323a, #44474e); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#2f323a, #44474e); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#2f323a, #44474e); /* Standard syntax (must be last) */
+    width:100%;
+    text-align:center;
+    padding:20px 0 10px 0;
+    }
+    .modal-body {
+        border-radius:0px 0px 5px 5px !important;
+        padding-top:45px !important;
+        padding-bottom:30px !important;
+    }
+    input[type="email"], input[type="password"], input[type="email"]:-webkit-autofill, input[type="password"]:-webkit-autofill {
+        border:none;
+        border-bottom:solid 1px #e3e2e2;
+        border-radius:0px;
+        background:url("../images/Mail.png") no-repeat 5px 13px #fff !important;
+        font-weight:500;
+        font-size:14px;
+        margin-bottom:20px;
+            padding:8px 5px 6px 32px;
+            color:#a9a6a8;
+    }
+    input[type="password"], input[type="password"]:-webkit-autofill {
+        background:url("../images/Password.png") no-repeat 5px 7px #fff !important;
+    }
+
+    /*input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill {
+  border: 1px solid red;
+  -webkit-text-fill-color: #4d4d4d;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background 5000s ease-in-out 0s;
+  background:url("../images/Mail.png") no-repeat 5px 13px #fff !important;
+}*/
+    .newlogbtn {
+    background: #0b8dcd !important;
+    width: 100%;
+    border-radius: 5px;
+    color: #fff;
+    margin:25px 0px !important;
+    padding: 11px 0px;
+    border: none;
+}
+    
+    .forgot_password {
+            font-size: 14px;
+    color: #a9a6a8;
+    text-align: center;
+    margin:0px 0 15px 0;
+    }
+    .note {
+        font-size:12px;
+        color:#a9a6a8;
+    }
 }

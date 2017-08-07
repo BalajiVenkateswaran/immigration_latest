@@ -195,7 +195,7 @@ export class SmartTableFramework implements OnChanges {
         if (this.settings.hasOwnProperty('columnFilter')) {
             this.settings['columnFilter'] = this.settings['columnFilter'];
             if (this.settings['columnFilter'] == true) {
-                this.gridOptions['headerHeight'] = 60;
+                this.gridOptions['headerHeight'] = 72;
                 for (var i = 0; i < this.settings['columnsettings'].length; i++) {
                     if (i > 0 || this.settings['isDeleteEnable'] == false) {
                         this.settings['columnsettings'][i]['headerComponentFramework'] = CustomFilterRow;

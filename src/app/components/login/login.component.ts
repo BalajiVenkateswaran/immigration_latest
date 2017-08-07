@@ -160,10 +160,11 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
     } else {
       this.message = "Unable to login into system. contact admin.";
     }
-
+      this.close();
   }
 
   selectedRole(userdet) {
+     
       this.appService.selacntId = userdet.accountId;
       this.appService.user.accountId=userdet.accountId;
       this.appService.selroleId = userdet.roleId;
@@ -204,6 +205,10 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                             loginPopupForm:true,
                             title: 'Login',
                             
-                        })
+      }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
+              this.close();
+          }
+      });
   }
 }
