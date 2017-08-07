@@ -1,3 +1,8 @@
+$dateColumnWidth:110px;
+
+
+
+
 /*ag-grid Table Styles*/
 .ag-fresh .ag-root {
   border: 1px solid #e0e0e0 !important;
@@ -225,32 +230,45 @@
       left:43% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell[colid~="lastUpdate"] {
-      width:7% !important;
+      width:$dateColumnWidth !important;
       left:48% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell[colid~="status"] {
       width:6% !important;
-      left:55% !important;
+      left:-webkit-calc(48% + #{$dateColumnWidth}) !important;
+      left:-moz-calc(48% + #{$dateColumnWidth}) !important;
+      left:calc(48% + #{$dateColumnWidth}) !important;
+      /*left:calc(48%+$dateColumnWidth);*/
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="finalStatus"], .ag-fresh .ag-ltr .ag-cell[colid~="finalStatus"] {
       width:8% !important;
-      left:61% !important;
+      left:-webkit-calc(54% + #{$dateColumnWidth}) !important;
+      left:-moz-calc(54% + #{$dateColumnWidth}) !important;
+      left:calc(54% + #{$dateColumnWidth}) !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="assignedToName"], .ag-fresh .ag-ltr .ag-cell[colid~="assignedToName"] {
       width:7% !important;
-      left:69% !important;
+      left:-webkit-calc(62% + #{$dateColumnWidth}) !important;
+      left:-moz-calc(62% + #{$dateColumnWidth}) !important;
+      left:calc(62% + #{$dateColumnWidth}) !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionStage"], .ag-fresh .ag-ltr .ag-cell[colid~="petitionStage"] {
       width:12% !important;
-      left:76% !important;
+      left:-webkit-calc(69% + #{$dateColumnWidth}) !important;
+      left:-moz-calc(69% + #{$dateColumnWidth}) !important;
+      left:calc(69% + #{$dateColumnWidth}) !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="daysInStage"], .ag-fresh .ag-ltr .ag-cell[colid~="daysInStage"] {
       width:4% !important;
-      left:88% !important;
+      left:-webkit-calc(81% + #{$dateColumnWidth}) !important;
+      left:-moz-calc(81% + #{$dateColumnWidth}) !important;
+      left:calc(81% + #{$dateColumnWidth}) !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="tag"], .ag-fresh .ag-ltr .ag-cell[colid~="tag"] {
       width:8% !important;
-      left:92% !important;
+      left:-webkit-calc(85% + #{$dateColumnWidth}) !important;
+      left:-moz-calc(85% + #{$dateColumnWidth}) !important;
+      left:calc(85% + #{$dateColumnWidth}) !important;
     }
 }
 
