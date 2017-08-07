@@ -215,6 +215,9 @@ import {usertotalpetitionservice} from './components/immigrationview-userstotalp
 import {useropenpetitioncomponent} from './components/immigrationview-usersopenpetreports/usersopenreports.component';
 import {usersopenpetitionservice} from './components/immigrationview-usersopenpetreports/usersopenreports.service';
 
+import {petitionfinalactioncomponent} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.component';
+import {petitionfinalactionservice} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.service';
+
 import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
 import { DownloadInvoiceButton } from "./components/manageaccount-invoices/DownloadInvoiceButton";
 //profiletab
@@ -348,6 +351,7 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         clientstatusreportscomponent,
         usertotalpetitionscomponent,
         useropenpetitioncomponent,
+        petitionfinalactioncomponent,
         //profile
         profileusercomponent,
         profileloginhiscomponent,
@@ -452,6 +456,7 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         petitionstagsreportsservice,
         usertotalpetitionservice,
         usersopenpetitionservice,
+        petitionfinalactionservice,
         //profile
         profileuserservice,
         profileloginhisservice,

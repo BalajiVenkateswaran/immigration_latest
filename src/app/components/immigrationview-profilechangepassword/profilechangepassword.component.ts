@@ -20,29 +20,38 @@ export class profilechangepwdcomponent implements OnInit {
     }
     constructor(public appService: AppService, private profileChangepwdservice: profilechangepwdservice, private dialogService: DialogService) { }
     changepwd() {
-        var req = {
-            "emailId": this.appService.user.emailId,
-            "newPassword": this.profilechange.newpwd,
-            "password": this.profilechange.currentpwd
-        };
-        this.profileChangepwdservice.updatePassword(req).subscribe(
-            res => {
-                console.log(res);
-                if (res['statusCode'] === 'SUCCESS') {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Information',
-                        message: 'Password is successfully updated'
-                    })
-                        .subscribe((isConfirmed) => {
-                            this.appService.destroy();
-                            this.appService.moveToPage('');
-                        });
-                } else {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Information',
-                        message: 'Authentication failed. Please check the password and try it again.'
-                    });
-                }
+        if (this.profilechange.newpwd == this.profilechange.currentpwd) {
+            this.dialogService.addDialog(ConfirmComponent, {
+                title: 'Information',
+                message: 'New password not same as current password..'
             });
+        }
+        else {
+            var req = {
+                "emailId": this.appService.user.emailId,
+                "newPassword": this.profilechange.newpwd,
+                "password": this.profilechange.currentpwd
+            };
+
+            this.profileChangepwdservice.updatePassword(req).subscribe(
+                res => {
+                    console.log(res);
+                    if (res['statusCode'] === 'SUCCESS') {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Information',
+                            message: 'Password is successfully updated'
+                        })
+                            .subscribe((isConfirmed) => {
+                                this.appService.destroy();
+                                this.appService.moveToPage('');
+                            });
+                    } else {
+                        this.dialogService.addDialog(ConfirmComponent, {
+                            title: 'Information',
+                            message: 'Authentication failed. Please check the password and try it again.'
+                        });
+                    }
+                });
+        }
     }
 }
