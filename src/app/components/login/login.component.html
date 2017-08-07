@@ -1,4 +1,5 @@
 <div class="container-fluid login-bg no-pad" *ngIf="getloginpage">
+    <a (click)="hbidhb" class="loginbtn">Login</a>
 				<div class="login_side">
                     <form action="" class="login-form" [formGroup]="login" (ngSubmit)="onSubmitClick(login.value, login.valid)">
                             <h2>Immigration Hub</h2>
@@ -47,6 +48,31 @@
 				</div>
 			</div>
 		</div>
+
+<div *ngIf="loginpopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li *ngFor="let user of userRoles" (click)="selectedRole(user)">
+                                {{getRoleName(user)}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div *ngIf="selectrole">
     <div class="modal-dialog orgnamebox">
         <div class="modal-content">
