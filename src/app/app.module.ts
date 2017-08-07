@@ -228,6 +228,7 @@ import {profilechangepwdcomponent} from './components/immigrationview-profilecha
 import {profilechangepwdservice} from './components/immigrationview-profilechangepassword/profilechangepassword.service';
 import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
 import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
+import { ManageaccountChecklistComponent } from './components/manageaccount-checklist/manageaccount-checklist.component';
 
 @NgModule({
     imports: [
@@ -354,7 +355,8 @@ import {profiletodolistservice} from './components/immigrationview-profiletodoli
         profileswitchcomponent,
         profilechangepwdcomponent,
         profiletodolistcomponent,
-        SuperuserviewAccountdetailsMfdComponent
+        SuperuserviewAccountdetailsMfdComponent,
+        ManageaccountChecklistComponent
 
     ],
     providers: [
