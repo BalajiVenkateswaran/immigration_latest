@@ -146,6 +146,12 @@
                   <span>Petition Type Stages</span>
               </a>
           </li>
+           <li>
+              <a (click)="appservice.moveToPage('manageaccount-checklist');highlightSBLink('checklist')" [ngClass]="[checkForCurrentSBLink('checklist') ? 'active': '']" routerLinkActive="active">
+                  <span class="ico-flight"></span>
+                  <span>Checklist</span>
+              </a>
+          </li>
           <li>
               <a (click)="appservice.moveToPage('manageaccount-shippingaddress');highlightSBLink('Shipping Address')" [ngClass]="[checkForCurrentSBLink('Shipping Address') ? 'active': '']" routerLinkActive="active">
                   <span class="ico-flight"></span>
