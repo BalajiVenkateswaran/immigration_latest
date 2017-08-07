@@ -95,11 +95,13 @@
     margin-right: 5px; }
 
 .agridadd {
-  margin-top: -52px; }
+  margin-top: 0px;
+  margin-left:12px;
+}
 
 .itemsperpage {
   float: right;
-  margin: -48px 62px 0 0; }
+  margin:0px; }
 
 .modal-dialog {
   margin: 15% auto 0px auto; }
@@ -159,6 +161,16 @@
 }
 .ag-layout-auto-height .ag-header-row {
     width:100% !important;
+}
+
+.agtblOptions {
+    position:relative;
+    .addandcount {
+        position:absolute;
+        bottom:0px;
+        right:0px;
+        z-index:999;
+    }
 }
 .manageaccUser {
     .ag-fresh .ag-ltr .ag-header-cell[title~="Actions"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
