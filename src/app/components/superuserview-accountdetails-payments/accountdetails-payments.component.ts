@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {client} from "../../models/client";
-import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
-import {Router} from "@angular/router";
 import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {MenuComponent} from "../menu/menu.component";
 import {AccountDetailsPaymentsService} from './accountdetails-payments.service';
 import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
+import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 
 export interface ConfirmModel {
     title: string;
@@ -19,7 +14,9 @@ export interface ConfirmModel {
     addPopups: boolean;
     getPayments: boolean;
     viewAccountPopup:boolean;
+    paymentDate:string;
     payment:Object;
+
 
 }
 @Component({
@@ -33,12 +30,18 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     public addPopups:boolean;
     public viewAccountPopup:boolean;
     public payment:any;
-    public DefaultResponse = { "status": "Active" };
     public paymentList:any;
     public payments:any={};
     public isEditpayments: boolean = true;
     public settings;
     public data;
+    public editFlag: boolean = true;
+    public beforeEdit: any;
+    public myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     constructor(private appService: AppService,public accountsPaymentService:AccountDetailsPaymentsService,public dialogService: DialogService,
     private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
@@ -107,15 +110,17 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     ngOnInit() {
         this.getPaymentDetails();
     }
-    addFunction() {
+    addPayments(event) {
         this.dialogService.addDialog(accountDetailsPaymentsComponent, {
             addPopups: true,
             getPayments: false,
             viewAccountPopup: false,
-            title: 'Add New User',
+            title: 'Add Payment',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-
+                if(this.appService.addUsers['paymentDate'] && this.appService.addUsers['paymentDate']['formatted']){
+                    this.appService.addUsers['paymentDate']=this.appService.addUsers['paymentDate']['formatted'];
+                }
                 this.accountsPaymentService.savePaymentDetails(this.accountDetailsCommonService.accountId,this.appService.addUsers).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getPaymentDetails();
@@ -133,15 +138,23 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         this.result = false;
         this.close();
     }
-    editRecord(event){
+    editPayments(event){
+        this.editFlag=true;
+        if(this.editFlag){
+            this.beforeEdit = (<any>Object).assign({}, event.data);
+        }
         this.dialogService.addDialog(accountDetailsPaymentsComponent, {
             viewAccountPopup: true,
             getPayments: false,
             addPopups:false,
             title: 'View  Details',
-            payment:event.data,
+            payment:this.editFlag ? this.beforeEdit : event.data,
+            paymentDate:event.data.paymentDate
         }).subscribe((isConfirmed) => {
            if(isConfirmed){
+                  if(this.appService.addUsers['paymentDate'] && this.appService.addUsers['paymentDate']['formatted']){
+                     this.appService.addUsers['paymentDate']=this.appService.addUsers['paymentDate']['formatted'];
+                  }
                   this.accountsPaymentService.editpaymentss(this.accountDetailsCommonService.accountId,this.appService.addUsers).subscribe((res) => {
                   if (res['statusCode'] == 'SUCCESS') {
                       this.getPaymentDetails();
@@ -158,7 +171,6 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     }
     savepaymentsInfo(){
      this.isEditpayments = !this.isEditpayments;
-    
      this.appService.addUsers = this.payment;
      this.result = true;
      this.close();

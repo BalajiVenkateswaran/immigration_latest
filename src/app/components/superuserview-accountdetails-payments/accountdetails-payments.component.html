@@ -8,7 +8,7 @@
             <h2>payments 
                
             </h2>
-            <smart-table class="superUserViewaccPayments" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+            <smart-table class="superUserViewaccPayments" [settings]="settings" [data]="data" (onAddClick)="addPayments($event)" (onRowClick)="editPayments($event)" (onDeleteClick)="deleteRecord($event)">
             </smart-table>
            
         </div>
@@ -99,7 +99,9 @@
                                 <div class="row">
                                     <div class="col-md-5">Payment Date:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentDate" class="form-control">
+                                         <my-date-picker *ngIf="isEditpayments==false" [options]="myDatePickerOptions"
+                                                 [(ngModel)]="payment.paymentDate"
+                                                [selDate]="paymentDate"></my-date-picker>
                                         <span *ngIf="isEditpayments==true">{{payment.paymentDate}}</span>
                                     </div>
                                 </div>
@@ -170,7 +172,11 @@
                             <div class="col-md-5">Transaction Id:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="payments.transactionId" class="form-control"></div>
                             <div class="col-md-5">Payment Date:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="payments.paymentDate" class="form-control"></div>
+                            <div class="col-md-7">
+                                 <my-date-picker [options]="myDatePickerOptions"
+                                                 [(ngModel)]="payments.paymentDate"
+                                                [selDate]="paymentDate"></my-date-picker>
+                            </div>
                             <div class="col-md-5">Payment Amount </div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="payments.paymentAmount" class="form-control"></div>
                             <div class="col-md-5">Payment Status:</div>

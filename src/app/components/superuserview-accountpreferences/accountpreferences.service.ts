@@ -23,7 +23,7 @@ export class SuperuserViewAccountpreferencessService {
  public savediscount(adddiscount: any,accountid:string) {
      var req = {
          "accountId": accountid,
-         "discounts": [adddiscount]
+         "discounts": adddiscount
      }
      return this.restService.postData("/superuser/account/discounts", req);
  }

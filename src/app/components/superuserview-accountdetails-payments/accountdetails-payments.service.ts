@@ -21,6 +21,6 @@ export class AccountDetailsPaymentsService {
             
             "payment": payment
         };
-        return this.restService.putData("/superuser/account/"+accountId+"/payments", req);
+        return this.restService.postData("/superuser/account/"+accountId+"/payments", req);
     }
 }
