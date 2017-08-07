@@ -52,25 +52,29 @@ export class profiletodolistcomponent implements OnInit {
                 }
             });
     }
-    //changed(selectedtodo) {
-    //    if (selectedtodo.completed == true) {
-    //        selectedtodo.completed = "YES";
-    //    }
-    //    if (selectedtodo.completed == false) {
-    //        selectedtodo.completed = "NO";
-    //    }
-    //    var data = { "completed": selectedtodo.completed, "id": selectedtodo.id, "userId": this.appService.user.userId};
-    //    this.profileTodolistservice.addTodo(data)
-    //        .subscribe((res) => {
-    //            console.log(res);
-    //            if (res['statusCode'] == "SUCCESS") {
-    //                this.getTodos();
-    //                this.newTodo = "";
-    //            }
-    //        });
-    //}
-    deleteTodo(index) {
+    changed(selectedtodo) {
+        if (selectedtodo.completed == true) {
+            selectedtodo.completed = "YES";
+        }
+        if (selectedtodo.completed == false) {
+            selectedtodo.completed = "NO";
+        }
+        var data = { "completed": selectedtodo.completed, "todoText": selectedtodo.todoText,"id": selectedtodo.id, "userId": this.appService.user.userId};
+        this.profileTodolistservice.addTodo(data)
+            .subscribe((res) => {
+                console.log(res);
+                if (res['statusCode'] == "SUCCESS") {
+                    this.getTodos();
+                    this.newTodo = "";
+                }
+            });
+    }
+    deleteTodo(index,selectedtodo) {
         this.todos.splice(index, 1);
+        this.profileTodolistservice.deleteTodos(selectedtodo.id)
+            .subscribe((res) => {
+                console.log(res);
+            });
     }
 
    

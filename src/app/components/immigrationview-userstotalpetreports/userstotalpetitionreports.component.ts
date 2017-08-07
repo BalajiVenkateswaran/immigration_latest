@@ -18,7 +18,10 @@ export class usertotalpetitionscomponent implements OnInit {
     public orgsList: any = {};
     public orgsNames: any = [];
     public yearMonth: any = [];
-
+    public yearMntName: any = [];
+    public fullName: any = [];
+    public fullname: any = [];
+    public finalLbl: any = [];
     ngOnInit() {
 
         this.userTotalpetitionservice.getuserstotpetitions(this.appService.user.accountId)
@@ -28,13 +31,19 @@ export class usertotalpetitionscomponent implements OnInit {
                 for (var item in this.orgsList) {
                     this.data = [];
                     this.yearMonth = [];
+                    this.finalLbl = [];
+                    this.fullName = [];
                     this.orgsNames.push(item);
                     for (var i = 0; i < this.orgsList[item].length; i++) {
                         this.data.push(this.orgsList[item][i]['count']);
                         this.Year = [this.orgsList[item][i]['year'], this.orgsList[item][i]['month']];
                         this.yearMonth.push(this.Year.join('-'));
+                        this.fullname = [this.orgsList[item][i]['firstName'], this.orgsList[item][i]['lastName']];
+                        this.fullName.push(this.fullname.join(' '));
+                        this.yearMntName = [this.yearMonth[i], this.fullName[i]];
+                        this.finalLbl.push(this.yearMntName.join(','));
                     }
-                    this.barChartLabels[item] = this.yearMonth;
+                    this.barChartLabels[item] = this.finalLbl;
                     this.barChartData[item] = [{ data: this.data, label: 'Clients Created' }];
                 }
             });

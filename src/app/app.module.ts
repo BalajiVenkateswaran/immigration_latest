@@ -215,6 +215,9 @@ import {usertotalpetitionservice} from './components/immigrationview-userstotalp
 import {useropenpetitioncomponent} from './components/immigrationview-usersopenpetreports/usersopenreports.component';
 import {usersopenpetitionservice} from './components/immigrationview-usersopenpetreports/usersopenreports.service';
 
+import {petitionfinalactioncomponent} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.component';
+import {petitionfinalactionservice} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.service';
+
 import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
 import { DownloadInvoiceButton } from "./components/manageaccount-invoices/DownloadInvoiceButton";
 //profiletab
@@ -229,6 +232,7 @@ import {profilechangepwdservice} from './components/immigrationview-profilechang
 import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
 import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
 import { ManageaccountChecklistComponent } from './components/manageaccount-checklist/manageaccount-checklist.component';
+import { ManageAccountChecklistService } from "./components/manageaccount-checklist/manageaccount-checklist.service";
 
 @NgModule({
     imports: [
@@ -349,6 +353,7 @@ import { ManageaccountChecklistComponent } from './components/manageaccount-chec
         clientstatusreportscomponent,
         usertotalpetitionscomponent,
         useropenpetitioncomponent,
+        petitionfinalactioncomponent,
         //profile
         profileusercomponent,
         profileloginhiscomponent,
@@ -421,6 +426,7 @@ import { ManageaccountChecklistComponent } from './components/manageaccount-chec
         ManageAccountpreferencessService,
         ProductCatalogProductService,
         ManageAccountPaymentsService,
+        ManageAccountChecklistService,
         //superuserview
         superUserviewAccountService,
         SuperuserViewAccountDetailsService,
@@ -454,6 +460,7 @@ import { ManageaccountChecklistComponent } from './components/manageaccount-chec
         petitionstagsreportsservice,
         usertotalpetitionservice,
         usersopenpetitionservice,
+        petitionfinalactionservice,
         //profile
         profileuserservice,
         profileloginhisservice,

@@ -1,46 +1,7 @@
-﻿
-<div class="main-content">
+﻿<div class="main-content">
     <div class="clearfix"></div>
-    <div class="table-data-forms">
-        <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-2"><label for="fname">Date</label></div>
-                        <div class="col-md-8">
-                            <span>{{loginHistory.loginDate}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"><label for="fname">Time</label></div>
-                        <div class="col-md-8">
-                            <span>{{loginHistory.loginDate}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"><label for="fname">IP Address</label></div>
-                        <div class="col-md-8">
-                            <span>{{loginHistory.ipAddress}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"><label for="fname">Location</label></div>
-                        <div class="col-md-8">
-                            <span>{{loginHistory.location}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"><label for="fname">Role</label></div>
-                        <div class="col-md-8">
-                            <span>{{loginHistory.role}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"><label for="fname">Account</label></div>
-                        <div class="col-md-8">
-                            <span>{{loginHistory.loginDate}}</span>
-                        </div>
-                    </div>
-            </div>
-        </div>
+    <div class="table-data">
+        <smart-table [settings]="settings" [data]="data"> </smart-table>
+
     </div>
 </div>

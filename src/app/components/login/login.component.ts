@@ -97,6 +97,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
   }
 
   loginSubmit(model: User, isValid: boolean) {
+      this.close();
     if (isValid) {
         this.loginPopupForm=false;
         this.ManageAccountUserService.login(model).subscribe((res: any) => {

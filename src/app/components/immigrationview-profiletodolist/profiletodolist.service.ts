@@ -15,4 +15,7 @@ export class profiletodolistservice {
     public getTodos(userid: string) {
         return this.restService.getData("/profile/user/todoList/" + userid);
     }
+    public deleteTodos(todoid: string) {
+        return this.restService.deleteData("/profile/user/todoList/" + todoid);
+    }
 }

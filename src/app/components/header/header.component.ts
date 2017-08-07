@@ -23,7 +23,7 @@ export class HeaderComponent implements AfterViewChecked{
   private orgNamevisible;
   private editorg;
   private tab;
-  //private selectedOrg: any = {};
+  //private selectedOrg: any = {}; 
   private i;
   public orgnames: any = {};
   public delegatedOrg:boolean=false;

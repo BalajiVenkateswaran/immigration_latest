@@ -94,6 +94,7 @@ import {petitionstagsreportscomponent} from './components/immigrationview-petiti
 import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
 import {usertotalpetitionscomponent} from './components/immigrationview-userstotalpetreports/userstotalpetitionreports.component';
 import {useropenpetitioncomponent} from './components/immigrationview-usersopenpetreports/usersopenreports.component';
+import {petitionfinalactioncomponent} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.component';
 
 
 //profile
@@ -435,6 +436,10 @@ export const appRoutes: Routes = [
     {
         path: 'user-openpetitions',
         component: useropenpetitioncomponent
+    },
+    {
+        path: 'petiton-finalaction',
+        component: petitionfinalactioncomponent
     },
     {
         path: '',

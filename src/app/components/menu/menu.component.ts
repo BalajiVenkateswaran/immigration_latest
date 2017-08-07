@@ -19,28 +19,26 @@ export class MenuComponent implements OnInit {
     private clientQuest;
     private immiQstnre;
     private manageuser;
+    private immipetitionreports: boolean=true;
+    private immicilentreports;
+    private immiuserreports;
   constructor(private menuService: MenuService, private appservice: AppService) {
       this.sideBarMenu = appservice.sideBarMenu;
     }
   clientDocClick() {
-      if (this.clientdoctrue == true) {
-          this.clientdoctrue = false;
-          return;
-      }
-      if (this.clientdoctrue == false) {
-          this.clientdoctrue = true;
-          return;
-      }
+      this.clientdoctrue = !this.clientdoctrue;
   }
   immiPetDoc() {
-      if (this.immipetitiondoc == true) {
-          this.immipetitiondoc = false;
-          return;
-      }
-      if (this.immipetitiondoc == false) {
-          this.immipetitiondoc = true;
-          return;
-      }
+      this.immipetitiondoc = !this.immipetitiondoc;
+  }
+  petrportsclick() {
+      this.immipetitionreports = !this.immipetitionreports;
+  }
+  clinetreportsclick() {
+      this.immicilentreports = !this.immicilentreports;
+  }
+  userpetiitonsclick() {
+      this.immiuserreports = !this.immiuserreports;
   }
   ngOnInit(): void {
       this.sideBarMenu = this.appservice.sideBarMenu;
