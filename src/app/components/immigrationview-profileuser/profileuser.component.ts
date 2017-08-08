@@ -40,7 +40,7 @@ export class profileusercomponent implements OnInit {
                 }
             });
     }
-    constructor(public appService: AppService, private profileUserservice: profileuserservice, private headerService: HeaderService) { }
+    constructor(public appService: AppService, private profileUserservice: profileuserservice, public headerService: HeaderService) { }
 
     editDefaultorg() {
         this.beforeCancelorgid = this.defaultorg;
