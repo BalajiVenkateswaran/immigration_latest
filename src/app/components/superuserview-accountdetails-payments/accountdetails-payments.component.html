@@ -83,17 +83,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5">Product Codes:</div>
+                                    <div class="col-md-5">Bill Start Date:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.productCodes" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.productCodes}}</span>
+                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billStartDate" class="form-control">
+                                        <span *ngIf="isEditpayments==true">{{payment.billStartDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5">Discount Codes:</div>
+                                    <div class="col-md-5">Bill End Date:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.discountCodes" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.discountCodes}}</span>
+                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billEndDate" class="form-control">
+                                        <span *ngIf="isEditpayments==true">{{payment.billEndDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -167,19 +167,19 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-5">Invoice Number:</div>
+                            <div class="col-md-5">Invoice Number:<span class="redstar">*</span></div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="payments.invoiceNumber" class="form-control"></div>
-                            <div class="col-md-5">Transaction Id:</div>
+                            <div class="col-md-5">Transaction Id:<span class="redstar">*</span></div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="payments.transactionId" class="form-control"></div>
-                            <div class="col-md-5">Payment Date:</div>
+                            <div class="col-md-5">Payment Date:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                                  <my-date-picker [options]="myDatePickerOptions"
                                                  [(ngModel)]="payments.paymentDate"
                                                 [selDate]="paymentDate"></my-date-picker>
                             </div>
-                            <div class="col-md-5">Payment Amount </div>
+                            <div class="col-md-5">Payment Amount:<span class="redstar">*</span></div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="payments.paymentAmount" class="form-control"></div>
-                            <div class="col-md-5">Payment Status:</div>
+                            <div class="col-md-5">Payment Status:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                                 <select [(ngModel)]="payments.paymentStatus" class="form-control">
                                     <option value="Success">Success</option>

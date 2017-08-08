@@ -60,17 +60,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5">Product Codes:</div>
+                                    <div class="col-md-5">Bill Start Date:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.invoiceCodes" class="form-control">
-                                        <span *ngIf="isEditInvoice==true">{{invoice.invoiceCodes}}</span>
+                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.billStartDate" class="form-control">
+                                        <span *ngIf="isEditInvoice==true">{{invoice.billStartDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5">Discount Codes:</div>
+                                    <div class="col-md-5">Bill End Date:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.discountCodes" class="form-control">
-                                        <span *ngIf="isEditInvoice==true">{{invoice.discountCodes}}</span>
+                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.billEndDate" class="form-control">
+                                        <span *ngIf="isEditInvoice==true">{{invoice.billEndDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -78,6 +78,13 @@
                                     <div class="col-md-7">
                                         <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.paymentStatus" class="form-control">
                                         <span *ngIf="isEditInvoice==true">{{invoice.paymentStatus}}</span>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-md-5">Comments:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.comments" class="form-control">
+                                        <span *ngIf="isEditInvoice==true">{{invoice.comments}}</span>
                                     </div>
                                 </div>
                                 <div class="row">

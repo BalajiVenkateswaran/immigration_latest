@@ -1,5 +1,5 @@
 ﻿<div class="main-content" *ngIf="getacntpref">
- 
+
     <ul class="breadcrumb">
         <li><a href="#">Account Preferences</a></li>
     </ul>
@@ -8,15 +8,17 @@
         <h2>
             Products
         </h2>
-        <smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)" (onRowClick)="editProducts($event)">
+        <smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)"
+            (onRowClick)="editProducts($event)">
         </smart-table>
-     
+
         <h2 style="margin-top: 50px;">
             Discounts
         </h2>
-        <smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)" (onRowClick)="editDiscounts($event)">
+        <smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)"
+            (onRowClick)="editDiscounts($event)">
         </smart-table>
-</div>
+    </div>
 
 </div>
 <div *ngIf="adddprdctPref">
@@ -27,30 +29,32 @@
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
-               
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-4">Code:</div>
-                                <div class="col-md-8"><input type="text" class="form-control" [disabled]="editprdct" [(ngModel)]="addproduct.code"></div>
-                                <div class="col-md-4">Start Date:</div>
-                                <div class="col-md-8">
-                                    <my-date-picker [options]="myDatePickerOptions"
-                                                    [(ngModel)]="addproduct.startDate"
-                                                    [selDate]="startDate"></my-date-picker>
-                                </div>
-                                <div class="col-md-4">End Date:</div>
-                                <div class="col-md-8">
-                                    <my-date-picker [options]="myDatePickerOptions"
-                                                   [(ngModel)]="addproduct.endDate"
-                                                    [selDate]="endDate"></my-date-picker>
-                                </div>
+
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">Code:<span class="redstar">*</span></div>
+                            <div class="col-md-8"><input type="text" class="form-control" [disabled]="editprdct" [(ngModel)]="addproduct.code"></div>
+                            <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="addproduct.startDate" [selDate]="startDate"></my-date-picker>
+                            </div>
+                            <div class="col-md-4">End Date:<span class="redstar">*</span></div>
+                            <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="addproduct.endDate" [selDate]="endDate"></my-date-picker>
                             </div>
                         </div>
-                        <div class="col-md-1"></div>
                     </div>
-         
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <div class="row sfm" *ngIf="warningMessage">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" (click)="productSave()">Save</button>
@@ -71,23 +75,26 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="row">
-                            <div class="col-md-4">Code:</div>
+                            <div class="col-md-4">Code:<span class="redstar">*</span></div>
                             <div class="col-md-8"><input type="text" class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode"></div>
-                            <div class="col-md-4">Start Date:</div>
+                            <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
                             <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                [(ngModel)]="discounts.startDate"
-                                                [selDate]="startDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="discounts.startDate" [selDate]="startDate"></my-date-picker>
                             </div>
-                            <div class="col-md-4">End Date:</div>
+                            <div class="col-md-4">End Date:<span class="redstar">*</span></div>
                             <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                 [(ngModel)]="discounts.endDate"
-                                                [selDate]="endDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="discounts.endDate" [selDate]="endDate"></my-date-picker>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <div class="row sfm" *ngIf="warningMessage">
+                        <div class="col-md-12">
+                            <span class="redstar">* Fields are Mandatory.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

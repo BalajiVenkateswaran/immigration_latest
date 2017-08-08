@@ -2,8 +2,7 @@
 <button *ngIf="isAddButtonEnable" type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="addRecord()">ADD</button>
 <div *ngIf="filterWholeArray">
 <div class="addedfilter"*ngFor="let x of filterWholeArray let i=index">
-            <span class="filtretype">{{x.headerName}} :</span><span class="filtrename">{{x.filterValue}}</span>
-            <div (click)="delete(i,x)">&times;</div>
+            <span class="filtretype">{{x.headerName}} :</span><span class="filtrename">{{x.filterValue}}</span><span class="close" (click)="delete(i,x)">&times;</span>
 </div>
 </div>
 <div class="clearfix"></div>
