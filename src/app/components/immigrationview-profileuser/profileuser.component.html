@@ -1,4 +1,4 @@
-﻿<div class="main-content">
+<div class="main-content">
     <div class="clearfix"></div>
     <div class="table-data-forms">
         <div class="row">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngFor="let org of orgsList">
+                    <div class="row" *ngFor="let org of headerService.organizations">
                         <div class="col-md-4"><label for="pi-petitiondescription">{{org.orgName}}</label></div>
                         <div class="col-md-8">
                             <input type="radio" name="defaultorg" [disabled]="orgdisable" [checked]="org.orgId==defaultorg" [value]="org.orgId" (change)="selDefaultOrg(org)" />

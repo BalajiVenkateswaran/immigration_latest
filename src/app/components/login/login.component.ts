@@ -7,6 +7,7 @@ import {ManageAccountUserService} from "../manageaccount-user/manageaccount-user
 import {AppService} from "../../services/app.service";
 import {loginService} from "./login.service";
 import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { HeaderService } from '../header/header.service';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 
 export interface ConfirmModel {
@@ -45,7 +46,8 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
     private ManageAccountUserService: ManageAccountUserService,
     private appService: AppService,
     private loginservice: loginService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private headerService: HeaderService
   ) {
       super(dialogService);
     this.login = new FormGroup({
@@ -129,7 +131,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                     }
                     if (res.hasMultipleRoles == false) {
                         this.appService.user = res.user;
-                        this.appService.organizations = res.organizationList;
+                        this.headerService.organizations = res.organizationList;
                         this.appService.user['roleName'] = res.userAccountRoleList[0].roleName;
                         this.appService.user.accountId=res.userAccountRoleList[0].accountId;
                         this.appService.selacntId = res.userAccountRoleList[0].accountId;
@@ -137,7 +139,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                         if (res.userAccountRoleList[0].roleName == "Immigration Manager"
                             || res.userAccountRoleList[0].roleName == "Immigration Officer") {
                             this.appService.applicationViewMode = "Immigration";
-                            this.appService.orgId = res.organizationList[0].orgId;
+                            this.headerService.selectedOrg = res.organizationList[0];
                             this.appService.currentTab = 'petitions';
                             this.appService.moveToPage("petitions");
                         }
@@ -161,10 +163,11 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
     } else {
       this.message = "Unable to login into system. contact admin.";
     }
-
+      this.close();
   }
 
   selectedRole(userdet) {
+     
       this.appService.selacntId = userdet.accountId;
       this.appService.user.accountId=userdet.accountId;
       this.appService.selroleId = userdet.roleId;
@@ -205,6 +208,10 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                             loginPopupForm:true,
                             title: 'Login',
                             
-                        })
+      }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
+              this.close();
+          }
+      });
   }
 }

@@ -1,10 +1,5 @@
 import { Component, OnInit, Injector, Input, SimpleChange, OnChanges, EventEmitter, Output } from '@angular/core';
-import { i797history } from "../../models/i797history";
-import { FormGroup, FormControl } from "@angular/forms";
 import { CustomFilterRow } from './CustomFilterRow';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import { AgGridModule } from "ag-grid-angular/main";
 import { GridOptions } from "ag-grid";
 import { Subscription } from 'rxjs/Subscription';
@@ -108,12 +103,6 @@ export class SmartTableFramework implements OnChanges {
                 if (this.gridOptions.api != undefined) {
                     this.gridOptions.api.setRowData(this.data);
                     let eGridDiv = <HTMLElement>document.querySelectorAll('div.ag-header-row')[document.querySelectorAll('div.ag-header-row').length - 1];
-                    /*let gridCells = document.querySelectorAll('.ag-header-cell');
-                    let cellWidth: number = 0;
-                    for (var i = 0; i < gridCells.length; i++) {
-                        cellWidth = cellWidth + parseInt(gridCells[i]['style']['width']);
-                    }*/
-
                     eGridDiv.style.width = "100%";
                     this.gridOptions.api.doLayout();
                     this.gridOptions.api.sizeColumnsToFit();
@@ -195,7 +184,7 @@ export class SmartTableFramework implements OnChanges {
         if (this.settings.hasOwnProperty('columnFilter')) {
             this.settings['columnFilter'] = this.settings['columnFilter'];
             if (this.settings['columnFilter'] == true) {
-                this.gridOptions['headerHeight'] = 60;
+                this.gridOptions['headerHeight'] = 72;
                 for (var i = 0; i < this.settings['columnsettings'].length; i++) {
                     if (i > 0 || this.settings['isDeleteEnable'] == false) {
                         this.settings['columnsettings'][i]['headerComponentFramework'] = CustomFilterRow;

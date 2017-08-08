@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { HeaderService } from '../header/header.service';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import {SuperUserViewInvoicestabService} from "./invoices.service";
@@ -33,7 +34,9 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
     public newclitem: any = {};
     public settings;
     public data;
-    constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,private accountDetailsCommonService: AccountDetailsCommonService) {
+    constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService,
+       private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
+       private accountDetailsCommonService: AccountDetailsCommonService, private headerService: HeaderService) {
         super(dialogService);
         this.settings={
             'isDeleteEnable':false,
@@ -81,7 +84,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
    
       ngOnInit() {
       this.appService.showSideBarMenu(null, "invoices");
-      this.superuserviewInvoicestabService.getInvoices(this.appService.orgId)
+      this.superuserviewInvoicestabService.getInvoices(this.headerService.selectedOrg['orgId'])
         .subscribe((res: any) => {
             this.invoicesList = res.invoices;
             this.data=this.invoicesList;
@@ -93,7 +96,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
 
     clientSave() {
         this.newclitem['accountId'] = this.appService.user.accountId;
-        this.newclitem['orgId'] = this.appService.orgId;
+        this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
         this.newclitem['createdBy'] = this.appService.user.userId;
         if (this.newclitem['status'] == '' || null || undefined) {
             this.newclitem['status'] = "Active";

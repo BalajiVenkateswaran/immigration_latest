@@ -3,6 +3,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import {RestService} from "../../services/rest.service";
+import { HeaderService } from '../header/header.service';
 import {profileuserservice} from "./profileuser.service";
 
 
@@ -14,7 +15,6 @@ import {profileuserservice} from "./profileuser.service";
 
 export class profileusercomponent implements OnInit {
     public userInfo: any = {};
-    public orgsList: any = [];
     public defaultorg: any;
     public isUserEdit: boolean = true;
     public warningMessage: boolean;
@@ -24,7 +24,6 @@ export class profileusercomponent implements OnInit {
     public beforeCancelorgid: any;
     public selectedorg: any = {};
     ngOnInit() {
-        this.orgsList = this.appService.organizations;
         this.appService.showSideBarMenu("immiview-profuser", "immiview-profileuser");
         this.profileUserservice.getUserInfo(this.appService.user.userId)
             .subscribe((res) => {
@@ -41,7 +40,7 @@ export class profileusercomponent implements OnInit {
                 }
             });
     }
-    constructor(public appService: AppService, private profileUserservice: profileuserservice) { }
+    constructor(public appService: AppService, private profileUserservice: profileuserservice, public headerService: HeaderService) { }
 
     editDefaultorg() {
         this.beforeCancelorgid = this.defaultorg;

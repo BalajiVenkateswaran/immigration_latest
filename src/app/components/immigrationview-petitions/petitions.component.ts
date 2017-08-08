@@ -10,6 +10,7 @@ import {MenuService} from "../menu/menu.service";
 import {Router} from "@angular/router";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { HeaderService } from '../header/header.service';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 
 import { CustomEditorComponent } from './custom-editor.component';
@@ -50,7 +51,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         this.appService.currentSBLink = link;
     }
     constructor(private immigrationviewpetitionService: ImmigrationViewPetitionsService, public appService: AppService,
-        private menuService: MenuService, private router: Router, public dialogService: DialogService) {
+        private menuService: MenuService, private router: Router, public dialogService: DialogService, private headerService: HeaderService) {
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
@@ -76,17 +77,17 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
             'columnsettings': [
                 {
 
-                    headerName: "Name",
+                    headerName: "Petition Name",
                     field: "petitionName",
                 },
                 {
 
-                    headerName: "Type",
+                    headerName: "Petition Type",
                     field: "petitionType",
                 },
                 {
 
-                    headerName: "Subtype",
+                    headerName: "Petition SubType",
                     field: "petitionSubType"
                 },
                 {
@@ -123,7 +124,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     }
 
     getPetitionData() {
-        this.immigrationviewpetitionService.getPetitions(this.appService.orgId, this.appService.clientId).subscribe((res) => {
+        this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId).subscribe((res) => {
             //this.source.load(res['petitions']);
             this.data=res['petitions'];
         });
@@ -146,7 +147,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     }
 
   ngOnInit() {
-      this.immigrationviewpetitionService.getPetitions(this.appService.orgId, this.appService.clientId)
+      this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId)
           .subscribe((res) => {
               //this.source.load(res['petitions']);
               this.data=res['petitions'];
@@ -215,7 +216,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
   petitionSave() {
       this.newpetitionitem['clientId'] = this.appService.clientId;
-      this.newpetitionitem['orgId'] = this.appService.orgId;
+      this.newpetitionitem['orgId'] = this.headerService.selectedOrg['orgId'];
       this.newpetitionitem['petitionTypeId'] = this.getPetitionTypeId(this.newpetitionitem['petitiontype']);
       this.newpetitionitem['petitionSubTypeId'] = this.getPetitionSubTypeId(this.newpetitionitem['petitiontype'], this.newpetitionitem['petitionSubType']);
       this.newpetitionitem['userId'] = this.user.userId;

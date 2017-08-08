@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="col-md-5">Type:</div>
                                     <div class="col-md-7">
-                                        <select *ngIf="isEditDiscount==false" class="form-control" [(ngModel)]="discount.type">
+                                        <select *ngIf="isEditDiscount==false" class="form-control" [disabled]='true' [(ngModel)]="discount.type">
                                           
                                    <option value="DIS">DIS</option>
                                    <option value="TRAIL">TRAIL</option>

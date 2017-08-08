@@ -7,6 +7,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {User} from "../../models/user";
+import { HeaderService } from '../header/header.service';
 import {MenuComponent} from "../menu/menu.component";
 
 @Component({
@@ -35,7 +36,8 @@ export class PetitionsComponent implements OnInit {
     public data;
 
     constructor(private router: Router,
-        private petitionService: PetitionsService, private appService: AppService, private menuComponent: MenuComponent) {
+        private petitionService: PetitionsService, private appService: AppService,
+        private menuComponent: MenuComponent, private headerService: HeaderService) {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
@@ -106,7 +108,7 @@ export class PetitionsComponent implements OnInit {
                 {
                     headerName: "Tag",
                     field: "tag"
-                },
+                }
             ]
         }
     }
@@ -114,9 +116,9 @@ export class PetitionsComponent implements OnInit {
   ngOnInit() {
     this.appService.showSideBarMenu(null, "petitions");
     this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
-    this.orgId = this.appService.orgId;
+    this.orgId = this.headerService.selectedOrg['orgId'];
     this.petitionService
-      .getPetitions(this.appService.orgId)
+      .getPetitions(this.headerService.selectedOrg['orgId'])
       .subscribe((res: any) => {
           this.petitions = res['petitions'];
           this.petitionfirstName = this.petitions;
@@ -127,7 +129,7 @@ export class PetitionsComponent implements OnInit {
 
   }
   filterData(filterQueries){
-        this.petitionService.getPetitionsFilteredData(this.appService.orgId, filterQueries).subscribe(res=>{
+        this.petitionService.getPetitionsFilteredData(this.headerService.selectedOrg['orgId'], filterQueries).subscribe(res=>{
             this.data=res['petitions'];
         })
     }
@@ -135,7 +137,7 @@ export class PetitionsComponent implements OnInit {
 
   ngDoCheck(){
     //console.log("Petitions|ngDoCheck|orgId:%o",this.appService.orgId);
-    if(this.orgId != this.appService.orgId){
+    if(this.orgId != this.headerService.selectedOrg['orgId']){
       this.ngOnInit();
     }
   }

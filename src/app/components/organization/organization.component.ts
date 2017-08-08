@@ -6,6 +6,7 @@ import {AppService} from "../../services/app.service";
 import {UiFieldService} from "../../services/uifield.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { HeaderService } from '../header/header.service';
 import { DialogService } from "ng2-bootstrap-modal";
 
 export interface formControl {
@@ -48,7 +49,8 @@ export class OrganizationComponent implements OnInit {
                 ];
 
     constructor(private uiFieldService: UiFieldService,
-        private formBuilder: FormBuilder, private appService: AppService, private  organizationService: OrganizationService, private dialogService: DialogService) {
+        private formBuilder: FormBuilder, private appService: AppService, private  organizationService: OrganizationService,
+        private dialogService: DialogService, private headerService: HeaderService) {
             this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             this.email = new FormControl('', [Validators.required,Validators.pattern(this.emailRegex)]);
     }
@@ -56,7 +58,7 @@ export class OrganizationComponent implements OnInit {
     ngOnInit() {
       this.appService.showSideBarMenu("organization", "organization");
 
-      this.organizationService.getOrganizationDetails(this.appService.orgId)
+      this.organizationService.getOrganizationDetails(this.headerService.selectedOrg['orgId'])
         .subscribe((res) => {
             if (res['organizationDetails']) {
                 this.orgDetails = res['organizationDetails'];
@@ -90,7 +92,7 @@ export class OrganizationComponent implements OnInit {
         if (this.orgDetails['openDate'] && this.orgDetails['openDate']['formatted']) {
             this.orgDetails['openDate'] = this.orgDetails['openDate']['formatted'];
         }
-        this.orgDetails['orgId'] = this.appService.orgId;
+        this.orgDetails['orgId'] = this.headerService.selectedOrg['orgId'];
 
         if (this.orgDetails['markForDeletion'] == "true") {
             this.orgDetails['status'] = "Mark for Deletion";
@@ -120,7 +122,7 @@ export class OrganizationComponent implements OnInit {
                         });
                        // this.orgDetails['markForDeletion'] = false;
 
-                        this.organizationService.getOrganizationDetails(this.appService.orgId)
+                        this.organizationService.getOrganizationDetails(this.headerService.selectedOrg['orgId'])
                             .subscribe((res) => {
                                 if (res['organizationDetails']) {
                                     this.orgDetails = res['organizationDetails'];
@@ -180,7 +182,7 @@ export class OrganizationComponent implements OnInit {
 
     //Save Client Details
     saveSignInformation() {
-        this.signinDetails.orgId = this.appService.orgId;
+        this.signinDetails.orgId = this.headerService.selectedOrg['orgId'];
         this.signinDetails.contactType = "SIGNING";
         this.signinAddress.aptType = "APT";
         this.organizationService.saveSigningDetails(this.signinDetails, this.signinAddress)
@@ -206,7 +208,7 @@ export class OrganizationComponent implements OnInit {
 
     //Save Client Details
     saveAdminInformation() {
-        this.adminstrativeDetails.orgId = this.appService.orgId;
+        this.adminstrativeDetails.orgId = this.headerService.selectedOrg['orgId'];
         this.adminstrativeDetails.contactType = "ADMINISTRATION";
         this.adminstrativeDetails.aptType = "APT";
         this.organizationService.saveAdminstrativeDetails(this.adminstrativeDetails, this.adminstrativeAddress)

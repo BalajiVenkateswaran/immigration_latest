@@ -90,22 +90,26 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
                     field: "status",
 
                 },
+               /* {
+                    headerName: "Orgs",
+                    field: "orgsCount",
+                },*/
                 {
 
                     headerName: "Clients",
-                    field: "clients",
+                    field: "clientCount",
 
                 },
                 {
 
                     headerName: "Petitions",
-                    field: "petitions",
+                    field: "petitionCount",
 
                 },
                 {
 
                     headerName: "Created On",
-                    field: "createdOn",
+                    field: "creationOn",
 
                 },
                 {
