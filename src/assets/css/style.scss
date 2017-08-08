@@ -123,7 +123,7 @@ label {
 
 header {
     background-color: #2f323a;
-    height:155px;
+    height:135px;
     display: block;
     .logo {
         display: block;
@@ -180,7 +180,7 @@ header {
     .profile-container {
         padding: 12px 0;
         display: block;
-        margin: 0 10px 0 0;
+        margin: 0;
         .profile {
             display: block;
             float: right;
@@ -240,6 +240,8 @@ header {
         display: block;
         width: 100%;
         position:relative;
+        margin-top:-20px;
+
             .burger-menu {
                 position:absolute;
                 left:0px;
@@ -281,14 +283,18 @@ header {
         }
     }
         ul {
-            margin: 0px 0 0 200px;
+            margin: 0px;
             padding: 0px;
-            display: flex;
-            display: -webkit-flex; /* Safari */
+            display: block;
+            /*display: flex;
+            display: -webkit-flex;  Safari */
+            
+            text-align:center !important;
             li {
                 list-style: none;
                 margin: 0 50px 0 0;
                 padding: 0px;
+                display:inline-flex;
 
                 a {
                     font-size: 14px;
@@ -304,13 +310,12 @@ header {
                       width: 0;
                       height: 0;
                       margin:0px auto;
-                      border-left: 10px solid transparent;
-                      border-right: 10px solid transparent;
-                      border-bottom: 10px solid #fff;
-                      margin-top: 3px;
-                      display:none;
+                      border-left: 12px solid transparent;
+                      border-right: 12px solid transparent;
+                      border-bottom: 12px solid red;
+                      margin-top: 0px;
                     }
-                    span.maintab-Petitions, span.maintab-Clients, span.maintab-Organization, span.maintab-Manageaccount, span.maintab-Reports {
+                    span.maintab-Petitions, span.maintab-Clients, span.maintab-Organization, span.maintab-Manageaccount, span.maintab-Reports, span.maintab-Profile {
                         width:50px;
                         height:50px;
                         margin:0px auto;
@@ -336,6 +341,10 @@ header {
                         background:url(../images/Reports.png) no-repeat center center #ec3b83;
                         background-size: 50%;
                     }
+                    span.maintab-Profile {
+                        background:url(../images/Reports.png) no-repeat center center #78c900;
+                        background-size: 50%;
+                    }
                 }
                 a.active {
                     color:#c2c2c2 !important;
@@ -346,8 +355,7 @@ header {
                       border-left: 12px solid transparent;
                       border-right: 12px solid transparent;
                       border-bottom: 12px solid #fff;
-                      margin-top: 3px;
-                      display:block;
+                      margin-top:0px;
                     }
                 }
                 a[ng-reflect-ng-class=active] {
@@ -363,20 +371,20 @@ header {
 section {
     .left-opened, .rightwithmenu {
         position: absolute;
-        top: 155px;
+        top: 135px;
         bottom: 0px;
-        height: calc(100vh - 155px);
+        height: calc(100vh - 135px);
     }
     .left-opened {
         left: 0px;
         width: 200px;
-        background-color: #282828 !important;
+        background-color: #2f323a !important;
     }
     .left-closed {
         left: -200px;
         width: 200px;
         position: absolute;
-        top: 155px;
+        top: 135px;
     }
     .rightwithmenu {
         left: 200px;
@@ -386,7 +394,7 @@ section {
         left: 0px;
         right: 0;
         position: absolute;
-        top: 155px;
+        top: 135px;
     }
 }
 .navbar-nav {
@@ -523,7 +531,7 @@ section {
     float: left;
     /*height:100%;*/
 
-    height: calc(100vh - 155px);
+    height: calc(100vh - 135px);
     overflow-y: auto;
     padding-bottom: 15px;
     h1 {
@@ -1781,7 +1789,7 @@ confirm {
     width: 100%;
     border-radius: 5px;
     color: #fff;
-    margin:25px 0px !important;
+    margin:10px 0px 25px 0px !important;
     padding: 11px 0px;
     border: none;
 }

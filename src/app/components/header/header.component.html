@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 pull-left">
+        <div class="col-md-4 pull-left no-pad-right">
             <div class="profile-container pull-right">
                 <div class="profile">
                     <div class="profile-name">
@@ -87,7 +87,7 @@
                     </li>
                     <li *ngIf="headerService.delegatedOrg==false">
                         <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');" [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']" routerLinkActive="active">
-                            <span class="maintab-Reports"></span>
+                            <span class="maintab-Profile"></span>
                             <div class="clearfix"></div>
                             Profile
                             <div class="arrow-up"></div>
