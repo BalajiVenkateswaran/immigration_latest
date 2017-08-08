@@ -7,6 +7,7 @@ import {AppService} from "../../services/app.service";
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { dragula } from '../../models/dragula';
 import {User} from "../../models/user";
+import { HeaderService } from '../header/header.service';
 
 @Component({
     selector: 'app-document-management',
@@ -31,7 +32,7 @@ export class DocumentManagementComponent implements OnInit {
     }
 
     constructor(private documentManagementService: DocumentManagementService, private http: Http,
-        public appService: AppService, private dragulaService: DragulaService) {
+        public appService: AppService, private dragulaService: DragulaService, private headerService: HeaderService) {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
@@ -48,7 +49,7 @@ export class DocumentManagementComponent implements OnInit {
           .subscribe((res: any) => {
               this.selectedDocList = res.petitionDocs;
               this.documentManagementService
-                  .getOrgdocs(this.appService.orgId)
+                  .getOrgdocs(this.headerService.selectedOrg['orgId'])
                   .subscribe((res: any) => {
                       this.orgdocList = res.files;
                   });

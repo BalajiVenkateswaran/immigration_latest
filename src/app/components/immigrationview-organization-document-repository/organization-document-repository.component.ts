@@ -8,6 +8,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {ActionIcons} from '../../components/smarttableframework/cellRenderer/ActionsIcons';
+import { HeaderService } from '../header/header.service';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -33,7 +34,8 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     public editFileObject: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
-    constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http, public appService: AppService, public dialogService: DialogService) {
+    constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http,
+       public appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
@@ -97,7 +99,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
         var y = x.split(".");
         if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
             formData.append('file', file, file.name);
-            this.organizationdocumentrepositoryService.uploadFile(this.appService.orgId, formData)
+            this.organizationdocumentrepositoryService.uploadFile(this.headerService.selectedOrg['orgId'], formData)
                 .subscribe(
                 res => {
                     this.getFilesList();
@@ -171,7 +173,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
         this.getFilesList();
     }
     getFilesList() {
-        this.organizationdocumentrepositoryService.getFile(this.appService.orgId)
+        this.organizationdocumentrepositoryService.getFile(this.headerService.selectedOrg['orgId'])
             .subscribe((res) => {
                 if (res != undefined) {
                     let data = res['files'];

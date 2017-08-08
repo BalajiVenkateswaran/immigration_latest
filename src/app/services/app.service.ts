@@ -9,17 +9,12 @@ export class AppService {
     private _menuSlider: boolean;
     private _sideBarMenu: string;
     private _documentSideMenu;
-    private _orgNamesMenu;
-    public _getorgmenu;
-    public getorgmenu;
     public docsidemenu;
     public orgnamemenu;
     private _user: User;
-    private _organizations;
     public _currentPage: string;
     public _applicationViewMode: string;
     private _accountId: string;
-    private _orgId: string;
     private _clientId: string;
     private _petitionId: string;
     private _isBurgerMenuVisible: boolean;
@@ -73,7 +68,6 @@ export class AppService {
     public selroleId: string;
     public rolemultiple: boolean;
     public usersList: any;
-    public selectedOrg: string;
     public petitionType: string;
     public userroleList: any = [];
     public userLoginHistoryId: string;
@@ -91,16 +85,12 @@ export class AppService {
         this._menuSlider=null;
         this._sideBarMenu=null;
         this._documentSideMenu = null;
-        this._orgNamesMenu = null;
-        this._getorgmenu = null;
-        this.getorgmenu = null;
         this.docsidemenu = null;
         this.orgnamemenu = null;
         this._user = null;
         this._currentPage = null;
         this._applicationViewMode = null;
         this._accountId = null;
-        this._orgId = null;
         this._clientId = null;
         this._petitionId = null;
         this._isBurgerMenuVisible = null;
@@ -334,14 +324,6 @@ export class AppService {
         this._accountId = accountId;
     }
 
-    get orgId(): string {
-        return this._orgId;
-    }
-
-    set orgId(orgId: string) {
-        this._orgId = orgId;
-    }
-
     get clientId(): string {
         return this._clientId;
     }
@@ -363,18 +345,6 @@ export class AppService {
 
     get docsideBarMenu(): any {
         return this._documentSideMenu;
-    }
-    public orgNamesMenu(orgnamemenu) {
-        this._orgNamesMenu = orgnamemenu;
-    }
-    get orgNameMenu(): any {
-        return this._orgNamesMenu;
-    }
-    public getorgName(getorgmenu) {
-        this._getorgmenu = getorgmenu;
-    }
-    get getorgMenu(): any {
-        return this._getorgmenu;
     }
     get sideBarMenu(): string {
         return this._sideBarMenu;
@@ -471,14 +441,6 @@ export class AppService {
     set currentTab(currentTab: string) {
         this._currentTab = currentTab;
     }
-
-    get organizations() {
-        return this._organizations;
-    }
-    set organizations(organizations: string) {
-        this._organizations = organizations;
-    }
-
 
     get currentSBLink() {
         return this._currentSBLink;

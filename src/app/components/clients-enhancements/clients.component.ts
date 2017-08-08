@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { HeaderService } from '../header/header.service';
 import { DialogService } from "ng2-bootstrap-modal";
 
 @Component({
@@ -89,7 +90,8 @@ export class ClientsEnhansmentsComponent implements OnInit {
         }
     };
     source: LocalDataSource = new LocalDataSource();
-    constructor(private clientService: ClientsEnhansmentsService, private appservice: AppService, private router: Router, private dialogService: DialogService) {
+    constructor(private clientService: ClientsEnhansmentsService, private appservice: AppService, 
+      private router: Router, private dialogService: DialogService, private headerService: HeaderService) {
         this.addClient = new FormGroup({
             firstName: new FormControl(''),
             lastName: new FormControl(''),
@@ -102,7 +104,7 @@ export class ClientsEnhansmentsComponent implements OnInit {
   ngOnInit() {
     this.appservice.showSideBarMenu(null, "clients");
     this.clientService
-        .getClients(this.appservice.orgId)
+        .getClients(this.headerService.selectedOrg['orgId'])
         .subscribe((res: any) => {
             console.log("ClientsComponent|ngOnInit|res:%o", res);
             this.clientList = res.clients;
@@ -122,7 +124,7 @@ export class ClientsEnhansmentsComponent implements OnInit {
   setRecordsPerpage(event) {
       console.log(event.target.value);
       this.clientService
-          .getClients(this.appservice.orgId)
+          .getClients(this.headerService.selectedOrg['orgId'])
           .subscribe((res: any) => {
               this.clientList = res.clients;
               this.filteredclientList = [];
@@ -146,7 +148,7 @@ export class ClientsEnhansmentsComponent implements OnInit {
   onCreateConfirm(event) : void {
       console.log("Client table onCreateConfirm event: %o",event.newData);
       event.newData['accountId'] = this.appservice.user.accountId;
-      event.newData['orgId'] = this.appservice.orgId;
+      event.newData['orgId'] = this.headerService.selectedOrg['orgId'];
       event.newData['createdBy'] = this.appservice.user.userId;
 
       if (event.newData['status'] == '' || null || undefined) {

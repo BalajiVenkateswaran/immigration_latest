@@ -5,9 +5,7 @@
         <div class="col-md-4 pull-left no-pad">
             <div class="logo">
                 <a (click)="appService.moveToPage('petitions'); highlightTab('petitions');">
-                    <!--<img src="assets/images/immigration-hub-logo.png" style="height: 50px" />-->
                     <img src="assets/images/logo.png" />
-                    <!--<span id="logobeta">Beta</span>-->
                 </a>
             </div>
             
@@ -15,7 +13,7 @@
         <div class="col-md-4 text-center pull-left">
             <div class="datails-holder-name" *ngIf="applicationViewMode=='Immigration'">
                 <div class="pull-left">
-                    <h4>{{appService.selectedOrg}}</h4>
+                    <h4>{{headerService.selectedOrg.displayName}}</h4>
                 </div>
                 <div class="pull-left">
                     <a class="ico-edit" (click)="editorgname(orgSelect)"></a>
@@ -51,21 +49,21 @@
                     <input type="checkbox" (click)="slideMenu()" /><label></label>
                 </div>
                 <ul *ngIf="applicationViewMode=='Immigration'">
-                    <li *ngIf="applicationViewMode=='Immigration'||delegatedOrg==true"><a (click)="appService.moveToPage('petitions'); highlightTab('petitions');" [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']" routerLinkActive="active">
+                    <li *ngIf="applicationViewMode=='Immigration'|| headerService.delegatedOrg==true"><a (click)="appService.moveToPage('petitions'); highlightTab('petitions');" [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']" routerLinkActive="active">
                         <span class="maintab-Petitions"></span>
                         <div class="clearfix"></div>
                         Petitions
                             <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li *ngIf="delegatedOrg==false" style="margin-right: 37px;"><a (click)="appService.moveToPage('clients'); highlightTab('clients');" [ngClass]="[checkForCurrentTab('clients') ? 'active': '']" routerLinkActive="active">
+                    <li *ngIf="headerService.delegatedOrg==false" style="margin-right: 37px;"><a (click)="appService.moveToPage('clients'); highlightTab('clients');" [ngClass]="[checkForCurrentTab('clients') ? 'active': '']" routerLinkActive="active">
                             <span class="maintab-Clients"></span>
                             <div class="clearfix"></div>
                         Clients
                             <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li *ngIf="delegatedOrg==false" style="margin-right: 10px;"><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']" routerLinkActive="active">
+                    <li *ngIf="headerService.delegatedOrg==false" style="margin-right: 10px;"><a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');" [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']" routerLinkActive="active">
                             <span class="maintab-Organization"></span>
                             <div class="clearfix"></div>
                         Organization
@@ -73,21 +71,21 @@
                         </a>
                     </li>
                     <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
-                    <li style="margin-right: 22px;" *ngIf="immigrationManager=='Immigration Manager'&&delegatedOrg==false"><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']" routerLinkActive="active">
+                    <li style="margin-right: 22px;" *ngIf="immigrationManager=='Immigration Manager'&&headerService.delegatedOrg==false"><a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');" [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']" routerLinkActive="active">
                         <span class="maintab-Manageaccount"></span>
                          <div class="clearfix"></div>
                         Manage Account
                          <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li *ngIf="delegatedOrg==false"><a (click)="appService.moveToPage('immiview-petitionreports'); highlightTab('immiview-petitionreports');highlightSBLink('immiview-petitionreports');" [ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']" routerLinkActive="active">
+                    <li *ngIf="headerService.delegatedOrg==false"><a (click)="appService.moveToPage('immiview-petitionreports'); highlightTab('immiview-petitionreports');highlightSBLink('immiview-petitionreports');" [ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']" routerLinkActive="active">
                             <span class="maintab-Reports"></span>
                             <div class="clearfix"></div>
                         Reports
                             <div class="arrow-up"></div>
                         </a>
                     </li>
-                    <li *ngIf="delegatedOrg==false">
+                    <li *ngIf="headerService.delegatedOrg==false">
                         <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');" [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']" routerLinkActive="active">
                             <span class="maintab-Reports"></span>
                             <div class="clearfix"></div>

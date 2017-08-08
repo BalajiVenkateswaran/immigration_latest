@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import {AppService} from "../../services/app.service";
+import { HeaderService } from '../header/header.service';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -16,8 +17,8 @@ export interface ConfirmModel {
                    </div>
                    <div class="modal-body">
                   <ul>
-                    <li *ngFor='let name of orgname' (click)="changeOrgName(name)">
-                    {{name.orgName}}
+                    <li *ngFor='let org of headerService.organizations' (click)="changeOrgName(org)">
+                    {{org.displayName}}
                     </li>
                    </ul>
                    </div>
@@ -27,16 +28,15 @@ export interface ConfirmModel {
 export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
     title: string;
     message: string;
-    orgname: any = {};
-    constructor(dialogService: DialogService, public appService: AppService) {
+    organizations: any = {};
+    constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService) {
         super(dialogService);
     }
-    changeOrgName(Orgname) {
-        this.appService.getorgName(Orgname);
+    changeOrgName(org) {
+        this.headerService.selectedOrg = org;
         this.appService.moveToPage('petitions');
         this.close();
     }
     ngOnInit() {
-        this.orgname = this.appService.orgNameMenu;
     }
 }

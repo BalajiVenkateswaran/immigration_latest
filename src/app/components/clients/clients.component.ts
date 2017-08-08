@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 import { User } from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { HeaderService } from '../header/header.service';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import { MenuComponent } from "../menu/menu.component";
 
@@ -44,7 +45,9 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     public settings;
     public data;
 
-    constructor(private clientService: ClientsService, private appService: AppService, private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent) {
+    constructor(private clientService: ClientsService, private appService: AppService, private router: Router,
+       public dialogService: DialogService, private menuComponent: MenuComponent,
+     private headerService: HeaderService) {
         super(dialogService);
 
         this.settings = {
@@ -86,7 +89,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     source: LocalDataSource = new LocalDataSource();
     getCliData() {
         this.appService.showSideBarMenu(null, "clients");
-        this.clientService.getClients(this.appService.orgId).subscribe((res) => {
+        this.clientService.getClients(this.headerService.selectedOrg['orgId']).subscribe((res) => {
             this.clientList = res['clients'];
             this.clientList.forEach(client => {
                 if (client.markForDeletion)
@@ -103,7 +106,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     ngOnInit() {
         this.appService.showSideBarMenu(null, "clients");
         this.clientService
-            .getClients(this.appService.orgId)
+            .getClients(this.headerService.selectedOrg['orgId'])
             .subscribe((res: any) => {
                 this.clientList = res.clients;
                 this.clientList.forEach(client => {
@@ -142,7 +145,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     }
     clientSave(email) {
         this.newclitem['accountId'] = this.appService.user.accountId;
-        this.newclitem['orgId'] = this.appService.orgId;
+        this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
         this.newclitem['createdBy'] = this.appService.user.userId;
         if (this.newclitem['status'] == '' || null || undefined) {
             this.newclitem['status'] = "Active";
@@ -170,7 +173,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     }
     onCreateConfirm(event): void {
         event.newData['accountId'] = this.appService.user.accountId;
-        event.newData['orgId'] = this.appService.orgId;
+        event.newData['orgId'] = this.headerService.selectedOrg['orgId'];
         event.newData['createdBy'] = this.appService.user.userId;
 
         if (event.newData['status'] == '' || null || undefined) {
@@ -219,7 +222,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
     }
     filterData(filterQueries) {
-        this.clientService.getClientsFilteredData(this.appService.orgId, filterQueries).subscribe(res => {
+        this.clientService.getClientsFilteredData(this.headerService.selectedOrg['orgId'], filterQueries).subscribe(res => {
             this.data = res['clients'];
         })
     }

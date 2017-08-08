@@ -11,7 +11,7 @@ import { AppService } from "../../services/app.service";
     <div>
      <button class="iportal-btn" [ngClass]="{'myclass':switchdisable,'iportal-btn':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
     </div>
-   `,
+   `
 
 })
 export class switchButton implements ICellRendererAngularComp {
@@ -27,12 +27,17 @@ export class switchButton implements ICellRendererAngularComp {
     constructor(private profileSwitchservice: profileswitchservice, public appService: AppService) {
     }
     onSwitchClick(params) {
-        this.appService.user.roleName = params.data.roleName;
-        this.appService.user.accountId = params.data.accountId;
+        this.appService.destroy();
+        this.appService.selacntId = params.data.accountId;
+        this.appService.user = params.context.componentParent.user;
+        this.appService.user.accountId=params.data.accountId;
+        this.appService.selroleId = params.data.roleId;
         this.appService.rolemultiple = true;
-        if (params.data.roleName=="Client"){
+        this.appService.user['roleName'] = params.data.roleName;
+        params.context.componentParent.headerService.onHeaderPageLoad();
+        if (params.data.roleName == "Client") {
             this.appService.applicationViewMode = "Client";
-            this.appService.clientId = this.appService.user.userId;
+            this.appService.clientId = params.context.componentParent.user.userId;//this.appService.user.userId;
             this.appService.currentTab = 'clientview-petitions';
             this.appService.moveToPage("clientview-petitions");
         }
@@ -40,6 +45,7 @@ export class switchButton implements ICellRendererAngularComp {
             this.appService.applicationViewMode = "Immigration";
             this.appService.currentTab = 'petitions';
             this.appService.moveToPage("petitions");
+
         }
         if (params.data.roleName == "Super User") {
             this.appService.applicationViewMode = "Superuser";
