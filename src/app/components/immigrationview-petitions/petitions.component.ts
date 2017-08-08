@@ -77,17 +77,17 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
             'columnsettings': [
                 {
 
-                    headerName: "Name",
+                    headerName: "Petition Name",
                     field: "petitionName",
                 },
                 {
 
-                    headerName: "Type",
+                    headerName: "Petition Type",
                     field: "petitionType",
                 },
                 {
 
-                    headerName: "Subtype",
+                    headerName: "Petition SubType",
                     field: "petitionSubType"
                 },
                 {

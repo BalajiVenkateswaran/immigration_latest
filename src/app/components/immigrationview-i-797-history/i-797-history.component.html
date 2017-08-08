@@ -7,9 +7,8 @@
         <h2>
             <span>I-797 History</span><button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>
         </h2>
-       
-         <smart-table [settings]="settings" [data]="data"
-                     (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
+
+        <smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
         <div class="clearfix"></div>
     </div>
 
@@ -28,40 +27,32 @@
                         <div class="row">
                             <div class="col-md-5">Receipt Number:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addNewI797.receiptNumber" class="form-control"></div>
-                            <div class="col-md-5">Receipt Date:</div>
-                            <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.receiptDate"
-                                                [selDate]="receiptDate"></my-date-picker>
-                            </div>
                             <div class="col-md-5">Status On I-797:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addNewI797.status" class="form-control"></div>
+                            <div class="col-md-5">Receipt Date:</div>
+                            <div class="col-md-7">
+                                <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.receiptDate"
+                                    [selDate]="receiptDate"></my-date-picker>
+                            </div>
+
                             <div class="col-md-5">Approved on:</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.approvedOn"
-                                                [selDate]="approvedOn"></my-date-picker>                            
+                                <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.approvedOn"
+                                    [selDate]="approvedOn"></my-date-picker>
                             </div>
                             <div class="col-md-5">Valid From:</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.validFrom"
-                                                [selDate]="validFrom"></my-date-picker> 
+                                <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.validFrom"
+                                    [selDate]="validFrom"></my-date-picker>
                             </div>
                             <div class="col-md-5">valid Till:</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.validTill"
-                                                [selDate]="validTill"></my-date-picker>
-                            </div>                          
+                                <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewI797.validTill"
+                                    [selDate]="validTill"></my-date-picker>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                <!--<div class="row sfm" *ngIf="warningMessage">
-                                    <div class="col-md-12">
-                                        <span class="redstar">* Fields are Mandatory.</span>
-                                    </div>
-                                </div>-->
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
@@ -73,7 +64,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>

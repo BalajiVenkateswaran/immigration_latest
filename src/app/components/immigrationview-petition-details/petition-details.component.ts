@@ -63,6 +63,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private assignedDate: string;
     private effectiveOn:string;
     private effectiveTill: string;
+    private rejectedDate:string;
     private receiptDate: string;
     private shippingDate: string;
     private receiptNoticeDate: string;
@@ -167,6 +168,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                 this.selDate = this.petitionDetails.startDate;
                 this.selDate1 = this.petitionDetails.deniedDate;
                 this.selDate2 = this.petitionDetails.withdrawDate;
+                this.rejectedDate=this.petitionDetails.rejectedDate;
                 this.approvedDate = this.lcaInfo.approvedDate;
                 this.assignedDate = this.lcaInfo.assignedDate;
                 this.validThruDate = this.lcaInfo.validThruDate;
@@ -234,6 +236,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.selDate = this.petitionDetails.startDate;
         this.selDate1 = this.petitionDetails.deniedDate;
         this.selDate2 = this.petitionDetails.withdrawDate;
+        this.rejectedDate=this.petitionDetails.rejectedDate;
         this.petitionInformation.currentStage = this.petitionDetails.currentStageId;
         this.petitionInformation.markForDeletion = this.petitionInformation.markForDeletion;
         this.isPetitionInformationEdit = !this.isPetitionInformationEdit;
@@ -246,6 +249,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionInformation.startDate = this.petitionDetails.startDate;
         this.petitionInformation.deniedDate = this.petitionDetails.deniedDate;
         this.petitionInformation.withdrawDate = this.petitionDetails.startDate;
+        this.petitionInformation.rejectedDate = this.petitionDetails.rejectedDate;
         this.isPetitionInformationEdit = !this.isPetitionInformationEdit;
     }
 
@@ -262,6 +266,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         }
         if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
             this.petitionDetails['withdrawDate'] = this.petitionDetails['withdrawDate']['formatted'];
+        }
+        if (this.petitionDetails['rejectedDate'] && this.petitionDetails['rejectedDate']['formatted']) {
+            this.petitionDetails['rejectedDate'] = this.petitionDetails['rejectedDate']['formatted'];
         }
         if (this.petitionDetails['markForDeletion'] == true) {
             this.petitionDetails['status'] == "MFD";
@@ -301,6 +308,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionInformation.nextStage = this.petitionDetails['nextStage'];
         this.petitionInformation.deniedDate = this.petitionDetails['deniedDate'];
         this.petitionInformation.withdrawDate = this.petitionDetails['withdrawDate'];
+        this.petitionInformation.rejectedDate = this.petitionDetails['rejectedDate'];
         this.petitionInformation.assignedTo = this.petitionDetails['assignedTo'];
         this.petitionInformation.createdBy = this.petitionDetails['createdByUserOn'];
         this.petitionInformation.lastUpdatedBy = this.petitionDetails['lastUpdatedByUserOn'];
@@ -324,7 +332,8 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
         this.petitionDetails['nextStage'] = this.petitionInformation.nextStage;
         this.petitionDetails['deniedDate'] = this.petitionInformation.deniedDate;
-        this.petitionDetails['withdrawDate'] = this.petitionInformation.withdrawDate;
+        this.petitionDetails['withdrawDate'] = this.petitionInformation.rejectedDate;
+        this.petitionDetails['rejectedDate'] = this.petitionInformation.withdrawDate;
         this.petitionDetails['assignedTo'] = this.petitionInformation.assignedTo;
         //this.petitionDetails['createdBy'] = this.petitionInformation.createdBy;
         //this.petitionDetails['lastUpdatedBy'] = this.petitionInformation.lastUpdatedBy;

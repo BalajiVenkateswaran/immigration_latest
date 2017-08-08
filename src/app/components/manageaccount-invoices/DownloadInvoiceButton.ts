@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-    template: `<button class="iportal-btn" (click)="onDownloadClick()">Download</button>`,
+    template: `<button class="iportal-btn" (click)="download()">Download</button>`,
 
 })
 export class DownloadInvoiceButton implements ICellRendererAngularComp {
@@ -18,8 +18,8 @@ export class DownloadInvoiceButton implements ICellRendererAngularComp {
     constructor() {
 
     }
-    onDownloadClick(){
-        DownloadInvoiceButton.onButtonClick.next({'data':this.params.data,'flag':true});
+    download(){
+          this.params.context.componentParent.onDownloadClick({ 'data': this.params.data})
     }
 
 

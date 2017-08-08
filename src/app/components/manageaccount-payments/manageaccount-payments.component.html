@@ -6,83 +6,8 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>payments</h2>
-        <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowClick($event);" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
         <smart-table [settings]="settings" [data]="data"
                      (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
-        <!--<table class="smarttable" cellpadding="0" cellspacing="0">
-            <thead>
-                <tr>
-                    <td><span>payment ID</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span></td>
-                    <td>
-                        <span>Invoice Number</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Invoice Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Invoice Amount</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Transaction Id</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Payment Date</span> <span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Payment Amount</span><span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>Payment Status</span><span class="pull-right"><a href="#"><i class="fa fa-sort" aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-                        <span>View Details</span>
-                    </td>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td><input type="text" name="" /></td>
-                    <td></td>
-                </tr>
-                <tr *ngFor="let payment of paymentList">
-                    <td>
-                        <span>{{payment.paymentId}}</span>
-                    </td>
-                    <td>
-                        <span>{{payment.accountNumber}}</span>
-                    </td>
-                    <td>
-                        <span>{{payment.invoiceDate}}</span>
-                    </td>
-                    <td>
-                        <span>{{payment.invoiceAmount}}</span>
-                    </td>
-                    <td>
-                        <span>{{payment.transactionId}}</span>
-                    </td>
-                    <td>
-                        <span>{{payment.paymentDate}}</span>
-                    </td>
-                    <td>
-                        <span>{{payment.paymentAmount}}</span>
-                    </td>
-                    <td>
-                        <span>{{payment.paymentStatus}}</span>
-                    </td>
-                    <td>
-                        <span class="pull-left" (click)="viewDetails(payment,i)"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>-->
     </div>
 
 </div>
@@ -154,14 +79,14 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">Product Codes:</div>
+                                <div class="col-md-4">Bill Start Date:</div>
                                 <div class="col-md-8">
                                     <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.productCodes" class="form-control">
                                     <span *ngIf="isEditpayments==true">{{payment.productCodes}}</span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">Discount Codes:</div>
+                                <div class="col-md-4">Bill End Date:</div>
                                 <div class="col-md-8">
                                     <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.discountCodes" class="form-control">
                                     <span *ngIf="isEditpayments==true">{{payment.discountCodes}}</span>
@@ -188,25 +113,11 @@
                                     <span *ngIf="isEditpayments==true">{{payment.paymentStatus}}</span>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">Comments:</div>
-                                <div class="col-md-8">
-                                    <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.comments" class="form-control">
-                                    <span *ngIf="isEditpayments==true">{{payment.comments}}</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <!--  <div class="row">
-                    <button type="submit" class="editinpopup" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
-                    <div class="tbl-head-btn" [hidden]="isEditDiscount">
-                        <button type="button" (click)="cancelpaymentsInfo()" class="editinpopup" *ngIf="isEditpayments==false">Cancel</button>
-                        <button type="submit" value="Save" class="savebtn" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
-                    </div>
-                </div>-->
                 <button type="button" class="btn btn-default" (click)="cancel()">Close</button>
             </div>
         </div>

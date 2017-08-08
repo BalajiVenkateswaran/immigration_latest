@@ -124,9 +124,16 @@
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Withdrawn Date</label></div>
                             <div class="col-md-8">
-                                <!--<input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]="isEdit" [(ngModel)]="petitionInformation.withdrawDate" />-->
                                 <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="petitionInformation.withdrawDate" [selDate]="selDate2"></my-date-picker>
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.withdrawDate}}</span>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="pi-lastupdatedby">Rejected Date</label></div>
+                            <div class="col-md-8">
+                                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="petitionInformation.rejectedDate" [selDate]="rejectedDate"></my-date-picker>
+                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.rejectedDate}}</span>
 
                             </div>
                         </div>
@@ -431,7 +438,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Apt/Ste/Flr/Door</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Apt./Ste./Flr./Door</label></div>
                         <div class="col-md-8">
                             <select *ngIf="isSponsorInfoEdit==false" [(ngModel)]="sponsorInfoAddress.aptType">
                                 <option value="">Select</option>
@@ -440,8 +447,6 @@
                                 <option value="Flr">Flr</option>
                                 <option value="Door">Door</option>
                             </select>
-
-                            <!--<input type="text" *ngIf="isSponsorInfoEdit==false" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.aptNo" />-->
                             <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.aptType}}</span>
                         </div>
                     </div>
@@ -453,7 +458,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">City/Twon</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">City/Town</label></div>
                         <div class="col-md-8">
                             <input type="text" *ngIf="isSponsorInfoEdit==false" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.city" />
                             <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.city}}</span>

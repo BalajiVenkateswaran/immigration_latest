@@ -31,6 +31,7 @@ export class MarkforDeletionComponent implements OnInit {
    
     this.settings={
            "isAddButtonEnable":false,
+           'isDeleteEnable':false,
             'columnsettings': [
                 {
                     headerName: "Entity Name",
