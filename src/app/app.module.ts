@@ -219,6 +219,8 @@ import {petitionfinalactioncomponent} from './components/immigrationview-petitio
 import {petitionfinalactionservice} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.service';
 
 import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
+import { HeaderService } from "./components/header/header.service";
+
 import { DownloadInvoiceButton } from "./components/manageaccount-invoices/DownloadInvoiceButton";
 //immiviewprofiletab
 import {profileusercomponent} from './components/immigrationview-profileuser/profileuser.component';
@@ -381,6 +383,7 @@ import {superuserprofileuserservice} from './components/superuserview-profileuse
     ],
     providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
+        HeaderService,
         CurrencyPipe,
         RestService,
         AppService,
