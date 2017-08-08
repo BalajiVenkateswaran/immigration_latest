@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {client} from "../../models/client";
-import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
-import {Router} from "@angular/router";
 import {User} from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {MenuComponent} from "../menu/menu.component";
 import {ManageAccountPaymentsService} from './manageaccount-payments.service'
 
 export interface ConfirmModel {
@@ -36,53 +29,6 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
     public isEditpayments:boolean=true;
     public settings;   
     private data;
-    // settings = {
-    //     add: {
-    //         addButtonContent: '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
-    //         createButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //         cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //         confirmCreate: true
-    //     },
-    //     edit: {
-    //         editButtonContent: '<i class="fa fa-pencil" aria-hidden="true"></i>',
-    //         saveButtonContent: '<i class="fa fa-check" aria-hidden="true"></i>',
-    //         cancelButtonContent: '<i class="fa fa-times" aria-hidden="true"></i>',
-    //         confirmSave: true
-    //     },
-    //     actions: {
-    //         delete: false,
-    //         add: false,
-    //         edit: false
-    //     },
-    //     columns: {
-    //         invoiceNumber: {
-    //             title: 'Invoice Number'
-    //         },
-    //         invoiceDate: {
-    //             title: 'Invoice Date'
-    //         },
-    //         invoiceAmount: {
-    //             title: 'Invoice Amount'
-    //         },
-    //         paymentReceived: {
-    //             title: 'Payment Received'
-    //         },
-    //         pdfUploaded: {
-    //             title: 'PDF uploaded',
-    //         },
-    //         downloadButton: {
-    //             title: 'Download Button',
-    //         },
-    //         viewDetails: {
-    //             title: 'View Details',
-    //         }
-    //     },
-    //     pager: {
-    //         display: true,
-    //         perPage: 10
-    //     }
-    // };
-    //source: LocalDataSource = new LocalDataSource();
     private user: User;
     constructor(private appService: AppService,public manageAccountPaymentsService:ManageAccountPaymentsService,public dialogService: DialogService) {
         super(dialogService);
@@ -137,7 +83,7 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
             res=>{
                 if(res['statusCode']=='SUCCESS'){
                    this.data=res['payments'];
-                   /* this.appService.paymentId=res['payments']['paymentId']*/
+                  
                 }
             }
         )

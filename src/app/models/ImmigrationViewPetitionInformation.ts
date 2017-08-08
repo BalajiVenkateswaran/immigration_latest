@@ -10,6 +10,7 @@ export class ImmigrationViewPetitionInformation {
     nextStage: string;
     deniedDate: string;
     withdrawDate: string;
+    rejectedDate:string;
     assignedTo: string;
     createdBy: string;
     lastUpdatedBy: string;

@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { client } from "../../models/client";
-import { FormGroup, FormControl } from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import { AppService } from "../../services/app.service";
-import { Router } from "@angular/router";
 import { User } from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import { MenuComponent } from "../menu/menu.component";
 import { ManageAccountInvoiceService } from "./manageaccount-invoices.service";
 import { DownloadInvoiceButton } from './DownloadInvoiceButton'
+import * as FileSaver from 'file-saver';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -47,6 +41,9 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
             'isDeleteEnable': false,
             'rowHeight': 40,
             'isAddButtonEnable': false,
+            'context':{
+              'componentParent': this  
+            },
             'columnsettings': [
                 {
 
@@ -80,21 +77,8 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
 
             ]
         }
-        this.clickSubscription = DownloadInvoiceButton.onButtonClick.subscribe(res => {
-            if (res) {
-                if (res.hasOwnProperty('flag')) {
-                    this.checked = true;
-
-                }
-                else {
-                    this.checked = false;
-                }
-            }
-        })
 
     }
-
-
     ngOnInit() {
         this.manageAccountInvoiceService.getAccountInvoice(this.user.accountId)
             .subscribe((res) => {
@@ -107,27 +91,33 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
             });
     }
     viewRecord(event) {
-        if(!this.checked){
-            this.dialogService.addDialog(ManageAccountInvoicesComponent, {
-            title: 'View Invoice Details',
-            viewPopup: true,
-            getInvoice: false,
-            invoice: event.data,
-        })
-    }
-    else{
-        console.log("Butrtto");
-    }
+        if(event.colDef.headerName!='Download Button'){
+                this.dialogService.addDialog(ManageAccountInvoicesComponent, {
+                title: 'View Invoice Details',
+                viewPopup: true,
+                getInvoice: false,
+                invoice: event.data,
+            })
+        }
+    
         
     }
 
-    downloadInvoice(rowData) {
-        this.manageAccountInvoiceService.downloadInvoice(rowData.Id)
-            .subscribe((res) => {
+    onDownloadClick(event){
+        console.log(event.data);
+        this.manageAccountInvoiceService.downloadFile(event.data.invoiceId).subscribe
+            (data => this.downloadFiles(data, event.data.fileName)),
+            error => console.log("Error Downloading....");
+        () => console.log("OK");
 
-            });
     }
     cancel() {
         this.close();
+    }
+    downloadFiles(data: any, fileName) {
+        var blob = new Blob([data], {
+            type: 'application/pdf'
+        });
+        FileSaver.saveAs(blob, fileName);
     }
 }

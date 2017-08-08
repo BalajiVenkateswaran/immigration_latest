@@ -40,6 +40,10 @@ export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
                     field: "deletionDate"
                 },
                 {
+                    headerName: "Organization",
+                    field: "orgName"
+                },
+                {
 
                     headerName: "Client Name",
                     field: ""
