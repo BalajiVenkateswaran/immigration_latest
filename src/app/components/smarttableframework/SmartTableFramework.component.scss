@@ -79,7 +79,7 @@ $dateColumnWidth:110px;
   width: 30px;
   position: absolute;
   z-index: 10;
-  top: 23px;
+  top: 40px;
   right:15px; }
   .addremovefilter .close {
     float: right;
@@ -123,7 +123,7 @@ $dateColumnWidth:110px;
     margin-right: 5px; }
 
 .agridadd {
-  margin-top:-52px;
+  margin-top:-42px;
 }
 
 .itemsperpage {
@@ -223,6 +223,28 @@ $dateColumnWidth:110px;
         cursor:not-allowed;
         }
 }
+.ag-fresh .ag-ltr .ag-cell {
+
+            .fileUpload {
+            position: relative;
+            overflow: hidden;
+            margin: 0px 0px 0px 10px;
+        }
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+
+            filter: alpha(opacity=0);
+        }
+}
+
+
 
 .manageaccUser {
     .ag-fresh .ag-ltr .ag-header-cell[title~="Actions"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
@@ -731,11 +753,11 @@ $dateColumnWidth:110px;
       width:10% !important;
         left:55% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="fileName"], .ag-fresh .ag-ltr .ag-cell[colid~="fileName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
         width:25% !important;
         left:65% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="1"], .ag-fresh .ag-ltr .ag-cell[colid~="1"] {
         width:10% !important;
         left:90% !important;
     }

@@ -5,6 +5,7 @@
             <span class="filtretype">{{x.headerName}} :</span><span class="filtrename">{{x.filterValue}}</span><span class="close" (click)="delete(i,x)">&times;</span>
 </div>
 </div>
+<div class="clearfix"></div>
 <div class="agtblOptions">
     <ag-grid-angular id="grid" #grid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (cellClicked)="onCellClick($event)">
 </ag-grid-angular>

@@ -567,7 +567,7 @@ section {
         background:#fff;
         @include border-radius(4px);
         width: 100%;
-        padding:20px 15px;
+        padding:15px 15px 20px 15px;
             height: 100%;
             overflow-y:auto;
         .submitbtn {
@@ -598,9 +598,9 @@ section {
             text-transform: uppercase;
             border-bottom: solid 1px #edeff5;
             /*border-color: rgba(255, 255, 255, 0.2);*/
-            padding: 0px 0 12px 0px;
+            padding: 0px 0 8px 0px;
             font-weight: 500;
-            margin: 0px 0 12px 0;
+            margin: 0px 0 7px 0;
             button.iportal-btn {
                 margin-top: -10px !important;
             }
