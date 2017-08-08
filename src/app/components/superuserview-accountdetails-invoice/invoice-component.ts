@@ -50,6 +50,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         this.settings = {
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
+            'rowHeight':45,
             'context':{
                 'componentParent':this
             },

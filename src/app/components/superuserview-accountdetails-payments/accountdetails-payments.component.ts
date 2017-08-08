@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {AppService} from "../../services/app.service";
-import {User} from "../../models/user";
+import { AppService } from "../../services/app.service";
+import { User } from "../../models/user";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {AccountDetailsPaymentsService} from './accountdetails-payments.service';
-import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { AccountDetailsPaymentsService } from './accountdetails-payments.service';
+import { AccountDetailsCommonService } from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 
 export interface ConfirmModel {
@@ -13,9 +13,9 @@ export interface ConfirmModel {
     message: string;
     addPopups: boolean;
     getPayments: boolean;
-    viewAccountPopup:boolean;
-    paymentDate:string;
-    payment:Object;
+    viewAccountPopup: boolean;
+    paymentDate: string;
+    payment: Object;
 
 
 }
@@ -26,24 +26,25 @@ export interface ConfirmModel {
 })
 export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
-    public getPayments:boolean=true;
-    public addPopups:boolean;
-    public viewAccountPopup:boolean;
-    public payment:any;
-    public paymentList:any;
-    public payments:any={};
+    public getPayments: boolean = true;
+    public addPopups: boolean;
+    public viewAccountPopup: boolean;
+    public payment: any;
+    public paymentList: any;
+    public payments: any = {};
     public isEditpayments: boolean = true;
     public settings;
     public data;
     public editFlag: boolean = true;
     public beforeEdit: any;
+    public warningMessage: boolean = false;
     public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    constructor(private appService: AppService,public accountsPaymentService:AccountDetailsPaymentsService,public dialogService: DialogService,
-    private accountDetailsCommonService: AccountDetailsCommonService) {
+    constructor(private appService: AppService, public accountsPaymentService: AccountDetailsPaymentsService, public dialogService: DialogService,
+        private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
         this.settings = {
             'isDeleteEnable': false,
@@ -98,10 +99,10 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         }
     }
 
-    getPaymentDetails(){
+    getPaymentDetails() {
         this.accountsPaymentService.getPaymentDetails(this.accountDetailsCommonService.accountId).subscribe(
-            res=>{
-                if(res['statusCode']=='SUCCESS'){
+            res => {
+                if (res['statusCode'] == 'SUCCESS') {
                     this.data = res['payments'];
                 }
             }
@@ -118,10 +119,10 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
             title: 'Add Payment',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                if(this.appService.addUsers['paymentDate'] && this.appService.addUsers['paymentDate']['formatted']){
-                    this.appService.addUsers['paymentDate']=this.appService.addUsers['paymentDate']['formatted'];
+                if (this.appService.addUsers['paymentDate'] && this.appService.addUsers['paymentDate']['formatted']) {
+                    this.appService.addUsers['paymentDate'] = this.appService.addUsers['paymentDate']['formatted'];
                 }
-                this.accountsPaymentService.savePaymentDetails(this.accountDetailsCommonService.accountId,this.appService.addUsers).subscribe((res) => {
+                this.accountsPaymentService.savePaymentDetails(this.accountDetailsCommonService.accountId, this.appService.addUsers).subscribe((res) => {
                     if (res['statusCode'] == 'SUCCESS') {
                         this.getPaymentDetails();
                     }
@@ -130,49 +131,59 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
         });
     }
     savePayments() {
-        this.appService.addUsers = this.payments;
-        this.result = true;
-        this.close();
+
+
+        if ((this.payments['invoiceNumber'] == '' || this.payments['invoiceNumber'] == null || this.payments['invoiceNumber'] == undefined || this.payments['transactionId'] == '' || this.payments['transactionId'] == null || this.payments['transactionId'] == undefined || this.payments['paymentDate'] == '' || this.payments['paymentDate'] == null || this.payments['paymentDate'] == undefined || this.payments['paymentAmount'] == '' || this.payments['paymentAmount'] == null || this.payments['paymentAmount'] == undefined || this.payments['paymentStatus'] == '' || this.payments['paymentStatus'] == null || this.payments['paymentStatus'] == undefined)) {
+            this.warningMessage = true;
+
+        }
+        else {
+            this.warningMessage = false;
+            this.appService.addUsers = this.payments;
+            this.result = true;
+            this.close();
+        }
+
     }
     cancel() {
         this.result = false;
         this.close();
     }
-    editPayments(event){
-        this.editFlag=true;
-        if(this.editFlag){
+    editPayments(event) {
+        this.editFlag = true;
+        if (this.editFlag) {
             this.beforeEdit = (<any>Object).assign({}, event.data);
         }
         this.dialogService.addDialog(accountDetailsPaymentsComponent, {
             viewAccountPopup: true,
             getPayments: false,
-            addPopups:false,
+            addPopups: false,
             title: 'View  Details',
-            payment:this.editFlag ? this.beforeEdit : event.data,
-            paymentDate:event.data.paymentDate
+            payment: this.editFlag ? this.beforeEdit : event.data,
+            paymentDate: event.data.paymentDate
         }).subscribe((isConfirmed) => {
-           if(isConfirmed){
-                  if(this.appService.addUsers['paymentDate'] && this.appService.addUsers['paymentDate']['formatted']){
-                     this.appService.addUsers['paymentDate']=this.appService.addUsers['paymentDate']['formatted'];
-                  }
-                  this.accountsPaymentService.editpaymentss(this.accountDetailsCommonService.accountId,this.appService.addUsers).subscribe((res) => {
-                  if (res['statusCode'] == 'SUCCESS') {
-                      this.getPaymentDetails();
-                  }
-              });
-           }
+            if (isConfirmed) {
+                if (this.appService.addUsers['paymentDate'] && this.appService.addUsers['paymentDate']['formatted']) {
+                    this.appService.addUsers['paymentDate'] = this.appService.addUsers['paymentDate']['formatted'];
+                }
+                this.accountsPaymentService.editpaymentss(this.accountDetailsCommonService.accountId, this.appService.addUsers).subscribe((res) => {
+                    if (res['statusCode'] == 'SUCCESS') {
+                        this.getPaymentDetails();
+                    }
+                });
+            }
         });
     }
-    editpaymentsInfo(){
-      this.isEditpayments = !this.isEditpayments;
+    editpaymentsInfo() {
+        this.isEditpayments = !this.isEditpayments;
     }
-    cancelpaymentsInfo(){
-      this.isEditpayments = !this.isEditpayments;
+    cancelpaymentsInfo() {
+        this.isEditpayments = !this.isEditpayments;
     }
-    savepaymentsInfo(){
-     this.isEditpayments = !this.isEditpayments;
-     this.appService.addUsers = this.payment;
-     this.result = true;
-     this.close();
+    savepaymentsInfo() {
+        this.isEditpayments = !this.isEditpayments;
+        this.appService.addUsers = this.payment;
+        this.result = true;
+        this.close();
     }
 }

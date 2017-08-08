@@ -80,17 +80,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">Product Codes:</div>
+                                    <div class="col-md-4">Bill Start Date:</div>
                                     <div class="col-md-8">
-                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.productCodes" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.productCodes}}</span>
+                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billStartDate" class="form-control">
+                                        <span *ngIf="isEditpayments==true">{{payment.billStartDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">Discount Codes:</div>
+                                    <div class="col-md-4">Bill End Date:</div>
                                     <div class="col-md-8">
-                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.discountCodes" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.discountCodes}}</span>
+                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billEndDate" class="form-control">
+                                        <span *ngIf="isEditpayments==true">{{payment.billEndDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">

@@ -30,6 +30,7 @@ export interface ConfirmModel {
 })
 export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
+
     public getacntpref: boolean = true;
     public adddAcntPref: boolean;
     public myDatePickerOptions: IMyOptions = {
@@ -37,7 +38,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-
+    public warningMessage: boolean = false;
     public editdiscount: boolean;
     public adddprdctPref: any;
     public adddiscntPref: any;
@@ -52,9 +53,9 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public productInfo = [];
     public discounts: any = {};
     public discountInfo: any = [];
-    public editProductFlag:boolean=true;
-    public beforeProductEdit; 
-    public editDiscountFlag:boolean=true;
+    public editProductFlag: boolean = true;
+    public beforeProductEdit;
+    public editDiscountFlag: boolean = true;
     public beforeDiscountEdit;
     constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService,
         private accountDetailsCommonService: AccountDetailsCommonService) {
@@ -206,9 +207,9 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     }
 
     editProducts(event) {
-        this.editProductFlag=true;
-        if(this.editProductFlag){
-             this.beforeProductEdit = (<any>Object).assign({}, event.data);
+        this.editProductFlag = true;
+        if (this.editProductFlag) {
+            this.beforeProductEdit = (<any>Object).assign({}, event.data);
         }
         this.dialogService.addDialog(AccountPreferencesComponent, {
             adddprdctPref: true,
@@ -220,7 +221,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             endDate: event.data.endDate
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                if(this.editProductFlag){
+                if (this.editProductFlag) {
 
                 }
                 this.accountDetailsCommonService.addProducts[0].productId = event.data.productId;
@@ -253,16 +254,16 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     }
 
     editDiscounts(event) {
-        this.editDiscountFlag=true;
-        if(this.editDiscountFlag){
-            this.beforeDiscountEdit=(<any>Object).assign({}, event.data);
+        this.editDiscountFlag = true;
+        if (this.editDiscountFlag) {
+            this.beforeDiscountEdit = (<any>Object).assign({}, event.data);
         }
         this.dialogService.addDialog(AccountPreferencesComponent, {
             adddiscntPref: true,
             getacntpref: false,
             title: 'Edit Discount',
             editdscnt: true,
-            discounts:this.editDiscountFlag ? this.beforeDiscountEdit : event.data,
+            discounts: this.editDiscountFlag ? this.beforeDiscountEdit : event.data,
             startDate: event.data.startDate,
             endDate: event.data.endDate,
         }).subscribe((isConfirmed) => {
@@ -278,16 +279,29 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         });
     }
     productSave() {
-        this.addproduct['code'] = this.addproduct['code'];
-        this.addproduct['startDate'] = this.addproduct['startDate']['formatted'];
-        this.addproduct['endDate'] = this.addproduct['endDate']['formatted'];
-        this.productInfo.push(this.addproduct);
-        this.accountDetailsCommonService.addProducts = this.productInfo;
-        this.result = true;
-        this.close();
+
+
+        if ((this.addproduct['code'] == '' || this.addproduct['code'] == null || this.addproduct['code'] == undefined || this.addproduct['startDate'] == '' || this.addproduct['startDate'] == null || this.addproduct['startDate'] == undefined || this.addproduct['endDate'] == '' || this.addproduct['endDate'] == null || this.addproduct['endDate'] == undefined)) {
+            this.warningMessage = true;
+
+        }
+        else {
+            this.warningMessage = false;
+            this.addproduct['code'] = this.addproduct['code'];
+            this.addproduct['startDate'] = this.addproduct['startDate']['formatted'];
+            this.addproduct['endDate'] = this.addproduct['endDate']['formatted'];
+            this.productInfo.push(this.addproduct);
+            this.accountDetailsCommonService.addProducts = this.productInfo;
+            this.result = true;
+            this.close();
+        }
 
     }
     discountSave() {
+        if ((this.discounts['code'] == '' || this.discounts['code'] == null || this.discounts['code'] == undefined || this.discounts['startDate'] == '' || this.addproduct['startDate'] == null || this.discounts['startDate'] == undefined || this.discounts['endDate'] == '' || this.discounts['endDate'] == null || this.discounts['endDate'] == undefined)) {
+            this.warningMessage = true;
+
+        }
         this.discounts['code'] = this.discounts.discountCode;
         this.discounts['startDate'] = this.discounts.startDate['formatted'];
         this.discounts['endDate'] = this.discounts.endDate['formatted'];
