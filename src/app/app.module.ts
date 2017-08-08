@@ -220,7 +220,7 @@ import {petitionfinalactionservice} from './components/immigrationview-petitionf
 
 import { MoreDetails } from "./components/clientview-petitions/MoreDetails";
 import { DownloadInvoiceButton } from "./components/manageaccount-invoices/DownloadInvoiceButton";
-//profiletab
+//immiviewprofiletab
 import {profileusercomponent} from './components/immigrationview-profileuser/profileuser.component';
 import {profileuserservice} from './components/immigrationview-profileuser/profileuser.service';
 import {profileloginhiscomponent} from './components/immigrationview-profileloginhistory/profileloginhistory.component';
@@ -233,6 +233,17 @@ import {profiletodolistcomponent} from './components/immigrationview-profiletodo
 import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
 import { ManageaccountChecklistComponent } from './components/manageaccount-checklist/manageaccount-checklist.component';
 import { ManageAccountChecklistService } from "./components/manageaccount-checklist/manageaccount-checklist.service";
+
+//superuser reports tab
+import {statsaccountscomponent} from './components/superuser-statsaccountsreports/statsaccountsreports.component';
+import {statsaccountsservice} from './components/superuser-statsaccountsreports/statsaccountsreports.service';
+import {superpetitionsstatusreportscomponent} from './components/superuser-petitionstatusreports/superpetitionstatusreports.component';
+import {superpetitionsstatusreportsservice} from './components/superuser-petitionstatusreports/superpetitionstatusreports.service';
+
+//superuser-profiletab
+import {superuserprofileusercomponent} from './components/superuserview-profileuserdetails/superuserprofileuserdet.component';
+import {superuserprofileuserservice} from './components/superuserview-profileuserdetails/superuserprofileuserdet.service';
+
 
 @NgModule({
     imports: [
@@ -331,7 +342,11 @@ import { ManageAccountChecklistService } from "./components/manageaccount-checkl
 
         MarkforDeletionComponent,
         AccountPreferencesComponent,
-
+        //superuserreports
+        statsaccountscomponent,
+        superpetitionsstatusreportscomponent,
+        //superuser profile
+        superuserprofileusercomponent,
 
 
 
@@ -467,7 +482,11 @@ import { ManageAccountChecklistService } from "./components/manageaccount-checkl
         profileswitchservice,
         profilechangepwdservice,
         profiletodolistservice,
-
+        //superuserreports
+        statsaccountsservice,
+        superpetitionsstatusreportsservice,
+        //superuser profile
+        superuserprofileuserservice
 
     ],
     bootstrap: [AppComponent]
