@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImmigrationViewArrivalDepartureInfoService } from './arrival-departure-info.service';
 import { ArrivalDepartureInfo } from "../../models/arrivalDepartureInfo";
-import { LocalDataSource  } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {User} from "../../models/user";
 

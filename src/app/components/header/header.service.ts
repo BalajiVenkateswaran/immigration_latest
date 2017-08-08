@@ -4,10 +4,10 @@ import {RestService} from "../../services/rest.service";
 
 @Injectable()
 export class HeaderService {
+  public static delegatedOrgTypeConstant : string = "Delegated";
   private immigrationview: string;
   private _menuSlider: boolean;
   private _organizations: any;
-  private _delegatedOrg: boolean = false;
   private _selectedOrg: any;
 
   constructor(private appService: AppService, private restService: RestService) {
@@ -36,14 +36,6 @@ export class HeaderService {
     this._organizations = organizations;
   }
 
-  get delegatedOrg(): boolean {
-    return this._delegatedOrg;
-  }
-
-  set delegatedOrg(delegatedOrg: boolean) {
-    this._delegatedOrg = delegatedOrg;
-  }
-
   get selectedOrg(): any {
     return this._selectedOrg;
   }
@@ -52,6 +44,10 @@ export class HeaderService {
     this._selectedOrg = selectedOrg;
   }
 
+  public isDelegatedOrg() : boolean {
+    return this.selectedOrg != null && this.selectedOrg.orgType == HeaderService.delegatedOrgTypeConstant;
+  }
+  
   public getUserOrgs(accountid: string, userid: string, roleid: string) {
     return this.restService.getData("/org/account/" + accountid + "/user/" + userid + "/role/" + roleid);
   }
@@ -63,12 +59,6 @@ export class HeaderService {
         this.organizations = res.orgs;
         if (this.organizations && this.organizations.length != 0) {
           this.selectedOrg = this.organizations[0];
-          if (this.organizations[0].orgType == "Delegated") {
-            this.delegatedOrg = true;
-          }
-          else {
-            this.delegatedOrg = false;
-          }
         }
         else {
           this.selectedOrg = {'displayName' : ''};
@@ -78,12 +68,6 @@ export class HeaderService {
     else {
       if (this.organizations && this.organizations.length != 0) {
         this.selectedOrg = this.organizations[0];
-        if (this.organizations[0].orgType == "Delegated") {
-          this.delegatedOrg = true;
-        }
-        else {
-          this.delegatedOrg = false;
-        }
       }
       else {
         this.selectedOrg = {'displayName' : ''};
@@ -95,6 +79,5 @@ export class HeaderService {
     this.immigrationview = null;
     this._menuSlider = null;
     this._organizations = null;
-    this._delegatedOrg = false;
   }
 }

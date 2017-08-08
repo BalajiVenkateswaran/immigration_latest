@@ -1,5 +1,3 @@
-import { LocalDataSource } from 'ng2-smart-table';
-import { Ng2SmartTableModule,ViewCell  } from 'ng2-smart-table';
 import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
 import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';

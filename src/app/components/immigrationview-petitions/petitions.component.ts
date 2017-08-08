@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {petition} from "../../models/petitions";
 import {ImmigrationViewPetitionsService} from "./petitions.service";
 import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import {MenuService} from "../menu/menu.service";
@@ -13,10 +11,7 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { HeaderService } from '../header/header.service';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 
-import { CustomEditorComponent } from './custom-editor.component';
 import { CustomRenderComponent } from './custom-render.component';
-
-import { PetitionSubTypeCustomEditorComponent } from './petitionSubType-custom-editor.component';
 
 export interface ConfirmModel {
     title: string;
@@ -125,7 +120,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
     getPetitionData() {
         this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId).subscribe((res) => {
-            //this.source.load(res['petitions']);
             this.data=res['petitions'];
         });
         this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
@@ -149,7 +143,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
   ngOnInit() {
       this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId)
           .subscribe((res) => {
-              //this.source.load(res['petitions']);
               this.data=res['petitions'];
           });
 
@@ -258,7 +251,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         })
             .subscribe((isConfirmed) => {
                 //Get dialog result
-                //this.confirmResult = isConfirmed;
                 if (isConfirmed) {
 
                 }

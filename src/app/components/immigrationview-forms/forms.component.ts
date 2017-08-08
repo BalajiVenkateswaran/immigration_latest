@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsService } from "./forms.service";
 import { form } from "../../models/form";
 import { FormGroup, FormControl } from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import { User } from "../../models/user";
 import { AppService } from "../../services/app.service";
 import { GenerateFormButton } from './GenerateFormButton';

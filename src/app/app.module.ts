@@ -101,9 +101,6 @@ import {ManageAccountPetitionStagesService} from "./components/manageaccount-pet
 import { QuestionnaireService } from './components/immigrationview-questionnaire/questionnaire.service';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {LoginComponent} from "./components/login/login.component";
-
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-
 import {QuestionnaireI129Component} from "./components/questionnaire-i129/questionnaire-i129.component";
 import {MenuService} from "./components/menu/menu.service";
 import {petitionsclientviewComponent} from "./components/clientview-petitions/clientview-petitions.component";
@@ -130,7 +127,6 @@ import {ResetPasswordService} from './components/reset-password/reset-password.s
 import {QuestionnaireI129HService} from "./components/i129h/questionnaire-i129h.service";
 import {QuestionnaireI129HClentviewService} from "./components/clientview-i129h/questionnaire-i129h.service";
 import {ClientQuestionnaireService} from "./components/clientview-Questionnaries/clientview-Questionnaries.service";
-import {ClientsEnhansmentsComponent} from "./components/clients-enhancements/clients.component";
 
 
 import { RequestButton } from "./components/clientview-request/RequestButton";
@@ -146,10 +142,8 @@ import { ConfirmComponent } from './components/confirmbox/confirm.component';
 import { ConfirmorgComponent } from './components/confirmbox/confirmorg.component';
 
 //import { AdvancedExamplesCustomEditorComponent } from './components/immigrationview-petitions/advanced-example-custom-editor.component';
-import { CustomEditorComponent } from './components/immigrationview-petitions/custom-editor.component';
 import { CustomRenderComponent } from './components/immigrationview-petitions/custom-render.component';
 
-import { PetitionSubTypeCustomEditorComponent } from './components/immigrationview-petitions/petitionSubType-custom-editor.component';
 
 import {AgGridModule} from "ag-grid-angular/main";
 import { ProductCatalogProductService} from './components/superuserview-productcatalog/superuserview-productcatalog.service';
@@ -256,16 +250,15 @@ import {superuserprofileuserservice} from './components/superuserview-profileuse
         HttpModule,
         routing,
         DragulaModule,
-        Ng2SmartTableModule,
         MyDatePickerModule,
         BootstrapModalModule,
         AgGridModule.withComponents([SmartTableFramework]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton/*AdvancedExamplesCustomEditorComponent*/
+        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        CustomEditorComponent, CustomRenderComponent, PetitionSubTypeCustomEditorComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton,/*AdvancedExamplesCustomEditorComponent,*/
+        CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
         FooterComponent,
@@ -329,7 +322,6 @@ import {superuserprofileuserservice} from './components/superuserview-profileuse
         ResetPasswordComponent,
         ConfirmComponent,
         ConfirmorgComponent,
-        ClientsEnhansmentsComponent,
         //Typeahead
 
         //SmartTableFramework

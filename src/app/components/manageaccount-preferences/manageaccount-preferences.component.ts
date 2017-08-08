@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {client} from "../../models/client";
 import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {Router} from "@angular/router";
 import {User} from "../../models/user";

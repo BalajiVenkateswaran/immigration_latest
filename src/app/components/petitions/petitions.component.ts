@@ -3,8 +3,6 @@ import {petition} from "../../models/petitions";
 import {PetitionsService} from "./petitions.service";
 import {FormGroup, FormControl} from "@angular/forms";
 import { Router } from '@angular/router';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {User} from "../../models/user";
 import { HeaderService } from '../header/header.service';
@@ -136,7 +134,6 @@ export class PetitionsComponent implements OnInit {
 
 
   ngDoCheck(){
-    //console.log("Petitions|ngDoCheck|orgId:%o",this.appService.orgId);
     if(this.orgId != this.headerService.selectedOrg['orgId']){
       this.ngOnInit();
     }

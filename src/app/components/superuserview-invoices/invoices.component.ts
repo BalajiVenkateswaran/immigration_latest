@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {invoice} from "../../models/invoice";
-import { LocalDataSource } from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {Router} from "@angular/router";
 import {User} from "../../models/user";
