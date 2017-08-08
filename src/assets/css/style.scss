@@ -1762,28 +1762,42 @@ confirm {
         padding-top:45px !important;
         padding-bottom:30px !important;
     }
-    input[type="email"], input[type="password"], input[type="email"]:-webkit-autofill, input[type="password"]:-webkit-autofill {
+
+    .emailicon, .pwdicon {
+        border:none;
+        border-bottom:solid 1px #e3e2e2;
+        background:url("../images/Mail.png") no-repeat 5px 13px #fff !important;
+        margin-bottom:20px;
+        padding:0;
+        width:32px;
+        height:32px;
+        float:left;
+    }
+    input[type~="email"], input[type~="password"] {
         border:none;
         border-bottom:solid 1px #e3e2e2;
         border-radius:0px;
-        background:url("../images/Mail.png") no-repeat 5px 13px #fff !important;
+        background:#fff !important;
         font-weight:500;
         font-size:14px;
         margin-bottom:20px;
-            padding:8px 5px 6px 32px;
-            color:#a9a6a8;
+        padding:8px 5px 3px 0px;
+        color:#a9a6a8;
+        width:calc(100% - 32px) !important;
     }
-    input[type="password"], input[type="password"]:-webkit-autofill {
+    
+    .pwdicon {
         background:url("../images/Password.png") no-repeat 5px 7px #fff !important;
     }
 
-    /*input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill {
-  border: 1px solid red;
-  -webkit-text-fill-color: #4d4d4d;
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+  border: none;
+  border-bottom:solid 1px #e3e2e2;
+  -webkit-text-fill-color: #a9a6a8;
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-  transition: background 5000s ease-in-out 0s;
-  background:url("../images/Mail.png") no-repeat 5px 13px #fff !important;
-}*/
+}
+
     .newlogbtn {
     background: #0b8dcd !important;
     width: 100%;
