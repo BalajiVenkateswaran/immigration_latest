@@ -69,19 +69,19 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5">invoice Codes:</div>
+                                    <div class="col-md-5">Bill Start Date:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.invoiceCodes"
+                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.billStartDate"
                                                class="form-control">
-                                        <span *ngIf="isEditInvoice==true">{{invoice.invoiceCodes}}</span>
+                                        <span *ngIf="isEditInvoice==true">{{invoice.billStartDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5">Discount Codes:</div>
+                                    <div class="col-md-5">Bill End Date:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.discountCodes"
+                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.billEndDate"
                                                class="form-control">
-                                        <span *ngIf="isEditInvoice==true">{{invoice.discountCodes}}</span>
+                                        <span *ngIf="isEditInvoice==true">{{invoice.billEndDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -91,6 +91,36 @@
                                                class="form-control">
                                         <span *ngIf="isEditInvoice==true">{{invoice.paymentStatus}}</span>
                                     </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-md-5">Comments:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.comments"
+                                               class="form-control">
+                                        <span *ngIf="isEditInvoice==true">{{invoice.comments}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Invoice (PDF Name):</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.pdfName"
+                                               class="form-control">
+                                        <span *ngIf="isEditInvoice==true">{{invoice.pdfName}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Upload:</div>
+                                    <div class="col-md-7">
+                                           <button type="button"  class="iportal-btn" (click)="uploadInvoice(invoice)">Upload</button>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Email Invoice:</div>
+                                    <div class="col-md-7">
+                                           <button type="button"  class="iportal-btn" (click)="emailInvoice(invoice)">Email Invoice</button>
+                                    </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Downdload:</div>

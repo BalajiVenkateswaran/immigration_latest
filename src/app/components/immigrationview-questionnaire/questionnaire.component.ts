@@ -6,7 +6,6 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { User } from "../../models/user";
 import { ImmigrationViewPetitionInformation } from "../../models/ImmigrationViewPetitionInformation";
 import { AppService } from "../../services/app.service";
-import { Ng2SmartTableModule, LocalDataSource, ServerDataSource } from 'ng2-smart-table';
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
@@ -76,7 +75,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     private questionnaireEmployerList: questionnaireEmp[];
     private empQuestionnaire;
     private selectedForm: string;
-    source: LocalDataSource = new LocalDataSource();
     rowToBeAdded = false;
     private empRowToBeAdded = false;
     private rowEdit: boolean[] = [];

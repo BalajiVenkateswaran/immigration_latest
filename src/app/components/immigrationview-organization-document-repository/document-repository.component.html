@@ -5,7 +5,7 @@
 
         <div class="clearfix"></div>
         <h2>Document Repository</h2>
-        <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
+        <form method="POST" enctype="multipart/form-data"  (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
             <div class="pull-right uplodbtn">
                 <div class="fileUpload btn btn-primary">
                     <span>Choose File</span>

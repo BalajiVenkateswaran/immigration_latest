@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ImmigrationViewI797HistoryService} from "./i-797-history.service";
 import {i797history} from "../../models/i797history";
 import {FormGroup, FormControl} from "@angular/forms";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
 import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 
@@ -179,7 +177,6 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
        })
            .subscribe((isConfirmed) => {
                //Get dialog result
-               //this.confirmResult = isConfirmed;
                if (isConfirmed) {
                    this.immigrationViewI797HistoryService.removeI797Details(immViewi797.data['i797HistoryId']).subscribe((res) => {
                        this.message = res['statusCode'];

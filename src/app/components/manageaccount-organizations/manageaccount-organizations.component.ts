@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ManageAccountOrganizationsService} from "./manageaccount-organizations.service";
 import {manageaccountorganization} from "../../models/manageaccountorganization";
 import {FormGroup, FormControl} from "@angular/forms";
-import {Ng2SmartTableModule} from 'ng2-smart-table';
-import {LocalDataSource} from 'ng2-smart-table';
 import {AppService} from "../../services/app.service";
 import {User} from "../../models/user";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
@@ -12,8 +10,6 @@ import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import {ConfirmorgComponent} from '../confirmbox/confirmorg.component';
 import {HeaderService} from '../header/header.service';
-//import {HeaderComponent} from "../header/header.component";
-
 
 export interface ConfirmModel {
   title: string;
@@ -27,7 +23,6 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-manageaccount-organizations',
   templateUrl: './manageaccount-organizations.component.html',
-  viewProviders: [HeaderService],
   styleUrls: ['./manageaccount-organizations.component.sass']
 })
 export class ManageAccountOrganizationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
@@ -61,50 +56,37 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
 
     if (this.appService.user) {
       this.user = this.appService.user;
-
     }
     this.settings = {
       'columnsettings': [
         {
-
           headerName: "Org Name",
-          field: "orgName",
+          field: "orgName"
         },
         {
-
           headerName: "Display Name",
-          field: "displayName",
-
+          field: "displayName"
         },
         {
-
           headerName: "Type(Regular/Delegated)",
-          field: "orgType",
-
+          field: "orgType"
         },
         {
-
           headerName: "Status",
-          field: "orgStatus",
+          field: "orgStatus"
         },
         {
           headerName: "Email",
-          field: "email",
-
-        },
-
-
-
+          field: "email"
+        }
       ]
     }
 
 
 
   }
-  //source: LocalDataSource = new LocalDataSource();
   getorganizationData() {
     this.manageaccountorganizationService.getManageAccountOrganizations(this.appService.user.accountId).subscribe((res: any) => {
-      //this.source.load(res['orgs']);
       this.data = res['orgs'];
     });
   }
@@ -113,7 +95,6 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
       .getManageAccountOrganizations(this.appService.user.accountId)
       .subscribe((res: any) => {
         console.log("PetitionsComponent|ngOnInit|res:%o", res);
-        //this.source.load(res.orgs);
         this.data = res['orgs'];
       });
   }
@@ -175,14 +156,11 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
             this.message = res['statusCode'];
             if (this.message == 'SUCCESS') {
               this.getorganizationData();
-
             }
           });
 
         }
       });
-
-
   }
 
   addOrganizationSubmit(model: manageaccountorganization, isValid: boolean) {

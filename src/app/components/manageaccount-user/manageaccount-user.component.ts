@@ -3,7 +3,6 @@ import {ManageAccountUserService} from "./manageaccount-user.service";
 import {User} from "../../models/user";
 import {FormGroup, FormControl} from "@angular/forms";
 import {AppService} from "../../services/app.service";
-import { Ng2SmartTableModule, LocalDataSource, ServerDataSource  } from 'ng2-smart-table';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
@@ -18,9 +17,7 @@ export interface ConfirmModel {
 @Component({
     selector: 'app-manageaccount-user',
     templateUrl: './manageaccount-user.component.html',
-    styleUrls: ['./manageaccount-user.component.scss'],
-    //styleUrls: ['./manageaccount-user.component.css']
-    //template: '<ng2-smart-table [settings]="settings"></ng2-smart-table>'
+    styleUrls: ['./manageaccount-user.component.scss']
 })
 
 

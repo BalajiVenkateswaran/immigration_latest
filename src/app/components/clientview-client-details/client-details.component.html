@@ -75,7 +75,7 @@
                             <button type="submit" class="editbtn  no-marg-right" (click)="editPersonalInfoForm()" *ngIf="isPersonalInfoEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
                                 <button type="button" (click)="cancelPersonalInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn no-marg-right" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+                                <button type="submit" value="Save" class="savebtn"  (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
