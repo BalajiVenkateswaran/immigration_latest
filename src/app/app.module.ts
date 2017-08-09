@@ -239,10 +239,11 @@ import {superuserH1Breportscomponent} from './components/superuser-petitiontypeh
 import {superuserH1Breportsservice} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.service';
 
 
-
+import { AngularDraggableModule } from 'angular2-draggable';
 @NgModule({
     imports: [
         BrowserModule,
+        AngularDraggableModule,
         ChartsModule,
         FormsModule,
         ReactiveFormsModule,

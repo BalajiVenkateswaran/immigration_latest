@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from "../../services/app.service";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { ImmigrationViewClientDetailsService } from "./client-details.service";
 import { ImmigrationViewClientProfile } from "../../models/immigrationviewclientprofile";
 import { ImmigrationViewClientPersonalInfo } from "../../models/ImmigrationViewClientPersonalInfo";
@@ -20,7 +21,8 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     private client: any = {};
     private clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
     private clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
-
+    phoneNumber: FormControl;
+    public phoneRegex;
     //Profile section variables
     isProfileEdit;
     isPersonalInfoEdit;
@@ -43,6 +45,8 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
+       this.phoneRegex=/^[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}$/;
+       this.phoneNumber=new FormControl('', [Validators.required,Validators.pattern(this.phoneRegex)]);
        this.getClientDetails();
     }
 
@@ -149,6 +153,9 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         this.mapFromClientProfile();
         if (this.clientDetails['fileNumber'] == '' || this.client['clientStatus'] == '' || this.clientProfile['email'] == '' || this.clientProfile['firstName'] == '' || this.clientProfile['lastName'] == '' || this.clientProfile['phoneNumber'] == '') {
             this.warningMessage = true;
+        }
+        else if(this.phoneNumber.errors!=null){
+            this.warningMessage=false;
         }
         else {
             this.warningMessage = false;
