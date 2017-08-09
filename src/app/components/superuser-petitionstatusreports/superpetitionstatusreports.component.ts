@@ -74,7 +74,7 @@ export class superpetitionsstatusreportscomponent implements OnInit {
         console.log(e);
     }
     constructor(public appService: AppService, private superPetitionsstatusreportsservice: superpetitionsstatusreportsservice,
-        private accountDetailsCommonService: AccountDetailsCommonService) { }
+        public accountDetailsCommonService: AccountDetailsCommonService) { }
 
 
 }

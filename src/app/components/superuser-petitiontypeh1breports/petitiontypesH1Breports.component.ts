@@ -50,7 +50,7 @@ export class superuserH1Breportscomponent implements OnInit {
             });
     }
     constructor(public appService: AppService, private superUserH1Breportsservice: superuserH1Breportsservice,
-        private accountDetailsCommonService: AccountDetailsCommonService) { }
+        public accountDetailsCommonService: AccountDetailsCommonService) { }
     public chartClicked(e: any): void {
         console.log(e);
     }
