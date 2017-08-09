@@ -236,9 +236,7 @@ import {statsaccountsservice} from './components/superuser-statsaccountsreports/
 import {superpetitionsstatusreportscomponent} from './components/superuser-petitionstatusreports/superpetitionstatusreports.component';
 import {superpetitionsstatusreportsservice} from './components/superuser-petitionstatusreports/superpetitionstatusreports.service';
 
-//superuser-profiletab
-import {superuserprofileusercomponent} from './components/superuserview-profileuserdetails/superuserprofileuserdet.component';
-import {superuserprofileuserservice} from './components/superuserview-profileuserdetails/superuserprofileuserdet.service';
+
 
 import { AngularDraggableModule } from 'angular2-draggable';
 @NgModule({
@@ -341,7 +339,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
         statsaccountscomponent,
         superpetitionsstatusreportscomponent,
         //superuser profile
-        superuserprofileusercomponent,
+     
 
 
 
@@ -482,7 +480,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
         statsaccountsservice,
         superpetitionsstatusreportsservice,
         //superuser profile
-        superuserprofileuserservice
+    
 
     ],
     bootstrap: [AppComponent]

@@ -68,11 +68,20 @@
           </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-country">Phone Number<span class="redstar">*</span>  </label></div>
-            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-country" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''"
+            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-country" [formControl]="phoneNumber" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''"
               /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span>
             </div>
           </div>
-
+            <div class="row sfm" *ngIf="phoneNumber.touched">
+                                    <div class="col-md-12">
+                                        <div class="redstar" *ngIf="phoneNumber.errors && phoneNumber.errors.required">
+                                            * Phone Number is required
+                                        </div>
+                                        <div class="redstar" *ngIf="phoneNumber.errors && phoneNumber.errors.pattern">
+                                            * Phone field can contain numbers, '+' , '(' , ')' 
+                                        </div>
+                                    </div>
+                                </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-country">Created By</label></div>
             <div class="col-md-8">

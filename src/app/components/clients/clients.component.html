@@ -30,7 +30,7 @@
                             <div class="col-md-7"><input type="text" [(ngModel)]="newclitem.email" [ngClass]="newclitem.email == '' ? 'redborder': ''"
                                     class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel"></div>
                             <div class="col-md-5">Phone:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="tel" [(ngModel)]="newclitem.phone" [ngClass]="newclitem.phone == '' ? 'redborder': ''"
+                            <div class="col-md-7"><input type="tel" [(ngModel)]="newclitem.phone" required #phone="ngModel" pattern="[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}" [ngClass]="newclitem.phone == '' ? 'redborder': ''"
                                     class="form-control"></div>
                         </div>
                         <div class="row">
@@ -51,10 +51,20 @@
                                         </div>
                                     </div>
                                 </div>
+                                 <div class="row sfm" [hidden]="phone.valid || phone.untouched">
+                                    <div class="col-md-12">
+                                        <div class="redstar" *ngIf="phone.errors && phone.errors.required">
+                                            * Phone is required
+                                        </div>
+                                        <div class="redstar" *ngIf="phone.errors && phone.errors.pattern">
+                                            * Phone field can contain numbers, '+' , '(' , ')'  
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="clientSave(emailId.errors)">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="clientSave(emailId.errors,phone.errors)">Save</button></div>
                                     <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
