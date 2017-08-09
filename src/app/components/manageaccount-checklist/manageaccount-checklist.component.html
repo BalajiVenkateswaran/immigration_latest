@@ -29,11 +29,11 @@
               <div class="col-md-5">Doc Name:</div>
               <div class="col-md-7"><input type="text" [(ngModel)]="addChecklist.docName" class="form-control"></div>
               <div class="col-md-5">Upload:</div>
-              <div class="col-md-7">
-                <div class="fileUpload btn btn-primary">
-                  <span>Choose File</span>
-                  <input type="file" class="upload" name="file" (change)="fileUpload($event)" />
-                </div>
+              <div class="col-md-7 fileUpload btn btn-primary">
+               
+                    <span>Upload</span>
+                    <input type="file" class="upload" name="file" (change)="fileUpload($event)" />
+               
               </div>
             </div>
             <div class="row">
