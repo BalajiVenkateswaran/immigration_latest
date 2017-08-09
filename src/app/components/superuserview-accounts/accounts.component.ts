@@ -131,7 +131,8 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     getAccountDetail() {
         this.appService.showSideBarMenu(null, "accounts");
         this.clientService.getAccountDetails().subscribe((res) => {
-            if(res['statusCode']=='SUCCESS'){
+            if (res['statusCode'] == 'SUCCESS') {
+                this.accountDetailsCommonService.totalAccounts = res['accountInfoList'];
                 console.log(res['accountInfoList']);
                 this.data = res['accountInfoList'];
             }

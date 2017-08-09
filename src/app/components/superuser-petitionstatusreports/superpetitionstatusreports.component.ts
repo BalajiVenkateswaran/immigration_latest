@@ -4,6 +4,7 @@ import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import {RestService} from "../../services/rest.service";
 import {superpetitionsstatusreportsservice} from "./superpetitionstatusreports.service";
+import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
 
 
 @Component({
@@ -17,14 +18,24 @@ export class superpetitionsstatusreportscomponent implements OnInit {
     public pieChartLabels: string[] = ['Opened Petitons', 'Closed Petitions'];
     public pieChartData: number[] = [0, 0];
     public pieChartType: string = 'pie';
+    public selectedaccountId: string;
     //public orgsList: any = {};
     //public orgsNames: any = [];
     //public closed: any;
     //public opened: any;
     ngOnInit() {
-        this.superPetitionsstatusreportsservice.getpetitonstatusreports(this.appService.user.accountId)
+        this.selectedaccountId = this.accountDetailsCommonService.totalAccounts[0].accountId;
+        this.getreports();
+    }
+    changeaccount(value) {
+        this.selectedaccountId = value;
+        this.getreports();
+    }
+    getreports() {
+        this.superPetitionsstatusreportsservice.getpetitonstatusreports(this.selectedaccountId)
             .subscribe((res) => {
-               // this.orgsList = res['orgs'];
+                console.log(res);
+                // this.orgsList = res['orgs'];
                 //for (var item in this.orgsList) {
                 //    this.orgsNames.push(item);
                 //    if (res['orgs'][item][0] != undefined) {
@@ -62,7 +73,8 @@ export class superpetitionsstatusreportscomponent implements OnInit {
     public chartHovered(e: any): void {
         console.log(e);
     }
-    constructor(public appService: AppService, private superPetitionsstatusreportsservice: superpetitionsstatusreportsservice) { }
+    constructor(public appService: AppService, private superPetitionsstatusreportsservice: superpetitionsstatusreportsservice,
+        private accountDetailsCommonService: AccountDetailsCommonService) { }
 
 
 }

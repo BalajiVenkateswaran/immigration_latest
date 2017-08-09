@@ -108,6 +108,7 @@ import { ManageaccountChecklistComponent } from "./components/manageaccount-chec
 //superuser reports
 import {statsaccountscomponent} from './components/superuser-statsaccountsreports/statsaccountsreports.component';
 import {superpetitionsstatusreportscomponent} from './components/superuser-petitionstatusreports/superpetitionstatusreports.component';
+import {superuserH1Breportscomponent} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.component';
 
 
 
@@ -455,6 +456,10 @@ export const appRoutes: Routes = [
     {
         path: 'superuser-petitionreports',
         component: superpetitionsstatusreportscomponent
+    },
+    {
+        path: 'superuser-petiontypes',
+        component: superuserH1Breportscomponent
     },
     {
         path: '',

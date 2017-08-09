@@ -235,7 +235,8 @@ import {statsaccountscomponent} from './components/superuser-statsaccountsreport
 import {statsaccountsservice} from './components/superuser-statsaccountsreports/statsaccountsreports.service';
 import {superpetitionsstatusreportscomponent} from './components/superuser-petitionstatusreports/superpetitionstatusreports.component';
 import {superpetitionsstatusreportsservice} from './components/superuser-petitionstatusreports/superpetitionstatusreports.service';
-
+import {superuserH1Breportscomponent} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.component';
+import {superuserH1Breportsservice} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.service';
 
 
 
@@ -337,7 +338,7 @@ import {superpetitionsstatusreportsservice} from './components/superuser-petitio
         //superuserreports
         statsaccountscomponent,
         superpetitionsstatusreportscomponent,
-        //superuser profile
+        superuserH1Breportscomponent,
      
 
 
@@ -478,7 +479,7 @@ import {superpetitionsstatusreportsservice} from './components/superuser-petitio
         //superuserreports
         statsaccountsservice,
         superpetitionsstatusreportsservice,
-        //superuser profile
+        superuserH1Breportsservice
     
 
     ],
