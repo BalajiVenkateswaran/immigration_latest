@@ -41,6 +41,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
   public selectrole: boolean;
   public loginPopupForm:boolean;
   public userRoles: any = [];
+  public forgotpwdsubmit: boolean = true;
   constructor(
     private router: Router,
     private ManageAccountUserService: ManageAccountUserService,
@@ -60,7 +61,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
     }
 
   }
-  frgtPwd() {
+  frgtPwd(isValid) {
       this.forgotPwd = false;
   }
 
@@ -71,11 +72,16 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
   }
 
   onSubmitClick(model: User, isValid: boolean) {
+      if (isValid) {
+          this.forgotpwdsubmit = false;
+      }
+
     if(!this.forgotPwd){
       this.forgetPassword(model.emailId);
     } else {
       this.loginSubmit(model, isValid);
-    }
+      }
+    //this.close();
   }
 
   forgetPassword(email: string) {
@@ -99,9 +105,10 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
   }
 
   loginSubmit(model: User, isValid: boolean) {
-      this.close();
-    if (isValid) {
-        this.loginPopupForm=false;
+      
+      if (isValid) {
+          
+        //this.loginPopupForm=false;
         this.ManageAccountUserService.login(model).subscribe((res: any) => {
             console.log("Login User %o", res);
             if (res.statusCode == "FAILURE") {
@@ -112,7 +119,8 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                 if (res['resetPassword'] != undefined
                     && res['resetPassword'] == true) {
                     this.appService.moveToPage('reset-password');
-                } else{
+                } else {
+                    this.close();
                     this.appService.userLoginHistoryId = res['userLoginHistoryId'];
                     if (res.hasMultipleRoles == true) {
                         this.appService.userroleList = res['userAccountRoleList'];
@@ -163,7 +171,6 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
     } else {
       this.message = "Unable to login into system. contact admin.";
     }
-      this.close();
   }
 
   selectedRole(userdet) {
@@ -213,5 +220,11 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
               this.close();
           }
       });
+  }
+  multiRolepopupClose() {
+      this.appService.destroy();
+      this.close();
+      this.appService.moveToPage('login');
+      
   }
 }

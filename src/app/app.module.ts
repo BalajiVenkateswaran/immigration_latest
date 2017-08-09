@@ -240,10 +240,11 @@ import {superpetitionsstatusreportsservice} from './components/superuser-petitio
 import {superuserprofileusercomponent} from './components/superuserview-profileuserdetails/superuserprofileuserdet.component';
 import {superuserprofileuserservice} from './components/superuserview-profileuserdetails/superuserprofileuserdet.service';
 
-
+import { AngularDraggableModule } from 'angular2-draggable';
 @NgModule({
     imports: [
         BrowserModule,
+        AngularDraggableModule,
         ChartsModule,
         FormsModule,
         ReactiveFormsModule,

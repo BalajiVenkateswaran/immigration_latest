@@ -19,14 +19,14 @@
 </div>
 
 <div *ngIf="loginPopupForm">
-	<div class="modal-dialog loginpopup">
+	<div class="modal-dialog loginpopup" style="margin-top:5% !important;" ngDraggable>
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">
 					<img src="../../../assets/images/logo.png" />
 				</h4>
 
-				<!--<button type="button" class="close" (click)="close()">&times;</button>-->
+				<button type="button" class="close" (click)="close()" style="margin-top: -50px;margin-right: 10px;">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -45,38 +45,34 @@
 											<!--<label>Email</label>-->
 											<div class="emailicon"></div>
 											<input type="email" class="form-control" id="userId"
-												placeholder="Email Address" formControlName="emailId"
-												autocomplete="off">
+												placeholder="Email Address" formControlName="emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                    required />
 										</div>
 										<div class="password">
 											<!--<label>PASSWORD</label>-->
 											<div class="pwdicon"></div>
 											<input type="password" class="form-control"
 												id="inputPassword3" placeholder="Password"
-												formControlName="password" autocomplete="off">
+												formControlName="password" required />
 										</div>
 										<div class="sign_in">
-											<button type="submit" class="btn newlogbtn">Sign in</button>
+											<button type="submit" class="btn newlogbtn" [disabled]="!login.valid">Sign in</button>
 										</div>
 										<div class="forgot_password">
-											<a (click)="frgtPwd()">Forgot Password?</a>
+											<a (click)="frgtPwd(login.valid)">Forgot Password?</a>
 										</div>
 									</div>
 									<div class="form-group" *ngIf="forgotPwd==false">
 										<div class="user_id">
 											<!--<label>Enter Registered Email Id</label>-->
 											<div class="emailicon"></div>
-											<input type="email" class="form-control" id="forgetPassword"
-												placeholder="Email" formControlName="emailId">
+											<input type="email" class="form-control" id="forgetPassword" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                    required placeholder="Email" formControlName="emailId">
 										</div>
 										<div class="sign_in">
-											<button type="submit" class="btn newlogbtn">Submit</button>
+											<button type="submit" class="btn newlogbtn" [disabled]="!login.valid">Submit</button>
 										</div>
 									</div>
-									<p class="note">
-										Lorem ipsum dolor sit amet<br />Lorem ipsum dolor sit amet,
-										consectetuer
-									</p>
 								</form>
 							</div>
 							<div class="col-md-2"></div>
@@ -93,7 +89,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">{{title}}</h4>
-				<button type="button" class="close" (click)="close()">&times;</button>
+				<button type="button" class="close" (click)="multiRolepopupClose()">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="row">

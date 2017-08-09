@@ -30,6 +30,7 @@
     "ag-grid": "^11.0.0",
     "ag-grid-angular": "^11.0.0",
     "angular-chart.js": "^1.1.1",
+    "angular2-draggable": "^1.0.5",
     "angular2-highcharts": "^0.5.5",
     "bootstrap": "^4.0.0-alpha.6",
     "chart.js": "^2.6.0",
