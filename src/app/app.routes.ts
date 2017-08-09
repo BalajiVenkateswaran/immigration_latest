@@ -109,8 +109,7 @@ import { ManageaccountChecklistComponent } from "./components/manageaccount-chec
 import {statsaccountscomponent} from './components/superuser-statsaccountsreports/statsaccountsreports.component';
 import {superpetitionsstatusreportscomponent} from './components/superuser-petitionstatusreports/superpetitionstatusreports.component';
 
-//superuser profile
-import {superuserprofileusercomponent} from './components/superuserview-profileuserdetails/superuserprofileuserdet.component';
+
 
 
 
@@ -448,10 +447,6 @@ export const appRoutes: Routes = [
     {
         path: 'petiton-finalaction',
         component: petitionfinalactioncomponent
-    },
-    {
-        path: 'superuser-profileuser',
-        component: superuserprofileusercomponent
     },
     {
         path: 'superuser-statsaccounts',

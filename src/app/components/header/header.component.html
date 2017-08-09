@@ -132,6 +132,15 @@
 							<div class="clearfix"></div> Requests
 							<div class="arrow-up"></div>
 					</a></li>
+                    <li>
+                        <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
+                           [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
+                           routerLinkActive="active">
+                            <span class="maintab-Reports"></span>
+                            <div class="clearfix"></div> Profile
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
 					<!--<li>
                         <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');" [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']" routerLinkActive="active">
                             <span class="maintab-Reports"></span>
@@ -185,13 +194,15 @@
 							<div class="clearfix"></div> Reports
 							<div class="arrow-up"></div>
 					</a></li>
-					<li><a
-						(click)="appService.moveToPage('superuser-profileuser'); highlightTab('superuser-profileuser');highlightSBLink('superuser-profileuser');"
-						[ngClass]="[checkForCurrentTab('superuser-profileuser') ? 'active' : '']"
-						routerLinkActive="active"> <span class="maintab-Reports"></span>
-							<div class="clearfix"></div> Profile
-							<div class="arrow-up"></div>
-					</a></li>
+                    <li>
+                        <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
+                           [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
+                           routerLinkActive="active">
+                            <span class="maintab-Reports"></span>
+                            <div class="clearfix"></div> Profile
+                            <div class="arrow-up"></div>
+                        </a>
+                    </li>
 				</ul>
 				<div class="clearfix"></div>
 			</div>

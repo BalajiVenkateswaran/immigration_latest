@@ -23,7 +23,11 @@ export class profileusercomponent implements OnInit {
     public orgdisable: boolean;
     public beforeCancelorgid: any;
     public selectedorg: any = {};
+    public showdefaultorg: boolean=true;
     ngOnInit() {
+        if (this.headerService.organizations == undefined) {
+            this.showdefaultorg = false;
+        }
         this.appService.showSideBarMenu("immiview-profuser", "immiview-profileuser");
         this.profileUserservice.getUserInfo(this.appService.user.userId)
             .subscribe((res) => {
