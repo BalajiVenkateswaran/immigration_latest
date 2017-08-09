@@ -139,7 +139,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       }
     });
   }
-  clientSave(email) {
+  clientSave(email,phone) {
     this.newclitem['accountId'] = this.appService.user.accountId;
     this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
     this.newclitem['createdBy'] = this.appService.user.userId;
@@ -151,7 +151,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     if (this.newclitem['firstName'] == '' || this.newclitem['firstName'] == null || this.newclitem['firstName'] == undefined || this.newclitem['lastName'] == '' || this.newclitem['lastName'] == null || this.newclitem['lastName'] == undefined || this.newclitem['email'] == '' || this.newclitem['email'] == null || this.newclitem['email'] == undefined || this.newclitem['phone'] == '' || this.newclitem['phone'] == null || this.newclitem['phone'] == undefined) {
       this.warningMessage = true;
     }
-    else if (email != null) {
+    else if (email != null || phone!=null) {
       this.warningMessage;
     }
     else {

@@ -57,7 +57,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
           field: "lastName"
         },
         {
-          headerName: "Approved on",
+          headerName: "Relation",
           field: "relation"
         },
 
