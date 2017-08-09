@@ -9,7 +9,7 @@ export interface ConfirmModel {
 
 @Component({
     selector: 'confirm',
-    template: `<div class="modal-dialog">
+    template: `<div class="modal-dialog" ngDraggable>
                 <div class="modal-content">
                    <div class="modal-header">
                      <button type="button" class="close" (click)="close()" >&times;</button>

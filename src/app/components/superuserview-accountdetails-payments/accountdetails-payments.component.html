@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="table-data-forms" *ngIf="viewAccountPopup">
-    <div class="modal-dialog" style="margin-top:5% !important;">
+    <div class="modal-dialog" ngDraggable style="margin-top:5% !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
@@ -157,7 +157,7 @@
 </div>
 
     <div *ngIf="addPopups">
-    <div class="modal-dialog">
+    <div class="modal-dialog" ngDraggable">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
