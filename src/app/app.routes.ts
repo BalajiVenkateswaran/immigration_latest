@@ -114,13 +114,9 @@ import {superuserpetstagereportscomponent} from './components/superuser-petition
 import {superuserpettagreportscomponent} from './components/superuser-petitiontagreports/superuser-petitiontagreport.component';
 import {superuserpetfinalactionreportscomponent} from './components/superuser-petionfinalactionreports/superuser-petitionfinalaction.component';
 import {superuserclientstatusreportscomponent} from './components/superuser-clientstatusreports/superuser-clientstatusreports.component';
-import {superuserclientscreatedreportscomponent} from './components/superuser-clientscreatedreports/superuser-clientscreatedreports.component';
+import {SuperUserClientsCreatedReportsComponent} from './components/superuser-clientscreatedreports/superuser-clientscreatedreports.component';
 import {superusertotalpetitionsreportscomponent} from './components/superuser-usertotalpetitions/superuser-usertotalpetitions.component';
-import {superuseropenpetitioncomponent} from './components/superuser-useropenpetitions/superuser-useropenpetitions.component';
-
-
-
-
+import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/useropenpetitions.component';
 
 export const appRoutes: Routes = [
     {
@@ -492,7 +488,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'superuser-clientscreated',
-        component: superuserclientscreatedreportscomponent
+        component: SuperUserClientsCreatedReportsComponent
     },
     {
         path: 'superuser-totalpetitions',
@@ -500,7 +496,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'superuser-openpetitions',
-        component: superuseropenpetitioncomponent
+        component: SuperUserOpenPetitionComponent
     },
     {
         path: '',

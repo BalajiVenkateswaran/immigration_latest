@@ -1,19 +1,19 @@
 ﻿import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {User} from "../../models/user";
-import {AppService} from "../../services/app.service";
-import {RestService} from "../../services/rest.service";
-import {superusersopenpetitionservice} from "./superuser-useropenpetitions.service";
-import {ReportsCommonService} from "../superuserview/reports/common/reports-common.service";
+import {User} from "../../../../../models/user";
+import {AppService} from "../../../../../services/app.service";
+import {RestService} from "../../../../../services/rest.service";
+import {SuperUsersOpenPetitionService} from "./useropenpetitions.service";
+import {ReportsCommonService} from "../../common/reports-common.service";
 
 
 @Component({
     selector: 'app-superuseropenpetitons',
-    templateUrl: './superuser-useropenpetitions.component.html',
-    styleUrls: ['./superuser-useropenpetitions.component.sass']
+    templateUrl: './useropenpetitions.component.html',
+    styleUrls: ['./useropenpetitions.component.sass']
 })
 
-export class superuseropenpetitioncomponent implements OnInit {
+export class SuperUserOpenPetitionComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -23,8 +23,13 @@ export class superuseropenpetitioncomponent implements OnInit {
     public username: any = [];
     public fullMonth: any = [];
     public selectedaccountId: string;
+    
+    constructor(public appService: AppService, private superUsersopenpetitionservice: SuperUsersOpenPetitionService,
+        public reportscommonService: ReportsCommonService) { }
+    
+
     ngOnInit() {
-        this.selectedaccountId = this.ReportscommonService.totalAccounts[0].accountId;
+        this.selectedaccountId = this.reportscommonService.totalAccounts[0].accountId;
         this.getreports();
 
     }
@@ -53,8 +58,6 @@ export class superuseropenpetitioncomponent implements OnInit {
             });
     }
 
-    constructor(public appService: AppService, private superUsersopenpetitionservice: superusersopenpetitionservice,
-        private ReportscommonService: ReportsCommonService) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

@@ -4,7 +4,7 @@ import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import {RestService} from "../../services/rest.service";
 import {superuserpetitionstagesreportsservice} from "./superuser-petitionstagereports.service";
-import {ReportsCommonService} from "../superuserview/reports/common/reports-common.service";
+import {ReportsCommonService} from "../superuserview/reports-tab/common/reports-common.service";
 
 
 @Component({
