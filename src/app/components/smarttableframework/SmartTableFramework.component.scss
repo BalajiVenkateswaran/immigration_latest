@@ -35,6 +35,9 @@ $dateColumnWidth:110px;
     margin-left: -5px !important;
     margin-right: -5px !important;
     margin-bottom: 5px !important;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
       }
   }
 }
@@ -581,15 +584,15 @@ $dateColumnWidth:110px;
     width:8% !important;
     left:52% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="clients"], .ag-fresh .ag-ltr .ag-cell[colid~="clients"] {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="clientCount"], .ag-fresh .ag-ltr .ag-cell[colid~="clientCount"] {
     width:8% !important;
     left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitions"], .ag-fresh .ag-ltr .ag-cell[colid~="petitions"] {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionCount"], .ag-fresh .ag-ltr .ag-cell[colid~="petitionCount"] {
     width:8% !important;
     left:68% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="createdOn"], .ag-fresh .ag-ltr .ag-cell[colid~="createdOn"] {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="creationOn"], .ag-fresh .ag-ltr .ag-cell[colid~="creationOn"] {
     width:8% !important;
     left:76% !important;
     }
