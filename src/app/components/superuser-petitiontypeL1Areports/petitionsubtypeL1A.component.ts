@@ -3,17 +3,17 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import {RestService} from "../../services/rest.service";
-import {superuserH1Breportsservice} from "./petitiontypesH1Breports.service";
+import {superuserL1Areportsservice} from "./petitionsubtypeL1A.service";
 import {ReportsCommonService} from "../superuserview/reports/common/reports-common.service";
 
 
 @Component({
-    selector: 'app-petitiontypes-types',
-    templateUrl: './petitiontypesH1Breports.component.html',
-    styleUrls: ['./petitiontypesH1Breports.component.sass']
+    selector: 'app-petitiontypes-typesL1A',
+    templateUrl: './petitionsubtypeL1A.component.html',
+    styleUrls: ['./petitionsubtypeL1A.component.sass']
 })
 
-export class superuserH1Breportscomponent implements OnInit {
+export class superuserL1Areportscomponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -25,14 +25,14 @@ export class superuserH1Breportscomponent implements OnInit {
     ngOnInit() {
         this.selectedaccountId = this.ReportscommonService.totalAccounts[0].accountId;
         this.getreports();
-      
+
     }
     changeaccount(value) {
         this.selectedaccountId = value;
         this.getreports();
     }
     getreports() {
-        this.superUserH1Breportsservice.getpetitonTypesreports(this.selectedaccountId, "14a8e52f-2f5a-11e7-bf66-0aac8eb8f426")
+        this.superUserL1Areportsservice.getpetitonTypesreports(this.selectedaccountId, "228fd16f-d366-11e6-b7ec-34e6d7382ca1")
             .subscribe((res) => {
                 console.log(res);
                 if (res['orgs']) {
@@ -51,7 +51,7 @@ export class superuserH1Breportscomponent implements OnInit {
                 }
             });
     }
-    constructor(public appService: AppService, private superUserH1Breportsservice: superuserH1Breportsservice,
+    constructor(public appService: AppService, private superUserL1Areportsservice: superuserL1Areportsservice,
         public ReportscommonService: ReportsCommonService) { }
     public chartClicked(e: any): void {
         console.log(e);

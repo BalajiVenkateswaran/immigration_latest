@@ -4,7 +4,8 @@ import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import {RestService} from "../../services/rest.service";
 import {superpetitionsstatusreportsservice} from "./superpetitionstatusreports.service";
-import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
+import {ReportsCommonService} from "../superuserview/reports/common/reports-common.service";
+
 
 
 @Component({
@@ -19,12 +20,12 @@ export class superpetitionsstatusreportscomponent implements OnInit {
     public pieChartData: number[] = [0, 0];
     public pieChartType: string = 'pie';
     public selectedaccountId: string;
-    //public orgsList: any = {};
-    //public orgsNames: any = [];
-    //public closed: any;
-    //public opened: any;
+    public orgsList: any = {};
+    public orgsNames: any = [];
+    public closed: any;
+    public opened: any;
     ngOnInit() {
-        this.selectedaccountId = this.accountDetailsCommonService.totalAccounts[0].accountId;
+        this.selectedaccountId = this.ReportscommonService.totalAccounts[0].accountId;
         this.getreports();
     }
     changeaccount(value) {
@@ -35,34 +36,36 @@ export class superpetitionsstatusreportscomponent implements OnInit {
         this.superPetitionsstatusreportsservice.getpetitonstatusreports(this.selectedaccountId)
             .subscribe((res) => {
                 console.log(res);
-                // this.orgsList = res['orgs'];
-                //for (var item in this.orgsList) {
-                //    this.orgsNames.push(item);
-                //    if (res['orgs'][item][0] != undefined) {
-                //        if (res['orgs'][item][0].status == "Open") {
-                //            this.opened = res['orgs'][item][0].count;
-                //        }
-                //        if (res['orgs'][item][0].status == "Close") {
-                //            this.closed = res['orgs'][item][0].count;
-                //        }
-                //    }
-                //    else {
-                //        this.opened = 0;
-                //        this.closed = 0;
-                //    }
-                //    if (res['orgs'][item][1] != undefined) {
-                //        if (res['orgs'][item][1].status == "Open") {
-                //            this.opened = res['orgs'][item][1].count;
-                //        }
-                //        if (res['orgs'][item][1].status == "Close") {
-                //            this.closed = res['orgs'][item][1].count;
-                //        }
-                //    }
-                //    else {
-                //        this.closed = 0;
-                //    }
-                //    this.pieChartData[item] = [this.opened, this.closed];
-                //}
+                if (res['orgs']) {
+                    this.orgsList = res['orgs'];
+                    for (var item in this.orgsList) {
+                        this.orgsNames.push(item);
+                        if (res['orgs'][item][0] != undefined) {
+                            if (res['orgs'][item][0].status == "Open") {
+                                this.opened = res['orgs'][item][0].count;
+                            }
+                            if (res['orgs'][item][0].status == "Close") {
+                                this.closed = res['orgs'][item][0].count;
+                            }
+                        }
+                        else {
+                            this.opened = 0;
+                            this.closed = 0;
+                        }
+                        if (res['orgs'][item][1] != undefined) {
+                            if (res['orgs'][item][1].status == "Open") {
+                                this.opened = res['orgs'][item][1].count;
+                            }
+                            if (res['orgs'][item][1].status == "Close") {
+                                this.closed = res['orgs'][item][1].count;
+                            }
+                        }
+                        else {
+                            this.closed = 0;
+                        }
+                        this.pieChartData[item] = [this.opened, this.closed];
+                    }
+                }
             });
     }
     // events
@@ -74,7 +77,7 @@ export class superpetitionsstatusreportscomponent implements OnInit {
         console.log(e);
     }
     constructor(public appService: AppService, private superPetitionsstatusreportsservice: superpetitionsstatusreportsservice,
-        public accountDetailsCommonService: AccountDetailsCommonService) { }
+        public ReportscommonService: ReportsCommonService) { }
 
 
 }

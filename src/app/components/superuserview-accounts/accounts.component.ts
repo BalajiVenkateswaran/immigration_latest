@@ -8,6 +8,7 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
+import {ReportsCommonService} from "../superuserview/reports/common/reports-common.service";
 
 export interface ConfirmModel {
     title: string;
@@ -45,7 +46,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
     public accountsList:any;
     constructor(private clientService: superUserviewAccountService, private appService: AppService,
       private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
-      private accountDetailsCommonService: AccountDetailsCommonService) {
+      private accountDetailsCommonService: AccountDetailsCommonService, public ReportscommonService: ReportsCommonService) {
         super(dialogService);
         this.settings = {
             'isDeleteEnable': false,
@@ -132,7 +133,7 @@ export class superuserViewAccountsComponent extends DialogComponent<ConfirmModel
         this.appService.showSideBarMenu(null, "accounts");
         this.clientService.getAccountDetails().subscribe((res) => {
             if (res['statusCode'] == 'SUCCESS') {
-                this.accountDetailsCommonService.totalAccounts = res['accountInfoList'];
+                this.ReportscommonService.totalAccounts = res['accountInfoList'];
                 console.log(res['accountInfoList']);
                 this.data = res['accountInfoList'];
             }

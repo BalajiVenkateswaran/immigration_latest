@@ -6,7 +6,6 @@ export class AccountDetailsCommonService {
   private _accountId : string;
   private _addProducts:any;
   private _addDiscounts: any;
-  private _totalaccounts: any;
 
   get accountId(): string {
       return this._accountId;
@@ -27,12 +26,7 @@ export class AccountDetailsCommonService {
   set addDiscounts(_addDiscounts:any){
     this._addDiscounts=_addDiscounts;
   }
-  get totalAccounts(): any {
-      return this._totalaccounts;
-  }
-  set totalAccounts(_totalaccounts: any) {
-      this._totalaccounts = _totalaccounts;
-  }
+
 
   public destroy(){
     this._accountId = null;

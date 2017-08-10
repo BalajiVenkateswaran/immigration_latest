@@ -109,6 +109,14 @@ import { ManageaccountChecklistComponent } from "./components/manageaccount-chec
 import {statsaccountscomponent} from './components/superuser-statsaccountsreports/statsaccountsreports.component';
 import {superpetitionsstatusreportscomponent} from './components/superuser-petitionstatusreports/superpetitionstatusreports.component';
 import {superuserH1Breportscomponent} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.component';
+import {superuserL1Areportscomponent} from './components/superuser-petitiontypeL1Areports/petitionsubtypeL1A.component';
+import {superuserpetstagereportscomponent} from './components/superuser-petitionstagereports/superuser-petitionstagereports.component';
+import {superuserpettagreportscomponent} from './components/superuser-petitiontagreports/superuser-petitiontagreport.component';
+import {superuserpetfinalactionreportscomponent} from './components/superuser-petionfinalactionreports/superuser-petitionfinalaction.component';
+import {superuserclientstatusreportscomponent} from './components/superuser-clientstatusreports/superuser-clientstatusreports.component';
+import {superuserclientscreatedreportscomponent} from './components/superuser-clientscreatedreports/superuser-clientscreatedreports.component';
+import {superusertotalpetitionsreportscomponent} from './components/superuser-usertotalpetitions/superuser-usertotalpetitions.component';
+import {superuseropenpetitioncomponent} from './components/superuser-useropenpetitions/superuser-useropenpetitions.component';
 
 
 
@@ -460,6 +468,39 @@ export const appRoutes: Routes = [
     {
         path: 'superuser-petiontypes',
         component: superuserH1Breportscomponent
+    },
+    {
+        path: 'superuser-petiontypesL1A',
+        component: superuserL1Areportscomponent
+    },
+    {
+        path: 'superuser-petionstagereports',
+        component: superuserpetstagereportscomponent
+    },
+    {
+        path: 'superuser-petiontagreports',
+        component: superuserpettagreportscomponent
+    },
+    {
+        path: 'superuser-finalaction',
+        component: superuserpetfinalactionreportscomponent
+
+    },
+    {
+        path: 'superuser-clientstatusreports',
+        component: superuserclientstatusreportscomponent
+    },
+    {
+        path: 'superuser-clientscreated',
+        component: superuserclientscreatedreportscomponent
+    },
+    {
+        path: 'superuser-totalpetitions',
+        component: superusertotalpetitionsreportscomponent
+    },
+    {
+        path: 'superuser-openpetitions',
+        component: superuseropenpetitioncomponent
     },
     {
         path: '',

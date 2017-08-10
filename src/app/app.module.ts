@@ -181,7 +181,9 @@ import { ManageAccountpreferencessService } from "./components/manageaccount-pre
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
 import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
-import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service'
+import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service';
+import {ReportsCommonService} from './components/superuserview/reports/common/reports-common.service';
+
 
 import {profileCommonService} from './components/immigrationview/profile/common/immigration-profile.service';
 import {InvoiceUploadButton} from './components/superuserview-accountdetails-invoice/invoiceuploadbutton';
@@ -237,6 +239,22 @@ import {superpetitionsstatusreportscomponent} from './components/superuser-petit
 import {superpetitionsstatusreportsservice} from './components/superuser-petitionstatusreports/superpetitionstatusreports.service';
 import {superuserH1Breportscomponent} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.component';
 import {superuserH1Breportsservice} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.service';
+import {superuserL1Areportscomponent} from './components/superuser-petitiontypeL1Areports/petitionsubtypeL1A.component';
+import {superuserL1Areportsservice} from './components/superuser-petitiontypeL1Areports/petitionsubtypeL1A.service';
+import {superuserpetstagereportscomponent} from './components/superuser-petitionstagereports/superuser-petitionstagereports.component';
+import {superuserpetitionstagesreportsservice} from './components/superuser-petitionstagereports/superuser-petitionstagereports.service';
+import {superuserpettagreportscomponent} from './components/superuser-petitiontagreports/superuser-petitiontagreport.component';
+import {superuserpetitiontagreportsservice} from './components/superuser-petitiontagreports/superuser-petitiontagreport.service';
+import {superuserpetfinalactionreportscomponent} from './components/superuser-petionfinalactionreports/superuser-petitionfinalaction.component';
+import {superuserpetitionfinalactionreportsservice} from './components/superuser-petionfinalactionreports/superuser-petitionfinalaction.service';
+import {superuserclientstatusreportscomponent} from './components/superuser-clientstatusreports/superuser-clientstatusreports.component';
+import {superuserclientstatusreportsservice} from './components/superuser-clientstatusreports/superuser-clientstatusreports.service';
+import {superuserclientscreatedreportscomponent} from './components/superuser-clientscreatedreports/superuser-clientscreatedreports.component';
+import {speruserclientscreatedreportsservice} from './components/superuser-clientscreatedreports/superuser-clientscreatedreports.service';
+import {superusertotalpetitionsreportscomponent} from './components/superuser-usertotalpetitions/superuser-usertotalpetitions.component';
+import {sperusertotalpetitionsreportsservice} from './components/superuser-usertotalpetitions/superuser-usertotalpetitions.service';
+import {superuseropenpetitioncomponent} from './components/superuser-useropenpetitions/superuser-useropenpetitions.component';
+import {superusersopenpetitionservice} from './components/superuser-useropenpetitions/superuser-useropenpetitions.service';
 
 
 import { AngularDraggableModule } from 'angular2-draggable';
@@ -340,19 +358,18 @@ import { AngularDraggableModule } from 'angular2-draggable';
         statsaccountscomponent,
         superpetitionsstatusreportscomponent,
         superuserH1Breportscomponent,
-     
-
-
-
+        superuserL1Areportscomponent,
+        superuserpetstagereportscomponent,
+        superuserpettagreportscomponent,
         SuperuserviewProductcatalogDiscountsComponent,
-
-
-
-
         ImmigrationViewReportsComponent,
         ImmigrationviewPetitionNotesComponent,
         ManageaccountUserDetailsComponent,
-
+        superuserpetfinalactionreportscomponent,
+        superuserclientstatusreportscomponent,
+        superuserclientscreatedreportscomponent,
+        superusertotalpetitionsreportscomponent,
+        superuseropenpetitioncomponent,
         //reports
         petitionsstatusreportscomponent,
         clientscreatedreportscomponent,
@@ -363,6 +380,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
         usertotalpetitionscomponent,
         useropenpetitioncomponent,
         petitionfinalactioncomponent,
+
         //profile
         profileusercomponent,
         profileloginhiscomponent,
@@ -457,7 +475,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
         SuperUserViewPaymentstabService,
         AccountDetailsPaymentsService,
         ManageAccountUserDetailsService,
-
+        ReportsCommonService,
         SuperuserViewAccountpreferencessService,
         AccountDetailsCommonService,
         profileCommonService,
@@ -480,8 +498,15 @@ import { AngularDraggableModule } from 'angular2-draggable';
         //superuserreports
         statsaccountsservice,
         superpetitionsstatusreportsservice,
-        superuserH1Breportsservice
-    
+        superuserH1Breportsservice,
+        superuserL1Areportsservice,
+        superuserpetitionstagesreportsservice,
+        superuserpetitionfinalactionreportsservice,
+        superuserpetitiontagreportsservice,
+        superuserclientstatusreportsservice,
+        speruserclientscreatedreportsservice,
+        sperusertotalpetitionsreportsservice,
+        superusersopenpetitionservice
 
     ],
     bootstrap: [AppComponent]
