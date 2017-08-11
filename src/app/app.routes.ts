@@ -118,7 +118,17 @@ import {SuperUserClientsCreatedReportsComponent} from './components/superuser-cl
 import {superusertotalpetitionsreportscomponent} from './components/superuser-usertotalpetitions/superuser-usertotalpetitions.component';
 import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/useropenpetitions.component';
 
+//PDF Pages for testing only
+import {page1of36Component} from './components/page1of36/page1of36.component';
+
 export const appRoutes: Routes = [
+    {
+        path: 'Page1of36',
+        component: page1of36Component,
+
+    },
+
+
     {
         path: 'login',
         component: LoginComponent,
