@@ -1,17 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {User} from "../../models/user";
-import {AppService} from "../../services/app.service";
-import {RestService} from "../../services/rest.service";
-import {SuperuserViewAccountDetailsService} from "./superuserview-account-details.service";
+import {AppService} from "../../../../../services/app.service";
+import {SuperuserViewAccountDetailsService} from "./account-details.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {MenuComponent} from "../menu/menu.component";
-import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
+import {MenuComponent} from "../../../../menu/menu.component";
+import {AccountDetailsCommonService} from "../common/account-details-common.service";
 
 @Component({
     selector: 'app-account-details',
-    templateUrl: './superuserview-account-details.html',
-    styleUrls: ['./superuserview-account-details.sass']
+    templateUrl: './account-details.component.html',
+    styleUrls: ['./account-details.component.sass']
 })
 export class SuperuserViewAccountDetailsComponent implements OnInit {
     errormsg: boolean = false;
@@ -37,7 +35,6 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
         this.menuComponent.highlightSBLink('Account Details');
     }
     getAcountDetails() {
-
         this.superuserviewAccountDetailsService.getAccountdetails(this.accountDetailsCommonService.accountId)
             .subscribe((res) => {
                 console.log("filesGetmethod%o", res);
@@ -48,12 +45,21 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
             });
     }
     onDateChanged(event: IMyDateModel) {
-
-
     }
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
+  
+    accountStatus(){
+      if(this.accountDetails['status'] == 'PreAct'){
+        return [{name: 'Pre-Act', value: 'PreAct'},
+                {name: 'Active', value: 'Active'}];
+      } else{
+        return [{name: 'Active', value: 'Active'},
+                {name: 'Inactive', value: 'Inactive'}];
+      }
+    }
+  
     storagenable() {
         if (this.accountDetails.status == "PreAct") {
             this.isEditstorage = false;

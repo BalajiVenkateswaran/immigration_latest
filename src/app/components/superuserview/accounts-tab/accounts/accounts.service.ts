@@ -1,14 +1,10 @@
 import {Injectable} from "@angular/core";
-import {RestService} from "../../services/rest.service";
-import {client} from "../../models/client";
-import {User} from "../../models/user";
-import {AppService} from "../../services/app.service";
+import {RestService} from "../../../../services/rest.service";
 
 @Injectable()
 export class superUserviewAccountService {
 
     constructor(private restService: RestService) {
-
     }
 
     public getAccountDetails() {
@@ -19,6 +15,4 @@ export class superUserviewAccountService {
     public createAccount(accountDetails) {
         return this.restService.postData("/superuser/account", accountDetails);
     }
-    
-  
 }

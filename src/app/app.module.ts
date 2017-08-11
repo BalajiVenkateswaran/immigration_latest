@@ -146,10 +146,10 @@ import {AgGridModule} from "ag-grid-angular/main";
 import { ProductCatalogProductService} from './components/superuserview-productcatalog/superuserview-productcatalog.service';
 //superusersview
 
-import {superuserViewAccountsComponent} from './components/superuserview-accounts/accounts.component';
-import {superUserviewAccountService} from './components/superuserview-accounts/accounts.component.service';
-import {SuperuserViewAccountDetailsComponent} from './components/superuserview-account-details/superuserview-account-details';
-import {SuperuserViewAccountDetailsService} from './components/superuserview-account-details/superuserview-account-details.service';
+import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';
+import {superUserviewAccountService} from './components/superuserview/accounts-tab/accounts/accounts.service';
+import {SuperuserViewAccountDetailsComponent} from './components/superuserview/accounts-tab/account-details/account-details/account-details.component';
+import {SuperuserViewAccountDetailsService} from './components/superuserview/accounts-tab/account-details/account-details/account-details.service';
 import {AccountInvoiceComponent} from './components/superuserview-accountdetails-invoice/invoice-component';
 import {AccountInvoiceService} from './components/superuserview-accountdetails-invoice/invoice.service';
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
@@ -342,7 +342,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
         QuestionnaireI129DCComponent,
         QuestionnaireI129HComponent,
         QuestionnaireI129HclientviewComponent,
-        superuserViewAccountsComponent,
+        SuperUserViewAccountsComponent,
         SuperuserViewAccountDetailsComponent,
 
         ResetPasswordComponent,
