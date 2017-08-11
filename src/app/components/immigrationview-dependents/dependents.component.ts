@@ -96,10 +96,24 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     });
   }
   dependentSave() {
+    let isDuplicateExists:boolean;
+    this.data.map(item=>{
+       if(item.firstName.toUpperCase()==this.addDependents['firstName'].toUpperCase() && item.lastName.toUpperCase()==this.addDependents['lastName'].toUpperCase() && item.relation.toUpperCase()==this.addDependents['relation'].toUpperCase() && (item.middleName==this.addDependents.middleName || item.middleName==undefined || item.middleName=='')){
+        isDuplicateExists=true;
+        return true;
+      }
+      return false;
+    })
     this.addDependents['clientId'] = this.appService.clientId;
     if (this.addDependents['firstName'] == '' || this.addDependents['firstName'] == null || this.addDependents['firstName'] == undefined || this.addDependents['lastName'] == '' || this.addDependents['lastName'] == null || this.addDependents['lastName'] == undefined || this.addDependents['relation'] == '' || this.addDependents['relation'] == null || this.addDependents['relation'] == undefined) {
       this.warningMessage = true;
-    } else {
+    }else if(isDuplicateExists){
+      this.dialogService.addDialog(ConfirmComponent,{
+        title:'Error..!',
+        message:'Dependent Already exists'
+      })
+    } 
+    else {
       this.warningMessage = false;
       this.appService.addDependents = this.addDependents;
       this.result = true;
