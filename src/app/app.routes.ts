@@ -115,6 +115,7 @@ import {SuperUserOpenPetitionComponent} from './components/superuserview/reports
 
 //PDF Pages for testing only
 import {page1of36Component} from './components/page1of36/page1of36.component';
+import {page2of36Component} from './components/page2of36/page2of36.component';
 
 export const appRoutes: Routes = [
     {
@@ -122,7 +123,11 @@ export const appRoutes: Routes = [
         component: page1of36Component,
 
     },
+    {
+            path: 'Page2of36',
+            component: page2of36Component,
 
+        },
 
     {
         path: 'login',

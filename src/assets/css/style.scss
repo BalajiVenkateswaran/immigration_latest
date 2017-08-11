@@ -604,6 +604,10 @@ section {
             button.iportal-btn {
                 margin-top: -10px !important;
             }
+            span {
+                font-size:12px;
+                color:#292b2c;
+            }
         }
         .editbtn {
             float: right;
@@ -1825,5 +1829,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 .fieldsetheading {
     font-weight:600;
+    margin-bottom: 5px;
     text-decoration:underline;
+}
+.clientview-ques129h input[type="checkbox"] {
+    margin: 3px 5px 15px 0;
 }
