@@ -1,28 +1,22 @@
-    <div class="main-content" *ngIf="getShipping">
-     
-        <ul class="breadcrumb">
-            <li><a href="#">Shipping Address</a></li>
-        </ul>
+<div class="main-content" *ngIf="getShipping">
+    <ul class="breadcrumb">
+        <li><a href="#">Shipping Address</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2>
+            <span>Shipping Address</span>
+            <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewAdress()">ADD</button>
+        </h2>
+        <smart-table [settings]="settings"
+                     [data]="data"
+                     (onAddClick)="addFunction($event)"
+                     (onRowClick)="editRecord($event)"
+                     (onDeleteClick)="deleteRecord($event)">
+        </smart-table>
         <div class="clearfix"></div>
-        <div class="table-data">
-            <h2>
-                <span>Shipping Address</span>
-                <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewAdress()">ADD</button>
-              
-            </h2>
-
-            
-
-            <smart-table 
-            [settings]="settings" 
-            [data]="data"
-            (onAddClick)="addFunction($event)"
-            (onRowClick)="editRecord($event)" 
-            (onDeleteClick)="deleteRecord($event)">
-            </smart-table>
-            <div class="clearfix"></div>
-        </div>
     </div>
+</div>
 <div *ngIf="addShippingAdress">
     <div class="modal-dialog" ngDraggable>
         <div class="modal-content">
@@ -37,15 +31,11 @@
                             <div class="col-md-5">Address Name:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addAdress.addressName" class="form-control"></div>
                             <div class="col-md-5">Address:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addAdress.address" class="form-control"></div>                            
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addAdress.address" class="form-control"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                <!--<div class="row sfm" *ngIf="warningMessage">
-                                    <div class="col-md-12">
-                                        <span class="redstar">* Fields are Mandatory.</span>
-                                    </div>
-                                </div>-->
+
                             </div>
                             <div class="col-md-7">
                                 <div class="row">

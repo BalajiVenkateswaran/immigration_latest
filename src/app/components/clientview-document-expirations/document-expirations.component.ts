@@ -78,9 +78,6 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         this.documentExpirationsService.getDocumentExpiration(this.appService.user.userId)
             .subscribe((res) => {
                 this.data = res['documentExpiration'];
-
-               // this.source.load(res['documentExpiration']);
-               // console.log(this.source);
             });
     }
     ngOnInit() {

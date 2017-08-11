@@ -9,7 +9,6 @@ export class ImmigrationViewVisasService {
 
     }
     public getClientVisas(clientId: string) {
-        //console.log("PetitionsService|getPetitions|orgId:%o", petitionId);
         return this.restService.getData("/client/visa/" + clientId);
     }
     public saveClientVisas(visaData: visa) {

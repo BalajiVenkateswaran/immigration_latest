@@ -9,7 +9,6 @@ export class OrganizationService {
     }
 
     public getOrgDetails(orgId: string) {
-        //console.log("PetitionsService|getPetitions|orgId:%o", orgId);
         return this.restService.getData("/uifields/screen/Org%20Details/entity/" + orgId);
     }
 
@@ -36,7 +35,6 @@ export class OrganizationService {
         return this.restService.postData("/organization/details", req);
     }
     public getOrgnizationContacts(orgId: string) {
-        //console.log("PetitionsService|getPetitions|orgId:%o", orgId);
         return this.restService.getData("/organization/" + orgId);
     }
 
@@ -68,10 +66,7 @@ export class OrganizationService {
 
         console.log(adminstrativeDetails);
         console.log(signDetailsAddress);
-      /*  var req = {
-            "contactDetails": adminstrativeDetails,
-            "address": signDetailsAddress
-        };*/
+   
 
         var req = {
             "contactDetails": {

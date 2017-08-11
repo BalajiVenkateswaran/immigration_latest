@@ -15,7 +15,8 @@
                             <form (submit)="addTodo($event)">
                                 <input [(ngModel)]="newTodo" type="text" (keyup.enter)="newTodo=''" name="newTodo" style="width: calc(100% - 40px);">
                                 <button type="submit" [disabled]="newTodo===''" class="addTodo">+</button>
-                            </form>                        </div>
+                            </form>
+                        </div>
                         <div class="col-md-2"></div>
 
                         <div class="col-md-2"></div>
@@ -23,82 +24,15 @@
                             <ul class="todolistItems">
                                 <li *ngFor="let todo of todos; let i=index">
                                     <input type="checkbox" id="{{ todo.todoText }}" [checked]="todo.completed" [(ngModel)]="todo.completed" (change)="changed(todo)" />
-                                    <!--<input type="checkbox" id="{{ todo.todoText }}" [checked]="todo.completed"/>-->
                                     <label for="{{ todo.todoText }}">{{ todo.todoText }}</label>
                                     <a (click)="deleteTodo(i,todo)" class="delete-icon pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-md-2"></div>
-
-
-                        </div>
-                    
+                    </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-        <!--<div class="row">
-            <div class="todos">
-
-                <div>
-                   
-                </div>
-                
-
-                <div class="mtop20">
-                    <button (click)="deleteSelectedTodos()">Delete Selected</button>
-                </div>
-            </div>
-
-        </div>-->
     </div>
 </div>
-<!--<style>
-     .box1 {
-    border: solid 1px #006699;
-    padding: 20px;
-    background: #f3f3f3;
-    border-radius: 5px;
-  }
-
-  .todos input.textfield {
-    width: 480px;
-    height: 36px;
-    margin-right: 20px;
-    font-size: 1.4em;
-    vertical-align: top;
-  }
-
-  .todos input.checkbox {
-    width: 20px;
-    height: 20px;
-  }
-
-  .todos .checked {
-    text-decoration: line-through;
-  }
-
-  .todos button {
-    height: 36px;
-    font-size: 1.1em;
-    vertical-align: top;
-    border: solid 1px #999;
-    border-radius: 2px;
-  }
-
-  .todos .delete-icon {
-    display: inline-block;
-    cursor: pointer;
-  }
-<!--</style>-->-->

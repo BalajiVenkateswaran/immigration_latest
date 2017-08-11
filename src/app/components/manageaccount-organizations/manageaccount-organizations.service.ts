@@ -10,7 +10,6 @@ export class ManageAccountOrganizationsService {
     }
 
     public getManageAccountOrganizations(accountId: string) {
-        //console.log("PetitionsService|getPetitions|orgId:%o", accountId);
         return this.restService.getData("/org/" + accountId);
     }
     public saveNewOrganization(organizationData: manageaccountorganization) {

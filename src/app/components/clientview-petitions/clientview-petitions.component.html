@@ -1,40 +1,9 @@
 ﻿<div class="main-content" *ngIf="getClientviewPetitionData">
     <div class="table-data">
         <h2>Petitions</h2>
-          <smart-table class="clientViewPetitions" [settings]="settings" [data]="data" (onColumnFilterClick)="filterData($event)"></smart-table>
-        <!--<table class="smarttable document-management" cellpadding="0" cellspacing="0">
-            <thead>
-                <tr>
-                    <td><span>Petition Name</span> <span class="pull-right"></span></td>
-                    <td><span>Petition Type</span> <span class="pull-right"></span></td>
-                    <td><span>Organization</span> <span class="pull-right"></span></td>
-                    <td><span>Status</span> <span class="pull-right"></span></td>
-                    <td><span>Stage</span> <span class="pull-right"></span></td>
-                    <td><span>Start Date</span> <span class="pull-right"></span></td>
-                    <td><span>Last Updated</span> <span class="pull-right"></span></td>
-                    <td><span>Receipt Number</span> <span class="pull-right"></span></td>
-                    <td><span>More Details</span> <span class="pull-right"></span></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let x of clientviewpetitionList; let i=index">
-                    <td>{{x.petitionName}}</td>
-                    <td>{{x.petitionType}}</td>
-                    <td>{{x.organization}}</td>
-                    <td>{{x.status}}</td>
-                    <td>{{x.petitionStage}}</td>
-                    <td>{{x.petitionStage}}</td>
-                    <td>{{x.startDate}}</td>
-                    <td>{{x.lastUpdated}}</td>
-                    <td><a (click)="viewAllColumns(i, x)" class="more">More Details</a></td>
-                </tr>
-                </tbody>
-            </table>-->
+        <smart-table class="clientViewPetitions" [settings]="settings" [data]="data" (onColumnFilterClick)="filterData($event)"></smart-table>
+    </div>
 </div>
-</div>
-
-
-
 <div *ngIf="showclientviewPetitionpopup">
     <div class="modal-dialog" ngDraggable>
         <div class="modal-content">
@@ -56,15 +25,15 @@
                             <div class="col-md-5">Receipt Number:</div><div class="col-md-7"><span>{{cvpedit.recieptNumber}}</span></div>
                             <div class="col-md-5">Shipping Carrier:</div><div class="col-md-7"><span>{{cvpedit.shippingCarrier}}</span></div>
                             <div class="col-md-5">Tracking Number:</div><div class="col-md-7"><span>{{cvpedit.trackingNumber}}</span></div>
-                           
+
                         </div>
                         <div class="row">
                             <div class="col-md-5"></div>
                             <div class="col-md-7">
                                 <div class="row">
                                     <div class="col-md-6"></div>
-                                        <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Close</button></div>
-                                    </div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Close</button></div>
+                                </div>
                             </div>
                         </div>
                     </div>

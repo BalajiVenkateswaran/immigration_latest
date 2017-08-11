@@ -27,7 +27,6 @@ import {DocumentsComponent} from "./components/clientview-documents/documents.co
 import {DependentsComponent} from './components/clientview-dependents/dependents.component';
 import {DocumentExpirationsComponent} from './components/clientview-document-expirations/document-expirations.component';
 
-import {ReportsComponent} from "./components/reports/reports.component";
 import {OrganizationComponent} from "./components/organization/organization.component";
 import {ClientsComponent} from "./components/clients/clients.component";
 import {PetitionsComponent} from "./components/petitions/petitions.component";
@@ -46,9 +45,6 @@ import {ImmigrationViewArrivalDepartureInfoComponent} from './components/immigra
 import { ImmigrationViewVisasComponent } from './components/immigrationview-visas/visas.component';
 import { ImmigrationViewI797HistoryComponent } from './components/immigrationview-i-797-history/i-797-history.component';
 import { ImmigrationViewPetitionsComponent } from './components/immigrationview-petitions/petitions.component';
-
-//import { dependentsDep1Component } from './components/dependents1/dependents-dep1.component';
-//import { dependentsDep2Component } from './components/dependents2/dependents-dep2.component';
 import {LoginComponent} from "./components/login/login.component";
 import {QuestionnaireI129Component} from "./components/questionnaire-i129/questionnaire-i129.component";
 import {petitionsclientviewComponent} from "./components/clientview-petitions/clientview-petitions.component";
@@ -82,7 +78,6 @@ import {SuperUserViewInvoicestabComponent} from './components/superuserview-invo
 
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
-import { ImmigrationViewReportsComponent } from "./components/immigration-view-reports/immigration-view-reports.component";
 import { ManageaccountUserDetailsComponent } from "./components/manageaccount-user-details/manageaccount-user-details.component";
 
 //immigrationview reports
@@ -170,10 +165,6 @@ export const appRoutes: Routes = [
     {
         path: 'organization',
         component: OrganizationComponent
-    },
-    {
-        path: 'reports',
-        component: ReportsComponent
     },
     {
         path: 'clientview-client-details',
@@ -339,10 +330,6 @@ export const appRoutes: Routes = [
     {
         path: 'reset-password',
         component: ResetPasswordComponent
-    },
-    {
-        path:'immigrationview-reports',
-        component:ImmigrationViewReportsComponent
     },
     {
         path:'user-details',

@@ -83,12 +83,10 @@ export class AddressinfoComponent implements OnInit {
               this.addressinfoList = res['clientAddress'];
            });
        if (addresstype=="WORK") {
-           this.workedit = !this.workedit;
-           //this.workResidingSince = this.WorkaddressinfoList['residingSince'];
+           this.workedit = !this.workedit;   
        }
        if (addresstype =="RESIDENCE") {
            this.residenceedit = !this.residenceedit;
-           //this.resiResidingSince = this.ResidenceaddressinfoList['residingSince'];
        }
        if (addresstype == "MAILING") {
            this.mailingedit = !this.mailingedit;
