@@ -477,12 +477,12 @@
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-reports'">
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts')" [ngClass]="[checkForCurrentSBLink('superuser-statsaccounts') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appservice.moveToPage('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts');superuserstatsclick()" [ngClass]="[checkForCurrentSBLink('superuser-statsaccounts') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Stats</span>
                 <span class="ico-arrow"></span>
             </a>
-            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
+            <ul class="listsidemenu" *ngIf="superuserstats" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
                     <a (click)="appservice.moveToPage('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts')" [ngClass]="[checkForCurrentSBLink('superuser-statsaccounts') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
@@ -518,12 +518,12 @@
         <!--payments reports superuser-->
 
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('superuser-payments');highlightSBLink('superuser-payments')" [ngClass]="[checkForCurrentSBLink('superuser-payments') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appservice.moveToPage('superuser-payments');highlightSBLink('superuser-payments');superuserpaymentsclick()" [ngClass]="[checkForCurrentSBLink('superuser-payments') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Payments</span>
                 <span class="ico-arrow"></span>
             </a>
-            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
+            <ul class="listsidemenu" *ngIf="superuserpayments" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
                     <a (click)="appservice.moveToPage('superuser-payments');highlightSBLink('superuser-payments')" [ngClass]="[checkForCurrentSBLink('superuser-payments') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
@@ -535,12 +535,12 @@
 
         <!--petitionsreports superuser-->
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('superuser-petitionreports');highlightSBLink('superuser-petitionreports')" [ngClass]="[checkForCurrentSBLink('superuser-petitionreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="petreports" data-toggle="dropdown">
+            <a (click)="appservice.moveToPage('superuser-petitionreports');highlightSBLink('superuser-petitionreports');superuserpetionsclick()" [ngClass]="[checkForCurrentSBLink('superuser-petitionreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="petreports" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Petitions</span>
                 <span class="ico-arrow"></span>
             </a>
-            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
+            <ul class="listsidemenu" *ngIf="superuserpetitions" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
                     <a (click)="appservice.moveToPage('superuser-petitionreports');highlightSBLink('superuser-petitionreports')" [ngClass]="[checkForCurrentSBLink('superuser-petitionreports') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
@@ -612,12 +612,12 @@
 
         <!--clients reports superuser-->
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('superuser-clientstatusreports');highlightSBLink('superuser-clientstatusreports')" [ngClass]="[checkForCurrentSBLink('superuser-clientstatusreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appservice.moveToPage('superuser-clientstatusreports');highlightSBLink('superuser-clientstatusreports');superuserclientreportsclick()" [ngClass]="[checkForCurrentSBLink('superuser-clientstatusreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Clients</span>
                 <span class="ico-arrow"></span>
             </a>
-            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
+            <ul class="listsidemenu" *ngIf="superuserclientreports" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
                     <a (click)="appservice.moveToPage('superuser-clientstatusreports');highlightSBLink('superuser-clientstatusreports')" [ngClass]="[checkForCurrentSBLink('superuser-clientstatusreports') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
@@ -656,12 +656,12 @@
 
         <!--userreports superuser-->
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('superuser-totalpetitions');highlightSBLink('superuser-totalpetitions')" [ngClass]="[checkForCurrentSBLink('superuser-totalpetitions') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appservice.moveToPage('superuser-totalpetitions');highlightSBLink('superuser-totalpetitions');superuserpetitonreport()" [ngClass]="[checkForCurrentSBLink('superuser-totalpetitions') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Users</span>
                 <span class="ico-arrow"></span>
             </a>
-            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
+            <ul class="listsidemenu" *ngIf="superuserpetitins" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
                     <a (click)="appservice.moveToPage('superuser-totalpetitions');highlightSBLink('superuser-totalpetitions')" [ngClass]="[checkForCurrentSBLink('superuser-totalpetitions') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>

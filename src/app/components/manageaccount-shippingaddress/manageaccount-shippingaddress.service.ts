@@ -11,7 +11,6 @@ export class ManageAccountShippingAddressService {
     }
 
     public getShipmentAddress(accountId: string) {
-        //console.log("PetitionsService|getPetitions|orgId:%o", accountId);
         return this.restService.getData("/shipment/getAddress/" + accountId);
     }
     public createShipmentAddress(manageAccount: manageaccountorganization) {

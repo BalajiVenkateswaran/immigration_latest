@@ -148,12 +148,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
                     this.managersAccountService.deleteUser(event.data['userId'], this.accountDetailsCommonService.accountId).subscribe((res) => {
-                        //this.message = res['statusCode'];
-                        //if (this.message == 'SUCCESS') {
-                        //    event.confirm.resolve();
-                        //} else {
-                        //    event.confirm.reject();
-                        //}
+                      
                         if (res['statusCode'] == 'SUCCESS') {
                             this.getAccountsManagers();
                         }

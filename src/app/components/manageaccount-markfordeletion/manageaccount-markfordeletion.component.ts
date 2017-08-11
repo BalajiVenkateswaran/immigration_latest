@@ -21,9 +21,7 @@ export class MarkforDeletionComponent implements OnInit {
         }
         this.markForDeletionservice.getMarkForDeletion(this.appService.user.accountId).subscribe(
             res=>{
-               //this.markForDeletionInfoList=res['markForDeletionInfoList'];
                 this.data=res['markForDeletionInfoList'];
-               //this.source.load(this.markForDeletionInfoList);
             }
         )
     }

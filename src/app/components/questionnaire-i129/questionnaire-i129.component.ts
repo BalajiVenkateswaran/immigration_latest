@@ -291,7 +291,7 @@ export class QuestionnaireI129Component implements OnInit {
         this.CancelpetitionerSignatureDetails = (<any>Object).assign({}, this.petitionerSignatureDetails);
 
 
-       /* this.dateOfBirth = this.beneficiaryInfo['dateOfBirth'];  */
+     
     }
     cancelQuestinnaireEdit() {
         this.isquestionnaireEdit = !this.isquestionnaireEdit;
@@ -306,9 +306,6 @@ export class QuestionnaireI129Component implements OnInit {
         this.basicInfoAboutEmployeerAddress = this.CancelbasicInfoAboutEmployeerAddress;
         this.basicInfoAboutEmployeer = this.CancelbasicInfoAboutEmployeer;
         this.petitionerSignatureDetails = this.CancelpetitionerSignatureDetails;
-    /*    if (this.beneficiaryInfo['dateOfBirth'] && this.beneficiaryInfo['dateOfBirth']['formatted']) {
-            this.beneficiaryInfo['dateOfBirth'] = this.beneficiaryInfo['dateOfBirth']['formatted'];
-        } */
 
    }
 

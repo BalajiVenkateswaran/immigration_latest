@@ -84,14 +84,12 @@ export class PassportInfoComponent implements OnInit {
 
 
     }
-    //is edit function for read only
     editForm(event, i) {
 
         this.isEdit[i] = !this.isEdit[i];
 
 
     }
-    //cancel button function
     cancelEdit(event, i) {
 
 

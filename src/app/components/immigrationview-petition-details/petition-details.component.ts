@@ -126,9 +126,6 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             }
         }
         this.appService.allsubtypesarray(this.allSubTypes);
-
-        //var currentYear = new Date().getFullYear();
-        //this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
     }
     ngOnInit() {
         this.appService.showSideBarMenu("immigrationview-petition", "petitions");
@@ -328,18 +325,14 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.petitionDetails['startDate'] = this.petitionInformation.startDate;
         this.petitionDetails['status'] = this.petitionInformation.status;
         this.petitionDetails['tag'] = this.petitionInformation.tag;
-        //this.petitionDetails['currentStage'] = this.petitionInformation.currentStage;
         this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
         this.petitionDetails['nextStage'] = this.petitionInformation.nextStage;
         this.petitionDetails['deniedDate'] = this.petitionInformation.deniedDate;
         this.petitionDetails['withdrawDate'] = this.petitionInformation.rejectedDate;
         this.petitionDetails['rejectedDate'] = this.petitionInformation.withdrawDate;
         this.petitionDetails['assignedTo'] = this.petitionInformation.assignedTo;
-        //this.petitionDetails['createdBy'] = this.petitionInformation.createdBy;
-        //this.petitionDetails['lastUpdatedBy'] = this.petitionInformation.lastUpdatedBy;
         this.petitionDetails['markForDeletion'] = this.petitionInformation.markForDeletion;
         this.petitionDetails['deletedBy'] = this.petitionInformation.deletedBy;
-        //this.petitionDetails['deletedOn'] = this.petitionInformation.deletedOn;
         this.petitionDetails['finalStatus'] = this.petitionInformation.finalStatus;
     }
 
@@ -604,14 +597,10 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
     savedelOrgs() {
         this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
-        //  this.delegatedOrgsList['orgId'] = this.appService.orgId;
         for (var i = 0; i < this.delegatedOrgsList.length; i++) {
             if (this.delegatedOrgsList[i].petitionAssigned == true) {
                 this.orgs.push(this.delegatedOrgsList[i].orgId);
             }
-            //if (this.dummylist[i].petitionAssigned != this.delegatedOrgsList[i].petitionAssigned) {
-            //    this.orgs.push(this.delegatedOrgsList[i].orgId);
-            //}
         }
         this.petitionDetailsService.saveDelegatedOrgs(this.orgs,this.appService.petitionId)
             .subscribe((res) => {

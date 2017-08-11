@@ -105,24 +105,19 @@ export class ClientDetailsComponent implements OnInit {
         this.creationDate = this.clientDetails['creationDate'];
     }
 
-    //cancel button function
     cancelProfileEdit() {
         this.clientProfile = this.beforeCancelProfile;
-        /*this.clientDetails.creationDate = this.clientDetails.creationDate.formatted; */
         this.isProfileEdit = !this.isProfileEdit;
         if (this.clientProfile['creationDate'] && this.clientProfile['creationDate']['formatted']) {
             this.clientProfile['creationDate'] = this.clientProfile['creationDate']['formatted'];
         }
     }
 
-    //is edit function for read only
     editPersonalInfoForm() {
         this.beforeCancelPersonal = (<any>Object).assign({}, this.clientPersonalInfo);
         this.dateOfBirth = this.clientDetails['dateOfBirth'];
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
     }
-
-    //cancel button function
     cancelPersonalInfoEdit() {
         this.clientPersonalInfo = this.beforeCancelPersonal;
         if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
@@ -130,9 +125,6 @@ export class ClientDetailsComponent implements OnInit {
         }
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
     }
-
-
-    //Save Client Details
     saveClientProfile() {
         this.mapFromClientProfile();
 

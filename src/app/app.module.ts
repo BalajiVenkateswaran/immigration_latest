@@ -49,7 +49,6 @@ import { DependentsComponent } from './components/clientview-dependents/dependen
 import { PetitionsComponent } from './components/petitions/petitions.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { OrganizationComponent } from './components/organization/organization.component';
-import { ReportsComponent } from './components/reports/reports.component';
 import {ManageAccountUserComponent} from "./components/manageaccount-user/manageaccount-user.component";
 import {ManageAccountOrganizationsComponent} from "./components/manageaccount-organizations/manageaccount-organizations.component";
 import {ManageAccountPetitionTypeStagesComponent} from "./components/manageaccount-petitiontypestages/manageaccount-petitiontypestages.component";
@@ -135,13 +134,11 @@ import { InvoicedownloadButton } from "./components/superuserview-accountdetails
 
 
 
-//import { Typeahead } from 'ng2-typeahead';
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './components/confirmbox/confirm.component';
 import { ConfirmorgComponent } from './components/confirmbox/confirmorg.component';
 
-//import { AdvancedExamplesCustomEditorComponent } from './components/immigrationview-petitions/advanced-example-custom-editor.component';
 import { CustomRenderComponent } from './components/immigrationview-petitions/custom-render.component';
 
 
@@ -180,7 +177,6 @@ import {SuperUserViewInvoicestabService} from './components/superuserview-invoic
 import { ManageAccountpreferencessService } from "./components/manageaccount-preferences/manageaccount-preferences.service";
 import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview-accountpreferences/accountpreferences.service';
-import { ImmigrationViewReportsComponent } from './components/immigration-view-reports/immigration-view-reports.component';
 import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service';
 import {ReportsCommonService} from './components/superuserview/reports-tab/common/reports-common.service';
 
@@ -310,7 +306,6 @@ import { AngularDraggableModule } from 'angular2-draggable';
         PetitionsComponent,
         ClientsComponent,
         OrganizationComponent,
-        ReportsComponent,
         ManageAccountUserComponent,
         ManageAccountOrganizationsComponent,
         ManageAccountPetitionTypeStagesComponent,
@@ -349,7 +344,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
         ResetPasswordComponent,
         ConfirmComponent,
         ConfirmorgComponent,
-        //Typeahead
+    
 
         //SmartTableFramework
         SmartTableFramework, CustomFilterRow,
@@ -371,7 +366,6 @@ import { AngularDraggableModule } from 'angular2-draggable';
         superuserpetstagereportscomponent,
         superuserpettagreportscomponent,
         SuperuserviewProductcatalogDiscountsComponent,
-        ImmigrationViewReportsComponent,
         ImmigrationviewPetitionNotesComponent,
         ManageaccountUserDetailsComponent,
         superuserpetfinalactionreportscomponent,
@@ -431,8 +425,6 @@ import { AngularDraggableModule } from 'angular2-draggable';
         UiFieldService,
         OrganizationService,
         DependentDetailsService,
-        //DependentDepartmentOneService,
-        //DependentDepartmentTwoService,
         ClientDocumentRepositoryService,
         DocumentService,
         ClientDetailsService,

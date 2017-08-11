@@ -9,11 +9,9 @@
             <div class="clearfix"></div>
             <h2>
                 <span>Visas</span>
-                <!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewClientVisa()">ADD</button>-->
             </h2>
             <smart-table [settings]="settings" [data]="data"
                          (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>   
-            <!-- <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>-->
                 <div class="clearfix"></div>
 </div>
     </div>
@@ -51,11 +49,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                <!--<div class="row sfm" *ngIf="warningMessage">
-                <div class="col-md-12">
-                    <span class="redstar">* Fields are Mandatory.</span>
-                </div>
-            </div>-->
+              
                             </div>
                             <div class="col-md-7">
                                 <div class="row">

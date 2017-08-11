@@ -26,8 +26,10 @@
                             <div class="col-md-5"><span class="redstar">*</span>Last Name:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addUsers.lastName" class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Email</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addUsers.emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                                    required #emailId="ngModel" class="form-control"></div>
+                            <div class="col-md-7">
+                                <input type="text" [(ngModel)]="addUsers.emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                       required #emailId="ngModel" class="form-control">
+                            </div>
                             <div class="col-md-5">Phone</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addUsers.phone" class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Role:</div>
@@ -58,7 +60,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div></div>          
+                                    <div></div>
                                     <div class="col-md-6"> <button type="button" class="btn btn-primary" (click)="manageUserSave(emailId.errors,roles)">Save</button></div>
                                     <div class="col-md-6"> <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button> </div>
                                 </div>
