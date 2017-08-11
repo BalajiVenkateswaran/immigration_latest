@@ -82,7 +82,36 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
   ngOnInit() {
     this.getCVDpntData();
   }
-
+  capitalizeName(record){
+    if(record.firstName){
+      let splitWords=record.firstName.split(' ');
+      /*let splitWords=record.firstName.split(' ');
+      let capitalizedName=splitWords.map((item,index)=>{
+        return item.charAt(0).toUpperCase()+item.slice(1);
+      }).join(' ');
+      record.firstName=capitalizedName;*/
+      let capitalizedFirstName=splitWords.map((item,index)=>{
+          if(index==0){
+            return item.charAt(0).toUpperCase()+item.slice(1);
+          }else{
+            return item;
+          }
+      }).join(' ');
+      record.firstName=capitalizedFirstName;
+    }
+    if(record.lastName){
+      let splitsWords=record.lastName.split(' ');
+      let capitalizedLastName=splitsWords.map((item,index)=>{
+        if(index==0){
+            return item.charAt(0).toUpperCase()+item.slice(1);
+          }else{
+            return item;
+          }
+      }).join(' ');
+      record.lastName=capitalizedLastName;
+    }
+    
+  }
   addFunction() {
     this.dialogService.addDialog(DependentsComponent, {
       showAddCVdependentpopup: true,
@@ -106,10 +135,25 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
     });
   }
   dependentSave() {
+    let isDuplicateExists:boolean;
+    console.log(typeof(this.newCVdependentitem));
+    this.data.map(item=>{
+      if(item.firstName.toUpperCase()==this.newCVdependentitem['firstName'].toUpperCase() && item.lastName.toUpperCase()==this.newCVdependentitem['lastName'].toUpperCase() && item.relation.toUpperCase()==this.newCVdependentitem['relation'].toUpperCase() && (item.middleName==this.newCVdependentitem.middleName || item.middleName==undefined || item.middleName=='')){
+        isDuplicateExists=true;
+        return true;
+      }
+      return false;
+    })
     this.newCVdependentitem['clientId'] = this.appService.clientId;
     if (this.newCVdependentitem['firstName'] == '' || this.newCVdependentitem['firstName'] == null || this.newCVdependentitem['firstName'] == undefined || this.newCVdependentitem['lastName'] == '' || this.newCVdependentitem['lastName'] == null || this.newCVdependentitem['lastName'] == undefined || this.newCVdependentitem['relation'] == '' || this.newCVdependentitem['relation'] == null || this.newCVdependentitem['relation'] == undefined) {
       this.warningMessage = true;
-    } else {
+    }else if(isDuplicateExists){
+      this.dialogService.addDialog(ConfirmComponent,{
+        title:'Error..!',
+        message:'Dependent Already exists'
+      })
+    }
+    else {
       this.appService.newCVdependentitem = this.newCVdependentitem;
       this.result = true;
       this.close();
@@ -121,7 +165,7 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
     this.result = false;
     this.close();
   }
-
+  
 
 
   onCreateConfirm(event): void {
