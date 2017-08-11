@@ -8,7 +8,7 @@ import { ConfirmComponent } from '../confirmbox/confirm.component';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
-import {ReportsCommonService} from "../superuserview/reports/common/reports-common.service";
+import {ReportsCommonService} from "../superuserview/reports-tab/common/reports-common.service";
 
 export interface ConfirmModel {
     title: string;
