@@ -4,7 +4,7 @@ import {User} from "../../models/user";
 import {AppService} from "../../services/app.service";
 import {RestService} from "../../services/rest.service";
 import {sperusertotalpetitionsreportsservice} from "./superuser-usertotalpetitions.service";
-import {ReportsCommonService} from "../superuserview/reports/common/reports-common.service";
+import {ReportsCommonService} from "../superuserview/reports-tab/common/reports-common.service";
 
 
 @Component({
@@ -60,7 +60,7 @@ export class superusertotalpetitionsreportscomponent implements OnInit {
                 }
             });
     }
-    constructor(public appService: AppService, private speruserTotalpetitionsreportsservice: sperusertotalpetitionsreportsservice, private ReportscommonService: ReportsCommonService) { }
+    constructor(public appService: AppService, private speruserTotalpetitionsreportsservice: sperusertotalpetitionsreportsservice, public ReportscommonService: ReportsCommonService) { }
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
