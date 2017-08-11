@@ -256,6 +256,7 @@ import {SuperUsersOpenPetitionService} from './components/superuserview/reports-
 //PDF Pages for testing only
 import {page1of36Component} from './components/page1of36/page1of36.component';
 import {page2of36Component} from './components/page2of36/page2of36.component';
+import {page3of36Component} from './components/page3of36/page3of36.component';
 
 
 
@@ -282,6 +283,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
     declarations: [
         page1of36Component,
         page2of36Component,
+        page3of36Component,
         //pdf oage components imported above which is for testing only
         CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,

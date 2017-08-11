@@ -11,6 +11,11 @@
                 <span>Page 2 of 36</span>
             </a>
         </li>
+        <li>
+            <a (click)="appservice.moveToPage('Page3of36');highlightSBLink('Page 3 of 36')" [ngClass]="[checkForCurrentSBLink('Page 3 of 36') ? 'active': '']" routerLinkActive="active">
+                <span>Page 3 of 36</span>
+            </a>
+        </li>
     </ul>
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-petition'">
