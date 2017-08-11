@@ -1,10 +1,9 @@
 ﻿import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
-import {petition} from "../../models/petitions";
-import {RestService} from "../../services/rest.service";
+import {RestService} from "../../../../../../../services/rest.service";
 
 @Injectable()
-export class page1of36Service {
+export class i129Page1Service {
 
     constructor(private restService: RestService) {
 

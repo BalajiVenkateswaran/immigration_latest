@@ -1,21 +1,7 @@
 
 <div class="navbar navbar-inverse navbar-fixed-left">
     <ul class="nav navbar-nav">
-        <li>
-            <a (click)="appservice.moveToPage('Page1of36');highlightSBLink('Page 1 of 36')" [ngClass]="[checkForCurrentSBLink('Page 1 of 36') ? 'active': '']" routerLinkActive="active">
-                <span>Page 1 of 36</span>
-            </a>
-        </li>
-        <li>
-            <a (click)="appservice.moveToPage('Page2of36');highlightSBLink('Page 2 of 36')" [ngClass]="[checkForCurrentSBLink('Page 2 of 36') ? 'active': '']" routerLinkActive="active">
-                <span>Page 2 of 36</span>
-            </a>
-        </li>
-        <li>
-            <a (click)="appservice.moveToPage('Page3of36');highlightSBLink('Page 3 of 36')" [ngClass]="[checkForCurrentSBLink('Page 3 of 36') ? 'active': '']" routerLinkActive="active">
-                <span>Page 3 of 36</span>
-            </a>
-        </li>
+        
     </ul>
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-petition'">
@@ -429,6 +415,21 @@
     </ul>
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-accounts'">
+        <li>
+            <a (click)="appservice.moveToPage('i129Page1');highlightSBLink('I-129 Page 1')" [ngClass]="[checkForCurrentSBLink('I-129 Page 1') ? 'active': '']" routerLinkActive="active">
+                <span>I-129 Page 1</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129Page2');highlightSBLink('I-129 Page 2')" [ngClass]="[checkForCurrentSBLink('I-129 Page 2') ? 'active': '']" routerLinkActive="active">
+                <span>I-129 Page 2</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129Page3');highlightSBLink('I-129 Page 3')" [ngClass]="[checkForCurrentSBLink('I-129 Page 3') ? 'active': '']" routerLinkActive="active">
+                <span>I-129 Page 3</span>
+            </a>
+        </li>
         <li>
             <a (click)="appservice.moveToPage('account-details');highlightSBLink('Account Details')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>

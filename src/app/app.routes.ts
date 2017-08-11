@@ -114,22 +114,23 @@ import {superusertotalpetitionsreportscomponent} from './components/superuser-us
 import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/useropenpetitions.component';
 
 //PDF Pages for testing only
-import {page1of36Component} from './components/page1of36/page1of36.component';
-import {page2of36Component} from './components/page2of36/page2of36.component';
-import {page3of36Component} from './components/page3of36/page3of36.component';
+import {i129Page1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
+import {i129Page2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
+import {i129Page3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-3/page-3.component';
+
 
 export const appRoutes: Routes = [
     {
-        path: 'Page1of36',
-        component: page1of36Component,
+        path: 'i129Page1',
+        component: i129Page1Component,
     },
     {
-            path: 'Page2of36',
-            component: page2of36Component,
+        path: 'i129Page2',
+        component: i129Page2Component,
     },
     {
-                path: 'Page3of36',
-                component: page3of36Component,
+        path: 'i129Page3',
+       component: i129Page3Component,
     },
     {
         path: 'login',

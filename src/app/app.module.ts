@@ -254,9 +254,9 @@ import {SuperUsersOpenPetitionService} from './components/superuserview/reports-
 
 
 //PDF Pages for testing only
-import {page1of36Component} from './components/page1of36/page1of36.component';
-import {page2of36Component} from './components/page2of36/page2of36.component';
-import {page3of36Component} from './components/page3of36/page3of36.component';
+import {i129Page1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
+import {i129Page2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
+import {i129Page3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-3/page-3.component';
 
 
 
@@ -281,9 +281,9 @@ import { AngularDraggableModule } from 'angular2-draggable';
         ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
-        page1of36Component,
-        page2of36Component,
-        page3of36Component,
+        i129Page1Component,
+        i129Page2Component,
+        i129Page3Component,
         //pdf oage components imported above which is for testing only
         CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
