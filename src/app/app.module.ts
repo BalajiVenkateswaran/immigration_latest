@@ -253,6 +253,13 @@ import {SuperUserOpenPetitionComponent} from './components/superuserview/reports
 import {SuperUsersOpenPetitionService} from './components/superuserview/reports-tab/users/openpetitions/useropenpetitions.service';
 
 
+//PDF Pages for testing only
+import {page1of36Component} from './components/page1of36/page1of36.component';
+
+
+
+
+
 import { AngularDraggableModule } from 'angular2-draggable';
 @NgModule({
     imports: [
@@ -272,6 +279,8 @@ import { AngularDraggableModule } from 'angular2-draggable';
         ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton/*AdvancedExamplesCustomEditorComponent*/
     ],
     declarations: [
+        page1of36Component,
+        //pdf oage components imported above which is for testing only
         CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,
         HeaderComponent,
