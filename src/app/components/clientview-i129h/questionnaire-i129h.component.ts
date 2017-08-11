@@ -6,7 +6,6 @@ import {AppService} from "../../services/app.service";
 @Component({
     selector: 'app-questionnaire-i129h.component',
     templateUrl: './questionnaire-i129h.component.html',
-    //styleUrls: ['./questionnaire-i129h.component.sass']
 })
 export class QuestionnaireI129HclientviewComponent implements OnInit {
     isquestionnairei129hEdit;

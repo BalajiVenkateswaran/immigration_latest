@@ -210,8 +210,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
             message: 'Are you sure you want to Delete ' + this.delmessage + '?'
         })
             .subscribe((isConfirmed) => {
-                //Get dialog result
-                //this.confirmResult = isConfirmed;
+             
                 if (isConfirmed) {
                     this.deleteQuestionnaire(questions);
                 }
@@ -257,7 +256,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         });
     }
     getquesnreData() {
-        //this.questionnaireList = '';
         this.questionnaireService.getQuestionnaireForms(this.appService.petitionId).subscribe((res) => {
             if (res['statusCode'] == 'SUCCESS') {
                 this.formsList = res['applicationForms'];
@@ -391,7 +389,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     }
 
     deleteQuestionnaire(questions) {
-        //this.rowEdit[i] = true;
         console.log(questions.data.questionnaireId);
         this.questionnaireService.deleteQuestionnaire(questions.data.questionnaireId).subscribe(
             res => {
@@ -479,15 +476,11 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
             message: 'Are you sure you want to Delete ' + questionaireName + '?'
         })
             .subscribe((isConfirmed) => {
-                //Get dialog result
-                //this.confirmResult = isConfirmed;
                 if (isConfirmed) {
                     this.questionnaireService.deleteQuestionnaire(questionaireId).subscribe(
                         res => {
                             console.log(res);
                             if (res['statusCode'] == 'SUCCESS') {
-                                //this.questionnaireList.splice(i, 1);
-                                //this.appService.questionnaireName.splice(i, 1);
                                 this.getquesnreData();
                             }
                         }
@@ -507,7 +500,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         this.questionnaireService.sentQuestionnaireEmailToClient(req)
             .subscribe((res) => {
                 if (res['statusCode'] == 'SUCCESS') {
-                    //reset client Check
                     this.ngOnInit();
                 }
             });

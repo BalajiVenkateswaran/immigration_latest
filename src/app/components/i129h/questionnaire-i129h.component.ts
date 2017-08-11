@@ -127,14 +127,6 @@ export class QuestionnaireI129HComponent implements OnInit {
     }
     cancelQuestinnairei129Edit() {
         this.isquestionnairei129hEdit = true;
-        //for (var i = 0; i < this.questionnairei129hstayPeriodList.length; i++) {
-        //    if (this.questionnairei129hstayPeriodList[i]['from'] && this.questionnairei129hstayPeriodList[i]['from']['formatted']) {
-        //        this.questionnairei129hstayPeriodList[i]['from'] = this.questionnairei129hstayPeriodList[i]['from']['formatted'];
-        //    }
-        //    if (this.questionnairei129hstayPeriodList[i]['to'] && this.questionnairei129hstayPeriodList[i]['to']['formatted']) {
-        //        this.questionnairei129hstayPeriodList[i]['to'] = this.questionnairei129hstayPeriodList[i]['to']['formatted'];
-        //    }
-        //}
         this.questionnairei129hstayPeriodList = this.questionnairei129hstayPeriodList.filter(function(item){
             if (item.from != '' && item.to != '' && item.subjectName != '') {
                 return item;

@@ -4,7 +4,6 @@
         <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <div class="clearfix"></div>
         <h2>Document Expirations<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewDocExps()">ADD</button></h2>
-         <!--   <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)" (create)="onCreateConfirm($event)"></ng2-smart-table>-->
           <smart-table [settings]="settings" [data]="data"
                      (onAddClick)="addDocuments($event)" (onRowClick)="editDocuments($event)" (onDeleteClick)="deleteDocuments($event)"></smart-table>
         <div class="clearfix"></div>
@@ -40,11 +39,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                <!--<div class="row sfm" *ngIf="warningMessage">
-                                    <div class="col-md-12">
-                                        <span class="redstar">* Fields are Mandatory.</span>
-                                    </div>
-                                </div>-->
+                                
                             </div>
                             <div class="col-md-7">
                                 <div class="row">

@@ -102,7 +102,6 @@ export class DependentDetailsComponent implements OnInit {
     //cancel button function
     cancelProfileEdit() {
         this.mapToClientProfile();
-      //  this.mapToClientPersonalInfo();
         this.dependent = this.beforeCancelProfile;
         this.isProfileEdit = !this.isProfileEdit;
         this.warningMessage = false;
@@ -115,7 +114,6 @@ export class DependentDetailsComponent implements OnInit {
 
     //is edit function for read only
     editPersonalInfoForm() {
-        //this.mapToClientProfile();
         this.beforeCancelPersonal = (<any>Object).assign({}, this.dependent);
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
         this.dateOfBirth = this.dependent['dateOfBirth'];
@@ -125,7 +123,6 @@ export class DependentDetailsComponent implements OnInit {
 
     //cancel button function
     cancelPersonalInfoEdit() {
-       // this.mapToClientProfile();
         this.mapToClientPersonalInfo();
         this.dependent = this.beforeCancelPersonal;
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
@@ -163,7 +160,6 @@ export class DependentDetailsComponent implements OnInit {
 
             });
         }
-       // this.mapFromClientProfile();
 
         
     }

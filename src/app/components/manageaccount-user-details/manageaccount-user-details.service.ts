@@ -8,14 +8,14 @@ export class ManageAccountUserDetailsService {
     constructor(private restService: RestService) {
     }
     public updateUser(userData: User) {
-      return this.restService.putData("/userorgs", userData);
+        return this.restService.putData("/userorgs", userData);
     }
 
     public getUserDet(userid, accountid) {
         return this.restService.getData("/userorgs/" + userid + "/accounts/" + accountid);
     }
-    public getLoginHistory(userId){
-        return this.restService.getData("/profile/user/loginHistory/"+userId);
+    public getLoginHistory(userId) {
+        return this.restService.getData("/profile/user/loginHistory/" + userId);
     }
 
 }

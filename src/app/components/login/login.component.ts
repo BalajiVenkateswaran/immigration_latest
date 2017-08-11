@@ -81,7 +81,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
     } else {
       this.loginSubmit(model, isValid);
       }
-    //this.close();
+  
   }
 
   forgetPassword(email: string) {
@@ -108,7 +108,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
       
       if (isValid) {
           
-        //this.loginPopupForm=false;
+  
         this.ManageAccountUserService.login(model).subscribe((res: any) => {
             console.log("Login User %o", res);
             if (res.statusCode == "FAILURE") {

@@ -124,7 +124,6 @@ export class QuestionnaireI129ClientComponent implements OnInit {
     }
 
 saveClientQuestionnaireInform() {
-       // this.isQuestionnaireClientEdit = !this.isQuestionnaireClientEdit;
         if (this.questionnaireClient['dateOfLastArrival'] && this.questionnaireClient['dateOfLastArrival']['formatted']) {
             this.questionnaireClient['dateOfLastArrival'] = this.questionnaireClient['dateOfLastArrival']['formatted'];
         }

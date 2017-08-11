@@ -85,17 +85,13 @@
                         <div class="col-md-4"><label for="pInfo-nationality">Nationality</label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-nationality" [(ngModel)]="passport.nationality" /><span *ngIf="isEdit==true">{{passport.nationality}}</span></div>
                     </div>
-                    <!--<div class="row">
-                        <div class="col-md-4"><label for="pInfo-country-nationality">Country of Nationality</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-country-nationality" [(ngModel)]="passport.countryOfNationality" /><span *ngIf="isEdit==true">{{passport.countryOfNationality}}</span></div>
-                    </div>-->
+                    
                     <div class="row">
                         <div class="col-md-4"><label for="pInfo-identification-marks">Identification Marks</label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-identification-marks" [(ngModel)]="passport.identificationMarks" /><span *ngIf="isEdit==true">{{passport.identificationMarks}}</span></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pInfo-lost-passport">Have you ever lost a passport?</label></div>
-                        <!--<div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-lost-passport" [(ngModel)]="passport.everLostPassport" /><span *ngIf="isEdit==true">{{passport.everLostPassport}}</span></div>-->
                         <div class="col-md-8">
                             <span *ngIf="isEdit==true&&passport.everLostPassport==true">YES</span>
                             <span *ngIf="isEdit==true&&passport.everLostPassport==false">NO</span>

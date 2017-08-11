@@ -21,9 +21,7 @@ export class useropenpetitioncomponent implements OnInit {
     public count: any = [];
     public username: any = [];
     public fullMonth: any = [];
-   // public userNames: any = [];
     ngOnInit() {
-        //this.userNames = this.appService.usersList;
         this.usersOpenpetitionservice.getuseropenpetitions(this.appService.user.accountId)
             .subscribe((res) => {
                 console.log(res);
