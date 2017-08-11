@@ -22,6 +22,11 @@ export class MenuComponent implements OnInit {
     private immipetitionreports: boolean=true;
     private immicilentreports;
     private immiuserreports;
+    public superuserstats: boolean = true;
+    public superuserpayments: boolean;
+    public superuserpetitions: boolean;
+    public superuserclientreports: boolean;
+    public superuserpetitins: boolean;
   constructor(private menuService: MenuService, private appservice: AppService) {
       this.sideBarMenu = appservice.sideBarMenu;
     }
@@ -39,6 +44,21 @@ export class MenuComponent implements OnInit {
   }
   userpetiitonsclick() {
       this.immiuserreports = !this.immiuserreports;
+  }
+  superuserstatsclick() {
+      this.superuserstats = !this.superuserstats;
+  }
+  superuserpaymentsclick() {
+      this.superuserpayments = !this.superuserpayments;
+  }
+  superuserpetionsclick() {
+      this.superuserpetitions = !this.superuserpetitions;
+  }
+  superuserclientreportsclick() {
+      this.superuserclientreports = !this.superuserclientreports;
+  }
+  superuserpetitonreport() {
+      this.superuserpetitins = !this.superuserpetitins;
   }
   ngOnInit(): void {
       this.sideBarMenu = this.appservice.sideBarMenu;
