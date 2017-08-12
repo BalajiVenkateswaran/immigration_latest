@@ -257,6 +257,8 @@ import {SuperUsersOpenPetitionService} from './components/superuserview/reports-
 import {i129Page1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
 import {i129Page2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
 import {i129Page3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-3/page-3.component';
+import {i129Page4Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-4/page-4.component';
+import {i129Page5Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-5/page-5.component';
 
 
 
@@ -284,6 +286,8 @@ import { AngularDraggableModule } from 'angular2-draggable';
         i129Page1Component,
         i129Page2Component,
         i129Page3Component,
+        i129Page4Component,
+        i129Page5Component,
         //pdf oage components imported above which is for testing only
         CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,InvoiceUploadButton,/*AdvancedExamplesCustomEditorComponent,*/
         AppComponent,

@@ -431,6 +431,16 @@
             </a>
         </li>
         <li>
+            <a (click)="appservice.moveToPage('i129Page4');highlightSBLink('I-129 Page 4')" [ngClass]="[checkForCurrentSBLink('I-129 Page 4') ? 'active': '']" routerLinkActive="active">
+                <span>I-129 Page 4</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129Page5');highlightSBLink('I-129 Page 5')" [ngClass]="[checkForCurrentSBLink('I-129 Page 5') ? 'active': '']" routerLinkActive="active">
+                <span>I-129 Page 5</span>
+            </a>
+        </li>
+        <li>
             <a (click)="appservice.moveToPage('account-details');highlightSBLink('Account Details')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Account Details</span>
