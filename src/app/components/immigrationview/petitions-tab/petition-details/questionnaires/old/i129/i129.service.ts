@@ -1,7 +1,5 @@
-﻿import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
-import {petition} from "../../models/petitions";
-import {RestService} from "../../services/rest.service";
+﻿import { RestService } from '../../../../../../../services/rest.service';
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export class Quetionairervice {

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { DependentDetailsComponent } from './dependentdetails.component';
+import { DependentDetailsComponent } from './dependent-details.component';
 
 describe('DependentDetailsComponent', () => {
   let component: DependentDetailsComponent;

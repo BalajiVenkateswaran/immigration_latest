@@ -1,10 +1,9 @@
+import { ImmigrationdependentPersonalInfo } from '../../../../../models/dependentdetailspersnolinfo';
+import { ImmigrationdependentProfile } from '../../../../../models/dependentdetailsprofile';
+import { AppService } from '../../../../../services/app.service';
 import { Component, OnInit } from '@angular/core';
-import {DependentDetailsService} from "./dependentdetails.service";
+import {DependentDetailsService} from "./dependent-details.service";
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import {AppService} from "../../services/app.service";
-import {User} from "../../models/user";
-import {ImmigrationdependentProfile} from "../../models/dependentdetailsprofile";
-import {ImmigrationdependentPersonalInfo} from "../../models/dependentdetailspersnolinfo";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
@@ -16,8 +15,8 @@ export interface formControl {
 
 @Component({
   selector: 'app-dependentDetails',
-  templateUrl: './dependentdetails.component.html',
-  styleUrls: ['./dependentdetails.component.sass']
+  templateUrl: './dependent-details.component.html',
+  styleUrls: ['./dependent-details.component.sass']
 })
 export class DependentDetailsComponent implements OnInit {
     private dependent: any = {} ;
@@ -27,7 +26,6 @@ export class DependentDetailsComponent implements OnInit {
     private message: string;
     private status: any[];
     private gender: any[];
-    private user: User;
     //Profile section variables
     isProfileEdit;
     isPersonalInfoEdit;
@@ -51,9 +49,6 @@ export class DependentDetailsComponent implements OnInit {
         private formBuilder: FormBuilder, private appService: AppService,
         private route: ActivatedRoute,
           private router: Router) {
-        if (this.appService.user) {
-            this.user = this.appService.user;
-        }
     }
 
     onDateChanged(event: IMyDateModel) {
@@ -129,9 +124,6 @@ export class DependentDetailsComponent implements OnInit {
         if (this.dependentPersonalInfo['dateOfBirth'] && this.dependentPersonalInfo['dateOfBirth']['formatted']) {
             this.dependentPersonalInfo['dateOfBirth'] = this.dependentPersonalInfo['dateOfBirth']['formatted'];
         }
-
-
-
     }
 
 

@@ -1,13 +1,13 @@
+import { AppService } from '../../../../../../../services/app.service';
 import { Component, OnInit } from '@angular/core';
-import {Quetionairervice} from "./questionnaire-i129.service";
-import {AppService} from "../../services/app.service";
+import {Quetionairervice} from "./i129.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'app-questionnaire-i129.component',
-    templateUrl: './questionnaire-i129.component.html',
-    styleUrls: ['./questionnaire-i129.component.sass']
+    templateUrl: './i129.component.html',
+    styleUrls: ['./i129.component.sass']
 })
 export class QuestionnaireI129Component implements OnInit {
     isPetitionInformationEdit;

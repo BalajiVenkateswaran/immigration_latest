@@ -1,13 +1,13 @@
-﻿import { Component, OnInit } from '@angular/core';
-import {QuestionnaireI129HService} from "./questionnaire-i129h.service";
-import {AppService} from "../../services/app.service";
+﻿import { AppService } from '../../../../../../../services/app.service';
+import { QuestionnaireI129HService } from './i129h.service';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 @Component({
     selector: 'app-questionnaire-i129h.component',
-    templateUrl: './questionnaire-i129h.component.html',
-    styleUrls: ['./questionnaire-i129h.component.sass']
+    templateUrl: './i129h.component.html',
+    styleUrls: ['./i129h.component.sass']
 })
 export class QuestionnaireI129HComponent implements OnInit {
     isquestionnairei129hEdit;
@@ -36,8 +36,7 @@ export class QuestionnaireI129HComponent implements OnInit {
         showClearDateBtn: false,
     };
     constructor(private questionnaireI129HService: QuestionnaireI129HService, public appService: AppService,
-        private route: ActivatedRoute,
-        private router: Router) {
+        private route: ActivatedRoute, private router: Router) {
     }
     onDateChanged(event: IMyDateModel) {
 

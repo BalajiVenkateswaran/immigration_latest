@@ -1,17 +1,15 @@
-﻿import { Component, OnInit } from '@angular/core';
-import {User} from "../../models/user";
-import {AppService} from "../../services/app.service";
-import {QuestionnaireI129DCService} from "./questionnaire-i129dc.service";
+﻿import { AppService } from '../../../../../../../services/app.service';
+import { QuestionnaireI129DCService } from './i129dc.service';
+import { Component, OnInit } from '@angular/core';
 import {Http} from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'app-questionnaire-i129dc.component',
-    templateUrl: './questionnaire-i129dc.component.html',
-    styleUrls: ['./questionnaire-i129dc.component.sass']
+    templateUrl: './i129dc.component.html',
+    styleUrls: ['./i129dc.component.sass']
 })
 export class QuestionnaireI129DCComponent implements OnInit {
-    private user: User;
     questionnaireDC: any[] = [];
     private employerInfo: any = {};
     private determinationInfo: any = {};
@@ -26,12 +24,8 @@ export class QuestionnaireI129DCComponent implements OnInit {
     private backendDeterminationInfo: any[] = [];
     private questionnaireId: string = "";
  
-    constructor(public appService: AppService, private questionnaire129DCService: QuestionnaireI129DCService,private http:Http,
-    private route: ActivatedRoute,
-              private router: Router) {
-        if (this.appService.user) {
-            this.user = this.appService.user;
-        }
+    constructor(public appService: AppService, private questionnaire129DCService: QuestionnaireI129DCService,
+      private http:Http, private route: ActivatedRoute, private router: Router) {
     }
   
     ngOnInit() {
