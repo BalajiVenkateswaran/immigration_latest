@@ -119,6 +119,7 @@ import {i129Page2Component} from './components/immigrationview/petitions-tab/pet
 import {i129Page3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-3/page-3.component';
 import {i129Page4Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-4/page-4.component';
 import {i129Page5Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-5/page-5.component';
+import {i129Page6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
 
 
 export const appRoutes: Routes = [
@@ -141,6 +142,10 @@ export const appRoutes: Routes = [
     {
         path: 'i129Page5',
         component: i129Page5Component,
+    },
+    {
+        path: 'i129Page6',
+        component: i129Page6Component,
     },
     {
         path: 'login',
