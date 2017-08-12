@@ -3,7 +3,7 @@ import {RestService} from "../../services/rest.service";
 import {Router} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
 import {User} from "../../models/user";
-import {ManageAccountUserService} from "../manageaccount-user/manageaccount-user.service";
+import {ManageAccountUserService} from "../immigrationview/manage-account-tab/user/user.service";
 import {AppService} from "../../services/app.service";
 import {loginService} from "./login.service";
 import { ConfirmComponent } from '../confirmbox/confirm.component';

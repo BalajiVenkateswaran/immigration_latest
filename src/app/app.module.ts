@@ -12,7 +12,7 @@ import {ChartsModule} from 'ng2-charts';
 import Chart from 'chart.js';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 import {ActionColumns} from './components/smarttableframework/ActionColumns';
-import {SendToClientQuestionnaire} from './components/immigrationview-questionnaire/SendToClientQuestionnaire';
+import {SendToClientQuestionnaire} from './components/immigrationview/petitions-tab/petition-details/questionnaire/SendToClientQuestionnaire';
 
 import {AppComponent} from './components/app/app.component';
 import {Quetionairervice} from "./components/questionnaire-i129/questionnaire-i129.service";
@@ -26,18 +26,16 @@ import {SearchPipe} from './pipes/search-pipe';
 import {LooseCurrencyPipe} from "./pipes/loose.currency.pipe";
 import {Http, ConnectionBackend, RequestOptions, HttpModule} from "@angular/http";
 import {AppService} from "./services/app.service";
-import {ImmigrationviewPetitionDetailsComponent} from './components/immigrationview-petition-details/petition-details.component';
-import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview-questionnaire/questionnaire.component';
-import {ImmigrationviewFormsComponent} from './components/immigrationview-forms/forms.component';
-import {OrganizationDocumentRepositoryComponent} from "./components/immigrationview-organization-document-repository/organization-document-repository.component";
-import {DocumentManagementComponent} from "./components/immigrationview-document-management/document-management.component";
-import {PetitionDocumentRepositoryComponent} from "./components/immigrationview-petition-document-repository/petition-document-repository.component";
-import {ClientDocumentRepositoryComponent} from "./components/immigrationview-client-document-repository/client-document-repository.component";
+import {ImmigrationviewPetitionDetailsComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.component';
+import {ImmigrationviewFormsComponent} from './components/immigrationview/petitions-tab/petition-details/forms/forms.component';
+import {OrganizationDocumentRepositoryComponent} from "./components/immigrationview/organization-tab/document-repository/document-repository.component";
+import {DocumentManagementComponent} from "./components/immigrationview/clients-tab/client-details/document-management/document-management.component";
+import {PetitionDocumentRepositoryComponent} from "./components/immigrationview/petitions-tab/petition-details/document-repository/document-repository.component";
+import {ClientDocumentRepositoryComponent} from "./components/immigrationview/clients-tab/client-details/document-repository/document-repository.component";
 
 import {DependentDetailsComponent} from './components/dependentdetails/dependentdetails.component';
 
-import {ImmigrationviewDocumentExpirationsComponent} from "./components/immigrationview-document-expirations/document-expirations.component";
-import {PetitionsComponent} from './components/petitions/petitions.component';
+import {PetitionsComponent} from './components/immigrationview/petitions-tab/petitions/petitions.component';
 import {ClientsComponent} from './components/clients/clients.component';
 import {ClientsService} from './components/clients/clients.service';
 import { AddressinfoComponent } from './components/clientview/client-details-tab/addressinfo/addressinfo.component';
@@ -58,54 +56,27 @@ import { PassportInfoComponent } from './components/clientview/client-details-ta
 import { PassportInfoService } from './components/clientview/client-details-tab/passport-info/passport-info.service';
 import { VisasComponent } from './components/clientview/client-details-tab/visas/visas.component';
 import { VisasService } from './components/clientview/client-details-tab/visas/visas.service';
-import {ManageAccountUserComponent} from "./components/manageaccount-user/manageaccount-user.component";
-import {ManageAccountOrganizationsComponent} from "./components/manageaccount-organizations/manageaccount-organizations.component";
-import {ManageAccountPetitionTypeStagesComponent} from "./components/manageaccount-petitiontypestages/manageaccount-petitiontypestages.component";
-import {ManageAccountShippingAddressComponent} from "./components/manageaccount-shippingaddress/manageaccount-shippingaddress.component";
-import {ManageAccountPreferencesComponent} from "./components/manageaccount-preferences/manageaccount-preferences.component";
-import {ManageAccountInvoicesComponent} from './components/manageaccount-invoices/manageaccount-invoices.component';
-import {ManageAccountPaymentsComponent} from './components/manageaccount-payments/manageaccount-payments.component';
+import {ManageAccountUserComponent} from "./components/immigrationview/manage-account-tab/user/user.component";
+import {ManageAccountOrganizationsComponent} from "./components/immigrationview/manage-account-tab/organizations/organizations.component";
 
-import {ImmigrationViewClientDetailsComponent} from './components/immigrationview-client-details/client-details.component';
-import {ImmigrationViewAddressinfoComponent} from "./components/immigrationview-address/addressinfo.component";
-import {ImmigrationViewDependentsComponent} from "./components/immigrationview-dependents/dependents.component";
-import {ImmigrationViewPassportInfoComponent} from './components/immigrationview-passport-info/passport-info.component';
-import {ImmigrationViewJobDetailsComponent} from './components/immigrationview-job-details/job-details.component';
-import {ImmigrationViewArrivalDepartureInfoComponent} from './components/immigrationview-arrival-departure-info/arrival-departure-info.component';
-import {ImmigrationViewArrivalDepartureInfoService} from './components/immigrationview-arrival-departure-info/arrival-departure-info.service';
-import {ImmigrationViewVisasComponent} from './components/immigrationview-visas/visas.component';
-import {ImmigrationViewI797HistoryComponent} from './components/immigrationview-i-797-history/i-797-history.component';
-import {ImmigrationViewPetitionsComponent} from './components/immigrationview-petitions/petitions.component';
-import {PetitionsService} from "./components/petitions/petitions.service";
+import {ImmigrationViewClientDetailsComponent} from './components/immigrationview/clients-tab/client-details/client-details/client-details.component';
+import {PetitionsService} from "./components/immigrationview/petitions-tab/petitions/petitions.service";
 import {ClientRequestService} from "./components/clientview/request-tab/request.service";
-import {ManageAccountUserService} from "./components/manageaccount-user/manageaccount-user.service";
-import {ManageAccountOrganizationsService} from "./components/manageaccount-organizations/manageaccount-organizations.service";
-import {ImmigrationViewDependentService} from "./components/immigrationview-dependents/dependents.service";
-import {OrganizationDocumentRepositoryService} from "./components/immigrationview-organization-document-repository/organization-document-repository.service";
-import {ImmigrationViewVisasService} from "./components/immigrationview-visas/visas.service";
-import {ImmigrationViewI797HistoryService} from "./components/immigrationview-i-797-history/i-797-history.service";
-import {ImmigrationViewPetitionsService} from "./components/immigrationview-petitions/petitions.service";
-import {FormsService} from "./components/immigrationview-forms/forms.service";
+import {OrganizationDocumentRepositoryService} from "./components/immigrationview/organization-tab/document-repository/document-repository.service";
+import {FormsService} from "./components/immigrationview/petitions-tab/petition-details/forms/forms.service";
 import {DocumentsComponent} from './components/clientview/documents-tab/documents.component';
-import {Addressinfoservice} from "./components/immigrationview-address/addressinfo.service";
-import {ClientViewPetitionsService} from "./components/clientview/petitions-tab/petitions.service";
 import {UiFieldService} from "./services/uifield.service";
 import {OrganizationService} from "./components/organization/organization.service";
 import {DependentDetailsService} from "./components/dependentdetails/dependentdetails.service";
-import {DocumentManagementService} from "./components/immigrationview-document-management/document-management.service";
-import {ImmigrationViewPetitionDetailsService} from "./components/immigrationview-petition-details/petition-details.service";
-import {ManageAccountShippingAddressService} from "./components/manageaccount-shippingaddress/manageaccount-shippingaddress.service";
-import {ManageAccountPetitionStagesService} from "./components/manageaccount-petitiontypestages/manageaccount-petitiontypestages.service";
-import {QuestionnaireService} from './components/immigrationview-questionnaire/questionnaire.service';
+import {ImmigrationViewPetitionDetailsService} from "./components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.service";
+import {QuestionnaireService} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.service';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {LoginComponent} from "./components/login/login.component";
-import {requestclientviewcomponent} from "./components/clientview/request-tab/request.component";
-import {passportInfoService} from './components/immigrationview-passport-info/passport-info.service';
-import {ImmigrationViewClientDetailsService} from './components/immigrationview-client-details/client-details.service';
-import {PetitionDocumentRepositoryService} from './components/immigrationview-petition-document-repository/petition-document-repository.service';
+import {PetitionDocumentRepositoryService} from './components/immigrationview/petitions-tab/petition-details/document-repository/document-repository.service';
 import {DocumentService} from './components/clientview/documents-tab/documents.service';
 import {MoreDetails} from './components/clientview/petitions-tab/MoreDetails';
 import {petitionsclientviewComponent} from './components/clientview/petitions-tab/petitions.component';
+import { ClientViewPetitionsService } from './components/clientview/petitions-tab/petitions.service';
 import { QuestionnaireI129ClientComponent } from './components/clientview/questionnaries-tab/i129/i129.component';
 import { QuestionnaireClientViewService } from './components/clientview/questionnaries-tab/i129/i129.service';
 import { QuestionnaireI129HclientviewComponent } from './components/clientview/questionnaries-tab/i129h/i129h.component';
@@ -113,8 +84,7 @@ import { QuestionnaireI129HClentviewService } from './components/clientview/ques
 import { clientviewQuestionnaireComponent } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.component';
 import { ClientQuestionnaireService } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.service';
 import {RequestButton} from './components/clientview/request-tab/RequestButton';
-import {JobdetailsService} from './components/immigrationview-job-details/job-details-service';
-import {ImmigrationviewDocumentExpirationsService} from './components/immigrationview-document-expirations/document-expirations.service';
+import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
 import {QuestionnaireI129DCComponent} from './components/i129dc/questionnaire-i129dc.component';
 import {QuestionnaireI129DCService} from './components/i129dc/questionnaire-i129dc.service';
 import {MyDatePickerModule} from 'mydatepicker';
@@ -123,9 +93,7 @@ import {InvoicedownloadButton} from "./components/superuserview/accounts-tab/acc
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from './components/confirmbox/confirm.component';
 import {ConfirmorgComponent} from './components/confirmbox/confirmorg.component';
-
-import {CustomRenderComponent} from './components/immigrationview-petitions/custom-render.component';
-
+import { HeaderService } from './components/header/header.service';
 
 import {AgGridModule} from "ag-grid-angular/main";
 import {ProductCatalogProductService} from './components/superuserview-productcatalog/superuserview-productcatalog.service';
@@ -140,79 +108,84 @@ import {AccountInvoiceService} from './components/superuserview/accounts-tab/acc
 import {SuperuserviewProductcatalogComponent} from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 import {AccountsManagers} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.component';
 import {AccountManagersService} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.service';
-import {accountDetailsPaymentsComponent} from './components/superuserview/accounts-tab/account-details/payments/payments.component';
-import {ManageAccountPaymentsService} from "./components/manageaccount-payments/manageaccount-payments.service";
 import {SuperuserviewAccountdetailsMfdComponent} from './components/superuserview/accounts-tab/account-details/mfd/mfd.component';
-import {SuperUserViewMFDService} from "./components/superuserview/accounts-tab/account-details/mfd/mfd.service";
-import {ManageAccountInvoiceService} from "./components/manageaccount-invoices/manageaccount-invoices.service";
-import {ImmigrationviewPetitionNotesComponent} from './components/immigrationview-petition-notes/petition-notes.component';
-import {ManageaccountUserDetailsComponent} from './components/manageaccount-user-details/manageaccount-user-details.component'
-import {ImmigrationViewPetitionNotesService} from "./components/immigrationview-petition-notes/petition-notes.service";
-
-
-import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
-import {markfordeletionservice} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.service';
+import {ManageAccountInvoiceService} from "./components/immigrationview/manage-account-tab/invoices/invoices.service";
+import {ImmigrationviewPetitionNotesComponent} from './components/immigrationview/petitions-tab/petition-details/notes/notes.component';
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
 import {ProductCatalogDiscountService} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.service';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
-import {SuperUserViewPaymentstabService} from './components/superuserview-payments/payments.service';
 import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
 import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
-import {ManageAccountpreferencessService} from "./components/manageaccount-preferences/manageaccount-preferences.service";
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
-import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service';
 import {ReportsCommonService} from './components/superuserview/reports-tab/common/reports-common.service';
 
 
-import {profileCommonService} from './components/immigrationview/profile/common/immigration-profile.service';
+import {profileCommonService} from './components/immigrationview/profile-tab/common/immigration-profile.service';
 import {InvoiceUploadButton} from './components/superuserview/accounts-tab/account-details/invoice/invoiceuploadbutton';
-import {ManageAccountUserDetailsService} from "./components/manageaccount-user-details/manageaccount-user-details.service";
 
 //immigrationview reports tab
-import {petitionsstatusreportscomponent} from './components/immigrationview-petitions-statusreports/petitions-statusreports.component';
-import {petitionsstatusreportsservice} from './components/immigrationview-petitions-statusreports/petitions-statusreports.service';
+import {petitionsstatusreportscomponent} from './components/immigrationview/reports-tab/petition/status/status.component';
+import {petitionsstatusreportsservice} from './components/immigrationview/reports-tab/petition/status/status.service';
 import {ActionIcons} from './components/smarttableframework/cellRenderer/ActionsIcons';
-import {GenerateFormButton} from "./components/immigrationview-forms/GenerateFormButton";
-import {DownloadButton} from "./components/immigrationview-forms/DownloadButton";
-import {clientscreatedreportscomponent} from './components/immigrationview-clients-createdreports/clients-createdreports.component';
-import {clientscreatedreportsservice} from './components/immigrationview-clients-createdreports/clients-createdreports.service';
-import {petitionstypesreportscomponent} from './components/immigrationview-petitontypereports/petitiontypereports.component';
-import {petitionstypesreportsservice} from './components/immigrationview-petitontypereports/petitiontypereports.service';
-import {petitionstagesreportscomponent} from './components/immigrationview-petitionstagesreports/petitionstagesreports.component';
-import {petitionstagesreportsservice} from './components/immigrationview-petitionstagesreports/petitionstagesreports.service';
-import {petitionstagsreportscomponent} from './components/immigrationview-petitiontagsreports/petitiontagsreports.component';
-import {petitionstagsreportsservice} from './components/immigrationview-petitiontagsreports/petitiontagsreports.service';
-import {clientstatusreportscomponent} from './components/immigartioniew-clientsstatusreports/clientstatusreports.component';
-import {clientstatusreportsservice} from './components/immigartioniew-clientsstatusreports/clientstatusreports.service';
-import {usertotalpetitionscomponent} from './components/immigrationview-userstotalpetreports/userstotalpetitionreports.component';
-import {usertotalpetitionservice} from './components/immigrationview-userstotalpetreports/userstotalpetitionreports.service';
+import {GenerateFormButton} from "./components/immigrationview/petitions-tab/petition-details/forms/GenerateFormButton";
+import {DownloadButton} from "./components/immigrationview/petitions-tab/petition-details/forms/DownloadButton";
+import {clientscreatedreportscomponent} from './components/immigrationview/reports-tab/client/created/created.component';
+import {usertotalpetitionscomponent} from './components/immigrationview/reports-tab/user/total-petitions/total-petitions.component';
+import {usertotalpetitionservice} from './components/immigrationview/reports-tab/user/total-petitions/total-petitions.service';
 
-import {useropenpetitioncomponent} from './components/immigrationview-usersopenpetreports/usersopenreports.component';
-import {usersopenpetitionservice} from './components/immigrationview-usersopenpetreports/usersopenreports.service';
+import {useropenpetitioncomponent} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.component';
+import {usersopenpetitionservice} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.service';
 
-import {petitionfinalactionservice} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.service';
-
-import {HeaderService} from "./components/header/header.service";
+import {petitionfinalactionservice} from './components/immigrationview/reports-tab/petition/final-action/final-action.service';
 import {QuestionnaireI129HComponent} from './components/i129h/questionnaire-i129h.component';
 import {QuestionnaireI129HService} from './components/i129h/questionnaire-i129h.service';
-import {ClientDocumentRepositoryService} from './components/immigrationview-client-document-repository/client-document-repository.service';
-import {petitionfinalactioncomponent} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.component';
+import { ImmigrationViewAddressinfoComponent } from './components/immigrationview/clients-tab/client-details/address/addressinfo.component';
+import { Addressinfoservice } from './components/immigrationview/clients-tab/client-details/address/addressinfo.service';
+import { ImmigrationViewArrivalDepartureInfoComponent } from './components/immigrationview/clients-tab/client-details/arrival-departure-info/arrival-departure-info.component';
+import { ImmigrationViewArrivalDepartureInfoService } from './components/immigrationview/clients-tab/client-details/arrival-departure-info/arrival-departure-info.service';
+import { ImmigrationViewClientDetailsService } from './components/immigrationview/clients-tab/client-details/client-details/client-details.service';
+import { ImmigrationViewDependentsComponent } from './components/immigrationview/clients-tab/client-details/dependents/dependents.component';
+import { ImmigrationViewDependentService } from './components/immigrationview/clients-tab/client-details/dependents/dependents.service';
+import { ImmigrationviewDocumentExpirationsComponent } from './components/immigrationview/clients-tab/client-details/document-expirations/document-expirations.component';
+import { ImmigrationviewDocumentExpirationsService } from './components/immigrationview/clients-tab/client-details/document-expirations/document-expirations.service';
+import { DocumentManagementService } from './components/immigrationview/clients-tab/client-details/document-management/document-management.service';
+import { ClientDocumentRepositoryService } from './components/immigrationview/clients-tab/client-details/document-repository/document-repository.service';
+import { ImmigrationViewI797HistoryComponent } from './components/immigrationview/clients-tab/client-details/i-797-history/i-797-history.component';
+import { ImmigrationViewI797HistoryService } from './components/immigrationview/clients-tab/client-details/i-797-history/i-797-history.service';
+import { ImmigrationViewJobDetailsComponent } from './components/immigrationview/clients-tab/client-details/job-details/job-details.component';
+import { JobdetailsService } from './components/immigrationview/clients-tab/client-details/job-details/job-details.service';
+import { ImmigrationViewPassportInfoComponent } from './components/immigrationview/clients-tab/client-details/passport-info/passport-info.component';
+import { passportInfoService } from './components/immigrationview/clients-tab/client-details/passport-info/passport-info.service';
+import { CustomRenderComponent } from './components/immigrationview/clients-tab/client-details/petitions/custom-render.component';
+import { ImmigrationViewPetitionsComponent } from './components/immigrationview/clients-tab/client-details/petitions/petitions.component';
+import { ImmigrationViewPetitionsService } from './components/immigrationview/clients-tab/client-details/petitions/petitions.service';
+import { ImmigrationViewVisasComponent } from './components/immigrationview/clients-tab/client-details/visas/visas.component';
+import { ImmigrationViewVisasService } from './components/immigrationview/clients-tab/client-details/visas/visas.service';
+import {petitionfinalactioncomponent} from './components/immigrationview/reports-tab/petition/final-action/final-action.component';
 
-import {DownloadInvoiceButton} from "./components/manageaccount-invoices/DownloadInvoiceButton";
+import {DownloadInvoiceButton} from "./components/immigrationview/manage-account-tab/invoices/DownloadInvoiceButton";
 //immiviewprofiletab
-import {profileusercomponent} from './components/immigrationview-profileuser/profileuser.component';
-import {profileuserservice} from './components/immigrationview-profileuser/profileuser.service';
-import {profileloginhiscomponent} from './components/immigrationview-profileloginhistory/profileloginhistory.component';
-import {profileloginhisservice} from './components/immigrationview-profileloginhistory/profileloginhistory.service';
-import {profileswitchcomponent} from './components/immigrationview-profileswitch/profileswitch.component';
-import {profileswitchservice} from './components/immigrationview-profileswitch/profileswitch.service';
-import {profilechangepwdcomponent} from './components/immigrationview-profilechangepassword/profilechangepassword.component';
-import {profilechangepwdservice} from './components/immigrationview-profilechangepassword/profilechangepassword.service';
-import {switchButton} from './components/immigrationview-profileswitch/switchButton';
-import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
-import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
-import {ManageaccountChecklistComponent} from './components/manageaccount-checklist/manageaccount-checklist.component';
-import {ManageAccountChecklistService} from "./components/manageaccount-checklist/manageaccount-checklist.service";
+import {profileusercomponent} from './components/immigrationview/profile-tab/user/user.component';
+import {profileuserservice} from './components/immigrationview/profile-tab/user/user.service';
+import {profileloginhiscomponent} from './components/immigrationview/profile-tab/loginhistory/loginhistory.component';
+import {profilechangepwdcomponent} from './components/immigrationview/profile-tab/changepassword/changepassword.component';
+import {ManageaccountChecklistComponent} from './components/immigrationview/manage-account-tab/checklist/checklist.component';
+import {ManageAccountChecklistService} from "./components/immigrationview/manage-account-tab/checklist/checklist.service";
+import { MarkforDeletionComponent } from './components/immigrationview/manage-account-tab/markfordeletion/markfordeletion.component';
+import { markfordeletionservice } from './components/immigrationview/manage-account-tab/markfordeletion/markfordeletion.service';
+import { ManageAccountOrganizationsService } from './components/immigrationview/manage-account-tab/organizations/organizations.service';
+import { ManageAccountPaymentsComponent } from './components/immigrationview/manage-account-tab/payments/payments.component';
+import { ManageAccountPaymentsService } from './components/immigrationview/manage-account-tab/payments/payments.service';
+import { ManageAccountPetitionTypeStagesComponent } from './components/immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.component';
+import { ManageAccountPetitionStagesService } from './components/immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.service';
+import { ManageAccountPreferencesComponent } from './components/immigrationview/manage-account-tab/preferences/preferences.component';
+import { ManageAccountpreferencessService } from './components/immigrationview/manage-account-tab/preferences/preferences.service';
+import { ManageAccountShippingAddressComponent } from './components/immigrationview/manage-account-tab/shippingaddress/shippingaddress.component';
+import { ManageAccountShippingAddressService } from './components/immigrationview/manage-account-tab/shippingaddress/shippingaddress.service';
+import { ManageaccountUserDetailsComponent } from './components/immigrationview/manage-account-tab/user-details/user-details.component';
+import { ManageAccountUserDetailsService } from './components/immigrationview/manage-account-tab/user-details/user-details.service';
+import { ManageAccountUserService } from './components/immigrationview/manage-account-tab/user/user.service';
+import { ImmigrationViewPetitionNotesService } from './components/immigrationview/petitions-tab/petition-details/notes/notes.service';
 
 //superuser reports tab
 import {statsaccountscomponent} from './components/superuser-statsaccountsreports/statsaccountsreports.component';
@@ -246,13 +219,35 @@ import {i129Page3Component} from './components/immigrationview/petitions-tab/pet
 import {i129Page4Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-4/page-4.component';
 import {i129Page5Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-5/page-5.component';
 import {i129Page6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
+import { profilechangepwdservice } from './components/immigrationview/profile-tab/changepassword/changepassword.service';
+import { profileloginhisservice } from './components/immigrationview/profile-tab/loginhistory/loginhistory.service';
+import { profileswitchcomponent } from './components/immigrationview/profile-tab/switch/switch.component';
+import { profileswitchservice } from './components/immigrationview/profile-tab/switch/switch.service';
+import { switchButton } from './components/immigrationview/profile-tab/switch/switchButton';
+import { profiletodolistcomponent } from './components/immigrationview/profile-tab/todolist/todolist.component';
+import { profiletodolistservice } from './components/immigrationview/profile-tab/todolist/todolist.service';
+import { clientscreatedreportsservice } from './components/immigrationview/reports-tab/client/created/created.service';
+import { petitionstagesreportscomponent } from './components/immigrationview/reports-tab/petition/stages/stages.component';
+import { petitionstagesreportsservice } from './components/immigrationview/reports-tab/petition/stages/stages.service';
+import { petitionstagsreportscomponent } from './components/immigrationview/reports-tab/petition/tags/tags.component';
+import { petitionstagsreportsservice } from './components/immigrationview/reports-tab/petition/tags/tags.service';
+import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
+import { petitionstypesreportsservice } from './components/immigrationview/reports-tab/petition/type/type.service';
 import {MenuService} from './components/menu/menu.service';
 import { OrganizationComponent } from './components/organization/organization.component';
 import {QuestionnaireI129Component} from './components/questionnaire-i129/questionnaire-i129.component';
 import {ResetPasswordService} from './components/reset-password/reset-password.service';
+import { SuperUserViewPaymentstabService } from './components/superuserview-payments/payments.service';
 import {AngularDraggableModule} from 'angular2-draggable';
 import {AccountDetailsPaymentsService} from './components/superuserview/accounts-tab/account-details/payments/payments.service';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.service';
+import { AccountDetailsCommonService } from './components/superuserview/accounts-tab/account-details/common/account-details-common.service';
+import { SuperUserViewMFDService } from './components/superuserview/accounts-tab/account-details/mfd/mfd.service';
+import { accountDetailsPaymentsComponent } from './components/superuserview/accounts-tab/account-details/payments/payments.component';
+import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.component';
+import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
+import { clientstatusreportscomponent } from './components/immigrationview/reports-tab/client/status/status.component';
+import { clientstatusreportsservice } from './components/immigrationview/reports-tab/client/status/status.service';
 
 @NgModule({
   imports: [
@@ -473,7 +468,6 @@ import {SuperuserViewAccountpreferencessService} from './components/superuservie
     AccountManagersService,
     SuperUserViewInvoicestabService,
     markfordeletionservice,
-    SuperUserViewPaymentstabService,
     ManageAccountUserDetailsService,
     ReportsCommonService,
     SuperuserViewAccountpreferencessService,
