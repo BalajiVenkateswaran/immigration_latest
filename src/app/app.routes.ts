@@ -42,16 +42,13 @@ import {ResetPasswordComponent} from './components/reset-password/reset-password
 //superuserview
 import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';
 import {SuperuserViewAccountDetailsComponent} from './components/superuserview/accounts-tab/account-details/account-details/account-details.component';
-import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
+import { SuperuserviewProductcatalogComponent } from './components/superuserview/product-catalog-tab/products/product-catalog.component';
 import { AccountsManagers } from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.component';
 import {AccountInvoiceComponent} from './components/superuserview/accounts-tab/account-details/invoice/invoice.component';
 import {accountDetailsPaymentsComponent} from './components/superuserview/accounts-tab/account-details/payments/payments.component';
 
 import { SuperuserviewAccountdetailsMfdComponent } from "./components/superuserview/accounts-tab/account-details/mfd/mfd.component";
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
-import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
-
-import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
 
 //immigrationview reports
 import {petitionsstatusreportscomponent} from './components/immigrationview/reports-tab/petition/status/status.component';
@@ -83,17 +80,12 @@ import { ManageAccountShippingAddressComponent } from './components/immigrationv
 import { ManageaccountUserDetailsComponent } from './components/immigrationview/manage-account-tab/user-details/user-details.component';
 
 //superuser reports
-import {statsaccountscomponent} from './components/superuser-statsaccountsreports/statsaccountsreports.component';
-import {superpetitionsstatusreportscomponent} from './components/superuser-petitionstatusreports/superpetitionstatusreports.component';
-import {superuserH1Breportscomponent} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.component';
-import {superuserL1Areportscomponent} from './components/superuser-petitiontypeL1Areports/petitionsubtypeL1A.component';
-import {superuserpetstagereportscomponent} from './components/superuser-petitionstagereports/superuser-petitionstagereports.component';
-import {superuserpettagreportscomponent} from './components/superuser-petitiontagreports/superuser-petitiontagreport.component';
-import {superuserpetfinalactionreportscomponent} from './components/superuser-petionfinalactionreports/superuser-petitionfinalaction.component';
-import {superuserclientstatusreportscomponent} from './components/superuser-clientstatusreports/superuser-clientstatusreports.component';
-import {SuperUserClientsCreatedReportsComponent} from './components/superuser-clientscreatedreports/superuser-clientscreatedreports.component';
-import {superusertotalpetitionsreportscomponent} from './components/superuser-usertotalpetitions/superuser-usertotalpetitions.component';
-import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/useropenpetitions.component';
+import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
+import {superpetitionsstatusreportscomponent} from './components/superuserview/reports-tab/petitions/status/status.component';
+import {superuserpetfinalactionreportscomponent} from './components/superuserview/reports-tab/petitions/final-action/final-action.component';
+import {SuperUserClientsCreatedReportsComponent} from './components/superuserview/reports-tab/clients/created/created.component';
+import {superusertotalpetitionsreportscomponent} from './components/superuserview/reports-tab/users/totalpetitions/totalpetitions.component';
+import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/openpetitions.component';
 
 //PDF Pages I-129
 import {i129Page1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
@@ -109,13 +101,22 @@ import { petitionstagesreportscomponent } from './components/immigrationview/rep
 import { petitionstagsreportscomponent } from './components/immigrationview/reports-tab/petition/tags/tags.component';
 import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
 import { QuestionnaireI129Component } from './components/questionnaire-i129/questionnaire-i129.component';
-import { SuperUserViewPaymentstabComponent } from './components/superuserview-payments/payments.component';
+import {i129Page6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
+import { clientstatusreportscomponent } from './components/immigrationview/reports-tab/client/status/status.component';
+import { superuserpetstagereportscomponent } from './components/superuserview/reports-tab/petitions/stage/stage.component';
+import { superuserL1Areportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
+import { superuserH1Breportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
+import { superuserpettagreportscomponent } from './components/superuserview/reports-tab/petitions/tag/tag.component';
+
+
+
 
 import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
 import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.component';
-import {i129Page6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
-import { clientstatusreportscomponent } from './components/immigrationview/reports-tab/client/status/status.component';
-
+import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview/product-catalog-tab/discounts/discounts.component';
+import {superuserclientstatusreportscomponent} from './components/superuserview/reports-tab/clients/status/status.component';
+import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
+import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
 
 export const appRoutes: Routes = [
     {

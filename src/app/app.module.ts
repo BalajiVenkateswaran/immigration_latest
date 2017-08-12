@@ -96,7 +96,7 @@ import {ConfirmorgComponent} from './components/confirmbox/confirmorg.component'
 import { HeaderService } from './components/header/header.service';
 
 import {AgGridModule} from "ag-grid-angular/main";
-import {ProductCatalogProductService} from './components/superuserview-productcatalog/superuserview-productcatalog.service';
+import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
 //superusersview
 
 import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';
@@ -105,17 +105,13 @@ import {SuperuserViewAccountDetailsComponent} from './components/superuserview/a
 import {SuperuserViewAccountDetailsService} from './components/superuserview/accounts-tab/account-details/account-details/account-details.service';
 import {AccountInvoiceComponent} from './components/superuserview/accounts-tab/account-details/invoice/invoice.component';
 import {AccountInvoiceService} from './components/superuserview/accounts-tab/account-details/invoice/invoice.service';
-import {SuperuserviewProductcatalogComponent} from './components/superuserview-productcatalog/superuserview-productcatalog.component';
+import {SuperuserviewProductcatalogComponent} from './components/superuserview/product-catalog-tab/products/product-catalog.component';
 import {AccountsManagers} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.component';
 import {AccountManagersService} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.service';
 import {SuperuserviewAccountdetailsMfdComponent} from './components/superuserview/accounts-tab/account-details/mfd/mfd.component';
 import {ManageAccountInvoiceService} from "./components/immigrationview/manage-account-tab/invoices/invoices.service";
 import {ImmigrationviewPetitionNotesComponent} from './components/immigrationview/petitions-tab/petition-details/notes/notes.component';
-import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
-import {ProductCatalogDiscountService} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.service';
-import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
-import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
-import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
+import {SuperUserViewInvoicestabService} from './components/superuserview/invoices-tab/invoices.service';
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
 import {ReportsCommonService} from './components/superuserview/reports-tab/common/reports-common.service';
 
@@ -188,28 +184,19 @@ import { ManageAccountUserService } from './components/immigrationview/manage-ac
 import { ImmigrationViewPetitionNotesService } from './components/immigrationview/petitions-tab/petition-details/notes/notes.service';
 
 //superuser reports tab
-import {statsaccountscomponent} from './components/superuser-statsaccountsreports/statsaccountsreports.component';
-import {statsaccountsservice} from './components/superuser-statsaccountsreports/statsaccountsreports.service';
-import {superpetitionsstatusreportscomponent} from './components/superuser-petitionstatusreports/superpetitionstatusreports.component';
-import {superpetitionsstatusreportsservice} from './components/superuser-petitionstatusreports/superpetitionstatusreports.service';
-import {superuserH1Breportscomponent} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.component';
-import {superuserH1Breportsservice} from './components/superuser-petitiontypeh1breports/petitiontypesH1Breports.service';
-import {superuserL1Areportscomponent} from './components/superuser-petitiontypeL1Areports/petitionsubtypeL1A.component';
-import {superuserL1Areportsservice} from './components/superuser-petitiontypeL1Areports/petitionsubtypeL1A.service';
-import {superuserpetstagereportscomponent} from './components/superuser-petitionstagereports/superuser-petitionstagereports.component';
-import {superuserpetitionstagesreportsservice} from './components/superuser-petitionstagereports/superuser-petitionstagereports.service';
-import {superuserpettagreportscomponent} from './components/superuser-petitiontagreports/superuser-petitiontagreport.component';
-import {superuserpetitiontagreportsservice} from './components/superuser-petitiontagreports/superuser-petitiontagreport.service';
-import {superuserpetfinalactionreportscomponent} from './components/superuser-petionfinalactionreports/superuser-petitionfinalaction.component';
-import {superuserpetitionfinalactionreportsservice} from './components/superuser-petionfinalactionreports/superuser-petitionfinalaction.service';
-import {superuserclientstatusreportscomponent} from './components/superuser-clientstatusreports/superuser-clientstatusreports.component';
-import {superuserclientstatusreportsservice} from './components/superuser-clientstatusreports/superuser-clientstatusreports.service';
-import {SuperUserClientsCreatedReportsComponent} from './components/superuser-clientscreatedreports/superuser-clientscreatedreports.component';
-import {SuperUserClientsCreatedReportsService} from './components/superuser-clientscreatedreports/superuser-clientscreatedreports.service';
-import {superusertotalpetitionsreportscomponent} from './components/superuser-usertotalpetitions/superuser-usertotalpetitions.component';
-import {sperusertotalpetitionsreportsservice} from './components/superuser-usertotalpetitions/superuser-usertotalpetitions.service';
-import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/useropenpetitions.component';
-import {SuperUsersOpenPetitionService} from './components/superuserview/reports-tab/users/openpetitions/useropenpetitions.service';
+import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
+import {statsaccountsservice} from './components/superuserview/reports-tab/stats/accounts/accounts.service';
+import {superpetitionsstatusreportscomponent} from './components/superuserview/reports-tab/petitions/status/status.component';
+import {superuserpetstagereportscomponent} from './components/superuserview/reports-tab/petitions/stage/stage.component';
+import {superuserpetfinalactionreportscomponent} from './components/superuserview/reports-tab/petitions/final-action/final-action.component';
+import {SuperUserPetitionFinalActionReportsService} from './components/superuserview/reports-tab/petitions/final-action/final-action.service';
+import {superuserclientstatusreportsservice} from './components/superuserview/reports-tab/clients/status/status.service';
+import {SuperUserClientsCreatedReportsComponent} from './components/superuserview/reports-tab/clients/created/created.component';
+import {SuperUserClientsCreatedReportsService} from './components/superuserview/reports-tab/clients/created/created.service';
+import {superusertotalpetitionsreportscomponent} from './components/superuserview/reports-tab/users/totalpetitions/totalpetitions.component';
+import {sperusertotalpetitionsreportsservice} from './components/superuserview/reports-tab/users/totalpetitions/totalpetitions.service';
+import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/openpetitions.component';
+import {SuperUsersOpenPetitionService} from './components/superuserview/reports-tab/users/openpetitions/openpetitions.service';
 
 
 //PDF Pages for testing only
@@ -237,17 +224,35 @@ import {MenuService} from './components/menu/menu.service';
 import { OrganizationComponent } from './components/organization/organization.component';
 import {QuestionnaireI129Component} from './components/questionnaire-i129/questionnaire-i129.component';
 import {ResetPasswordService} from './components/reset-password/reset-password.service';
-import { SuperUserViewPaymentstabService } from './components/superuserview-payments/payments.service';
 import {AngularDraggableModule} from 'angular2-draggable';
 import {AccountDetailsPaymentsService} from './components/superuserview/accounts-tab/account-details/payments/payments.service';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.service';
 import { AccountDetailsCommonService } from './components/superuserview/accounts-tab/account-details/common/account-details-common.service';
 import { SuperUserViewMFDService } from './components/superuserview/accounts-tab/account-details/mfd/mfd.service';
 import { accountDetailsPaymentsComponent } from './components/superuserview/accounts-tab/account-details/payments/payments.component';
-import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.component';
-import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
 import { clientstatusreportscomponent } from './components/immigrationview/reports-tab/client/status/status.component';
 import { clientstatusreportsservice } from './components/immigrationview/reports-tab/client/status/status.service';
+import { superuserpetitionstagesreportsservice } from './components/superuserview/reports-tab/petitions/stage/stage.service';
+import { superpetitionsstatusreportsservice } from './components/superuserview/reports-tab/petitions/status/status.service';
+import { superuserL1Areportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
+import { superuserL1Areportsservice } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.service';
+import { superuserH1Breportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
+import { superuserH1Breportsservice } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.service';
+import { superuserpettagreportscomponent } from './components/superuserview/reports-tab/petitions/tag/tag.component';
+import { superuserpetitiontagreportsservice } from './components/superuserview/reports-tab/petitions/tag/tag.service';
+import { SuperUserViewPaymentstabService } from './components/superuserview/payments-tab/payments.service';
+import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview/product-catalog-tab/discounts/discounts.component';
+import { ProductCatalogDiscountService } from './components/superuserview/product-catalog-tab/discounts/discounts.service';
+
+
+
+
+import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
+import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.component';
+import {superuserclientstatusreportscomponent} from './components/superuserview/reports-tab/clients/status/status.component';
+import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
+import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
+
 
 @NgModule({
   imports: [
@@ -495,7 +500,7 @@ import { clientstatusreportsservice } from './components/immigrationview/reports
     superuserH1Breportsservice,
     superuserL1Areportsservice,
     superuserpetitionstagesreportsservice,
-    superuserpetitionfinalactionreportsservice,
+    SuperUserPetitionFinalActionReportsService,
     superuserpetitiontagreportsservice,
     superuserclientstatusreportsservice,
     SuperUserClientsCreatedReportsService,

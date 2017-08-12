@@ -1,0 +1,23 @@
+﻿<div class="main-content">
+    <div class="container">
+        <h6>Please select Account</h6>
+        <div>
+            <select class="col-md-3 form-control" (change)="changeaccount($event.target.value)">
+                <option *ngFor="let account of ReportscommonService.totalAccounts" [value]="account.accountId">{{account.accountName}}</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="margin-bottom:10px;" *ngFor="let org of orgsNames">
+                <canvas baseChart responsive="true" maintainAspectRatio="false" height="200"
+                        [datasets]="barChartData[org]"
+                        [labels]="barChartLabels[org]"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                <span style="color:white;">{{org}}</span>
+            </div>
+        </div>
+    </div>
+</div>
