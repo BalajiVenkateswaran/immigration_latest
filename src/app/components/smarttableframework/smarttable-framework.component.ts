@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
-import { RequestButton } from '../clientview-request/RequestButton';
+import { RequestButton } from '../clientview/request/RequestButton';
 @Component({
     selector: 'smart-table',
     templateUrl: './SmartTableFramework.component.html'

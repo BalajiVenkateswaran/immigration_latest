@@ -25,29 +25,33 @@ import {MenuComponent} from "./components/menu/menu.component";
 import {SearchPipe} from './pipes/search-pipe';
 import {LooseCurrencyPipe} from "./pipes/loose.currency.pipe";
 import {Http, ConnectionBackend, RequestOptions, HttpModule} from "@angular/http";
-import {ClientDetailsComponent} from './components/clientview-client-details/client-details.component';
+import {ClientDetailsComponent} from './components/clientview/client-details/client-details.component';
 import {AppService} from "./services/app.service";
 import {ImmigrationviewPetitionDetailsComponent} from './components/immigrationview-petition-details/petition-details.component';
 import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview-questionnaire/questionnaire.component';
 import {ImmigrationviewFormsComponent} from './components/immigrationview-forms/forms.component';
 import {OrganizationDocumentRepositoryComponent} from "./components/immigrationview-organization-document-repository/organization-document-repository.component";
 import {DocumentManagementComponent} from "./components/immigrationview-document-management/document-management.component";
-import {AddressinfoComponent} from './components/clientview-addressinfo/addressinfo.component';
+import {AddressinfoComponent} from './components/clientview/addressinfo/addressinfo.component';
 import {PetitionDocumentRepositoryComponent} from "./components/immigrationview-petition-document-repository/petition-document-repository.component";
 import {ClientDocumentRepositoryComponent} from "./components/immigrationview-client-document-repository/client-document-repository.component";
 
 import {DependentDetailsComponent} from './components/dependentdetails/dependentdetails.component';
 
 import {ImmigrationviewDocumentExpirationsComponent} from "./components/immigrationview-document-expirations/document-expirations.component";
-import {PassportInfoComponent} from './components/clientview-passport-info/passport-info.component';
-import {JobDetailsComponent} from './components/clientview-job-details/job-details.component';
-import {ArrivalDespartureInfoComponent} from './components/clientview-arrival-desparture-info/arrival-desparture-info.component';
-import {VisasComponent} from './components/clientview-visas/visas.component';
-import {I797HistoryComponent} from './components/clientview-i-797-history/i-797-history.component';
-import {DocumentsComponent} from './components/clientview-documents/documents.component';
-import {DependentsComponent} from './components/clientview-dependents/dependents.component';
+import {PassportInfoComponent} from './components/clientview/passport-info/passport-info.component';
+import {JobDetailsComponent} from './components/clientview/job-details/job-details.component';
+import {VisasComponent} from './components/clientview/visas/visas.component';
 import {PetitionsComponent} from './components/petitions/petitions.component';
 import {ClientsComponent} from './components/clients/clients.component';
+import {ClientsService} from './components/clients/clients.service';
+import {AddressInfoService} from './components/clientview/addressinfo/addressinfo.service';
+import {ArrivalDespartureInfoComponent} from './components/clientview/arrival-departure-info/arrival-desparture-info.component';
+import {ArrivalDespartureInfoService} from './components/clientview/arrival-departure-info/arrival-desparture-info.service';
+import {ClientDetailsService} from './components/clientview/client-details/client-details.service';
+import {DependentsComponent} from './components/clientview/dependents/dependents.component';
+import {DependentService} from './components/clientview/dependents/dependents.service';
+import {DocumentExpirationsComponent} from './components/clientview/document-expirations/document-expirations.component';
 import {OrganizationComponent} from './components/organization/organization.component';
 import {ManageAccountUserComponent} from "./components/manageaccount-user/manageaccount-user.component";
 import {ManageAccountOrganizationsComponent} from "./components/manageaccount-organizations/manageaccount-organizations.component";
@@ -56,7 +60,6 @@ import {ManageAccountShippingAddressComponent} from "./components/manageaccount-
 import {ManageAccountPreferencesComponent} from "./components/manageaccount-preferences/manageaccount-preferences.component";
 import {ManageAccountInvoicesComponent} from './components/manageaccount-invoices/manageaccount-invoices.component';
 import {ManageAccountPaymentsComponent} from './components/manageaccount-payments/manageaccount-payments.component';
-import {DocumentExpirationsComponent} from './components/clientview-document-expirations/document-expirations.component';
 
 import {ImmigrationViewClientDetailsComponent} from './components/immigrationview-client-details/client-details.component';
 import {ImmigrationViewAddressinfoComponent} from "./components/immigrationview-address/addressinfo.component";
@@ -69,8 +72,7 @@ import {ImmigrationViewVisasComponent} from './components/immigrationview-visas/
 import {ImmigrationViewI797HistoryComponent} from './components/immigrationview-i-797-history/i-797-history.component';
 import {ImmigrationViewPetitionsComponent} from './components/immigrationview-petitions/petitions.component';
 import {PetitionsService} from "./components/petitions/petitions.service";
-import {ClientsService} from "./components/clients/clients.service";
-import {ClientRequestService} from "./components/clientview-request/clientview-request.service";
+import {ClientRequestService} from "./components/clientview/request/request.service";
 import {ManageAccountUserService} from "./components/manageaccount-user/manageaccount-user.service";
 import {ManageAccountOrganizationsService} from "./components/manageaccount-organizations/manageaccount-organizations.service";
 import {ImmigrationViewDependentService} from "./components/immigrationview-dependents/dependents.service";
@@ -78,19 +80,13 @@ import {OrganizationDocumentRepositoryService} from "./components/immigrationvie
 import {ImmigrationViewVisasService} from "./components/immigrationview-visas/visas.service";
 import {ImmigrationViewI797HistoryService} from "./components/immigrationview-i-797-history/i-797-history.service";
 import {ImmigrationViewPetitionsService} from "./components/immigrationview-petitions/petitions.service";
-import {FormsService} from "./components/immigrationview-forms/forms.service";
-import {DependentService} from "./components/clientview-dependents/dependents.service";
-import {DocumentExpirationsService} from "./components/clientview-document-expirations/document-expirations.service";
-import {ArrivalDespartureInfoService} from "./components/clientview-arrival-desparture-info/arrival-desparture-info.service";
-import {VisasService} from "./components/clientview-visas/visas.service";
-import {I797HistoryService} from "./components/clientview-i-797-history/i-797-history.service";
-import {PassportInfoService} from "./components/clientview-passport-info/passport-info.service";
+import {FormsService} from "./components/immigrationview-forms/forms.service";import {DocumentExpirationsService} from "./components/clientview/document-expirations/document-expirations.service";
+import {DocumentsComponent} from './components/clientview/documents/documents.component';
+import {PassportInfoService} from "./components/clientview/passport-info/passport-info.service";
 import {Addressinfoservice} from "./components/immigrationview-address/addressinfo.service";
-import {clientviewPetitionsService} from "./components/clientview-petitions/clientview-petitions.service";
+import {ClientViewPetitionsService} from "./components/clientview/petitions/petitions.service";
 import {UiFieldService} from "./services/uifield.service";
-import {JobDetailsService} from "./components/clientview-job-details/job-details.service";
-import {AddressInfoService} from "./components/clientview-addressinfo/addressinfo.service";
-import {ClientDetailsService} from "./components/clientview-client-details/client-details.service";
+import {JobDetailsService} from "./components/clientview/job-details/job-details.service";
 import {OrganizationService} from "./components/organization/organization.service";
 import {DependentDetailsService} from "./components/dependentdetails/dependentdetails.service";
 import {DocumentManagementService} from "./components/immigrationview-document-management/document-management.service";
@@ -100,40 +96,28 @@ import {ManageAccountPetitionStagesService} from "./components/manageaccount-pet
 import {QuestionnaireService} from './components/immigrationview-questionnaire/questionnaire.service';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {LoginComponent} from "./components/login/login.component";
-import {QuestionnaireI129Component} from "./components/questionnaire-i129/questionnaire-i129.component";
-import {MenuService} from "./components/menu/menu.service";
-import {petitionsclientviewComponent} from "./components/clientview-petitions/clientview-petitions.component";
-import {requestclientviewcomponent} from "./components/clientview-request/clientview-request.component";
-import {clientviewQuestionnaireComponent} from "./components/clientview-Questionnaries/clientview-Questionnaries.component";
+import {requestclientviewcomponent} from "./components/clientview/request/request.component";
+import {clientviewQuestionnaireComponent} from "./components/clientview/questionnaries/questionnaries.component";
 import {passportInfoService} from './components/immigrationview-passport-info/passport-info.service';
 import {ImmigrationViewClientDetailsService} from './components/immigrationview-client-details/client-details.service';
 import {PetitionDocumentRepositoryService} from './components/immigrationview-petition-document-repository/petition-document-repository.service';
-import {ClientDocumentRepositoryService} from './components/immigrationview-client-document-repository/client-document-repository.service';
-import {DocumentService} from './components/clientview-documents/documents.service';
+import {DocumentService} from './components/clientview/documents/documents.service';
+import {I797HistoryComponent} from './components/clientview/i-797-history/i-797-history.component';
+import {I797HistoryService} from './components/clientview/i-797-history/i-797-history.service';
+import {QuestionnaireI129HclientviewComponent} from './components/clientview/i129h/questionnaire-i129h.component';
+import {QuestionnaireI129HClentviewService} from './components/clientview/i129h/questionnaire-i129h.service';
+import {MoreDetails} from './components/clientview/petitions/MoreDetails';
+import {petitionsclientviewComponent} from './components/clientview/petitions/petitions.component';
+import {ClientQuestionnaireService} from './components/clientview/questionnaries/questionnaries.service';
+import {RequestButton} from './components/clientview/request/RequestButton';
+import {VisasService} from './components/clientview/visas/visas.service';
 import {JobdetailsService} from './components/immigrationview-job-details/job-details-service';
 import {ImmigrationviewDocumentExpirationsService} from './components/immigrationview-document-expirations/document-expirations.service';
 import {QuestionnaireI129ClientComponent} from './components/questionnaire-i129client/questionnaire-i129-client.component';
 import {QuestionnaireI129DCComponent} from './components/i129dc/questionnaire-i129dc.component';
 import {QuestionnaireI129DCService} from './components/i129dc/questionnaire-i129dc.service';
-import {QuestionnaireI129HComponent} from './components/i129h/questionnaire-i129h.component';
 import {MyDatePickerModule} from 'mydatepicker';
-
-import {QuestionnaireI129HclientviewComponent} from './components/clientview-i129h/questionnaire-i129h.component';
-
-import {QuestionnaireClientViewService} from './components/questionnaire-i129client/questionnaire-i129-client.component.service';
-import {ResetPasswordService} from './components/reset-password/reset-password.service';
-
-import {QuestionnaireI129HService} from "./components/i129h/questionnaire-i129h.service";
-import {QuestionnaireI129HClentviewService} from "./components/clientview-i129h/questionnaire-i129h.service";
-import {ClientQuestionnaireService} from "./components/clientview-Questionnaries/clientview-Questionnaries.service";
-
-
-import {RequestButton} from "./components/clientview-request/RequestButton";
-import {switchButton} from "./components/immigrationview-profileswitch/switchButton";
 import {InvoicedownloadButton} from "./components/superuserview/accounts-tab/account-details/invoice/invoicedownloadbutton";
-
-
-
 
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from './components/confirmbox/confirm.component';
@@ -167,7 +151,6 @@ import {ImmigrationViewPetitionNotesService} from "./components/immigrationview-
 
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 import {markfordeletionservice} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.service';
-import {AccountDetailsPaymentsService} from './components/superuserview/accounts-tab/account-details/payments/payments.service';
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.component';
 import {ProductCatalogDiscountService} from './components/superuserview-productcatalog-discounts/superuserview-productcatalog-discounts.service';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview-payments/payments.component';
@@ -176,7 +159,6 @@ import {SuperUserViewInvoicestabComponent} from './components/superuserview-invo
 import {SuperUserViewInvoicestabService} from './components/superuserview-invoices/invoices.service';
 import {ManageAccountpreferencessService} from "./components/manageaccount-preferences/manageaccount-preferences.service";
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
-import {SuperuserViewAccountpreferencessService} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.service';
 import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service';
 import {ReportsCommonService} from './components/superuserview/reports-tab/common/reports-common.service';
 
@@ -207,11 +189,13 @@ import {usertotalpetitionservice} from './components/immigrationview-userstotalp
 import {useropenpetitioncomponent} from './components/immigrationview-usersopenpetreports/usersopenreports.component';
 import {usersopenpetitionservice} from './components/immigrationview-usersopenpetreports/usersopenreports.service';
 
-import {petitionfinalactioncomponent} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.component';
 import {petitionfinalactionservice} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.service';
 
-import {MoreDetails} from "./components/clientview-petitions/MoreDetails";
 import {HeaderService} from "./components/header/header.service";
+import {QuestionnaireI129HComponent} from './components/i129h/questionnaire-i129h.component';
+import {QuestionnaireI129HService} from './components/i129h/questionnaire-i129h.service';
+import {ClientDocumentRepositoryService} from './components/immigrationview-client-document-repository/client-document-repository.service';
+import {petitionfinalactioncomponent} from './components/immigrationview-petitionfinalactionreports/petitionfinalaction.component';
 
 import {DownloadInvoiceButton} from "./components/manageaccount-invoices/DownloadInvoiceButton";
 //immiviewprofiletab
@@ -223,6 +207,7 @@ import {profileswitchcomponent} from './components/immigrationview-profileswitch
 import {profileswitchservice} from './components/immigrationview-profileswitch/profileswitch.service';
 import {profilechangepwdcomponent} from './components/immigrationview-profilechangepassword/profilechangepassword.component';
 import {profilechangepwdservice} from './components/immigrationview-profilechangepassword/profilechangepassword.service';
+import {switchButton} from './components/immigrationview-profileswitch/switchButton';
 import {profiletodolistcomponent} from './components/immigrationview-profiletodolist/profiletodolist.component';
 import {profiletodolistservice} from './components/immigrationview-profiletodolist/profiletodolist.service';
 import {ManageaccountChecklistComponent} from './components/manageaccount-checklist/manageaccount-checklist.component';
@@ -260,12 +245,14 @@ import {i129Page3Component} from './components/immigrationview/petitions-tab/pet
 import {i129Page4Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-4/page-4.component';
 import {i129Page5Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-5/page-5.component';
 import {i129Page6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
-
-
-
-
-
+import {MenuService} from './components/menu/menu.service';
+import {QuestionnaireI129Component} from './components/questionnaire-i129/questionnaire-i129.component';
+import {QuestionnaireClientViewService} from './components/questionnaire-i129client/questionnaire-i129-client.component.service';
+import {ResetPasswordService} from './components/reset-password/reset-password.service';
+import {SuperuserViewAccountpreferencessService} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.service';
+import {AccountDetailsPaymentsService} from './components/superuserview/accounts-tab/account-details/payments/payments.service';
 import {AngularDraggableModule} from 'angular2-draggable';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -281,7 +268,8 @@ import {AngularDraggableModule} from 'angular2-draggable';
     AgGridModule.withComponents([SmartTableFramework]),
     NgbModule.forRoot()],
   entryComponents: [
-    ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton/*AdvancedExamplesCustomEditorComponent*/
+    ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons,
+    GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton
   ],
   declarations: [
     i129Page1Component,
@@ -291,7 +279,8 @@ import {AngularDraggableModule} from 'angular2-draggable';
     i129Page5Component,
     i129Page6Component,
     //pdf oage components imported above which is for testing only
-    CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton,/*AdvancedExamplesCustomEditorComponent,*/
+    CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,
+    InvoiceUploadButton,
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -448,7 +437,7 @@ import {AngularDraggableModule} from 'angular2-draggable';
     loginService,
     PetitionDocumentRepositoryService,
     ImmigrationviewDocumentExpirationsService,
-    clientviewPetitionsService,
+    ClientViewPetitionsService,
     ManageAccountShippingAddressService,
     ManageAccountPetitionStagesService,
     Quetionairervice,
@@ -484,7 +473,6 @@ import {AngularDraggableModule} from 'angular2-draggable';
     SuperUserViewInvoicestabService,
     markfordeletionservice,
     SuperUserViewPaymentstabService,
-    AccountDetailsPaymentsService,
     ManageAccountUserDetailsService,
     ReportsCommonService,
     SuperuserViewAccountpreferencessService,
