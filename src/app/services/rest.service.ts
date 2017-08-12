@@ -6,8 +6,8 @@ import {AppService} from "./app.service";
 
 @Injectable()
 export class RestService {
-      immp_endpoint_url: String = "http://34.200.77.115:8080/immigrationPortal";
-      //immp_endpoint_url: String = "http://localhost:8080/immigrationPortal";
+      //immp_endpoint_url: String = "http://34.200.77.115:8080/immigrationPortal";
+      immp_endpoint_url: String = "http://localhost:8080/immigrationPortal";
 
   constructor(private http: Http, private appService: AppService) {
   }

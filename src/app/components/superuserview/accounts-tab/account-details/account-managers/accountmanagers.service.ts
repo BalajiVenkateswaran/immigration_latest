@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
-import {RestService} from "../../services/rest.service";
-import {User} from "../../models/user";
-import {AppService} from "../../services/app.service";
+import {RestService} from "../../../../../services/rest.service";
+import {User} from "../../../../../models/user";
 
 @Injectable()
 export class AccountManagersService {

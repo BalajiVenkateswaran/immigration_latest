@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuperuserviewAccountdetailsMfdComponent } from './superuserview-accountdetails-mfd.component';
+import { SuperuserviewAccountdetailsMfdComponent } from './mfd.component';
 
 describe('SuperuserviewAccountdetailsMfdComponent', () => {
   let component: SuperuserviewAccountdetailsMfdComponent;

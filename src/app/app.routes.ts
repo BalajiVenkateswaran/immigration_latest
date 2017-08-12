@@ -64,15 +64,15 @@ import {QuestionnaireI129HclientviewComponent} from './components/clientview-i12
 import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';
 import {SuperuserViewAccountDetailsComponent} from './components/superuserview/accounts-tab/account-details/account-details/account-details.component';
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
-import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
+import { AccountsManagers } from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.component';
 import {AccountInvoiceComponent} from './components/superuserview/accounts-tab/account-details/invoice/invoice.component';
-import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
+import {accountDetailsPaymentsComponent} from './components/superuserview/accounts-tab/account-details/payments/payments.component';
 
-import { SuperuserviewAccountdetailsMfdComponent } from "./components/superuserview-accountdetails-mfd/superuserview-accountdetails-mfd.component";
+import { SuperuserviewAccountdetailsMfdComponent } from "./components/superuserview/accounts-tab/account-details/mfd/mfd.component";
 import {MarkforDeletionComponent} from './components/manageaccount-markfordeletion/manageaccount-markfordeletion.component';
 
 
-import {AccountPreferencesComponent} from './components/superuserview-accountpreferences/accountpreferences.component';
+import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
 
 import {SuperUserViewInvoicestabComponent} from './components/superuserview-invoices/invoices.component';
 

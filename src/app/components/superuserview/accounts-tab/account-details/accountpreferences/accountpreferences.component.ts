@@ -1,13 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { AppService } from "../../services/app.service";
-import { User } from "../../models/user";
+import { AppService } from "../../../../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { SuperuserViewAccountpreferencessService } from "./accountpreferences.service";
-import { AccountDetailsCommonService } from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
-
+import { AccountDetailsCommonService } from "../common/account-details-common.service";
 
 export interface ConfirmModel {
     title: string;
@@ -65,106 +63,77 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             'isDeleteEnable': false,
             'columnsettings': [
                 {
-
                     headerName: "Name",
-                    field: "name",
+                    field: "name"
                 },
                 {
-
                     headerName: "Code",
-                    field: "code",
-
+                    field: "code"
                 },
                 {
-
                     headerName: "Description",
-                    field: "description",
+                    field: "description"
                 },
                 {
                     headerName: "Start Date",
-                    field: "startDate",
-
+                    field: "startDate"
                 },
                 {
-
                     headerName: "End Date",
-                    field: "endDate",
-
+                    field: "endDate"
                 },
                 {
-
                     headerName: "Max Users",
-                    field: "maxUsers",
-
+                    field: "maxUsers"
                 },
                 {
-
                     headerName: "Max Clients",
-                    field: "maxClientsPerMonth",
-
+                    field: "maxClientsPerMonth"
                 },
                 {
-
                     headerName: "Max Petitions",
-                    field: "maxPetitionsPerMonth",
-
+                    field: "maxPetitionsPerMonth"
                 },
                 {
-
                     headerName: "Max S3 Storage",
-                    field: "maxS3Storage",
-
+                    field: "maxS3Storage"
                 },
                 {
-
                     headerName: "Cost",
-                    field: "cost",
-
-                },
-
+                    field: "cost"
+                }
             ]
         }
         this.discountSettings = {
             'isDeleteEnable': false,
             'columnsettings': [
                 {
-
                     headerName: "Name",
-                    field: "discountName",
+                    field: "discountName"
                 },
                 {
-
                     headerName: "Code",
-                    field: "discountCode",
-
+                    field: "discountCode"
                 },
                 {
-
                     headerName: "Description",
-                    field: "description",
+                    field: "description"
                 },
                 {
                     headerName: "Start Date",
-                    field: "startDate",
-
+                    field: "startDate"
                 },
                 {
-
                     headerName: "End Date",
-                    field: "endDate",
-
+                    field: "endDate"
                 },
                 {
-
                     headerName: "Cost",
-                    field: "cost",
-
+                    field: "cost"
                 },
                 {
-
                     headerName: "Percentage",
-                    field: "percentage",
-
+                    field: "percentage"
                 }
             ]
         }
