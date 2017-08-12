@@ -71,7 +71,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
 
                     headerName: "Last Name",
                     field: "lastName",
-              
+
                 },
                 {
 
@@ -81,16 +81,16 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                 {
                     headerName: "Phone",
                     field: "phone",
-               
+
                 },
                 {
 
                     headerName: "Role",
                     field: "roleName",
-                
+
                 },
-              
-                
+
+
             ]
         }
     }
@@ -107,7 +107,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     ngOnInit() {
         this.appService.showSideBarMenu("manageaccount", "manageaccount-user");
         this.getManageUsers();
-       
+
     }
 
     addFunction() {
@@ -137,7 +137,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         this.addUsers['accountId'] = this.appService.user.accountId;
         if ((this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || roles.value=='' || roles.value==null || roles.value==undefined)) {
             this.warningMessage = true;
-       
+
         } else if(email!=null){
             this.warningMessage=false;
         }else {
@@ -183,7 +183,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         })
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    this.manageAccountUserService.deleteUser(event.data['userId'], this.appService.user.accountId).subscribe((res) => {
+                    this.manageAccountUserService.deleteUser(event.data['userId'], this.appService.user.accountId, this.appService.user.userId).subscribe((res) => {
                         if (res['statusCode'] == 'SUCCESS') {
                             this.getManageUsers();
                         }
