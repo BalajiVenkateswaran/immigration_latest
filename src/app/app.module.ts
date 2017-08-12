@@ -130,7 +130,7 @@ import {ClientQuestionnaireService} from "./components/clientview-Questionnaries
 
 import { RequestButton } from "./components/clientview-request/RequestButton";
 import { switchButton } from "./components/immigrationview-profileswitch/switchButton";
-import { InvoicedownloadButton } from "./components/superuserview-accountdetails-invoice/invoicedownloadbutton";
+import { InvoicedownloadButton } from "./components/superuserview/accounts-tab/account-details/invoice/invoicedownloadbutton";
 
 
 
@@ -150,8 +150,8 @@ import {SuperUserViewAccountsComponent} from './components/superuserview/account
 import {superUserviewAccountService} from './components/superuserview/accounts-tab/accounts/accounts.service';
 import {SuperuserViewAccountDetailsComponent} from './components/superuserview/accounts-tab/account-details/account-details/account-details.component';
 import {SuperuserViewAccountDetailsService} from './components/superuserview/accounts-tab/account-details/account-details/account-details.service';
-import {AccountInvoiceComponent} from './components/superuserview-accountdetails-invoice/invoice-component';
-import {AccountInvoiceService} from './components/superuserview-accountdetails-invoice/invoice.service';
+import {AccountInvoiceComponent} from './components/superuserview/accounts-tab/account-details/invoice/invoice.component';
+import {AccountInvoiceService} from './components/superuserview/accounts-tab/account-details/invoice/invoice.service';
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
 import { AccountManagersService } from './components/superuserview-accountdetails-managers/accountmanagers.service';
@@ -182,7 +182,7 @@ import {ReportsCommonService} from './components/superuserview/reports-tab/commo
 
 
 import {profileCommonService} from './components/immigrationview/profile/common/immigration-profile.service';
-import {InvoiceUploadButton} from './components/superuserview-accountdetails-invoice/invoiceuploadbutton';
+import {InvoiceUploadButton} from './components/superuserview/accounts-tab/account-details/invoice/invoiceuploadbutton';
 import { ManageAccountUserDetailsService } from "./components/manageaccount-user-details/manageaccount-user-details.service";
 
 //immigrationview reports tab

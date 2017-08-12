@@ -65,7 +65,7 @@ import {SuperUserViewAccountsComponent} from './components/superuserview/account
 import {SuperuserViewAccountDetailsComponent} from './components/superuserview/accounts-tab/account-details/account-details/account-details.component';
 import { SuperuserviewProductcatalogComponent } from './components/superuserview-productcatalog/superuserview-productcatalog.component';
 import { AccountsManagers } from './components/superuserview-accountdetails-managers/accountmanagers-component';
-import {AccountInvoiceComponent} from './components/superuserview-accountdetails-invoice/invoice-component';
+import {AccountInvoiceComponent} from './components/superuserview/accounts-tab/account-details/invoice/invoice.component';
 import {accountDetailsPaymentsComponent} from './components/superuserview-accountdetails-payments/accountdetails-payments.component';
 
 import { SuperuserviewAccountdetailsMfdComponent } from "./components/superuserview-accountdetails-mfd/superuserview-accountdetails-mfd.component";

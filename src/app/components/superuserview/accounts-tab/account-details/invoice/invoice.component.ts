@@ -1,16 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import {AppService} from "../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {superuserinvoice} from "../../models/superuserinvoice";
 import {AccountInvoiceService} from './invoice.service';
-import {User} from "../../models/user";
-import {Router} from "@angular/router";
 import * as FileSaver from 'file-saver';
-import {MenuComponent} from "../menu/menu.component";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {AccountDetailsCommonService} from "../superuserview/accounts-tab/account-details/common/account-details-common.service";
+import {AccountDetailsCommonService} from "../common/account-details-common.service";
 import { InvoicedownloadButton } from './invoicedownloadbutton';
 import {InvoiceUploadButton} from './invoiceuploadbutton';
 
@@ -25,7 +20,7 @@ export interface ConfirmModel {
 
 @Component({
     selector: 'account-invoice',
-    templateUrl: './invoice-component.html'
+    templateUrl: './invoice.component.html'
 })
 export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public getInvoice: boolean = true;
@@ -44,8 +39,8 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         showClearDateBtn: false,
     };
 
-    constructor(public appService: AppService, public dialogService: DialogService, public accountInvoiceService: AccountInvoiceService,
-    private accountDetailsCommonService: AccountDetailsCommonService) {
+    constructor(public dialogService: DialogService, public accountInvoiceService: AccountInvoiceService,
+      private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
         this.settings = {
             'isDeleteEnable': false,
@@ -56,40 +51,31 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
             },
             'columnsettings': [
                 {
-
                     headerName: "Invoice Number",
                     field: "invoiceNumber",
                 },
                 {
-
                     headerName: "Invoice Date",
                     field: "invoiceDate",
                 },
                 {
-
                     headerName: "Invoice Amount",
                     field: "invoiceAmount",
-
                 },
                 {
                     headerName: "Payment Received",
                     field: "paymentRecieved",
-
                 },
                 {
-
                     headerName: "PDF Uploaded",
                     cellRendererFramework: InvoiceUploadButton
-
                 },
                 {
-
                     headerName: "Download Button",
                     cellRendererFramework: InvoicedownloadButton
-
                 }
             ]
-        }
+        };
     }
     ngOnInit() {
         this.accountInvoiceService.getAccountInvoice(this.accountDetailsCommonService.accountId)
@@ -109,7 +95,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
             viewPopup: true,
             getInvoice: false,
             addInvoice:false,
-            invoice:event.data,
+            invoice:event.data
         })
     }
     cancel(){
