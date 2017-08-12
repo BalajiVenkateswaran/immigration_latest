@@ -1,23 +1,19 @@
+import { client } from '../../../../models/client';
+import { AppService } from '../../../../services/app.service';
+import { ConfirmComponent } from '../../../confirmbox/confirm.component';
+import { HeaderService } from '../../../header/header.service';
+import { MenuComponent } from '../../../menu/menu.component';
 import {Component, OnInit} from '@angular/core';
 import {ClientsService} from "./clients.service";
-import {client} from "../../models/client";
 import {FormGroup, FormControl} from "@angular/forms";
-import {AppService} from "../../services/app.service";
-import {Router} from "@angular/router";
-import {User} from "../../models/user";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../confirmbox/confirm.component';
-import {HeaderService} from '../header/header.service';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {MenuComponent} from "../menu/menu.component";
-
 
 export interface ConfirmModel {
   title: string;
   message: string;
   addNewClient: boolean;
   getClientsData: boolean;
-
 }
 
 
@@ -32,7 +28,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public addClient: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
-  private user: User;
   private deleteclients: any;
   private clientName: any;
   public addNewClient: boolean;
@@ -43,7 +38,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public settings;
   public data;
 
-  constructor(private clientService: ClientsService, private appService: AppService, private router: Router,
+  constructor(private clientService: ClientsService, private appService: AppService,
     public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService) {
     super(dialogService);
@@ -93,9 +88,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
           client.status = 'Mark for Deletion';
       });
       this.data = this.clientList;
-      if (this.appService.user) {
-        this.user = this.appService.user;
-      }
     });
   }
 
@@ -112,11 +104,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
         this.data = this.clientList;
       });
-    if (this.appService.user) {
-      this.user = this.appService.user;
-    }
-
-
   }
   addNewCli() {
     this.dialogService.addDialog(ClientsComponent, {
@@ -146,7 +133,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     if (this.newclitem['status'] == '' || null || undefined) {
       this.newclitem['status'] = "Active";
     }
-
 
     if (this.newclitem['firstName'] == '' || this.newclitem['firstName'] == null || this.newclitem['firstName'] == undefined || this.newclitem['lastName'] == '' || this.newclitem['lastName'] == null || this.newclitem['lastName'] == undefined || this.newclitem['email'] == '' || this.newclitem['email'] == null || this.newclitem['email'] == undefined || this.newclitem['phone'] == '' || this.newclitem['phone'] == null || this.newclitem['phone'] == undefined) {
       this.warningMessage = true;

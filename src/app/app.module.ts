@@ -36,8 +36,8 @@ import {ClientDocumentRepositoryComponent} from "./components/immigrationview/cl
 import {DependentDetailsComponent} from './components/dependentdetails/dependentdetails.component';
 
 import {PetitionsComponent} from './components/immigrationview/petitions-tab/petitions/petitions.component';
-import {ClientsComponent} from './components/clients/clients.component';
-import {ClientsService} from './components/clients/clients.service';
+import {ClientsComponent} from './components/immigrationview/clients-tab/clients/clients.component';
+import {ClientsService} from './components/immigrationview/clients-tab/clients/clients.service';
 import { AddressinfoComponent } from './components/clientview/client-details-tab/addressinfo/addressinfo.component';
 import { AddressInfoService } from './components/clientview/client-details-tab/addressinfo/addressinfo.service';
 import { ArrivalDespartureInfoComponent } from './components/clientview/client-details-tab/arrival-departure-info/arrival-desparture-info.component';
@@ -66,7 +66,7 @@ import {OrganizationDocumentRepositoryService} from "./components/immigrationvie
 import {FormsService} from "./components/immigrationview/petitions-tab/petition-details/forms/forms.service";
 import {DocumentsComponent} from './components/clientview/documents-tab/documents.component';
 import {UiFieldService} from "./services/uifield.service";
-import {OrganizationService} from "./components/organization/organization.service";
+import {OrganizationService} from "./components/immigrationview/organization-tab/organization/organization.service";
 import {DependentDetailsService} from "./components/dependentdetails/dependentdetails.service";
 import {ImmigrationViewPetitionDetailsService} from "./components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.service";
 import {QuestionnaireService} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.service';
@@ -221,7 +221,7 @@ import { petitionstagsreportsservice } from './components/immigrationview/report
 import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
 import { petitionstypesreportsservice } from './components/immigrationview/reports-tab/petition/type/type.service';
 import {MenuService} from './components/menu/menu.service';
-import { OrganizationComponent } from './components/organization/organization.component';
+import { OrganizationComponent } from './components/immigrationview/organization-tab/organization/organization.component';
 import {QuestionnaireI129Component} from './components/questionnaire-i129/questionnaire-i129.component';
 import {ResetPasswordService} from './components/reset-password/reset-password.service';
 import {AngularDraggableModule} from 'angular2-draggable';

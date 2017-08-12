@@ -1,6 +1,5 @@
+import { RestService } from '../../../../services/rest.service';
 import {Injectable} from "@angular/core";
-import {RestService} from "../../services/rest.service";
-import {organizations} from "../../models/organization";
 
 @Injectable()
 export class OrganizationService {
@@ -53,9 +52,8 @@ export class OrganizationService {
                  "name": signinDetails.name,
                  "orgId": signinDetails.orgId,
                  "title": signinDetails.title,
-                 "tnNo": signinDetails.tnNo,
-
-            },
+                 "tnNo": signinDetails.tnNo
+            }
         };
 
         console.log(req);

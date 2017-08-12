@@ -13,8 +13,8 @@ import {PetitionDocumentRepositoryComponent} from "./components/immigrationview/
 import {ClientDocumentRepositoryComponent} from "./components/immigrationview/clients-tab/client-details/document-repository/document-repository.component";
 
 import {DependentDetailsComponent} from "./components/dependentdetails/dependentdetails.component";
-import {OrganizationComponent} from "./components/organization/organization.component";
-import {ClientsComponent} from "./components/clients/clients.component";
+import {OrganizationComponent} from "./components/immigrationview/organization-tab/organization/organization.component";
+import {ClientsComponent} from "./components/immigrationview/clients-tab/clients/clients.component";
 import { AddressinfoComponent } from './components/clientview/client-details-tab/addressinfo/addressinfo.component';
 import { ArrivalDespartureInfoComponent } from './components/clientview/client-details-tab/arrival-departure-info/arrival-desparture-info.component';
 import { ClientDetailsComponent } from './components/clientview/client-details-tab/client-details/client-details.component';
