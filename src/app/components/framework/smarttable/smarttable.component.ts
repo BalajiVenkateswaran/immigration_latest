@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector, Input, SimpleChange, OnChanges, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, SimpleChange, OnChanges, EventEmitter, Output } from '@angular/core';
 import { CustomFilterRow } from './CustomFilterRow';
 import { AgGridModule } from "ag-grid-angular/main";
 import { GridOptions } from "ag-grid";
@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
-import { RequestButton } from '../clientview/request-tab/RequestButton';
+import { RequestButton } from '../../clientview/request-tab/RequestButton';
 @Component({
     selector: 'smart-table',
-    templateUrl: './SmartTableFramework.component.html'
+    templateUrl: './smarttable.component.html'
 })
 export class SmartTableFramework implements OnChanges {
     /*
@@ -74,8 +74,6 @@ export class SmartTableFramework implements OnChanges {
                 })
                 this.onColumnFilterClick.emit(that.filterQueries);
             }
-
-
         });
 
 

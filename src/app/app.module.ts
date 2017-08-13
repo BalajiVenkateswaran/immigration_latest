@@ -1,6 +1,6 @@
 import {viewAddressInfo} from './models/viewAddressInfo';
-import {CustomFilterRow} from './components/smarttableframework/CustomFilterRow';
-import {SmartTableFramework} from './components/smarttableframework/smarttable-framework.component';
+import {CustomFilterRow} from './components/framework/smarttable/CustomFilterRow';
+import {SmartTableFramework} from './components/framework/smarttable/smarttable.component';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -11,7 +11,7 @@ import {DragulaModule} from 'ng2-dragula/ng2-dragula';
 import {ChartsModule} from 'ng2-charts';
 import Chart from 'chart.js';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
-import {ActionColumns} from './components/smarttableframework/ActionColumns';
+import {ActionColumns} from './components/framework/smarttable/ActionColumns';
 import {SendToClientQuestionnaire} from './components/immigrationview/petitions-tab/petition-details/questionnaire/SendToClientQuestionnaire';
 
 import {AppComponent} from './components/app/app.component';
@@ -122,7 +122,7 @@ import {InvoiceUploadButton} from './components/superuserview/accounts-tab/accou
 //immigrationview reports tab
 import {petitionsstatusreportscomponent} from './components/immigrationview/reports-tab/petition/status/status.component';
 import {petitionsstatusreportsservice} from './components/immigrationview/reports-tab/petition/status/status.service';
-import {ActionIcons} from './components/smarttableframework/cellRenderer/ActionsIcons';
+import {ActionIcons} from './components/framework/smarttable/cellRenderer/ActionsIcons';
 import {GenerateFormButton} from "./components/immigrationview/petitions-tab/petition-details/forms/GenerateFormButton";
 import {DownloadButton} from "./components/immigrationview/petitions-tab/petition-details/forms/DownloadButton";
 import {clientscreatedreportscomponent} from './components/immigrationview/reports-tab/client/created/created.component';

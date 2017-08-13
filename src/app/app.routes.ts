@@ -1,5 +1,5 @@
 import { viewAddressInfo } from './models/viewAddressInfo';
-import { SmartTableFramework } from './components/smarttableframework/smarttable-framework.component';
+import { SmartTableFramework } from './components/framework/smarttable/smarttable.component';
 import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
 import {HeaderComponent} from "./components/header/header.component";

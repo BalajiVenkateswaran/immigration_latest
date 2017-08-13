@@ -6,7 +6,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../../confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {MenuComponent} from "../../menu/menu.component";
-import {ActionIcons} from '../../smarttableframework/cellRenderer/ActionsIcons';
+import {ActionIcons} from '../../framework/smarttable/cellRenderer/ActionsIcons';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as FileSaver from 'file-saver';
 export interface ConfirmModel {

@@ -1,6 +1,6 @@
 ﻿import { AppService } from '../../../../services/app.service';
+import { SmartTableFramework } from '../../../framework/smarttable/smarttable.component';
 import { HeaderService } from '../../../header/header.service';
-import { SmartTableFramework } from '../../../smarttableframework/smarttable-framework.component';
 import { profileswitchservice } from './switch.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
