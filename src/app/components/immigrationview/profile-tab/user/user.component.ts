@@ -1,5 +1,5 @@
 ﻿import {AppService} from '../../../../services/app.service';
-import {HeaderService} from '../../../header/header.service';
+import { HeaderService } from '../../../common/header/header.service';
 import {profileuserservice} from './user.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';

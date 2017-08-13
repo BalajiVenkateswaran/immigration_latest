@@ -5,7 +5,7 @@ import {AppService} from "../../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../../framework/confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {MenuComponent} from "../../menu/menu.component";
+import {MenuComponent} from "../../common/menu/menu.component";
 import {ActionIcons} from '../../framework/smarttable/cellRenderer/ActionsIcons';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as FileSaver from 'file-saver';

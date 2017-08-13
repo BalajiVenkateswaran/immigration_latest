@@ -1,8 +1,8 @@
 import { client } from '../../../../models/client';
 import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
-import { HeaderService } from '../../../header/header.service';
-import { MenuComponent } from '../../../menu/menu.component';
+import { HeaderService } from '../../../common/header/header.service';
+import { MenuComponent } from '../../../common/menu/menu.component';
 import {Component, OnInit} from '@angular/core';
 import {ClientsService} from "./clients.service";
 import {FormGroup, FormControl} from "@angular/forms";

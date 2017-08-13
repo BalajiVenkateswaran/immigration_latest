@@ -6,7 +6,7 @@ import {User} from "../../../../models/user";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {MenuComponent} from "../../../menu/menu.component";
+import {MenuComponent} from "../../../common/menu/menu.component";
 import {AccountDetailsCommonService} from "../account-details/common/account-details-common.service";
 import {ReportsCommonService} from "../../reports-tab/common/reports-common.service";
 

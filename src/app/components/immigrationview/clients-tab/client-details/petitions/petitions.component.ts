@@ -1,8 +1,8 @@
 import { User } from '../../../../../models/user';
 import { AppService } from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { HeaderService } from '../../../../header/header.service';
-import { MenuService } from '../../../../menu/menu.service';
+import { HeaderService } from '../../../../common/header/header.service';
+import { MenuService } from '../../../../common/menu/menu.service';
 import { Component, OnInit } from '@angular/core';
 import {ImmigrationViewPetitionsService} from "./petitions.service";
 import {FormGroup, FormControl} from "@angular/forms";

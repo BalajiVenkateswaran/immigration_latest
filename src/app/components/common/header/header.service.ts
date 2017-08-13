@@ -1,6 +1,6 @@
-﻿import {Injectable} from "@angular/core";
-import {AppService} from "../../services/app.service";
-import {RestService} from "../../services/rest.service";
+﻿import { AppService } from '../../../services/app.service';
+import { RestService } from '../../../services/rest.service';
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export class HeaderService {

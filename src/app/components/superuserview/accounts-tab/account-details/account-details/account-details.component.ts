@@ -4,7 +4,7 @@ import {AppService} from "../../../../../services/app.service";
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {SuperuserViewAccountDetailsService} from "./account-details.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {MenuComponent} from "../../../../menu/menu.component";
+import {MenuComponent} from "../../../../common/menu/menu.component";
 import {AccountDetailsCommonService} from "../common/account-details-common.service";
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 

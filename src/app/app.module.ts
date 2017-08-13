@@ -16,12 +16,9 @@ import {SendToClientQuestionnaire} from './components/immigrationview/petitions-
 
 import {AppComponent} from './components/app/app.component';
 import {Quetionairervice} from "./components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129/i129.service";
-import {loginService} from "./components/login/login.service";
 import {RestService} from "./services/rest.service";
-import {HeaderComponent} from "./components/header/header.component";
-import {FooterComponent} from "./components/footer/footer.component";
+import {FooterComponent} from "./components/common/footer/footer.component";
 import {routing, appRoutingProviders} from './app.routes';
-import {MenuComponent} from "./components/menu/menu.component";
 import {SearchPipe} from './pipes/search-pipe';
 import {LooseCurrencyPipe} from "./pipes/loose.currency.pipe";
 import {Http, ConnectionBackend, RequestOptions, HttpModule} from "@angular/http";
@@ -70,8 +67,6 @@ import {OrganizationService} from "./components/immigrationview/organization-tab
 import {DependentDetailsService} from "./components/immigrationview/clients-tab/client-details/dependent-details/dependent-details.service";
 import {ImmigrationViewPetitionDetailsService} from "./components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.service";
 import {QuestionnaireService} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.service';
-import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
-import {LoginComponent} from "./components/login/login.component";
 import {PetitionDocumentRepositoryService} from './components/immigrationview/petitions-tab/petition-details/document-repository/document-repository.service';
 import {DocumentService} from './components/clientview/documents-tab/documents.service';
 import {MoreDetails} from './components/clientview/petitions-tab/MoreDetails';
@@ -85,6 +80,13 @@ import { clientviewQuestionnaireComponent } from './components/clientview/questi
 import { ClientQuestionnaireService } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.service';
 import {RequestButton} from './components/clientview/request-tab/RequestButton';
 import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { LoginComponent } from './components/common/login/login.component';
+import { loginService } from './components/common/login/login.service';
+import { MenuComponent } from './components/common/menu/menu.component';
+import { MenuService } from './components/common/menu/menu.service';
+import { ResetPasswordComponent } from './components/common/reset-password/reset-password.component';
+import { ResetPasswordService } from './components/common/reset-password/reset-password.service';
 import {QuestionnaireI129DCComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129dc/i129dc.component';
 import {QuestionnaireI129DCService} from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129dc/i129dc.service';
 import {MyDatePickerModule} from 'mydatepicker';
@@ -92,8 +94,7 @@ import {InvoicedownloadButton} from "./components/superuserview/accounts-tab/acc
 
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from './components/framework/confirmbox/confirm.component';
-import {ConfirmorgComponent} from './components/framework/confirmbox/confirmorg.component';
-import { HeaderService } from './components/header/header.service';
+import { ConfirmorgComponent } from './components/framework/confirmbox/confirmorg.component';
 
 import {AgGridModule} from "ag-grid-angular/main";
 import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
@@ -217,10 +218,8 @@ import { petitionstagsreportscomponent } from './components/immigrationview/repo
 import { petitionstagsreportsservice } from './components/immigrationview/reports-tab/petition/tags/tags.service';
 import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
 import { petitionstypesreportsservice } from './components/immigrationview/reports-tab/petition/type/type.service';
-import {MenuService} from './components/menu/menu.service';
 import { OrganizationComponent } from './components/immigrationview/organization-tab/organization/organization.component';
 import {QuestionnaireI129Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129/i129.component';
-import {ResetPasswordService} from './components/reset-password/reset-password.service';
 import {AngularDraggableModule} from 'angular2-draggable';
 import {AccountDetailsPaymentsService} from './components/superuserview/accounts-tab/account-details/payments/payments.service';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.service';
@@ -241,7 +240,7 @@ import { SuperUserViewPaymentstabService } from './components/superuserview/paym
 import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview/product-catalog-tab/discounts/discounts.component';
 import { ProductCatalogDiscountService } from './components/superuserview/product-catalog-tab/discounts/discounts.service';
 
-
+import {HeaderService} from './components/common/header/header.service';
 
 
 import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';

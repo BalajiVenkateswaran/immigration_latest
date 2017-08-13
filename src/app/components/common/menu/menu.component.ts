@@ -1,6 +1,7 @@
+import { AppService } from '../../../services/app.service';
 import {Component, OnInit, DoCheck} from '@angular/core';
-import {AppService} from "../../services/app.service";
 import {MenuService} from "./menu.service";
+
 @Component({
   selector: 'menu',
   viewProviders:[MenuService],

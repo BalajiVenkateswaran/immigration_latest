@@ -1,7 +1,7 @@
 import { petition } from '../../../../models/petitions';
 import { AppService } from '../../../../services/app.service';
-import { HeaderService } from '../../../header/header.service';
-import { MenuComponent } from '../../../menu/menu.component';
+import { HeaderService } from '../../../common/header/header.service';
+import { MenuComponent } from '../../../common/menu/menu.component';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import {PetitionsService} from "./petitions.service";
 import {FormGroup, FormControl} from "@angular/forms";

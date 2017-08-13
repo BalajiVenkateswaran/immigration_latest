@@ -1,7 +1,7 @@
 import { AppService } from '../../../../services/app.service';
 import { UiFieldService } from '../../../../services/uifield.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
-import { HeaderService } from '../../../header/header.service';
+import { HeaderService } from '../../../common/header/header.service';
 import { Component, OnInit } from '@angular/core';
 import {OrganizationService} from "./organization.service";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";

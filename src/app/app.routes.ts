@@ -2,9 +2,9 @@ import { viewAddressInfo } from './models/viewAddressInfo';
 import { SmartTableFramework } from './components/framework/smarttable/smarttable.component';
 import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
-import {HeaderComponent} from "./components/header/header.component";
-import {MenuComponent} from "./components/menu/menu.component";
-import {FooterComponent} from "./components/footer/footer.component";
+import {HeaderComponent} from "./components/common/header/header.component";
+import {MenuComponent} from "./components/common/menu/menu.component";
+import {FooterComponent} from "./components/common/footer/footer.component";
 import {ImmigrationviewPetitionDetailsComponent} from "./components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.component";
 import {ImmigrationviewPetitionNotesComponent} from "./components/immigrationview/petitions-tab/petition-details/notes/notes.component";
 import {ImmigrationviewFormsComponent} from "./components/immigrationview/petitions-tab/petition-details/forms/forms.component";
@@ -29,13 +29,13 @@ import {ManageAccountUserComponent} from "./components/immigrationview/manage-ac
 import {ManageAccountOrganizationsComponent} from "./components/immigrationview/manage-account-tab/organizations/organizations.component";
 import {ImmigrationViewClientDetailsService} from './components/immigrationview/clients-tab/client-details/client-details/client-details.service';
 import {ImmigrationViewClientDetailsComponent} from './components/immigrationview/clients-tab/client-details/client-details/client-details.component';
-import {LoginComponent} from "./components/login/login.component";
+import {LoginComponent} from "./components/common/login/login.component";
 import {petitionsclientviewComponent} from "./components/clientview/petitions-tab/petitions.component";
 import { QuestionnaireI129ClientComponent } from './components/clientview/questionnaries-tab/i129/i129.component';
 import { QuestionnaireI129HclientviewComponent } from './components/clientview/questionnaries-tab/i129h/i129h.component';
 import { clientviewQuestionnaireComponent } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.component';
 import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
-import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
+import {ResetPasswordComponent} from './components/common/reset-password/reset-password.component';
 
 //superuserview
 import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';

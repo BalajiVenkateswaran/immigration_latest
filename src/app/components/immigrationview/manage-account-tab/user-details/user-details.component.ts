@@ -1,5 +1,5 @@
 import { AppService } from '../../../../services/app.service';
-import { HeaderService } from '../../../header/header.service';
+import { HeaderService } from '../../../common/header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {ManageAccountUserDetailsService} from "./user-details.service";
 import {Router, ActivatedRoute, Params} from '@angular/router';

@@ -24,10 +24,6 @@ export class ManageAccountUserService {
       return this.restService.putData("/user", userData);
     }
 
-    public login(user: User) {
-      return this.restService.postData("/user/authenticate", user);
-    }
-
     public deleteUser(userId: string, accountId: string, officerId: string) {
         return this.restService.deleteData("/user/" + userId + "/account/" + accountId + "/officer/"+officerId);
     }

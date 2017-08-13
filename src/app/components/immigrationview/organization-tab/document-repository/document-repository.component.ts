@@ -1,6 +1,6 @@
 import {AppService} from '../../../../services/app.service';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
-import {HeaderService} from '../../../header/header.service';
+import {HeaderService} from '../../../common/header/header.service';
 import {ActionIcons} from '../../../framework/smarttable/cellRenderer/ActionsIcons';
 import {Component, OnInit} from '@angular/core';
 import {OrganizationDocumentRepositoryService} from "./document-repository.service";

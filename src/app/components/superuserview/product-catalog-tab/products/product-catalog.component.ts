@@ -1,5 +1,5 @@
 import {AppService} from '../../../../services/app.service';
-import {MenuComponent} from '../../../menu/menu.component';
+import {MenuComponent} from '../../../common/menu/menu.component';
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";

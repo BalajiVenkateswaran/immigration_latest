@@ -1,13 +1,12 @@
+import { User } from '../../../models/user';
+import { AppService } from '../../../services/app.service';
+import { ConfirmorgComponent } from '../../framework/confirmbox/confirmorg.component';
 import {Component, OnInit, DoCheck, ViewChild, AfterViewChecked} from '@angular/core';
-import {AppService} from "../../services/app.service";
 import {Router} from "@angular/router";
-import {User} from "../../models/user";
-import {HeaderService} from "./header.service";
-
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmorgComponent } from '../framework/confirmbox/confirmorg.component';
 import { DialogService } from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
+import { HeaderService } from './header.service';
 
 @Component({
     selector: 'immp-header',
@@ -15,13 +14,13 @@ import {MenuComponent} from "../menu/menu.component";
 })
 export class HeaderComponent implements AfterViewChecked{
   applicationViewMode;
-  user: User;
   private Immigrant;
   private immigrationManager;
   private orgNamevisible;
   private editorg;
   private tab;
   private i;
+  public user: User;
   public orgnames: any = {};
   @ViewChild('orgSelect') vc;
 
@@ -41,12 +40,12 @@ export class HeaderComponent implements AfterViewChecked{
     return this.appService.currentTab == tab;
   }
   constructor(private router: Router, public appService: AppService, private dialogService: DialogService, public headerService: HeaderService) {
-    if(this.appService.user) {
+    this.headerService.onHeaderPageLoad();
+    if(this.appService.user != null){
       this.user = this.appService.user;
     }
-    this.headerService.onHeaderPageLoad();
   }
-    
+
   editorgname() {
       this.dialogService.addDialog(ConfirmorgComponent, {
           title: 'Confirmation',

@@ -1,6 +1,6 @@
 import { dragula } from '../../../../../models/dragula';
 import { AppService } from '../../../../../services/app.service';
-import { HeaderService } from '../../../../header/header.service';
+import { HeaderService } from '../../../../common/header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {DocumentManagementService} from "./document-management.service";
 import {FormGroup, FormControl} from "@angular/forms";

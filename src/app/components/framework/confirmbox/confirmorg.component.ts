@@ -1,5 +1,6 @@
-﻿import { AppService } from '../../../services/app.service';
-import { HeaderService } from '../../header/header.service';
+﻿import { Organizations } from '../../../models/organization';
+import { AppService } from '../../../services/app.service';
+import { HeaderService } from '../../common/header/header.service';
 import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 export interface ConfirmModel {
@@ -32,7 +33,7 @@ export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> 
     constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService) {
         super(dialogService);
     }
-    changeOrgName(org) {
+    changeOrgName(org: Organizations) {
         this.headerService.selectedOrg = org;
         this.appService.moveToPage('petitions');
         this.close();
