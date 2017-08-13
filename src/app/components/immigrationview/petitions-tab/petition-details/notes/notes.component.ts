@@ -15,6 +15,7 @@ export interface formControl {
     templateUrl: './notes.component.html'
 })
 export class ImmigrationviewPetitionNotesComponent implements OnInit {
+    public petitionInformation: any;
     private notes: string;
     private petitionDetails: any = {};
     private beforeCancelPetition;
@@ -41,7 +42,7 @@ export class ImmigrationviewPetitionNotesComponent implements OnInit {
                     //TODO - Set client first name and last name to appService
                     this.notes = this.petitionDetails['notes'];
                 }
-                
+
 
                 if (res['clientId'] != undefined) {
                     this.appService.clientId = res['clientId'];
