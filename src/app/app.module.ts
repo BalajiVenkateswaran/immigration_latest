@@ -91,8 +91,8 @@ import {MyDatePickerModule} from 'mydatepicker';
 import {InvoicedownloadButton} from "./components/superuserview/accounts-tab/account-details/invoice/invoicedownloadbutton";
 
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from './components/confirmbox/confirm.component';
-import {ConfirmorgComponent} from './components/confirmbox/confirmorg.component';
+import {ConfirmComponent} from './components/framework/confirmbox/confirm.component';
+import {ConfirmorgComponent} from './components/framework/confirmbox/confirmorg.component';
 import { HeaderService } from './components/header/header.service';
 
 import {AgGridModule} from "ag-grid-angular/main";

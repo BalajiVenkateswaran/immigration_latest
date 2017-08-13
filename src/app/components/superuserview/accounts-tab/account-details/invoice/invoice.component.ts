@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {AccountInvoiceService} from './invoice.service';
 import * as FileSaver from 'file-saver';

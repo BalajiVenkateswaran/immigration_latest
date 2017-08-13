@@ -1,7 +1,7 @@
-﻿import { Component } from '@angular/core';
+﻿import { AppService } from '../../../services/app.service';
+import { HeaderService } from '../../header/header.service';
+import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
-import {AppService} from "../../services/app.service";
-import { HeaderService } from '../header/header.service';
 export interface ConfirmModel {
     title: string;
     message: string;

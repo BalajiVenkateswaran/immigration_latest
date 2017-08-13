@@ -2,7 +2,7 @@ import { ImmigrationViewClientPersonalInfo } from '../../../../../models/Immigra
 import { ImmigrationViewClientProfile } from '../../../../../models/immigrationviewclientprofile';
 import { User } from '../../../../../models/user';
 import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { Component, OnInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";

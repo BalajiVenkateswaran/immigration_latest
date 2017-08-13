@@ -1,6 +1,6 @@
 import { AppService } from '../../../../services/app.service';
 import { UiFieldService } from '../../../../services/uifield.service';
-import { ConfirmComponent } from '../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../header/header.service';
 import { Component, OnInit } from '@angular/core';
 import {OrganizationService} from "./organization.service";

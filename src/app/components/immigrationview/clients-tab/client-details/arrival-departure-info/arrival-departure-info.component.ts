@@ -1,5 +1,5 @@
 import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { Component, OnInit } from '@angular/core';
 import { ImmigrationViewArrivalDepartureInfoService } from './arrival-departure-info.service';
 

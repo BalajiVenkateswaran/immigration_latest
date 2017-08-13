@@ -4,7 +4,7 @@ import {clientviewpetition} from "../../../models/clientviewpetitions";
 import {FormGroup, FormControl} from "@angular/forms";
 import {AppService} from "../../../services/app.service";
 import {User} from "../../../models/user";
-import {ConfirmComponent} from '../../confirmbox/confirm.component';
+import {ConfirmComponent} from '../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MoreDetails} from './MoreDetails';
 import { ClientViewPetitionsService } from './petitions.service';

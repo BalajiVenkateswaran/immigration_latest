@@ -4,7 +4,7 @@ import {visa} from "../../../../models/visa";
 import {FormGroup, FormControl} from "@angular/forms";
 import {AppService} from "../../../../services/app.service";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../../confirmbox/confirm.component';
+import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 

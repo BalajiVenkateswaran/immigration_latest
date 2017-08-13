@@ -1,7 +1,7 @@
 import { manageaccountorganization } from '../../../../models/manageaccountorganization';
 import { User } from '../../../../models/user';
 import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../header/header.service';
 import { MenuComponent } from '../../../menu/menu.component';
 import {Component, OnInit} from '@angular/core';

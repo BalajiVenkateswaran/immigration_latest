@@ -1,6 +1,6 @@
 import { client } from '../../../../models/client';
 import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../header/header.service';
 import { MenuComponent } from '../../../menu/menu.component';
 import {Component, OnInit} from '@angular/core';

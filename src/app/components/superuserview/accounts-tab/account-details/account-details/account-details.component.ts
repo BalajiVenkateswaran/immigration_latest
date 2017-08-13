@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppService} from "../../../../../services/app.service";
-import {ConfirmComponent} from '../../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {SuperuserViewAccountDetailsService} from "./account-details.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {MenuComponent} from "../../../../menu/menu.component";

@@ -1,5 +1,5 @@
 ﻿import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { profilechangepwdservice } from './changepassword.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';

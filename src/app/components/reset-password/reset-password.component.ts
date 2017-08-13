@@ -4,7 +4,7 @@ import {AppService} from "../../services/app.service";
 import {FormGroup, FormControl} from "@angular/forms";
 import {ResetPasswordService} from "./reset-password.service";
 import { DialogService } from "ng2-bootstrap-modal";
-import { ConfirmComponent } from '../confirmbox/confirm.component';
+import { ConfirmComponent } from '../framework/confirmbox/confirm.component';
 
 @Component({
   selector: 'app-reset-password',

@@ -1,6 +1,6 @@
 import { User } from '../../../../../models/user';
 import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../confirmbox/confirm.component';
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
 import { Component, OnInit } from '@angular/core';
 import { ClientDocumentRepositoryService } from "./document-repository.service";

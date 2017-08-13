@@ -4,7 +4,7 @@ import {AppService} from "../../../../services/app.service";
 import {Router} from "@angular/router";
 import {User} from "../../../../models/user";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../../confirmbox/confirm.component';
+import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../../../menu/menu.component";
 import {AccountDetailsCommonService} from "../account-details/common/account-details-common.service";

@@ -5,7 +5,7 @@ import {User} from "../../models/user";
 import {HeaderService} from "./header.service";
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmorgComponent } from '../confirmbox/confirmorg.component';
+import { ConfirmorgComponent } from '../framework/confirmbox/confirmorg.component';
 import { DialogService } from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from "../../../../../services/app.service";
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../../../confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {AccountManagersService} from './accountmanagers.service';
 import {AccountDetailsCommonService} from "../common/account-details-common.service";
