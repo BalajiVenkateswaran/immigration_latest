@@ -204,6 +204,9 @@ import {i129Page3Component} from './components/immigrationview/petitions-tab/pet
 import {i129Page4Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-4/page-4.component';
 import {i129Page5Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-5/page-5.component';
 import {i129Page6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
+import {i129Page7Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-7/page-7.component';
+import {i129Page8Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-8/page-8.component';
+
 import { profilechangepwdservice } from './components/immigrationview/profile-tab/changepassword/changepassword.service';
 import { profileloginhisservice } from './components/immigrationview/profile-tab/loginhistory/loginhistory.service';
 import { profileswitchcomponent } from './components/immigrationview/profile-tab/switch/switch.component';
@@ -277,7 +280,9 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
     i129Page3Component,
     i129Page4Component,
     i129Page5Component,
-    i129Page6Component,
+      i129Page6Component,
+      i129Page7Component,
+      i129Page8Component,
     //pdf oage components imported above which is for testing only
     CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,
     InvoiceUploadButton,

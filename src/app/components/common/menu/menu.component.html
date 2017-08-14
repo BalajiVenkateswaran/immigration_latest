@@ -1,9 +1,5 @@
 
 <div class="navbar navbar-inverse navbar-fixed-left">
-    <ul class="nav navbar-nav">
-        
-    </ul>
-
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-petition'">
 
         <li>
@@ -443,6 +439,16 @@
         <li>
             <a (click)="appservice.moveToPage('i129Page6');highlightSBLink('I-129 Page 6')" [ngClass]="[checkForCurrentSBLink('I-129 Page 6') ? 'active': '']" routerLinkActive="active">
                 <span>I-129 Page 6</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129Page7');highlightSBLink('I-129 Page 7')" [ngClass]="[checkForCurrentSBLink('I-129 Page 7') ? 'active': '']" routerLinkActive="active">
+                <span>I-129 Page 7</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129Page8');highlightSBLink('I-129 Page 8')" [ngClass]="[checkForCurrentSBLink('I-129 Page 8') ? 'active': '']" routerLinkActive="active">
+                <span>I-129 Page 8</span>
             </a>
         </li>
         <li>
