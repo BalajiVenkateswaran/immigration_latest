@@ -30,14 +30,14 @@
             </a>
         </li>
         <li ngbDropdown class="dropdown">
-            <a ngbDropdownToggle (click)="appservice.moveToPage('immigrationview-petition-document-repository');immiPetDoc();highlightSBLink(Documents)" [ngClass]="[checkForCurrentSBLink(Documents) ? 'active': '']" class="dropdown-toggle" id="petition-documents" data-toggle="dropdown">
+            <a ngbDropdownToggle (click)="appservice.moveToPage('immigrationview-petition-document-repository');immiPetDoc();highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" class="dropdown-toggle" id="petition-documents" data-toggle="dropdown">
                 <span class="ico-dependents"></span>
                 <span>Documents</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" *ngIf="immipetitiondoc" aria-labelledby="petition-documents">
                 <li>
-                    <a (click)="appservice.moveToPage('immigrationview-petition-document-repository');highlightSBLink('Doc Repository')" [ngClass]="[checkForCurrentSBLink('Doc Repository') ? 'active': '']" routerLinkActive="active">Doc Repository</a>
+                    <a (click)="appservice.moveToPage('immigrationview-petition-document-repository');highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" routerLinkActive="active">Doc Repository</a>
                 </li>
                 <li>
                     <a (click)="appservice.moveToPage('immigrationview-document-management');highlightSBLink('Doc Management')" [ngClass]="[checkForCurrentSBLink('Doc Management') ? 'active': '']" routerLinkActive="active">Doc Management</a>
@@ -149,12 +149,12 @@
                 <span>Petition Type Stages</span>
             </a>
         </li>
-        <li>
+        <!--<li>
             <a (click)="appservice.moveToPage('manageaccount-checklist');highlightSBLink('checklist')" [ngClass]="[checkForCurrentSBLink('checklist') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Checklist</span>
             </a>
-        </li>
+        </li>-->
         <li>
             <a (click)="appservice.moveToPage('manageaccount-shippingaddress');highlightSBLink('Shipping Address')" [ngClass]="[checkForCurrentSBLink('Shipping Address') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
@@ -502,7 +502,7 @@
     <!--stats-->
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-reports'">
-        <li ngbDropdown class="dropdown">
+        <!--<li ngbDropdown class="dropdown">
             <a (click)="appservice.moveToPage('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts');superuserstatsclick()" [ngClass]="[checkForCurrentSBLink('superuser-statsaccounts') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Stats</span>
@@ -533,17 +533,17 @@
                         <span>Petitions</span>
                     </a>
                 </li>
-                <!--<li>
+                <li>
                     <a (click)="appservice.moveToPage('superuser-statsproducts');highlightSBLink('superuser-statsproducts')" [ngClass]="[checkForCurrentSBLink('superuser-statsproducts') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Products</span>
                     </a>
-                </li>-->
+                </li>
             </ul>
-        </li>
+        </li>-->
         <!--payments reports superuser-->
 
-        <li ngbDropdown class="dropdown">
+        <!--<li ngbDropdown class="dropdown">
             <a (click)="appservice.moveToPage('superuser-payments');highlightSBLink('superuser-payments');superuserpaymentsclick()" [ngClass]="[checkForCurrentSBLink('superuser-payments') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Payments</span>
@@ -557,7 +557,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>-->
 
         <!--petitionsreports superuser-->
         <li ngbDropdown class="dropdown">

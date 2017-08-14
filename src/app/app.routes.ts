@@ -84,6 +84,7 @@ import {superuserpetfinalactionreportscomponent} from './components/superuservie
 import {SuperUserClientsCreatedReportsComponent} from './components/superuserview/reports-tab/clients/created/created.component';
 import {superusertotalpetitionsreportscomponent} from './components/superuserview/reports-tab/users/totalpetitions/totalpetitions.component';
 import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/openpetitions.component';
+import {superuserstatsotgsReportsComponent} from './components/superuserview/reports-tab/stats/orgs/orgs.component';
 
 //PDF Pages I-129
 import {i129Page1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
@@ -105,6 +106,9 @@ import { superuserpetstagereportscomponent } from './components/superuserview/re
 import { superuserL1Areportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
 import { superuserH1Breportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
 import { superuserpettagreportscomponent } from './components/superuserview/reports-tab/petitions/tag/tag.component';
+import {superuserstatsclientsReportsComponent} from './components/superuserview/reports-tab/stats/clients/clients.component';
+import {superuserstatspetitionReportsComponent} from './components/superuserview/reports-tab/stats/petitions/petitions.component';
+import {superusermonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
 
 
 
@@ -513,6 +517,22 @@ export const appRoutes: Routes = [
     {
         path: 'superuser-openpetitions',
         component: SuperUserOpenPetitionComponent
+    },
+    {
+        path: 'superuser-statsorgs',
+        component: superuserstatsotgsReportsComponent
+    },
+    {
+        path: 'superuser-statsclients',
+        component: superuserstatsclientsReportsComponent
+    },
+    {
+        path: 'superuser-statspetitions',
+        component: superuserstatspetitionReportsComponent
+    },
+    {
+        path: 'superuser-payments',
+        component: superusermonthlyReportsComponent
     },
     {
         path: '',

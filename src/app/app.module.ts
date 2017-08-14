@@ -98,6 +98,8 @@ import { ConfirmorgComponent } from './components/framework/confirmbox/confirmor
 
 import {AgGridModule} from "ag-grid-angular/main";
 import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
+import {checklistdownloadButton} from './components/immigrationview/manage-account-tab/checklist/downloadButton';
+
 //superusersview
 
 import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';
@@ -195,7 +197,14 @@ import {superusertotalpetitionsreportscomponent} from './components/superuservie
 import {sperusertotalpetitionsreportsservice} from './components/superuserview/reports-tab/users/totalpetitions/totalpetitions.service';
 import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/openpetitions.component';
 import {SuperUsersOpenPetitionService} from './components/superuserview/reports-tab/users/openpetitions/openpetitions.service';
-
+import {superuserstatsotgsReportsComponent} from './components/superuserview/reports-tab/stats/orgs/orgs.component';
+import {SuperUserstatorgsReportsService} from './components/superuserview/reports-tab/stats/orgs/orgs.service';
+import {superuserstatsclientsReportsComponent} from './components/superuserview/reports-tab/stats/clients/clients.component';
+import {SuperUserstatclientsReportsService} from './components/superuserview/reports-tab/stats/clients/clients.service';
+import {superuserstatspetitionReportsComponent} from './components/superuserview/reports-tab/stats/petitions/petitions.component';
+import {SuperUserstatpetitonReportsService} from './components/superuserview/reports-tab/stats/petitions/petitions.service';
+import {superusermonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
+import {SuperUsermonthlyReportsService} from './components/superuserview/reports-tab/payments/monthly/monthly.service';
 
 //PDF Pages for testing only
 import {i129Page1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
@@ -269,7 +278,7 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
     NgbModule.forRoot()],
   entryComponents: [
     ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons,
-    GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton
+      GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton,MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton
   ],
   declarations: [
     i129Page1Component,
@@ -279,7 +288,7 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
     i129Page5Component,
     i129Page6Component,
     //pdf oage components imported above which is for testing only
-    CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,
+      CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,
     InvoiceUploadButton,
     AppComponent,
     HeaderComponent,
@@ -371,7 +380,11 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
     superuserclientstatusreportscomponent,
     SuperUserClientsCreatedReportsComponent,
     superusertotalpetitionsreportscomponent,
-    SuperUserOpenPetitionComponent,
+      SuperUserOpenPetitionComponent,
+      superuserstatsotgsReportsComponent,
+      superuserstatsclientsReportsComponent,
+      superuserstatspetitionReportsComponent,
+      superusermonthlyReportsComponent,
     //reports
     petitionsstatusreportscomponent,
     clientscreatedreportscomponent,
@@ -486,7 +499,11 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
     petitionstagsreportsservice,
     usertotalpetitionservice,
     usersopenpetitionservice,
-    petitionfinalactionservice,
+      petitionfinalactionservice,
+      SuperUserstatorgsReportsService,
+      SuperUserstatclientsReportsService,
+      SuperUserstatpetitonReportsService,
+      SuperUsermonthlyReportsService,
     //profile
     profileuserservice,
     profileloginhisservice,

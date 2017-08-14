@@ -8,7 +8,7 @@
       <span>Checklist</span>
 
     </h2>
-    <smart-table [settings]="settings" [data]="data"   (onAddClick)="addList($event)">
+    <smart-table [settings]="settings" [data]="data"  (onAddClick)="addList($event)">
     </smart-table>
     <div class="clearfix"></div>
   </div>
@@ -25,15 +25,16 @@
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-5">Petition Type:</div>
-              <div class="col-md-7"><input type="text" [(ngModel)]="addChecklist.petitionType" class="form-control"></div>
+              <div class="col-md-7">
+                  <select class="form-control" [(ngModel)]="addChecklist.petitiontype">
+                      <option *ngFor="let petition of petitionTypes" [value]="petition.petitionTypeId">{{petition.petitiontype}}</option>
+                  </select>
+              </div>
               <div class="col-md-5">Doc Name:</div>
               <div class="col-md-7"><input type="text" [(ngModel)]="addChecklist.docName" class="form-control"></div>
               <div class="col-md-5">Upload:</div>
-              <div class="col-md-7 fileUpload btn btn-primary">
-               
-                    <span>Upload</span>
+              <div class="col-md-7 fileUpload btn btn-primary">                              
                     <input type="file" class="upload" name="file" (change)="fileUpload($event)" />
-               
               </div>
             </div>
             <div class="row">
