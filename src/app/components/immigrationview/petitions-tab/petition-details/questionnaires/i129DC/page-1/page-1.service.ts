@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {RestService} from "../../../../../../../services/rest.service";
 
 @Injectable()
-export class i129Page1Service {
+export class i129dcPage1Service {
 
     constructor(private restService: RestService) {
 
