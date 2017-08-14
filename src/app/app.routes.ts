@@ -92,6 +92,14 @@ import {i129Page2Component} from './components/immigrationview/petitions-tab/pet
 import {i129Page3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-3/page-3.component';
 import {i129Page4Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-4/page-4.component';
 import {i129Page5Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-5/page-5.component';
+import {i129Page6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
+import {i129Page7Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-7/page-7.component';
+import {i129Page8Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-8/page-8.component';
+import {i129dcPage1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129DC/page-1/page-1.component';
+import {i129dcPage2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129DC/page-2/page-2.component';
+import {i129dcPage3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129DC/page-3/page-3.component';
+
+
 import { PetitionsComponent } from './components/immigrationview/petitions-tab/petitions/petitions.component';
 import { profilechangepwdcomponent } from './components/immigrationview/profile-tab/changepassword/changepassword.component';
 import { profileswitchcomponent } from './components/immigrationview/profile-tab/switch/switch.component';
@@ -100,7 +108,6 @@ import { petitionstagesreportscomponent } from './components/immigrationview/rep
 import { petitionstagsreportscomponent } from './components/immigrationview/reports-tab/petition/tags/tags.component';
 import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
 import { QuestionnaireI129Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129/i129.component';
-import {i129Page6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
 import { clientstatusreportscomponent } from './components/immigrationview/reports-tab/client/status/status.component';
 import { superuserpetstagereportscomponent } from './components/superuserview/reports-tab/petitions/stage/stage.component';
 import { superuserL1Areportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
@@ -146,6 +153,26 @@ export const appRoutes: Routes = [
     {
         path: 'i129Page6',
         component: i129Page6Component,
+    },
+    {
+        path: 'i129Page7',
+        component: i129Page7Component,
+    },
+    {
+        path: 'i129Page8',
+        component: i129Page8Component,
+    },
+    {
+        path: 'i129dcPage1',
+        component: i129dcPage1Component,
+    },
+    {
+        path: 'i129dcPage2',
+        component: i129dcPage2Component,
+    },
+    {
+        path: 'i129dcPage3',
+        component: i129dcPage3Component,
     },
     {
         path: 'login',
