@@ -118,6 +118,7 @@ export class LoginComponent extends DialogComponent< ConfirmModel, boolean > imp
                 //Reset password
                 if (res['resetPassword'] != undefined
                     && res['resetPassword'] == true) {
+                        this.close();
                     this.appService.moveToPage('reset-password');
                 } else {
                     this.close();
