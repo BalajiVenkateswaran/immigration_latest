@@ -24,6 +24,8 @@ export class checklistdownloadButton implements ICellRendererAngularComp {
     constructor(private manageAccountChecklistService: ManageAccountChecklistService, public appService: AppService) {
     }
 
+    downloadClick(){
 
+    }
 
 }
