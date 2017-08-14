@@ -1,4 +1,4 @@
-export interface organizations {
+export interface Organizations {
     accountId: string,
     creation_date: string,
     last_updated_date: string,

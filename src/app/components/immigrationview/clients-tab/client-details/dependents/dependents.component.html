@@ -1,0 +1,57 @@
+<div class="main-content" *ngIf="getDependents">
+
+        <div class="table-data">
+            <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h1>
+            <div class="clearfix"></div>
+            <h2><span>Dependents</span>
+</h2>
+            <smart-table [settings]="settings" [data]="data"
+                         (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
+            <div class="clearfix"></div>
+        </div>
+
+
+</div>
+<div *ngIf="addDependnts">
+    <div class="modal-dialog" ngDraggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5">First Name:<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addDependents.firstName" [ngClass]="addDependents.firstName == '' ? 'redborder': ''" class="form-control"></div>
+                            <div class="col-md-5">Middle Name:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addDependents.middleName" class="form-control"></div>
+                            <div class="col-md-5">Last Name:<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addDependents.lastName" [ngClass]="addDependents.lastName == '' ? 'redborder': ''" class="form-control"></div>
+                            <div class="col-md-5">Relation:<span class="redstar">*</span></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="addDependents.relation" [ngClass]="addDependents.relation == '' ? 'redborder': ''" class="form-control"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="row sfm" *ngIf="warningMessage">
+                                    <div class="col-md-12">
+                                        <span class="redstar">* Fields are Mandatory.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="dependentSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>

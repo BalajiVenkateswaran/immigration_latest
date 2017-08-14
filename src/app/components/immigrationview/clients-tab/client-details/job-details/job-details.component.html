@@ -1,0 +1,122 @@
+<div class="main-content">
+
+    <div class="table-data-forms">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+
+        <div class="clearfix"></div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-12 addresbox box-shadow">
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <h2>Current Job Info</h2>
+                        <button type="submit" class="editbtn  no-marg-right" (click)="editJobInfoForm()" *ngIf="isjobdetailsEdit==true">Edit</button>
+                        <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
+                            <button type="button" (click)="cancelJobInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                            <button type="submit" value="Save" class="savebtn" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-petitiondescription">Job Title</label></div>
+                    <div class="col-md-8">
+                        <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobTitle" />
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobTitle}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-petitiondescription">Job Type</label></div>
+                    <div class="col-md-8">
+                        <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobType" />
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobType}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-filenumber">Job Code</label></div>
+                    <div class="col-md-8">
+                        <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobCode" />
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobCode}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-petitionopeneddate">Annual Salary</label></div>
+                    <div class="col-md-8">
+                        <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.annualSalary" />
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.annualSalary}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-petitionstatus">Duties And Responsibilites</label></div>
+                    <div class="col-md-8">
+                        <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.dutiesAndResponsibilities" />
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.dutiesAndResponsibilities}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-petitioncurrentstage">Project Name</label></div>
+                    <div class="col-md-8">
+                        <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectName" />
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectName}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-petitiondenieddate">Project Code</label></div>
+                    <div class="col-md-8">
+                        <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectCode" />
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectCode}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-petitionwithdrawndate">No Of Hours/Week</label></div>
+                    <div class="col-md-8">
+                        <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.noOfHoursPerWeek" />
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.noOfHoursPerWeek}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-createdby">Hire Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.hireDate" [selDate]="hireDate"></my-date-picker>
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.hireDate}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-lastupdatedby">Internaional Hire Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.internationalHireDate}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-lastupdatedby">Rehire Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.rehireDate" [selDate]="rehireDate"></my-date-picker>
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.rehireDate}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-lastupdatedby">Last Day Worked Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.lastDayWorkedDate}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="pi-lastupdatedby">Termination Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
+                        <span *ngIf="isjobdetailsEdit==true">{{jobDetails.terminationDate}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
+                            <button type="button" (click)="cancelJobInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                            <button type="submit" value="Save" class="savebtn" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

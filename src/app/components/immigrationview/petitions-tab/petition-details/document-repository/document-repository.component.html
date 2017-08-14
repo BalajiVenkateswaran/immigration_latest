@@ -1,0 +1,57 @@
+    <div class="main-content"  *ngIf="getData">
+        <div class="table-data">
+            <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
+            <h1 style="float:right;">{{appService.petitionDetails}}</h1>
+            <div class="clearfix"></div>
+            <h2>Document Repository</h2>
+            <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
+                <div class="pull-right uplodbtn">
+                    <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
+                        <span>Choose File</span>
+                        <input type="file" class="upload" name="file" (change)="fileUpload($event)"/>
+                    </div>
+                </div>
+                <smart-table class="immiview-petition-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></smart-table>     
+              
+                </form>
+                <div class="clearfix"></div>
+</div>
+
+
+    </div>
+<div *ngIf="editFiles">
+    <div class="modal-dialog" ngDraggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5">File Name:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="editFileObject.fileName" class="form-control"></div>                       
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="row sfm" *ngIf="warningMessage">
+                                    <div class="col-md-12">
+                                        <span class="redstar">Please Enter some file name.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="save()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>

@@ -1,0 +1,219 @@
+<div class="main-content">
+  <div class="table-data-forms">
+      <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+      <button type="submit" class="sendinvite no-marg-right" [ngClass]="{'disableClass':disableSendInvite,'sendinvite no-marg-right':!disableSendInvite}"   [disabled]="disableSendInvite"  (click)="sendInvite()">Send Invite</button>
+      <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-12 addresbox box-shadow">
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>Profile</h2>
+              <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit
+              </button>
+              <div class="tbl-head-btn" [hidden]="isProfileEdit">
+                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel
+                </button>
+                <button type="submit" value="Save" class="savebtn" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="warningMessage">
+            <div class="col-md-12">
+              <span class="redstar">* Fields are Mandatory.</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-name">File Number<span class="redstar">*</span></label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-name" [readonly]="true" [(ngModel)]="clientProfile.fileNumber"
+                [ngClass]="clientProfile.fileNumber == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.fileNumber}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-taxid">Status<span class="redstar">*</span></label></div>
+            <div class="col-md-8">
+              <select *ngIf="isProfileEdit==false" [(ngModel)]="client.clientStatus" [ngClass]="client.clientStatus == '' ? 'redborder': ''">
+                <option *ngFor="let clientstatus of status">{{clientstatus.name}}</option>
+              </select>
+              <span *ngIf="isProfileEdit==true">{{client.clientStatus}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
+            <div class="col-md-8">
+              <input type="text" *ngIf="isProfileEdit==false" [readonly]=true [(ngModel)]="clientProfile.email" [ngClass]="clientProfile.email == '' ? 'redborder': ''"/>
+              <span *ngIf="isProfileEdit==true">{{clientProfile.email}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-county" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''"
+              /><span *ngIf="isProfileEdit==true">{{clientProfile.firstName}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-state">Middle Name</label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-state" [(ngModel)]="clientProfile.middleName" />
+              <span
+                *ngIf="isProfileEdit==true">{{clientProfile.middleName}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-zip">Last Name<span class="redstar">*</span></label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-zip" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''"
+              /><span *ngIf="isProfileEdit==true">{{clientProfile.lastName}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-country">Phone Number<span class="redstar">*</span>  </label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-country" [formControl]="phoneNumber" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''"
+              /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span>
+            </div>
+          </div>
+            <div class="row sfm" *ngIf="phoneNumber.touched">
+                                    <div class="col-md-12">
+                                        <div class="redstar" *ngIf="phoneNumber.errors && phoneNumber.errors.required">
+                                            * Phone Number is required
+                                        </div>
+                                        <div class="redstar" *ngIf="phoneNumber.errors && phoneNumber.errors.pattern">
+                                            * Phone field can contain numbers, '+' , '(' , ')' 
+                                        </div>
+                                    </div>
+                                </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-country">Created By</label></div>
+            <div class="col-md-8">
+              <input type="text" *ngIf="isProfileEdit==false" [readonly]=true [(ngModel)]="clientProfile.createdByUserOn" />
+              <span *ngIf="isProfileEdit==true">{{clientProfile.createdByUserOn}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"><label for="wa-country">Last Updated By</label></div>
+            <div class="col-md-8">
+              <input type="text" *ngIf="isProfileEdit==false" [readonly]=true [(ngModel)]="clientProfile.lastUpdatedByUserOn" />
+              <span *ngIf="isProfileEdit==true">{{clientProfile.lastUpdatedByUserOn}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-country">Mark for Deletion</label></div>
+            <div class="col-md-8">
+              <select *ngIf="isProfileEdit==false" [(ngModel)]="clientProfile.markForDeletion">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+              <span *ngIf="isProfileEdit==true">{{clientProfile.markForDeletion ? 'Yes' : 'No'}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"><label for="wa-country">Marked For Deletion By</label></div>
+            <div class="col-md-8">
+              <input type="text" *ngIf="isProfileEdit==false" [readonly]=true [(ngModel)]="clientProfile.deletedByUserOn" />
+              <span *ngIf="isProfileEdit==true">{{clientProfile.deletedByUserOn}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="tbl-head-btn" [hidden]="isProfileEdit">
+                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isProfileEdit==false">
+                            Cancel
+                        </button>
+                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">
+                            Save
+                        </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-12 addresbox box-shadow">
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>Personal Info</h2>
+              <button type="submit" class="editbtn  no-marg-right" (click)="editPersonalInfoForm()" *ngIf="isPersonalInfoEdit==true">Edit
+              </button>
+              <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
+                <button type="button" (click)="cancelPersonalInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isPersonalInfoEdit==false">Cancel
+                </button>
+                <button type="submit" value="Save" class="savebtn" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"><label for="wa-taxid">Gender</label></div>
+            <div class="col-md-8">
+              <select *ngIf="isPersonalInfoEdit==false" [(ngModel)]="clientPersonalInfo.gender">
+                <option *ngFor="let genderTypes of gender">{{genderTypes.name}}</option>
+              </select>
+              <span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.gender}}</span>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-4"><label for="wa-dob">Date Of Birth</label></div>
+            <div class="col-md-8">
+              <my-date-picker *ngIf="isPersonalInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="clientPersonalInfo.dateOfBirth"
+                [selDate]="dateOfBirth"></my-date-picker>
+              <span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.dateOfBirth}}</span>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-ssn">U.S. Social Security Number (if any)</label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-ssn" [(ngModel)]="clientPersonalInfo.ssn" />
+              <span
+                *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-aleinRegistrationNumber">Alien Registration Number</label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-aleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber"
+              /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.aleinRegistrationNumber}}</span></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-countryOfBirth">Country of Birth</label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-countryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth"
+              /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.countryOfBirth}}</span></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-stateOfBirth">State/Province of Birth</label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-stateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth"
+              /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.stateOfBirth}}</span></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label for="wa-citizenship">Country of Citizenship or Nationality</label></div>
+            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-citizenship" [(ngModel)]="clientPersonalInfo.citizenship"
+              /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.citizenship}}</span></div>
+          </div>
+
+
+
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
+                <button type="button" (click)="cancelPersonalInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isPersonalInfoEdit==false">
+                            Cancel
+                        </button>
+                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">
+                            Save
+                        </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

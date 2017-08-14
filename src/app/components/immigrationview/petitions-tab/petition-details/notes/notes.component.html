@@ -1,0 +1,43 @@
+<div class="main-content">
+
+    <div class="table-data-forms">
+        <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
+
+        <h1 style="float:right;">{{petitionInformation.name}}</h1>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Notes </h2>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editNotesForm()" *ngIf="isNotesEdit==true">Edit</button>
+                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
+                                <button type="button" (click)="cancelNotesEdit()" class="editbtn tbl-head-btn" *ngIf="isNotesEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" (click)="saveNotes()" *ngIf="isNotesEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea *ngIf="isNotesEdit==false" id="note-multitext" class="multitext" [readonly]="isEdit" [(ngModel)]="petitionDetails.notes"></textarea>
+                            <span *ngIf="isNotesEdit==true" class="notes multitext">{{petitionDetails.notes}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tbl-head-btn" [hidden]="isNotesEdit">
+                                <button type="button" (click)="cancelNotesEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isNotesEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveNotes()" *ngIf="isNotesEdit==false">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
