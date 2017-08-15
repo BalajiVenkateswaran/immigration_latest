@@ -1,10 +1,10 @@
     <div class="main-content" *ngIf="arrDepInfo">
-       
+
         <div class="table-data">
             <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
 
             <div class="clearfix"></div>
-            <h2><span>Arrival/Departure Info</span><button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewArrDep()">ADD</button></h2>
+            <h2>Arrival/Departure Info<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewArrDep()">ADD</button></h2>
              <smart-table [settings]="settings" [data]="data"
                      (onAddClick)="addNewArrDep($event)" (onRowClick)="editArrivalInfo($event)" (onDeleteClick)="deleteArrivalInfo($event)"></smart-table>
             <div class="clearfix"></div>
@@ -25,7 +25,7 @@
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addArrDeparture.departureDate"
-                                                [selDate]="departureDate"></my-date-picker> 
+                                                [selDate]="departureDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Departure Country:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addArrDeparture.departureCountry" class="form-control"></div>
@@ -33,7 +33,7 @@
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addArrDeparture.arrivalDate"
-                                                [selDate]="arrivalDate"></my-date-picker> 
+                                                [selDate]="arrivalDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Arrival Country:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addArrDeparture.arrivalCountry" class="form-control"></div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                            
+
                             </div>
                             <div class="col-md-7">
                                 <div class="row">

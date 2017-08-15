@@ -133,7 +133,6 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
           if (res['statusCode'] == 'SUCCESS') {
             this.getAccountDetail();
           }
-
         });
       }
     });

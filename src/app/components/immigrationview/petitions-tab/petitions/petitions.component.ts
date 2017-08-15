@@ -74,7 +74,7 @@ export class PetitionsComponent implements OnInit {
                     field: "petitionType",
                 },
                 {
-                    headerName: "Last Updated",
+                    headerName: "Updated On",
                     field: "lastUpdate",
                 },
                 {

@@ -75,7 +75,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     onDeleteClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
-            message: 'Are you sure you want to delete ' + event.data.fileName + '?'
+            message: 'Are you sure you want to delete ' + event.data.fileName + ' ?'
         })
             .subscribe((isConfirmed) => {
                 //Get dialog result
@@ -111,13 +111,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             if (fileExists == true) {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
-                    message: 'Filename is already exists.'
+                    message: 'File already exists'
                 });
             }
             else {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
-                    message: 'Please Upload Only Pdf files'
+                    message: 'Please upload only PDF file'
                 });
             }
         }
@@ -125,25 +125,23 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
     }
     isfileExists(file) {
-        let upload: boolean = false;
-        this.getFiles.filter(item => {
-            if (file.name == item.fileName) {
-                upload = true;
-                return false;
-            }
-            return true;
-        })
-        return upload;
+      let fileExists : boolean = false;
+      this.getFiles.filter(item => {
+        if (file.name == item.fileName) {
+          fileExists = true;
+        }
+      });
+      return fileExists;
     }
     onReplaceClick(event) {
+        let fileList: FileList = event.event.target.files;
+        let file: File = fileList[0];
+        var x = file.name;
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
-            message: 'Do You Want to Replace this file?'
+            message: 'Do you want to replace '+x+' file ?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                let fileList: FileList = event.event.target.files;
-                let file: File = fileList[0];
-                var x = file.name;
                 var y = x.split(".");
                 if (fileList.length > 0 && y[1] == "pdf") {
                     let formData: FormData = new FormData();
@@ -159,13 +157,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 if (fileExists) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
-                        message: 'Filename is already exists.'
+                        message: 'File already exists'
                     });
                 }
                 if (y[1] !== 'pdf') {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
-                        message: 'Please Upload Only Pdf files.'
+                        message: 'Please upload only PDF file'
                     });
                 }
             }
@@ -233,7 +231,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                             if (res['statusDescription'] == "File Name Exists, Use a different Name") {
                                 this.dialogService.addDialog(ConfirmComponent, {
                                     title: 'Error..!',
-                                    message: 'File Name Exists, Use a different Name'
+                                    message: 'File with same name exists, please use a different name'
                                 });
                             }
                         }
