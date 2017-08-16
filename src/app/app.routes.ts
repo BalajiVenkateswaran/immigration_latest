@@ -117,7 +117,12 @@ import {superuserstatsclientsReportsComponent} from './components/superuserview/
 import {superuserstatspetitionReportsComponent} from './components/superuserview/reports-tab/stats/petitions/petitions.component';
 import {superusermonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
 
-
+import {i129HPage1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
+import {i129HPage2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-2/page-2.component';
+import {i129HPage3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-3/page-3.component';
+import {i129HPage4Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-4/page-4.component';
+import {i129HPage5Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-5/page-5.component';
+import {i129HPage6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-6/page-6.component';
 
 
 import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
@@ -130,6 +135,30 @@ import {SuperUserViewInvoicestabComponent} from './components/superuserview/invo
 import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
 
 export const appRoutes: Routes = [
+    {
+        path: 'i129hPage1',
+        component: i129HPage1Component,
+    },
+    {
+        path: 'i129hPage2',
+        component: i129HPage2Component,
+    },
+    {
+        path: 'i129hPage3',
+        component: i129HPage3Component,
+    },
+    {
+        path: 'i129hPage4',
+        component: i129HPage4Component,
+    },
+    {
+        path: 'i129hPage5',
+        component: i129HPage5Component,
+    },
+    {
+        path: 'i129hPage6',
+        component: i129HPage6Component,
+    },
     {
         path: 'i129Page1',
         component: i129Page1Component,

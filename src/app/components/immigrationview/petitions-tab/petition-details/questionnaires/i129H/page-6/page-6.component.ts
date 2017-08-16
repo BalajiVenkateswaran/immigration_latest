@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {i129HPage1Service} from "./page-1.service";
+import {i129HPage6Service} from "./page-6.service";
 import {AppService} from "../../../../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-    selector: 'app-page-1.component',
-    templateUrl: './page-1.component.html',
-    styleUrls: ['./page-1.component.scss']
+    selector: 'app-page-6.component',
+    templateUrl: './page-6.component.html',
+    styleUrls: ['./page-6.component.scss']
 })
-export class i129HPage1Component implements OnInit {
+export class i129HPage6Component implements OnInit {
 
      constructor() {
     }
