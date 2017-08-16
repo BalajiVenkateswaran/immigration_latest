@@ -19,6 +19,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
+                            <div class="col-md-5">Country:<span class="redstar">*</span></div>
+                            <div class="col-md-7">
+                              <select class="form-control" (change)="handleCountryChange($event)">
+                                <option *ngFor="let countryName of countryNames" [selected]="countryName == 'United States'" [value]="countryName">{{ countryName }}</option>
+                              </select>
+                            </div>
                             <div class="col-md-5">Petition Type:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                                 <select class="form-control" [(ngModel)]="newpetitionitem.petitiontype" (change)="handleChange($event)" [ngClass]="newpetitionitem.petitiontype == '' ? 'redborder': ''">
@@ -54,7 +60,7 @@
                     </div>
               </div>
             </div>
-            
+
         </div>
     </div>
 </div>

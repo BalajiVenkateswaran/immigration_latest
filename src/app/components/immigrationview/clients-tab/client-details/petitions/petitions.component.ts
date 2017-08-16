@@ -40,6 +40,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public settings;
     public data;
     private user: User;
+    public countryNames : string[] = [];
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
@@ -69,49 +70,39 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
             'newVariable':'abc',
             'columnsettings': [
                 {
-
                     headerName: "Petition Name",
-                    field: "petitionName",
+                    field: "petitionName"
                 },
                 {
-
                     headerName: "Petition Type",
-                    field: "petitionType",
+                    field: "petitionType"
                 },
                 {
-
                     headerName: "Petition SubType",
                     field: "petitionSubType"
                 },
                 {
-
                     headerName: "Status",
                     field: "status"
                 },
                 {
-
                     headerName: "Stage",
                     field: "stage"
                 },
                 {
-
                     headerName: "Created On",
                     field: "createdOn",
-                    width:350,
+                    width:350
                 },
                 {
-
                     headerName: "Last Updated",
                     field: "lastUpdate",
-                    width:350,
+                    width:350
                 },
                 {
-
                     headerName: "Assigned To",
                     field: "assignedToName"
-                },
-                
-                
+                }
             ]
         }
     }
@@ -120,11 +111,22 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId).subscribe((res) => {
             this.data=res['petitions'];
         });
-        this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
-            .subscribe((res) => {
-                this.allPetitionTypesAndSubTypes = res['petitionTypes'];
-            });
+        this.getPetitionTypes();
     }
+
+    getPetitionTypes(){
+      this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
+        .subscribe((res) => {
+            this.allPetitionTypesAndSubTypes = res['petitionTypes'];
+
+            // Get all currencies
+            const countryNamesMap: string[] = this.allPetitionTypesAndSubTypes.map(data => data['country']);
+
+            // Unique currencies
+            this.countryNames = countryNamesMap.filter((x, i, a) => x && a.indexOf(x) === i);
+        });
+    }
+
     handleChange(event) {
         console.log(event.target.value);
         for (var i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
@@ -140,16 +142,12 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
   ngOnInit() {
       this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId)
-          .subscribe((res) => {
-              this.data=res['petitions'];
-          });
-
-      this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
-          .subscribe((res) => {
-              this.allPetitionTypesAndSubTypes = res['petitionTypes'];
-          });
-
+        .subscribe((res) => {
+            this.data=res['petitions'];
+        });
+      this.getPetitionTypes();
   }
+
   addNewPetition() {
       this.dialogService.addDialog(ImmigrationViewPetitionsComponent, {
           showAddPetitionpopup: true,
@@ -164,10 +162,9 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
                   } else {
                       this.dialogService.addDialog(ConfirmComponent, {
                           title: 'Error..!',
-                          message: 'Unable to Add Petition.'
+                          message: 'Unable to add petition'
                       });
                   }
-
               });
           }
       });
@@ -239,7 +236,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
 
 
-   
+
 
     onDeleteConfirm(immViewpetitions) {
         this.delmessage = immViewpetitions.data.petitionName;
