@@ -303,45 +303,52 @@ $dateColumnWidth:110px;
       left:48% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell[colid~="lastUpdate"] {
-      width:$dateColumnWidth !important;
+      /*width:$dateColumnWidth !important;*/
+      width:7% !important;
       left:53% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell[colid~="status"] {
       width:5% !important;
-      left:-webkit-calc(53% + #{$dateColumnWidth}) !important;
+      /*left:-webkit-calc(53% + #{$dateColumnWidth}) !important;
       left:-moz-calc(53% + #{$dateColumnWidth}) !important;
-      left:calc(53% + #{$dateColumnWidth}) !important;
+      left:calc(53% + #{$dateColumnWidth}) !important;*/
       /*left:calc(53%+$dateColumnWidth);*/
+      left:60% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="finalStatus"], .ag-fresh .ag-ltr .ag-cell[colid~="finalStatus"] {
       width:6% !important;
-      left:-webkit-calc(58% + #{$dateColumnWidth}) !important;
+      /*left:-webkit-calc(58% + #{$dateColumnWidth}) !important;
       left:-moz-calc(58% + #{$dateColumnWidth}) !important;
-      left:calc(58% + #{$dateColumnWidth}) !important;
+      left:calc(58% + #{$dateColumnWidth}) !important;*/
+      left:65% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="assignedToName"], .ag-fresh .ag-ltr .ag-cell[colid~="assignedToName"] {
       width:7% !important;
-      left:-webkit-calc(64% + #{$dateColumnWidth}) !important;
+      /*left:-webkit-calc(64% + #{$dateColumnWidth}) !important;
       left:-moz-calc(64% + #{$dateColumnWidth}) !important;
-      left:calc(64% + #{$dateColumnWidth}) !important;
+      left:calc(64% + #{$dateColumnWidth}) !important;*/
+      left:71% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionStage"], .ag-fresh .ag-ltr .ag-cell[colid~="petitionStage"] {
       width:12% !important;
-      left:-webkit-calc(71% + #{$dateColumnWidth}) !important;
+      /*left:-webkit-calc(71% + #{$dateColumnWidth}) !important;
       left:-moz-calc(71% + #{$dateColumnWidth}) !important;
-      left:calc(71% + #{$dateColumnWidth}) !important;
+      left:calc(71% + #{$dateColumnWidth}) !important;*/
+      left:78% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="daysInStage"], .ag-fresh .ag-ltr .ag-cell[colid~="daysInStage"] {
       width:5% !important;
-      left:-webkit-calc(83% + #{$dateColumnWidth}) !important;
+      /*left:-webkit-calc(83% + #{$dateColumnWidth}) !important;
       left:-moz-calc(83% + #{$dateColumnWidth}) !important;
-      left:calc(83% + #{$dateColumnWidth}) !important;
+      left:calc(83% + #{$dateColumnWidth}) !important*/;
+        left:90% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="tag"], .ag-fresh .ag-ltr .ag-cell[colid~="tag"] {
       width:5% !important;
-      left:-webkit-calc(88% + #{$dateColumnWidth}) !important;
+      /*left:-webkit-calc(88% + #{$dateColumnWidth}) !important;
       left:-moz-calc(88% + #{$dateColumnWidth}) !important;
-      left:calc(88% + #{$dateColumnWidth}) !important;
+      left:calc(88% + #{$dateColumnWidth}) !important;*/
+      left:95% !important;
     }
 }
 
