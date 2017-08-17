@@ -85,6 +85,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.loginservice.forgetPassword(email).subscribe((res) => {
       console.log("ForgetPassword Response %o", res);
       if (res['statusCode'] == 'SUCCESS') {
+        this.close();
         this.dialogService.addDialog(ConfirmComponent, {
           title: 'Information',
           message: 'Password is reset information is sent to ' + email
@@ -113,6 +114,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
           //Reset password
           if (res['resetPassword'] != undefined
             && res['resetPassword'] == true) {
+            this.close();
             this.appService.moveToPage('reset-password');
           } else {
             this.close();
