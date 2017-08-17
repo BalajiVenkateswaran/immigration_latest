@@ -5,10 +5,10 @@
 
         <div class="clearfix"></div>
         <h2>
-            <span>I-797 History</span><button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>
+            I-797 History <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>
         </h2>
 
-        <smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
+        <smart-table class="immiview-clienttab-i797history" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
         <div class="clearfix"></div>
     </div>
 

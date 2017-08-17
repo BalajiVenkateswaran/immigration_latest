@@ -5,7 +5,7 @@
 
         <div class="clearfix"></div>
         <h2>Visas<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewVisa()">ADD</button></h2>
-           <smart-table [settings]="settings" [data]="data"
+           <smart-table class="immiview-clienttab-visas" [settings]="settings" [data]="data"
                      (onAddClick)="addNewVisa($event)" (onRowClick)="editVisas($event)" (onDeleteClick)="deleteVisas($event)"></smart-table>
         <div class="clearfix"></div>
     </div>

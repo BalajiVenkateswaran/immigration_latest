@@ -5,10 +5,10 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>
-            <span>Shipping Address</span>
+            Shipping Address
             <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewAdress()">ADD</button>
         </h2>
-        <smart-table [settings]="settings"
+        <smart-table class="immiview-managAcctab-shippingaddress" [settings]="settings"
                      [data]="data"
                      (onAddClick)="addFunction($event)"
                      (onRowClick)="editRecord($event)"

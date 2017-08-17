@@ -3,9 +3,8 @@
         <div class="table-data">
             <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h1>
             <div class="clearfix"></div>
-            <h2><span>Dependents</span>
-</h2>
-            <smart-table [settings]="settings" [data]="data"
+            <h2>Dependents</h2>
+            <smart-table class="immiview-clienttab-dependents" [settings]="settings" [data]="data"
                          (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
             <div class="clearfix"></div>
         </div>
