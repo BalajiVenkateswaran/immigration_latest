@@ -51,6 +51,7 @@ export class SmartTableFramework implements OnChanges {
     public pageNumber: number = 0;
     public itemStartIndex = 1;
     public endNumber: number;
+    public pageSelectionDisable:boolean=false;
     constructor() {
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
@@ -112,44 +113,46 @@ export class SmartTableFramework implements OnChanges {
                     eGridDiv.style.width = "100%";
                     this.gridOptions.api.doLayout();
                     this.gridOptions.api.sizeColumnsToFit();
-                   
+
                 }
             }
-        }    
+        }
         if (changes['paginationData']) {
+            if (this.paginationData) {
+                this.pageSize = this.paginationData['size'];
+                this.totalElements = this.paginationData['totalElements'];
+                this.totalPages = this.paginationData['totalPages'];
+                if (!changes['paginationData']['previousValue']) {
+                    if (this.totalElements < this.pageSize) {
+                        this.pageSelectionDisable=true;
+                        this.endNumber = this.totalElements;
+                    } else {
+                        this.endNumber = this.pageSize;
+                    }
 
-            this.pageSize = this.paginationData['size'];
-            this.totalElements = this.paginationData['totalElements'];
-            this.totalPages = this.paginationData['totalPages'];
-            if (!changes['paginationData']['previousValue']) {
-                 if (this.totalElements < this.pageSize) {
-                    this.endNumber = this.totalElements;
-                }else{
-                    this.endNumber = this.pageSize;
                 }
-                
             }
         }
 
+
     }
- 
+
     delete(index, x) {
         this.filterWholeArray.splice(index, 1);
         this.filterQueries.splice(index, 1);
         this.onColumnFilterClick.emit(this.filterQueries);
     }
     onPageSizeChanged(newPageSize) {
-        this.pageNumber=0;
-        this.pageSize=+newPageSize;
-        //this.gridOptions.api.paginationSetPageSize(Number(newPageSize));
+        this.pageNumber = 0;
+        this.pageSize = +newPageSize;
         this.onPaginationTemplateClick.emit({ 'pgNo': 0, 'size': newPageSize });
-        this.itemStartIndex=1;
+        this.itemStartIndex = 1;
         if (this.totalElements < this.pageSize) {
-                    this.endNumber = this.totalElements;
-                }else{
-                    this.endNumber = this.pageSize;
-                }
-                
+            this.endNumber = this.totalElements;
+        } else {
+            this.endNumber = this.pageSize;
+        }
+
     }
     onSelectionChanged() {
         let selectedRows = this['api'].getSelectedRows();
@@ -177,13 +180,13 @@ export class SmartTableFramework implements OnChanges {
         }
         else {
             this.gridOptions.pagination = true;
-            
+
         }
-        if(this.settings.hasOwnProperty('customPannel')){
-            this.gridOptions.suppressPaginationPanel=true;
+        if (this.settings.hasOwnProperty('customPannel')) {
+            this.gridOptions.suppressPaginationPanel = true;
             this.paginationTemplate = true;
         }
-        else{
+        else {
             this.gridOptions.suppressPaginationPanel = false;
             this.gridOptions.paginationPageSize = 10;
         }
@@ -257,8 +260,8 @@ export class SmartTableFramework implements OnChanges {
             this.isAddButtonEnable = true;
         }
         this.gridOptions.domLayout = 'autoHeight';
-      
- /*       this.gridOptions.suppressScrollOnNewData = true;*/
+
+        /*       this.gridOptions.suppressScrollOnNewData = true;*/
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         }

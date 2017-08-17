@@ -27,7 +27,7 @@
             <button [disabled]="pageNumber===totalPages-1" (click)="nextPage()">Next</button>
             <button [disabled]="pageNumber===totalPages-1" (click)="lastPage()">Last</button>
              Page Size:
-            <select #pages (change)="onPageSizeChanged(pages.value)">
+            <select #pages [disabled]=pageSelectionDisable (change)="onPageSizeChanged(pages.value)">
                 <option value="20" [selected]>20</option>
                 <option value="30">30</option>
                 <option value="50">50</option>

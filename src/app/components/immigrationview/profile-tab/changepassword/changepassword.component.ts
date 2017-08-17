@@ -21,7 +21,13 @@ export class profilechangepwdcomponent implements OnInit {
         if (this.profilechange.newpwd == this.profilechange.currentpwd) {
             this.dialogService.addDialog(ConfirmComponent, {
                 title: 'Information',
-                message: 'New password not same as current password..'
+                message: 'New password cannot be same as current password..'
+            });
+        }
+        else if(this.profilechange.newpwd!=this.profilechange.retypenewpwd){
+            this.dialogService.addDialog(ConfirmComponent, {
+                title: 'Information',
+                message: 'New Password and Retype New Password should be same'
             });
         }
         else {
