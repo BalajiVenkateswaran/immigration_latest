@@ -5,6 +5,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {User} from "../../../../models/user";
 import {AppService} from "../../../../services/app.service";
 import {AddressInfoService} from "./addressinfo.service";
+import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+
 export interface formControl {
   name: string;
   value: FormControl;
@@ -35,8 +37,23 @@ export class AddressinfoComponent implements OnInit {
   residenceedit: any;
   mailingedit: any;
   foreignedit: any;
+      private ClientDetailsforaddress;
+      public WorkaddressinfoListspare: any = { address: {} };
+      private ResidenceaddressinfoListspare: any = { address: {} };
+      private MailingaddressinfoListspare: any = { address: {} };
+      private ForiegnaddressinfoListspare: any = { address: {} };
+      private workResidingSince: string;
+      private resiResidingSince: string;
   private clientAddress: any = {};
-
+  public checked: boolean;
+      public phoneAdd: boolean;
+      public faxAdd: boolean;
+  public copyMailingList: any = [];
+    private myDatePickerOptions: IMyOptions = {
+            // other options...
+            dateFormat: 'mm-dd-yyyy',
+            showClearDateBtn: false,
+        };
   constructor(private formBuilder: FormBuilder, public appService: AppService,
      private addressinfoservice: AddressInfoService) {
     if (this.appService.user) {
@@ -51,6 +68,7 @@ export class AddressinfoComponent implements OnInit {
         console.log("clientaddress%o", res);
         this.addressinfoList = res['clientAddress'];
         this.addressType();
+        this.ClientDetailsforaddress = JSON.parse(JSON.stringify(this.addressinfoList));
       });
     this.workedit = true;
     this.residenceedit = true;
@@ -68,24 +86,77 @@ export class AddressinfoComponent implements OnInit {
       }
       if (this.addressinfoList[key].addressType == "MAILING") {
         this.MailingaddressinfoList = this.addressinfoList[key];
+        this.copyMailingList = JSON.parse(JSON.stringify(this.MailingaddressinfoList));
       }
       if (this.addressinfoList[key].addressType == "FOREIGN") {
         this.ForiegnaddressinfoList = this.addressinfoList[key];
       }
     }
+    this.checkedAddress();
   }
+  checkedAddress() {
+          delete this.ResidenceaddressinfoList['address'].addressId;
+          delete this.MailingaddressinfoList['address'].addressId;
+          if (JSON.stringify(this.ResidenceaddressinfoList['address']) === JSON.stringify(this.MailingaddressinfoList['address'])) {
+              if (this.ResidenceaddressinfoList['telephone'] != undefined && this.MailingaddressinfoList['telephone'] != undefined) {
+                  if (this.ResidenceaddressinfoList['telephone'] == this.MailingaddressinfoList['telephone']) {
+                      this.phoneAdd = true;
+                  }
+              }
+              if (this.ResidenceaddressinfoList['fax'] != undefined && this.MailingaddressinfoList['fax'] != undefined) {
+                  if (this.ResidenceaddressinfoList['fax'] == this.MailingaddressinfoList['fax']) {
+                      this.faxAdd = true;
+                  }
+              }
+              if (this.phoneAdd == true && this.faxAdd == true) {
+                  this.checked = true;
+              }
+              else {
+                  this.checked = false;
+              }
+          }
+          else {
+              this.checked = false;
+          }
+      }
+         onDateChanged(event: IMyDateModel) {
 
+
+            }
+         adressChange() {
+             if (this.checked == true) {
+                 this.mailingedit = false;
+                 this.MailingaddressinfoList['address'] = this.ResidenceaddressinfoList['address'];
+                 this.MailingaddressinfoList['telephone'] = this.ResidenceaddressinfoList['telephone'];
+                 this.MailingaddressinfoList['fax'] = this.ResidenceaddressinfoList['fax'];
+                 if (this.copyMailingList.length!=0) {
+                     this.MailingaddressinfoList['address']['addressId'] = this.copyMailingList['address']['addressId'];
+                 }
+                 else {
+                     this.MailingaddressinfoList['address']['addressId'] = "";
+                 }
+             }
+             if (this.checked == false) {
+                 this.mailingedit = true;
+                 this.MailingaddressinfoList['address'] = this.copyMailingList['address'];
+                 this.MailingaddressinfoList['telephone'] = this.copyMailingList['telephone'];
+                 this.MailingaddressinfoList['fax'] = this.copyMailingList['fax'];
+             }
+         }
   addressedit(addresstype) {
     this.addressinfoservice.getClientAddress(this.appService.user.userId)
       .subscribe((res) => {
         console.log("clientaddress%o", res);
         this.addressinfoList = res['clientAddress'];
+        this.ClientDetailsforaddress = res['clientAddress'];
       });
     if (addresstype == "WORK") {
       this.workedit = !this.workedit;
+      this.workResidingSince = this.WorkaddressinfoList['residingSince'];
     }
     if (addresstype == "RESIDENCE") {
       this.residenceedit = !this.residenceedit;
+      this.resiResidingSince = this.ResidenceaddressinfoList['residingSince'];
     }
     if (addresstype == "MAILING") {
       this.mailingedit = !this.mailingedit;
@@ -96,41 +167,37 @@ export class AddressinfoComponent implements OnInit {
   }
 
   cancelEdit(addresstype) {
-    var workaddressinfoListspare = {address: {}};
-    var residenceaddressinfoListspare = {address: {}};
-    var mailingaddressinfoListspare = {address: {}};
-    var foriegnaddressinfoListspare = {address: {}};
 
-
-    for (var key in this.addressinfoList) {
-      if (this.addressinfoList[key].addressType == "WORK") {
-        workaddressinfoListspare = this.addressinfoList[key];
+    for (var key in this.ClientDetailsforaddress) {
+      if (this.ClientDetailsforaddress[key].addressType == "WORK") {
+        this.WorkaddressinfoListspare = this.ClientDetailsforaddress[key];
       }
-      if (this.addressinfoList[key].addressType == "RESIDENCE") {
-        residenceaddressinfoListspare = this.addressinfoList[key];
+      if (this.ClientDetailsforaddress[key].addressType == "RESIDENCE") {
+        this.ResidenceaddressinfoListspare = this.ClientDetailsforaddress[key];
       }
-      if (this.addressinfoList[key].addressType == "MAILING") {
-        mailingaddressinfoListspare = this.addressinfoList[key];
+      if (this.ClientDetailsforaddress[key].addressType == "MAILING") {
+        this.MailingaddressinfoListspare = this.ClientDetailsforaddress[key];
       }
-      if (this.addressinfoList[key].addressType == "FOREIGN") {
-        foriegnaddressinfoListspare = this.addressinfoList[key];
+      if (this.ClientDetailsforaddress[key].addressType == "FOREIGN") {
+        this.ForiegnaddressinfoListspare = this.ClientDetailsforaddress[key];
       }
     }
 
     if (addresstype == "WORK") {
-      this.WorkaddressinfoList = workaddressinfoListspare
+      this.WorkaddressinfoList = this.WorkaddressinfoListspare
       this.workedit = true;
     }
     if (addresstype == "RESIDENCE") {
-      this.ResidenceaddressinfoList = residenceaddressinfoListspare
+      this.ResidenceaddressinfoList = this.ResidenceaddressinfoListspare
       this.residenceedit = true;
     }
     if (addresstype == "MAILING") {
-      this.MailingaddressinfoList = mailingaddressinfoListspare
+      this.MailingaddressinfoList = this.MailingaddressinfoListspare
       this.mailingedit = true;
+      this.checkedAddress();
     }
     if (addresstype == "FOREIGN") {
-      this.ForiegnaddressinfoList = foriegnaddressinfoListspare
+      this.ForiegnaddressinfoList = this.ForiegnaddressinfoListspare
       this.foreignedit = true;
     }
   }
@@ -175,6 +242,8 @@ export class AddressinfoComponent implements OnInit {
           this.mailingedit = true;
           if (res['clientAddress']) {
             this.MailingaddressinfoList = res['clientAddress'];
+            this.copyMailingList = JSON.parse(JSON.stringify(this.MailingaddressinfoList));
+            this.checkedAddress();
           }
         });
     }
