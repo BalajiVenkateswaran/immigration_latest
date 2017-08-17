@@ -47,8 +47,8 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
     this.settings = {
       'columnFilter': true,
-      'paginationPageSize': 20,
       'isDeleteEnable': false,
+      'customPannel':true,
       'columnsettings': [
 
         {
