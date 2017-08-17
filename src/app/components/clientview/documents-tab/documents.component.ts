@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {DocumentService} from "./documents.service";
-import {Http, Headers, RequestOptions, Response} from "@angular/http";
-import {AppService} from "../../../services/app.service";
+import { DocumentService } from "./documents.service";
+import { Http, Headers, RequestOptions, Response } from "@angular/http";
+import { AppService } from "../../../services/app.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../../framework/confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {MenuComponent} from "../../common/menu/menu.component";
-import {ActionIcons} from '../../framework/smarttable/cellRenderer/ActionsIcons';
+import { MenuComponent } from "../../common/menu/menu.component";
+import { ActionIcons } from '../../framework/smarttable/cellRenderer/ActionsIcons';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as FileSaver from 'file-saver';
 export interface ConfirmModel {
@@ -18,9 +18,9 @@ export interface ConfirmModel {
 
 }
 @Component({
-  selector: 'app-documents',
-  templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.sass']
+    selector: 'app-documents',
+    templateUrl: './documents.component.html',
+    styleUrls: ['./documents.component.sass']
 })
 export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     warningMessage: boolean;
@@ -42,7 +42,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     public editFileObject: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
-    public count=0;
+    public count = 0;
     constructor(private documentservice: DocumentService, private http: Http, public appService: AppService, public dialogService: DialogService, private router: Router, private route: ActivatedRoute, private menuComponent: MenuComponent) {
         super(dialogService);
         if (this.appService.user) {
@@ -50,14 +50,14 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         }
         this.accountId = this.user.accountId;
 
-         this.settings = {
+        this.settings = {
             'pagination': false,
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
-            'rowHeight':30,
+            'rowHeight': 30,
             'context': {
-                          'componentParent': this
-                       },
+                'componentParent': this
+            },
             'columnsettings': [
                 {
                     headerName: "Actions",
@@ -103,7 +103,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     }
 
     onDeleteClick(event) {
-          this.dialogService.addDialog(ConfirmComponent, {
+        this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
             message: 'Are you sure you want to delete ' + event.data.fileName + '?'
         })
@@ -161,16 +161,18 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         return upload;
     }
     onReplaceClick(event) {
-         this.dialogService.addDialog(ConfirmComponent, {
+        let fileList: FileList = event.event.target.files;
+        let file: File = fileList[0];
+        var x = file.name;
+      
+        let fileExists = this.isfileExists(file);
+        this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
             message: 'Do You Want to Replace this file?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                let fileList: FileList = event.event.target.files;
-                let file: File = fileList[0];
-                var x = file.name;
                 var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf") {
+                if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
                     let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
                     this.documentservice.replaceFile(event.data.fileId, formData)
@@ -180,7 +182,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                         }
                         );
                 }
-                let fileExists = this.isfileExists(file);
+
                 if (fileExists) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
@@ -203,14 +205,14 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         () => console.log("OK");
     }
     getFilesList = function () {
-           this.documentservice.getFile(this.appService.selectedOrgClienttId)
+        this.documentservice.getFile(this.appService.selectedOrgClienttId)
             .subscribe((res) => {
                 if (res != undefined) {
-                    let data= res['files'];
-                    for(var i=0;i<data.length;i++){
-                        data[i]['orderNo']=i+1;
+                    let data = res['files'];
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]['orderNo'] = i + 1;
                     }
-                    this.getFiles=data;
+                    this.getFiles = data;
 
                 }
             });
@@ -262,7 +264,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         }
     }
     save() {
-          if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
+        if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
             this.warningMessage = true;
         }
         else {

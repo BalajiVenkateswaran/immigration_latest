@@ -127,6 +127,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
         var x = file.name;
+        let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
             message: 'Do you want to replace '+x+' file ?'
@@ -134,7 +135,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             if (isConfirmed) {
                 let formData: FormData = new FormData();
                 var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf") {
+                if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
 
                     formData.append('file', file, file.name);
 
@@ -146,7 +147,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                         );
 
                 }
-                let fileExists = this.isfileExists(file);
+                
                 if (fileExists) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',

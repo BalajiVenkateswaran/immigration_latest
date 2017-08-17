@@ -71,10 +71,14 @@
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.fax}}</span></div>
                         <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.fax" /></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4"><label>Working Since</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.residingSince}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.residingSince" /></div>
+                  <div class="row">
+                    <div class="col-md-4"><label for="wa-ws">Working Since</label></div>
+                    <div class="col-md-8">
+                      <my-date-picker *ngIf="workedit==false" [options]="myDatePickerOptions"
+                                      (dateChanged)="onDateChanged($event)"
+                                      [(ngModel)]="WorkaddressinfoList.residingSince"
+                                      [selDate]="workResidingSince"></my-date-picker>
+                      <span *ngIf="workedit==true">{{WorkaddressinfoList.residingSince}}</span>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
@@ -85,6 +89,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
@@ -148,10 +153,22 @@
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.fax}}</span></div>
                         <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.fax" /></div>
                     </div>
+                  <div class="row">
+                    <div class="col-md-4"><label for="wa-rs">Residing Since</label></div>
+                    <div class="col-md-8">
+                      <my-date-picker *ngIf="residenceedit==false" [options]="myDatePickerOptions"
+                                      (dateChanged)="onDateChanged($event)"
+                                      [(ngModel)]="ResidenceaddressinfoList.residingSince"
+                                      [selDate]="resiResidingSince"></my-date-picker>
+                      <span *ngIf="residenceedit==true">{{ResidenceaddressinfoList.residingSince}}</span>
+                    </div>
+
+                  </div>
                     <div class="row">
-                        <div class="col-md-4"><label>Residing Since</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.residingSince}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.residingSince" /></div>
+                        <div class="col-md-4"><label>Use same for Mailing Address</label></div>
+                        <div class="col-md-8">
+                            <input type="checkbox" name="clientAddress" [(ngModel)]="checked" (change)="adressChange()"/>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">

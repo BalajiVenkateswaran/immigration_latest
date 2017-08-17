@@ -137,13 +137,14 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
         var x = file.name;
+        let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
             message: 'Do you want to replace '+x+' file ?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf") {
+                if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
                     let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
                     this.clientdocumentrepositoryService.replaceFile(event.data.fileId, formData)
@@ -153,8 +154,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         }
                         );
                 }
-                let fileExists = this.isfileExists(file);
-                if (fileExists) {
+              if (fileExists) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'File already exists'
@@ -166,7 +166,9 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         message: 'Please upload only PDF file'
                     });
                 }
+                
             }
+           
         })
     }
 

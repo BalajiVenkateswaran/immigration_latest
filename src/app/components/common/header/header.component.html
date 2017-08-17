@@ -11,7 +11,7 @@
 		<div class="col-md-4 text-center pull-left">
 			<div class="datails-holder-name"
 				*ngIf="applicationViewMode=='Immigration'">
-				<div class="pull-left">
+				<div class="pull-left" *ngIf="headerService.selectedOrg">
 					<h4>{{headerService.selectedOrg.displayName}}</h4>
 				</div>
 				<div class="pull-left">
