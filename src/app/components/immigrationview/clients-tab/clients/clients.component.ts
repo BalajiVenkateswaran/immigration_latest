@@ -3,11 +3,12 @@ import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
-import {Component, OnInit} from '@angular/core';
-import {ClientsService} from "./clients.service";
-import {FormGroup, FormControl} from "@angular/forms";
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import { Component, OnInit,ViewChild} from '@angular/core';
+import { ClientsService } from "./clients.service";
+import { FormGroup, FormControl } from "@angular/forms";
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { SmartTableFramework } from "app/components/framework/smarttable/smarttable.component";
 
 export interface ConfirmModel {
   title: string;
@@ -34,10 +35,11 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public getClientsData: boolean = true;
   public newclitem: any = {};
   public warningMessage: boolean = false;
-  public DefaultResponse = {"status": "Active"};
+  public DefaultResponse = { "status": "Active" };
   public settings;
   public data;
-
+  public paginationData;
+  @ViewChild(SmartTableFramework) smarttable: SmartTableFramework;
   constructor(private clientService: ClientsService, private appService: AppService,
     public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService) {
@@ -45,6 +47,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
     this.settings = {
       'columnFilter': true,
+      'paginationPageSize': 20,
       'isDeleteEnable': false,
       'columnsettings': [
 
@@ -79,15 +82,19 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
     }
   }
+ 
   getCliData() {
     this.appService.showSideBarMenu(null, "clients");
     this.clientService.getClients(this.headerService.selectedOrg['orgId']).subscribe((res) => {
       this.clientList = res['clients'];
+      this.data = this.clientList;
+      this.paginationData = res['pageMetadata']
       this.clientList.forEach(client => {
         if (client.markForDeletion)
           client.status = 'Mark for Deletion';
       });
-      this.data = this.clientList;
+
+
     });
   }
 
@@ -97,12 +104,14 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       .getClients(this.headerService.selectedOrg['orgId'])
       .subscribe((res: any) => {
         this.clientList = res.clients;
+        this.data = this.clientList;
+        this.paginationData = res['pageMetadata'];
         this.clientList.forEach(client => {
           if (client.markForDeletion)
             client.status = 'Mark for Deletion';
         });
 
-        this.data = this.clientList;
+
       });
   }
   addNewCli() {
@@ -126,7 +135,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       }
     });
   }
-  clientSave(email,phone) {
+  clientSave(email, phone) {
     this.newclitem['accountId'] = this.appService.user.accountId;
     this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
     this.newclitem['createdBy'] = this.appService.user.userId;
@@ -137,7 +146,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     if (this.newclitem['firstName'] == '' || this.newclitem['firstName'] == null || this.newclitem['firstName'] == undefined || this.newclitem['lastName'] == '' || this.newclitem['lastName'] == null || this.newclitem['lastName'] == undefined || this.newclitem['email'] == '' || this.newclitem['email'] == null || this.newclitem['email'] == undefined || this.newclitem['phone'] == '' || this.newclitem['phone'] == null || this.newclitem['phone'] == undefined) {
       this.warningMessage = true;
     }
-    else if (email != null || phone!=null) {
+    else if (email != null || phone != null) {
       this.warningMessage;
     }
     else {
@@ -206,7 +215,37 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       this.data = res['clients'];
     })
   }
-
-
-
+  /* nextPage(pageData){
+     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'],pageData['pgNo']).subscribe(
+       res=>{
+         this.data=res['clients'];
+       }
+     )
+   }
+   firstPage(pageData){
+     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'],pageData['pgNo']).subscribe(res=>{
+       this.data=res['clients'];
+     })
+   }
+   lastPage(pageData){
+     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'],pageData['pgNo']).subscribe(res=>{
+       this.data=res['clients'];
+     })
+   }
+   previousPage(pageData){
+     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'],pageData['pgNo']).subscribe(res=>{
+       this.data=res['clients'];
+     })
+   }
+ */
+  pagingationClicked(pageData) {
+    this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'], pageData['pgNo'],pageData['size']).subscribe(res => {
+      this.data = res['clients'];
+      this.paginationData=res['pageMetadata'];
+    })
+  }
+  ngAfterViewInit() {
+    this.data=this.data;
+    this.paginationData=this.paginationData;
+  }
 }

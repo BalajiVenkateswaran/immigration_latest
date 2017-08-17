@@ -30,4 +30,7 @@ export class ClientsService {
   public getClientsFilteredData(orgId:string,filterQueries:any){
     return this.restService.getData("/clients/immigration/"+orgId+'?'+"filter="+filterQueries);
   }
+  public getClientPagination(orgId:string,pageNumber:number,size:number){
+    return this.restService.getData("/clients/immigration/"+orgId+'?'+"page="+pageNumber+"&size="+size);
+  }
 }

@@ -5,7 +5,14 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Clients</h2>
-        <smart-table class="immiviewClientsTable" [settings]="settings" [data]="data" (onAddClick)="addNewCli($event)" (onRowClick)="onUserRowClick($event)" (onColumnFilterClick)="filterData($event)"></smart-table>
+        <smart-table class="immiviewClientsTable" 
+        [settings]="settings" 
+        [data]="data" 
+        [paginationData]="paginationData" 
+        (onAddClick)="addNewCli($event)" 
+        (onRowClick)="onUserRowClick($event)" 
+        (onColumnFilterClick)="filterData($event)"
+        (onPaginationTemplateClick)="pagingationClicked($event)"></smart-table>
     </div>
 </div>
 
