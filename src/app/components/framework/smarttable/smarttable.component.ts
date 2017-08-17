@@ -106,6 +106,7 @@ export class SmartTableFramework implements OnChanges {
             console.log('Data changed');
             if (this.data != undefined) {
                 if (this.gridOptions.api != undefined) {
+                    this.gridOptions.api.hideOverlay();
                     this.gridOptions.api.setRowData(this.data);
                     let eGridDiv = <HTMLElement>document.querySelectorAll('div.ag-header-row')[document.querySelectorAll('div.ag-header-row').length - 1];
                     eGridDiv.style.width = "100%";
@@ -114,15 +115,18 @@ export class SmartTableFramework implements OnChanges {
                    
                 }
             }
-        }
-          
+        }    
         if (changes['paginationData']) {
 
             this.pageSize = this.paginationData['size'];
             this.totalElements = this.paginationData['totalElements'];
             this.totalPages = this.paginationData['totalPages'];
             if (!changes['paginationData']['previousValue']) {
-                this.endNumber=this.pageSize;
+                 if (this.totalElements < this.pageSize) {
+                    this.endNumber = this.totalElements;
+                }else{
+                    this.endNumber = this.pageSize;
+                }
                 
             }
         }
@@ -173,19 +177,26 @@ export class SmartTableFramework implements OnChanges {
         }
         else {
             this.gridOptions.pagination = true;
+            
+        }
+        if(this.settings.hasOwnProperty('customPannel')){
+            this.gridOptions.suppressPaginationPanel=true;
             this.paginationTemplate = true;
         }
-
+        else{
+            this.gridOptions.suppressPaginationPanel = false;
+            this.gridOptions.paginationPageSize = 10;
+        }
         if (this.settings.hasOwnProperty('context')) {
             this.gridOptions['context'] = this.settings['context'];
         }
 
-        if (this.settings.hasOwnProperty('paginationPageSize')) {
+        /*if (this.settings.hasOwnProperty('paginationPageSize')) {
             this.gridOptions['paginationPageSize'] = this.settings['paginationPageSize'];
         }
         else {
             this.gridOptions.paginationPageSize = 10;
-        }
+        }*/
         if (this.settings.hasOwnProperty('headerHeight')) {
             this.gridOptions['headerHeight'] = this.settings['headerHeight'];
         }
@@ -246,7 +257,7 @@ export class SmartTableFramework implements OnChanges {
             this.isAddButtonEnable = true;
         }
         this.gridOptions.domLayout = 'autoHeight';
-        this.gridOptions.suppressPaginationPanel = true;
+      
  /*       this.gridOptions.suppressScrollOnNewData = true;*/
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];

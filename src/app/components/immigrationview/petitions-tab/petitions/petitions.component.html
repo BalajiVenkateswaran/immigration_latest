@@ -2,8 +2,13 @@
   <div class="clearfix"></div>
   <div class="table-data">
     <h2>Petitions</h2>
-       <smart-table class="petitionslistTbl" [settings]="settings" [data]="data"
-                     (onRowClick)="moveTo($event)" (onColumnFilterClick)="filterData($event)" ></smart-table>
+       <smart-table class="petitionslistTbl" 
+       [settings]="settings" 
+       [data]="data"
+       [paginationData]="paginationData" 
+       (onRowClick)="moveTo($event)" 
+       (onColumnFilterClick)="filterData($event)"
+       (onPaginationTemplateClick)="pagingationClicked($event)" ></smart-table>
           <div class="clearfix"></div>
 </div>
 </div>
