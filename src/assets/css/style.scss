@@ -489,7 +489,7 @@ section {
             width: 12px;
             height: 12px;
             padding: 0 10px 0 3px;
-            margin: 0 10px 0 0;
+            margin: 0 20px 0 0;
             display:none;
         }
         span[class*="ico-arrow"] {
@@ -509,7 +509,7 @@ section {
     li.dropdown span.ico-arrow {
         position: absolute;
         right: 0px;
-        margin-top: 15px !important;
+        margin-top: 18px !important;
         background: url(../images/icons/down-arrow.png) no-repeat 0 0;
         -webkit-transition: transform 0.2s linear;
         -moz-transition: transform 0.2s linear;
@@ -1613,7 +1613,7 @@ confirm {
 .listsidemenu{
     color:#2f323a;
     list-style: none;
-    margin:0px;
+    margin:1px 0 0 0px;
     padding:0px;
 }
 .listsidemenu li{ padding:0px;
@@ -1625,13 +1625,21 @@ confirm {
     display: block;
 }
 .listsidemenu li a:hover{
+    width:calc(100% - 14px);
+    padding:5px 2px 5px 25px;
     color:#fff !important;
     background:#44474e;
+    margin:0px 7px;
+    border-radius:10px;
 
 }
 .listsidemenu li a.active {
+        width:calc(100% - 14px);
+    padding:5px 2px 5px 25px;
     color:#fff !important;
     background:#44474e;
+    margin:0px 7px;
+    border-radius:10px;
     }
 .qnameftype {
         width: 100%;
