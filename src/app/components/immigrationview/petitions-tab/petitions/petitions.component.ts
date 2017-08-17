@@ -52,7 +52,7 @@ export class PetitionsComponent implements OnInit {
             "isAddButtonEnable": false,
             "columnFilter": true,
             "isDeleteEnable": false,
-            'customPannel':true,
+            'customPannel': true,
             'columnsettings': [
                 {
                     headerName: "Name",
@@ -110,7 +110,7 @@ export class PetitionsComponent implements OnInit {
     ngOnInit() {
         this.appService.showSideBarMenu(null, "petitions");
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
-        if(this.headerService.selectedOrg['orgId']){
+        if (this.headerService.selectedOrg['orgId']) {
             this.orgId = this.headerService.selectedOrg['orgId'];
         }
         this.petitionService
@@ -138,9 +138,12 @@ export class PetitionsComponent implements OnInit {
     }
 
     ngDoCheck() {
-        if (this.orgId != this.headerService.selectedOrg['orgId']) {
-            this.ngOnInit();
+        if (this.headerService.selectedOrg) {
+            if (this.orgId != this.headerService.selectedOrg['orgId']) {
+                this.ngOnInit();
+            }
         }
+
     }
 
     addPetitionSubmit(model: petition, isValid: boolean) {
