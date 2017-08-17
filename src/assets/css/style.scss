@@ -412,7 +412,7 @@ section {
     overflow: auto;
     background-color:#2f323a;
     position: absolute;
-    padding: 0px;
+    padding:10px 0 0 0px;
     background: #fff;
     border-radius: 4px;
     margin:0px 0px 0 15px;
@@ -503,6 +503,8 @@ section {
     .navbar-nav>li>a:focus, .navbar-nav>li>a.active {
         color: #fff;
         background-color: #44474e !important;
+        margin:0px 7px;
+        border-radius:10px;
     }
     li.dropdown span.ico-arrow {
         position: absolute;

@@ -507,6 +507,36 @@
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">
         <li>
+            <a (click)="appservice.moveToPage('i129hPage1');highlightSBLink('I-129H Page 1')" [ngClass]="[checkForCurrentSBLink('I-129H Page 1') ? 'active': '']" routerLinkActive="active">
+                <span>I-129H Page 1</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129hPage2');highlightSBLink('I-129H Page 2')" [ngClass]="[checkForCurrentSBLink('I-129H Page 2') ? 'active': '']" routerLinkActive="active">
+                <span>I-129H Page 2</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129hPage3');highlightSBLink('I-129H Page 3')" [ngClass]="[checkForCurrentSBLink('I-129H Page 3') ? 'active': '']" routerLinkActive="active">
+                <span>I-129H Page 3</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129hPage4');highlightSBLink('I-129H Page 4')" [ngClass]="[checkForCurrentSBLink('I-129H Page 4') ? 'active': '']" routerLinkActive="active">
+                <span>I-129H Page 4</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129hPage5');highlightSBLink('I-129H Page 5')" [ngClass]="[checkForCurrentSBLink('I-129H Page 5') ? 'active': '']" routerLinkActive="active">
+                <span>I-129H Page 5</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('i129hPage6');highlightSBLink('I-129H Page 6')" [ngClass]="[checkForCurrentSBLink('I-129H Page 6') ? 'active': '']" routerLinkActive="active">
+                <span>I-129H Page 6</span>
+            </a>
+        </li>
+        <li>
             <a (click)="appservice.moveToPage('superuserview-productcatalog');highlightSBLink('Products')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Products</span>

@@ -219,6 +219,12 @@ import {i129dcPage1Component} from './components/immigrationview/petitions-tab/p
 import {i129dcPage2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129DC/page-2/page-2.component';
 import {i129dcPage3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129DC/page-3/page-3.component';
 
+import {i129HPage1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
+import {i129HPage2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-2/page-2.component';
+import {i129HPage3Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-3/page-3.component';
+import {i129HPage4Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-4/page-4.component';
+import {i129HPage5Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-5/page-5.component';
+import {i129HPage6Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-6/page-6.component';
 
 
 
@@ -301,6 +307,12 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
       i129dcPage1Component,
       i129dcPage2Component,
       i129dcPage3Component,
+      i129HPage1Component,
+      i129HPage2Component,
+      i129HPage3Component,
+      i129HPage4Component,
+      i129HPage5Component,
+      i129HPage6Component,
     //pdf oage components imported above which is for testing only
       CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,
     InvoiceUploadButton,
