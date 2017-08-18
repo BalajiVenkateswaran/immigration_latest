@@ -6,8 +6,8 @@
                 <li><a href="#">Document Expirations</a></li>
             </ul>
             <div class="clearfix"></div>
-            <h2><span>Document Expirations</span></h2>
-            <smart-table [settings]="settings" [data]="data"
+            <h2>Document Expirations</h2>
+            <smart-table class="clientview-clientdetailtab-docexp" [settings]="settings" [data]="data"
                          (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table> 
                 <div class="clearfix"></div>
 </div>

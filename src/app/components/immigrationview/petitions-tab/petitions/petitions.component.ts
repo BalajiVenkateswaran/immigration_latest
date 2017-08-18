@@ -110,18 +110,19 @@ export class PetitionsComponent implements OnInit {
     ngOnInit() {
         this.appService.showSideBarMenu(null, "petitions");
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
-        if (this.headerService.selectedOrg['orgId']) {
+        if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId']) {
             this.orgId = this.headerService.selectedOrg['orgId'];
+            this.petitionService
+                .getPetitions(this.headerService.selectedOrg['orgId'])
+                .subscribe((res: any) => {
+                    this.petitions = res['petitions'];
+                    this.petitionfirstName = this.petitions;
+                    console.log(this.petitions);
+                    this.data = this.petitions;
+                    this.paginationData = res['pageMetadata'];
+                });
         }
-        this.petitionService
-            .getPetitions(this.headerService.selectedOrg['orgId'])
-            .subscribe((res: any) => {
-                this.petitions = res['petitions'];
-                this.petitionfirstName = this.petitions;
-                console.log(this.petitions);
-                this.data = this.petitions;
-                this.paginationData = res['pageMetadata'];
-            });
+
 
 
     }

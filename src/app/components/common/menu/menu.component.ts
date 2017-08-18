@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
     private clientdep: any;
     private clientdependents;
     private immipetitiondoc;
+    private quespdfPages;
     private immidependents;
     private clientQuest;
     private immiQstnre;
@@ -37,6 +38,9 @@ export class MenuComponent implements OnInit {
   immiPetDoc() {
       this.immipetitiondoc = !this.immipetitiondoc;
   }
+    showquespdfpages() {
+        this.quespdfPages = !this.quespdfPages;
+    }
   petrportsclick() {
       this.immipetitionreports = !this.immipetitionreports;
   }
@@ -66,6 +70,7 @@ export class MenuComponent implements OnInit {
       this.clientdoctrue = false;
       this.clientdep = false;
       this.immipetitiondoc = false;
+      this.quespdfPages = false;
   }
   ngDoCheck(){
       this.sideBarMenu = this.appservice.sideBarMenu;

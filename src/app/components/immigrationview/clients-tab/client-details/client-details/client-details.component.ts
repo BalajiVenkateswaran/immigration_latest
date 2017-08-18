@@ -66,7 +66,6 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
     }
     getClientDetails(){
-
         this.clientDetailsService.getClientDetails(this.appService.clientId)
             .subscribe((res) => {
                 if (res['clientDetails']) {
@@ -210,6 +209,9 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
             });
     }
 
+    isProfileSaveButtonEnabled(): boolean{
+      return this.phoneNumber.errors == null;
+    }
 
     mapToClientProfile() {
         this.clientProfile.fileNumber = this.clientDetails['fileNumber'];

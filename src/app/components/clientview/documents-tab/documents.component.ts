@@ -130,6 +130,8 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                 .subscribe(
                 res => {
                     this.getFilesList();
+                    fileList=null;
+                    formData=null;
                 }
                 );
 
@@ -278,4 +280,8 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         this.result = false;
         this.close();
     }
+    onFileUploadClick(file){
+        file.value=null;
+    }
+
 }
