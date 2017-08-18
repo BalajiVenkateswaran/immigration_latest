@@ -4,7 +4,7 @@
         <h1>{{appService.firstName}} {{appService.lastName}}</h1>
         <div class="clearfix"></div>
         <h2>Arrival Departure Info</h2>
-        <smart-table [settings]="settings" [data]="data"
+        <smart-table class="clientview-clientdetailtab-arr-dep-info" [settings]="settings" [data]="data"
                      (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
         <div class="clearfix"></div>
     </div>
