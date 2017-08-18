@@ -252,4 +252,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     this.result = false;
     this.close();
   }
+  onFileUploadClick(file){
+        file.value=null;
+    }
 }

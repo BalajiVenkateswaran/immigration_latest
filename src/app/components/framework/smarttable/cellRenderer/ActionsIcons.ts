@@ -10,7 +10,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular/main';
     <div>
             <i class="fa fa-files-o" aria-hidden="true" ></i>
             </div>
-            <input type="file" (change)="onReplaceFile($event)" class="upload" name="file"  />
+            <input type="file" #fileInput (click)="onUploadFileClick(fileInput)" (change)="onReplaceFile($event)" class="upload" name="file"  />
     </div>
     <i class="fa fa-download" aria-hidden="true" (click)="download()"></i>
     </span>
@@ -35,6 +35,9 @@ export class ActionIcons implements ICellRendererAngularComp {
     }
     onReplaceFile(event) {
       this.params.context.componentParent.onReplaceClick({'event': event, 'data': this.params.data});
+    }
+    onUploadFileClick(file){
+       file.value=null;
     }
 
 

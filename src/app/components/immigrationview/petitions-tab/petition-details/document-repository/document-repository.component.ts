@@ -256,4 +256,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         this.result = false;
         this.close();
     }
+    onFileUploadClick(file){
+        file.value=null;
+    }
 }

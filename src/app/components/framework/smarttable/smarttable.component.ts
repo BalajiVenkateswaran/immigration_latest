@@ -51,7 +51,8 @@ export class SmartTableFramework implements OnChanges {
     public pageNumber: number = 0;
     public itemStartIndex = 1;
     public endNumber: number;
-    public pageSelectionDisable:boolean=false;
+    public pageSelectionDisable: boolean = false;
+    public queryParameters;
     constructor() {
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
@@ -81,6 +82,7 @@ export class SmartTableFramework implements OnChanges {
                     return item.headingName + ":" + item.filterValue;
                 })
                 this.onColumnFilterClick.emit(that.filterQueries);
+                this.appendParamValues(that.filterQueries);
             }
         });
 
@@ -124,7 +126,7 @@ export class SmartTableFramework implements OnChanges {
                 this.totalPages = this.paginationData['totalPages'];
                 if (!changes['paginationData']['previousValue']) {
                     if (this.totalElements < this.pageSize) {
-                        this.pageSelectionDisable=true;
+                        this.pageSelectionDisable = true;
                         this.endNumber = this.totalElements;
                     } else {
                         this.endNumber = this.pageSize;
@@ -283,6 +285,7 @@ export class SmartTableFramework implements OnChanges {
             this.endNumber = (this.pageNumber + 1) * (this.pageSize);
         }
         this.onPaginationTemplateClick.emit({ 'pgNo': this.pageNumber, 'size': this.pageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize });
     }
     firstPage() {
         this.pageNumber = 0;
@@ -290,12 +293,14 @@ export class SmartTableFramework implements OnChanges {
         this.endNumber = this.pageSize;
 
         this.onPaginationTemplateClick.emit({ 'pgNo': this.pageNumber, 'size': this.pageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize });
     }
     lastPage() {
         this.endNumber = this.totalElements;
         this.pageNumber = this.totalPages - 1;
         this.itemStartIndex = this.pageNumber * this.pageSize + 1;
         this.onPaginationTemplateClick.emit({ 'pgNo': this.totalPages - 1, 'size': this.pageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize });
     }
     previousPage() {
         if (this.pageNumber == 1) {
@@ -307,7 +312,11 @@ export class SmartTableFramework implements OnChanges {
         this.endNumber = this.pageSize * this.pageNumber;
         this.pageNumber = this.pageNumber - 1;
         this.onPaginationTemplateClick.emit({ 'pgNo': this.pageNumber, 'size': this.pageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize });
 
+    }
+    appendParamValues(data) {
+        
     }
 }
 

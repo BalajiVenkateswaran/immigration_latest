@@ -1,10 +1,10 @@
-import {AppService} from '../../../services/app.service';
-import {ConfirmComponent} from '../../framework/confirmbox/confirm.component';
-import {Component, OnInit, DoCheck} from '@angular/core';
-import {Router} from '@angular/router';
-import {FormGroup, FormControl} from "@angular/forms";
-import {ResetPasswordService} from "./reset-password.service";
-import {DialogService} from "ng2-bootstrap-modal";
+import { AppService } from '../../../services/app.service';
+import { ConfirmComponent } from '../../framework/confirmbox/confirm.component';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators, AbstractControl } from "@angular/forms";
+import { ResetPasswordService } from "./reset-password.service";
+import { DialogService } from "ng2-bootstrap-modal";
 
 @Component({
   selector: 'app-reset-password',
@@ -19,19 +19,21 @@ export class ResetPasswordComponent implements OnInit {
     menu: null,
     footer: null
   };
+  confirmPassword: ConfirmPasswordValidator;
+  con = new ConfirmPasswordValidator();
   login = new FormGroup({
-    email: new FormControl(),
-    oldPassword: new FormControl(),
-    newPassword: new FormControl(),
-    confirmPassword: new FormControl()
-  });
+    email: new FormControl('', [Validators.required]),
+    oldPassword: new FormControl('', [Validators.required]),
+    newPassword: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required])
+  }, Validators.compose([this.con.matchPassword, this.con.oldSameAsNew]));
   constructor(private router: Router, private resetPasswordService: ResetPasswordService,
     private appService: AppService, private dialogService: DialogService) {
-
+    console.log(this.login);
   }
 
   ngOnInit() {
-    this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
+    this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
   }
 
   loginSubmit(login, isValid) {
@@ -64,3 +66,32 @@ export class ResetPasswordComponent implements OnInit {
   }
 
 }
+export class ConfirmPasswordValidator {
+    matchPassword(control: AbstractControl) {
+      if (control.value) {
+        let password = control.get('newPassword').value;
+        let confirmPassword = control.get('confirmPassword').value;
+        let oldPassword = control.get('oldPassword').value;
+        if (password != confirmPassword) {
+          control.get("confirmPassword").setErrors({ matchPassword: true });
+        }
+
+
+      }
+      return null;
+
+
+    }
+    oldSameAsNew(formControl: AbstractControl) {
+      if (formControl.value) {
+        let oldPassword = formControl.get('oldPassword').value;
+        let newPassword = formControl.get('newPassword').value;
+        if (oldPassword == newPassword) {
+          formControl.get("oldPassword").setErrors({ oldSameAsNew: true });
+        }
+
+      }
+      return null;
+    }
+}
+
