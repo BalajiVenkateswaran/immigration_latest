@@ -315,7 +315,20 @@ header {
                       border-bottom: 12px solid red;
                       margin-top: 0px;
                     }
-                    span.maintab-Petitions, span.maintab-Clients, span.maintab-Organization, span.maintab-Manageaccount, span.maintab-Reports, span.maintab-Profile {
+                    span.maintab-Petitions, 
+                    span.maintab-Clients, 
+                    span.maintab-Organization, 
+                    span.maintab-Manageaccount, 
+                    span.maintab-Reports, 
+                    span.maintab-Profile, 
+                    span.maintab-Accounts, 
+                    span.maintab-procat, 
+                    span.maintab-invoices, 
+                    span.maintab-payments, 
+                    span.maintab-clientdetails,
+                    span.maintab-clientdocuments, 
+                    span.maintab-clientQuestionnaire, 
+                    span.maintab-clientrquests {
                         width:50px;
                         height:50px;
                         margin:0px auto;
@@ -326,25 +339,63 @@ header {
                         background-size: 50%;
                     }
                     span.maintab-Clients {
-                        background:url(../images/Clients.png) no-repeat center center #f66955;
+                        background:url(../images/Clients.png) no-repeat center center #f56954;
                             background-size: 65%;
                     }
                     span.maintab-Organization {
-                        background:url(../images/Organization.png) no-repeat center center #00c0ef;
+                        background:url(../images/Organization.png) no-repeat center center #3baeda;
                             background-size: 70%;
                     }
                     span.maintab-Manageaccount {
-                        background:url(../images/Manage_account.png) no-repeat center center #01b29e;
+                        background:url(../images/Manage_account.png) no-repeat center center #00a65a;
                             background-size: 70%;
                     }
                     span.maintab-Reports {
-                        background:url(../images/Reports.png) no-repeat center center #ec3b83;
+                        background:url(../images/Reports.png) no-repeat center center #967bdc;
                         background-size: 50%;
                     }
                     span.maintab-Profile {
-                        background:url(../images/Reports.png) no-repeat center center #78c900;
-                        background-size: 50%;
+                        background:url(../images/Profile.png) no-repeat center center #36bc9b;
+                        /*background-size: 50%;*/
                     }
+
+                    span.maintab-Accounts {
+                        background:url(../images/Accounts.png) no-repeat center center #8cc051;
+                            background-size: 110%;
+                    }
+                    span.maintab-procat {
+                        background:url(../images/Productcatalog.png) no-repeat center center #0073b7;
+                            background-size: 110%;
+                    }
+                    span.maintab-invoices {
+                        background:url(../images/Invoices.png) no-repeat center center #d870ad;
+                            background-size: 110%;
+                    }
+                    span.maintab-payments {
+                        background:url(../images/Payments.png) no-repeat center center #6c811e;
+                            background-size:110%;
+                    }
+                    
+                    span.maintab-clientdetails {
+                        background:url(../images/ClientDetails.png) no-repeat center center #4b89dc;
+                            background-size:110%;
+                    }
+                    span.maintab-clientdocuments {
+                        background:url(../images/Documents.png) no-repeat center center #ba79cb;
+                            background-size:110%;
+                    }
+                    span.maintab-clientQuestionnaire {
+                        background:url(../images/Questionnaires.png) no-repeat center center #db4453;
+                            background-size:110%;
+                    }
+                    span.maintab-clientrquests {
+                        background:url(../images/Requests.png) no-repeat center center #ec3b83;
+                            background-size:110%;
+                    }
+                    
+                    
+
+
                 }
                 a.active {
                     color:#c2c2c2 !important;
@@ -1844,4 +1895,10 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 .clientview-ques129h input[type="checkbox"] {
     margin: 3px 5px 15px 0;
+}
+.btndisabled {
+    border: none;
+    background:lightgray;
+    color: #4d4d4d !important;
+    cursor:not-allowed;
 }

@@ -99,6 +99,7 @@ import { ConfirmorgComponent } from './components/framework/confirmbox/confirmor
 import {AgGridModule} from "ag-grid-angular/main";
 import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
 import {checklistdownloadButton} from './components/immigrationview/manage-account-tab/checklist/downloadButton';
+import {checklistuploadButton} from './components/immigrationview/manage-account-tab/checklist/uploadButton';
 
 //superusersview
 
@@ -293,7 +294,7 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
     NgbModule.forRoot()],
   entryComponents: [
     ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons,
-      GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton,MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton
+      GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton,checklistuploadButton,MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton
   ],
   declarations: [
     i129Page1Component,
@@ -314,7 +315,7 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
       i129HPage5Component,
       i129HPage6Component,
     //pdf oage components imported above which is for testing only
-      CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,
+      CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton,
     InvoiceUploadButton,
     AppComponent,
     HeaderComponent,

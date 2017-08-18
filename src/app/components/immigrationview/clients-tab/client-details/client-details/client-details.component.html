@@ -14,7 +14,7 @@
               <div class="tbl-head-btn" [hidden]="isProfileEdit">
                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel
                 </button>
-                <button type="submit" value="Save" class="savebtn" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save
+                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn': 'savebtn btndisabled'" (click)="saveClientProfile()" [disabled]="!isProfileSaveButtonEnabled()" *ngIf="isProfileEdit==false">Save
                 </button>
               </div>
             </div>
@@ -72,16 +72,16 @@
               /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span>
             </div>
           </div>
-            <div class="row sfm" *ngIf="phoneNumber.touched">
-                                    <div class="col-md-12">
-                                        <div class="redstar" *ngIf="phoneNumber.errors && phoneNumber.errors.required">
-                                            * Phone Number is required
-                                        </div>
-                                        <div class="redstar" *ngIf="phoneNumber.errors && phoneNumber.errors.pattern">
-                                            * Phone field can contain numbers, '+' , '(' , ')' 
-                                        </div>
-                                    </div>
-                                </div>
+          <div class="row sfm" *ngIf="isProfileEdit==false && phoneNumber != null && phoneNumber.errors">
+              <div class="col-md-12">
+                  <div class="redstar" *ngIf="phoneNumber.errors.required">
+                      * Phone Number is required
+                  </div>
+                  <div class="redstar" *ngIf="phoneNumber.errors.pattern">
+                      * Invalid Phone Number
+                  </div>
+              </div>
+          </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-country">Created By</label></div>
             <div class="col-md-8">
@@ -121,7 +121,7 @@
                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isProfileEdit==false">
                             Cancel
                         </button>
-                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">
+                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn bottombtns': 'savebtn bottombtns btndisabled'" [disabled]="!isProfileSaveButtonEnabled()" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">
                             Save
                         </button>
               </div>

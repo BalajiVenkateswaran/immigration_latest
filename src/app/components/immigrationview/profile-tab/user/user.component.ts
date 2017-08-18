@@ -34,7 +34,7 @@ export class profileusercomponent implements OnInit {
           this.userInfo = res['user'];
         }
       });
-    this.profileUserservice.getDefaultOrg(this.appService.user.userId)
+    this.profileUserservice.getDefaultOrg(this.appService.user.accountId, this.appService.user.userId)
       .subscribe((res) => {
         console.log(res);
         if (res['statusCode'] == "SUCCESS") {

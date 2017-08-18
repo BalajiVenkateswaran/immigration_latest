@@ -10,15 +10,10 @@ export class ManageAccountChecklistService {
     public getChecklist(accountId: string) {
         return this.restService.getData("/immigration/account/" + accountId+ "/checklist");
     }
-    public uploadFile(checklistId: string, formData: FormData) {
-    return this.restService.postData("/immigration/account/" + checklistId + "/checklist/file/upload", formData);
+    public uploadFile(accountId: string,petitiontypeId:string, formData: FormData) {
+        return this.restService.postData("/immigration/account/" + accountId + "/checklist/upload/petitiontype/" + petitiontypeId,formData);
     }
-    public addChecklist(accountId: string, fileId: string, petitiontypeId: string) {
-        var req = {
-            "accountId": accountId,
-            "fileId": fileId,
-            "petitionTypeId": petitiontypeId
-        };
-        return this.restService.postData("/immigration/account/checklist",req);
+    public downloadChecklist(checklistId: string) {
+        return this.restService.getData("/immigration/account/downloadCheckList/" + checklistId);
     }
 }
