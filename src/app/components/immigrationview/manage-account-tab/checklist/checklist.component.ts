@@ -3,14 +3,13 @@ import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {ManageAccountChecklistService} from './checklist.service';
 import { AppService } from '../../../../services/app.service';
 import { checklistdownloadButton } from './downloadButton';
+import { checklistuploadButton } from './uploadButton';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {ManageAccountPetitionStagesService} from '../petitiontypestages/petitiontypestages.service';
 
 export interface ConfirmModel {
   title: string;
   message: string;
-  getChecklist: boolean;
-  addChecklists: boolean;
 }
 @Component({
   selector: 'app-manageaccount-checklist',
@@ -19,16 +18,19 @@ export interface ConfirmModel {
 })
 export class ManageaccountChecklistComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public settings;
-  public getChecklist: boolean = true;
-  public addChecklists: boolean;
   public data;
-  public addChecklist: any = {};
+
   public fileId: any;
   public petitionTypes: any;
   constructor(public dialogService: DialogService, public manageAccountCheckListService: ManageAccountChecklistService,
       public appService: AppService, public manageAccountPetitionStagesService: ManageAccountPetitionStagesService) {
     super(dialogService);
     this.settings = {
+        'isAddButtonEnable': false,
+        'isDeleteEnable': false,
+        'context': {
+            'componentParent': this
+        },
       'columnsettings': [
         {
           headerName: "Sl.No",
@@ -42,7 +44,11 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
         {
 
           headerName: "Doc Name",
-          field: "docName"
+          field: "fileName",
+        },
+        {
+            headerName: "Upload",
+            cellRendererFramework: checklistuploadButton,
         },
         {
             headerName: "Download",
@@ -71,77 +77,7 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
           }
       });
   }
-  addList(event) {
-    this.dialogService.addDialog(ManageaccountChecklistComponent, {
-      getChecklist: false,
-      addChecklists: true,
-      title: 'Add Checklist',
-    }).subscribe((isConfirmed) => {
-      if (isConfirmed) {
-          this.getchecklist();
-      }
-    });
-  }
-  fileUpload(event) {
-      let fileList: FileList = event.target.files;
-      let file: File = fileList[0];
-      var x = file.name;
-      let fileExists = this.isfileExists(file);
-      var y = x.split(".");
-      if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
-          let formData: FormData = new FormData();
-          formData.append('file', file, file.name);
-      
-          this.manageAccountCheckListService.uploadFile(this.data[0].checkListId, formData)
-              .subscribe(
-              res => {
-                  console.log(res);
-              }
-              );
 
-      }
-      else {
-          if (fileExists == true) {
-              this.dialogService.addDialog(ConfirmComponent, {
-                  title: 'Error..!',
-                  message: 'Filename is already exists.'
-              });
-          }
-          else {
-              this.dialogService.addDialog(ConfirmComponent, {
-                  title: 'Error..!',
-                  message: 'Please Upload Only Pdf files'
-              });
-          }
-      }
-  }
-  isfileExists(file) {
-      if (this.data == undefined) {
-          this.data = [];
-      }
-      let upload: boolean = false;
-      this.data.filter(item => {
-          if (file.name == item.fileName) {
-              upload = true;
-              return false;
-          }
-          return true;
-      })
-      return upload;
-  }
-  save() {
-    
-      this.manageAccountCheckListService.addChecklist(this.appService.selacntId, this.fileId,this.addChecklist.petitiontype)
-          .subscribe(res => {
-              console.log(res);
-          });
-    this.result=true;
-    this.close();
-
-  } 
-  cancel(){
-    this.result=false;
-    this.close();
-  }
+ 
 
 }
