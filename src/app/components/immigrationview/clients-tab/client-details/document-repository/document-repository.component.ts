@@ -260,5 +260,8 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         this.result = false;
         this.close();
     }
+    onFileUploadClick(file){
+        file.value=null;
+    }
 
 }
