@@ -8,7 +8,8 @@
        [paginationData]="paginationData" 
        (onRowClick)="moveTo($event)" 
        (onColumnFilterClick)="filterData($event)"
-       (onPaginationTemplateClick)="pagingationClicked($event)" ></smart-table>
+       (onPaginationTemplateClick)="pagingationClicked($event)" 
+       (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
           <div class="clearfix"></div>
 </div>
 </div>

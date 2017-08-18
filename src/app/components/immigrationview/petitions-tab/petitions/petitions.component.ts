@@ -125,16 +125,25 @@ export class PetitionsComponent implements OnInit {
 
 
     }
-    filterData(filterQueries) {
-        this.petitionService.getPetitionsFilteredData(this.headerService.selectedOrg['orgId'], filterQueries).subscribe(res => {
-            this.data = res['petitions'];
-        })
-    }
-    pagingationClicked(pageData) {
-        this.petitionService.getPetitionsPagination(this.headerService.selectedOrg['orgId'], pageData['pgNo'], pageData['size']).subscribe(res => {
-            this.data = res['clients'];
-            this.paginationData = res['pageMetadata'];
-        })
+    /* filterData(filterQueries) {
+         this.petitionService.getPetitionsFilteredData(this.headerService.selectedOrg['orgId'], filterQueries).subscribe(res => {
+             this.data = res['petitions'];
+         })
+     }
+     pagingationClicked(pageData) {
+         this.petitionService.getPetitionsPagination(this.headerService.selectedOrg['orgId'], pageData['pgNo'], pageData['size']).subscribe(res => {
+             this.data = res['petitions'];
+             this.paginationData = res['pageMetadata'];
+         })
+     }*/
+    dataWithParameters(queryData) {
+        this.petitionService.getPetitionsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
+            res => {
+                this.data = res['petitions'];
+                this.paginationData = res['pageMetadata'];
+            }
+        )
+
     }
 
     ngDoCheck() {

@@ -29,5 +29,8 @@ export class PetitionsService {
    public getPetitionsPagination(orgId:string,pageNumber:number,size:number){
     return this.restService.getData("/petitions/immigration/"+orgId+'?'+"page="+pageNumber+"&size="+size);
   }
+  public getPetitionsWithQueryParams(orgId:string,queryData){
+    return this.restService.getData("/petitions/immigration/"+orgId+queryData);
+  }
 
 }

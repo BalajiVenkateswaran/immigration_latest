@@ -4,6 +4,7 @@ import { profilechangepwdservice } from './changepassword.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DialogService } from "ng2-bootstrap-modal";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
     selector: 'app-profilchangepassword',
@@ -12,11 +13,16 @@ import { DialogService } from "ng2-bootstrap-modal";
 })
 
 export class profilechangepwdcomponent implements OnInit {
+    passwordRegex: RegExp;
     public profilechange: any = {};
+    newpwd: FormControl;
     ngOnInit() {
        
     }
-    constructor(public appService: AppService, private profileChangepwdservice: profilechangepwdservice, private dialogService: DialogService) { }
+    constructor(public appService: AppService, private profileChangepwdservice: profilechangepwdservice, private dialogService: DialogService) { 
+        this.passwordRegex = /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/;
+        this.newpwd = new FormControl('', [Validators.required,Validators.pattern(this.passwordRegex)]);
+    }
     changepwd() {
         if (this.profilechange.newpwd == this.profilechange.currentpwd) {
             this.dialogService.addDialog(ConfirmComponent, {

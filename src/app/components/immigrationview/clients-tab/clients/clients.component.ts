@@ -8,7 +8,7 @@ import { ClientsService } from "./clients.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import { SmartTableFramework } from "app/components/framework/smarttable/smarttable.component";
+
 
 export interface ConfirmModel {
   title: string;
@@ -39,7 +39,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public settings;
   public data;
   public paginationData;
-  @ViewChild(SmartTableFramework) smarttable: SmartTableFramework;
   constructor(private clientService: ClientsService, private appService: AppService,
     public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService) {
@@ -210,42 +209,23 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.appService.clientId = event.data.clientId;
 
   }
-  filterData(filterQueries) {
+  /*filterData(filterQueries) {
     this.clientService.getClientsFilteredData(this.headerService.selectedOrg['orgId'], filterQueries).subscribe(res => {
       this.data = res['clients'];
     })
   }
-  /* nextPage(pageData){
-     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'],pageData['pgNo']).subscribe(
-       res=>{
-         this.data=res['clients'];
-       }
-     )
-   }
-   firstPage(pageData){
-     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'],pageData['pgNo']).subscribe(res=>{
-       this.data=res['clients'];
-     })
-   }
-   lastPage(pageData){
-     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'],pageData['pgNo']).subscribe(res=>{
-       this.data=res['clients'];
-     })
-   }
-   previousPage(pageData){
-     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'],pageData['pgNo']).subscribe(res=>{
-       this.data=res['clients'];
-     })
-   }
- */
   pagingationClicked(pageData) {
     this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'], pageData['pgNo'],pageData['size']).subscribe(res => {
       this.data = res['clients'];
       this.paginationData=res['pageMetadata'];
     })
+  }*/
+  dataWithParameters(queryData){
+    this.clientService.getClientsWithQueryParams(this.headerService.selectedOrg['orgId'],queryData).subscribe(
+      res=>{
+         this.data = res['clients'];
+         this.paginationData=res['pageMetadata'];
+      })
   }
-  ngAfterViewInit() {
-    this.data=this.data;
-    this.paginationData=this.paginationData;
-  }
+
 }

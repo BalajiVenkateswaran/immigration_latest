@@ -33,4 +33,7 @@ export class ClientsService {
   public getClientPagination(orgId:string,pageNumber:number,size:number){
     return this.restService.getData("/clients/immigration/"+orgId+'?'+"page="+pageNumber+"&size="+size);
   }
+  public getClientsWithQueryParams(orgId:string,queryData){
+    return this.restService.getData("/clients/immigration/"+orgId+queryData);
+  }
 }

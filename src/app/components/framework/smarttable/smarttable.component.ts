@@ -13,6 +13,8 @@ import { RequestButton } from '../../clientview/request-tab/RequestButton';
     templateUrl: './smarttable.component.html'
 })
 export class SmartTableFramework implements OnChanges {
+    filteredQueryParams: any;
+    paginationWithFilterData: boolean;
     pageSize: number;
     totalElements: number;
     totalPages: number;
@@ -30,6 +32,7 @@ export class SmartTableFramework implements OnChanges {
     @Output() onDeleteClick = new EventEmitter();
     @Output() onColumnFilterClick = new EventEmitter();
     @Output() onPaginationTemplateClick = new EventEmitter();
+    @Output() dataWithQueryParams = new EventEmitter();
     public gridOptions;
     public paginationTemplate: boolean;
     public rowClickDone: boolean = false;
@@ -81,9 +84,10 @@ export class SmartTableFramework implements OnChanges {
                 this.filterQueries = this.filterWholeArray.map(function (item) {
                     return item.headingName + ":" + item.filterValue;
                 })
-                this.onColumnFilterClick.emit(that.filterQueries);
-                this.appendParamValues(that.filterQueries);
+
+                this.appendParamValues({ 'data': that.filterQueries, 'filterFlag': true });
             }
+
         });
 
 
@@ -124,15 +128,18 @@ export class SmartTableFramework implements OnChanges {
                 this.pageSize = this.paginationData['size'];
                 this.totalElements = this.paginationData['totalElements'];
                 this.totalPages = this.paginationData['totalPages'];
-                if (!changes['paginationData']['previousValue']) {
+                if (!changes['paginationData']['previousValue'] || this.paginationWithFilterData) {
                     if (this.totalElements < this.pageSize) {
                         this.pageSelectionDisable = true;
                         this.endNumber = this.totalElements;
-                    } else {
+                    } 
+                     else{
+                        this.pageSelectionDisable = false;
                         this.endNumber = this.pageSize;
-                    }
+                }
 
                 }
+               
             }
         }
 
@@ -142,12 +149,13 @@ export class SmartTableFramework implements OnChanges {
     delete(index, x) {
         this.filterWholeArray.splice(index, 1);
         this.filterQueries.splice(index, 1);
-        this.onColumnFilterClick.emit(this.filterQueries);
+        this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
+
     }
     onPageSizeChanged(newPageSize) {
         this.pageNumber = 0;
         this.pageSize = +newPageSize;
-        this.onPaginationTemplateClick.emit({ 'pgNo': 0, 'size': newPageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
         this.itemStartIndex = 1;
         if (this.totalElements < this.pageSize) {
             this.endNumber = this.totalElements;
@@ -176,9 +184,6 @@ export class SmartTableFramework implements OnChanges {
         //default setting for framework
         if (this.settings.hasOwnProperty('pagination')) {
             this.gridOptions['pagination'] = this.settings['pagination'];
-            if (this.gridOptions['pagination'] == true) {
-                this.paginationTemplate = true;
-            }
         }
         else {
             this.gridOptions.pagination = true;
@@ -262,8 +267,6 @@ export class SmartTableFramework implements OnChanges {
             this.isAddButtonEnable = true;
         }
         this.gridOptions.domLayout = 'autoHeight';
-
-        /*       this.gridOptions.suppressScrollOnNewData = true;*/
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         }
@@ -284,23 +287,19 @@ export class SmartTableFramework implements OnChanges {
         else {
             this.endNumber = (this.pageNumber + 1) * (this.pageSize);
         }
-        this.onPaginationTemplateClick.emit({ 'pgNo': this.pageNumber, 'size': this.pageSize });
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
     }
     firstPage() {
         this.pageNumber = 0;
         this.itemStartIndex = this.pageNumber + 1;
         this.endNumber = this.pageSize;
-
-        this.onPaginationTemplateClick.emit({ 'pgNo': this.pageNumber, 'size': this.pageSize });
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
     }
     lastPage() {
         this.endNumber = this.totalElements;
         this.pageNumber = this.totalPages - 1;
         this.itemStartIndex = this.pageNumber * this.pageSize + 1;
-        this.onPaginationTemplateClick.emit({ 'pgNo': this.totalPages - 1, 'size': this.pageSize });
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
     }
     previousPage() {
         if (this.pageNumber == 1) {
@@ -311,12 +310,40 @@ export class SmartTableFramework implements OnChanges {
         }
         this.endNumber = this.pageSize * this.pageNumber;
         this.pageNumber = this.pageNumber - 1;
-        this.onPaginationTemplateClick.emit({ 'pgNo': this.pageNumber, 'size': this.pageSize });
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize });
+        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
 
     }
-    appendParamValues(data) {
-        
+    appendParamValues(queryParameters) {
+
+        if (queryParameters.hasOwnProperty('filterFlag')) {
+            this.pageNumber = 0;
+            this.itemStartIndex = 1;
+            this.filteredQueryParams = queryParameters.data;
+            let queryParams = "?filter=" + this.filteredQueryParams;
+            this.dataWithQueryParams.emit(queryParams);
+            if (queryParameters.data.length > 0) {
+                this.paginationWithFilterData = true;
+            }
+            else {
+                this.paginationWithFilterData = false;
+            }
+
+        }
+        if (queryParameters.hasOwnProperty('paginationFlag')) {
+           
+            if (this.paginationWithFilterData && this.totalElements > this.pageSize) {
+                let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'] + "&" + this.filteredQueryParams;
+                this.dataWithQueryParams.emit(queryParams);
+            }
+            else {
+                let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'];
+                this.dataWithQueryParams.emit(queryParams);
+            }
+
+        }
+
+
+
     }
 }
 
