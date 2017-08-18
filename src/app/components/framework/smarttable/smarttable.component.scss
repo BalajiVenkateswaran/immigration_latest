@@ -16,7 +16,7 @@ $dateColumnWidth:110px;
 
 .ag-fresh .ag-ltr .ag-header-cell {
   border-right: 1px solid #e0e0e0 !important;
-  color: #2f323a !important;
+  color: #fff !important;
   font-size: 14px !important;
   font-weight: 700;
   text-align: left;
@@ -55,7 +55,7 @@ $dateColumnWidth:110px;
   cursor: pointer; }
 
 .ag-fresh .ag-row-odd:hover {
-  background: #2f323a !important;
+  background: #1377ab !important;
   color:#fff !important;
 }
 
@@ -64,12 +64,14 @@ $dateColumnWidth:110px;
   cursor: pointer; }
 
 .ag-fresh .ag-row-even:hover {
-  background: #2f323a !important;
+  background: #1377ab !important;
   color:#fff !important;
 }
 
 .ag-layout-auto-height .ag-header-row {
-  background: #eaeaeb !important; }
+  background: #1377ab !important;
+  color:#fff !important;
+}
 
 .customfilterinput {
   padding-top: 3px;
