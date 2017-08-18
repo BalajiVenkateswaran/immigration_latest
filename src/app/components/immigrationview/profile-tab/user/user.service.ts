@@ -14,11 +14,11 @@ export class profileuserservice {
     public updateUser(userData: any) {
         return this.restService.putData("/user", userData);
     }
-    public getDefaultOrg(userid: string) {
-        return this.restService.getData("/profile/user/defaultOrg/" + userid);
+    public getDefaultOrg(accountId: string, userId: string) {
+        return this.restService.getData("/immigration/account/"+accountId+"/user/"+userId+"/profile/defaultOrg");
     }
     public setDefaultOrg(data: any) {
         var req = { "userDefaultOrg": data}
-        return this.restService.postData("/profile/user/defaultOrg/", req);
+        return this.restService.postData("/immigration/account/user/profile/defaultOrg", req);
     }
 }
