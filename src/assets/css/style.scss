@@ -1896,3 +1896,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .clientview-ques129h input[type="checkbox"] {
     margin: 3px 5px 15px 0;
 }
+.btndisabled {
+    border: none;
+    background:lightgray;
+    color: #4d4d4d !important;
+    cursor:not-allowed;
+}

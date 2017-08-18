@@ -14,7 +14,7 @@
               <div class="tbl-head-btn" [hidden]="isProfileEdit">
                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel
                 </button>
-                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn': 'savebtn disableClass'" (click)="saveClientProfile()" [disabled]="!isProfileSaveButtonEnabled()" *ngIf="isProfileEdit==false">Save
+                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn': 'savebtn btndisabled'" (click)="saveClientProfile()" [disabled]="!isProfileSaveButtonEnabled()" *ngIf="isProfileEdit==false">Save
                 </button>
               </div>
             </div>
@@ -121,7 +121,7 @@
                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isProfileEdit==false">
                             Cancel
                         </button>
-                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn bottombtns': 'disableClass bottombtns'" [disabled]="!isProfileSaveButtonEnabled()" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">
+                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn bottombtns': 'savebtn bottombtns btndisabled'" [disabled]="!isProfileSaveButtonEnabled()" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">
                             Save
                         </button>
               </div>
