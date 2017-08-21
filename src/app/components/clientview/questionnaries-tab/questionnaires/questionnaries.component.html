@@ -1,9 +1,9 @@
 ﻿<div class="main-content">
 
     <div class="table-data">
-        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+        <h2>{{appService.firstName}} {{appService.lastName}}</h2>
         <div class="clearfix"></div>
-        <h2>Questionnnaires</h2>
+        <!--<h2>Questionnnaires</h2>-->
         <smart-table class="clientViewQuestionnnaires" [settings]="settings" [data]="data" 
                     (onRowClick)="editRecord($event)"></smart-table>
         <div class="clearfix"></div>
