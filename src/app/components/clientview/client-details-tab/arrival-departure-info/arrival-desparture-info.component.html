@@ -1,9 +1,9 @@
 <div class="main-content" *ngIf="getArvdInfoData">
 
     <div class="table-data">
-        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+        <h2>{{appService.firstName}} {{appService.lastName}}</h2>
         <div class="clearfix"></div>
-        <h2>Arrival Departure Info</h2>
+        <!--<h2>Arrival Departure Info</h2>-->
         <smart-table class="clientview-clientdetailtab-arr-dep-info" [settings]="settings" [data]="data"
                      (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
         <div class="clearfix"></div>

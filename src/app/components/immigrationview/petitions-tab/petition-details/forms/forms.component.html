@@ -1,16 +1,16 @@
     <div class="main-content" *ngIf="getForms">
         <div class="table-data">
-            <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
-            <h1 style="float:right;">{{appService.petitionDetails}}</h1>
+            <h2 class="clickname" style="width:60%;float:left;" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h2>
+            <h2 style="float:right;width:40%; text-align:right;">{{appService.petitionDetails}}</h2>
             <div class="clearfix"></div>
-            <h2>Forms
-                <div class="row sfm" *ngIf="errorMessage">
-                                    <div class="col-md-12">
-                                        <span class="redstar">PDF is not Generated please fill the form in Questionnaire</span>
-                                    </div>
-                                </div> 
-            </h2>
-           
+            <!--<h2>Forms
+                
+            </h2>-->
+            <div class="row sfm" *ngIf="errorMessage">
+                <div class="col-md-12">
+                    <span class="redstar">PDF is not Generated please fill the form in Questionnaire</span>
+                </div>
+            </div> 
         <smart-table class="immiview-formstbl" [settings]="settings" [data]="data" (onRowClick)="editFormsData($event)"></smart-table>
       
                 <div class="clearfix"></div>

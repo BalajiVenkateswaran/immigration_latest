@@ -1,10 +1,10 @@
 <div class="main-content" *ngIf="getData">
 
     <div class="table-data">
-        <h1>{{appService.user.lastName}} {{appService.user.firstName}}</h1>
+        <h2>{{appService.user.lastName}} {{appService.user.firstName}}</h2>
 
         <div class="clearfix"></div>
-        <h2>Document Repository</h2>
+        <!--<h2>Document Repository</h2>-->
         <form method="POST" enctype="multipart/form-data"  (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
             <div class="pull-right uplodbtn">
                 <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
