@@ -1,9 +1,9 @@
 <div class="main-content" *ngIf="getDependents">
 
         <div class="table-data">
-            <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h1>
+            <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h2>
             <div class="clearfix"></div>
-            <h2>Dependents</h2>
+            <!--<h2>Dependents</h2>-->
             <smart-table class="immiview-clienttab-dependents" [settings]="settings" [data]="data"
                          (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
             <div class="clearfix"></div>
