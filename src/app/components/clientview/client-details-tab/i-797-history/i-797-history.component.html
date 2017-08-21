@@ -1,13 +1,13 @@
 <div class="main-content" *ngIf="getCvi797Data">
    
     <div class="table-data">
-        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+        <h2>{{appService.firstName}} {{appService.lastName}}</h2>
         <ul class="breadcrumb">
             <li><a href="#">Clients</a></li>
             <li><a href="#">I-797 History</a></li>
         </ul>
         <div class="clearfix"></div>
-        <h2>I-797 History</h2>
+        <!--<h2>I-797 History</h2>-->
         <smart-table [settings]="settings" [data]="data"
                      (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
         <div class="clearfix"></div>

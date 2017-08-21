@@ -1,15 +1,15 @@
     <div class="main-content" *ngIf="getCleintVisa">
 
         <div class="table-data">
-            <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+            <h2>{{appService.firstName}} {{appService.lastName}}</h2>
             <ul class="breadcrumb">
                 <li><a href="#">Clients</a></li>
                 <li><a href="#">Visas</a></li>
             </ul>
             <div class="clearfix"></div>
-            <h2>
+            <!--<h2>
                 <span>Visas</span>
-            </h2>
+            </h2>-->
             <smart-table class="clientview-clientdetailtab-visas" [settings]="settings" [data]="data"
                          (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>   
                 <div class="clearfix"></div>
