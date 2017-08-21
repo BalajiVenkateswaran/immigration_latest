@@ -7,7 +7,7 @@
             <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
                 <div class="pull-right uplodbtn">
                     <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
-                        <span>Choose File</span>
+                        <span>Upload File</span>
                         <input type="file" #fileInput class="upload" name="file" (click)="onFileUploadClick(fileInput)" (change)="fileUpload($event)"/>
                     </div>
                 </div>

@@ -2,11 +2,12 @@ import { User } from '../../../../../models/user';
 import { AppService } from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClientDocumentRepositoryService } from "./document-repository.service";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import * as FileSaver from 'file-saver';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -33,12 +34,18 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public editFileObject: any = {};
     public editFlag: boolean = true;
     public beforeEdit: any;
+    public progress: number = 0;
+    public progessBarDiv:boolean=false;
+    public uploadArray=[];
+    public circularProgess:number=0;
+
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http,
-       public appService: AppService, public dialogService: DialogService) {
+        public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         if (this.appService.user) {
             this.user = this.appService.user;
         }
+        this.circularProgess=50;
         this.accountId = this.user.accountId;
         this.settings = {
             'pagination': false,
@@ -90,19 +97,38 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         this.appService.currentSBLink = link;
     }
     fileUpload(event) {
+        
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         var x = file.name;
-        let fileExists = this.isfileExists(file);
+        let fileExists = this.isfileExists(file);  
         var y = x.split(".");
         if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+            this.uploadArray.push({'name':x});
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
-
+             let that = this;
+                    let interval = setInterval(function () {
+                        that.progress += 10;
+                        that.progessBarDiv=true;
+                        if (that.progress >= 100) {
+                            that.progress=100;
+                            clearInterval(interval);
+                            
+                        }
+                    },200)
             this.clientdocumentrepositoryService.uploadFile(this.appService.clientId, formData)
                 .subscribe(
+
                 res => {
-                    this.getFilesList();
+                   
+                    if (res['statusCode'] == 'SUCCESS') {
+                        that.progessBarDiv=false;
+                        this.getFilesList();
+
+                    }
+
+
                 }
                 );
 
@@ -125,14 +151,15 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
     }
     isfileExists(file) {
-      let fileExists : boolean = false;
-      this.getFiles.filter(item => {
-        if (file.name == item.fileName) {
-          fileExists = true;
-        }
-      });
-      return fileExists;
+        let fileExists: boolean = false;
+        this.getFiles.filter(item => {
+            if (file.name == item.fileName) {
+                fileExists = true;
+            }
+        });
+        return fileExists;
     }
+
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
@@ -140,7 +167,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
-            message: 'Do you want to replace '+x+' file ?'
+            message: 'Do you want to replace ' + x + ' file ?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 var y = x.split(".");
@@ -154,7 +181,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         }
                         );
                 }
-              if (fileExists) {
+                if (fileExists) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'File already exists'
@@ -166,9 +193,9 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         message: 'Please upload only PDF file'
                     });
                 }
-                
+
             }
-           
+
         })
     }
 
@@ -260,8 +287,12 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         this.result = false;
         this.close();
     }
-    onFileUploadClick(file){
-        file.value=null;
+    onFileUploadClick(file) {
+        file.value = null;
+        this.progress=0;
+        this.uploadArray=[];
+       
     }
+   
 
 }

@@ -1,5 +1,4 @@
 <div class="main-content" *ngIf="getData">
-
     <div class="table-data">
         <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
 
@@ -8,11 +7,18 @@
         <form method="POST" enctype="multipart/form-data">
             <div class="pull-right uplodbtn">
                 <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
-                    <span>Choose File</span>
-                    <input type="file" #fileInput class="upload" name="file" (click)="onFileUploadClick(fileInput)" (change)="fileUpload($event)" />
+                    <span>Upload File</span>
+                    <input type="file" #fileInput class="upload" name="file" (click)="onFileUploadClick(fileInput)" (change)="fileUpload($event)"
+                    />
                 </div>
             </div>
             <smart-table class="immiview-clienttab-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></smart-table>
+            <div *ngFor="let x of uploadArray">
+            <div *ngIf="progessBarDiv" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" [attr.aria-valuenow]="progress" aria-valuemin="0"
+                aria-valuemax="100" style="min-width: 2em;" [style.width]="(progress/100)*100 + '%'">
+                {{progress}}% {{x.name}}
+            </div></div>
+           
         </form>
         <div class="clearfix"></div>
     </div>
@@ -29,7 +35,8 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">File Name:</div>
-                            <div class="col-md-7"><input type="text" required [ngClass]="editFileObject.fileName == '' ? 'redborder': ''"  [(ngModel)]="editFileObject.fileName" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" required [ngClass]="editFileObject.fileName == '' ? 'redborder': ''" [(ngModel)]="editFileObject.fileName"
+                                    class="form-control"></div>
                         </div>
 
                         <div class="row">

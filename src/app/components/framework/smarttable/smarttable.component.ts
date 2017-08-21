@@ -128,18 +128,16 @@ export class SmartTableFramework implements OnChanges {
                 this.pageSize = this.paginationData['size'];
                 this.totalElements = this.paginationData['totalElements'];
                 this.totalPages = this.paginationData['totalPages'];
-                if (!changes['paginationData']['previousValue'] || this.paginationWithFilterData) {
-                    if (this.totalElements < this.pageSize) {
-                        this.pageSelectionDisable = true;
-                        this.endNumber = this.totalElements;
-                    } 
-                     else{
-                        this.pageSelectionDisable = false;
-                        this.endNumber = this.pageSize;
+                if (this.totalElements < this.pageSize) {
+                    this.pageSelectionDisable = true;
+                    this.endNumber = this.totalElements;
                 }
+                else {
+                    if (this.endNumber < this.pageSize || this.endNumber == undefined) {
 
+                        this.endNumber = this.pageSize;
+                    }
                 }
-               
             }
         }
 
@@ -318,6 +316,7 @@ export class SmartTableFramework implements OnChanges {
         if (queryParameters.hasOwnProperty('filterFlag')) {
             this.pageNumber = 0;
             this.itemStartIndex = 1;
+            this.endNumber = this.pageSize;
             this.filteredQueryParams = queryParameters.data;
             let queryParams = "?filter=" + this.filteredQueryParams;
             this.dataWithQueryParams.emit(queryParams);
@@ -330,7 +329,7 @@ export class SmartTableFramework implements OnChanges {
 
         }
         if (queryParameters.hasOwnProperty('paginationFlag')) {
-           
+
             if (this.paginationWithFilterData && this.totalElements > this.pageSize) {
                 let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'] + "&" + this.filteredQueryParams;
                 this.dataWithQueryParams.emit(queryParams);
