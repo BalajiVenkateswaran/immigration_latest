@@ -10,12 +10,16 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-1.component.scss']
 })
 export class i129Page1Component implements OnInit {
-
+     public page1:any={
+         'address':{},
+         'contact':{}
+     };
      constructor() {
     }
 
     ngOnInit() {
- 
+        
     }
+    
 
 }

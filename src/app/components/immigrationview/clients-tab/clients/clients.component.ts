@@ -3,7 +3,7 @@ import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
-import { Component, OnInit,ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClientsService } from "./clients.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
@@ -47,9 +47,14 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.settings = {
       'columnFilter': true,
       'isDeleteEnable': false,
-      'customPannel':true,
+      'customPannel': true,
+      'defaultFilter': [{
+          headingName: "status",
+          headerName: "Status",
+          filterValue: "Active"
+        }
+      ],
       'columnsettings': [
-
         {
           headerName: "First Name",
           field: "firstName"
@@ -77,11 +82,11 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
           headerName: "Open Petitions",
           field: "openPetitions"
         }
-      ]
+        ]
 
     }
   }
- 
+
   getCliData() {
     this.appService.showSideBarMenu(null, "clients");
     this.clientService.getClients(this.headerService.selectedOrg['orgId']).subscribe((res) => {
@@ -209,22 +214,11 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.appService.clientId = event.data.clientId;
 
   }
-  /*filterData(filterQueries) {
-    this.clientService.getClientsFilteredData(this.headerService.selectedOrg['orgId'], filterQueries).subscribe(res => {
-      this.data = res['clients'];
-    })
-  }
-  pagingationClicked(pageData) {
-    this.clientService.getClientPagination(this.headerService.selectedOrg['orgId'], pageData['pgNo'],pageData['size']).subscribe(res => {
-      this.data = res['clients'];
-      this.paginationData=res['pageMetadata'];
-    })
-  }*/
-  dataWithParameters(queryData){
-    this.clientService.getClientsWithQueryParams(this.headerService.selectedOrg['orgId'],queryData).subscribe(
-      res=>{
-         this.data = res['clients'];
-         this.paginationData=res['pageMetadata'];
+  dataWithParameters(queryData) {
+    this.clientService.getClientsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
+      res => {
+        this.data = res['clients'];
+        this.paginationData = res['pageMetadata'];
       })
   }
 

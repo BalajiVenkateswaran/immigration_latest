@@ -31,6 +31,8 @@ export class PetitionsComponent implements OnInit {
     public settings;
     public data;
     public paginationData;
+    public queryParameters;
+    public getSubscription;
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
@@ -53,6 +55,13 @@ export class PetitionsComponent implements OnInit {
             "columnFilter": true,
             "isDeleteEnable": false,
             'customPannel': true,
+            'defaultFilter': [{
+                headingName: "status",
+                headerName: "Status",
+                filterValue: "Open"
+            }
+
+            ],
             'columnsettings': [
                 {
                     headerName: "Name",
@@ -112,7 +121,7 @@ export class PetitionsComponent implements OnInit {
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
         if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId']) {
             this.orgId = this.headerService.selectedOrg['orgId'];
-            this.petitionService
+            this.getSubscription=this.petitionService
                 .getPetitions(this.headerService.selectedOrg['orgId'])
                 .subscribe((res: any) => {
                     this.petitions = res['petitions'];
@@ -120,30 +129,31 @@ export class PetitionsComponent implements OnInit {
                     console.log(this.petitions);
                     this.data = this.petitions;
                     this.paginationData = res['pageMetadata'];
-                });
+                }).add(this.gettingOrganizationId(this.orgId));
+        }
+    }
+    gettingOrganizationId(value){
+        this.orgId=value;
+        this.dataWithParameters(this.queryParameters);
+    }
+    dataWithParameters(queryData) {
+        if(queryData){
+            this.queryParameters=queryData
+        }
+
+        if (this.headerService.selectedOrg['orgId'] && queryData) {
+            this.petitionService.getPetitionsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
+                res => {
+                    console.log("Filter" + this.data);
+                    this.data = res['petitions'];
+                    this.paginationData = res['pageMetadata'];
+                }
+            );
         }
 
 
 
-    }
-    /* filterData(filterQueries) {
-         this.petitionService.getPetitionsFilteredData(this.headerService.selectedOrg['orgId'], filterQueries).subscribe(res => {
-             this.data = res['petitions'];
-         })
-     }
-     pagingationClicked(pageData) {
-         this.petitionService.getPetitionsPagination(this.headerService.selectedOrg['orgId'], pageData['pgNo'], pageData['size']).subscribe(res => {
-             this.data = res['petitions'];
-             this.paginationData = res['pageMetadata'];
-         })
-     }*/
-    dataWithParameters(queryData) {
-        this.petitionService.getPetitionsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
-            res => {
-                this.data = res['petitions'];
-                this.paginationData = res['pageMetadata'];
-            }
-        )
+
 
     }
 
@@ -175,5 +185,8 @@ export class PetitionsComponent implements OnInit {
         this.appService.clientlastName = event.data.lastName;
         this.appService.petitionType = event.data.petitionType;
         this.appService.moveToPage("immigrationview-petition-details");
+    }
+    ngOnDestroy(){
+        this.getSubscription.unsubscribe();
     }
 }

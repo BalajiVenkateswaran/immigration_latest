@@ -27,12 +27,6 @@ export class ClientsService {
   public removeclient(clientId: string, immigrationOfficerId: string) {
       return this.restService.deleteData("/client/" + clientId +"/immigrationOfficerId/"+immigrationOfficerId);
   }
-  public getClientsFilteredData(orgId:string,filterQueries:any){
-    return this.restService.getData("/clients/immigration/"+orgId+'?'+"filter="+filterQueries);
-  }
-  public getClientPagination(orgId:string,pageNumber:number,size:number){
-    return this.restService.getData("/clients/immigration/"+orgId+'?'+"page="+pageNumber+"&size="+size);
-  }
   public getClientsWithQueryParams(orgId:string,queryData){
     return this.restService.getData("/clients/immigration/"+orgId+queryData);
   }
