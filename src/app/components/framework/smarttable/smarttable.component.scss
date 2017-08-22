@@ -1023,12 +1023,9 @@ $dateColumnWidth:110px;
 }
 
 .immiview-managAcctab-orgs {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell[colid~="0"] {
-    width:5% !important;
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="orgName"], .ag-fresh .ag-ltr .ag-cell[colid~="orgName"] {
+    width:40% !important;
     left:0% !important;
-}.ag-fresh .ag-ltr .ag-header-cell[colid~="orgName"], .ag-fresh .ag-ltr .ag-cell[colid~="orgName"] {
-    width:35% !important;
-    left:5% !important;
 }.ag-fresh .ag-ltr .ag-header-cell[colid~="displayName"], .ag-fresh .ag-ltr .ag-cell[colid~="displayName"] {
     width:10% !important;
     left:40% !important;
