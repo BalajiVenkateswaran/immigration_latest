@@ -16,106 +16,106 @@
                                 <div class="col-md-4">Are you filing any other petitions with this one? </div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4"><input type="checkbox" name="" value=""> Yes If yes, how many?</div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> Yes If yes, how many?</div>
+                                        <div class="col-md-8"><input type="text"/></div>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> No</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">Are you filing any applications for replacement/initial I-94, Arrival-Departure Records with this petition?  Note that if the beneficiary was issued an electronic Form I-94 by CBP when he/she was admitted to the United States at an air or sea port, he/ she may be able to obtain the Form I-94 from the CBP Website at www.cbp.gov/i94 instead of filing an application for a replacement/initial I-94</div>
                                 <div class="col-md-4"></div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4"><input type="checkbox" name="" value=""> Yes If yes, how many?</div>
+                                        <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyArrivalOrDepartureRecords"> Yes If yes, how many?</div>
                                         <div class="col-md-8"><input type="text" /></div>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyArrivalOrDepartureRecords"> No</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Are you filing any applications for dependents with this petition?</div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4"><input type="checkbox" name="" value=""> Yes If yes, how many?</div>
+                                        <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyDependents"> Yes If yes, how many?</div>
                                         <div class="col-md-8"><input type="text" /></div>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyDependents"> No</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Is any beneficiary in this petition in removal proceedings?</div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-12"><input type="checkbox" name="" value=""> Yes.  If yes, proceed to Part 9. and list the beneficiary's(ies) name(s).</div>
+                                        <div class="col-md-12"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> Yes.  If yes, proceed to Part 9. and list the beneficiary's(ies) name(s).</div>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> No</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-4">Have you ever filed an immigrant petition for any beneficiary in this petition?</div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4"><input type="checkbox" name="" value=""> Yes If yes, how many?</div>
+                                        <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> Yes If yes, how many?</div>
                                         <div class="col-md-8"><input type="text" /></div>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> No</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">Did you indicate you were filing a new petition in Part 2.?</div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-8"><input type="checkbox" name="" value=""> Yes.  If yes, answer the questions below</div>
+                                        <div class="col-md-8"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> Yes.  If yes, answer the questions below</div>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><input type="checkbox" name="" value=""> No.  If no, proceed to Item Number 9.</div>
+                                <div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> No.  If no, proceed to Item Number 9.</div>
                             </div>
                             <div class="row" style="padding-left:50px;">
                                 <div class="col-md-12">
                                     Has any beneficiary in this petition ever been given the classification you are now requesting within the last seven years?
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="checkbox" name="" value=""> Yes.  If yes, proceed to Part 9. and type or print your explanation.
+                                    <input type="checkbox" name="" value="" [(ngModel)]="page4.isPetitionRequestDeniedinLastSevenYears"> Yes.  If yes, proceed to Part 9. and type or print your explanation.
                                 </div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page4.isPetitionRequestDeniedinLastSevenYears"> No</div>
                             </div>
                             <div class="row" style="padding-left:50px;">
                                 <div class="col-md-12">
                                     Has any beneficiary in this petition ever been denied the classification you are now requesting within the last seven years?
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="checkbox" name="" value="">Yes.  If yes, proceed to Part 9. and type or print your explanation.
+                                    <input type="checkbox" name="" value="" [(ngModel)]="page4.isPetitionRequestDeniedinLastSevenYears">Yes.  If yes, proceed to Part 9. and type or print your explanation.
                                 </div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page4.isPetitionRequestDeniedinLastSevenYears"> No</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     Have you ever previously filed a nonimmigrant petition for this beneficiary?
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="checkbox" name="" value=""> Yes.  If yes, proceed to Part 9. and type or print your explanation.
+                                    <input type="checkbox" name="" value="" [(ngModel)]="page4.isPreviouslyFiledNonimigrantPetition"> Yes.  If yes, proceed to Part 9. and type or print your explanation.
                                 </div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page4.isPreviouslyFiledNonimigrantPetition"> No</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     If you are filing for an entertainment group, has any beneficiary in this petition not been with the group for at least one year?
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="checkbox" name="" value=""> Yes.  If yes, proceed to Part 9. and type or print your explanation.
+                                    <input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> Yes.  If yes, proceed to Part 9. and type or print your explanation.
                                 </div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> No</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     Has any beneficiary in this petition ever been a J-1 exchange visitor or J-2 dependent of a J-1 exchange visitor?
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="checkbox" name="" value=""> Yes. If yes, proceed to Item Number 11.b.
+                                    <input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> Yes. If yes, proceed to Item Number 11.b.
                                 </div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> No</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

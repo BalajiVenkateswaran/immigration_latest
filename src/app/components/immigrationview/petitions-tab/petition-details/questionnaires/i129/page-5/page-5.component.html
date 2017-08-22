@@ -15,7 +15,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Street Number and Name</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page5.address.street"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -23,9 +23,9 @@
                                 <div class="col-md-6"></div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4">Apt.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Stc.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Flr.<input type="checkbox" name="" value=""></div>
+                                        <div class="col-md-4">Apt.<input type="checkbox" name="" value="" [(ngModel)]="page5.address.aptType"></div>
+                                        <div class="col-md-4">Stc.<input type="checkbox" name="" value="" [(ngModel)]="page5.address.aptType"></div>
+                                        <div class="col-md-4">Flr.<input type="checkbox" name="" value="" [(ngModel)]="page5.address.aptType"></div>
                                     </div>
                                 </div>
                             </div>
@@ -33,53 +33,53 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Number </div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page5.address.houseNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">City or Town</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page5.address.city"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">State</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page5.address.state"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">ZIP Code</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page5.address.zipCode"/></div>
                             </div>
                         </div>
                         <div class="col-md-8">Did you include an itinerary with the petition?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page5.itineraryIncluded"> Yes</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page5.itineraryIncluded"> No</div>
                             </div>
                         </div>
                         <div class="col-md-8">Will the beneficiary(ies) work for you off-site at anothercompany or organization's location?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page5.workingInAnotherOrg"> Yes</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page5.workingInAnotherOrg"> No</div>
                             </div>
                         </div>
                         <div class="col-md-8">Will the beneficiary(ies) work exclusively in the Commonwealth of the Northern Mariana Islands (CNMI)?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page5.workInCNMI"> Yes</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page5.workInCNMI"> No</div>
                             </div>
                         </div>
                         <div class="col-md-8">Is this a full-time position?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page5.fullTimePosition"> Yes</div>
+                                <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page5.fullTimePosition"> No</div>
                             </div>
                         </div>
                         <div class="col-md-8">If the answer to Item Number 7. is no, how many hours per week for the position?</div>
@@ -90,62 +90,62 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Wages:</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page5.wages"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Per (Specifi hour, week, month or year)</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page5.wagesUnit"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             Other Compensation (Explain)
                             <div class="row">
-                                <div class="col-md-12"><input type="text" /></div>
+                                <div class="col-md-12"><input type="text" [(ngModel)]="page5.otherCompensations"/></div>
                             </div>
                         </div>
                         <div class="col-md-3">Dates of intended employment </div>
                         <div class="col-md-5">
                             <div class="row">
                                 <div class="col-md-4">From: (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page5.intendentEmploymentFrom"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">To: (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page5.intendentEmploymentTo"/></div>
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="row">
                                 <div class="col-md-4">Type of Business</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page5.typeOfBusiness"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Year Established</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page5.yearEstablished"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Current Number of Employees in the United States</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page5.currentNoOfEmployeesInUSA"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Gross Annual Income </div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page5.grossAnnualIncome"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Net Annual Income</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page5.netAnnualIncome"/></div>
                             </div>
                         </div>
                     </div>
@@ -163,10 +163,10 @@
                             <p>With respect to the technology or technical data the petitioner will release or otherwise provide access to the beneficiary, the petitioner certifies that it has reviewed the Export Administration Regulations (EAR) and the International Traffic in Arms Regulations (ITAR) and has determined that: </p>
                             <div class="row">
                                 <div class="col-md-12" style="padding-left:50px; margin-bottom:15px;">
-                                    <input type="checkbox" name="" value=""> A license is not required from either the U.S. Department of Commerce or the U.S. Department of State to release such technology or technical data to the foreign person; or
+                                    <input type="checkbox" name="" value="" [(ngModel)]="page5.licenseRequiredOrNot"> A license is not required from either the U.S. Department of Commerce or the U.S. Department of State to release such technology or technical data to the foreign person; or
                                 </div>
                                 <div class="col-md-12" style="padding-left:50px; margin-bottom:15px;">
-                                    <input type="checkbox" name="" value=""> A license is required from the U.S. Department of Commerce and/or the U.S. Department of State to release such technology or technical data to the beneficiary and the petitioner will prevent access to the controlled technology or technical data by the beneficiary until and unless the petitioner has received the required license or other authorization to release it to the beneficiary.
+                                    <input type="checkbox" name="" value="" [(ngModel)]="page5.licenseRequiredOrNot"> A license is required from the U.S. Department of Commerce and/or the U.S. Department of State to release such technology or technical data to the beneficiary and the petitioner will prevent access to the controlled technology or technical data by the beneficiary until and unless the petitioner has received the required license or other authorization to release it to the beneficiary.
                                 </div>
                             </div>
                         </div>
