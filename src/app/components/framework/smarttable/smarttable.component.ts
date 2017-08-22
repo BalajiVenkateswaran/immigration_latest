@@ -18,6 +18,7 @@ export class SmartTableFramework implements OnChanges {
     pageSize: number;
     totalElements: number;
     totalPages: number;
+    
     /*
     * following options are available in IH smart table
     *    - columnsettings : columnsettings
@@ -56,6 +57,7 @@ export class SmartTableFramework implements OnChanges {
     public endNumber: number;
     public pageSelectionDisable: boolean = false;
     public queryParameters;
+    public deleteFilterClicked:boolean=false;
     constructor() {
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
@@ -69,6 +71,7 @@ export class SmartTableFramework implements OnChanges {
             }
 
         })
+        
         this.filterSubscription = CustomFilterRow.fillValues.subscribe(res => {
             let that = this;
             if (res) {
@@ -84,11 +87,13 @@ export class SmartTableFramework implements OnChanges {
                 this.filterQueries = this.filterWholeArray.map(function (item) {
                     return item.headingName + ":" + item.filterValue;
                 })
+            
 
                 this.appendParamValues({ 'data': that.filterQueries, 'filterFlag': true });
             }
 
         });
+       
 
 
     }
@@ -140,11 +145,13 @@ export class SmartTableFramework implements OnChanges {
                 }
             }
         }
+        
 
 
     }
 
     delete(index, x) {
+        this.deleteFilterClicked=true;
         this.filterWholeArray.splice(index, 1);
         this.filterQueries.splice(index, 1);
         this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
@@ -248,6 +255,18 @@ export class SmartTableFramework implements OnChanges {
             this.settings['columnFilter'] = false;
             this.settings['headerHeight'] = 25;
         }
+        if(this.settings.hasOwnProperty('defaultFilter')){
+            if(this.filterWholeArray.length<=0 && !this.deleteFilterClicked){
+                this.filterWholeArray.push(this.settings['defaultFilter'][0]);
+                this.filterQueries = this.filterWholeArray.map(function (item) {
+                    return item.headingName + ":" + item.filterValue;
+                })
+                this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
+            }
+           
+
+
+        }
         this.settings['columnsettings'].map(function (item) {
             if (item['headerTooltip'] == null && item['headerName'] != '') {
                 item['headerTooltip'] = item['headerName'];
@@ -312,7 +331,6 @@ export class SmartTableFramework implements OnChanges {
 
     }
     appendParamValues(queryParameters) {
-
         if (queryParameters.hasOwnProperty('filterFlag')) {
             this.pageNumber = 0;
             this.itemStartIndex = 1;
@@ -340,6 +358,9 @@ export class SmartTableFramework implements OnChanges {
             }
 
         }
+    
+            
+        
 
 
 

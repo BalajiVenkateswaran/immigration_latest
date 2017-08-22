@@ -18,25 +18,25 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">Family Name (Last Name)</div>
-                                        <div class="col-md-8"><input type="text"  /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.lastName" /></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4">Family Name (Last Name)</div>
-                                        <div class="col-md-8"><input type="text"  /></div>
+                                        <div class="col-md-4">Family Name (First Name)</div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.firstName"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">Middle Name</div>
-                                        <div class="col-md-8"><input type="text"  /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.middleName"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4">Company or Organizatio Name</div>
-                                        <div class="col-md-8"><input type="text"  /></div>
+                                        <div class="col-md-4">Company or Organization Name</div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.address.companyName" /></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -45,13 +45,13 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">In Care Of Name</div>
-                                        <div class="col-md-8"><input type="text"  /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.address.inCareOfName" /></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">Street Number and Name</div>
-                                        <div class="col-md-8"><input type="text"  /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.address.street"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -59,9 +59,9 @@
                                         <div class="col-md-4"></div>
                                         <div class="col-md-8">
                                             <div class="row">
-                                                <div class="col-md-4">Apt.<input type="checkbox" name="" value=""></div>
-                                                <div class="col-md-4">Stc.<input type="checkbox" name="" value=""></div>
-                                                <div class="col-md-4">Flr.<input type="checkbox" name="" value=""></div>
+                                                <div class="col-md-4">Apt.<input type="checkbox" name="" value="APT" [(ngModel)]="page1.address.aptType"></div>
+                                                <div class="col-md-4">Stc.<input type="checkbox" name="" value="FLR" [(ngModel)]="page1.address.aptType"></div>
+                                                <div class="col-md-4">Flr.<input type="checkbox" name="" value="STE" [(ngModel)]="page1.address.aptType"></div>
                                                 </div>
                                             </div>
                                     </div>
@@ -69,7 +69,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">Number </div>
-                                        <div class="col-md-8"><input type="text"  /></div>
+                                        <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.houseNumber"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -77,19 +77,19 @@
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">City or Town</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.city"/></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">State</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.state"/></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">ZIP Code</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.zipCode"/></div>
                                             </div>
                                         </div>
                                     </div>
@@ -99,19 +99,19 @@
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">Province</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.province"/></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">Postal Code</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.address.postalCode" /></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">Country</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.country"/></div>
                                             </div>
                                         </div>
                                     </div>
@@ -124,19 +124,19 @@
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">Daytime Telephone Number</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.contact.dayTimeTn" /></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">Mobile Telephone Number</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.contact.mobileTn" /></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">Email (if any)</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.contact.email"/></div>
                                             </div>
                                         </div>
                                     </div>
@@ -149,19 +149,19 @@
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">Federal Employer Identification Number (FEIN)</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.fein"/></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">Individual IRS Tax Number </div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.irsTaxNumber" /></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-4">U.S. Social Security Number (if any)</div>
-                                                <div class="col-md-8"><input type="text"  /></div>
+                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.ssn" /></div>
                                             </div>
                                         </div>
                                     </div>
@@ -171,4 +171,6 @@
                     </div>
                 </div>
             </div>
+           
 </div>
+

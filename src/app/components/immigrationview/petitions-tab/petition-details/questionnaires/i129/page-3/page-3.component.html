@@ -14,25 +14,25 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Alien Registration Number (A-Number)</div>
-                                <div class="col-md-7"><input type="text" /></div>
+                                <div class="col-md-7"><input type="text" [(ngModel)]="page3.alienRegistrationNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Country of Birth</div>
-                                <div class="col-md-7"><input type="text" /></div>
+                                <div class="col-md-7"><input type="text" [(ngModel)]="page3.countryOfBirth"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Province of Birth </div>
-                                <div class="col-md-7"><input type="text" /></div>
+                                <div class="col-md-7"><input type="text" [(ngModel)]="page3.provinceOfBirth"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Country of Citizenship or Nationality</div>
-                                <div class="col-md-7"><input type="text" /></div>
+                                <div class="col-md-7"><input type="text" [(ngModel)]="page3.nationality"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -41,61 +41,61 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Date of Last Arrival (mm/dd/yyyy)</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page3.dateOfLastArrival"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">I-94 Arrival-Departure Record Number</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page3.i94"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Passport or Travel Document Number</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page3.passportNo"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Date Passport or Travel Document Issued (mm/dd/yyyy)</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page3.passportIssueDate"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Date Passport or Travel Document Expires (mm/dd/yyyy)</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page3.passportExpiryDate"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Passport or Travel Document Country of Issuance</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page3.countryOfIssuance"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Current Nonimmigrant Status </div>
-                                <div class="col-md-7"><input type="text" /></div>
+                                <div class="col-md-7"><input type="text" [(ngModel)]="page3.currentNonImmigrantStatus"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Date Status Expires or D/S (mm/dd/yyyy)</div>
-                                <div class="col-md-7"><input type="text" /></div>
+                                <div class="col-md-7"><input type="text" [(ngModel)]="page3.dateStatusExpires"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Employment Authorization Document (EAD) Number (if any)</div>
-                                <div class="col-md-7"><input type="text" /></div>
+                                <div class="col-md-7"><input type="text" [(ngModel)]="page3.ead"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Student and Exchange Visitor Information System (SEVIS) Number (if any)</div>
-                                <div class="col-md-7"><input type="text" /></div>
+                                <div class="col-md-7"><input type="text" [(ngModel)]="page3.sevisNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -104,7 +104,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Street Number and Name</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.address.street"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -112,9 +112,9 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-8">
                                     <div class="row">
-                                        <div class="col-md-4">Apt.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Stc.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Flr.<input type="checkbox" name="" value=""></div>
+                                        <div class="col-md-4">Apt.<input type="checkbox" name="" value="APT" [(ngModel)]="page3.address.aptType"></div>
+                                        <div class="col-md-4">Stc.<input type="checkbox" name="" value="" [(ngModel)]="page3.address.aptType"></div>
+                                        <div class="col-md-4">Flr.<input type="checkbox" name="" value="" [(ngModel)]="page3.address.aptType"></div>
                                     </div>
                                 </div>
                             </div>
@@ -122,25 +122,25 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Number </div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.address.houseNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">City or Town</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.address.city"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">State</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.address.state"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">ZIP Code</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.address.zipCode"/></div>
                             </div>
                         </div>
                     </div>
@@ -156,21 +156,21 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-3">Type of Office (select only one box)</div>
-                                <div class="col-md-3"><input type="checkbox" name="" value=""> Consulate</div>
-                                <div class="col-md-3"><input type="checkbox" name="" value=""> Pre-flight inspection</div>
-                                <div class="col-md-3"><input type="checkbox" name="" value=""> Port of entry</div>
+                                <div class="col-md-3"><input type="checkbox" name="" value="" [(ngModel)]="page3.typeOfOffice"> Consulate</div>
+                                <div class="col-md-3"><input type="checkbox" name="" value="" [(ngModel)]="page3.typeOfOffice"> Pre-flight inspection</div>
+                                <div class="col-md-3"><input type="checkbox" name="" value="" [(ngModel)]="page3.typeOfOffice"> Port of entry</div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Office Address (City)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.officeAddress"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">U.S. State or Foreign Country </div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.usStateOrForeignCountry"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -179,7 +179,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Street Number and Name</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.foreignAddress.street"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -187,9 +187,9 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-8">
                                     <div class="row">
-                                        <div class="col-md-4">Apt.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Stc.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Flr.<input type="checkbox" name="" value=""></div>
+                                        <div class="col-md-4">Apt.<input type="checkbox" name="" value="" [(ngModel)]="page3.foreignAddress.aptType"></div>
+                                        <div class="col-md-4">Stc.<input type="checkbox" name="" value="" [(ngModel)]="page3.foreignAddress.aptType"></div>
+                                        <div class="col-md-4">Flr.<input type="checkbox" name="" value="" [(ngModel)]="page3.foreignAddress.aptType"></div>
                                     </div>
                                 </div>
                             </div>
@@ -197,44 +197,44 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Number </div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.foreignAddress.houseNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">City or Town</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.foreignAddress.city"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">State</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.foreignAddress.state"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Province</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.foreignAddress.province"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Postal Code</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page3.foreignAddress.zipCode"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Country</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="" [(ngModel)]="page3.foreignAddress.country"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Does each person in this petition have a valid passport?</div>
-                                <div class="col-md-1"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-4"><input type="checkbox" name="" value=""> No.  If no, go to Part 9. and type or print your explanation</div>
+                                <div class="col-md-1"><input type="checkbox" name="" value="" [(ngModel)]="page3.eachPersonHaveValidPassport"> Yes</div>
+                                <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page3.eachPersonHaveValidPassport"> No.  If no, go to Part 9. and type or print your explanation</div>
                                 <div class="col-md-3"></div>
                             </div>
                         </div>

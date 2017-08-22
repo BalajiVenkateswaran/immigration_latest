@@ -58,7 +58,10 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
       this.user = this.appService.user;
     }
     this.settings = {
-        "isDeleteEnable": false,
+        'isDeleteEnable': false,
+        'context': {
+            'componentParent': this
+        },
       'columnsettings': [
         {
           headerName: "Org Name",
