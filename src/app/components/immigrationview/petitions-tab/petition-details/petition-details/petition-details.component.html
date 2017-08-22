@@ -136,8 +136,10 @@
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Assigned To <span class="redstar">*</span></label></div>
                             <div class="col-md-8">
-                                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]="isEdit" [(ngModel)]="petitionInformation.assignedTo" [ngClass]="petitionInformation.assignedTo == '' ? 'redborder': ''" />
-                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.assignedTo}}</span>
+                                <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.assignedTo" [ngClass]="petitionInformation.assignedTo == '' ? 'redborder': ''">
+                                    <option *ngFor="let user of appService.usersList;" [value]="user.emailId">{{user.emailId}}</option>
+                                </select>
+                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.assignedTo}}</span>
                             </div>
                         </div>
                         <div class="row">
@@ -266,7 +268,7 @@
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Show Receipt Number to Client <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isReceiptInfoEdit==false" [(ngModel)]="receiptInfo.showReceiptNumberToClient" [ngClass]="receiptInfo.showReceiptNumberToClient == '' ? 'redborder': ''">
+                            <select *ngIf="isReceiptInfoEdit==false" [(ngModel)]="receiptInfo.showReceiptNumberToClient" [ngClass]="receiptInfo.showReceiptNumberToClient == 1 || 2 ? '': 'redborder'">
                              
                                 <option *ngFor="let receiptnumber of receiptNumber;" [value]="receiptnumber.value">{{receiptnumber.name}}</option>
 

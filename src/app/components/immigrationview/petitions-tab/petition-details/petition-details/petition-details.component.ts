@@ -363,6 +363,13 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.approvalReceivedOn = this.receiptInfo.approvalReceivedOn;
         this.sentToGovAgencyOn = this.receiptInfo.sentToGovAgencyOn;
         this.isReceiptInfoEdit = !this.isReceiptInfoEdit;
+        if (this.receiptInfo.showReceiptNumberToClient == 1) {
+            this.receiptInfo['showReceiptNumberToClient'] = 1;
+        }
+        else {
+            this.receiptInfo['showReceiptNumberToClient'] = 0;
+
+        }
     }
 
     //cancel button function

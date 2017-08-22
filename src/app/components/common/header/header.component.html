@@ -88,7 +88,7 @@
 							<div class="clearfix"></div> Reports
 							<div class="arrow-up"></div>
 					</a></li>
-					<li *ngIf="!headerService.isDelegatedOrg()"><a
+					<li><a
 						(click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
 						[ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
 						routerLinkActive="active"> <span class="maintab-Profile"></span>

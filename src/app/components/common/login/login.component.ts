@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
 import {loginService} from "./login.service";
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {ManageAccountUserService} from "../../immigrationview/manage-account-tab/user/user.service";
 
 export interface ConfirmModel {
   title: string;
@@ -45,7 +46,8 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     private appService: AppService,
     private loginservice: loginService,
     public dialogService: DialogService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private manageAccountUserService: ManageAccountUserService,
   ) {
     super(dialogService);
     this.login = new FormGroup({
@@ -159,8 +161,9 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
                 this.appService.currentTab = 'superuser-accounts';
                 this.appService.moveToPage("superuser-accounts");
               }
-
+              this.getUsers();
             }
+          
           }
         }
       });
@@ -195,10 +198,17 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       this.appService.currentTab = 'superuser-accounts';
       this.appService.moveToPage("superuser-accounts");
     }
-    this.loginservice.updateLoginHistory(this.appService.userLoginHistoryId, userdet.roleId).subscribe((res: any) => {});
+   
+    this.loginservice.updateLoginHistory(this.appService.userLoginHistoryId, userdet.roleId).subscribe((res: any) => { });
+    this.getUsers();
     this.close();
   }
-
+  getUsers() {
+      this.manageAccountUserService.getUsers(this.appService.user.accountId)
+          .subscribe((res) => {
+              this.appService.usersList = res['users'];
+          });
+  }
   /**
   *
   */
