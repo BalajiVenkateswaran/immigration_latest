@@ -141,7 +141,7 @@ export class PetitionsComponent implements OnInit {
             this.queryParameters=queryData
         }
 
-        if (this.headerService.selectedOrg['orgId'] && queryData) {
+        if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId'] && queryData) {
             this.petitionService.getPetitionsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
                 res => {
                     console.log("Filter" + this.data);
@@ -150,17 +150,13 @@ export class PetitionsComponent implements OnInit {
                 }
             );
         }
-
-
-
-
-
     }
 
     ngDoCheck() {
         if (this.headerService.selectedOrg) {
             if (this.orgId != this.headerService.selectedOrg['orgId']) {
-                this.ngOnInit();
+                this.orgId = this.headerService.selectedOrg['orgId'];
+                this.dataWithParameters(this.queryParameters);
             }
         }
 
@@ -187,6 +183,6 @@ export class PetitionsComponent implements OnInit {
         this.appService.moveToPage("immigrationview-petition-details");
     }
     ngOnDestroy(){
-        this.getSubscription.unsubscribe();
+        //this.getSubscription.unsubscribe();
     }
 }
