@@ -9,7 +9,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4">Name of the Petitioner</div>
-                            <div class="col-md-8"><input type="text" /></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.petitonerName"/></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -18,7 +18,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4">Name of the Beneficiary</div>
-                            <div class="col-md-8"><input type="text" /></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.beneficiaryName"/></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -27,7 +27,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4">Provide the total number of beneficiaries</div>
-                            <div class="col-md-8"><input type="text" /></div>
+                            <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.totalNumberOfBeneficiaries"/></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -76,51 +76,58 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="checkbox" /> H-1B Specialty Occupation
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-1B Specialty Occupation
                             </div>
                             <div class="col-md-6">
-                                <input type="checkbox" /> H-1B1 Chile and Singapore
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-1B1 Chile and Singapore
                             </div>
                             <div class="col-md-12">
-                                <input type="checkbox" /> H-1B2 Exceptional services relating to a cooperative research and development project administered by the U.S. Department of Defense (DOD)
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-1B2 Exceptional services relating to a cooperative research and development project administered by the U.S. Department of Defense (DOD)
                             </div>
                             <div class="col-md-6">
-                                <input type="checkbox" /> H-1B3 Fashion model of distinguished merit and ability
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-1B3 Fashion model of distinguished merit and ability
                             </div>
                             <div class="col-md-6">
-                                <input type="checkbox" /> H-2A Agricultural worker
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-2A Agricultural worker
                             </div>
                             <div class="col-md-6">
-                                <input type="checkbox" /> H-2B Non-agricultural worker
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-2B Non-agricultural worker
                             </div>
                             <div class="col-md-6">
-                                <input type="checkbox" /> H-3 Trainee
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-3 Trainee
                             </div>
                             <div class="col-md-6">
-                                <input type="checkbox" /> H-3 Special education exchange visitor progra
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-3 Special education exchange visitor progra
                             </div>
                             <div class="col-md-6">
-                                <input type="checkbox" /> H-3 Trainee
+                                <input type="checkbox" [(ngModel)]="I129Hpage1.sought"/> H-3 Trainee
                             </div>
                             <div class="col-md-8">Are you filing this petition on behalf of a beneficiary subject to the Guam-CNMI cap exemption under Public Law 110-229? </div>
                             <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                    <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="row" *ngFor="let x of I129Hpage1questions">
+                                    <label for="">
+                                        <input type="radio" name="petitionfiledonbehalf" [value]="x.value" [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary" />
+                                        {{x.display}}
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-md-8">Are you requesting a change of employer and was the beneficiary previously subject to the Guam-CNMI cap exemption under Public Law 110-229?</div>
                             <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                    <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="row" *ngFor="let x of I129Hpage1questions">
+                                    <label for="">
+                                        <input type="radio" name="changeemployer" [value]="x.value" [(ngModel)]="I129Hpage1.changeOfEmployer" />
+                                        {{x.display}}
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-md-8">Does any beneficiary in this petition have ownership interest in the petitioning organization?</div>
                             <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-6"><input type="checkbox" name="" value=""> Yes  If yes, please explain in Item Number 7.b</div>
-                                    <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                               
+                                <div class="row" *ngFor="let x of I129Hpage1questions">
+                                    <label for="">
+                                        <input type="radio" name="ownership" [value]="x.value" [(ngModel)]="I129Hpage1.doesBeneficiaryHaveOwnership" />
+                                        {{x.display}}
+                                    </label>
                                 </div>
                             </div>
                         </div>

@@ -10,6 +10,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-5.component.scss']
 })
 export class i129HPage5Component implements OnInit {
+    public I129Hpage5: any = {};
 
      constructor() {
     }

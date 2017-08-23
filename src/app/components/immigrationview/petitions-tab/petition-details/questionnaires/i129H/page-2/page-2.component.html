@@ -10,7 +10,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">Explanation</div>
-                                <div class="col-md-12"> <textarea style="height:120px"></textarea></div>
+                                <div class="col-md-12"> <textarea style="height:120px" [(ngModel)]="I129Hpage2.explanation"></textarea></div>
                             </div>
                         </div>
                     </div>
@@ -25,13 +25,13 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">Describe the proposed duties</div>
-                                <div class="col-md-12"> <textarea style="height:120px"></textarea></div>
+                                <div class="col-md-12"> <textarea style="height:120px" [(ngModel)]="I129Hpage2.proposedDutiess"></textarea></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">Describe the beneficiary's present occupation and summary of prior work experience.</div>
-                                <div class="col-md-12"> <textarea style="height:120px"></textarea></div>
+                                <div class="col-md-12"> <textarea style="height:120px" [(ngModel)]="I129Hpage2.summaryOfWorkExp"></textarea></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -48,13 +48,13 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Name of Petitioner</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.petitonerName"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.petitionerDateOfSignature"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -70,13 +70,13 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Name of Authorized Official of Employer</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.authorizedOfficial" /></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.officialDateOfSignature"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -92,13 +92,13 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Name of DOD Project Manager</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.projectManager"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.projectManagerDateOfSignature"/></div>
                             </div>
                         </div>
                     </div>
@@ -111,14 +111,14 @@
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
                     <div class="row">
                         <div class="col-md-12">Employment is:  (select only one box)</div>
-                        <div class="col-md-3"><input type="checkbox" name="" value=""> Seasonal</div>
+                        <div class="col-md-3"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage2.employment"> Seasonal</div>
                         <div class="col-md-3"><input type="checkbox" name="" value=""> Peak load</div>
                         <div class="col-md-3"><input type="checkbox" name="" value=""> Intermittent</div>
                         <div class="col-md-3"><input type="checkbox" name="" value=""> One-time occurrence</div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">Temporary need is:  (select only one box)</div>
-                        <div class="col-md-3"><input type="checkbox" name="" value=""> Unpredictable</div>
+                        <div class="col-md-3"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage2.temporaryNeed"> Unpredictable</div>
                         <div class="col-md-3"><input type="checkbox" name="" value=""> Periodic</div>
                         <div class="col-md-3"><input type="checkbox" name="" value=""> Recurrent annually</div>
                     </div>

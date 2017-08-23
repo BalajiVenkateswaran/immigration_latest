@@ -16,7 +16,7 @@
                                 <div class="col-md-4">
                                     <div class="row">
                                         <div class="col-md-4">Street Number and Name</div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage4.address.explanation"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -24,7 +24,7 @@
                                         <div class="col-md-4"></div>
                                         <div class="col-md-8">
                                             <div class="row">
-                                                <div class="col-md-4">Apt.<input type="checkbox" name="" value=""></div>
+                                                <div class="col-md-4">Apt.<input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.address.aptType"></div>
                                                 <div class="col-md-4">Stc.<input type="checkbox" name="" value=""></div>
                                                 <div class="col-md-4">Flr.<input type="checkbox" name="" value=""></div>
                                             </div>
@@ -34,98 +34,98 @@
                                 <div class="col-md-4">
                                     <div class="row">
                                         <div class="col-md-4">Number </div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage4.address.houseNumber"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="row">
                                         <div class="col-md-4">City or Town</div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage4.address.city"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="row">
                                         <div class="col-md-4">State</div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage4.address.state"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="row">
                                         <div class="col-md-4">ZIP Code</div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage4.address.zipCode"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Did any of the H-2A/H-2B workers that you are requesting pay you, oranagent, a job placement fee or other form  of compensation (either director indirect) as a condition of the employment, or do they have an agreement to pay you or the service such fees at a later date? The phrase "fees or other compensation" includes, but is not limited to,  petition fees, attorney fees, recruitment costs, and any other fees that are a condition of a beneficiary's employment that the employer is prohibited from passing to the H-2A or H-2B worker under law under U.S.Department of Labor rules. This phrase does not include reasonable travel expenses and certain government-mandated fees (such  as passport fees) that are not prohibited from being passed to the H-2A or H-2B worker by statute, regulations, or any laws.</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.anyCompensationPaidForEmployment"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-12" style="margin:10px 0;">If yes, list the types and amounts of fees that the worker(s) paid or will pay.</div>
-                                        <div class="col-md-12"><textarea style="height:120px;"></textarea></div>
+                                        <div class="col-md-12"><textarea style="height:120px;" [(ngModel)]="I129Hpage4.amountOfFeesPaid"></textarea></div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">If the workers paid any fee or compensation, were they reimbursed?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.isCompensationReimbursed"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">If the workers agreed to pay a fee that they have not yet been paid, has their agreement been terminated before the workers paid the fee?  (Submit evidence of termination or reimbursement with this petition.)</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.isAgreementTerminated"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Have you made reasonable inquiries to determine that to the best of your knowledge the recruiter, facilitator, or similar employment service that you used has not collected, and will not collect, directly or indirectly, any fees or other compensation from the H-2 workers of this petition as a condition of the H-2 workers' employment?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.isReasonableInquiriesMade"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10"><b>NOTE:</b> If USCIS determines that you knew, or should have known, that the workers requested in connection with this petition paid any fees or other compensation at any time as a condition of employment, your petition may be denied or revoked.</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.zipCode"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Have you ever had an H-2A or H-2B petition denied or revoked because an employee paid a job placement fee or other similar compensation as a condition of the job offer or employment?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.isPetitionDenied"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">If yes, when?</div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage4.whenPetitionDenied"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">Receipt Number</div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage4.receiptNumber"/></div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Were the workers reimbursed for such fees and compensation?  (Submit evidence of reimbursement.)  If you answered no because you were unable to locate the workers, include evidence of your efforts to locate the workers.</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.wereFeesReimbursed"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Have any of the workers you are requesting experienced an interrupted stay associated with their entry as an H-2A or H-2B? (See form instructions for more information on interrupted stays.)</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.anyInterruptedStay"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
@@ -135,14 +135,14 @@
                                 <div class="col-md-10">If you are an H-2A petitioner, are you a participant in the E-Verify program?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage4.areYouInEVerifyProgram"> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-4">If yes, provide the E-Verify Company ID or Client Company ID.</div>
-                                        <div class="col-md-8"><input type="text" /></div>
+                                        <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage4.eVerifyCompanyID"/></div>
                                     </div>
                                 </div>
                             </div>

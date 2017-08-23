@@ -16,48 +16,55 @@
                                 <div class="col-md-10">Is the training you intend to provide, or similar training, available in the beneficiary's country?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage2.isTrainingInBeneficiaryCountry"
+> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Will the training benefit the beneficiary in pursuing a career abroad?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage2.willTrainingBenefit"
+> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Does the training involve productive employment incidental to the training?  If yes, explain the amount of compensation employment versus the classroom in Part 9. of Form I-129.</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage2.isTrainingProductive"
+> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Does the beneficiary already have skills related to the training?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage2.doesBeneficairyAlreadySkilled"
+> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Is this training an effort to overcome a labor shortage?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage2.isTrainingToOvercomeLaborShortage"
+> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
                                 <div class="col-md-10">Do you intend to employ the beneficiary abroad at the end of this training?</div>
                                 <div class="col-md-2">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
+                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="I129Hpage2.isIntendToEmployAtEndOfTraining"
+> Yes</div>
                                         <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
                                     </div>
                                 </div>
 
                                         <div class="col-md-12">If you do not intend to employ the beneficiary abroad at the end of this training, explain why you wish to incur the cost of providing this training and your expected return from this training.</div>
-                                        <div class="col-md-12"><textarea style="height:300px;"></textarea></div>
+                                        <div class="col-md-12"><textarea style="height:300px;" [(ngModel)]="I129Hpage2.expectedReturnFromThisTraining"
+></textarea></div>
                                 
                             </div>
                         </div>

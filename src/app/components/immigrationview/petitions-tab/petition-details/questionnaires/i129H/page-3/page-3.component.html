@@ -11,7 +11,7 @@
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
                     <div class="row">
                         <div class="col-md-12">Explain your temporary need for the workers' services (Attach a separate sheet if additional space is needed).</div>
-                        <div class="col-md-12"> <textarea style="height:120px"></textarea></div>
+                        <div class="col-md-12"> <textarea style="height:120px" [(ngModel)]="I129Hpage3.explainTempNeedOfWorkers"></textarea></div>
                         <div class="col-md-12">List the countries of citizenship for the H-2A or H-2B workers you plan to hire.</div>
                         <div class="col-md-12">
                             <table width="100%" cellpadding="3px" cellspacing="0px;" border="1">
@@ -32,19 +32,19 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Family Name (Last Name)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.h2AFamilyName"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Given Name (First Name)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.h2AGivenName"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Middle Name</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.h2AMiddleName"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -53,52 +53,73 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Family Name (Last Name)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.otherFamilyName"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Given Name (First Name)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.otherGivenName"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Middle Name</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.otherMiddleName"/></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.other2FamilyName" /></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.other2GivenName" /></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.other2MiddleName" /></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Date of Birth (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.dateOfBirth"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Country of Birth</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.countryOfBirth"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Country of Citizenship or Nationality</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.nationality"/></div>
                             </div>
                         </div>
                         <div class="col-md-8">Have any of the workers listed in Item Number 5. above ever been admitted to the United States previously in H-2A/H-2B status?                          
                         </div>
                         <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-9"><input type="checkbox" /> Yes.  If yes, go to Part 9. of Form I-129 and write your explanation.</div>
-                                <div class="col-md-3"><input type="checkbox" /> no</div>
+                            <div class="row" *ngFor="let x of I129Hpage3questions">
+                                <label for="">
+                                    <input type="radio" name="previusadmitted" [value]="x.value" [(ngModel)]="I129Hpage3.isPreviousAdmittedToUSinH2AStatus" />
+                                    {{x.display}}
+                                </label>
                             </div>
+                            <span>If yes, go to Part 9. of Form I-129 and write your explanation</span>
                         </div>
 
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Visa Classification (H-2A or H-2B):</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.visaClassification"/></div>
                             </div>
                         </div>
 
@@ -109,9 +130,11 @@
                         <div class="col-md-8">
                             Did you or do you plan to use a staffing, recruiting, or similar placement service or agent to locate the H-2A/H-2B workers that you intend to hire by filing this petition?                        </div>
                         <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-9"><input type="checkbox" /> Yes.</div>
-                                <div class="col-md-3"><input type="checkbox" /> no</div>
+                            <div class="row" *ngFor="let x of I129Hpage3questions">
+                                <label for="">
+                                    <input type="radio" name="planstaffing" [value]="x.value" [(ngModel)]="I129Hpage3.isPlanToUseForStaffing" />
+                                    {{x.display}}
+                                </label>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -120,7 +143,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Name</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.name"/></div>
                             </div>
                         </div>
                     </div>

@@ -10,12 +10,25 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-3.component.scss']
 })
 export class i129HPage3Component implements OnInit {
+    public I129Hpage3: any = {};
+    public I129Hpage3questions: any = [];
 
      constructor() {
     }
 
     ngOnInit() {
- 
+        this.I129Hpage3questions = [
+            {
+                "id": "0",
+                "display": "Yes",
+                "value": "Y"
+            },
+            {
+                "id": "1",
+                "display": "No",
+                "value": "N"
+            },
+        ];
     }
 
 }
