@@ -17,7 +17,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Street Number and Name</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.street"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -25,9 +25,10 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-8">
                                     <div class="row">
-                                        <div class="col-md-4">Apt.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Stc.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Flr.<input type="checkbox" name="" value=""></div>
+                                        <div class="col-md-4" *ngFor="let x of aptType">
+                                             <input type="radio" name="aptType" [value]="x.value" [(ngModel)]="page7.preparerAddress.aptType">{{x.display}} 
+                                        </div>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -35,43 +36,43 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Number </div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.houseNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">City or Town</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.city"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">State</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.state"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">ZIP Code</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.zipCode"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Province</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.province"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Postal Code</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.postalCode"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Email Address (if any)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.street"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -80,19 +81,19 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Daytime Telephone Number</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerTNNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Fax Number</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerFaxNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Email Address (if any)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerEmail"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -105,13 +106,13 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Signature of Preparer</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.dateOfSignature"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Date of Signature (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" /></div>
+                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.dateOfSignature"/></div>
                             </div>
                         </div>
                     </div>
