@@ -89,34 +89,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
   getCliData() {
     this.appService.showSideBarMenu(null, "clients");
-    this.clientService.getClients(this.headerService.selectedOrg['orgId']).subscribe((res) => {
-      this.clientList = res['clients'];
-      this.data = this.clientList;
-      this.paginationData = res['pageMetadata']
-      this.clientList.forEach(client => {
-        if (client.markForDeletion)
-          client.status = 'Mark for Deletion';
-      });
-
-
-    });
   }
 
   ngOnInit() {
     this.appService.showSideBarMenu(null, "clients");
-    this.clientService
-      .getClients(this.headerService.selectedOrg['orgId'])
-      .subscribe((res: any) => {
-        this.clientList = res.clients;
-        this.data = this.clientList;
-        this.paginationData = res['pageMetadata'];
-        this.clientList.forEach(client => {
-          if (client.markForDeletion)
-            client.status = 'Mark for Deletion';
-        });
-
-
-      });
   }
   addNewCli() {
     this.dialogService.addDialog(ClientsComponent, {
