@@ -14,43 +14,37 @@
                         <div class="col-md-8">Are you a nonprofit research organization or a governmental research organization, as defined in 8 CFR 214.2(h)(19)(iii)(C)?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                 <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isOrgOrEntityDefinedIn8CFR19C" [value]="x.value" [(ngModel)]="page2.isOrgOrEntityDefinedIn8CFR19C">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-8">Is this the second or subsequent request for an extension of stay that this petitioner has filed for this alien?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isSecondExtnRequest" [value]="x.value" [(ngModel)]="page2.isSecondExtnRequest">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-8">Is this an amended petition that does not contain any request for extensions of stay?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isAmendNotExtn" [value]="x.value" [(ngModel)]="page2.isAmendNotExtn">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-8">Are you filing this petition to correct a USCIS error?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                 <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isToCorrectUSCISError" [value]="x.value" [(ngModel)]="page2.isToCorrectUSCISError">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-8">Is the petitioner a primary or secondary education institution?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                 <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isPrimaryEducInstutition" [value]="x.value" [(ngModel)]="page2.isPrimaryEducInstutition">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-8">Is the petitioner a nonprofit entity that engages in an established curriculum-related clinical training of students registered at such an institution?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isNonProfitEntity" [value]="x.value" [(ngModel)]="page2.isNonProfitEntity">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -59,8 +53,7 @@
                         <div class="col-md-8">Do you currently employ a total of 25 or fewer full-time equivalent employees in the United States, including all affiliates or subsidiaries of this company/organization?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> Yes</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value=""> No</div>
+                                <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isEmployeesFullTime" [value]="x.value" [(ngModel)]="page2.isEmployeesFullTime">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -81,29 +74,30 @@
                         <div class="col-md-12">
                             <p class="fieldsetheading"> Specify the type of H-1B petition you are filing. (select only one box): </p>
                         </div>
-                        <div class="col-md-3"><input type="checkbox" name="" value=""> CAP H-1B Bachelor's Degree</div>
-                        <div class="col-md-4"><input type="checkbox" name="" value=""> CAP H-1B U.S. Master's Degree or Higher</div>
-                        <div class="col-md-3"><input type="checkbox" name="" value=""> CAP H-1B1 Chile/Singapore</div>
-                        <div class="col-md-2"><input type="checkbox" name="" value=""> CAP Exempt</div>
+                        <div class="col-md-4" *ngFor="let x of petitionType">
+                            <input type="radio" name="petitionType" [value]="x.value" [(ngModel)]="page2.petitionType"> {{x.display}}
+                            
+                        </div>
+                       
                         <div class="col-md-12">
                             <p class="fieldsetheading">If you answered Item Number 1.b. "CAP H-1B U.S. Master's Degree or Higher," provide the following information regarding the master's or higher degree the beneficiary has earned from a U.S. institution as defined in 20 U.S.C. 1001(a):</p>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Name of the United States Institution of Higher Education</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page2.nameOfUSInstitution"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Date Degree Awarded</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page2.dateOfDegreeAwarded"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Type of United States Degree</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page2.typeOfUSDegree"/></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -112,7 +106,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Street Number and Name</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page2.addressOfUSinstitution.street"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -120,9 +114,10 @@
                                 <div class="col-md-6"></div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4">Apt.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Stc.<input type="checkbox" name="" value=""></div>
-                                        <div class="col-md-4">Flr.<input type="checkbox" name="" value=""></div>
+                                        <div class="col-md-4" *ngFor="let x of aptType">
+                                           <input type="radio" name="aptType" [value]="x.value" [(ngModel)]="page2.addressOfUSinstitution.aptType">{{x.display}} 
+                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -130,25 +125,25 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">Number </div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page2.addressOfUSinstitution.houseNumber"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">City or Town</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page2.addressOfUSinstitution.city"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">State</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page2.addressOfUSinstitution.state"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-6">ZIP Code</div>
-                                <div class="col-md-6"><input type="text" /></div>
+                                <div class="col-md-6"><input type="text" [(ngModel)]="page2.addressOfUSinstitution.zipCode"/></div>
                             </div>
                         </div>
                     </div>
