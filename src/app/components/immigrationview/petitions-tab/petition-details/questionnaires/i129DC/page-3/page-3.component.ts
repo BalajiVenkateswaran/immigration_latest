@@ -10,8 +10,25 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-3.component.scss']
 })
 export class i129dcPage3Component implements OnInit {
+    public page3:any={
+        "capExemptReason":{
 
+        }
+    };
+    public questions;
      constructor() {
+          this.questions = [
+            {
+                "id": "0",
+                "display": "Yes",
+                "value":"Y"
+            },
+            {
+                "id": "1",
+                "display": "No",
+                "value": "N"
+            },
+        ];
     }
 
     ngOnInit() {

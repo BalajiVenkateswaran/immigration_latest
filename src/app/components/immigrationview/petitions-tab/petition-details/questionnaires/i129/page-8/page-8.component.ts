@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-8.component.scss']
 })
 export class i129Page8Component implements OnInit {
-
+    public page8:any={};
      constructor() {
     }
 
