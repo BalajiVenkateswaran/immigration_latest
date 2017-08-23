@@ -18,7 +18,7 @@ export class SmartTableFramework implements OnChanges {
     pageSize: number;
     totalElements: number;
     totalPages: number;
-    
+
     /*
     * following options are available in IH smart table
     *    - columnsettings : columnsettings
@@ -71,7 +71,7 @@ export class SmartTableFramework implements OnChanges {
             }
 
         })
-        
+
         this.filterSubscription = CustomFilterRow.fillValues.subscribe(res => {
             let that = this;
             if (res) {
@@ -87,13 +87,13 @@ export class SmartTableFramework implements OnChanges {
                 this.filterQueries = this.filterWholeArray.map(function (item) {
                     return item.headingName + ":" + item.filterValue;
                 })
-            
+
 
                 this.appendParamValues({ 'data': that.filterQueries, 'filterFlag': true });
             }
 
         });
-       
+
 
 
     }
@@ -145,7 +145,7 @@ export class SmartTableFramework implements OnChanges {
                 }
             }
         }
-        
+
 
 
     }
@@ -263,7 +263,7 @@ export class SmartTableFramework implements OnChanges {
                 })
                 this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
             }
-           
+
 
 
         }
@@ -349,7 +349,7 @@ export class SmartTableFramework implements OnChanges {
         if (queryParameters.hasOwnProperty('paginationFlag')) {
 
             if (this.paginationWithFilterData && this.totalElements > this.pageSize) {
-                let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'] + "&" + this.filteredQueryParams;
+                let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'] + "&filter=" + this.filteredQueryParams;
                 this.dataWithQueryParams.emit(queryParams);
             }
             else {
@@ -358,9 +358,9 @@ export class SmartTableFramework implements OnChanges {
             }
 
         }
-    
-            
-        
+
+
+
 
 
 
