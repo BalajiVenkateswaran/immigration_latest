@@ -10,8 +10,29 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-7.component.scss']
 })
 export class i129Page7Component implements OnInit {
-
+    public page7:any={
+        "preparerAddress":{}
+    };
+    public aptType;
      constructor() {
+         this.aptType = [
+            {
+                "id": "0",
+                "display": "Apt.",
+                "value":"APT"
+            },
+            {
+                "id": "1",
+                "display": "Stc.",
+                "value": "STE"
+            },
+            {
+                "id": "2",
+                "display": "Flr.",
+                "value": "FLR"
+            }
+            
+        ];
     }
 
     ngOnInit() {

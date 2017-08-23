@@ -10,10 +10,79 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-1.component.scss']
 })
 export class i129dcPage1Component implements OnInit {
+    public page1:any={
+        "employerInfo":{}
+    };
+    public questions;
+    public higherEducation;
+    constructor() {
+        this.questions = [
+            {
+                "id": "0",
+                "display": "Yes",
+                "value":"Y"
+            },
+            {
+                "id": "1",
+                "display": "No",
+                "value": "N"
+            },
+        ]
+         this.higherEducation = [
+            {
+                "id": "0",
+                "display": "NO DIPLOMA",
+                "value":"NO_DIPLOMA"
+            },
+            {
+                "id": "1",
+                "display": "HIGH SCHOOL GRADUATE DIPLOMA",
+                "value":"HIGH_SCHOOL"
+            },
+            {
+                "id": "2",
+                "display": "Some college credit, but less than 1 year",
+                "value": "COLLEGE_CREDIT"
+            },
+            {
+                "id": "3",
+                "display": "Some college credit, but less than 1 year",
+                "value": "COLLEGE_CREDIT"
+            },
+            {
+                "id": "4",
+                "display": "One or more years of college, no degree",
+                "value": "NO_DEGREE"
+            },
+            {
+                "id": "5",
+                "display": "Associate's degree (for example: AA, AS)",
+                "value": "ASSOCIATES_DEGREE"
+            },
+            {
+                "id": "6",
+                "display": "Bachelor's degree (for example: BA, AB, BS)",
+                "value": "BACHELORS_DEGREE"
+            },
+            {
+                "id": "7",
+                "display": "Master's degree (for example: MA, MS, MEng, MEd, MSW, MBA)",
+                "value": "MASTERS_DEGREE"
+            },
+            {
+                "id": "8",
+                "display": "Professional degree (for example: MD, DDS, DVM, LLB, JD)",
+                "value": "PROFESSIONAL_DEGREE"
+            },
+            {
+                "id": "9",
+                "display": "Doctorate degree (for example:  PhD, EdD)",
+                "value": "DOCTORATE_DEGREE"
+            },
 
-     constructor() {
+        ];
     }
-
+    
     ngOnInit() {
  
     }

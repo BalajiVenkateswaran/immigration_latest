@@ -11,6 +11,9 @@ import { DialogService } from "ng2-bootstrap-modal";
   templateUrl: './reset-password.component.html'
 })
 export class ResetPasswordComponent implements OnInit {
+  passwordRegex: RegExp;
+  public oldPasswordValidationFlag:boolean=false;
+  public confirmPasswordValidFlag:boolean=false;
   private outlet: any = {
     breadcrumbs: null,
     header: null,
@@ -19,18 +22,18 @@ export class ResetPasswordComponent implements OnInit {
     menu: null,
     footer: null
   };
-  confirmPassword: ConfirmPasswordValidator;
-  con = new ConfirmPasswordValidator();
+ 
   login = new FormGroup({
     email: new FormControl('', [Validators.required]),
     oldPassword: new FormControl('', [Validators.required]),
-    newPassword: new FormControl('', [Validators.required]),
+    newPassword: new FormControl('', [Validators.required,Validators.pattern(this.passwordRegex)]),
     confirmPassword: new FormControl('', [Validators.required])
-  }, Validators.compose([this.con.matchPassword, this.con.oldSameAsNew]));
+  });
   constructor(private router: Router, private resetPasswordService: ResetPasswordService,
     private appService: AppService, private dialogService: DialogService) {
-    console.log(this.login);
-  }
+    console.log(this.login);  
+
+    }
 
   ngOnInit() {
     this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
@@ -64,34 +67,22 @@ export class ResetPasswordComponent implements OnInit {
 
       });
   }
-
-}
-export class ConfirmPasswordValidator {
-    matchPassword(control: AbstractControl) {
-      if (control.value) {
-        let password = control.get('newPassword').value;
-        let confirmPassword = control.get('confirmPassword').value;
-        let oldPassword = control.get('oldPassword').value;
-        if (password != confirmPassword) {
-          control.get("confirmPassword").setErrors({ matchPassword: true });
-        }
-
-
-      }
-      return null;
-
+  validatePassword(){
+    if(this.login.value.oldPassword == this.login.value.newPassword){
+      this.oldPasswordValidationFlag=true;
 
     }
-    oldSameAsNew(formControl: AbstractControl) {
-      if (formControl.value) {
-        let oldPassword = formControl.get('oldPassword').value;
-        let newPassword = formControl.get('newPassword').value;
-        if (oldPassword == newPassword) {
-          formControl.get("oldPassword").setErrors({ oldSameAsNew: true });
-        }
-
-      }
-      return null;
+    else{
+      this.oldPasswordValidationFlag=false;
     }
+    if(this.login.value.newPassword != this.login.value.confirmPassword){
+      this.confirmPasswordValidFlag=true;
+    }
+    else{
+      this.confirmPasswordValidFlag=false;
+    }
+  }
+
+
 }
 

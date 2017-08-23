@@ -20,7 +20,7 @@ export class profilechangepwdcomponent implements OnInit {
        
     }
     constructor(public appService: AppService, private profileChangepwdservice: profilechangepwdservice, private dialogService: DialogService) { 
-        this.passwordRegex = /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/;
+        this.passwordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?#_&+=^,.:;\-])[A-Za-z\d$@$!%*?#_&+=^,.:;\-]{8,}/;
         this.newpwd = new FormControl('', [Validators.required,Validators.pattern(this.passwordRegex)]);
     }
     changepwd() {
