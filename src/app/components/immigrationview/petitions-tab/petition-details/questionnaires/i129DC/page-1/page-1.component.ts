@@ -15,7 +15,7 @@ export class i129dcPage1Component implements OnInit {
     };
     public questions;
     public higherEducation;
-    constructor() {
+    constructor(public appService: AppService) {
         this.questions = [
             {
                 "id": "0",
@@ -86,5 +86,8 @@ export class i129dcPage1Component implements OnInit {
     ngOnInit() {
  
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129dcPage2');
+    }
+   
 }
