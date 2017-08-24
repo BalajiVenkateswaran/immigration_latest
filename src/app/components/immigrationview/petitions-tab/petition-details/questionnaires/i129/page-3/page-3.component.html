@@ -24,32 +24,32 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-5">Alien Registration Number (A-Number)</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.alienRegistrationNumber" />
+                                <div class="col-md-4">Alien Registration Number (A-Number)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.alienRegistrationNumber" />
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.alienRegistrationNumber}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-5">Country of Birth</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.countryOfBirth" />
+                                <div class="col-md-4">Country of Birth</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.countryOfBirth" />
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.countryOfBirth}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-5">Province of Birth </div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.provinceOfBirth" />
+                                <div class="col-md-4">Province of Birth </div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.provinceOfBirth" />
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.provinceOfBirth}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-5">Country of Citizenship or Nationality</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.nationality" />
+                                <div class="col-md-4">Country of Citizenship or Nationality</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.nationality" />
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.nationality}}</span>
                                 </div>
                             </div>
@@ -107,32 +107,32 @@
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-5">Current Nonimmigrant Status </div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.currentNonImmigrantStatus" />
+                                <div class="col-md-4">Current Nonimmigrant Status </div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.currentNonImmigrantStatus" />
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.currentNonImmigrantStatus}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-5">Date Status Expires or D/S (mm/dd/yyyy)</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.dateStatusExpires" />
+                                <div class="col-md-4">Date Status Expires or D/S (mm/dd/yyyy)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.dateStatusExpires" />
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.dateStatusExpires}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-5">Employment Authorization Document (EAD) Number (if any)</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.ead" />
+                                <div class="col-md-4">Employment Authorization Document (EAD) Number (if any)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.ead" />
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.ead}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-5">Student and Exchange Visitor Information System (SEVIS) Number (if any)</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.sevisNumber" />
+                                <div class="col-md-4">Student and Exchange Visitor Information System (SEVIS) Number (if any)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.sevisNumber" />
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.sevisNumber}}</span>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                                 <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-4" *ngFor="let x of aptType">
-                                            <input type="radio" name="aptType" [value]="x.value" [(ngModel)]="page3.address.aptType">{{x.display}}
+                                            <input type="radio" name="aptType" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page3.address.aptType">{{x.display}}
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
                             <div class="row">
                                 <div class="col-md-3">Type of Office (select only one box)</div>
                                 <div class="col-md-3" *ngFor="let x of typeOfOffice">
-                                    <input type="radio" name="typeOfOffice" [value]="x.value" [(ngModel)]="page3.typeOfOffice">{{x.display}} 
+                                    <input type="radio" name="typeOfOffice" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page3.typeOfOffice">{{x.display}} 
                                     
                                 </div>
                               
@@ -247,7 +247,7 @@
                                 <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-4" *ngFor="let x of aptType">
-                                            <input type="radio" name="aptType" [value]="x.value" [(ngModel)]="page3.foreignAddress.aptType">{{x.display}}
+                                            <input type="radio" name="aptType1" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page3.foreignAddress.aptType">{{x.display}}
                                         </div>
                                     </div>
                                 </div>
@@ -304,8 +304,8 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Does each person in this petition have a valid passport?</div>
-                                <div class="col-md-5" *ngFor="let x of questions">
-                                    <input type="radio" name="" [value]="x.value" [(ngModel)]="page3.eachPersonHaveValidPassport">{{x.display}}
+                                <div class="col-md-4" *ngFor="let x of questions">
+                                    <input type="radio" name="" [value]="x.value" [(ngModel)]="page3.eachPersonHaveValidPassport" [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
                                 If no, go to Part 9. and type or print your explanation
                                 <div class="col-md-3"></div>

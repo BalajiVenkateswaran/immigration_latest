@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {i129Page5Service} from "./page-5.service";
-import {AppService} from "../../../../../../../services/app.service";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import { i129Page5Service } from "./page-5.service";
+import { AppService } from "../../../../../../../services/app.service";
+import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
     selector: 'app-page-5.component',
@@ -10,19 +11,21 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-5.component.scss']
 })
 export class i129Page5Component implements OnInit {
-     public page5:any={
-         "address":{}
-     };
+    beforecancelquestionnaire: any;
+    isquestionnaireEdit: boolean;
+    public page5: any = {
+        "address": {}
+    };
     public questions;
-    public aptType;				
-							
-     constructor() {
-         
-										 this.questions = [
+    public aptType;
+
+    constructor(public questionnaireService: QuestionnaireCommonService) {
+
+        this.questions = [
             {
                 "id": "0",
                 "display": "Yes",
-                "value":"Y"
+                "value": "Y"
             },
             {
                 "id": "1",
@@ -30,11 +33,11 @@ export class i129Page5Component implements OnInit {
                 "value": "N"
             },
         ];
-         this.aptType = [
+        this.aptType = [
             {
                 "id": "0",
                 "display": "Apt.",
-                "value":"APT"
+                "value": "APT"
             },
             {
                 "id": "1",
@@ -46,12 +49,38 @@ export class i129Page5Component implements OnInit {
                 "display": "Flr.",
                 "value": "FLR"
             }
-            
+
         ];
     }
 
     ngOnInit() {
- 
+        this.isquestionnaireEdit = true;
+        this.questionnaireService.getQuestionnaireData("2c9fc60d5e0cef3a015e0f194da1006c", 5).subscribe(res => {
+            if (res['formPage'] != undefined) {
+
+                this.page5 = res['formPage'];
+
+                if (res['formPage']['address'] != undefined) {
+                    this.page5.address = res['formPage']['address'];
+                }
+               
+            }
+        })
+    }
+    editQuestinnaireForm() {
+        this.isquestionnaireEdit = !this.isquestionnaireEdit;
+        this.beforecancelquestionnaire = (<any>Object).assign({}, this.page5);
+    }
+    cancelQuestinnaireEdit() {
+        this.page5 = this.beforecancelquestionnaire;
+        this.isquestionnaireEdit = true;
+    }
+    savequestionnaireInformation() {
+        this.isquestionnaireEdit = true;
+        this.page5.pageNumber = 5;
+        this.questionnaireService.saveQuestionnaireData('2c9fc60d5e0cef3a015e0f194da1006c', 5, this.page5).subscribe(res => {
+
+        })
     }
 
 }
