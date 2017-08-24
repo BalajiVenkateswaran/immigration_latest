@@ -14,7 +14,7 @@ export class i129Page6Component implements OnInit {
     beforecancelquestionnaire: any;
     isquestionnaireEdit: boolean;
     public page6: any = {};
-     constructor(public questionnaireService: QuestionnaireCommonService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
     }
 
     ngOnInit() {
@@ -41,6 +41,11 @@ export class i129Page6Component implements OnInit {
 
         })
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129Page7');
+    }
+    gotoPrev() {
+        this.appService.moveToPage('i129Page5');
+    }
 
 }

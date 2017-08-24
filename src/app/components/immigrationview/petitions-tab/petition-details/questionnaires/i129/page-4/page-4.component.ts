@@ -14,7 +14,7 @@ export class i129Page4Component implements OnInit {
     isquestionnaireEdit: boolean;
     public page4: any = {};
     public questions;
-     constructor(public questionnaireService: QuestionnaireCommonService) {
+     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
           this.questions = [
             {
                 "id": "0",
@@ -55,5 +55,10 @@ export class i129Page4Component implements OnInit {
 
         })
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129Page5');
+    }
+    gotoPrev() {
+        this.appService.moveToPage('i129Page3');
+    }
 }

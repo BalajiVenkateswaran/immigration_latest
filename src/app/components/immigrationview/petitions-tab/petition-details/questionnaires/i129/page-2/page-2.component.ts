@@ -17,7 +17,7 @@ export class i129Page2Component implements OnInit {
     public requestedAction;
     public isquestionnaireEdit: boolean = false;
     public gender;
-     constructor(public questionnaireService:QuestionnaireCommonService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
          this.basicClassification =[
             {
                 "id":"0",
@@ -133,7 +133,12 @@ export class i129Page2Component implements OnInit {
 
          })
     }
-    
+    gotoNext() {
+        this.appService.moveToPage('i129Page3');
+    }
+    gotoPrev() {
+        this.appService.moveToPage('i129Page1');
+    }
 
 
 }

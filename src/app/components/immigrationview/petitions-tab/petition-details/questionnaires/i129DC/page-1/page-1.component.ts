@@ -18,7 +18,7 @@ export class i129dcPage1Component implements OnInit {
     };
     public questions;
     public higherEducation;
-    constructor(public questionnaireService: QuestionnaireCommonService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
         this.questions = [
             {
                 "id": "0",
@@ -115,5 +115,8 @@ export class i129dcPage1Component implements OnInit {
 
         })
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129dcPage2');
+    }
+   
 }

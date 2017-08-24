@@ -17,7 +17,7 @@ export class i129Page1Component implements OnInit {
         'contact': {}
     };
     public aptType;
-    constructor(public questionnaireService: QuestionnaireCommonService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
         this.aptType = [
             {
                 "id": "0",
@@ -71,6 +71,9 @@ export class i129Page1Component implements OnInit {
 
         })
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129Page2');
+    }
+    
 
 }

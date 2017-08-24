@@ -3,22 +3,20 @@ import {i129dcPage2Service} from "./page-2.service";
 import {AppService} from "../../../../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+
 @Component({
     selector: 'app-page-2.component',
     templateUrl: './page-2.component.html',
     styleUrls: ['./page-2.component.scss']
 })
 export class i129dcPage2Component implements OnInit {
-    beforecancelquestionnaire: any;
-    isquestionnaireEdit: boolean;
     public questions;
     public aptType;
     public petitionType;
     public page2:any={
         "addressOfUSinstitution":{}
     }
-     constructor(public questionnaireService: QuestionnaireCommonService) {
+    constructor(public appService: AppService) {
          this.questions = [
             {
                 "id": "0",
@@ -26,7 +24,7 @@ export class i129dcPage2Component implements OnInit {
                 "value":"Y"
             },
             {
-                "id": "20",
+                "id": "1",
                 "display": "No",
                 "value": "N"
             },
@@ -38,7 +36,7 @@ export class i129dcPage2Component implements OnInit {
                 "value":"APT"
             },
             {
-                "id": "20",
+                "id": "1",
                 "display": "Stc.",
                 "value": "STE"
             },
@@ -57,7 +55,7 @@ export class i129dcPage2Component implements OnInit {
 
             },
              {
-                "id":"20",
+                "id":"1",
                 "display": "CAP H-1B U.S. Master's Degree or Higher",
                 "value": "CAP_MASTER_DEGREE"
 
@@ -79,33 +77,12 @@ export class i129dcPage2Component implements OnInit {
     }
     
     ngOnInit() {
-        this.isquestionnaireEdit = true;
-        this.questionnaireService.getQuestionnaireData("2c9fc60d5e0cef3a015e0f194da1006c", 20).subscribe(res => {
-            if (res['formPage'] != undefined) {
-
-                this.page2 = res['formPage'];
-
-                if (res['formPage']['addressOfUSinstitution'] != undefined) {
-                    this.page2.addressOfUSinstitution = res['formPage']['addressOfUSinstitution'];
-                }
-            }
-        })
  
     }
-    editQuestinnaireForm() {
-        this.isquestionnaireEdit = !this.isquestionnaireEdit;
-        this.beforecancelquestionnaire = (<any>Object).assign({}, this.page2);
+    gotoNext() {
+        this.appService.moveToPage('i129dcPage3');
     }
-    cancelQuestinnaireEdit() {
-        this.page2 = this.beforecancelquestionnaire;
-        this.isquestionnaireEdit = true;
+    gotoPrev() {
+        this.appService.moveToPage('i129dcPage1');
     }
-    savequestionnaireInformation() {
-        this.isquestionnaireEdit = true;
-        this.page2.pageNumber = 20;
-        this.questionnaireService.saveQuestionnaireData('2c9fc60d5e0cef3a015e0f194da1006c', 20, this.page2).subscribe(res => {
-
-        })
-    }
-
 }
