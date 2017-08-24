@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {i129HPage2Service} from "./page-2.service";
 import {AppService} from "../../../../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';

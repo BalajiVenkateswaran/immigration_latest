@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {i129dcPage2Service} from "./page-2.service";
 import {AppService} from "../../../../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -14,6 +13,7 @@ export class i129dcPage2Component implements OnInit {
     public questions;
     public aptType;
     public petitionType;
+    public isquestionnaireEdit: boolean = false;
     public page2:any={
         "addressOfUSinstitution":{}
     }
