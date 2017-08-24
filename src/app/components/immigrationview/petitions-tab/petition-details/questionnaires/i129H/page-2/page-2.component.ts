@@ -11,11 +11,16 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class i129HPage2Component implements OnInit {
 public I129Hpage2:any={};
-     constructor() {
+constructor(public appService: AppService) {
     }
 
     ngOnInit() {
  
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129hPage3');
+    }
+    gotoPrev() {
+        this.appService.moveToPage('i129hPage1');
+    }
 }

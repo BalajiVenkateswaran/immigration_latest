@@ -13,7 +13,7 @@ export class i129HPage3Component implements OnInit {
     public I129Hpage3: any = {};
     public I129Hpage3questions: any = [];
 
-     constructor() {
+    constructor(public appService: AppService) {
     }
 
     ngOnInit() {
@@ -29,6 +29,12 @@ export class i129HPage3Component implements OnInit {
                 "value": "N"
             },
         ];
+    }
+    gotoNext() {
+        this.appService.moveToPage('i129hPage4');
+    }
+    gotoPrev() {
+        this.appService.moveToPage('i129hPage2');
     }
 
 }

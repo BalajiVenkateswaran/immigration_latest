@@ -12,7 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class i129HPage1Component implements OnInit {
     public I129Hpage1: any = {};
     public I129Hpage1questions: any = [];
-     constructor() {
+    constructor(public appService: AppService) {
     }
 
     ngOnInit() {
@@ -29,5 +29,9 @@ export class i129HPage1Component implements OnInit {
             },
         ];
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129hPage2');
+    }
+    gotoPrev() {
+    }
 }
