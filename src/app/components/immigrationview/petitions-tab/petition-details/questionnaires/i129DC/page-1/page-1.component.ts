@@ -3,6 +3,7 @@ import {i129dcPage1Service} from "./page-1.service";
 import {AppService} from "../../../../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
     selector: 'app-page-1.component',
@@ -10,12 +11,14 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./page-1.component.scss']
 })
 export class i129dcPage1Component implements OnInit {
-    public page1:any={
+    beforecancelquestionnaire: any;
+    isquestionnaireEdit: boolean;
+    public page1: any = {
         "employerInfo":{}
     };
     public questions;
     public higherEducation;
-    constructor() {
+    constructor(public questionnaireService: QuestionnaireCommonService) {
         this.questions = [
             {
                 "id": "0",
@@ -84,7 +87,33 @@ export class i129dcPage1Component implements OnInit {
     }
     
     ngOnInit() {
- 
+        this.isquestionnaireEdit = true;
+        this.questionnaireService.getQuestionnaireData("2c9fc60d5e0cef3a015e0f194da1006c", 19).subscribe(res => {
+            if (res['formPage'] != undefined) {
+
+                this.page1 = res['formPage'];
+
+                if (res['formPage']['employerInfo'] != undefined) {
+                    this.page1.employerInfo = res['formPage']['employerInfo'];
+                }
+                
+            }
+        })
+    }
+    editQuestinnaireForm() {
+        this.isquestionnaireEdit = !this.isquestionnaireEdit;
+        this.beforecancelquestionnaire = (<any>Object).assign({}, this.page1);
+    }
+    cancelQuestinnaireEdit() {
+        this.page1 = this.beforecancelquestionnaire;
+        this.isquestionnaireEdit = true;
+    }
+    savequestionnaireInformation() {
+        this.isquestionnaireEdit = true;
+        this.page1.pageNumber = 19;
+        this.questionnaireService.saveQuestionnaireData('2c9fc60d5e0cef3a015e0f194da1006c', 19, this.page1).subscribe(res => {
+
+        })
     }
 
 }
