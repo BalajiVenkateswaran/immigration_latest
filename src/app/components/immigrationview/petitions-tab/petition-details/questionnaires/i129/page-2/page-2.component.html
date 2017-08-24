@@ -7,6 +7,18 @@
         <div class="row">
             <div class="col-md-12">
                 <h2> Information About This Petition <span>(See instructions for fee information)</span></h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tbl-head-btn">
+                            <button class="editbtn" (click)="editQuestinnaireForm()" *ngIf="isquestionnaireEdit==true" style="float: left;margin-right: 10px; margin-top:0px; margin-bottom:15px;">Edit</button>
+                          
+                        </div>
+                        <div class="tbl-head-btn">
+                            <button type="button" (click)="cancelQuestinnaireEdit()" class="editbtn tbl-head-btn" *ngIf="isquestionnaireEdit==false" style="margin-top:0px; margin-bottom:15px;">Cancel</button>
+                            <button type="submit" value="Save" class="savebtn" (click)="savequestionnaireInformation()" *ngIf="isquestionnaireEdit==false" style="margin-top:0px; margin-bottom:15px;">Save</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
@@ -14,23 +26,24 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Requested Nonimmigrant Classification  (Write classification symbol):</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page2.nonImmigrantClassification" /></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.nonImmigrantClassification" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.nonImmigrantClassification}}</span>        
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-3"><input type="checkbox" name="" value="NEW_EMPLOYMETNT" [(ngModel)]="page2.basicClassification"> New employment.</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value="CONTINUATION_OF_PREV_APPROVED_EMPLOYMENT" [(ngModel)]="page2.basicClassification"> Continuation of previously approved employment without change with the same employer.</div>
-                                <div class="col-md-3"><input type="checkbox" name="" value="CHANGE_IN_PREV_APPROVED_EMPLOYMENT" [(ngModel)]="page2.basicClassification"> Change in previously approved employment.</div>
-                                <div class="col-md-3"><input type="checkbox" name="" value="NEW_CONCURRENT_EMPLOYMENT" [(ngModel)]="page2.basicClassification"> New concurrent employment.</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value="CHANGE_OF_EMPLOYER" [(ngModel)]="page2.basicClassification"> Change of employer.</div>
-                                <div class="col-md-3"><input type="checkbox" name="" value="AMENDED_PETITION" [(ngModel)]="page2.basicClassification"> Amended petition.</div>
+                                <div class="col-md-6" *ngFor="let x of basicClassification">
+                                    <input type="radio" name="basicClassification" [value]="x.value" [(disabled)]="isquestionnaireEdit"  [(ngModel)]="page2.basicClassification">{{x.display}}
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-8"> Provide the most recent petition/application receipt number for the beneficiary.  If none exists, indicate "None."</div>
-                                <div class="col-md-4"><input type="text"  [(ngModel)]="page2.recentPetitionReceiptNo"/></div>
+                                <div class="col-md-4"><input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.recentPetitionReceiptNo"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.recentPetitionReceiptNo}}</span>
+                                </div>
                             </div>
                         </div>
 
@@ -39,18 +52,18 @@
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6"><input type="checkbox" name="" value="NOTIFY_OFFICE" [(ngModel)]="page2.requestedAction"> New employment.</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value="CHANGE_STATUS_BENEFICIARY" [(ngModel)]="page2.requestedAction"> Continuation of previously approved employment without change with the same employer.</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value="EXTEND_STAY_BENEFICIARY" [(ngModel)]="page2.requestedAction"> Change in previously approved employment.</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value="AMEND_STAY_BENEFICIARY" [(ngModel)]="page2.requestedAction"> New concurrent employment.</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value="EXTEND_STATUS_NONIMMIGRANT" [(ngModel)]="page2.requestedAction"> Change of employer.</div>
-                                <div class="col-md-6"><input type="checkbox" name="" value="CHANGE_STATUS_NONIMMIGRANT" [(ngModel)]="page2.requestedAction"> Amended petition.</div>
+                                <div class="col-md-6" *ngFor="let x of requestedAction">
+                                    <input type="radio" name="requestedAction" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.requestedAction">{{x.display}}
+                                </div>
+                               
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-8">Total number of workers included in this petition. (See instructions relating to when more than one worker can be included.)</div>
-                                <div class="col-md-4"><input type="text"  [(ngModel)]="page2.totalNumberOfWorkers"/></div>
+                                <div class="col-md-4"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.totalNumberOfWorkers"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.totalNumberOfWorkers}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -66,7 +79,9 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">If an Entertainment Group, Provide the Group Name</div>
-                                <div class="col-md-8"><input type="text"  [(ngModel)]="page2.groupName"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.groupName"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.groupName}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -74,20 +89,27 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">Family Name (Last Name)</div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.lastName"/></div>
+                                <div class="col-md-4">Family Name (Last Name)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.lastName"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.lastName}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">Given Name (First Name)</div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.firstName"/></div>
+                                <div class="col-md-4">Given Name (First Name)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.firstName"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.firstName}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">Middle Name </div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.middleName"/></div>
+                                <div class="col-md-4">Middle Name </div>
+                                <div class="col-md-8">
+                                <input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.middleName"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.middleName}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -95,56 +117,74 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">Family Name (Last Name)</div>
-                                <div class="col-md-7"><input type="text" [(ngModel)]="page2.otherLastName1" /></div>
+                                <div class="col-md-4">Family Name (Last Name)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName1" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName1}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">Given Name (First Name)</div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.otherFirstName1"/></div>
+                                <div class="col-md-4">Given Name (First Name)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName1"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName1}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">Middle Name </div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.otherMiddleName1"/></div>
+                                <div class="col-md-4">Middle Name </div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherMiddleName1"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherMiddleName1}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.otherLastName2"/></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName2"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName2}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-7"><input type="text" [(ngModel)]="page2.otherFirstName2" /></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName2" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName2}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-7"><input type="text" [(ngModel)]="page2.otherMiddleName2" /></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherMiddleName2" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherMiddleName2}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.otherLastName3"/></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName3"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName3}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.otherFirstName3"/></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName3"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName3}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.otherMiddleName3"/></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.otherMiddleName3"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherMiddleName3}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -152,25 +192,30 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">Date of birth (mm/dd/yyyy)</div>
-                                <div class="col-md-7"><input type="text" [(ngModel)]="page2.dateOfBirth" /></div>
+                                <div class="col-md-4">Date of birth (mm/dd/yyyy)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.dateOfBirth" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.dateOfBirth}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">Gender </div>
-                                <div class="col-md-7">
+                                <div class="col-md-4">Gender </div>
+                                <div class="col-md-8">
                                     <div class="row">
-                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page2.gender"> Male.</div>
-                                        <div class="col-md-6"><input type="checkbox" name="" value="" [(ngModel)]="page2.gender"> Female.</div>
+                                      <div class="col-md-6" *ngFor="let x of gender">
+                                           <input type="radio" name="gender" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.gender">{{x.display}} 
+                                        </div>
                                         </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-5">U.S.SocialSecurityNumber(ifany)</div>
-                                <div class="col-md-7"><input type="text"  [(ngModel)]="page2.ssn"/></div>
+                                <div class="col-md-4">U.S.SocialSecurityNumber(ifany)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.ssn"/>
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.ssn}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
