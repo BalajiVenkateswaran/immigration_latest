@@ -277,6 +277,12 @@ import {superuserclientstatusreportscomponent} from './components/superuserview/
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
 
+//superuser misc tab
+import {demorequestdetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
+import {Demorequestdetailsservice} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
+import {miscsuperusersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
+import {miscsuperusersservice} from './components/superuserview/misc-tab/superusers/miscsuperusers.service';
+
 
 @NgModule({
   imports: [
@@ -430,7 +436,9 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
     profilechangepwdcomponent,
     profiletodolistcomponent,
     SuperuserviewAccountdetailsMfdComponent,
-    ManageaccountChecklistComponent
+      ManageaccountChecklistComponent,
+      demorequestdetailsComponent,
+      miscsuperusersComponent
 
   ],
   providers: [
@@ -548,7 +556,9 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
     superuserclientstatusreportsservice,
     SuperUserClientsCreatedReportsService,
     sperusertotalpetitionsreportsservice,
-    SuperUsersOpenPetitionService
+      SuperUsersOpenPetitionService,
+      miscsuperusersservice,
+      Demorequestdetailsservice
 
   ],
   bootstrap: [AppComponent]

@@ -90,7 +90,8 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
         }
         if (this.passport['isuanceDate'] == "" || this.passport['passportNumber'] == "" || this.passport['issuingCountry'] == "" || this.passport['expirationDate'] == "" || this.passport['dateOfBirth'] == "" ||
             this.passport['isuanceDate'] == undefined || this.passport['passportNumber'] == undefined || this.passport['issuingCountry'] == undefined || this.passport['expirationDate'] == undefined || this.passport['dateOfBirth'] == undefined ||
-            this.passport['isuanceDate'] == null || this.passport['passportNumber'] == null || this.passport['issuingCountry'] == null || this.passport['expirationDate'] == null || this.passport['dateOfBirth'] == null){
+            this.passport['isuanceDate'] == null || this.passport['passportNumber'] == null || this.passport['issuingCountry'] == null || this.passport['expirationDate'] == null || this.passport['dateOfBirth'] == null
+            || this.passport['countryOfBirth'] == "" || this.passport['countryOfBirth'] == undefined || this.passport['countryOfBirth'] == null) {
             this.warningMessage=true;
         }
         else{

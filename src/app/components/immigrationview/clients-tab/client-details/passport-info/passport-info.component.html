@@ -78,7 +78,7 @@
                         {{countryofbirth}}
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pInfo-country-of-birth">Country of Birth</label></div>
+                        <div class="col-md-4"><label for="pInfo-country-of-birth">Country of Birth<span class="redstar">*</span></label></div>
                         <div class="col-md-8"><input *ngIf="isEdit==false" type="text" id="pInfo-country-of-birth" [(ngModel)]="passport.countryOfBirth" /><span *ngIf="isEdit==true">{{passport.countryOfBirth}}</span></div>
                     </div>
                     <div class="row">

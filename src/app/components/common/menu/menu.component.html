@@ -126,7 +126,7 @@
         <li ngbDropdown class="dropdown">
             <a (click)="appservice.moveToPage('manageaccount-user');highlightSBLink('User')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
-                <span>User</span>
+                <span>Users</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl *ngIf="appservice.usersList&&appservice.manageUser" [(ngModel)]="appservice.usersList">
@@ -766,7 +766,21 @@
             </ul>
         </li>
     </ul>
+    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-misc'">
+        <li>
+            <a (click)="appservice.moveToPage('superuser-misc');highlightSBLink('superuser-misc')" [ngClass]="[checkForCurrentSBLink('superuser-misc') ? 'active': '']" routerLinkActive="active">
+                <span class="ico-flight"></span>
+                <span>Demo Request Details</span>
+            </a>
+        </li>
+        <li>
+            <a (click)="appservice.moveToPage('superuser-miscsuperusers');highlightSBLink('superuser-miscsuperusers')" [ngClass]="[checkForCurrentSBLink('superuser-miscsuperusers') ? 'active': '']" routerLinkActive="active">
+                <span class="ico-flight"></span>
+                <span>Super Users</span>
+            </a>
+        </li>
 
+    </ul>
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-profuser'">
         <li>
             <a (click)="appservice.moveToPage('superuser-profileuser');highlightSBLink('superuser-profileuser')" [ngClass]="[checkForCurrentSBLink('superuser-profileuser') ? 'active': '']" routerLinkActive="active">

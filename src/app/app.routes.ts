@@ -134,6 +134,10 @@ import {superuserclientstatusreportscomponent} from './components/superuserview/
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
 
+import {demorequestdetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
+import {miscsuperusersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
+
+
 export const appRoutes: Routes = [
     {
         path: 'i129hPage1',
@@ -593,6 +597,14 @@ export const appRoutes: Routes = [
     {
         path: '',
         component: LoginComponent
+    },
+    {
+        path: 'superuser-misc',
+        component: demorequestdetailsComponent
+    },
+    {
+        path: 'superuser-miscsuperusers',
+        component: miscsuperusersComponent
     },
     {
         path: '**',
