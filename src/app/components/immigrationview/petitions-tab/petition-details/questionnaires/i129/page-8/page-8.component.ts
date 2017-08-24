@@ -11,19 +11,16 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 })
 export class i129Page8Component implements OnInit {
     beforecancelquestionnaire: any;
-    isquestionnaireEdit: boolean;
+    isquestionnaireEdit: boolean = false;
     public page8: any = {};
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
     }
 
     ngOnInit() {
-        this.isquestionnaireEdit = true;
-        this.questionnaireService.getQuestionnaireData("2c9fc60d5e0cef3a015e0f194da1006c", 8).subscribe(res => {
+        //this.isquestionnaireEdit = true;
+        this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 8).subscribe(res => {
             if (res['formPage'] != undefined) {
-
                 this.page8 = res['formPage'];
-
-               
             }
         })
     }
@@ -36,14 +33,19 @@ export class i129Page8Component implements OnInit {
         this.isquestionnaireEdit = true;
     }
     savequestionnaireInformation() {
-        this.isquestionnaireEdit = true;
+        //this.isquestionnaireEdit = true;
         this.page8.pageNumber = 8;
-        this.questionnaireService.saveQuestionnaireData('2c9fc60d5e0cef3a015e0f194da1006c', 8, this.page8).subscribe(res => {
+        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 8, this.page8).subscribe(res => {
 
         })
     }
-    
+
     gotoPrev() {
+        this.savequestionnaireInformation();
         this.appService.moveToPage('i129Page7');
+    }
+
+    gotoNext() {
+        this.savequestionnaireInformation();
     }
 }

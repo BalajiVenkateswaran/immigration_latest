@@ -1,6 +1,7 @@
 import { AppService } from '../../../services/app.service';
 import {Component, OnInit, DoCheck} from '@angular/core';
 import {MenuService} from "./menu.service";
+import {QuestionnaireCommonService} from '../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
 
 @Component({
   selector: 'menu',
@@ -29,7 +30,8 @@ export class MenuComponent implements OnInit {
     public superuserpetitions: boolean;
     public superuserclientreports: boolean;
     public superuserpetitins: boolean;
-  constructor(private menuService: MenuService, private appservice: AppService) {
+  constructor(private menuService: MenuService, private appservice: AppService,
+    public questionnaireCommonService : QuestionnaireCommonService) {
       this.sideBarMenu = appservice.sideBarMenu;
     }
   clientDocClick() {

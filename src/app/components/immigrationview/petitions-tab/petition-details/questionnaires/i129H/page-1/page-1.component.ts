@@ -3,6 +3,7 @@ import {i129HPage1Service} from "./page-1.service";
 import {AppService} from "../../../../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
     selector: 'app-page-1.component',
@@ -12,7 +13,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class i129HPage1Component implements OnInit {
     public I129Hpage1: any = {};
     public I129Hpage1questions: any = [];
-    constructor(public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
     }
 
     ngOnInit() {
@@ -29,7 +30,16 @@ export class i129HPage1Component implements OnInit {
             },
         ];
     }
+
+    savequestionnaireInformation() {
+            //this.isquestionnaireEdit = true;
+            this.I129Hpage1.pageNumber = 13;
+            this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 13, this.I129Hpage1).subscribe(res => {
+
+            })
+        }
     gotoNext() {
+        this.savequestionnaireInformation();
         this.appService.moveToPage('i129hPage2');
     }
     gotoPrev() {

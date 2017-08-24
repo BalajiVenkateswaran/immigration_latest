@@ -18,18 +18,6 @@
             </div>
             <div class="col-md-12">
                 <h2> Information About This Petition <span>(See instructions for fee information)</span></h2>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="tbl-head-btn">
-                            <button class="editbtn" (click)="editQuestinnaireForm()" *ngIf="isquestionnaireEdit==true" style="float: left;margin-right: 10px; margin-top:0px; margin-bottom:15px;">Edit</button>
-                          
-                        </div>
-                        <div class="tbl-head-btn">
-                            <button type="button" (click)="cancelQuestinnaireEdit()" class="editbtn tbl-head-btn" *ngIf="isquestionnaireEdit==false" style="margin-top:0px; margin-bottom:15px;">Cancel</button>
-                            <button type="submit" value="Save" class="savebtn" (click)="savequestionnaireInformation()" *ngIf="isquestionnaireEdit==false" style="margin-top:0px; margin-bottom:15px;">Save</button>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
@@ -38,7 +26,7 @@
                             <div class="row">
                                 <div class="col-md-4">Requested Nonimmigrant Classification  (Write classification symbol):</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.nonImmigrantClassification" />
-                                <span *ngIf="isquestionnaireEdit==true">{{page2.nonImmigrantClassification}}</span>        
+                                <span *ngIf="isquestionnaireEdit==true">{{page2.nonImmigrantClassification}}</span>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +54,7 @@
                                 <div class="col-md-6" *ngFor="let x of requestedAction">
                                     <input type="radio" name="requestedAction" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.requestedAction">{{x.display}}
                                 </div>
-                               
+
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -215,7 +203,7 @@
                                 <div class="col-md-8">
                                     <div class="row">
                                       <div class="col-md-6" *ngFor="let x of gender">
-                                           <input type="radio" name="gender" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.gender">{{x.display}} 
+                                           <input type="radio" name="gender" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.gender">{{x.display}}
                                         </div>
                                         </div>
                                 </div>

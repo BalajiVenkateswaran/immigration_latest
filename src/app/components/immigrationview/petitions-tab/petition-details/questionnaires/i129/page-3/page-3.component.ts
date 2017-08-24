@@ -12,7 +12,7 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 })
 export class i129Page3Component implements OnInit {
     beforecancelquestionnaire: any;
-    isquestionnaireEdit: boolean;
+    isquestionnaireEdit: boolean = false;
     public aptType;
     public questions;
     public typeOfOffice;
@@ -72,12 +72,10 @@ export class i129Page3Component implements OnInit {
     }
 
     ngOnInit() {
-        this.isquestionnaireEdit = true;
-        this.questionnaireService.getQuestionnaireData("2c9fc60d5e0cef3a015e0f194da1006c", 3).subscribe(res => {
+        //this.isquestionnaireEdit = true;
+        this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3).subscribe(res => {
             if (res['formPage']!=undefined) {
-                
-                    this.page3 = res['formPage'];
-                
+                this.page3 = res['formPage'];
                 if (res['formPage']['address'] != undefined) {
                     this.page3.address = res['formPage']['address'];
                 }
@@ -98,16 +96,18 @@ export class i129Page3Component implements OnInit {
         this.isquestionnaireEdit = true;
     }
     savequestionnaireInformation() {
-        this.isquestionnaireEdit = true;
+        //this.isquestionnaireEdit = true;
         this.page3.pageNumber = 3;
-        this.questionnaireService.saveQuestionnaireData('2c9fc60d5e0cef3a015e0f194da1006c', 3, this.page3).subscribe(res => {
+        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3, this.page3).subscribe(res => {
 
         })
     }
     gotoNext() {
+        this.savequestionnaireInformation();
         this.appService.moveToPage('i129Page4');
     }
     gotoPrev() {
+        this.savequestionnaireInformation();
         this.appService.moveToPage('i129Page2');
     }
 

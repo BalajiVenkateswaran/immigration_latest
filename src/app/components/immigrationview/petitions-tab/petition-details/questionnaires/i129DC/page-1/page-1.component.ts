@@ -12,7 +12,7 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 })
 export class i129dcPage1Component implements OnInit {
     beforecancelquestionnaire: any;
-    isquestionnaireEdit: boolean;
+    isquestionnaireEdit: boolean = false;
     public page1: any = {
         "employerInfo":{}
     };
@@ -85,10 +85,10 @@ export class i129dcPage1Component implements OnInit {
 
         ];
     }
-    
+
     ngOnInit() {
-        this.isquestionnaireEdit = true;
-        this.questionnaireService.getQuestionnaireData("2c9fc60d5e0cef3a015e0f194da1006c", 19).subscribe(res => {
+        //this.isquestionnaireEdit = true;
+        this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 19).subscribe(res => {
             if (res['formPage'] != undefined) {
 
                 this.page1 = res['formPage'];
@@ -96,7 +96,7 @@ export class i129dcPage1Component implements OnInit {
                 if (res['formPage']['employerInfo'] != undefined) {
                     this.page1.employerInfo = res['formPage']['employerInfo'];
                 }
-                
+
             }
         })
     }
@@ -109,14 +109,15 @@ export class i129dcPage1Component implements OnInit {
         this.isquestionnaireEdit = true;
     }
     savequestionnaireInformation() {
-        this.isquestionnaireEdit = true;
+        //this.isquestionnaireEdit = true;
         this.page1.pageNumber = 19;
-        this.questionnaireService.saveQuestionnaireData('2c9fc60d5e0cef3a015e0f194da1006c', 19, this.page1).subscribe(res => {
+        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 19, this.page1).subscribe(res => {
 
         })
     }
     gotoNext() {
+        this.savequestionnaireInformation();
         this.appService.moveToPage('i129dcPage2');
     }
-   
+
 }

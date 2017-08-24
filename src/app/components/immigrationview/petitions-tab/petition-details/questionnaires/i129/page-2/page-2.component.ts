@@ -104,18 +104,18 @@ export class i129Page2Component implements OnInit {
                 "value": "F"
             },
         ];
-        
-    
+
+
     }
-     
+
     ngOnInit() {
-         this.isquestionnaireEdit=true;
-          this.questionnaireService.getQuestionnaireData("2c9fc60d5e0cef3a015e0f194da1006c",2).subscribe(res=>{
+         //this.isquestionnaireEdit=true;
+          this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],2).subscribe(res=>{
             if(res['formPage']!=undefined){
                   this.page2=res['formPage'];
             }
-          
-          
+
+
         })
     }
     editQuestinnaireForm(){
@@ -127,17 +127,19 @@ export class i129Page2Component implements OnInit {
         this.isquestionnaireEdit = true;
     }
     savequestionnaireInformation(){
-         this.isquestionnaireEdit = true;
+         //this.isquestionnaireEdit = true;
          this.page2.pageNumber=2;
-         this.questionnaireService.saveQuestionnaireData('2c9fc60d5e0cef3a015e0f194da1006c',2,this.page2).subscribe(res=>{
+         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],2,this.page2).subscribe(res=>{
 
          })
     }
     gotoNext() {
-        this.appService.moveToPage('i129Page3');
+       this.savequestionnaireInformation();
+       this.appService.moveToPage('i129Page3');
     }
     gotoPrev() {
-        this.appService.moveToPage('i129Page1');
+      this.savequestionnaireInformation();
+      this.appService.moveToPage('i129Page1');
     }
 
 

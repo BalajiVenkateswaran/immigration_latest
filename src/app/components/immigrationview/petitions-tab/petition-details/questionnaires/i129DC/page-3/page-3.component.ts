@@ -3,6 +3,7 @@ import {i129dcPage3Service} from "./page-3.service";
 import {AppService} from "../../../../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
     selector: 'app-page-3.component',
@@ -16,7 +17,7 @@ export class i129dcPage3Component implements OnInit {
         }
     };
     public questions;
-    constructor(public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
           this.questions = [
             {
                 "id": "0",
@@ -32,10 +33,21 @@ export class i129dcPage3Component implements OnInit {
     }
 
     ngOnInit() {
- 
+
     }
-    
+   savequestionnaireInformation() {
+        this.page3.pageNumber = 21;
+        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 21, this.page3).subscribe(res => {
+
+        })
+    }
+
     gotoPrev() {
+        this.savequestionnaireInformation();
         this.appService.moveToPage('i129dcPage2');
+    }
+
+    gotoNext() {
+       this.savequestionnaireInformation();
     }
 }

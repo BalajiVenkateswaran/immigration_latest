@@ -8,6 +8,7 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {SendToClientQuestionnaire} from './SendToClientQuestionnaire';
+import {QuestionnaireCommonService} from '../questionnaires/common/questionnaire-common.service';
 
 
 export interface ConfirmModel {
@@ -118,7 +119,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   ];
 
 
-  constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService) {
+  constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService,
+  private questionnaireCommonService: QuestionnaireCommonService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -210,6 +212,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     this.appService.currentSBLink = link;
   }
   ngOnInit() {
+    this.questionnaireCommonService.questionnaireList = null;
     this.getquesnreData();
   }
   getFormName(formId: string) {
@@ -254,7 +257,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         this.questionnaireService.getQuestionnaires(this.appService.petitionId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.questionnaireList = res['questionnaires']['content'];
-            this.appService.questionnaireName = res['questionnaires']['content'];
+            this.questionnaireCommonService.questionnaireList = res['questionnaires']['content'];
+            //this.appService.questionnaireName = res['questionnaires']['content'];
             let that = this;
             this.formattedData = this.objectMapper(this.questionnaireList);
           }
@@ -273,8 +277,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   }
   objectMapper(data) {
     for (var i = 0; i < data.length; i++) {
-      var x = this.getFormName(data[i].formId);
-      data[i]['formName'] = x;
+      /*var x = this.getFormName(data[i].formId);
+      data[i]['formName'] = x;*/
       data[i]['questionnairePetitionType'] = this.appService.petitionType + "  " + data[i]['formName'];
       if (data[i]['sentToClient'] == false) {
         data[i]['sentToClient'] = 'No';

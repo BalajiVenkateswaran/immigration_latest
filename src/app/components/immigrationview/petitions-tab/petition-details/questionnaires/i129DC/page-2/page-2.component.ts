@@ -3,6 +3,7 @@ import {i129dcPage2Service} from "./page-2.service";
 import {AppService} from "../../../../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
     selector: 'app-page-2.component',
@@ -16,7 +17,7 @@ export class i129dcPage2Component implements OnInit {
     public page2:any={
         "addressOfUSinstitution":{}
     }
-    constructor(public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
          this.questions = [
             {
                 "id": "0",
@@ -45,7 +46,7 @@ export class i129dcPage2Component implements OnInit {
                 "display": "Flr.",
                 "value": "FLR"
             }
-            
+
         ];
         this.petitionType=[
             {
@@ -73,16 +74,26 @@ export class i129dcPage2Component implements OnInit {
 
             }
         ]
-        
+
     }
-    
+
     ngOnInit() {
- 
+
     }
+
+    savequestionnaireInformation() {
+        this.page2.pageNumber = 20;
+        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 20, this.page2).subscribe(res => {
+
+        })
+    }
+
     gotoNext() {
+        this.savequestionnaireInformation();
         this.appService.moveToPage('i129dcPage3');
     }
     gotoPrev() {
+        this.savequestionnaireInformation();
         this.appService.moveToPage('i129dcPage1');
     }
 }

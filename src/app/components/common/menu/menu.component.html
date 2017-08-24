@@ -15,7 +15,7 @@
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" aria-labelledby="immigrationview-questionnaires" ngDefaultControl *ngIf="appservice.questionnaireName&&immiQstnre" [(ngModel)]="appservice.questionnaireName">
-                <li *ngFor="let value of appservice.questionnaireName" routerLinkActive="active"><a (click)="appservice.moveToQuestionnaire(value);highlightSBLink(value.questionnaireName)" [ngClass]="[checkForCurrentSBLink(value.questionnaireName) ? 'active': '']">{{value.questionnaireName}}</a></li>
+                <li *ngFor="let value of questionnaireCommonService.questionnaireList" routerLinkActive="active"><a (click)="questionnaireCommonService.moveToQuestionnaire(value);highlightSBLink(value.questionnaireName)" [ngClass]="[checkForCurrentSBLink(value.questionnaireName) ? 'active': '']">{{value.questionnaireName}}</a></li>
             </ul>
         </li>
 
@@ -411,7 +411,7 @@
     </ul>
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-accounts'">
-        
+
         <li>
             <a (click)="appservice.moveToPage('account-details');highlightSBLink('Account Details')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
@@ -547,7 +547,7 @@
     </ul>
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">
-       
+
         <li>
             <a (click)="appservice.moveToPage('superuserview-productcatalog');highlightSBLink('Products')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
