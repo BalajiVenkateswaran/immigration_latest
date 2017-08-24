@@ -16,7 +16,7 @@ export class i129Page7Component implements OnInit {
         "preparerAddress":{}
     };
     public aptType;
-     constructor(public questionnaireService: QuestionnaireCommonService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
          this.aptType = [
             {
                 "id": "0",
@@ -65,5 +65,10 @@ export class i129Page7Component implements OnInit {
 
         })
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129Page8');
+    }
+    gotoPrev() {
+        this.appService.moveToPage('i129Page6');
+    }
 }

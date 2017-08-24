@@ -1903,3 +1903,21 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     color: #4d4d4d !important;
     cursor:not-allowed;
 }
+
+.nextbtn, .prevbtn {
+background: #5cc34a;
+padding:4px 10px;
+margin:10px 0;
+float:right;
+    color: #fff !important;
+    border-radius: 5px;
+}
+.prevbtn {
+    float:left;
+}
+.pagenoof36 {
+    font-size:16px;
+    font-weight:500;
+    color:#5093e1 !important;
+    text-align:center;
+}

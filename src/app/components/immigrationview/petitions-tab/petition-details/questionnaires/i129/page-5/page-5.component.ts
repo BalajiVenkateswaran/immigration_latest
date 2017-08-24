@@ -19,7 +19,7 @@ export class i129Page5Component implements OnInit {
     public questions;
     public aptType;
 
-    constructor(public questionnaireService: QuestionnaireCommonService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
 
         this.questions = [
             {
@@ -82,5 +82,10 @@ export class i129Page5Component implements OnInit {
 
         })
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129Page6');
+    }
+    gotoPrev() {
+        this.appService.moveToPage('i129Page4');
+    }
 }

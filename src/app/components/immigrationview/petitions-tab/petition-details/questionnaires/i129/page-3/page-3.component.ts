@@ -20,7 +20,7 @@ export class i129Page3Component implements OnInit {
         "address": {},
         "foreignAddress": {}
     };
-    constructor(public questionnaireService: QuestionnaireCommonService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
         this.aptType = [
             {
                 "id": "0",
@@ -104,6 +104,11 @@ export class i129Page3Component implements OnInit {
 
         })
     }
-
+    gotoNext() {
+        this.appService.moveToPage('i129Page4');
+    }
+    gotoPrev() {
+        this.appService.moveToPage('i129Page2');
+    }
 
 }
