@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-lastupdatedby">Internaional Hire Date</label></div>
+                        <div class="col-md-4"><label for="pi-lastupdatedby">International Hire Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.internationalHireDate}}</span>

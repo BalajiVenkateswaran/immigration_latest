@@ -38,7 +38,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public progessBarDiv:boolean=false;
     public uploadArray=[];
     public circularProgess:number=0;
-
+    public selectedindex: number;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http,
         public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
@@ -163,7 +163,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        var x = this.getFiles[this.selectedindex].fileName;
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
@@ -233,6 +233,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         FileSaver.saveAs(blob, fileName);
     }
     editFileName(event) {
+        this.selectedindex=event.rowIndex;
         if (event.colDef.headerName != 'Actions') {
             this.editFileObject.fileName = event.data.fileName.split(".")[0];
             this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
