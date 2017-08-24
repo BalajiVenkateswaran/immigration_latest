@@ -7,6 +7,18 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Declaration, Signature, and Contact Information of Person Preparing Form, If Other Than Petitioner </h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tbl-head-btn">
+                            <button class="editbtn" (click)="editQuestinnaireForm()" *ngIf="isquestionnaireEdit==true" style="float: left;margin-right: 10px; margin-top:0px; margin-bottom:15px;">Edit</button>
+                          
+                        </div>
+                        <div class="tbl-head-btn">
+                            <button type="button" (click)="cancelQuestinnaireEdit()" class="editbtn tbl-head-btn" *ngIf="isquestionnaireEdit==false" style="margin-top:0px; margin-bottom:15px;">Cancel</button>
+                            <button type="submit" value="Save" class="savebtn" (click)="savequestionnaireInformation()" *ngIf="isquestionnaireEdit==false" style="margin-top:0px; margin-bottom:15px;">Save</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
@@ -17,7 +29,9 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Street Number and Name</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.street"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.street"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.street}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -36,43 +50,57 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Number </div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.houseNumber"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.houseNumber"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.houseNumber}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">City or Town</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.city"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.city"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.city}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">State</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.state"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.state"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.state}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">ZIP Code</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.zipCode"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.zipCode"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.zipCode}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Province</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.province"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.province"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.province}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Postal Code</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.postalCode"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.postalCode"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.postalCode}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Email Address (if any)</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerAddress.street"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.preparerEmail"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.preparerEmail}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -81,19 +109,25 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Daytime Telephone Number</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerTNNumber"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerTNNumber"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerTNNumber}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Fax Number</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerFaxNumber"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerFaxNumber"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerFaxNumber}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Email Address (if any)</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.preparerEmail"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerEmail"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.preparerEmail}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -106,13 +140,17 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Signature of Preparer</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.dateOfSignature"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"/>
+                                 <span *ngIf="isquestionnaireEdit==true"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Date of Signature (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="page7.dateOfSignature"/></div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.dateOfSignature"/>
+                                 <span *ngIf="isquestionnaireEdit==true">{{page7.dateOfSignature}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

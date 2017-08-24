@@ -6,163 +6,216 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Petitioner Information</h2>
-         </div>
+            </div>
             <div class="col-md-12">
-                <p>If you are an individual filing this petition, complete Item Number 1.  If you are a company or an organization filing this petition, complete Item Number 2.</p>
-                        <div class="col-md-12 addresbox box-shadow clientview-ques129h">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p class="fieldsetheading">Legal Name of Individual Petitioner</p>
-                                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tbl-head-btn">
+                            <button class="editbtn" (click)="editQuestinnaireForm()" *ngIf="isquestionnaireEdit==true" style="float: left;margin-right: 10px; margin-top:0px; margin-bottom:15px;">Edit</button>
+                          
+                        </div>
+                        <div class="tbl-head-btn">
+                            <button type="button" (click)="cancelQuestinnaireEdit()" class="editbtn tbl-head-btn" *ngIf="isquestionnaireEdit==false" style="margin-top:0px; margin-bottom:15px;">Cancel</button>
+                            <button type="submit" value="Save" class="savebtn" (click)="savequestionnaireInformation()" *ngIf="isquestionnaireEdit==false" style="margin-top:0px; margin-bottom:15px;">Save</button>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-md-12">
+                <p>If you are an individual filing this petition, complete Item Number 1. If you are a company or an organization
+                    filing this petition, complete Item Number 2.</p>
+                <div class="col-md-12 addresbox box-shadow clientview-ques129h">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="fieldsetheading">Legal Name of Individual Petitioner</p>
+                        </div>
 
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">Family Name (Last Name)</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.lastName" /></div>
-                                    </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">Family Name (Last Name)</div>
+                                <div class="col-md-8">
+                                    <input *ngIf="isquestionnaireEdit==false" type="text" [(ngModel)]="page1.lastName" />
+                                    <span *ngIf="isquestionnaireEdit==true">{{page1.lastName}}</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">Family Name (First Name)</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.firstName"/></div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">Family Name (First Name)</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.firstName" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page1.firstName}}</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">Middle Name</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.middleName"/></div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">Middle Name</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.middleName" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page1.middleName}}</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">Company or Organization Name</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.address.companyName" /></div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">Company or Organization Name</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.companyName" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page1.companyName}}</span>
                                 </div>
-                                <div class="col-md-12">
-                                    <p class="fieldsetheading">Mailing Address of Individual, Company or Organization</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="fieldsetheading">Mailing Address of Individual, Company or Organization</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">In Care Of Name</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.inCareOfName" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page1.address.inCareOfName}}</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">In Care Of Name</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.address.inCareOfName" /></div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">Street Number and Name</div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.street" />
+                                  <span *ngIf="isquestionnaireEdit==true">{{page1.address.street}}</span>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">
                                     <div class="row">
-                                        <div class="col-md-4">Street Number and Name</div>
-                                        <div class="col-md-8"><input type="text" [(ngModel)]="page1.address.street"/></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4"></div>
-                                        <div class="col-md-8">
-                                            <div class="row">
-                                                <div class="col-md-4">Apt.<input type="checkbox" name="" value="APT" [(ngModel)]="page1.address.aptType"></div>
-                                                <div class="col-md-4">Stc.<input type="checkbox" name="" value="FLR" [(ngModel)]="page1.address.aptType"></div>
-                                                <div class="col-md-4">Flr.<input type="checkbox" name="" value="STE" [(ngModel)]="page1.address.aptType"></div>
-                                                </div>
-                                            </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">Number </div>
-                                        <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.houseNumber"/></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">City or Town</div>
-                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.city"/></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">State</div>
-                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.state"/></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">ZIP Code</div>
-                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.zipCode"/></div>
-                                            </div>
+                                        <div class="col-md-4" *ngFor="let x of aptType">
+                                            <input type="radio" [(disabled)]="isquestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType">{{x.display}}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">Number </div>
+                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.houseNumber" />
+                                       
+                                        <span *ngIf="isquestionnaireEdit==true">{{page1.address.houseNumber}}</span></div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">Province</div>
-                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.province"/></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">Postal Code</div>
-                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.address.postalCode" /></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">Country</div>
-                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.address.country"/></div>
-                                            </div>
+                                        <div class="col-md-4">City or Town</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.city" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.address.city}}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <p class="fieldsetheading">Contact Information</p>
-                                </div>
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">Daytime Telephone Number</div>
-                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.contact.dayTimeTn" /></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">Mobile Telephone Number</div>
-                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.contact.mobileTn" /></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">Email (if any)</div>
-                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.contact.email"/></div>
-                                            </div>
+                                        <div class="col-md-4">State</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.state" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.address.state}}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <p class="fieldsetheading">Other Information</p>
-                                </div>
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">Federal Employer Identification Number (FEIN)</div>
-                                                <div class="col-md-8"><input type="text"  [(ngModel)]="page1.fein"/></div>
-                                            </div>
+                                        <div class="col-md-4">ZIP Code</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.zipCode" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.address.zipCode}}</span>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">Individual IRS Tax Number </div>
-                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.irsTaxNumber" /></div>
-                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">Province</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.province" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.address.province}}</span>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-4">U.S. Social Security Number (if any)</div>
-                                                <div class="col-md-8"><input type="text" [(ngModel)]="page1.ssn" /></div>
-                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">Postal Code</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.postalCode" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.address.postalCode}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">Country</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.country" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.address.country}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="fieldsetheading">Contact Information</p>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">Daytime Telephone Number</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.contact.dayTimeTn" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.contact.dayTimeTn}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">Mobile Telephone Number</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.contact.mobileTn" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.contact.mobileTn}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">Email (if any)</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.contact.email" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.contact.email}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="fieldsetheading">Other Information</p>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">Federal Employer Identification Number (FEIN)</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.fein" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.fein}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">Individual IRS Tax Number </div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.irsTaxNumber" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.irsTaxNumber}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4">U.S. Social Security Number (if any)</div>
+                                        <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.ssn" />
+                                          <span *ngIf="isquestionnaireEdit==true">{{page1.ssn}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -171,6 +224,7 @@
                     </div>
                 </div>
             </div>
-           
-</div>
+        </div>
+    </div>
 
+</div>

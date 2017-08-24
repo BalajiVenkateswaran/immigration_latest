@@ -267,7 +267,7 @@ import { ProductCatalogDiscountService } from './components/superuserview/produc
 
 import {HeaderService} from './components/common/header/header.service';
 
-
+import {QuestionnaireCommonService} from './components/immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
 import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
 import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.component';
 import { QuestionnaireI129HComponent } from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129h/i129h.component';
@@ -483,6 +483,7 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     ImmigrationViewPetitionDetailsService,
     JobdetailsService,
     loginService,
+    QuestionnaireCommonService,
     PetitionDocumentRepositoryService,
     ImmigrationviewDocumentExpirationsService,
     ClientViewPetitionsService,
