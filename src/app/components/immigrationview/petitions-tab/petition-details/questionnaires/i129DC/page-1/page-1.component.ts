@@ -17,7 +17,8 @@ export class i129dcPage1Component implements OnInit {
     };
     public questions;
     public higherEducation;
-    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
+    private route: ActivatedRoute, private router: Router) {
         this.questions = [
             {
                 "id": "0",
@@ -87,17 +88,22 @@ export class i129dcPage1Component implements OnInit {
 
     ngOnInit() {
         //this.isquestionnaireEdit = true;
-        this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 19).subscribe(res => {
-            if (res['formPage'] != undefined) {
+        this.route.params.subscribe(params => {
+            this.page1 = {
+                "employerInfo":{}
+            };
+            this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 19).subscribe(res => {
+                if (res['formPage'] != undefined) {
 
-                this.page1 = res['formPage'];
+                    this.page1 = res['formPage'];
 
-                if (res['formPage']['employerInfo'] != undefined) {
-                    this.page1.employerInfo = res['formPage']['employerInfo'];
+                    if (res['formPage']['employerInfo'] != undefined) {
+                        this.page1.employerInfo = res['formPage']['employerInfo'];
+                    }
+
                 }
-
-            }
-        })
+            })
+        });
     }
     editQuestinnaireForm() {
         this.isquestionnaireEdit = !this.isquestionnaireEdit;

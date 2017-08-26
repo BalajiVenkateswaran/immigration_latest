@@ -140,7 +140,7 @@ import {miscsuperusersComponent} from './components/superuserview/misc-tab/super
 
 export const appRoutes: Routes = [
     {
-        path: 'i129hPage1',
+        path: 'i129hPage1/:questionnaireId',
         component: i129HPage1Component,
     },
     {
@@ -164,7 +164,7 @@ export const appRoutes: Routes = [
         component: i129HPage6Component,
     },
     {
-        path: 'i129Page1',
+        path: 'i129Page1/:questionnaireId',
         component: i129Page1Component,
     },
     {
@@ -196,7 +196,7 @@ export const appRoutes: Routes = [
         component: i129Page8Component,
     },
     {
-        path: 'i129dcPage1',
+        path: 'i129dcPage1/:questionnaireId',
         component: i129dcPage1Component,
     },
     {

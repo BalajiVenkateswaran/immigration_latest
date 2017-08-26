@@ -16,7 +16,8 @@ export class i129Page1Component implements OnInit {
         'contact': {}
     };
     public aptType;
-    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
+     private route: ActivatedRoute, private router: Router) {
         this.aptType = [
             {
                 "id": "0",
@@ -41,20 +42,27 @@ export class i129Page1Component implements OnInit {
 
     ngOnInit() {
         //this.isquestionnaireEdit = true;
-        this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 1).subscribe(res => {
-            if (res['formPage'] != undefined) {
+        this.route.params.subscribe(params => {
+            this.page1 = {
+                           'address': {},
+                           'contact': {}
+                         };
+            this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 1).subscribe(res => {
+                if (res['formPage'] != undefined) {
 
-                this.page1 = res['formPage'];
+                    this.page1 = res['formPage'];
 
-                if (res['formPage']['address'] != undefined) {
-                    this.page1.address = res['formPage']['address'];
+                    if (res['formPage']['address'] != undefined) {
+                        this.page1.address = res['formPage']['address'];
+                    }
+                    if (res['formPage']['contact'] != undefined) {
+                        this.page1.contact = res['formPage']['contact'];
+                    }
                 }
-                if (res['formPage']['contact'] != undefined) {
-                    this.page1.contact = res['formPage']['contact'];
-                }
-            }
-        })
+            });
+        });
     }
+
     editQuestinnaireForm() {
         this.isquestionnaireEdit = !this.isquestionnaireEdit;
         this.beforecancelquestionnaire = (<any>Object).assign({}, this.page1);

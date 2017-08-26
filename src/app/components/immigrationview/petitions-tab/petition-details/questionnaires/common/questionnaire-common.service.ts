@@ -49,7 +49,7 @@ export class QuestionnaireCommonService {
           }
       }
 
-      this._router.navigate([pageName], { skipLocationChange: true });
+      this._router.navigate([pageName, this.selectedQuestionnaire['questionnaireId']], { skipLocationChange: true });
     }
 
 

@@ -12,7 +12,8 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 export class i129HPage1Component implements OnInit {
     public I129Hpage1: any = {};
     public I129Hpage1questions: any = [];
-    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
+      private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
@@ -28,6 +29,15 @@ export class i129HPage1Component implements OnInit {
                 "value": "N"
             },
         ];
+
+        this.route.params.subscribe(params => {
+             this.I129Hpage1 = {};
+             this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 13).subscribe(res => {
+                 if (res['formPage'] != undefined) {
+                     this.I129Hpage1 = res['formPage'];
+                 }
+             });
+        });
     }
 
     savequestionnaireInformation() {
