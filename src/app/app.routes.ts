@@ -169,6 +169,10 @@ export const appRoutes: Routes = [
         component: i129Page2Component,
     },
     {
+        path: 'clientview-i129Page2/:questionnaireId',
+        component: i129Page2Component,
+    },
+    {
         path: 'i129Page3',
         component: i129Page3Component,
     },
@@ -206,31 +210,11 @@ export const appRoutes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent,
-
+        component: LoginComponent
     },
     {
-        path: 'questionnaire-i129/:questionnaireId',
-        //component: QuestionnaireI129Component
-        component: i129Page1Component
-    },
-    {
-        path: 'questionnaire-i129clientView/:questionnaireId',
-        component: QuestionnaireI129ClientComponent
-    },
-    {
-        path: 'questionnaire-i129dc/:questionnaireId',
-        //component: QuestionnaireI129DCComponent
-        component: i129dcPage1Component
-    },
-    {
-        path: 'questionnaire-i129h/:questionnaireId',
-        //component: QuestionnaireI129HComponent
+        path: 'clientview-i129hPage1/:questionnaireId',
         component: i129HPage1Component
-    },
-    {
-        path: 'questionnaire-i129hclientView/:questionnaireId',
-        component: QuestionnaireI129HclientviewComponent
     },
     {
         path: 'header',

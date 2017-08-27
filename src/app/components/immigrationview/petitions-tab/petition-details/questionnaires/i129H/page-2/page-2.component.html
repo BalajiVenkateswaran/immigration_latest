@@ -1,8 +1,5 @@
 <div class="main-content">
     <div class="table-data">
-        <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
-        <h1 style="float:right;">{{appService.petitionDetails}}</h1>
-        <div class="clearfix"></div>-->
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
@@ -15,6 +12,7 @@
                     </div>
                 </div>
             </div>
+          <div *ngIf="appService.applicationViewMode == 'Immigration'">
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
                     <div class="row">
@@ -30,6 +28,7 @@
             <div class="col-md-12">
                 <h2>Complete This Section If Filing for H-1B Classification</h2>
             </div>
+          </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
                     <div class="row">
@@ -45,6 +44,8 @@
                                 <div class="col-md-12"> <textarea style="height:120px" [(ngModel)]="I129Hpage2.summaryOfWorkExp"></textarea></div>
                             </div>
                         </div>
+
+                      <div *ngIf="appService.applicationViewMode == 'Immigration'">
                         <div class="col-md-12">
                             <p class="fieldsetheading">Statement for H-1B Specialty Occupations and H-1B1 Chile and Singapore</p>
                             <p>By filing this petition, I agree to, and will abide by, the terms of the labor condition application (LCA) for the duration of the beneficiary's authorized period of stay for H-1B employment.  I certify that I will maintain a valid employer-employee relationship with the beneficiary at all times.  If the beneficiary is assigned to a position in a new location, I will obtain and post an LCA for that site prior to reassignment.</p>
@@ -112,9 +113,11 @@
                                 <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.projectManagerDateOfSignature"/></div>
                             </div>
                         </div>
+                      </div>
                     </div>
                 </div>
             </div>
+          <div *ngIf="appService.applicationViewMode == 'Immigration'">
             <div class="col-md-12">
                 <h2>Complete This Section If Filing for H-2A or H-2B Classification</h2>
             </div>
@@ -135,6 +138,7 @@
                     </div>
                 </div>
             </div>
+          </div>
         </div>
     </div>
 </div>

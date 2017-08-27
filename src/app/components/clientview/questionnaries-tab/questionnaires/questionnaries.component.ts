@@ -3,6 +3,7 @@ import { ClientQuestionnaireService } from './questionnaries.service';
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
+import {QuestionnaireCommonService} from "../../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service";
 @Component({
   selector: 'app-petitions-Questionnaires.component',
   templateUrl: './questionnaries.component.html',
@@ -20,23 +21,14 @@ export class clientviewQuestionnaireComponent implements OnInit {
     footer: null
   };
   public settings;
-  public data;
-  public addclientviewQuestionnaire: FormGroup;
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
   questionnaireClientViewList: any[] = [];
   private formsList: any[] = [];
 
-  constructor(private router: Router, public appService: AppService, private clientQuestionnaireSerivce: ClientQuestionnaireService) {
+  constructor(private router: Router, public appService: AppService, private clientQuestionnaireSerivce: ClientQuestionnaireService,
+    public questionnaireCommonService: QuestionnaireCommonService) {
 
-    this.addclientviewQuestionnaire = new FormGroup({
-      FormName: new FormControl(''),
-      QuestionnaireName: new FormControl(''),
-      Organization: new FormControl(''),
-      Status: new FormControl(''),
-      StatusDate: new FormControl(''),
-      View: new FormControl('')
-    });
     this.settings = {
       "isAddButtonEnable": false,
       "isDeleteEnable": false,
@@ -70,9 +62,7 @@ export class clientviewQuestionnaireComponent implements OnInit {
     this.clientQuestionnaireSerivce.getQuestionnaireForClient(this.appService.clientId).subscribe(
       (res) => {
         if (res['statusCode'] == 'SUCCESS') {
-          this.data = res['questionnaires']['content'];
-          this.appService.dependentsname = this.data;
-          console.log(this.data);
+          this.questionnaireCommonService.questionnaireList = res['questionnaires']['content'];
         }
       }
 

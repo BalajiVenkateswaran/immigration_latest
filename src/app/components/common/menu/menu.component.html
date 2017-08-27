@@ -405,7 +405,7 @@
             </a>
             <ul class="listsidemenu" *ngIf="clientQuest" role="menu" aria-labelledby="clientView-questionnaires">
 
-                <li *ngFor='let value of appservice.dependentsname'><a (click)="appservice.questionaryName=value.questionnaireId;appservice.moveToQuestionnaire(value);highlightSBLink(value.questionnaireName)" [ngClass]="[checkForCurrentSBLink(value.questionnaireName) ? 'active': '']" routerLinkActive="active">{{value.questionnaireName}}</a></li>
+                <li *ngFor='let value of questionnaireCommonService.questionnaireList'><a (click)="questionnaireCommonService.moveToQuestionnaire(value);highlightSBLink(value.questionnaireId)" [ngClass]="[checkForCurrentSBLink(value.questionnaireId) ? 'active': '']" routerLinkActive="active">{{value.questionnaireName}}</a></li>
             </ul>
         </li>
     </ul>

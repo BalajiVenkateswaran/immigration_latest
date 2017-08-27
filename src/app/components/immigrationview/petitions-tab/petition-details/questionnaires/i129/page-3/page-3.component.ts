@@ -103,7 +103,9 @@ export class i129Page3Component implements OnInit {
     }
     gotoNext() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129Page4');
+        if(this.appService.applicationViewMode == 'Immigration'){
+          this.appService.moveToPage('i129Page4');
+        }
     }
     gotoPrev() {
         this.savequestionnaireInformation();

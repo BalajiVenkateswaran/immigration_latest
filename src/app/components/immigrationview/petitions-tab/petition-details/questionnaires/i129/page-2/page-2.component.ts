@@ -108,14 +108,14 @@ export class i129Page2Component implements OnInit {
     }
 
     ngOnInit() {
-         //this.isquestionnaireEdit=true;
+       //this.isquestionnaireEdit=true;
+       this.route.params.subscribe(params => {
           this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],2).subscribe(res=>{
             if(res['formPage']!=undefined){
-                  this.page2=res['formPage'];
+               this.page2=res['formPage'];
             }
-
-
-        })
+          });
+       });
     }
     editQuestinnaireForm(){
           this.isquestionnaireEdit = !this.isquestionnaireEdit;

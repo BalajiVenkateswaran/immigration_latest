@@ -33,7 +33,7 @@ export class QuestionnaireCommonService {
           if(this.appService.applicationViewMode == "Immigration"){
               pageName = 'i129Page1';
           } else {
-             pageName = 'questionnaire-i129clientView';
+             pageName = 'clientview-i129Page2';
           }
       }
       else if (this.selectedQuestionnaire['formName'] == "I-129 DC") {
@@ -45,7 +45,7 @@ export class QuestionnaireCommonService {
           if(this.appService.applicationViewMode == "Immigration"){
               pageName = 'i129hPage1';
           } else {
-             pageName = 'questionnaire-i129hclientView';
+             pageName = 'clientview-i129hPage1';
           }
       }
 
