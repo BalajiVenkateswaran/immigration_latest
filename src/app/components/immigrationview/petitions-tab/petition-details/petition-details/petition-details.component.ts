@@ -1,15 +1,15 @@
-import { ImmigrationViewPetitionInformation } from '../../../../../models/ImmigrationViewPetitionInformation';
-import { AppService } from '../../../../../services/app.service';
-import { Component, OnInit } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ImmigrationViewPetitionDetailsService} from "./petition-details.service";
+import{ImmigrationViewPetitionInformation}from'../../../../../models/ImmigrationViewPetitionInformation';
+import {AppService}from '../../../../../services/app.service';
+import {Component, OnInit}from '@angular/core';
+import {NgbModule}from '@ng-bootstrap/ng-bootstrap';
+import {ImmigrationViewPetitionDetailsService}from "./petition-details.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 
 export interface formControl {
-    name: string;
-    value: FormControl;
+name: string;
+value: FormControl;
 }
 
 @Component({
@@ -432,7 +432,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             this.sfmRI = true;
         } else {
             this.sfmRI = false;
-            this.petitionDetailsService.saveReceiptInfo(this.receiptInfo)
+            this.petitionDetailsService.saveReceiptInfo(this.receiptInfo, this.appService.user.userId)
                 .subscribe((res) => {
                     console.log(this.receiptInfo);
                     console.log(res);
@@ -499,7 +499,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             this.lcaInfo['effectiveTill'] = this.lcaInfo['effectiveTill']['formatted'];
         }
 
-        this.petitionDetailsService.saveLcaInfo(this.lcaInfo)
+        this.petitionDetailsService.saveLcaInfo(this.lcaInfo, this.appService.user.userId)
             .subscribe((res) => {
                 console.log(this.lcaInfo);
                 this.isLCAInfoEdit = true;
@@ -526,7 +526,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         if (this.sponsorInfoAddress != undefined) {
             this.sponsorInfo.address = this.sponsorInfoAddress;
         }
-        this.petitionDetailsService.saveSponsorInfo(this.sponsorInfo)
+        this.petitionDetailsService.saveSponsorInfo(this.sponsorInfo, this.appService.user.userId)
             .subscribe((res) => {
                 this.isSponsorInfoEdit = true;
                 if (res['sponsorInfo'] != undefined) {
@@ -570,7 +570,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             this.sfmRI = true;
         } else {
             this.sfmRI = false;
-            this.petitionDetailsService.savePetitionAdditionalDetails(this.petitionAdditionalDetails)
+            this.petitionDetailsService.savePetitionAdditionalDetails(this.petitionAdditionalDetails, this.appService.user.userId)
                 .subscribe((res) => {
                     console.log(this.petitionAdditionalDetails);
                     console.log(res);
@@ -601,7 +601,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                 this.orgs.push(this.delegatedOrgsList[i].orgId);
             }
         }
-        this.petitionDetailsService.saveDelegatedOrgs(this.orgs,this.appService.petitionId)
+        this.petitionDetailsService.saveDelegatedOrgs(this.orgs,this.appService.petitionId,this.appService.user.userId)
             .subscribe((res) => {
                 if (res['statusCode'] == "SUCCESS") {
                     this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
