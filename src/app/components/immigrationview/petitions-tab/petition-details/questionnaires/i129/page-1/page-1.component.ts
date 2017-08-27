@@ -42,6 +42,12 @@ export class i129Page1Component implements OnInit {
 
     ngOnInit() {
         //this.isquestionnaireEdit = true;
+        this.page1 = {
+                'address': {},
+                'contact': {}
+            };
+
+
         this.route.params.subscribe(params => {
             this.page1 = {
                            'address': {},

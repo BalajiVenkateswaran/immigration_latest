@@ -138,7 +138,7 @@ export class i129Page2Component implements OnInit {
     }
     gotoPrev() {
       this.savequestionnaireInformation();
-      this.appService.moveToPage('i129Page1');
+      this.appService.moveToPage('i129Page1/'+this.questionnaireService.selectedQuestionnaire['questionnaireId']);
     }
 
 

@@ -32,7 +32,21 @@ export class i129dcPage3Component implements OnInit {
     }
 
     ngOnInit() {
+        this.page3 = {
+                         "capExemptReason":{
+                         }
+                     };
+        this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 21).subscribe(res => {
+            if (res['formPage'] != undefined) {
 
+                this.page3 = res['formPage'];
+
+                if (res['formPage']['capExemptReason'] != undefined) {
+                    this.page3.capExemptReason = res['formPage']['capExemptReason'];
+                }
+
+            }
+        })
     }
    savequestionnaireInformation() {
         this.page3.pageNumber = 21;

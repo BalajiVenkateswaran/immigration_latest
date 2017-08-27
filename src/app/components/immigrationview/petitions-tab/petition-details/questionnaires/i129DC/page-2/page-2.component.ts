@@ -78,7 +78,20 @@ export class i129dcPage2Component implements OnInit {
     }
 
     ngOnInit() {
+        this.page2 = {
+                         "addressOfUSinstitution":{}
+                     };
+        this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 20).subscribe(res => {
+            if (res['formPage'] != undefined) {
 
+                this.page2 = res['formPage'];
+
+                if (res['formPage']['addressOfUSinstitution'] != undefined) {
+                    this.page2.addressOfUSinstitution = res['formPage']['addressOfUSinstitution'];
+                }
+
+            }
+        })
     }
 
     savequestionnaireInformation() {
@@ -94,6 +107,6 @@ export class i129dcPage2Component implements OnInit {
     }
     gotoPrev() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129dcPage1');
+        this.appService.moveToPage('i129dcPage1/'+this.questionnaireService.selectedQuestionnaire['questionnaireId']);
     }
 }
