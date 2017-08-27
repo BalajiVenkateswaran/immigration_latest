@@ -13,13 +13,14 @@ export class JobdetailsService {
     }
 
 
-   public saveJobDetails(jobDetails: any) {
+   public saveJobDetails(jobDetails: any, userId: string) {
         console.log("immigrationview-client-details|saveClientDetails|clientDetails:%o", jobDetails);
         var req = {
-            "jobDetails": jobDetails
+            "jobDetails": jobDetails,
+            "updatedByUser": userId
         };
 
         return this.restService.postData("/client/jobDetails", req);
-    }  
+    }
 
 }

@@ -11,10 +11,11 @@ export class Addressinfoservice {
   public getClientAddress(clientId: string) {
     return this.restService.getData("/client/address/" + clientId);
   }
-  public saveClientAddress(clientAddress: any, clientId: string) {
+  public saveClientAddress(clientAddress: any, clientId: string, userId: string) {
     var req = {
       "clientAddress": clientAddress,
-      "clientId": clientId
+      "clientId": clientId,
+      "updatedByUser": userId
     };
 
     return this.restService.postData("/client/address", req);

@@ -11,9 +11,10 @@ export class ImmigrationViewArrivalDepartureInfoService {
     public getArrivalDepartureInfo(clientId: string) {
         return this.restService.getData("/client/arrivalDeparture/" + clientId);
     }
-    public saveClientArrivalDeparture(arrivalData: ArrivalDepartureInfo) {
+    public saveClientArrivalDeparture(arrivalData: ArrivalDepartureInfo, userId: string) {
         var data = {
-            "arrivalDepartureInfo": arrivalData
+            "arrivalDepartureInfo": arrivalData,
+            "updatedByUser": userId
         };
         return this.restService.postData("/client/arrivalDeparture/",data);
     }

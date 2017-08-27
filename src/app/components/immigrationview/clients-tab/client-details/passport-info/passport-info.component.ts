@@ -97,7 +97,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
         else{
             this.warningMessage=false;
              this.passport['clientId'] = this.appService.clientId;
-            this.passportinfoservice.savePassport(this.passport)
+            this.passportinfoservice.savePassport(this.passport, this.appService.user.userId)
             .subscribe((res) => {
                 this.isEdit = true;
                 if (res['passport']) {
@@ -105,7 +105,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
                 }
             });
         }
-       
+
 
     }
 }

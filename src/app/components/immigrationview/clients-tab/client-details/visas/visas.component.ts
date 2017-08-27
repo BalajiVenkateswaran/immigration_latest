@@ -111,7 +111,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       title: 'Add Visa',
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem).subscribe((res) => {
+        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem,this.appService.user.userId).subscribe((res) => {
           this.message = res['statusCode'];
           if (this.message == 'SUCCESS') {
             this.getVisaaData();
@@ -163,7 +163,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
 
-        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem).subscribe((res) => {
+        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.appService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getVisaaData();
 

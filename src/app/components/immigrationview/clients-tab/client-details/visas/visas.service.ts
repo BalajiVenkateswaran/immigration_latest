@@ -11,9 +11,10 @@ export class ImmigrationViewVisasService {
     public getClientVisas(clientId: string) {
         return this.restService.getData("/client/visa/" + clientId);
     }
-    public saveClientVisas(visaData: visa) {
+    public saveClientVisas(visaData: visa, userId: string) {
         var req = {
-            "visa": visaData
+            "visa": visaData,
+            "updatedByUser": userId
         };
         return this.restService.postData("/client/visa", req);
     }

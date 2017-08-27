@@ -87,7 +87,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.addDependents = this.appService.addDependents;
-        this.ImmigrationViewDependentService.saveDependentsSummary(this.addDependents).subscribe((res) => {
+        this.ImmigrationViewDependentService.saveDependentsSummary(this.addDependents,this.appService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getDepData();
           }
@@ -95,6 +95,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
       }
     });
   }
+
   dependentSave() {
     let isDuplicateExists:boolean;
     this.data.map(item=>{
@@ -112,7 +113,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
         title:'Error..!',
         message:'Dependent Already exists'
       })
-    } 
+    }
     else {
       this.warningMessage = false;
       this.appService.addDependents = this.addDependents;

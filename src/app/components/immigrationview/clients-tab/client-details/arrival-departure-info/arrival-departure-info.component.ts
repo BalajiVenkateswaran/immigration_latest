@@ -43,7 +43,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       public appService: AppService, public dialogService: DialogService) {
       super(dialogService);
       this.settings = {
-          
+
             'columnsettings': [
                 {
 
@@ -74,7 +74,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
                     headerName: "I-94",
                     field: "i94"
                 },
-                
+
             ]
         }
   }
@@ -82,7 +82,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       this.arrivalDepartureInfoService.getArrivalDepartureInfo(this.appService.clientId)
           .subscribe((res) => {
               this.data=res['arrivalDepartures'];
-             
+
           });
   }
   ngOnInit() {
@@ -99,8 +99,8 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
           title: 'Add Arrival Departure Info',
       }).subscribe((isConfirmed) => {
           if (isConfirmed) {
-           
-              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture).subscribe((res) => {
+
+              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture,this.appService.user.userId).subscribe((res) => {
                   if (res['statusCode'] == 'SUCCESS') {
                       this.getArrivalDepartueInfo();
                   }
@@ -110,7 +110,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   }
   arrDepSave() {
       this.addArrDeparture['clientId'] = this.appService.clientId;
-      
+
       if(this.addArrDeparture['departureDate'] && this.addArrDeparture['departureDate']['formatted']){
            this.addArrDeparture['departureDate'] = this.addArrDeparture['departureDate']['formatted'];
       }
@@ -153,17 +153,17 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
           addArrDeparture: this.editFlag ? this.beforeEdit : this.addArrDeparture,
           arrivalDate:arrivalDeptInfo.data.arrivalDate,
           departureDate:arrivalDeptInfo.data.departureDate,
-          
+
      }).subscribe((isConfirmed) => {
          if (isConfirmed) {
-              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture).subscribe((res) => {
+              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture,this.appService.user.userId).subscribe((res) => {
                   if (res['statusCode'] == 'SUCCESS') {
                       this.getArrivalDepartueInfo();
                   }
               });
           }
           else {
-              this.editFlag = false;   
+              this.editFlag = false;
           }
       });
   }

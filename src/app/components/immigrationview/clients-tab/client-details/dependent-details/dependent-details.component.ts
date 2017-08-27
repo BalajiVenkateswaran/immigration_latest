@@ -129,11 +129,11 @@ export class DependentDetailsComponent implements OnInit {
 
     //Save Client Details
     saveClientProfile() {
-        
+
         if (this.dependentProfile['creationDate'] && this.dependentProfile['creationDate']['formatted']) {
             this.dependentProfile['creationDate'] = this.dependentProfile['creationDate']['formatted'];
         }
-        if (this.dependentProfile['firstName'] == undefined || this.dependentProfile['lastName'] == undefined || this.dependentProfile['relation'] == undefined || this.dependentProfile['fileNumber'] == undefined || 
+        if (this.dependentProfile['firstName'] == undefined || this.dependentProfile['lastName'] == undefined || this.dependentProfile['relation'] == undefined || this.dependentProfile['fileNumber'] == undefined ||
             this.dependentProfile['firstName'] == "" || this.dependentProfile['lastName'] == "" || this.dependentProfile['relation'] == "" || this.dependentProfile['fileNumber'] == "" ||
             this.dependentProfile['firstName'] == null || this.dependentProfile['lastName'] == null || this.dependentProfile['relation'] == null || this.dependentProfile['fileNumber'] == null){
             this.warningMessage=true;
@@ -141,7 +141,7 @@ export class DependentDetailsComponent implements OnInit {
         else{
             this.warningMessage = false;
             this.mapFromClientProfile();
-            this.dependentDetailsService.saveDependentDetails(this.dependent)
+            this.dependentDetailsService.saveDependentDetails(this.dependent,this.appService.user.userId)
             .subscribe((res) => {
                 this.isProfileEdit = true;
                 if (res['dependent']) {
@@ -153,7 +153,7 @@ export class DependentDetailsComponent implements OnInit {
             });
         }
 
-        
+
     }
 
     //Save Client Details
@@ -165,7 +165,7 @@ export class DependentDetailsComponent implements OnInit {
 
         this.mapFromClientPersonalInfo();
 
-          this.dependentDetailsService.saveDependentDetails(this.dependent)
+          this.dependentDetailsService.saveDependentDetails(this.dependent,this.appService.user.userId)
             .subscribe((res) => {
                 this.isPersonalInfoEdit = true;
                 if (res['dependent']) {

@@ -88,7 +88,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
       if (isConfirmed) {
 
         this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
-        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp).subscribe((res) => {
+        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp,this.appService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getDocumentsExpirations();
           }
@@ -131,7 +131,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
       validTo: event.data.validTo,
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp).subscribe((res) => {
+        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp, this.appService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getDocumentsExpirations();
           }

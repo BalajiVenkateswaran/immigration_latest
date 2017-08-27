@@ -14,12 +14,12 @@ export class ImmigrationViewDependentService {
         return this.restService.getData("/client/dependentSummary/" + clientId);
     }
 
-    public saveDependentsSummary(dependentData: dependent) {
-
+    public saveDependentsSummary(dependentData: dependent, userId: string) {
         console.log(dependentData);
 
         var data = {
-            "dependentsSummary": dependentData
+            "dependentsSummary": dependentData,
+            "updatedByUser": userId
         }
         return this.restService.postData("/client/dependentSummary", data);
     }

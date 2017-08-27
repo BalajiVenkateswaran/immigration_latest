@@ -11,9 +11,10 @@ export class DependentDetailsService {
         return this.restService.getData("/client/dependent/" + dependentId);
     }
 
-    public saveDependentDetails(dependent: any) {
+    public saveDependentDetails(dependent: any, userId: string) {
         var req = {
-            "dependent": dependent
+            "dependent": dependent,
+            "updateByUser": userId
         };
         return this.restService.postData("/client/dependent", req);
     }

@@ -148,7 +148,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
             this.jobDetails['terminationDate'] = this.jobDetails['terminationDate']['formatted'];
         }
         this.jobDetails['clientId'] = this.appService.clientId;
-        this.jobdetails.saveJobDetails(this.jobDetails)
+        this.jobdetails.saveJobDetails(this.jobDetails,this.appService.user.userId)
             .subscribe((res) => {
                 this.isjobdetailsEdit = true;
                 if (res['jobDetails']) {

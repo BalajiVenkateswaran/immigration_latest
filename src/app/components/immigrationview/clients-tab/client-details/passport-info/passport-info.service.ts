@@ -11,10 +11,11 @@ export class passportInfoService {
     public getFile(clientid: string) {
         return this.restService.getData("/client/passport/" + clientid);
     }
-    public savePassport(passport: any) {
+    public savePassport(passport: any, userId: string) {
         console.log("immigrationview-passport-info|savePassport|passport:%o", passport);
         var req = {
-            "passport": passport
+            "passport": passport,
+            "updatedByUser": userId
         };
         return this.restService.postData("/client/passport", req);
     }

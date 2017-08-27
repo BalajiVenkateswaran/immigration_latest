@@ -83,7 +83,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
             if (this.addressinfoList[key].addressType == "FOREIGN") {
                 this.ForiegnaddressinfoList = this.addressinfoList[key];
             }
-           
+
         }
         this.checkedAddress();
     }
@@ -203,7 +203,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
                         this.WorkaddressinfoList['residingSince'] = this.WorkaddressinfoList['residingSince']['formatted'];
                     }
 
-            this.addressinfoservice.saveClientAddress(this.WorkaddressinfoList, this.appService.clientId)
+            this.addressinfoservice.saveClientAddress(this.WorkaddressinfoList, this.appService.clientId,this.appService.user.userId)
                 .subscribe((res) => {
                     this.workedit = true;
                     if (res['clientAddress']) {
@@ -217,7 +217,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
                                     this.ResidenceaddressinfoList['residingSince'] = this.ResidenceaddressinfoList['residingSince']['formatted'];
                                 }
 
-            this.addressinfoservice.saveClientAddress(this.ResidenceaddressinfoList, this.appService.clientId)
+            this.addressinfoservice.saveClientAddress(this.ResidenceaddressinfoList, this.appService.clientId,this.appService.user.userId)
                 .subscribe((res) => {
                     this.residenceedit = true;
                     if (res['clientAddress']) {
@@ -227,7 +227,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
         }
         if (addresstype == "MAILING") {
             this.MailingaddressinfoList.addressType = addresstype;
-            this.addressinfoservice.saveClientAddress(this.MailingaddressinfoList, this.appService.clientId)
+            this.addressinfoservice.saveClientAddress(this.MailingaddressinfoList, this.appService.clientId,this.appService.user.userId)
                 .subscribe((res) => {
                     this.mailingedit = true;
                     if (res['clientAddress']) {
@@ -239,7 +239,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
         }
         if (addresstype == "FOREIGN") {
             this.ForiegnaddressinfoList.addressType = addresstype;
-            this.addressinfoservice.saveClientAddress(this.ForiegnaddressinfoList, this.appService.clientId)
+            this.addressinfoservice.saveClientAddress(this.ForiegnaddressinfoList, this.appService.clientId,this.appService.user.userId)
             .subscribe((res) => {
                 this.foreignedit = true;
                 if (res['clientAddress']) {
