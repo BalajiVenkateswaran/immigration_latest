@@ -72,18 +72,18 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
                     headerName: "Valid Till",
                     field: "validTill"
                 },
-                
+
             ]
         }
 
-        
+
     }
-   
+
     get1797history() {
         this.immigrationViewI797HistoryService.getI797Details(this.appService.clientId)
             .subscribe((res) => {
                 this.data=res['i797HistoryList'];
-               
+
             });
 
     }
@@ -101,7 +101,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
            title: 'Add I-797 History',
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
-               this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
+               this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797, this.appService.user.userId).subscribe((res) => {
                    if (res['statusCode'] == 'SUCCESS') {
        this.get1797history();
 
@@ -150,17 +150,17 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
            validTill: event.data.validTill
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
-              
-             this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797).subscribe((res) => {
+
+             this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797, this.appService.user.userId).subscribe((res) => {
                  if (res['statusCode'] == 'SUCCESS') {
-                 
+
        this.get1797history();
 
                    }
                });
            }
        });
-  
+
    }
    deleteRecord(immViewi797) {
        this.delmessage = immViewi797.data.receiptNumber
@@ -175,9 +175,9 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
                        this.message = res['statusCode'];
                        if (this.message == 'SUCCESS') {
                            this.get1797history();
-                           
+
                        }
-                          
+
                    });
                }
            });
