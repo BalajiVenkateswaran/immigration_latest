@@ -71,10 +71,6 @@ import {DocumentService} from './components/clientview/documents-tab/documents.s
 import {MoreDetails} from './components/clientview/petitions-tab/MoreDetails';
 import {petitionsclientviewComponent} from './components/clientview/petitions-tab/petitions.component';
 import { ClientViewPetitionsService } from './components/clientview/petitions-tab/petitions.service';
-import { QuestionnaireI129ClientComponent } from './components/clientview/questionnaries-tab/i129/i129.component';
-import { QuestionnaireClientViewService } from './components/clientview/questionnaries-tab/i129/i129.service';
-import { QuestionnaireI129HclientviewComponent } from './components/clientview/questionnaries-tab/i129h/i129h.component';
-import { QuestionnaireI129HClentviewService } from './components/clientview/questionnaries-tab/i129h/i129h.service';
 import { clientviewQuestionnaireComponent } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.component';
 import { ClientQuestionnaireService } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.service';
 import {RequestButton} from './components/clientview/request-tab/RequestButton';
@@ -368,8 +364,6 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     petitionsclientviewComponent,
     requestclientviewcomponent,
     clientviewQuestionnaireComponent,
-    QuestionnaireI129ClientComponent,
-    QuestionnaireI129HclientviewComponent,
     SuperUserViewAccountsComponent,
     SuperuserViewAccountDetailsComponent,
 
@@ -480,8 +474,6 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     ClientViewPetitionsService,
     ManageAccountShippingAddressService,
     ManageAccountPetitionStagesService,
-    QuestionnaireClientViewService,
-    QuestionnaireI129HClentviewService,
     ResetPasswordService,
     ClientQuestionnaireService,
     MenuComponent,

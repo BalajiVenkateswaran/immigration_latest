@@ -84,11 +84,10 @@ export class SmartTableFramework implements OnChanges {
                     }
                 }
                 that.filterWholeArray = this.removeDuplicates(this.filterWholeArray);
-                this.filterQueries = this.filterWholeArray.map(function (item) {
-                    return item.headingName + ":" + item.filterValue;
-                })
-
-
+                this.filterQueries = [];
+                for(var item of this.filterWholeArray){
+                    this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);
+                }
                 this.appendParamValues({ 'data': that.filterQueries, 'filterFlag': true });
             }
 
@@ -184,6 +183,23 @@ export class SmartTableFramework implements OnChanges {
             this.onRowClick.emit(data);
         }
     }
+
+    getFilterType(headerName: string) : string{
+        let type = null;
+        if(this.settings['filter'] != null && this.settings['filter']['types'] != null){
+            let filterTypes = this.settings['filter']['types'];
+            type = filterTypes.map(function (item) {
+                          if(item.headingName == headerName){
+                              return item.type;
+                          }
+                       });
+        }
+        if(type == null){
+          type = ':';
+        }
+        return type;
+    }
+
     prepareSettings() {
 
         //default setting for framework
@@ -258,14 +274,13 @@ export class SmartTableFramework implements OnChanges {
         if(this.settings.hasOwnProperty('defaultFilter')){
             if(this.filterWholeArray.length<=0 && !this.deleteFilterClicked){
                 this.filterWholeArray.push(this.settings['defaultFilter'][0]);
-                this.filterQueries = this.filterWholeArray.map(function (item) {
-                    return item.headingName + ":" + item.filterValue;
-                })
+                this.filterQueries = [];
+                for(var item of this.filterWholeArray){
+                    this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);
+                }
+
                 this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
             }
-
-
-
         }
         this.settings['columnsettings'].map(function (item) {
             if (item['headerTooltip'] == null && item['headerName'] != '') {
@@ -292,9 +307,13 @@ export class SmartTableFramework implements OnChanges {
         }
         this.gridOptions['columnDefs'] = this.settings['columnsettings'];
     }
+
     ngOnDestroy() {
         this.filterSubscription.unsubscribe();
     }
+
+
+
     nextPage() {
         this.itemStartIndex = this.endNumber + 1;
         this.pageNumber = this.pageNumber + 1;

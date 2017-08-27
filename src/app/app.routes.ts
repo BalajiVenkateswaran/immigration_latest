@@ -31,8 +31,6 @@ import {ImmigrationViewClientDetailsService} from './components/immigrationview/
 import {ImmigrationViewClientDetailsComponent} from './components/immigrationview/clients-tab/client-details/client-details/client-details.component';
 import {LoginComponent} from "./components/common/login/login.component";
 import {petitionsclientviewComponent} from "./components/clientview/petitions-tab/petitions.component";
-import { QuestionnaireI129ClientComponent } from './components/clientview/questionnaries-tab/i129/i129.component';
-import { QuestionnaireI129HclientviewComponent } from './components/clientview/questionnaries-tab/i129h/i129h.component';
 import { clientviewQuestionnaireComponent } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.component';
 import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
 import {ResetPasswordComponent} from './components/common/reset-password/reset-password.component';

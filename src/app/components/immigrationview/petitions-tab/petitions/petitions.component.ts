@@ -36,20 +36,6 @@ export class PetitionsComponent implements OnInit {
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
-
-        this.addPetition = new FormGroup({
-            petitionName: new FormControl(''),
-            petitionNumber: new FormControl(''),
-            clientFirstName: new FormControl(''),
-            clientLastName: new FormControl(''),
-            petitionType: new FormControl(''),
-            lastUpdated: new FormControl(''),
-            status: new FormControl(''),
-            assignedToName: new FormControl(''),
-            petitionStage: new FormControl(''),
-            daysCurrentStage: new FormControl(''),
-            tag: new FormControl('')
-        });
         this.settings = {
             "isAddButtonEnable": false,
             "columnFilter": true,
@@ -59,9 +45,13 @@ export class PetitionsComponent implements OnInit {
                 headingName: "status",
                 headerName: "Status",
                 filterValue: "Open"
-            }
-
-            ],
+            }],
+            'filter' : {
+                'types' : [{
+                    'headingName' : 'daysInStage',
+                    'type' : '>'
+                }]
+            },
             'columnsettings': [
                 {
                     headerName: "Name",
