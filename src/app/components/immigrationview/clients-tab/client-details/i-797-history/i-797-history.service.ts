@@ -11,11 +11,11 @@ export class ImmigrationViewI797HistoryService {
     public getI797Details(clientId: string) {
         return this.restService.getData("/client/i797details/" + clientId);
     }
+
     public saveI797Details(i797Details: i797history, userId: string) {
         var data={
             "i797History": i797Details,
             "updatedByUser": userId
-
         };
         return this.restService.postData("/client/i797details",data);
 
