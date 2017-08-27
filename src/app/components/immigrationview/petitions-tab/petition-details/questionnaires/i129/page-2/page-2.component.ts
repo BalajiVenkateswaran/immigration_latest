@@ -16,7 +16,8 @@ export class i129Page2Component implements OnInit {
     public requestedAction;
     public isquestionnaireEdit: boolean = false;
     public gender;
-    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
+    private route: ActivatedRoute, private router: Router) {
          this.basicClassification =[
             {
                 "id":"0",
