@@ -21,7 +21,9 @@ export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
     agInit(params: any): void {
         this.params = params;
     }
-    
+    refresh(): boolean {
+      return false;
+    }
     constructor(private questionnaireService: QuestionnaireService,public appService: AppService){
     }
     questionnaireChecked(){
@@ -39,9 +41,9 @@ export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
       else{
         formNameBasedCheck = true;
       }
-      
+
     }
     return formNameBasedCheck;
-      
+
     }
 }

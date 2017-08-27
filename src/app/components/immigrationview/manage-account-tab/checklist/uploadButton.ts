@@ -23,6 +23,9 @@ export class checklistuploadButton implements ICellRendererAngularComp {
     agInit(params: any): void {
         this.params = params;
     }
+    refresh(): boolean {
+      return false;
+    }
 
     constructor(private manageAccountChecklistService: ManageAccountChecklistService, public appService: AppService, public dialogService: DialogService) {
     }
@@ -62,7 +65,7 @@ export class checklistuploadButton implements ICellRendererAngularComp {
         }
     }
     //isfileExists(file) {
-  
+
     //    let upload: boolean = false;
     //    this.data.filter(item => {
     //        if (file.name == item.fileName) {

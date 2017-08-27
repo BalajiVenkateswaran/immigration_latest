@@ -107,7 +107,6 @@ import { profiletodolistcomponent } from './components/immigrationview/profile-t
 import { petitionstagesreportscomponent } from './components/immigrationview/reports-tab/petition/stages/stages.component';
 import { petitionstagsreportscomponent } from './components/immigrationview/reports-tab/petition/tags/tags.component';
 import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
-import { QuestionnaireI129Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129/i129.component';
 import { clientstatusreportscomponent } from './components/immigrationview/reports-tab/client/status/status.component';
 import { superuserpetstagereportscomponent } from './components/superuserview/reports-tab/petitions/stage/stage.component';
 import { superuserL1Areportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
@@ -127,8 +126,6 @@ import {i129HPage6Component} from './components/immigrationview/petitions-tab/pe
 
 import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
 import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.component';
-import { QuestionnaireI129DCComponent } from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129dc/i129dc.component';
-import { QuestionnaireI129HComponent } from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129h/i129h.component';
 import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview/product-catalog-tab/discounts/discounts.component';
 import {superuserclientstatusreportscomponent} from './components/superuserview/reports-tab/clients/status/status.component';
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';

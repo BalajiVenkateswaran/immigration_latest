@@ -14,6 +14,9 @@ export class DownloadInvoiceButton implements ICellRendererAngularComp {
     agInit(params: any): void {
         this.params = params;
     }
+    refresh(): boolean {
+      return false;
+    }
 
     constructor() {
 

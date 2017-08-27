@@ -15,7 +15,6 @@ import {ActionColumns} from './components/framework/smarttable/ActionColumns';
 import {SendToClientQuestionnaire} from './components/immigrationview/petitions-tab/petition-details/questionnaire/SendToClientQuestionnaire';
 
 import {AppComponent} from './components/app/app.component';
-import {Quetionairervice} from "./components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129/i129.service";
 import {RestService} from "./services/rest.service";
 import {FooterComponent} from "./components/common/footer/footer.component";
 import {routing, appRoutingProviders} from './app.routes';
@@ -87,8 +86,6 @@ import { MenuComponent } from './components/common/menu/menu.component';
 import { MenuService } from './components/common/menu/menu.service';
 import { ResetPasswordComponent } from './components/common/reset-password/reset-password.component';
 import { ResetPasswordService } from './components/common/reset-password/reset-password.service';
-import {QuestionnaireI129DCComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129dc/i129dc.component';
-import {QuestionnaireI129DCService} from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129dc/i129dc.service';
 import {MyDatePickerModule} from 'mydatepicker';
 import {InvoicedownloadButton} from "./components/superuserview/accounts-tab/account-details/invoice/invoicedownloadbutton";
 
@@ -244,7 +241,6 @@ import { petitionstagsreportsservice } from './components/immigrationview/report
 import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
 import { petitionstypesreportsservice } from './components/immigrationview/reports-tab/petition/type/type.service';
 import { OrganizationComponent } from './components/immigrationview/organization-tab/organization/organization.component';
-import {QuestionnaireI129Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129/i129.component';
 import {AngularDraggableModule} from 'angular2-draggable';
 import {AccountDetailsPaymentsService} from './components/superuserview/accounts-tab/account-details/payments/payments.service';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.service';
@@ -270,8 +266,6 @@ import {HeaderService} from './components/common/header/header.service';
 import {QuestionnaireCommonService} from './components/immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
 import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
 import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.component';
-import { QuestionnaireI129HComponent } from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129h/i129h.component';
-import { QuestionnaireI129HService } from './components/immigrationview/petitions-tab/petition-details/questionnaires/old/i129h/i129h.service';
 import { petitionfinalactionservice } from './components/immigrationview/reports-tab/petition/final-action/final-action.service';
 import {superuserclientstatusreportscomponent} from './components/superuserview/reports-tab/clients/status/status.component';
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
@@ -371,13 +365,10 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     ImmigrationViewPetitionsComponent,
 
     LoginComponent,
-    QuestionnaireI129Component,
     petitionsclientviewComponent,
     requestclientviewcomponent,
     clientviewQuestionnaireComponent,
     QuestionnaireI129ClientComponent,
-    QuestionnaireI129DCComponent,
-    QuestionnaireI129HComponent,
     QuestionnaireI129HclientviewComponent,
     SuperUserViewAccountsComponent,
     SuperuserViewAccountDetailsComponent,
@@ -489,10 +480,7 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     ClientViewPetitionsService,
     ManageAccountShippingAddressService,
     ManageAccountPetitionStagesService,
-    Quetionairervice,
     QuestionnaireClientViewService,
-    QuestionnaireI129DCService,
-    QuestionnaireI129HService,
     QuestionnaireI129HClentviewService,
     ResetPasswordService,
     ClientQuestionnaireService,

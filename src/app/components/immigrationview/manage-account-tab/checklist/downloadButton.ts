@@ -21,12 +21,15 @@ export class checklistdownloadButton implements ICellRendererAngularComp {
     agInit(params: any): void {
         this.params = params;
     }
+    refresh(): boolean {
+      return false;
+    }
 
     constructor(private manageAccountChecklistService: ManageAccountChecklistService, public appService: AppService) {
     }
 
     downloadClick(event){
-    
+
         this.manageAccountChecklistService.downloadChecklist(this.params.data.checkListId).subscribe
             (data => this.downloadFiles(data, this.params.data.fileName)),
             error => console.log("Error Downloading....");

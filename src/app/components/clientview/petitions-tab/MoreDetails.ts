@@ -13,13 +13,12 @@ export class MoreDetails implements ICellRendererAngularComp    {
     public params: any;
     public static viewDetails = new Subject<Object>();
     private user: User;
-
-
-  
     agInit(params: any): void {
         this.params = params;
     }
-    
+    refresh(): boolean {
+      return false;
+    }
     constructor(public appService: AppService){
 
     }
@@ -27,6 +26,6 @@ export class MoreDetails implements ICellRendererAngularComp    {
         MoreDetails.viewDetails.next({'data':this.params.data,'flag':true});
     }
 
-     
-    
+
+
 }

@@ -24,6 +24,9 @@ export class switchButton implements ICellRendererAngularComp {
             this.switchdisable = true;
         }
     }
+    refresh(): boolean {
+      return false;
+    }
     constructor(private profileSwitchservice: profileswitchservice, public appService: AppService) {
     }
     onSwitchClick(params) {

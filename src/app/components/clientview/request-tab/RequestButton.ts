@@ -27,6 +27,9 @@ export class RequestButton implements ICellRendererAngularComp {
     this.params = params;
     this.checkedIniviteStatus(this.params.data.status);
   }
+  refresh(): boolean {
+    return false;
+  }
   checkedIniviteStatus(status) {
     this.displayStatus = status;
     if (status == "Accept" || status == "Decline") {

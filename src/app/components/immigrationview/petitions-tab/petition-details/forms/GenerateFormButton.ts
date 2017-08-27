@@ -17,6 +17,9 @@ export class GenerateFormButton implements ICellRendererAngularComp {
     agInit(params: any): void {
         this.params = params;
     }
+    refresh(): boolean {
+      return false;
+    }
 
     constructor() {
 

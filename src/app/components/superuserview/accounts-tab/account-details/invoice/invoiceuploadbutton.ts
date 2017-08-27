@@ -13,6 +13,9 @@ export class InvoiceUploadButton implements ICellRendererAngularComp {
   agInit(params: any): void {
     this.params = params;
   }
+  refresh(): boolean {
+    return false;
+  }
   fileUpload(event) {
     this.params.context.componentParent.onUploadClick({'event': event, 'data': this.params.data});
   }
