@@ -33,33 +33,37 @@ export class ImmigrationViewPetitionDetailsService {
         return this.restService.postData("/petition/petitionInfo", req);
     }
 
-    public savePetitionAdditionalDetails(petitionAdditionalDetails: any) {
+    public savePetitionAdditionalDetails(petitionAdditionalDetails: any, userId: string) {
         var req = {
-            "petitionAdditionalDetails": petitionAdditionalDetails
+            "petitionAdditionalDetails": petitionAdditionalDetails,
+            "userId": userId
         };
         return this.restService.postData("/petition/additionaldetails/", req);
     }
 
 
-    public saveReceiptInfo(receiptInfo: any) {
+    public saveReceiptInfo(receiptInfo: any, userId: string) {
         var req = {
-            "receiptInfo": receiptInfo
+            "receiptInfo": receiptInfo,
+            "userId": userId
         };
 
         return this.restService.postData("/petition/receiptInfo", req);
     }
 
-    public saveLcaInfo(lcaInfo: any) {
+    public saveLcaInfo(lcaInfo: any, userId: string) {
         var req = {
-            "lcaInfo": lcaInfo
+            "lcaInfo": lcaInfo,
+            "userId": userId
         };
 
         return this.restService.postData("/petition/LCAInfo", req);
     }
 
-    public saveSponsorInfo(sponsorInfo: any) {
+    public saveSponsorInfo(sponsorInfo: any, userId: string) {
         var req = {
-            "sponsorInfo": sponsorInfo
+            "sponsorInfo": sponsorInfo,
+            "userId": userId
         };
 
         return this.restService.postData("/petition/sponsorInfo", req);
@@ -69,10 +73,12 @@ export class ImmigrationViewPetitionDetailsService {
         return this.restService.getData("/petition/config/all/types/subtypes");
     }
 
-    public saveDelegatedOrgs(orgs: any,petitonId) {
+    public saveDelegatedOrgs(orgs: any,petitonId, userId: string) {
         var req = {
             "orgIds": orgs,
-            "petitionId": petitonId
+            "petitionId": petitonId,
+            "userId": userId
+
         };
         return this.restService.postData("/immigration/orgs/petition", req);
     }
