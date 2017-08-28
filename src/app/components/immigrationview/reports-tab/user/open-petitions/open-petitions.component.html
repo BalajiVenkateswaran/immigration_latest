@@ -1,7 +1,14 @@
 ﻿
 <div class="main-content">
     <div class="container">
+        <h6>List of Users</h6>
+        <div>
+            <select class="col-md-3 form-control">
+                <option *ngFor="let user of appService.usersList" [value]="user.userId">{{user.firstName}}{{user.lastName}}</option>
+            </select>
+        </div>
         <div class="row">
+           
             <div class="col-md-6" *ngFor="let org of orgsNames">
                 <canvas responsive="true" maintainAspectRatio="false" height="200" baseChart
                         [data]="pieChartData[org]"

@@ -40,7 +40,8 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public settings;
     public data;
     private user: User;
-    public countryNames : string[] = [];
+    public countryNames: string[] = [];
+   
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }

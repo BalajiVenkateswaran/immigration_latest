@@ -16,6 +16,11 @@ export class demorequestdetailsComponent implements OnInit {
     public settings;
     ngOnInit() {
         this.appService.showSideBarMenu("superuser-misc", "superuser-misc");
+
+        this.demorequestdetailsservice.getDemoRequests()
+            .subscribe((res: any) => {
+                this.data = res.demoRequests;
+            });
     }
     constructor(private demorequestdetailsservice: Demorequestdetailsservice,
         private appService: AppService, public dialogService: DialogService) {
@@ -24,40 +29,40 @@ export class demorequestdetailsComponent implements OnInit {
                 {
 
                     headerName: "Name",
-                    field: "firstName",
+                    field: "name",
                 },
                 {
 
                     headerName: "Email",
-                    field: "lastName",
+                    field: "email",
 
                 },
                 {
 
                     headerName: "Phone",
-                    field: "emailId",
+                    field: "phone",
                 },
                 {
                     headerName: "Date",
-                    field: "phone",
+                    field: "demoRequestDate",
 
                 },
                 {
 
                     headerName: "Referral",
-                    field: "roleName",
+                    field: "referral",
 
                 },
                 {
 
                     headerName: "Comments",
-                    field: "roleName",
+                    field: "comments",
 
                 },
                 {
 
                     headerName: "Status",
-                    field: "roleName",
+                    field: "status",
 
                 },
             ]

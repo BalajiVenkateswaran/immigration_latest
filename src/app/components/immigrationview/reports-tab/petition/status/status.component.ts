@@ -47,9 +47,16 @@ export class petitionsstatusreportscomponent implements OnInit {
                         }
                     }
                     else {
-                        this.closed = 0;
+                        if (this.closed==undefined) {
+                            this.closed = 0;
+                        }
+                        if (this.closed==undefined) {
+                            this.opened = 0;
+                        }
                     }
-                    this.pieChartData[item] = [this.opened,this.closed];
+                    this.pieChartData[item] = [this.opened, this.closed];
+                    this.opened = 0;
+                    this.closed = 0;
                 }
             });
     }
