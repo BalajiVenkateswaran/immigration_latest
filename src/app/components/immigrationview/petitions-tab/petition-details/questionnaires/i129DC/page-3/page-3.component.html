@@ -45,7 +45,7 @@
                         <div class="col-md-8">The beneficiary of this petition will be assigned to work at an off-site location for all or part of the period for which H-1B classification sought. </div>
                         <div class="col-md-4">
                             <div class="row">
-                                 <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isBeneficiaryH1BClassificationSought" [value]="x.value" [(ngModel)]="page3.isBeneficiaryH1BClassificationSought">{{x.display}} </div>
+                                 <div class="col-md-3" *ngFor="let x of questions"><input type="radio" name="isBeneficiaryH1BClassificationSought" [value]="x.value" [(ngModel)]="page3.isBeneficiaryH1BClassificationSought">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -54,13 +54,13 @@
                         <div class="col-md-8">Placement of the beneficiary off-site during the period of employment will comply with the statutory and regulatory requirements of the H-1B nonimmigrant classification.</div>
                         <div class="col-md-4">
                             <div class="row">
-                                   <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isBeneficiaryH1BNonImmigrantClassification" [value]="x.value" [(ngModel)]="page3.isBeneficiaryH1BNonImmigrantClassification">{{x.display}} </div>
+                                   <div class="col-md-3" *ngFor="let x of questions"><input type="radio" name="isBeneficiaryH1BNonImmigrantClassification" [value]="x.value" [(ngModel)]="page3.isBeneficiaryH1BNonImmigrantClassification">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-8">The beneficiary will be paid the higher of the prevailing or actual wage at any and all off-site locations.</div>
                         <div class="col-md-4">
                             <div class="row">
-                                  <div class="col-md-6" *ngFor="let x of questions"><input type="radio" name="isBeneficiaryPaidAtOffsiteLocation" [value]="x.value" [(ngModel)]="page3.isBeneficiaryPaidAtOffsiteLocation">{{x.display}} </div>
+                                  <div class="col-md-3" *ngFor="let x of questions"><input type="radio" name="isBeneficiaryPaidAtOffsiteLocation" [value]="x.value" [(ngModel)]="page3.isBeneficiaryPaidAtOffsiteLocation">{{x.display}} </div>
                             </div>
                         </div>
                     </div>
