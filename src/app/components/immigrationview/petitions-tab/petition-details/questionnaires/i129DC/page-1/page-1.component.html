@@ -111,7 +111,7 @@
                         <div class="col-md-12">
                             <p class="fieldsetheading">Beneficiary's Highest Level of Education (select only one box)</p>
                         </div>
-                        <div class="col-md-12" *ngFor="let x of higherEducation"><input type="radio" name="higherEducation" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.higherEducation">{{x.display}}</div>
+                        <div class="col-md-6" *ngFor="let x of higherEducation"><input type="radio" name="higherEducation" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.higherEducation">{{x.display}}</div>
                         <div class="clearfix"></div>
                         <div class="col-md-12">
                             <div class="row">
