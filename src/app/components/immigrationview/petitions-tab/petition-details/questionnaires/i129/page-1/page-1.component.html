@@ -18,7 +18,6 @@
             <div class="col-md-12">
                 <h2>Petitioner Information</h2>
             </div>
-            <div class="col-md-12">
               <div class="col-md-12">
                 <p>If you are an individual filing this petition, complete Item Number 1. If you are a company or an organization
                     filing this petition, complete Item Number 2.</p>
@@ -28,7 +27,7 @@
                             <p class="fieldsetheading">Legal Name of Individual Petitioner</p>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Family Name (Last Name)</div>
                                 <div class="col-md-8">
@@ -37,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Family Name (First Name)</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.firstName" />
@@ -45,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Middle Name</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.middleName" />
@@ -53,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Company or Organization Name</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.companyName" />
@@ -64,7 +63,7 @@
                         <div class="col-md-12">
                             <p class="fieldsetheading">Mailing Address of Individual, Company or Organization</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">In Care Of Name</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.inCareOfName" />
@@ -72,7 +71,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Street Number and Name</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.street" />
@@ -80,7 +79,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-8">
@@ -92,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Number </div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.houseNumber" />
@@ -102,7 +101,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="row">
@@ -129,8 +127,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="row">
@@ -157,11 +153,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <p class="fieldsetheading">Contact Information</p>
                         </div>
-                        <div class="col-md-12">
+                    </div>
+                        
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="row">
@@ -188,11 +185,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <p class="fieldsetheading">Other Information</p>
                         </div>
-                        <div class="col-md-12">
+                    </div>
+                    
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="row">
@@ -219,11 +217,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
-
 </div>
