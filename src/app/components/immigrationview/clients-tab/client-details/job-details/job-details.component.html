@@ -106,11 +106,12 @@
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.terminationDate}}</span>
                         </div>
                     </div>
+                   
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
-                                <button type="button" (click)="cancelJobInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                                <button type="button" (click)="cancelJobInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
