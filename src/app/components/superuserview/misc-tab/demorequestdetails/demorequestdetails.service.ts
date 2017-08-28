@@ -6,4 +6,7 @@ import {Injectable} from "@angular/core";
 export class Demorequestdetailsservice {
     constructor(private restService: RestService) {
     }
+    public getDemoRequests() {
+        return this.restService.getData("/superuser/misc/demo");
+    }
 }
