@@ -22,8 +22,9 @@ constructor(public questionnaireService: QuestionnaireCommonService, public appS
         });
     }
     gotoNext() {
-        //this.appService.moveToPage('i129hPage3');
+        
         this.savequestionnaireInformation();
+        this.appService.moveToPage('i129hPage3');
 
     }
     gotoPrev() {
