@@ -56,25 +56,22 @@ export class ManageaccountUserDetailsComponent implements OnInit {
         }
     }
     getUserDetails() {
-        this.route.params.subscribe((res) => {
-            this.userid = res['userId'];
-            this.manageAccountUserDetailsService.getUserDet(this.userid, this.appService.user.accountId).subscribe((res) => {
-                this.userProfOrgsList = res['userOrgsDetail'];
-                this.userList = res['userOrgsDetail']['userProfileInfo'];
-                this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName'];
-                this.userList['roleId'] = res['userOrgsDetail']['userRoleInfo']['roleId'];
-                this.userList['accountId'] = this.appService.user.accountId;
-                this.orgsList = res['userOrgsDetail']['organizationsInfo'];
-                if (this.userList.role == "Immigration Officer") {
-                    this.isAccessEdit = true;
-                }
-                if (this.userList.role == "Immigration Manager") {
-                    this.isAccessEdit = false;
-                    this.isAccess = false;
-                }
-                this.getUserLoginHistory();
-            });
-        })
+        this.manageAccountUserDetailsService.getUserDet(this.userid, this.appService.user.accountId).subscribe((res) => {
+            this.userProfOrgsList = res['userOrgsDetail'];
+            this.userList = res['userOrgsDetail']['userProfileInfo'];
+            this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName'];
+            this.userList['roleId'] = res['userOrgsDetail']['userRoleInfo']['roleId'];
+            this.userList['accountId'] = this.appService.user.accountId;
+            this.orgsList = res['userOrgsDetail']['organizationsInfo'];
+            if (this.userList.role == "Immigration Officer") {
+                this.isAccessEdit = true;
+            }
+            if (this.userList.role == "Immigration Manager") {
+                this.isAccessEdit = false;
+                this.isAccess = false;
+            }
+            this.getUserLoginHistory();
+        });
     }
     getUserLoginHistory() {
         this.manageAccountUserDetailsService.getLoginHistory(this.userid).subscribe(res => {
@@ -82,7 +79,10 @@ export class ManageaccountUserDetailsComponent implements OnInit {
         })
     }
     ngOnInit() {
+      this.route.params.subscribe((res) => {
+        this.userid = res['userId'];
         this.getUserDetails();
+      });
     }
     editProfileForm() {
         this.beforeCancelUserProfile = (<any>Object).assign({}, this.userList);
@@ -124,6 +124,7 @@ export class ManageaccountUserDetailsComponent implements OnInit {
             this.warningMessage = false;
             this.isUserEdit = true;
             this.userProfOrgsList['userProfileInfo'] = this.userList;
+            this.userProfOrgsList['userRoleInfo']['roleName'] = this.userList['role'];
             this.saveUserProfOrgs();
         }
     }
