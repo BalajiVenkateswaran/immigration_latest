@@ -55,7 +55,7 @@ export class ManageaccountUserDetailsComponent implements OnInit {
             ]
         }
     }
-    getuserdetails() {
+    getUserDetails() {
         this.route.params.subscribe((res) => {
             this.userid = res['userId'];
             this.manageAccountUserDetailsService.getUserDet(this.userid, this.appService.user.accountId).subscribe((res) => {
@@ -82,7 +82,7 @@ export class ManageaccountUserDetailsComponent implements OnInit {
         })
     }
     ngOnInit() {
-        this.getuserdetails();
+        this.getUserDetails();
     }
     editProfileForm() {
         this.beforeCancelUserProfile = (<any>Object).assign({}, this.userList);
@@ -108,7 +108,7 @@ export class ManageaccountUserDetailsComponent implements OnInit {
     saveUserProfOrgs() {
         this.manageAccountUserDetailsService.updateUser(this.userProfOrgsList).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
-                this.getuserdetails();
+                this.getUserDetails();
             }
 
         });
