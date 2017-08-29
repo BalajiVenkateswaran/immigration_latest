@@ -28,6 +28,9 @@ export class petitionfinalactioncomponent implements OnInit {
                     this.orgsNames.push(item);
                     for (var i = 0; i < this.orgsList[item].length; i++) {
                         this.count.push(this.orgsList[item][i]['count']);
+                        if (this.orgsList[item][i]['status'] == null) {
+                            this.orgsList[item][i]['status'] = "empty";
+                        }
                         this.status.push(this.orgsList[item][i]['status'])
                     }
                     this.pieChartLabels[item] = this.status;
