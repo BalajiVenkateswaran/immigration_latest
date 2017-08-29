@@ -84,5 +84,8 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
             this.close();
         }
     }
+    cancel() {
+            this.close();
+    }
 }
 

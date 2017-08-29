@@ -13,15 +13,12 @@ export class MenuComponent implements OnInit {
     sideBarMenu: string;
     private docsideBarMenu: any;
     private orgNames: any;
-    private clientdoctrue: any;
-    private clientdep: any;
-    private clientdependents;
-    private immipetitiondoc;
-    private quespdfPages;
-    private immidependents;
-    private clientQuest;
-    private immiQstnre;
-    private manageuser;
+    public clientdependents:boolean;
+    public immipetitiondoc:boolean;
+    public quespdfPages:boolean;
+    public immidependents;
+    public clientQuest:boolean;
+    public manageUser:boolean;
     private immipetitionreports: boolean=true;
     private immicilentreports;
     private immiuserreports;
@@ -30,57 +27,80 @@ export class MenuComponent implements OnInit {
     public superuserpetitions: boolean;
     public superuserclientreports: boolean;
     public superuserpetitins: boolean;
+    public immiQstnre: boolean;
   constructor(private menuService: MenuService, private appservice: AppService,
     public questionnaireCommonService : QuestionnaireCommonService) {
       this.sideBarMenu = appservice.sideBarMenu;
     }
-  clientDocClick() {
-      this.clientdoctrue = !this.clientdoctrue;
+    //immigration sidebar 
+  immiQstnreclick() {
+      this.immiQstnre = !this.immiQstnre;
+      this.immipetitiondoc = false;
   }
   immiPetDoc() {
       this.immipetitiondoc = !this.immipetitiondoc;
+      this.immiQstnre = false;
   }
-    showquespdfpages() {
-        this.quespdfPages = !this.quespdfPages;
-    }
+  immidependentsclick() {
+      this.immidependents = !this.immidependents;
+  }
+  manageacntuserclick() {
+      this.manageUser = !this.manageUser;
+  }
   petrportsclick() {
       this.immipetitionreports = !this.immipetitionreports;
+      this.immicilentreports = false;
+      this.immiuserreports = false;
   }
   clinetreportsclick() {
       this.immicilentreports = !this.immicilentreports;
+      this.immiuserreports = false;
+      this.immipetitionreports = false;
   }
   userpetiitonsclick() {
       this.immiuserreports = !this.immiuserreports;
+      this.immipetitionreports = false;
+      this.immicilentreports = false;
   }
+    //clientview sidebar
+  clientDepClick() {
+      this.clientdependents = !this.clientdependents;
+  }
+  clientquestionaireclick() {
+      this.clientQuest = !this.clientQuest;
+  }
+    //super user sidebar
+  showquespdfpages() {
+     this.quespdfPages = !this.quespdfPages;
+  }
+    superuserpetionsclick() {
+        this.superuserpetitions = !this.superuserpetitions;
+        this.superuserclientreports = false;
+        this.superuserpetitins = false;
+    }
+    superuserclientreportsclick() {
+        this.superuserclientreports = !this.superuserclientreports;
+        this.superuserpetitions = false;
+        this.superuserpetitins = false;
+    }
+    superuserpetitonreport() {
+        this.superuserpetitins = !this.superuserpetitins;
+        this.superuserclientreports = false;
+        this.superuserpetitions = false;
+    }
   superuserstatsclick() {
       this.superuserstats = !this.superuserstats;
   }
   superuserpaymentsclick() {
       this.superuserpayments = !this.superuserpayments;
   }
-  superuserpetionsclick() {
-      this.superuserpetitions = !this.superuserpetitions;
-  }
-  superuserclientreportsclick() {
-      this.superuserclientreports = !this.superuserclientreports;
-  }
-  superuserpetitonreport() {
-      this.superuserpetitins = !this.superuserpetitins;
-  }
+ 
   ngOnInit(): void {
-      this.sideBarMenu = this.appservice.sideBarMenu;
-      this.clientdoctrue = false;
-      this.clientdep = false;
-      this.immipetitiondoc = false;
-      this.quespdfPages = false;
+      this.sideBarMenu = this.appservice.sideBarMenu
   }
   ngDoCheck(){
       this.sideBarMenu = this.appservice.sideBarMenu;
       this.docsideBarMenu = this.appservice.docsideBarMenu;
-      this.clientdependents = this.appservice.clientdep;
-      this.immidependents = this.appservice.immidep;
-      this.clientQuest = this.appservice.clntqstn;
-      this.immiQstnre = this.appservice.immiqstn;
   }
   checkForCurrentSBLink(sblink) {
       return this.appservice.currentSBLink == sblink;

@@ -40,11 +40,6 @@ export class AppService {
     private _currentSBLink: string;
     public addDependents: any = {};
     public newclitem: any = {};
-    public clientdep: boolean = false;
-    public immidep: boolean = false;
-    public clntqstn: boolean = false;
-    public immiqstn: boolean = false;
-    public manageUser:boolean=false;
     public orgClientId;
     public addNewDocExp: any = {};
     public _subtypes: any[] = [];
@@ -113,10 +108,6 @@ export class AppService {
         this._questionaryName = null;
         this._currentTab = null;
         this._currentSBLink = null;
-        this.clientdep = false;
-        this.immidep = false;
-        this.clntqstn = false;
-        this.immiqstn = false;
         this.orgClientId = null;
     }
     public moveToPageWithParams(pageLink, params) {
@@ -125,7 +116,6 @@ export class AppService {
         }
         this._currentPage = pageLink;
         this._router.navigate([pageLink, params], { skipLocationChange: true });
-        this.updatePageLinkFlags(pageLink);
     }
 
     public moveToPage(pageLink) {
@@ -135,61 +125,6 @@ export class AppService {
         }
         this._currentPage = pageLink;
         this._router.navigate([pageLink], { skipLocationChange: true });
-        this.updatePageLinkFlags(pageLink);
-    }
-
-    private updatePageLinkFlags(pageLink){
-      if (pageLink == "clientview-dependents") {
-          if (this.clientdep == true) {
-              this.clientdep = false;
-              return;
-          }
-          if (this.clientdep == false) {
-              this.clientdep = true;
-              return;
-          }
-        }
-
-      if (pageLink == "immigrationview-dependents") {
-          if (this.immidep == true) {
-              this.immidep = false;
-              return;
-          }
-          if (this.immidep == false) {
-              this.immidep = true;
-              return;
-          }
-      }
-      if (pageLink == "clientview-Questionnaries") {
-          if (this.clntqstn == true) {
-              this.clntqstn = false;
-              return;
-          }
-          if (this.clntqstn == false) {
-              this.clntqstn = true;
-              return;
-          }
-      }
-      if (pageLink == "immigrationview-questionnaire") {
-          if (this.immiqstn == true) {
-              this.immiqstn = false;
-              return;
-          }
-          if (this.immiqstn == false) {
-              this.immiqstn = true;
-              return;
-          }
-      }
-      if(pageLink=='manageaccount-user'){
-        if(this.manageUser==true){
-            this.manageUser=false;
-            return;
-        }
-        if(this.manageUser==false){
-            this.manageUser=true;
-            return;
-        }
-      }
     }
 
     public moveToQuestionnaire(questionnaireData) {

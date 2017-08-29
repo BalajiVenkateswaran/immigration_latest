@@ -9,4 +9,7 @@ export class Demorequestdetailsservice {
     public getDemoRequests() {
         return this.restService.getData("/superuser/misc/demo");
     }
+    public savedemoRequest(Data: User) {
+        return this.restService.putData("/superuser/misc/demo", Data);
+    }
 }

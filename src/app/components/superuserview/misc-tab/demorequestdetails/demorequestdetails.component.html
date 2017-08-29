@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content"  *ngIf="getdemorequests">
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Demo Request Details</h2>
@@ -10,5 +10,74 @@
     </div>
 </div>
 
-
+<div *ngIf="adddemorequest">
+    <div class="modal-dialog" ngDraggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5">Name:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="adddemoRequests.name" class="form-control"></div>
+                            <div class="col-md-5">Email:</div>
+                            <div class="col-md-7">
+                                <input type="text" [(ngModel)]="adddemoRequests.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                       required #emailId="ngModel" class="form-control">
+                            </div>
+                            <div class="col-md-5">Phone:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="adddemoRequests.phone" class="form-control"></div>
+                           
+                                <div class="col-md-5"><label for="wa-ws">Date:</label></div>
+                                <div class="col-md-7">
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="adddemoRequests.demoRequestDate"
+                                                    [selDate]="demoRequestDate"></my-date-picker>
+                                </div>
+                         
+                            <div class="col-md-5">Referral:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="adddemoRequests.referral" class="form-control"></div>
+                            <div class="col-md-5">Comments:</div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="adddemoRequests.comments" class="form-control"></div>
+                            <div class="col-md-5">Status:</div>
+                            <div class="col-md-7">
+                                <select  [(ngModel)]="adddemoRequests.status" class="form-control">
+                                    <option value="new">New</option>
+                                    <option value="scheduled">Scheduled</option>
+                                    <option value="completes">Complete</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="row sfm" [hidden]="emailId.valid || emailId.untouched">
+                                    <div class="col-md-12">
+                                        <div class="redstar" *ngIf="emailId.errors && emailId.errors.required">
+                                            * Email is required
+                                        </div>
+                                        <div class="redstar" *ngIf="emailId.errors && emailId.errors.pattern">
+                                            * Email is invalid
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div></div>
+                                    <div class="col-md-6"> <button type="button" class="btn btn-primary" (click)="demorequestsave(emailId.errors,roles)">Save</button></div>
+                                    <div class="col-md-6"> <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

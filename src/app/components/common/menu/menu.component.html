@@ -9,7 +9,7 @@
             </a>
         </li>
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('immigrationview-questionnaire');highlightSBLink('Questionnaire')" [ngClass]="[checkForCurrentSBLink('Questionnaire') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="immigrationview-questionnaires" routerLinkActive="active">
+            <a (click)="appservice.moveToPage('immigrationview-questionnaire');highlightSBLink('Questionnaire');immiQstnreclick()" [ngClass]="[checkForCurrentSBLink('Questionnaire') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="immigrationview-questionnaires" routerLinkActive="active">
                 <span class="ico-questionnaire"></span>
                 <span>Questionnaire</span>
                 <span class="ico-arrow"></span>
@@ -68,7 +68,7 @@
             </a>
         </li>
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('immigrationview-dependents');highlightSBLink('Dependents')" [ngClass]="[checkForCurrentSBLink('Dependents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" id="dependents" data-toggle="dropdown">
+            <a (click)="appservice.moveToPage('immigrationview-dependents');highlightSBLink('Dependents');immidependentsclick()" [ngClass]="[checkForCurrentSBLink('Dependents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" id="dependents" data-toggle="dropdown">
                 <span class="ico-dependents"></span>
                 <span>Dependents</span>
                 <span class="ico-arrow"></span>
@@ -124,12 +124,12 @@
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('manageaccount-user');highlightSBLink('User')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appservice.moveToPage('manageaccount-user');highlightSBLink('User');manageacntuserclick()" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Users</span>
                 <span class="ico-arrow"></span>
             </a>
-            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl *ngIf="appservice.usersList&&appservice.manageUser" [(ngModel)]="appservice.usersList">
+            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl *ngIf="appservice.usersList&&manageUser" [(ngModel)]="appservice.usersList">
                 <li *ngFor='let value of appservice.usersList'><a (click)="appservice.moveToPageWithParams('user-details',value);highlightSBLink(value.userId);" [ngClass]="[checkForCurrentSBLink(value.userId) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
             </ul>
         </li>
@@ -333,7 +333,7 @@
             </a>
         </li>
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('clientview-dependents');highlightSBLink('Dependents')" [ngClass]="[checkForCurrentSBLink('Dependents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-dependents">
+            <a (click)="appservice.moveToPage('clientview-dependents');highlightSBLink('Dependents');clientDepClick" [ngClass]="[checkForCurrentSBLink('Dependents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-dependents">
                 <span class="ico-dependents"></span>
                 <span>Dependents</span>
                 <span class="ico-arrow"></span>
@@ -342,17 +342,6 @@
                 <li *ngFor='let value of appservice.dependents'><a (click)="appservice.moveToPageWithParams('dependentDetails',value.dependentId);highlightSBLink(value.firstName)" [ngClass]="[checkForCurrentSBLink(value.firstName) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
             </ul>
         </li>
-        <!--<li ngbDropdown class="dropdown">
-            <a (click)="clientDocClick();highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-documents" routerLinkActive="active">
-                <span class="ico-documents"></span>
-                <span>Documents</span>
-                <span class="ico-arrow"></span>
-            </a>
-            <ul class="listsidemenu" *ngIf="clientdoctrue" role="menu" aria-labelledby="dependents" name="dependents-list" ngDefaultControl>
-                <li (click)="appservice.selectedOrgClienttId=value.clientId;appservice.moveToPage('clientview-documents');highlightSBLink(value.orgName)" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" *ngFor='let value of docsideBarMenu'><a routerLinkActive="active">{{value.orgName}}</a></li>
-
-            </ul>
-        </li>-->
         <li>
             <a (click)="appservice.moveToPage('clientview-document-expirations');highlightSBLink('Documents Expirations')" [ngClass]="[checkForCurrentSBLink('Documents Expirations') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-documents-expirations"></span>
@@ -398,7 +387,7 @@
     </ul>
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-Questionnaire'">
         <li ngbDropdown class="dropdown">
-            <a (click)="appservice.moveToPage('clientview-Questionnaries');highlightSBLink('Questionnaires')" [ngClass]="[checkForCurrentSBLink('Questionnaires') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-questionnaires" routerLinkActive="active">
+            <a (click)="appservice.moveToPage('clientview-Questionnaries');highlightSBLink('Questionnaires');clientquestionaireclick()" [ngClass]="[checkForCurrentSBLink('Questionnaires') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-questionnaires" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Questionnaires</span>
                 <span class="ico-arrow"></span>

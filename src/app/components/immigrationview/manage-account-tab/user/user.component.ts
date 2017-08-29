@@ -166,7 +166,6 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     editRecord(event): void {
         this.appService.moveToPageWithParams('user-details', event.data);
         this.appService.currentSBLink = event.data.userId;
-        this.appService.manageUser = true;
     }
 
     deleteRecord(event): void {
