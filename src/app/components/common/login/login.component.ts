@@ -138,6 +138,8 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
             }
             if (res.hasMultipleRoles == false) {
               this.appService.user = res.user;
+              this.appService.selroleId = res.userAccountRoleList[0].roleId;
+              this.appService.rolemultiple = false;
               this.headerService.organizations = res.organizationList;
               this.appService.user['roleName'] = res.userAccountRoleList[0].roleName;
               this.appService.user.accountId = res.userAccountRoleList[0].accountId;

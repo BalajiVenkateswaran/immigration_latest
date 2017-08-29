@@ -47,14 +47,20 @@ export class HeaderService {
   public isDelegatedOrg() : boolean {
     return this.selectedOrg != null && this.selectedOrg.orgType == HeaderService.delegatedOrgTypeConstant;
   }
-  
+
   public getUserOrgs(accountid: string, userid: string, roleid: string) {
     return this.restService.getData("/org/account/" + accountid + "/user/" + userid + "/role/" + roleid);
   }
 
-  public onHeaderPageLoad() {
-    this.destroy();
-    if (this.appService.rolemultiple == true) {
+  public onHeaderPageLoad(){
+    this.invokeHeaderPageLoad(true);
+  }
+
+  public invokeHeaderPageLoad(isDestroy: boolean) {
+    if(isDestroy){
+        this.destroy();
+    }
+    //if (this.appService.rolemultiple == true) {
       this.getUserOrgs(this.appService.selacntId, this.appService.user.userId, this.appService.selroleId).subscribe((res: any) => {
         this.organizations = res.orgs;
         if (this.organizations && this.organizations.length != 0) {
@@ -64,7 +70,7 @@ export class HeaderService {
           this.selectedOrg = {'displayName' : ''};
         }
       });
-    }
+    /*}
     else {
       if (this.organizations && this.organizations.length != 0) {
         this.selectedOrg = this.organizations[0];
@@ -72,7 +78,7 @@ export class HeaderService {
       else {
         this.selectedOrg = {'displayName' : ''};
       }
-    }
+    }*/
   }
 
   private destroy() {
