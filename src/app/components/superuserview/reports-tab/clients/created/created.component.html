@@ -1,22 +1,31 @@
 <div class="main-content">
-    <div class="container">
-        <h6>Please select Account</h6>
-        <div>
-            <select class="col-md-3 form-control" (change)="changeaccount($event.target.value)">
-                <option *ngFor="let account of reportsCommonService.totalAccounts" [value]="account.accountId">{{account.accountName}}</option>
-            </select>
-        </div>
+    <div class="table-data-forms">
         <div class="row">
-            <div class="col-md-6" style="margin-bottom:10px;" *ngFor="let org of orgsNames">
-                <canvas baseChart responsive="true" maintainAspectRatio="false" height="200"
-                        [datasets]="barChartData[org]"
-                        [labels]="barChartLabels[org]"
-                        [options]="barChartOptions"
-                        [legend]="barChartLegend"
-                        [chartType]="barChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
-                <span style="color:white;">{{org}}</span>
+            <div class="col-md-12">
+                <span class="listofusers">Please select Account</span>
+                <select class="form-control" (change)="changeaccount($event.target.value)" style="max-width:250px;">
+                    <option *ngFor="let account of reportsCommonService.totalAccounts" [value]="account.accountId">{{account.accountName}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6" *ngFor="let org of orgsNames">
+                <div class="col-md-12 addresbox box-shadow">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>{{org}}</h2>
+                        </div>
+                    </div>
+                    <canvas baseChart responsive="true" maintainAspectRatio="false" height="200"
+                            [datasets]="barChartData[org]"
+                            [labels]="barChartLabels[org]"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                </div>
             </div>
         </div>
     </div>

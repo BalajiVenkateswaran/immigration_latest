@@ -188,11 +188,11 @@ export class SmartTableFramework implements OnChanges {
         let type = null;
         if(this.settings['filter'] != null && this.settings['filter']['types'] != null){
             let filterTypes = this.settings['filter']['types'];
-            type = filterTypes.map(function (item) {
-                          if(item.headingName == headerName){
-                              return item.type;
-                          }
-                       });
+            filterTypes.map(function (item) {
+                      if(item.headingName == headerName && item.type != null){
+                          type = item.type;
+                      }
+                   });
         }
         if(type == null){
           type = ':';

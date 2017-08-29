@@ -1,18 +1,25 @@
-﻿
-            <div class="main-content">
-                <div class="container">
+﻿<div class="main-content">
+    <div class="table-data-forms">
+        <div class="row">
+            <div class="col-md-6" *ngFor="let org of orgsNames">
+                <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
-                        <div class="col-md-6" *ngFor="let org of orgsNames">
-                            <canvas responsive="true" maintainAspectRatio="false" height="200" baseChart
-                                    [data]="pieChartData[org]"
-                                    [labels]="pieChartLabels[org]"
-                                    [chartType]="pieChartType"
-                                    (chartHover)="chartHovered($event)"
-                                    (chartClick)="chartClicked($event)"></canvas>
-                            <span style="color:white;">{{org}}</span>
+                        <div class="col-md-12">
+                            <h2>{{org}}</h2>
                         </div>
                     </div>
+                    <canvas responsive="true" maintainAspectRatio="false" height="200" baseChart
+                            [data]="pieChartData[org]"
+                            [labels]="pieChartLabels[org]"
+                            [chartType]="pieChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
 
 
