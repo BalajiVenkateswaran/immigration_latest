@@ -90,7 +90,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
         this.close();
         this.dialogService.addDialog(ConfirmComponent, {
           title: 'Information',
-          message: 'Password is reset information is sent to ' + email
+          message: 'Password reset information is sent to ' + email
         })
           .subscribe((isConfirmed) => {
             this.appService.moveToPage('login');
@@ -163,7 +163,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
               }
               this.getUsers();
             }
-          
+
           }
         }
       });
@@ -198,7 +198,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       this.appService.currentTab = 'superuser-accounts';
       this.appService.moveToPage("superuser-accounts");
     }
-   
+
     this.loginservice.updateLoginHistory(this.appService.userLoginHistoryId, userdet.roleId).subscribe((res: any) => { });
     this.getUsers();
     this.close();
