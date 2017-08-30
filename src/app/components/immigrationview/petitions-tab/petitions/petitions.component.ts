@@ -40,7 +40,7 @@ export class PetitionsComponent implements OnInit {
             "isAddButtonEnable": false,
             "columnFilter": true,
             "isDeleteEnable": false,
-            'customPannel': true,
+            'customPanel': true,
             'defaultFilter': [{
                 headingName: "status",
                 headerName: "Status",

@@ -33,6 +33,7 @@ export class ManageaccountUserDetailsComponent implements OnInit {
         this.settings = {
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
+            'customPanel': true,
             'columnsettings': [
                 {
                     headerName: "Date",
