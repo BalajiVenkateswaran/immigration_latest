@@ -17,12 +17,15 @@ export class ManageaccountUserDetailsComponent implements OnInit {
     public emailId: string;
     public isAccessEdit: boolean;
     public isAccess: boolean = false;
-    public userid: string;
+    public userId: string;
     public orgsList: any = [];
     public orgsAcces: boolean = true;
     public userProfOrgsList: any = [];
     public settings;
     public data;
+    public queryParameters: any;
+    public paginationData: any;
+
     constructor(private appService: AppService,
         private route: ActivatedRoute, public manageAccountUserDetailsService: ManageAccountUserDetailsService,
         private headerService: HeaderService) {
@@ -32,31 +35,26 @@ export class ManageaccountUserDetailsComponent implements OnInit {
             'isAddButtonEnable': false,
             'columnsettings': [
                 {
-
                     headerName: "Date",
                     field: "loginDate",
                 },
                 {
-
                     headerName: "Time",
                     field: "loginTime",
                 },
                 {
-
                     headerName: "IP Address",
                     field: ""
                 },
                 {
-
                     headerName: "Location",
                     field: ""
                 }
-
             ]
         }
     }
     getUserDetails() {
-        this.manageAccountUserDetailsService.getUserDet(this.userid, this.appService.user.accountId).subscribe((res) => {
+        this.manageAccountUserDetailsService.getUserDet(this.userId, this.appService.user.accountId).subscribe((res) => {
             this.userProfOrgsList = res['userOrgsDetail'];
             this.userList = res['userOrgsDetail']['userProfileInfo'];
             this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName'];
@@ -70,17 +68,28 @@ export class ManageaccountUserDetailsComponent implements OnInit {
                 this.isAccessEdit = false;
                 this.isAccess = false;
             }
-            this.getUserLoginHistory();
+            //this.loginHistoryDataWithParameters(this.queryParameters);
         });
     }
-    getUserLoginHistory() {
-        this.manageAccountUserDetailsService.getLoginHistory(this.userid).subscribe(res => {
-            this.data = res['userLoginHistory'];
-        })
+
+    loginHistoryDataWithParameters(queryData) {
+      if(queryData){
+        this.queryParameters=queryData
+      }
+
+      this.manageAccountUserDetailsService.getLoginHistory(this.userId, queryData).subscribe(
+        res => {
+          console.log("Filter" + this.data);
+          this.data = res['userLoginHistory'];
+          this.paginationData = res['pageMetadata'];
+        }
+      );
     }
+
+
     ngOnInit() {
       this.route.params.subscribe((res) => {
-        this.userid = res['userId'];
+        this.userId = res['userId'];
         this.getUserDetails();
       });
     }

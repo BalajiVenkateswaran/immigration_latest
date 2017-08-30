@@ -69,8 +69,7 @@ export class SmartTableFramework implements OnChanges {
             else {
                 this.clickFlag = false;
             }
-
-        })
+        });
 
         this.filterSubscription = CustomFilterRow.fillValues.subscribe(res => {
             let that = this;
@@ -80,7 +79,6 @@ export class SmartTableFramework implements OnChanges {
                     if (this.filterWholeArray.indexOf(this.filterValues[i]) == -1) {
                         this.filterWholeArray.push(this.filterValues[i]);
                         this.filterValues.splice(i, 1);
-
                     }
                 }
                 that.filterWholeArray = this.removeDuplicates(this.filterWholeArray);
@@ -208,7 +206,6 @@ export class SmartTableFramework implements OnChanges {
         }
         else {
             this.gridOptions.pagination = true;
-
         }
         if (this.settings.hasOwnProperty('customPannel')) {
             this.gridOptions.suppressPaginationPanel = true;
@@ -363,7 +360,6 @@ export class SmartTableFramework implements OnChanges {
             else {
                 this.paginationWithFilterData = false;
             }
-
         }
         if (queryParameters.hasOwnProperty('paginationFlag')) {
 
@@ -375,14 +371,7 @@ export class SmartTableFramework implements OnChanges {
                 let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'];
                 this.dataWithQueryParams.emit(queryParams);
             }
-
         }
-
-
-
-
-
-
     }
 }
 
