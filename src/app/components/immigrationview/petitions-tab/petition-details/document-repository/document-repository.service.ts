@@ -8,11 +8,6 @@ export class PetitionDocumentRepositoryService {
     constructor(private restService: RestService) {
 
     }
-
-    public saveNewDocumentRepository(documentRepositorytData: documentRepository) {
-        return this.restService.postData("/documentRepository", documentRepositorytData);
-
-    }
     public getFile(petitionId: string) {
         return this.restService.getData("/file/entityId/" + petitionId+"/entityType/PETITION");
     }

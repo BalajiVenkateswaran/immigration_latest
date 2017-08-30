@@ -1,10 +1,8 @@
-import { petition } from '../../../../models/petitions';
 import { AppService } from '../../../../services/app.service';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { PetitionsService } from "./petitions.service";
-import { FormGroup, FormControl } from "@angular/forms";
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,18 +19,13 @@ export class PetitionsComponent implements OnInit {
         menu: 'menu',
         footer: null
     };
-    private petitions: petition[];
     private petitionfirstName: any = [];
-    public addPetition: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private orgId: string;
-    private users;
     public settings;
     public data;
     public paginationData;
     public queryParameters;
-    public getSubscription;
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
@@ -122,7 +115,6 @@ export class PetitionsComponent implements OnInit {
         if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId'] && queryData) {
             this.petitionService.getPetitionsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
                 res => {
-                    console.log("Filter" + this.data);
                     this.data = res['petitions'];
                     this.paginationData = res['pageMetadata'];
                 }
@@ -139,28 +131,13 @@ export class PetitionsComponent implements OnInit {
         }
 
     }
-
-    addPetitionSubmit(model: petition, isValid: boolean) {
-        if (isValid) {
-            this.petitionService.saveNewPetition(model).subscribe((status) => { this.message = status[0] });
-        } else {
-            this.message = "Filled details are not correct! please correct...";
-        }
-
-    }
-
     moveTo(event): void {
         this.menuComponent.highlightSBLink('Petition Details');
-        console.log("petitions:::::%o", event.data);
         this.appService.petitionId = event.data.petitionId;
         this.appService.clientId = event.data.clientId;
         this.appService.clientfirstName = event.data.firstName;
-        console.log(this.appService.petitionfirstName);
         this.appService.clientlastName = event.data.lastName;
         this.appService.petitionType = event.data.petitionType;
         this.appService.moveToPage("immigrationview-petition-details");
-    }
-    ngOnDestroy(){
-        //this.getSubscription.unsubscribe();
     }
 }

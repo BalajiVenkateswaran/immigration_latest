@@ -31,8 +31,6 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     public getData: boolean = true;
     public editFiles: boolean;
     public editFileObject: any = {};
-    public editFlag: boolean = true;
-    public beforeEdit: any;
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService,
        public dialogService: DialogService) {
         super(dialogService);

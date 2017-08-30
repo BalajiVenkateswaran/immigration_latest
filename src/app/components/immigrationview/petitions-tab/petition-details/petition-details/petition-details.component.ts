@@ -45,11 +45,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     isLCAInfoEdit: boolean = true;
     isDelegatedOrgsEdit: boolean = true;
     isReceiptInfoEdit: boolean = true;
-    ispetitionAdditionalDetailsEdit: boolean = true;
     isAdditionalDetailsEdit: boolean = true;
     isSponsorInfoEdit: boolean = true;
     private defaultSelected: string;
-    private selector: number = 0;
     private selDate: IMyDate = { year: 0, month: 0, day: 0 };
     private selDate1:IMyDate = { year: 0, month: 0, day: 0 };
     private selDate2: IMyDate = { year: 0, month: 0, day: 0 };
@@ -75,7 +73,6 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private users;
     private assignedToName;
     public orgs: any = [];
-    public dummylist: any;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -103,21 +100,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
 
     }
-    onDateChanged(event: IMyDateModel) {
-
-
-    }
+   
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
-    }
-    handleChange(event) {
-        console.log(event.target.value);
-        for (var i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
-            if (event.target.value == this.allPetitionTypesAndSubTypes[i].petitiontype) {
-                this.allSubTypes = this.allPetitionTypesAndSubTypes[i].petitionSubTypes;
-            }
-        }
-        this.appService.allsubtypesarray(this.allSubTypes);
     }
     ngOnInit() {
         this.appService.showSideBarMenu("immigrationview-petition", "petitions");
@@ -187,7 +172,6 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                     });
             });
         this.getPetionDelOrgs();
-        console.log(this.delegatedOrgsList);
         this.status = [
             { value: '0', name: 'Open' },
             { value: '1', name: 'Close' },
@@ -203,8 +187,6 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             this.petitionDetails['status'] == "MFD";
         }
         this.defaultSelected = this.receiptNumber[1].name;
-        console.log(this.defaultSelected);
-
         this.petitionDetailsService.getAllPetitionTypesAndSubTypes()
             .subscribe((res) => {
                 this.allPetitionTypesAndSubTypes = res['petitionTypes'];
