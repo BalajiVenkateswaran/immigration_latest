@@ -101,6 +101,7 @@ export class MenuComponent implements OnInit {
   ngDoCheck(){
       this.sideBarMenu = this.appservice.sideBarMenu;
       this.docsideBarMenu = this.appservice.docsideBarMenu;
+      
   }
   checkForCurrentSBLink(sblink) {
       return this.appservice.currentSBLink == sblink;

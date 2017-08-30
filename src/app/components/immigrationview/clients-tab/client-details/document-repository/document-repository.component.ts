@@ -114,7 +114,9 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         if (that.progress >= 100) {
                             that.progress=100;
                             clearInterval(interval);
-                            
+                            if (that.progress == 100) {
+                                that.progessBarDiv = false;
+                            }
                         }
                     },200)
             this.clientdocumentrepositoryService.uploadFile(this.appService.clientId, formData)
@@ -123,7 +125,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 res => {
                    
                     if (res['statusCode'] == 'SUCCESS') {
-                        that.progessBarDiv=false;
+                    
                         this.getFilesList();
 
                     }

@@ -28,16 +28,19 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
     public dialogService: DialogService) {
     super(dialogService);
     this.settings = {
+       
       'columnsettings': [
         {
 
           headerName: "SL.NO",
           field: "slNo",
+      
         },
         {
 
           headerName: "Address Name",
           field: "addressName",
+        
 
         },
         {
