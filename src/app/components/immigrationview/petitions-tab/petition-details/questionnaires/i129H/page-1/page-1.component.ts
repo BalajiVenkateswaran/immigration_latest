@@ -12,7 +12,7 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 export class i129HPage1Component implements OnInit {
     public I129Hpage1: any = {};
     public I129Hpage1questions: any = [];
-    private myDatePickerOptions: IMyOptions = {
+    myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
