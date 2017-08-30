@@ -10,10 +10,6 @@ export class PetitionsService {
 
   }
 
-  public getPetitions (orgId: string) {
-    console.log("PetitionsService|getPetitions|orgId:%o", orgId);
-    return this.restService.getData("/petitions/immigration/"+orgId);
-  }
   public saveNewPetition(petitionData: petition) {
       return this.restService.postData("/petition", petitionData);
 

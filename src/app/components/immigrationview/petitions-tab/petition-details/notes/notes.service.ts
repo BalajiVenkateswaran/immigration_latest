@@ -11,10 +11,6 @@ export class ImmigrationViewPetitionNotesService {
         return this.restService.getData("/petition/details/" + petitionId);
     }
 
-    public getUsersForAccount(accountId: string){
-         return this.restService.getData("/user/immigration/"+accountId);
-    }
-
     public savePetitionDetails(petitionDetails: any, userId: string) {
         var req = {
             "petitionInfo": petitionDetails,

@@ -3,8 +3,7 @@
             <h2 class="clickname" style="width:60%;float:left;" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h2>
             <h2 style="float:right;width:40%; text-align:right;padding-right: 110px;">{{appService.petitionDetails}}</h2>
             <div class="clearfix"></div>
-            <!--<h2>Document Repository</h2>-->
-            <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="pull-right uplodbtn">
                     <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
                         <span>Upload File</span>

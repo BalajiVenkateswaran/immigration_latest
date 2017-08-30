@@ -5,27 +5,19 @@ import {ImmigrationViewPetitionNotesService} from "./notes.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
-export interface formControl {
-    name: string;
-    value: FormControl;
-}
+
 
 @Component({
     selector: 'app-petition-notes',
     templateUrl: './notes.component.html'
 })
 export class ImmigrationviewPetitionNotesComponent implements OnInit {
-    public petitionInformation: any;
     private notes: string;
     private petitionDetails: any = {};
     private beforeCancelPetition;
     //Profile section variables
     isNotesEdit;
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+
 
     constructor(public appService: AppService, private petitionNotesService: ImmigrationViewPetitionNotesService) {
     }

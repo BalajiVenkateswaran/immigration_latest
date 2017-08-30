@@ -22,13 +22,10 @@ export interface ConfirmModel {
     styleUrls: ['./forms.component.scss']
 })
 export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    public addForm: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     formsData: any = [];
     private rowEdit: boolean[] = [];
     private isEditForms: boolean[] = [];
-    private form: any = {};
     private beforeCancelForm;
     public settings;
     public data;
@@ -40,7 +37,6 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
     public beforeEdit: any;
     public checked: boolean = false;
     public downloadFlag: boolean = false;
-    public generateFormFlag:boolean=false;
     public generateChecked:boolean=true;
     public generateChecked1:boolean=false;
     public editForms: boolean;
