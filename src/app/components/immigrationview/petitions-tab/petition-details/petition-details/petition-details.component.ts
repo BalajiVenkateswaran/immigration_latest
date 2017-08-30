@@ -35,6 +35,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     isNotesEdit;
     private status: any[];
     private finalStatus: any[] = [
+      {name: 'Pending', value: 'Pending'},
       { name: 'Approved', value: 'Approved'},
       { name: 'Denied', value: 'Denied'},
       { name: 'Withdrawn', value: 'Withdrawn'},
@@ -100,7 +101,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
 
     }
-   
+
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
