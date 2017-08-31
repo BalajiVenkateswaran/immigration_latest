@@ -21,15 +21,10 @@ export interface ConfirmModel {
 export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public getInvoice: boolean = true;
   public viewPopup: boolean;
-  public AccountInvoices: any;
-  public DefaultResponse = {"status": "Active"};
   public invoice: any;
-  public isEditInvoice: boolean = true;
   public settings;
   public data;
   private user: User;
-  public clickSubscription;
-  public checked: boolean = false;
   constructor(private appService: AppService, public dialogService: DialogService, private manageAccountInvoiceService: ManageAccountInvoiceService) {
     super(dialogService);
     if (this.appService.user) {
@@ -97,7 +92,6 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
   }
 
   onDownloadClick(event) {
-    console.log(event.data);
     this.manageAccountInvoiceService.downloadFile(event.data.invoiceId).subscribe
       (data => this.downloadFiles(data, event.data.fileName)),
       error => console.log("Error Downloading....");

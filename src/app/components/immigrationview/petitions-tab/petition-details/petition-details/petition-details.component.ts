@@ -6,7 +6,7 @@ import {ImmigrationViewPetitionDetailsService}from "./petition-details.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
-
+import {IhDateUtil} from '../../../../framework/utils/date.component';
 export interface formControl {
 name: string;
 value: FormControl;
@@ -30,6 +30,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private lcaInfo: any = {};
     private sponsorInfo: any = {};
     private sponsorInfoAddress: any = {};
+    public datePickerOptions=IhDateUtil.datePickerOptions;
     //Profile section variables
     isPetitionInformationEdit;
     isNotesEdit;
@@ -49,9 +50,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     isAdditionalDetailsEdit: boolean = true;
     isSponsorInfoEdit: boolean = true;
     private defaultSelected: string;
-    private selDate: IMyDate = { year: 0, month: 0, day: 0 };
-    private selDate1:IMyDate = { year: 0, month: 0, day: 0 };
-    private selDate2: IMyDate = { year: 0, month: 0, day: 0 };
+    private startDate;
+    private deniedDate;
+    private withdrawDate;
     private approvedDate: string;
     private validThruDate: string;
     private assignedDate: string;
@@ -74,32 +75,8 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private users;
     private assignedToName;
     public orgs: any = [];
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
 
     constructor(public appService: AppService, private petitionDetailsService: ImmigrationViewPetitionDetailsService) {
-        console.log(this.appService.user);
-        let d: Date = new Date();
-        this.selDate = {
-            year: d.getFullYear(),
-            month: d.getMonth() + 1,
-            day: d.getDate()
-        };
-        this.selDate1 = {
-            year: d.getFullYear(),
-            month: d.getMonth() + 1,
-            day: d.getDate()
-        };
-        this.selDate2 = {
-            year: d.getFullYear(),
-            month: d.getMonth() + 1,
-            day: d.getDate()
-        };
-
-
     }
 
     highlightSBLink(link) {
@@ -140,9 +117,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
                 this.isReceiptInfoEdit = true;
                 this.isAdditionalDetailsEdit = true;
                 this.isSponsorInfoEdit = true;
-                this.selDate = this.petitionDetails.startDate;
-                this.selDate1 = this.petitionDetails.deniedDate;
-                this.selDate2 = this.petitionDetails.withdrawDate;
+                this.startDate = this.petitionDetails.startDate;
+                this.deniedDate = this.petitionDetails.deniedDate;
+                this.withdrawDate = this.petitionDetails.withdrawDate;
                 this.rejectedDate=this.petitionDetails.rejectedDate;
                 this.approvedDate = this.lcaInfo.approvedDate;
                 this.assignedDate = this.lcaInfo.assignedDate;
@@ -205,9 +182,9 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     //is edit function for read only
     editPetitionInfoForm() {
         this.beforeCancelPetition = (<any>Object).assign({}, this.petitionInformation);
-        this.selDate = this.petitionDetails.startDate;
-        this.selDate1 = this.petitionDetails.deniedDate;
-        this.selDate2 = this.petitionDetails.withdrawDate;
+        this.startDate = this.petitionDetails.startDate;
+        this.deniedDate = this.petitionDetails.deniedDate;
+        this.withdrawDate = this.petitionDetails.withdrawDate;
         this.rejectedDate=this.petitionDetails.rejectedDate;
         this.petitionInformation.currentStage = this.petitionDetails.currentStageId;
         this.petitionInformation.markForDeletion = this.petitionInformation.markForDeletion;
@@ -417,8 +394,6 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             this.sfmRI = false;
             this.petitionDetailsService.saveReceiptInfo(this.receiptInfo, this.appService.user.userId)
                 .subscribe((res) => {
-                    console.log(this.receiptInfo);
-                    console.log(res);
                     this.isReceiptInfoEdit = true;
                     if (res['receiptInfo'] != undefined) {
                         this.receiptInfo = res['receiptInfo'];
@@ -484,7 +459,6 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
 
         this.petitionDetailsService.saveLcaInfo(this.lcaInfo, this.appService.user.userId)
             .subscribe((res) => {
-                console.log(this.lcaInfo);
                 this.isLCAInfoEdit = true;
                 if (res['lcaInfo'] != undefined) {
                     this.lcaInfo = res['lcaInfo'];
@@ -555,8 +529,6 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             this.sfmRI = false;
             this.petitionDetailsService.savePetitionAdditionalDetails(this.petitionAdditionalDetails, this.appService.user.userId)
                 .subscribe((res) => {
-                    console.log(this.petitionAdditionalDetails);
-                    console.log(res);
                     this.isAdditionalDetailsEdit = true;
                     if (res['petitionAdditionalDetails'] != undefined) {
                         this.petitionAdditionalDetails = res['petitionAdditionalDetails'];

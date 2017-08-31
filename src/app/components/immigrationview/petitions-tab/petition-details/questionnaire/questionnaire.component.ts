@@ -52,38 +52,18 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   public getQuestionnaireData: boolean = true;
   public newQuestionnaireitem: any = {};
   public questionnaireEmployee: any = {};
-
   public showAddEmpQuespopup: boolean;
-  private myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
-  };
-  onDateChanged(event: IMyDateModel) {
-  }
-  private statusDate: string;
-  private statusDateEmp: string;
-  public addQuestionnaireEmployer: FormGroup; // our model driven form
-  private listLength;
   private formsList = [];
-
-  private empQuestionnaire;
   private selectedForm: string;
   rowToBeAdded = false;
-  private empRowToBeAdded = false;
   private rowEdit: boolean[] = [];
   private isEditQuestionnaire: boolean[] = [];
-  private isEditEmpQuestionnaire: boolean[] = [];
-  private rowEditEmp: boolean[] = [];
   private checkboxDisable: boolean = false;
   questionnaireList = [];
   private questionnaire = {};
-  private questionnaireClient = {};
   private questionnaireId;
   private beforeCancel;
-  private empBeforeCancel;
   sendQuestionnaire: boolean = true;
-  private clientCheck: boolean[] = [];
   private sentQuestionnaireClient = [];
   public delmessage;
   public editFlag: boolean = true;
@@ -95,7 +75,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   public formattedData = [];
   public checkedSubscription;
   public checked = false;
-  public questionnireChecked;
   public questionnaireName;
   private status = [
     {
@@ -277,8 +256,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   }
   objectMapper(data) {
     for (var i = 0; i < data.length; i++) {
-      /*var x = this.getFormName(data[i].formId);
-      data[i]['formName'] = x;*/
       data[i]['questionnairePetitionType'] = this.appService.petitionType + "  " + data[i]['formName'];
       if (data[i]['sentToClient'] == false) {
         data[i]['sentToClient'] = 'No';
@@ -383,10 +360,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   }
 
   deleteQuestionnaire(questions) {
-    console.log(questions.data.questionnaireId);
     this.questionnaireService.deleteQuestionnaire(questions.data.questionnaireId).subscribe(
       res => {
-        console.log(res);
         if (res['statusCode'] == 'SUCCESS') {
           this.getquesnreData();
         }
@@ -473,7 +448,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         if (isConfirmed) {
           this.questionnaireService.deleteQuestionnaire(questionaireId).subscribe(
             res => {
-              console.log(res);
               if (res['statusCode'] == 'SUCCESS') {
                 this.getquesnreData();
               }
@@ -497,7 +471,6 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
           this.ngOnInit();
         }
       });
-    console.log(this.sentQuestionnaireClient);
   }
   onItemChanged(event) {
     let value: string = event.target.value;

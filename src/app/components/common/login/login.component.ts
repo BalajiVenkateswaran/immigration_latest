@@ -130,7 +130,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
                 userRoles: res['userAccountRoleList']
               }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-
+                  /*window.location.reload(true);*/
                 }
               });
               this.appService.user = res.user;

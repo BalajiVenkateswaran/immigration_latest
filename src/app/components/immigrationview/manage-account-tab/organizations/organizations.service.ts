@@ -18,18 +18,4 @@ export class ManageAccountOrganizationsService {
         };
         return this.restService.postData("/org", req);
     }
-
-    public updateOrganization(organizationData: manageaccountorganization) {
-        var req = {
-          "org" : organizationData
-        };
-        return this.restService.putData("/org", req);
-    }
-
-    public deleteOrganization(orgId: string, immigrationOfficerId: string) {
-
-        console.log(orgId);
-        return this.restService.deleteData("/org/" + orgId+"/immigrationOfficerId/"+immigrationOfficerId);
-    }
-
 }
