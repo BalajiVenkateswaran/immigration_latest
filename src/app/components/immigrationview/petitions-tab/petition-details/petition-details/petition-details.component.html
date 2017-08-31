@@ -270,12 +270,12 @@
                         <div class="col-md-4"><label for="pi-petitiondescription">Show Receipt Number to Client <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
                             <select *ngIf="isReceiptInfoEdit==false" [(ngModel)]="receiptInfo.showReceiptNumberToClient" [ngClass]="receiptInfo.showReceiptNumberToClient == 1 || 2 ? '': 'redborder'">
-                             
+
                                 <option *ngFor="let receiptnumber of receiptNumber;" [value]="receiptnumber.value">{{receiptnumber.name}}</option>
 
                             </select>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.showReceiptNumberToClient==1 ? 'Yes' : 'No'}}</span>
-                         
+
 
 
                         </div>
@@ -480,13 +480,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Telephone #1</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Telephone</label></div>
                         <div class="col-md-8">
                             <input type="text" *ngIf="isSponsorInfoEdit==false" [readonly]="isEdit" [(ngModel)]="sponsorInfo.phoneNumber" />
                             <span *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.phoneNumber}}</span>
                         </div>
                     </div>
-              
+
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
