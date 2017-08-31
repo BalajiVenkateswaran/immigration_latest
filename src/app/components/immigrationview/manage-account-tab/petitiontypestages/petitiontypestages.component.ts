@@ -12,27 +12,14 @@ import { DialogService } from "ng2-bootstrap-modal";
     styleUrls: ['./petitiontypestages.component.sass']
 })
 export class ManageAccountPetitionTypeStagesComponent implements OnInit {
-    private outlet: any = {
-        breadcrumbs: null,
-        header: 'header',
-        message: null,
-        carousel: null,
-        menu: 'menu',
-        footer: null
-    };
+ 
 
     dragbox;
-    selectedRow: Number;
-    setClickedRow: Function;
     setClickedRowstages: Function;
     editStagesList: Function;
-    private activestages;
     petitionTypes: any[] = [];
     petitionStages: dragula[] = [];
     public deletedlist: any;
-    public getStyleh1b: string;
-    private myElement;
-    private clickColor: boolean = false;
     private selectedIdx: any;
     private selectedIdxstage: any;
     addPetitionStages: Function;
@@ -41,21 +28,16 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
     saveBtn: boolean = false;
     cancelPetitionStages: Function;
     savePetitionStages: Function;
-    orderChange: Function;
     saveOrder: Function;
     updateStages:Function;
     private petitiontypeid: any;
     addStages: boolean;
     saveorder: boolean = false;
-    private rowEdit: boolean[] = [];
     private editCancel: Function;
     private editStages: boolean = false;
     private stageId: string;
     private edittrue: boolean[] = [];
-
     private selectedPetitionType: any = {};
-
-
 
 
     constructor(private dragulaService: DragulaService, private manageAccountPetitionStagesService: ManageAccountPetitionStagesService, private appService: AppService, private dialogService: DialogService) {
@@ -198,7 +180,6 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
                               });
                           }
                           if(res['statusCode'] === 'SUCCESS'){
-                              console.log("Delete success");
                               this.petitionStages.splice(index, 1);
                           }
                       });
@@ -247,7 +228,6 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
     getpetitionstages() {
         this.manageAccountPetitionStagesService.getPetitionStages(this.selectedPetitionType['petitionTypeId'], this.appService.user.accountId).subscribe(
             res => {
-                console.log(res);
                 this.petitionStages = res['petitionStageList'];
                 for (var stage of this.petitionStages){
                     stage['edit'] = false;

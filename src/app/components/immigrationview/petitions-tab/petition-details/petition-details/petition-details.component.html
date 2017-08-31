@@ -83,7 +83,7 @@
                             <div class="col-md-4"><label for="pi-petitiondenieddate">Current Stage <span class="redstar">*</span></label></div>
                             <div class="col-md-8">
                                 <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.currentStage" [ngClass]="petitionInformation.currentStage == '' ? 'redborder': ''">
-                                    <option *ngFor="let petitionStage of petitionStages;" [value]="petitionStage.stageId">{{petitionStage.name}}</option>
+                                    <option *ngFor="let petitionStage of petitionStages;" [value]="petitionStage.stageId" [selected]="petitionStage.stageId">{{petitionStage.name}}</option>
                                 </select>
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.currentStage}}</span>
                             </div>
@@ -114,14 +114,14 @@
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Denied Date</label></div>
                             <div class="col-md-8">
-                                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="petitionInformation.deniedDate" [selDate]="selDate1"></my-date-picker>
+                                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions"  [(ngModel)]="petitionInformation.deniedDate" [selDate]="deniedDate"></my-date-picker>
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deniedDate}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Withdrawn Date</label></div>
                             <div class="col-md-8">
-                                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="petitionInformation.withdrawDate" [selDate]="selDate2"></my-date-picker>
+                                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions"  [(ngModel)]="petitionInformation.withdrawDate" [selDate]="withdrawDate"></my-date-picker>
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.withdrawDate}}</span>
 
                             </div>
@@ -129,7 +129,7 @@
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Rejected Date</label></div>
                             <div class="col-md-8">
-                                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="petitionInformation.rejectedDate" [selDate]="rejectedDate"></my-date-picker>
+                                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions"  [(ngModel)]="petitionInformation.rejectedDate" [selDate]="rejectedDate"></my-date-picker>
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.rejectedDate}}</span>
 
                             </div>
@@ -219,21 +219,21 @@
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Receipt Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="receiptInfo.receiptDate" [selDate]="receiptDate"></my-date-picker>
+                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="receiptInfo.receiptDate" [selDate]="receiptDate"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.receiptDate}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Approved On</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="receiptInfo.approvedOn" [selDate]="approvedOn"></my-date-picker>
+                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="receiptInfo.approvedOn" [selDate]="approvedOn"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.approvedOn}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Valid From</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="receiptInfo.validFrom" [selDate]="validFrom"></my-date-picker>
+                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="receiptInfo.validFrom" [selDate]="validFrom"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.validFrom}}</span>
 
                         </div>
@@ -241,14 +241,14 @@
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Expires On</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="receiptInfo.expiresOn" [selDate]="expiresOn"></my-date-picker>
+                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="receiptInfo.expiresOn" [selDate]="expiresOn"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.expiresOn}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Sent to Gov. Agency On</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="receiptInfo.approvalReceivedOn" [selDate]="approvalReceivedOn"></my-date-picker>
+                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="receiptInfo.approvalReceivedOn" [selDate]="approvalReceivedOn"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.approvalReceivedOn}}</span>
                         </div>
                     </div>
@@ -262,7 +262,7 @@
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Approval Received On</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="receiptInfo.sentToGovAgencyOn" [selDate]="sentToGovAgencyOn"></my-date-picker>
+                            <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="receiptInfo.sentToGovAgencyOn" [selDate]="sentToGovAgencyOn"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
                         </div>
                     </div>
@@ -311,7 +311,7 @@
                     <div class="row">
                         <div class="col-md-4"><label>Shipping Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isAdditionalDetailsEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="petitionAdditionalDetails.shippingDate" [selDate]="shippingDate"></my-date-picker>
+                            <my-date-picker *ngIf="isAdditionalDetailsEdit==false" [options]="datePickerOptions"  [(ngModel)]="petitionAdditionalDetails.shippingDate" [selDate]="shippingDate"></my-date-picker>
                             <span *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.shippingDate}}</span>
                         </div>
                     </div>
@@ -519,14 +519,14 @@
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Approved Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="lcaInfo.approvedDate" [selDate]="approvedDate"></my-date-picker>
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="lcaInfo.approvedDate" [selDate]="approvedDate"></my-date-picker>
                             <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.approvedDate}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Valid Thru Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="lcaInfo.validThruDate" [selDate]="validThruDate"></my-date-picker>
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="lcaInfo.validThruDate" [selDate]="validThruDate"></my-date-picker>
                             <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.validThruDate}}</span>
                         </div>
                     </div>
@@ -547,21 +547,21 @@
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Assigned Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="lcaInfo.assignedDate" [selDate]="assignedDate"></my-date-picker>
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="lcaInfo.assignedDate" [selDate]="assignedDate"></my-date-picker>
                             <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.assignedDate}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Effective On</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="lcaInfo.effectiveOn" [selDate]="effectiveOn"></my-date-picker>
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="lcaInfo.effectiveOn" [selDate]="effectiveOn"></my-date-picker>
                             <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.effectiveOn}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="pi-petitiondescription">Effective Till</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="myDatePickerOptions"  [(ngModel)]="lcaInfo.effectiveTill" [selDate]="effectiveTill"></my-date-picker>
+                            <my-date-picker *ngIf="isLCAInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="lcaInfo.effectiveTill" [selDate]="effectiveTill"></my-date-picker>
                             <span *ngIf="isLCAInfoEdit==true">{{lcaInfo.effectiveTill}}</span>
                         </div>
                     </div>

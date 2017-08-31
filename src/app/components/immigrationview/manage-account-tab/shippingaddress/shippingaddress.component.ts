@@ -123,7 +123,6 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
 
   }
   deleteRecord(event): void {
-    console.log("User table onDeleteConfirm event: %o", event.data);
     this.manageAccountShippingAddressService.deleteShipmentAddress(event.data['shippmentAddressId']).subscribe((res) => {
       this.message = res['statusCode'];
       if (this.message == 'SUCCESS') {

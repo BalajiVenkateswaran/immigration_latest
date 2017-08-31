@@ -20,13 +20,9 @@ export interface ConfirmModel {
 })
 export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
-    public invoiceDetailsForm: boolean = false;
-    public DefaultResponse = { "status": "Active" };
-    public paymentList:any;
     public payments:any={};
     public getPayments:boolean=true;
     public viewAccountPopup:boolean;
-    public isEditpayments:boolean=true;
     public settings;   
     private data;
     private user: User;

@@ -2,7 +2,6 @@ import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
 import {ManageAccountUserService} from "./user.service";
-import {FormGroup, FormControl} from "@angular/forms";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 export interface ConfirmModel {
@@ -22,8 +21,6 @@ export interface ConfirmModel {
 
 export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
-    public addUser: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
     private message: string;
     private roles: any = {
         "Immigration Officer": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
@@ -32,8 +29,6 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     public getUsers: boolean = true;
     public addUsers: any = {};
     public adduser: boolean;
-    public beforeEdit: any;
-    public editFlag: boolean = true;
     public warningMessage: boolean = false;
     public settings;
     public data;
@@ -42,17 +37,6 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     constructor(private manageAccountUserService: ManageAccountUserService,
         private appService: AppService, public dialogService: DialogService) {
         super(dialogService);
-
-        this.addUser = new FormGroup({
-            accountId: new FormControl(''),
-            emailId: new FormControl(''),
-            firstName: new FormControl(''),
-            lastName: new FormControl(''),
-            roleId: new FormControl(''),
-            title: new FormControl('')
-
-        });
-
         this.settings = {
             'columnsettings': [
                 {
@@ -103,7 +87,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
 
     }
 
-    addFunction() {
+    addUser() {
         this.dialogService.addDialog(ManageAccountUserComponent, {
             adduser: true,
             getUsers: false,
@@ -145,24 +129,6 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         this.result = false;
         this.close();
     }
-    onCreateConfirm(event): void {
-        event.newData['role'] = this.roles[event.newData['roleName']];
-        event.newData['accountId'] = this.appService.user.accountId;
-        this.manageAccountUserService.saveNewUser(event.newData).subscribe((res) => {
-            this.message = res['statusCode'];
-            event.newData['userId'] = res['userId'];
-            if (this.message == "SUCCESS") {
-                event.confirm.resolve(event.newData);
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Unable to Add User..!'
-                });
-                event.confirm.reject();
-            }
-        });
-    }
-
     editRecord(event): void {
         this.appService.moveToPageWithParams('user-details', event.data);
         this.appService.currentSBLink = event.data.userId;
@@ -183,9 +149,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                 }
             });
     }
-    userDetails(event){
-        this.appService.moveToPageWithParams('user-details', event.data);
-        this.appService.currentSBLink = event.data.firstName;
-    }
+    
+    
 
 }

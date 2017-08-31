@@ -30,8 +30,6 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   public getData: boolean = true;
   public editFiles: boolean;
   public editFileObject: any = {};
-  public editFlag: boolean = true;
-  public beforeEdit: any;
   constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http,
     public appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);

@@ -128,7 +128,6 @@ export class SmartTableFramework implements OnChanges {
                 this.totalElements = this.paginationData['totalElements'];
                 this.totalPages = this.paginationData['totalPages'];
                 if (this.totalElements < this.pageSize) {
-                    this.pageSelectionDisable = true;
                     this.endNumber = this.totalElements;
                 }
                 else {
@@ -152,12 +151,17 @@ export class SmartTableFramework implements OnChanges {
     onPageSizeChanged(newPageSize) {
         this.pageNumber = 0;
         this.pageSize = +newPageSize;
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
         this.itemStartIndex = 1;
         if (this.totalElements < this.pageSize) {
             this.endNumber = this.totalElements;
         } else {
             this.endNumber = this.pageSize;
+        }
+        if (this.filterQueries.length > 0) {
+            this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true, 'filteronPagesize': true })
+        }
+        else {
+            this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
         }
 
     }
@@ -267,7 +271,7 @@ export class SmartTableFramework implements OnChanges {
             this.settings['columnFilter'] = false;
             this.settings['headerHeight'] = 25;
             this.appendParamValues({ 'noFilterFlag': true })
-           
+
         }
 
 
@@ -279,10 +283,9 @@ export class SmartTableFramework implements OnChanges {
                 for (var item of this.filterWholeArray) {
                     this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);
                 }
-
                 this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
             }
-            
+
         }
         this.settings['columnsettings'].map(function (item) {
             if (item['headerTooltip'] == null && item['headerName'] != '') {
@@ -354,18 +357,38 @@ export class SmartTableFramework implements OnChanges {
     }
     appendParamValues(queryParameters) {
         if (queryParameters.hasOwnProperty('filterFlag')) {
-            this.pageNumber = 0;
-            this.itemStartIndex = 1;
-            this.endNumber = this.pageSize;
+
             this.filteredQueryParams = queryParameters.data;
             let queryParams = "?filter=" + this.filteredQueryParams;
-            this.dataWithQueryParams.emit(queryParams);
-            if (queryParameters.data.length > 0) {
-                this.paginationWithFilterData = true;
+            if (queryParameters.hasOwnProperty('filteronPagesize')) {
+                this.dataWithQueryParams.emit("?page=" + this.pageNumber + "&size=" + this.pageSize + "&filter=" + this.filteredQueryParams);
             }
             else {
-                this.paginationWithFilterData = false;
+                this.pageNumber = 0;
+                this.itemStartIndex = 1;
+                this.endNumber = this.pageSize;
+                if (this.filteredQueryParams.length > 0) {
+                    if(this.pageSize==undefined){
+                        this.dataWithQueryParams.emit('?filter='+this.filteredQueryParams);
+                        this.paginationWithFilterData=true;
+                        
+                    }
+                    else if(this.pageSize > 20 && this.pageSize!=undefined) {
+                        this.dataWithQueryParams.emit("?page="+this.pageNumber+"&size="+this.pageSize+"&filter="+this.filteredQueryParams);
+                        this.paginationWithFilterData=true;
+                    }
+                    else {
+                        this.dataWithQueryParams.emit("?page="+this.pageNumber+"&size="+this.pageSize+"&filter="+queryParams);
+                        this.paginationWithFilterData=true;
+                    }
+                }
+                else {
+                    this.dataWithQueryParams.emit("?page=" + this.pageNumber + "&size=" + this.pageSize);
+                    this.paginationWithFilterData=false;
+                }
+
             }
+
         }
         if (queryParameters.hasOwnProperty('paginationFlag')) {
 

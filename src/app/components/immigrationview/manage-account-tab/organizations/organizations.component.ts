@@ -26,18 +26,12 @@ export interface ConfirmModel {
 })
 export class ManageAccountOrganizationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public delmessage;
-  private manageaccountorganizationList: manageaccountorganization[];
-  public addOrganization: FormGroup; // our model driven form
-  public submitted: boolean; // keep track on whether form is submitted
   private message: string;
   private user: User;
   private selectedOrg: any = {};
   public showAddOrgpopup: boolean;
   public getOrgsData: boolean = true;
   public neworgitem: any = {};
-  private orgNamelist;
-  public editiorgsFlag: boolean = true;
-  public beforeorgsEdit: any;
   public warningMessage: boolean = false;
   public settings;
   public data;
@@ -45,15 +39,6 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent, 
     private headerService: HeaderService) {
     super(dialogService);
-
-    this.addOrganization = new FormGroup({
-      orgId: new FormControl(''),
-      orgName: new FormControl(''),
-      orgStatus: new FormControl(''),
-      email: new FormControl('')
-
-    });
-
     if (this.appService.user) {
       this.user = this.appService.user;
     }
@@ -126,7 +111,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
       }
     });
   }
-  OrganizationSave(email) {
+  organizationSave(email) {
     if (this.neworgitem['orgName'] == undefined || this.neworgitem['displayName'] == undefined || this.neworgitem['orgStatus'] == undefined || this.neworgitem['email'] == undefined || this.neworgitem['orgType'] == undefined ||
       this.neworgitem['orgName'] == "" || this.neworgitem['displayName'] == "" || this.neworgitem['orgStatus'] == "" || this.neworgitem['email'] == "" || this.neworgitem['orgType'] == "" ||
       this.neworgitem['orgName'] == null || this.neworgitem['displayName'] == null || this.neworgitem['orgStatus'] == null || this.neworgitem['email'] == null || this.neworgitem['orgType'] == null) {
@@ -146,40 +131,9 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     this.result = false;
     this.close();
   }
-  onDeleteConfirm(event): void {
-    console.log("User table onDeleteConfirm event: %o", event.data);
-    this.delmessage = event.data.orgName
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-    })
-      .subscribe((isConfirmed) => {
-
-        if (isConfirmed) {
-          this.manageaccountorganizationService.deleteOrganization(event.data['orgId'], this.appService.user.userId).subscribe((res) => {
-            this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
-              this.getorganizationData();
-            }
-          });
-
-        }
-      });
-  }
-
-  addOrganizationSubmit(model: manageaccountorganization, isValid: boolean) {
-    console.log('formdata|account: %o|isValid:%o', model, isValid);
-    if (isValid) {
-      this.manageaccountorganizationService.saveNewOrganization(model).subscribe((status) => {this.message = status[0]});
-    } else {
-      this.message = "Filled etails are not correct! please correct...";
-    }
-
-  }
   onEditConfirm(event): void {
     this.menuComponent.highlightSBLink('Org Details');
     this.appService.moveToPage("organization");
-    console.log(event.data.orgName);
     this.headerService.selectedOrg = event.data;
   }
 }

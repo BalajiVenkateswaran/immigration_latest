@@ -24,18 +24,13 @@ export interface ConfirmModel {
   styleUrls: ['./clients.component.sass']
 })
 export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-
-  private clientList: client[];
-  public addClient: FormGroup; // our model driven form
-  public submitted: boolean; // keep track on whether form is submitted
+  public queryParams: any;
   private message: string;
-  private deleteclients: any;
   private clientName: any;
   public addNewClient: boolean;
   public getClientsData: boolean = true;
   public newclitem: any = {};
   public warningMessage: boolean = false;
-  public DefaultResponse = { "status": "Active" };
   public settings;
   public data;
   public paginationData;
@@ -87,12 +82,13 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     }
   }
 
-  getCliData() {
-    this.appService.showSideBarMenu(null, "clients");
-  }
 
   ngOnInit() {
     this.appService.showSideBarMenu(null, "clients");
+    this.appService.showSideBarMenu(null, "clients");
+  }
+  getClients(){
+
   }
   addNewCli() {
     this.dialogService.addDialog(ClientsComponent, {
@@ -103,7 +99,13 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       if (isConfirmed) {
         this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
-            this.getCliData();
+            this.clientService.getClients(this.queryParams,this.headerService.selectedOrg['orgId']).subscribe(
+              (res)=>{
+                this.data = res['clients'];
+                this.paginationData = res['pageMetadata'];
+                
+              }
+            )
           }
           if (res['statusDescription'] == 'Duplicate client') {
             this.dialogService.addDialog(ConfirmComponent, {
@@ -142,28 +144,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.result = false;
     this.close();
   }
-  onCreateConfirm(event): void {
-    event.newData['accountId'] = this.appService.user.accountId;
-    event.newData['orgId'] = this.headerService.selectedOrg['orgId'];
-    event.newData['createdBy'] = this.appService.user.userId;
 
-    if (event.newData['status'] == '' || null || undefined) {
-      event.newData['status'] = "Active";
-    }
-    this.clientService.saveNewClient(event.newData).subscribe((res) => {
-      if (res['statusCode'] == "SUCCESS") {
-        event.newData['clientId'] = res['clientId'];
-        event.confirm.resolve(event.newData);
-      } else {
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Error..!',
-          message: 'Unable to Add Client..!'
-        });
-        event.confirm.reject();
-      }
-
-    });
-  }
 
 
   onDeleteConfirm(clients) {
@@ -191,11 +172,15 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
   }
   dataWithParameters(queryData) {
+    if(queryData){
+      this.queryParams=queryData;
+    }
     this.clientService.getClientsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
       res => {
         this.data = res['clients'];
         this.paginationData = res['pageMetadata'];
       })
   }
+
 
 }
