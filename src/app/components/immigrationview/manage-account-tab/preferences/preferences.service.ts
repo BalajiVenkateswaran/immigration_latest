@@ -17,7 +17,6 @@ export class ManageAccountpreferencessService {
       "accountId": accountid,
       "products": addproduct
     }
-    console.log(req);
     return this.restService.postData("/immigration/accounts/products", req);
   }
   public savediscount(adddiscount: any, accountid: string) {

@@ -1,7 +1,6 @@
-﻿
-import {manageaccountorganization} from '../../../../models/manageaccountorganization';
-import {RestService} from '../../../../services/rest.service';
+﻿import {RestService} from '../../../../services/rest.service';
 import {Injectable} from "@angular/core";
+import { manageaccountorganization } from '../../../../models/manageaccountorganization';
 
 @Injectable()
 export class ManageAccountShippingAddressService {

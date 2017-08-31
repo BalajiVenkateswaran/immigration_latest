@@ -63,7 +63,7 @@
                     <div class="row">
                         <div class="col-md-4"><label>Open Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isProfileEdit==false" id="wa-openDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="orgDetails.openDate" [selDate]="openDate">
+                            <my-date-picker *ngIf="isProfileEdit==false" id="wa-openDate" [options]="datePikcerOptions"  [(ngModel)]="orgDetails.openDate" [selDate]="openDate">
                             </my-date-picker>
                             <span *ngIf="isProfileEdit==true">{{orgDetails.openDate}}</span>
                         </div>

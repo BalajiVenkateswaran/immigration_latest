@@ -1,17 +1,12 @@
 import { AppService } from '../../../../services/app.service';
-import { UiFieldService } from '../../../../services/uifield.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { Component, OnInit } from '@angular/core';
 import {OrganizationService} from "./organization.service";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {IhDateUtil} from '../../../framework/utils/date.component';
 import { DialogService } from "ng2-bootstrap-modal";
 
-export interface formControl {
-    name: string;
-    value: FormControl;
-}
 
 @Component({
     selector: 'app-organization',
@@ -31,14 +26,10 @@ export class OrganizationComponent implements OnInit {
     private isPersonProfileEdit;
     private orgDetails: any = {};
     private openDate:string;
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
     private beforeCancelOrg;
     private beforeCancelAdmin;
     private beforeCancelSignin;
+    public datePikcerOptions=IhDateUtil.datePickerOptions;
     email: FormControl;
     public emailRegex;
     private status = [
@@ -47,8 +38,7 @@ export class OrganizationComponent implements OnInit {
                 { value: 'Mark for Deletion', name: 'Mark for Deletion' }
                 ];
 
-    constructor(private uiFieldService: UiFieldService,
-        private formBuilder: FormBuilder, private appService: AppService, private  organizationService: OrganizationService,
+    constructor(private appService: AppService, private  organizationService: OrganizationService,
         private dialogService: DialogService, private headerService: HeaderService) {
             this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             this.email = new FormControl('', [Validators.required,Validators.pattern(this.emailRegex)]);
@@ -84,8 +74,7 @@ export class OrganizationComponent implements OnInit {
     }
 
 
-    onDateChanged(event: IMyDateModel) {
-    }
+   
 
     saveOrgProfile() {
         if (this.orgDetails['openDate'] && this.orgDetails['openDate']['formatted']) {
@@ -138,7 +127,6 @@ export class OrganizationComponent implements OnInit {
     }
 
     editProfileForm() {
-        console.log(this.email);
         this.beforeCancelOrg = (<any>Object).assign({}, this.orgDetails);
         this.isProfileEdit = !this.isProfileEdit;
         this.openDate = this.orgDetails.openDate;

@@ -2,7 +2,8 @@ import { AppService } from '../../../../services/app.service';
 import { HeaderService } from '../../../common/header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {ManageAccountUserDetailsService} from "./user-details.service";
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 @Component({
     selector: 'app-manageaccount-user-details',
     templateUrl: './user-details.component.html',
@@ -23,11 +24,10 @@ export class ManageaccountUserDetailsComponent implements OnInit {
     public userProfOrgsList: any = [];
     public settings;
     public data;
-    public queryParameters: any;
     public paginationData: any;
 
-    constructor(private appService: AppService,
-        private route: ActivatedRoute, public manageAccountUserDetailsService: ManageAccountUserDetailsService,
+    constructor(private appService: AppService,public router:Router, private route: ActivatedRoute,
+        public manageAccountUserDetailsService: ManageAccountUserDetailsService,
         private headerService: HeaderService) {
         this.orgList = this.headerService.organizations;
         this.settings = {
@@ -69,18 +69,12 @@ export class ManageaccountUserDetailsComponent implements OnInit {
                 this.isAccessEdit = false;
                 this.isAccess = false;
             }
-            //this.loginHistoryDataWithParameters(this.queryParameters);
         });
     }
 
     loginHistoryDataWithParameters(queryData) {
-      if(queryData){
-        this.queryParameters=queryData
-      }
-
       this.manageAccountUserDetailsService.getLoginHistory(this.userId, queryData).subscribe(
         res => {
-          console.log("Filter" + this.data);
           this.data = res['userLoginHistory'];
           this.paginationData = res['pageMetadata'];
         }

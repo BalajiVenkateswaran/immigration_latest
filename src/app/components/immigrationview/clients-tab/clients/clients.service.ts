@@ -8,10 +8,10 @@ export class ClientsService {
   constructor(private restService: RestService) {
   }
 
-  /*public getClients (orgId: string) {
+  public getClients (queryParams,orgId: string) {
     console.log("PetitionsService|getPetitions|orgId:%o", orgId);
-    return this.restService.getData("/clients/immigration/"+orgId);
-  }*/
+    return this.restService.getData("/clients/immigration/"+orgId+queryParams);
+  }
 
   public saveNewClient(clientData: client) {
       return this.restService.postData("/client", clientData);

@@ -16,7 +16,6 @@ export class ManageAccountPreferencesComponent implements OnInit {
 
     public products:any=[];
     public discounts:any=[];
-    public DefaultResponse = { "status": "Active" };
     public settings;
     public data;   
     public settings1;
