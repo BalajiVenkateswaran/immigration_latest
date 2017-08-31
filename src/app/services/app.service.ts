@@ -65,6 +65,7 @@ export class AppService {
     public usersList: any;
     public petitionType: string;
     public userroleList: any = [];
+    public petitionstageTypes: any = [];
     public userLoginHistoryId: string;
     constructor(private _router: Router) { }
 

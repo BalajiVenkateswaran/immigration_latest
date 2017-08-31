@@ -13,6 +13,11 @@ export class i129Page6Component implements OnInit {
     beforecancelquestionnaire: any;
     isquestionnaireEdit: boolean = false;
     public page6: any = {};
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
     }
 

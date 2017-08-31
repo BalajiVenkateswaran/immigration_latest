@@ -161,14 +161,13 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
         this.addDeleteBtn = true;
         this.selectedIdx = "none";
         this.selectedIdxstage = "none";
-        this.manageAccountPetitionStagesService.getPetitionTypes().subscribe(
-            res => {
-                this.petitionTypes = res['petitionTypes'];
+      
+        this.petitionTypes = this.appService.petitionstageTypes;
                 this.selectedPetitionType = this.petitionTypes[0];
                 this.getpetitionstages();
 
-            }
-        );
+      
+       
     }
 
     onClickOfPetitionType(petitionType,index) {

@@ -10,7 +10,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class i129HPage5Component implements OnInit {
     public I129Hpage5: any = {};
-
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     constructor(public appService: AppService) {
     }
 

@@ -65,45 +65,103 @@
                             </tr>
                             <tr>
                              <!--<td><span></span><td>-->
-                                <td><input type="text" class="form-control"/></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-                                <td><my-date-picker  [options]="myDatePickerOptions"></my-date-picker></td>
+                                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName1" class="form-control"/></td>
+                               <td> <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)"
+                                                [(ngModel)]="I129Hpage1.fromDate1"
+                                                [selDate]="fromDate1"></my-date-picker></td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.toDate1"
+                                                    [selDate]="toDate1"></my-date-picker>
+                                </td>
                             </tr>
                             <tr>
                                 <!--<td><span></span><td>-->
-                                <td><input type="text" /></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-
-                            </tr>
-                            <tr>
-                                <!--<td><span></span><td>-->
-
-                                <td><input type="text" /></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-
-                            </tr>
-                            <tr>
-                                <!--<td><span></span><td>-->
-                                <td><input type="text" /></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-
-                            </tr>
-                            <tr>
-                                <!--<td><span></span><td>-->
-                                <td><input type="text" /></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
+                                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName2"/></td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.fromDate2"
+                                                    [selDate]="fromDate1"></my-date-picker>
+                                </td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.toDate2"
+                                                    [selDate]="toDate1"></my-date-picker>
+                                </td>
 
                             </tr>
                             <tr>
                                 <!--<td><span></span><td>-->
 
-                                <td><input type="text" /></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
-                                <td><my-date-picker [options]="myDatePickerOptions"></my-date-picker></td>
+                                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName3"/></td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.fromDate3"
+                                                    [selDate]="fromDate1"></my-date-picker>
+                                </td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.toDate3"
+                                                    [selDate]="toDate1"></my-date-picker>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <!--<td><span></span><td>-->
+                                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName4"/></td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.fromDate4"
+                                                    [selDate]="fromDate1"></my-date-picker>
+                                </td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.toDate4"
+                                                    [selDate]="toDate1"></my-date-picker>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <!--<td><span></span><td>-->
+                                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName5"/></td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.fromDate5"
+                                                    [selDate]="fromDate1"></my-date-picker>
+                                </td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.toDate5"
+                                                    [selDate]="toDate1"></my-date-picker>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <!--<td><span></span><td>-->
+
+                                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName6"/></td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.fromDate6"
+                                                    [selDate]="fromDate1"></my-date-picker>
+                                </td>
+                                <td>
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage1.toDate6"
+                                                    [selDate]="toDate1"></my-date-picker>
+                                </td>
 
                             </tr>
                         </table>

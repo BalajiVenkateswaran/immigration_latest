@@ -8,6 +8,7 @@ import {FormGroup, FormControl} from "@angular/forms";
 import {loginService} from "./login.service";
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {ManageAccountUserService} from "../../immigrationview/manage-account-tab/user/user.service";
+import {ManageAccountPetitionStagesService} from '../../immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.service';
 
 export interface ConfirmModel {
   title: string;
@@ -48,6 +49,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     public dialogService: DialogService,
     private headerService: HeaderService,
     private manageAccountUserService: ManageAccountUserService,
+    private manageAccountPetitionStagesService: ManageAccountPetitionStagesService
   ) {
     super(dialogService);
     this.login = new FormGroup({
@@ -103,9 +105,14 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       }
     });
   }
-
+  getpetitontypes() {
+      this.manageAccountPetitionStagesService.getPetitionTypes().subscribe(
+          res => {
+              this.appService.petitionstageTypes = res['petitionTypes'];
+          });
+  }
   loginSubmit(model: User, isValid: boolean) {
-
+      this.getpetitontypes();
     if (isValid) {
       this.loginservice.login(model).subscribe((res: any) => {
         console.log("Login User %o", res);

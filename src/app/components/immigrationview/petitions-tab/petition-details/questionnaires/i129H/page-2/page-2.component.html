@@ -61,12 +61,18 @@
                             <div class="row">
                                 <div class="col-md-4">Name of Petitioner</div>
                                 <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.petitonerName"/></div>
+
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.petitionerDateOfSignature"/></div>
+                                <div class="col-md-8">
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage2.petitionerDateOfSignature"
+                                                    [selDate]="petitionerDateOfSignature"></my-date-picker>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -88,7 +94,12 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.officialDateOfSignature"/></div>
+                                <div class="col-md-8">
+                                <my-date-picker [options]="myDatePickerOptions"
+                                                (dateChanged)="onDateChanged($event)"
+                                                [(ngModel)]="I129Hpage2.officialDateOfSignature"
+                                                [selDate]="officialDateOfSignature"></my-date-picker>
+                                    </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -110,7 +121,12 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.projectManagerDateOfSignature"/></div>
+                                <div class="col-md-8">
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage2.projectManagerDateOfSignature"
+                                                    [selDate]="projectManagerDateOfSignature"></my-date-picker>
+                                </div>
                             </div>
                         </div>
                       </div>

@@ -17,7 +17,11 @@ export class i129Page5Component implements OnInit {
     };
     public questions;
     public aptType;
-
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
 
         this.questions = [

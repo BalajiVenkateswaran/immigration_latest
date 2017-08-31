@@ -69,7 +69,7 @@ export class clientviewQuestionnaireComponent implements OnInit {
     );
   }
   editRecord(event) {
-    this.appService.moveToQuestionnaire(event.data);
+      this.questionnaireCommonService.moveToQuestionnaire(event.data);
     this.appService.currentSBLink = event.data.questionnaireName;
   }
   getFormName(formId: string) {

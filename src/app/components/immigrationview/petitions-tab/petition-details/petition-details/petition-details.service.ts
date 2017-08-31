@@ -82,4 +82,7 @@ export class ImmigrationViewPetitionDetailsService {
         };
         return this.restService.postData("/immigration/orgs/petition", req);
     }
+    public sendChecklist(accountId: string, petitionId: string) {
+        return this.restService.getData("/immigration/account/sendCheckList/" + petitionId + "/account/" + accountId);
+    }
 }

@@ -15,6 +15,11 @@ export class i129Page2Component implements OnInit {
     public basicClassification;
     public requestedAction;
     public isquestionnaireEdit: boolean = false;
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     public gender;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
     private route: ActivatedRoute, private router: Router) {

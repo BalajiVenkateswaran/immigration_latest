@@ -200,7 +200,11 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
             }
         });
     }
-
+    sendchecklist() {
+        this.petitionDetailsService.sendChecklist(this.appService.user.accountId, this.appService.petitionId).subscribe((res) => {
+            console.log(res);
+        });
+    }
 
     //is edit function for read only
     editPetitionInfoForm() {

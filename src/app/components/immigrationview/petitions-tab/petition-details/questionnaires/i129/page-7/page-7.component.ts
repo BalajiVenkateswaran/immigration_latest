@@ -14,6 +14,11 @@ export class i129Page7Component implements OnInit {
     public page7: any = {
         "preparerAddress":{}
     };
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     public aptType;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
          this.aptType = [

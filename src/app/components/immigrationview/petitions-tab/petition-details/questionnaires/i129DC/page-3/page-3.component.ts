@@ -48,6 +48,14 @@ export class i129dcPage3Component implements OnInit {
             }
         })
     }
+    capExempt(event, model) {
+        if (event == true) {
+            this.page3.capExemptReason[model] = "Y";
+        }
+        else {
+            this.page3.capExemptReason[model] = "N";
+        }
+    }
    savequestionnaireInformation() {
         this.page3.pageNumber = 21;
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 21, this.page3).subscribe(res => {

@@ -100,7 +100,12 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Date of Birth (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage3.dateOfBirth"/></div>
+                                <div class="col-md-8">
+                                    <my-date-picker [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="I129Hpage3.dateOfBirth"
+                                                    [selDate]="dateOfBirth"></my-date-picker>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">

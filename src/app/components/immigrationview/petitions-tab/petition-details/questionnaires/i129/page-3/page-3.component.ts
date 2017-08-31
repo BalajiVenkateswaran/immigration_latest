@@ -15,6 +15,11 @@ export class i129Page3Component implements OnInit {
     public aptType;
     public questions;
     public typeOfOffice;
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
     public page3: any = {
         "address": {},
         "foreignAddress": {}

@@ -61,7 +61,11 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Date of Last Arrival (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.dateOfLastArrival" />
+                                <div class="col-md-4">
+                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="page3.dateOfLastArrival"
+                                                    [selDate]="dateOfLastArrival"></my-date-picker>
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.dateOfLastArrival}}</span>
                                 </div>
                             </div>
@@ -85,7 +89,11 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Date Passport or Travel Document Issued (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.passportIssueDate" />
+                                <div class="col-md-4">
+                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="page3.passportIssueDate"
+                                                    [selDate]="passportIssueDate"></my-date-picker>
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.passportIssueDate}}</span>
                                 </div>
                             </div>
@@ -93,7 +101,11 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Date Passport or Travel Document Expires (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.passportExpiryDate" />
+                                <div class="col-md-4">
+                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="page3.passportExpiryDate"
+                                                    [selDate]="passportExpiryDate"></my-date-picker>
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.passportExpiryDate}}</span>
                                 </div>
                             </div>
@@ -117,7 +129,11 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Date Status Expires or D/S (mm/dd/yyyy)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.dateStatusExpires" />
+                                <div class="col-md-8">
+                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
+                                                    (dateChanged)="onDateChanged($event)"
+                                                    [(ngModel)]="page3.dateStatusExpires"
+                                                    [selDate]="dateStatusExpires"></my-date-picker>
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.dateStatusExpires}}</span>
                                 </div>
                             </div>

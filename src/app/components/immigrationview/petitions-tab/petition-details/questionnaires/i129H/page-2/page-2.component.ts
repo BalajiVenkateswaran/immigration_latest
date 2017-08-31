@@ -9,7 +9,12 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
     styleUrls: ['./page-2.component.scss']
 })
 export class i129HPage2Component implements OnInit {
-public I129Hpage2:any={};
+    public I129Hpage2: any = {};
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'mm-dd-yyyy',
+        showClearDateBtn: false,
+    };
 constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
     }
 
