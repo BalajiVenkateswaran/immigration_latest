@@ -10,6 +10,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class i129HPage5Component implements OnInit {
     public I129Hpage5: any = {};
+    public employerDateOfSignature: string;
+    public jointEmployer1DateOfSignature: string;
+    public jointEmp2oyer1DateOfSignature: string;
+    public jointEmp3oyer1DateOfSignature: string;
+    public jointEmp4oyer1DateOfSignature: string;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -19,7 +24,7 @@ export class i129HPage5Component implements OnInit {
     }
 
     ngOnInit() {
- 
+
     }
     gotoNext() {
         this.appService.moveToPage('i129hPage6');
@@ -27,4 +32,7 @@ export class i129HPage5Component implements OnInit {
     gotoPrev() {
         this.appService.moveToPage('i129hPage4');
     }
+    onDateChanged(event: IMyDateModel) {
+    }
+
 }

@@ -10,12 +10,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class i129HPage4Component implements OnInit {
     public I129Hpage4: any = {};
-   
+
     constructor(public appService: AppService) {
     }
 
     ngOnInit() {
- 
+
     }
     gotoNext() {
         this.appService.moveToPage('i129hPage5');
@@ -23,4 +23,7 @@ export class i129HPage4Component implements OnInit {
     gotoPrev() {
         this.appService.moveToPage('i129hPage3');
     }
+    onDateChanged(event: IMyDateModel) {
+    }
+
 }

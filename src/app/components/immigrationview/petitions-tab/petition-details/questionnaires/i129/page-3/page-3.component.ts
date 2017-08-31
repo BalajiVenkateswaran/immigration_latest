@@ -15,6 +15,10 @@ export class i129Page3Component implements OnInit {
     public aptType;
     public questions;
     public typeOfOffice;
+    public dateOfLastArrival: string;
+    public passportIssueDate: string;
+    public passportExpiryDate: string;
+    public dateStatusExpires: string;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -86,6 +90,10 @@ export class i129Page3Component implements OnInit {
                 if (res['formPage']['foreignAddress'] != undefined) {
                     this.page3.foreignAddress = res['formPage']['foreignAddress'];
                 }
+              this.dateOfLastArrival = this.page3['dateOfLastArrival'];
+              this.passportIssueDate = this.page3['passportIssueDate'];
+              this.passportExpiryDate = this.page3['passportExpiryDate'];
+              this.dateStatusExpires = this.page3['dateStatusExpires'];
             }
 
 
@@ -99,21 +107,25 @@ export class i129Page3Component implements OnInit {
         this.page3 = this.beforecancelquestionnaire;
         this.isquestionnaireEdit = true;
     }
-    savequestionnaireInformation() {
-        //this.isquestionnaireEdit = true;
+    saveQuestionnaireInformation() {
         this.page3.pageNumber = 3;
+        this.page3['dateOfLastArrival'] = this.page3['dateOfLastArrival']['formatted'];
+        this.page3['passportIssueDate'] = this.page3['passportIssueDate']['formatted'];
+        this.page3['passportExpiryDate'] = this.page3['passportExpiryDate']['formatted'];
+        this.page3['dateStatusExpires'] = this.page3['dateStatusExpires']['formatted'];
+
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3, this.page3).subscribe(res => {
 
         })
     }
     gotoNext() {
-        this.savequestionnaireInformation();
+        this.saveQuestionnaireInformation();
         if(this.appService.applicationViewMode == 'Immigration'){
           this.appService.moveToPage('i129Page4');
         }
     }
     gotoPrev() {
-        this.savequestionnaireInformation();
+        this.saveQuestionnaireInformation();
         this.appService.moveToPage('i129Page2');
     }
 

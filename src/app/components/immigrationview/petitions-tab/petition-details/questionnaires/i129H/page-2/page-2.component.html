@@ -69,7 +69,6 @@
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
                                 <div class="col-md-8">
                                     <my-date-picker [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)"
                                                     [(ngModel)]="I129Hpage2.petitionerDateOfSignature"
                                                     [selDate]="petitionerDateOfSignature"></my-date-picker>
                                 </div>
@@ -96,7 +95,6 @@
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
                                 <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)"
                                                 [(ngModel)]="I129Hpage2.officialDateOfSignature"
                                                 [selDate]="officialDateOfSignature"></my-date-picker>
                                     </div>
@@ -123,7 +121,6 @@
                                 <div class="col-md-4">Date (mm/dd/yyyy)</div>
                                 <div class="col-md-8">
                                     <my-date-picker [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)"
                                                     [(ngModel)]="I129Hpage2.projectManagerDateOfSignature"
                                                     [selDate]="projectManagerDateOfSignature"></my-date-picker>
                                 </div>

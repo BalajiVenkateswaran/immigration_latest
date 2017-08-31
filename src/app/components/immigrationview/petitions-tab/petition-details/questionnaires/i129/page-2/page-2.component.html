@@ -195,7 +195,6 @@
                                 <div class="col-md-4">Date of birth (mm-dd-yyyy)</div>
                                 <div class="col-md-8">
                                     <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)"
                                                     [(ngModel)]="page2.dateOfBirth"
                                                     [selDate]="dateOfBirth"></my-date-picker>
                                 <span *ngIf="isquestionnaireEdit==true">{{page2.dateOfBirth}}</span>

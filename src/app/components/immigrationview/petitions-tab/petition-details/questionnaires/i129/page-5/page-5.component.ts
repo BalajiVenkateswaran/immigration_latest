@@ -17,6 +17,8 @@ export class i129Page5Component implements OnInit {
     };
     public questions;
     public aptType;
+    public intendentEmploymentFrom: string;
+    public intendentEmploymentTo: string;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -57,16 +59,15 @@ export class i129Page5Component implements OnInit {
     }
 
     ngOnInit() {
-        //this.isquestionnaireEdit = true;
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 5).subscribe(res => {
             if (res['formPage'] != undefined) {
 
                 this.page5 = res['formPage'];
-
+                this.intendentEmploymentFrom = this.page5['intendentEmploymentFrom'];
+                this.intendentEmploymentTo = this.page5['intendentEmploymentTo'];
                 if (res['formPage']['address'] != undefined) {
                     this.page5.address = res['formPage']['address'];
                 }
-
             }
         })
     }
@@ -81,6 +82,8 @@ export class i129Page5Component implements OnInit {
     savequestionnaireInformation() {
         //this.isquestionnaireEdit = true;
         this.page5.pageNumber = 5;
+        this.page5['intendentEmploymentFrom'] = this.page5['intendentEmploymentFrom']['formatted'];
+        this.page5['intendentEmploymentTo'] = this.page5['intendentEmploymentTo']['formatted'];
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 5, this.page5).subscribe(res => {
 
         })

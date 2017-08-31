@@ -15,12 +15,15 @@ constructor(public appService: AppService) {
     }
 
     ngOnInit() {
- 
+
     }
     gotoNext() {
-        
+
     }
     gotoPrev() {
         this.appService.moveToPage('i129hPage5');
     }
+    onDateChanged(event: IMyDateModel) {
+    }
+
 }

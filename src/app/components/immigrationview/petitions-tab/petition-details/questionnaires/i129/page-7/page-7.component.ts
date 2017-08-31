@@ -14,6 +14,7 @@ export class i129Page7Component implements OnInit {
     public page7: any = {
         "preparerAddress":{}
     };
+    public dateOfSignature: string;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -47,7 +48,7 @@ export class i129Page7Component implements OnInit {
             if (res['formPage'] != undefined) {
 
                 this.page7 = res['formPage'];
-
+                this.dateOfSignature = this.page7['dateOfSignature'];
                 if (res['formPage']['preparerAddress'] != undefined) {
                     this.page7.preparerAddress = res['formPage']['preparerAddress'];
                 }
@@ -65,6 +66,7 @@ export class i129Page7Component implements OnInit {
     savequestionnaireInformation() {
         //this.isquestionnaireEdit = true;
         this.page7.pageNumber = 7;
+        this.page7['dateOfSignature'] = this.page7['dateOfSignature']['formatted'];
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 7, this.page7).subscribe(res => {
 
         })

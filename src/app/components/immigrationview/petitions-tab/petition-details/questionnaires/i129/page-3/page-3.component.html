@@ -63,7 +63,6 @@
                                 <div class="col-md-4">Date of Last Arrival (mm/dd/yyyy)</div>
                                 <div class="col-md-4">
                                     <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)"
                                                     [(ngModel)]="page3.dateOfLastArrival"
                                                     [selDate]="dateOfLastArrival"></my-date-picker>
                                  <span *ngIf="isquestionnaireEdit==true">{{page3.dateOfLastArrival}}</span>
@@ -261,7 +260,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="row">
-                               
+
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-4" *ngFor="let x of aptType">
@@ -325,7 +324,7 @@
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="" [value]="x.value" [(ngModel)]="page3.eachPersonHaveValidPassport" [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
-                                
+
                                 <div class="col-md-4">If no, go to Part 9. and type or print your explanation</div>
                             </div>
                         </div>

@@ -15,10 +15,12 @@ export class i129Page2Component implements OnInit {
     public basicClassification;
     public requestedAction;
     public isquestionnaireEdit: boolean = false;
+    public dateOfBirth : string;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
+        editableDateField: false
     };
     public gender;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
@@ -119,6 +121,7 @@ export class i129Page2Component implements OnInit {
           this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],2).subscribe(res=>{
             if(res['formPage']!=undefined){
                this.page2=res['formPage'];
+               this.dateOfBirth = this.page2['dateOfBirth'];
             }
           });
        });
@@ -134,6 +137,10 @@ export class i129Page2Component implements OnInit {
     savequestionnaireInformation(){
          //this.isquestionnaireEdit = true;
          this.page2.pageNumber=2;
+         if(this.page2['dateOfBirth'] != null){
+           this.page2['dateOfBirth'] = this.page2['dateOfBirth']['formatted'];
+         }
+
          this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],2,this.page2).subscribe(res=>{
 
          })

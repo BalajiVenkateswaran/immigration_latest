@@ -13,6 +13,7 @@ export class i129Page6Component implements OnInit {
     beforecancelquestionnaire: any;
     isquestionnaireEdit: boolean = false;
     public page6: any = {};
+    public dateOfSignature: string;
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
@@ -26,6 +27,7 @@ export class i129Page6Component implements OnInit {
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 6).subscribe(res => {
             if (res['formPage'] != undefined) {
                 this.page6 = res['formPage'];
+                this.dateOfSignature = this.page6['dateOfSignature'];
             }
         })
     }
@@ -41,6 +43,7 @@ export class i129Page6Component implements OnInit {
     savequestionnaireInformation() {
         //this.isquestionnaireEdit = true;
         this.page6.pageNumber = 6;
+        this.page6['dateOfSignature'] = this.page6['dateOfSignature']['formatted'];
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 6, this.page6).subscribe(res => {
 
         })
