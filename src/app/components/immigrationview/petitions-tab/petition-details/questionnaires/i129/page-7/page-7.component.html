@@ -149,7 +149,6 @@
                                 <div class="col-md-4">Date of Signature (mm/dd/yyyy)</div>
                                 <div class="col-md-4">
                                     <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)"
                                                     [(ngModel)]="page7.dateOfSignature"
                                                     [selDate]="dateOfSignature"></my-date-picker>
                                  <span *ngIf="isquestionnaireEdit==true">{{page7.dateOfSignature}}</span>

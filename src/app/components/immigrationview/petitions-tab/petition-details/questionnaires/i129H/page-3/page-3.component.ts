@@ -12,7 +12,7 @@ export class i129HPage3Component implements OnInit {
     public I129Hpage3: any = {};
     public I129Hpage3questions: any = [];
     public dateOfBirth: string;
-    private myDatePickerOptions: IMyOptions = {
+    public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
@@ -40,7 +40,4 @@ export class i129HPage3Component implements OnInit {
     gotoPrev() {
         this.appService.moveToPage('i129hPage2');
     }
-    onDateChanged(event: IMyDateModel) {
-    }
-
 }

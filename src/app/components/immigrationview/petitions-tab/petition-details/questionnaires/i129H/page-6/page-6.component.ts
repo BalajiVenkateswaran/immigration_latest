@@ -23,7 +23,4 @@ constructor(public appService: AppService) {
     gotoPrev() {
         this.appService.moveToPage('i129hPage5');
     }
-    onDateChanged(event: IMyDateModel) {
-    }
-
 }

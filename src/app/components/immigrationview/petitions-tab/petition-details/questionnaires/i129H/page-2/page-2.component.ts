@@ -52,7 +52,4 @@ export class i129HPage2Component implements OnInit {
 
         });
      }
-    onDateChanged(event: IMyDateModel) {
-    }
-
 }

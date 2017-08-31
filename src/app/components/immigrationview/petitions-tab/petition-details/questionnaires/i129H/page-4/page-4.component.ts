@@ -23,7 +23,4 @@ export class i129HPage4Component implements OnInit {
     gotoPrev() {
         this.appService.moveToPage('i129hPage3');
     }
-    onDateChanged(event: IMyDateModel) {
-    }
-
 }

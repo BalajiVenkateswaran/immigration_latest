@@ -147,7 +147,6 @@
                                 <div class="col-md-4">From: (mm/dd/yyyy)</div>
                                 <div class="col-md-4">
                                     <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)"
                                                     [(ngModel)]="page5.intendentEmploymentFrom"
                                                     [selDate]="intendentEmploymentFrom"></my-date-picker>
                                  <span *ngIf="isquestionnaireEdit==true">{{page5.intendentEmploymentFrom}}</span>
@@ -159,7 +158,6 @@
                                 <div class="col-md-4">To: (mm/dd/yyyy)</div>
                                 <div class="col-md-4">
                                     <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
-                                                    (dateChanged)="onDateChanged($event)"
                                                     [(ngModel)]="page5.intendentEmploymentTo"
                                                     [selDate]="intendentEmploymentTo"></my-date-picker>
                                  <span *ngIf="isquestionnaireEdit==true">{{page5.intendentEmploymentTo}}</span>
