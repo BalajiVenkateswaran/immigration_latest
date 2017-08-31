@@ -41,7 +41,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public data;
     private user: User;
     public countryNames: string[] = [];
-   
+
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
@@ -161,9 +161,14 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
                   if (this.message == 'SUCCESS') {
                       this.getPetitionData();
                   } else {
+                      let errorMessage = 'Unable to add petition';
+                      if(res['statusDescription'] != null){
+                        errorMessage = res['statusDescription'];
+                      }
+
                       this.dialogService.addDialog(ConfirmComponent, {
                           title: 'Error..!',
-                          message: 'Unable to add petition'
+                          message: errorMessage
                       });
                   }
               });
