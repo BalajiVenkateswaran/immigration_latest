@@ -11,9 +11,9 @@ enum SortType {
 }
 
 enum FilterOperator {
-  Equal = ':',
-  GreateThan = '>',
-  LessThan = '<'
+  //Equal = ':',
+  //GreateThan = '>',
+  //LessThan = '<'
 }
 
 class FilterEntry {
