@@ -5,22 +5,23 @@ class Pagination {
   pageNumber: number;
 }
 
-enum SortType {
-  asc,
-  desc
+export enum SortType {
+  ASC, DESC
 }
 
 enum FilterOperator {
-  ':',  
+  ':',
   '>' ,
   '<'
 }
 
-class FilterEntry {
+export class FilterEntry {
+  fieldHeader: string;
   fieldName: string;
   operator:string= FilterOperator.toString();
   fieldValue: string;
-  constructor(fieldName: string,operator: string,fieldValue: string){
+  constructor(headerName: string, fieldName: string,operator: string,fieldValue: string){
+    this.fieldHeader = headerName;
     this.fieldName = fieldName;
     this.fieldValue = fieldValue;
     this.operator = operator;
@@ -29,9 +30,8 @@ class FilterEntry {
 
 export class QueryParameters {
   pagination : Pagination;
-  sort = new Array();
+  sort: Map<string, SortType>;
   filter : Array<FilterEntry>;
-  filteredString:Array<string>;
 
   public setPagination(size: number, pageNumber: number) : void{
     if(this.pagination == null){
@@ -41,39 +41,44 @@ export class QueryParameters {
     this.pagination.pageNumber = pageNumber;
   }
 
-  public addFilter(fieldName: string,operator: string, fieldValue: string) : void{
+  public addFilter(fieldHeader: string, fieldName: string,operator: string, fieldValue: string) : void {
     if(this.filter == null){
       this.filter = new Array<FilterEntry>();
     }
 
     var filterFound : boolean = false;
+
+    if(fieldHeader == null){
+      fieldHeader = fieldName;
+    }
+
     //Check for duplicates
     for(var i = 0; i < this.filter.length; i++){
       if(this.filter[i].fieldName === fieldName){
         filterFound = true;
+        this.filter[i].fieldHeader = fieldHeader;
         this.filter[i].fieldValue = fieldValue;
         this.filter[i].operator = operator;
       }
     }
 
     if(!filterFound){
-      this.filter.push(new FilterEntry(fieldName,operator, fieldValue));
-      this.filteredString=this.filter.map(function(item){ return item.fieldName+item.operator+item.fieldValue})
+      this.filter.push(new FilterEntry(fieldHeader, fieldName,operator, fieldValue));
     }
-
-
-  }
-  public addSorting(fieldName:string,sortBy:string){
-   /* var sortFound : boolean = false;
-    for(var i = 0; i < this.sort.length; i++){
-      if(this.sort[i].fieldName === fieldName){
-        sortFound = true;
-      }
-    }
-    if(!sortFound){*/
-       this.sort.push(fieldName+","+sortBy);
-    //}
-   
   }
 
+  public addFilters(filters: Array<FilterEntry>) {
+    if(this.filter == null){
+      this.filter = new Array<FilterEntry>();
+    }
+    this.filter.concat(filters);
+  }
+
+  public addSort(fieldName:string,sortBy:SortType){
+    if(this.sort == null){
+      this.sort = new Map<string, SortType>();
+    }
+
+    this.sort.set(fieldName, sortBy);
+  }
 }

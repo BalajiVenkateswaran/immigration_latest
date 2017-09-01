@@ -45,9 +45,9 @@ export class PetitionsComponent implements OnInit {
                 sort: "desc"
             }],
             'filter' : {
-                'types' : [{
-                    'headingName' : 'daysInStage',
-                    'type' : '>'
+                types : [{
+                    field : 'daysInStage',
+                    operator : '>'
                 }]
             },
             'columnsettings': [
