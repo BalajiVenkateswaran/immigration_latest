@@ -392,9 +392,13 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
         this.receiptInfo['petitionId'] = this.appService.petitionId;
         this.receiptInfo['petitionReceiptId'] = this.receiptInfo['petitionReceiptId'];
 
-        if (this.receiptInfo['showReceiptNumberToClient'] == '' || null || undefined) {
+        //if (this.receiptInfo.showReceiptNumberToClient == '' || this.receiptInfo.showReceiptNumberToClient == null || this.receiptInfo.showReceiptNumberToClient==undefined) {
+        //    this.sfmRI = true;
+        //} 
+        if (this.receiptInfo.showReceiptNumberToClient != 0 && this.receiptInfo.showReceiptNumberToClient != 1) {
             this.sfmRI = true;
-        } else {
+        }
+        else {
             this.sfmRI = false;
             this.petitionDetailsService.saveReceiptInfo(this.receiptInfo, this.appService.user.userId)
                 .subscribe((res) => {
