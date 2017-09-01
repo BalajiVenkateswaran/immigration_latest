@@ -11,9 +11,13 @@ import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 
 @Component({
     template: `
-    <div>
-  <input type="file" class="upload" name="file" (change)="fileUpload($event)" />
-    </div>
+
+                    <div class="fileUpload btn btn-primary iportal-btn no-marg-right agridadd">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        <input type="file" #fileInput class="upload" name="file" (change)="fileUpload($event)"/>
+                    </div>
+                
+   
    `,
 
 })
