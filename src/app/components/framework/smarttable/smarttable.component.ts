@@ -94,7 +94,7 @@ export class SmartTableFramework implements OnChanges {
                     //this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);
                     this.queryParameters.addFilter(item.headingName,this.getFilterType(item.headingName),item.filterValue);
                 }
-                this.invokeResource({ 'data': that.filterQueries, 'filterFlag': true });
+                this.invokeResource();
             }
 
         });
@@ -114,10 +114,14 @@ export class SmartTableFramework implements OnChanges {
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         console.log('ngOnChanges %o', this.settings);
         if (changes['settings']) {
+            console.log("Settings are changed");
+            this.prepareSettings();
+            this.invokeResource();
         }
-        this.prepareSettings();
+        
         if (changes['data']) {
             console.log('Data changed');
+            //reset new data to ag-grid table
             if (this.data != undefined) {
                 if (this.gridOptions.api != undefined) {
                     this.gridOptions.api.hideOverlay();
@@ -133,7 +137,9 @@ export class SmartTableFramework implements OnChanges {
             }
         }
         if (changes['paginationData']) {
+             console.log('Pagination Data change:%o',this.paginationData);
             if (this.paginationData) {
+
                 this.pageSize = this.paginationData['size'];
                 this.totalElements = this.paginationData['totalElements'];
                 this.totalPages = this.paginationData['totalPages'];
@@ -156,8 +162,9 @@ export class SmartTableFramework implements OnChanges {
         this.filterWholeArray.splice(index, 1);
         this.filterQueries.splice(index, 1);
         this.queryParameters.filter.splice(index,1);
+        this.queryParameters.filteredString.splice(index,1);
         this.queryParameters.setPagination(this.pageSize,0);
-        this.invokeResource({ 'data': this.filterQueries, 'filterFlag': true });
+        this.invokeResource();
 
     }
     onPageSizeChanged(newPageSize) {
@@ -169,18 +176,14 @@ export class SmartTableFramework implements OnChanges {
         } else {
             this.endNumber = this.pageSize;
         }
-        if (this.filterQueries.length > 0) {
-            this.invokeResource({ 'data': this.filterQueries, 'filterFlag': true, 'filteronPagesize': true })
-        }
-        else {
+        
+       
             this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-            this.invokeResource({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
-        }
+            this.invokeResource();
+        
 
     }
-    onSelectionChanged() {
-        let selectedRows = this['api'].getSelectedRows();
-    }
+   
     addRecord() {
         this.onAddClick.emit(this.isAddButtonEnable);
     }
@@ -290,16 +293,18 @@ export class SmartTableFramework implements OnChanges {
                     /*this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);*/
                     this.queryParameters.addFilter(item.headingName,this.getFilterType(item.headingName),item.filterValue)
                 }
-                this.invokeResource('dasd');
+               /* this.invokeResource('dasd');*/
                /* this.invokeResource({ 'data': this.filterQueries, 'filterFlag': true });*/
             }
         }
         if(this.settings.hasOwnProperty('sort')){
             if(this.queryParameters.sort.length<=0){
              this.queryParameters.addSorting(this.settings['sort'][0]['headingName'],"desc");
+            /* this.invokeResource('sdf');      */  
             }
-            this.invokeResource('sdf');
+            
         }
+        //Configuring tool tip for header and data
         this.settings['columnsettings'].map(function (item) {
             if (item['headerTooltip'] == null && item['headerName'] != '') {
                 item['headerTooltip'] = item['headerName'];
@@ -341,7 +346,7 @@ export class SmartTableFramework implements OnChanges {
         }
        
        this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-         this.invokeResource('sdfsa');
+         this.invokeResource();
     }
     firstPage() {
         this.pageNumber = 0;
@@ -349,7 +354,7 @@ export class SmartTableFramework implements OnChanges {
         this.endNumber = this.pageSize;
      
        this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-           this.invokeResource('sdfsa');
+           this.invokeResource();
     }
     lastPage() {
         this.endNumber = this.totalElements;
@@ -357,7 +362,7 @@ export class SmartTableFramework implements OnChanges {
         this.itemStartIndex = this.pageNumber * this.pageSize + 1;
       
        this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-          this.invokeResource('sdfsa');
+          this.invokeResource();
     }
     previousPage() {
         if (this.pageNumber == 1) {
@@ -370,23 +375,18 @@ export class SmartTableFramework implements OnChanges {
         this.pageNumber = this.pageNumber - 1;
       
         this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-          this.invokeResource('sdfsa');  
+          this.invokeResource();  
     }
-    invokeResource(queryParameters) {
+    invokeResource() {
         let queryString : string = '?';
         if(this.queryParameters.pagination != null){
           if(this.queryParameters.pagination.size != null){
             queryString += "size="+this.queryParameters.pagination.size+"&";
           }
           if(this.queryParameters.pagination.pageNumber != null){
-            queryString += "page="+this.queryParameters.pagination.pageNumber;
+            queryString += "page="+this.queryParameters.pagination.pageNumber+"&";
           }
-          /*if(this.queryParameters.filter.length>0 && this.queryParameters.pagination.size!=null){
-             queryString += "size="+this.queryParameters.pagination.size+"&filter="+this.queryParameters.filteredString;  
-          }
-          if(this.queryParameters.filter.length>0 && this.queryParameters.pagination.pageNumber!=null){
-             queryString += "size="+this.queryParameters.pagination.pageNumber+"&filter="+this.queryParameters.filteredString;  
-          }*/
+          
         }
 
         if(this.queryParameters.filteredString != null && this.queryParameters.filteredString.length !=undefined ){
@@ -410,55 +410,6 @@ export class SmartTableFramework implements OnChanges {
         console.log("Query String: %o", queryString);
 
 
-        /*if (queryParameters.hasOwnProperty('filterFlag')) {
-
-            this.filteredQueryParams = queryParameters.data;
-            let queryParams = "?filter=" + this.filteredQueryParams;
-            if (queryParameters.hasOwnProperty('filteronPagesize')) {
-                this.dataWithQueryParams.emit("?page=" + this.pageNumber + "&size=" + this.pageSize + "&filter=" + this.filteredQueryParams);
-            }
-            else {
-                this.pageNumber = 0;
-                this.itemStartIndex = 1;
-                this.endNumber = this.pageSize;
-                if (this.filteredQueryParams.length > 0) {
-                    if(this.pageSize==undefined){
-                        this.dataWithQueryParams.emit('?filter='+this.filteredQueryParams);
-                        this.paginationWithFilterData=true;
-
-                    }
-                    else if(this.pageSize > 20 && this.pageSize!=undefined) {
-                        this.dataWithQueryParams.emit("?page="+this.pageNumber+"&size="+this.pageSize+"&filter="+this.filteredQueryParams);
-                        this.paginationWithFilterData=true;
-                    }
-                    else {
-                        this.dataWithQueryParams.emit("?page="+this.pageNumber+"&size="+this.pageSize+"&filter="+queryParams);
-                        this.paginationWithFilterData=true;
-                    }
-                }
-                else {
-                    this.dataWithQueryParams.emit("?page=" + this.pageNumber + "&size=" + this.pageSize);
-                    this.paginationWithFilterData=false;
-                }
-
-            }
-
-        }*/
-       /* if (queryParameters.hasOwnProperty('paginationFlag')) {
-
-            if (this.paginationWithFilterData && this.totalElements > this.pageSize) {
-                let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'] + "&filter=" + this.filteredQueryParams;
-                this.dataWithQueryParams.emit(queryParams);
-            }
-            else {
-                let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'];
-                this.dataWithQueryParams.emit(queryParams);
-            }
-        }*/
-
-       /* if (queryParameters.hasOwnProperty('noFilterFlag')) {
-            this.dataWithQueryParams.emit("?page=0&size=20");
-        }*/
     }
 }
 
