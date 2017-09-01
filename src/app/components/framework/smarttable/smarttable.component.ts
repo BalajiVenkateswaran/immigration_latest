@@ -8,6 +8,7 @@ import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
 import { RequestButton } from '../../clientview/request-tab/RequestButton';
+import {QueryParameters} from "./types/query-parameters";
 @Component({
     selector: 'smart-table',
     templateUrl: './smarttable.component.html'
@@ -22,6 +23,9 @@ export class SmartTableFramework implements OnChanges {
     /*
     * following options are available in IH smart table
     *    - columnsettings : columnsettings
+    *    - pagination :
+    *             - (Default) true, if pagination should be enabled
+    *             - false, if pagination should be disabled
     *
     */
 
@@ -56,11 +60,12 @@ export class SmartTableFramework implements OnChanges {
     public itemStartIndex = 1;
     public endNumber: number;
     public pageSelectionDisable: boolean = false;
-    public queryParameters;
+    private queryParameters : QueryParameters;
     public deleteFilterClicked: boolean = false;
     constructor() {
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
+        this.queryParameters = new QueryParameters();
         this.deleteSubscription = ActionColumns.sendDeleteData.subscribe(res => {
             if (res != undefined) {
                 this.deleteData = res;
@@ -84,6 +89,8 @@ export class SmartTableFramework implements OnChanges {
                 that.filterWholeArray = this.removeDuplicates(this.filterWholeArray);
                 this.filterQueries = [];
                 for (var item of this.filterWholeArray) {
+                    //TODO - complete this line
+                  // this.queryParameters.addFilter(item.headingName, this.getFilterType(item.headingName), item.filterValue);
                     this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);
                 }
                 this.appendParamValues({ 'data': that.filterQueries, 'filterFlag': true });
@@ -197,8 +204,10 @@ export class SmartTableFramework implements OnChanges {
         return type;
     }
 
+  /**
+   * Prepare settings
+   */
     prepareSettings() {
-
         //default setting for framework
         if (this.settings.hasOwnProperty('pagination')) {
             this.gridOptions['pagination'] = this.settings['pagination'];
@@ -206,26 +215,20 @@ export class SmartTableFramework implements OnChanges {
         else {
             this.gridOptions.pagination = true;
         }
+
         if (this.settings.hasOwnProperty('customPanel')) {
             this.gridOptions.suppressPaginationPanel = true;
             this.paginationTemplate = true;
-
-
         }
         else {
             this.gridOptions.suppressPaginationPanel = false;
             this.gridOptions.paginationPageSize = 10;
         }
+        //Pass any objects to child components through context
         if (this.settings.hasOwnProperty('context')) {
             this.gridOptions['context'] = this.settings['context'];
         }
 
-        /*if (this.settings.hasOwnProperty('paginationPageSize')) {
-            this.gridOptions['paginationPageSize'] = this.settings['paginationPageSize'];
-        }
-        else {
-            this.gridOptions.paginationPageSize = 10;
-        }*/
         if (this.settings.hasOwnProperty('headerHeight')) {
             this.gridOptions['headerHeight'] = this.settings['headerHeight'];
         }
@@ -247,10 +250,10 @@ export class SmartTableFramework implements OnChanges {
                 headerName: "",
                 headerTooltip: "Actions",
                 width: 80,
-                cellRendererFramework: ActionColumns,
-
+                cellRendererFramework: ActionColumns
             });
         }
+
         if (this.settings.hasOwnProperty('columnFilter')) {
             this.settings['columnFilter'] = this.settings['columnFilter'];
             if (this.settings['columnFilter'] == true) {
@@ -263,18 +266,15 @@ export class SmartTableFramework implements OnChanges {
             }
             else {
                 this.gridOptions['headerHeight'] = 25;
-
             }
         }
-
         else {
             this.settings['columnFilter'] = false;
             this.settings['headerHeight'] = 25;
+
+            this.queryParameters.setPagination(20,0 );
             this.appendParamValues({ 'noFilterFlag': true })
-
         }
-
-
 
         if (this.settings.hasOwnProperty('defaultFilter')) {
             if (this.filterWholeArray.length <= 0 && !this.deleteFilterClicked) {
@@ -285,7 +285,6 @@ export class SmartTableFramework implements OnChanges {
                 }
                 this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
             }
-
         }
         this.settings['columnsettings'].map(function (item) {
             if (item['headerTooltip'] == null && item['headerName'] != '') {
@@ -315,10 +314,7 @@ export class SmartTableFramework implements OnChanges {
 
     ngOnDestroy() {
         this.filterSubscription.unsubscribe();
-
     }
-
-
 
     nextPage() {
         this.itemStartIndex = this.endNumber + 1;
@@ -356,6 +352,19 @@ export class SmartTableFramework implements OnChanges {
 
     }
     appendParamValues(queryParameters) {
+        let queryString : string = '?';
+        if(this.queryParameters.pagination != null){
+          if(this.queryParameters.pagination.size != null){
+            queryString += "size="+this.queryParameters.pagination.size+"&";
+          }
+          if(this.queryParameters.pagination.pageNumber != null){
+            queryString += "page="+this.queryParameters.pagination.pageNumber+"&";
+          }
+        }
+
+        console.log("Query String: %o", queryString);
+
+
         if (queryParameters.hasOwnProperty('filterFlag')) {
 
             this.filteredQueryParams = queryParameters.data;
@@ -371,7 +380,7 @@ export class SmartTableFramework implements OnChanges {
                     if(this.pageSize==undefined){
                         this.dataWithQueryParams.emit('?filter='+this.filteredQueryParams);
                         this.paginationWithFilterData=true;
-                        
+
                     }
                     else if(this.pageSize > 20 && this.pageSize!=undefined) {
                         this.dataWithQueryParams.emit("?page="+this.pageNumber+"&size="+this.pageSize+"&filter="+this.filteredQueryParams);

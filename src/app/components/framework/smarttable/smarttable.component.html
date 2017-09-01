@@ -8,17 +8,7 @@
 <div class="clearfix"></div>
 <div class="agtblOptions">
     <ag-grid-angular id="grid" #grid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (cellClicked)="onCellClick($event)">
-</ag-grid-angular>
-
-        
-        <!--<div *ngIf="paginationTemplate" class="itemsperpage">
-            Page Size:
-            <select #pages (change)="onPageSizeChanged(pages.value)">
-                <option value="10" [selected]>10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-            </select>
-        </div>-->
+    </ag-grid-angular>
     <div *ngIf="paginationTemplate">
         <div style="width:20%; float:left;"><span>{{itemStartIndex}} to {{endNumber}} of {{totalElements}}</span></div>
 
@@ -38,7 +28,7 @@
             </select>
         </div>
     </div>
-        
+
 
     </div>
 
