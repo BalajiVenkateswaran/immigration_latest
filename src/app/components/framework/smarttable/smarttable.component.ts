@@ -91,9 +91,10 @@ export class SmartTableFramework implements OnChanges {
                 for (var item of this.filterWholeArray) {
                     //TODO - complete this line
                   // this.queryParameters.addFilter(item.headingName, this.getFilterType(item.headingName), item.filterValue);
-                    this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);
+                    //this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);
+                    this.queryParameters.addFilter(item.headingName,this.getFilterType(item.headingName),item.filterValue);
                 }
-                this.appendParamValues({ 'data': that.filterQueries, 'filterFlag': true });
+                this.invokeResource({ 'data': that.filterQueries, 'filterFlag': true });
             }
 
         });
@@ -122,8 +123,10 @@ export class SmartTableFramework implements OnChanges {
                     this.gridOptions.api.hideOverlay();
                     this.gridOptions.api.setRowData(this.data);
                     let eGridDiv = <HTMLElement>document.querySelectorAll('div.ag-header-row')[document.querySelectorAll('div.ag-header-row').length - 1];
-                    eGridDiv.style.width = "100%";
-                    this.gridOptions.api.doLayout();
+                    if(eGridDiv!=undefined){
+                        eGridDiv.style.width = "100%";
+                        this.gridOptions.api.doLayout();
+                    }
                     this.gridOptions.api.sizeColumnsToFit();
 
                 }
@@ -152,7 +155,9 @@ export class SmartTableFramework implements OnChanges {
         this.deleteFilterClicked = true;
         this.filterWholeArray.splice(index, 1);
         this.filterQueries.splice(index, 1);
-        this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
+        this.queryParameters.filter.splice(index,1);
+        this.queryParameters.setPagination(this.pageSize,0);
+        this.invokeResource({ 'data': this.filterQueries, 'filterFlag': true });
 
     }
     onPageSizeChanged(newPageSize) {
@@ -165,10 +170,11 @@ export class SmartTableFramework implements OnChanges {
             this.endNumber = this.pageSize;
         }
         if (this.filterQueries.length > 0) {
-            this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true, 'filteronPagesize': true })
+            this.invokeResource({ 'data': this.filterQueries, 'filterFlag': true, 'filteronPagesize': true })
         }
         else {
-            this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
+            this.queryParameters.setPagination(this.pageSize,this.pageNumber);
+            this.invokeResource({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
         }
 
     }
@@ -272,8 +278,8 @@ export class SmartTableFramework implements OnChanges {
             this.settings['columnFilter'] = false;
             this.settings['headerHeight'] = 25;
 
-            this.queryParameters.setPagination(20,0 );
-            this.appendParamValues({ 'noFilterFlag': true })
+            this.queryParameters.setPagination(20,0);
+           
         }
 
         if (this.settings.hasOwnProperty('defaultFilter')) {
@@ -281,10 +287,18 @@ export class SmartTableFramework implements OnChanges {
                 this.filterWholeArray.push(this.settings['defaultFilter'][0]);
                 this.filterQueries = [];
                 for (var item of this.filterWholeArray) {
-                    this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);
+                    /*this.filterQueries.push(item.headingName + this.getFilterType(item.headingName) + item.filterValue);*/
+                    this.queryParameters.addFilter(item.headingName,this.getFilterType(item.headingName),item.filterValue)
                 }
-                this.appendParamValues({ 'data': this.filterQueries, 'filterFlag': true });
+                this.invokeResource('dasd');
+               /* this.invokeResource({ 'data': this.filterQueries, 'filterFlag': true });*/
             }
+        }
+        if(this.settings.hasOwnProperty('sort')){
+            if(this.queryParameters.sort.length<=0){
+             this.queryParameters.addSorting(this.settings['sort'][0]['headingName'],"desc");
+            }
+            this.invokeResource('sdf');
         }
         this.settings['columnsettings'].map(function (item) {
             if (item['headerTooltip'] == null && item['headerName'] != '') {
@@ -325,19 +339,25 @@ export class SmartTableFramework implements OnChanges {
         else {
             this.endNumber = (this.pageNumber + 1) * (this.pageSize);
         }
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
+       
+       this.queryParameters.setPagination(this.pageSize,this.pageNumber);
+         this.invokeResource('sdfsa');
     }
     firstPage() {
         this.pageNumber = 0;
         this.itemStartIndex = this.pageNumber + 1;
         this.endNumber = this.pageSize;
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
+     
+       this.queryParameters.setPagination(this.pageSize,this.pageNumber);
+           this.invokeResource('sdfsa');
     }
     lastPage() {
         this.endNumber = this.totalElements;
         this.pageNumber = this.totalPages - 1;
         this.itemStartIndex = this.pageNumber * this.pageSize + 1;
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
+      
+       this.queryParameters.setPagination(this.pageSize,this.pageNumber);
+          this.invokeResource('sdfsa');
     }
     previousPage() {
         if (this.pageNumber == 1) {
@@ -348,24 +368,49 @@ export class SmartTableFramework implements OnChanges {
         }
         this.endNumber = this.pageSize * this.pageNumber;
         this.pageNumber = this.pageNumber - 1;
-        this.appendParamValues({ 'pgNo': this.pageNumber, 'size': this.pageSize, 'paginationFlag': true });
-
+      
+        this.queryParameters.setPagination(this.pageSize,this.pageNumber);
+          this.invokeResource('sdfsa');  
     }
-    appendParamValues(queryParameters) {
+    invokeResource(queryParameters) {
         let queryString : string = '?';
         if(this.queryParameters.pagination != null){
           if(this.queryParameters.pagination.size != null){
             queryString += "size="+this.queryParameters.pagination.size+"&";
           }
           if(this.queryParameters.pagination.pageNumber != null){
-            queryString += "page="+this.queryParameters.pagination.pageNumber+"&";
+            queryString += "page="+this.queryParameters.pagination.pageNumber;
           }
+          /*if(this.queryParameters.filter.length>0 && this.queryParameters.pagination.size!=null){
+             queryString += "size="+this.queryParameters.pagination.size+"&filter="+this.queryParameters.filteredString;  
+          }
+          if(this.queryParameters.filter.length>0 && this.queryParameters.pagination.pageNumber!=null){
+             queryString += "size="+this.queryParameters.pagination.pageNumber+"&filter="+this.queryParameters.filteredString;  
+          }*/
         }
 
+        if(this.queryParameters.filteredString != null && this.queryParameters.filteredString.length !=undefined ){
+            if(this.queryParameters.pagination==null && this.queryParameters.filteredString.length>0){
+                queryString += "filter="+this.queryParameters.filteredString;
+            }
+            if(this.queryParameters.pagination!=null && this.queryParameters.filteredString.length>0){
+                queryString += "&filter="+this.queryParameters.filteredString;  
+            }
+            
+        } 
+
+        if(this.queryParameters.sort.length>0){
+                queryString += "&sort="+this.queryParameters.sort;   
+        }
+           
+    
+        
+        
+        this.dataWithQueryParams.emit(queryString);
         console.log("Query String: %o", queryString);
 
 
-        if (queryParameters.hasOwnProperty('filterFlag')) {
+        /*if (queryParameters.hasOwnProperty('filterFlag')) {
 
             this.filteredQueryParams = queryParameters.data;
             let queryParams = "?filter=" + this.filteredQueryParams;
@@ -398,8 +443,8 @@ export class SmartTableFramework implements OnChanges {
 
             }
 
-        }
-        if (queryParameters.hasOwnProperty('paginationFlag')) {
+        }*/
+       /* if (queryParameters.hasOwnProperty('paginationFlag')) {
 
             if (this.paginationWithFilterData && this.totalElements > this.pageSize) {
                 let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'] + "&filter=" + this.filteredQueryParams;
@@ -409,11 +454,11 @@ export class SmartTableFramework implements OnChanges {
                 let queryParams = "?page=" + queryParameters['pgNo'] + "&size=" + queryParameters['size'];
                 this.dataWithQueryParams.emit(queryParams);
             }
-        }
+        }*/
 
-        if (queryParameters.hasOwnProperty('noFilterFlag')) {
+       /* if (queryParameters.hasOwnProperty('noFilterFlag')) {
             this.dataWithQueryParams.emit("?page=0&size=20");
-        }
+        }*/
     }
 }
 

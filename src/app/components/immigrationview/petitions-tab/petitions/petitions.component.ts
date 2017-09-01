@@ -39,6 +39,11 @@ export class PetitionsComponent implements OnInit {
                 headerName: "Status",
                 filterValue: "Open"
             }],
+            'sort' : [{
+                headingName: "lastUpdate",
+                headerName: "Updated On",
+                sort: "desc"
+            }],
             'filter' : {
                 'types' : [{
                     'headingName' : 'daysInStage',

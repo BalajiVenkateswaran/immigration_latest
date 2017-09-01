@@ -11,16 +11,16 @@ enum SortType {
 }
 
 enum FilterOperator {
-  Equal = ':',
-  GreateThan = '>',
-  LessThan = '<'
+  ':',  
+  '>' ,
+  '<'
 }
 
 class FilterEntry {
   fieldName: string;
-  operator: FilterOperator;
+  operator:string= FilterOperator.toString();
   fieldValue: string;
-  constructor(fieldName: string, operator: FilterOperator, fieldValue: string){
+  constructor(fieldName: string,operator: string,fieldValue: string){
     this.fieldName = fieldName;
     this.fieldValue = fieldValue;
     this.operator = operator;
@@ -29,8 +29,9 @@ class FilterEntry {
 
 export class QueryParameters {
   pagination : Pagination;
-  sort: Map<string, SortType>;
+  sort = new Array();
   filter : Array<FilterEntry>;
+  filteredString:Array<string>;
 
   public setPagination(size: number, pageNumber: number) : void{
     if(this.pagination == null){
@@ -40,7 +41,7 @@ export class QueryParameters {
     this.pagination.pageNumber = pageNumber;
   }
 
-  public addFilter(fieldName: string, operator: FilterOperator, fieldValue: string) : void{
+  public addFilter(fieldName: string,operator: string, fieldValue: string) : void{
     if(this.filter == null){
       this.filter = new Array<FilterEntry>();
     }
@@ -56,10 +57,23 @@ export class QueryParameters {
     }
 
     if(!filterFound){
-      this.filter.push(new FilterEntry(fieldName, operator, fieldValue));
+      this.filter.push(new FilterEntry(fieldName,operator, fieldValue));
+      this.filteredString=this.filter.map(function(item){ return item.fieldName+item.operator+item.fieldValue})
     }
 
 
+  }
+  public addSorting(fieldName:string,sortBy:string){
+   /* var sortFound : boolean = false;
+    for(var i = 0; i < this.sort.length; i++){
+      if(this.sort[i].fieldName === fieldName){
+        sortFound = true;
+      }
+    }
+    if(!sortFound){*/
+       this.sort.push(fieldName+","+sortBy);
+    //}
+   
   }
 
 }
