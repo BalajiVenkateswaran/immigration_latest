@@ -48,7 +48,7 @@ export class SmartTableFramework implements OnChanges {
     public isAddButtonEnable: boolean;
 
     public pageSelectionDisable: boolean = false;
-    private queryParameters : QueryParameters;
+    public queryParameters : QueryParameters;
     public deleteFilterClicked: boolean = false;
     constructor() {
         console.log('constructor %o', this.settings);
