@@ -213,7 +213,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.close();
   }
   getUsers() {
-      this.manageAccountUserService.getUsers(this.appService.user.accountId)
+      this.manageAccountUserService.getUsers(this.appService.user.accountId, '')
           .subscribe((res) => {
               this.appService.usersList = res['users'];
           });
