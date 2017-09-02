@@ -119,18 +119,42 @@ export class i129HPage1Component implements OnInit {
 
   savequestionnaireInformation() {
     this.I129Hpage1.pageNumber = 13;
-    this.I129Hpage1['fromDate1'] = this.I129Hpage1['fromDate1']['formatted'];
-    this.I129Hpage1['toDate1'] = this.I129Hpage1['toDate1']['formatted'];
-    this.I129Hpage1['fromDate2'] = this.I129Hpage1['fromDate2']['formatted'];
-    this.I129Hpage1['toDate2'] = this.I129Hpage1['toDate2']['formatted'];
-    this.I129Hpage1['fromDate3'] = this.I129Hpage1['fromDate3']['formatted'];
-    this.I129Hpage1['toDate3'] = this.I129Hpage1['toDate3']['formatted'];
-    this.I129Hpage1['fromDate4'] = this.I129Hpage1['fromDate4']['formatted'];
-    this.I129Hpage1['toDate4'] = this.I129Hpage1['toDate4']['formatted'];
-    this.I129Hpage1['fromDate5'] = this.I129Hpage1['fromDate5']['formatted'];
-    this.I129Hpage1['toDate5'] = this.I129Hpage1['toDate5']['formatted'];
-    this.I129Hpage1['fromDate6'] = this.I129Hpage1['fromDate6']['formatted'];
-    this.I129Hpage1['toDate6'] = this.I129Hpage1['toDate6']['formatted'];
+    if (null != this.I129Hpage1['fromDate1']) {
+      this.I129Hpage1['fromDate1'] = this.I129Hpage1['fromDate1']['formatted'];
+    }
+    if (null != this.I129Hpage1['toDate1']) {
+      this.I129Hpage1['toDate1'] = this.I129Hpage1['toDate1']['formatted'];
+    }
+    if (null != this.I129Hpage1['fromDate2']) {
+      this.I129Hpage1['fromDate2'] = this.I129Hpage1['fromDate2']['formatted'];
+    }
+    if (null != this.I129Hpage1['toDate2']) {
+      this.I129Hpage1['toDate2'] = this.I129Hpage1['toDate2']['formatted'];
+    }
+    if (null != this.I129Hpage1['fromDate3']) {
+      this.I129Hpage1['fromDate3'] = this.I129Hpage1['fromDate3']['formatted'];
+    }
+    if (null != this.I129Hpage1['toDate3']) {
+      this.I129Hpage1['toDate3'] = this.I129Hpage1['toDate3']['formatted'];
+    }
+    if (null != this.I129Hpage1['fromDate4']) {
+      this.I129Hpage1['fromDate4'] = this.I129Hpage1['fromDate4']['formatted'];
+    }
+    if (null != this.I129Hpage1['toDate4']) {
+      this.I129Hpage1['toDate4'] = this.I129Hpage1['toDate4']['formatted'];
+    }
+    if (null != this.I129Hpage1['fromDate5']) {
+      this.I129Hpage1['fromDate5'] = this.I129Hpage1['fromDate5']['formatted'];
+    }
+    if (null != this.I129Hpage1['toDate5']) {
+      this.I129Hpage1['toDate5'] = this.I129Hpage1['toDate5']['formatted'];
+    }
+    if (null != this.I129Hpage1['fromDate6']) {
+      this.I129Hpage1['fromDate6'] = this.I129Hpage1['fromDate6']['formatted'];
+    }
+    if (null != this.I129Hpage1['toDate6']) {
+      this.I129Hpage1['toDate6'] = this.I129Hpage1['toDate6']['formatted'];
+    }
     this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 13, this.I129Hpage1).subscribe(res => {
 
     });
