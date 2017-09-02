@@ -8,6 +8,7 @@ import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import * as FileSaver from 'file-saver';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {SortType} from "../../../framework/smarttable/types/query-parameters";
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -42,6 +43,10 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
       'context': {
         'componentParent': this
       },
+      'sort' : [{
+        headingName: "updatedDate",
+        sort: SortType.DESC
+      }],
       'columnsettings': [
         {
           headerName: "Actions",
@@ -141,7 +146,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
             );
 
         }
-        
+
         if (fileExists) {
           this.dialogService.addDialog(ConfirmComponent, {
             title: 'Error..!',

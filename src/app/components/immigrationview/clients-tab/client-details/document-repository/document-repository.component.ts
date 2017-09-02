@@ -7,6 +7,7 @@ import { ClientDocumentRepositoryService } from "./document-repository.service";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import * as FileSaver from 'file-saver';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import {SortType} from "../../../../framework/smarttable/types/query-parameters";
 
 export interface ConfirmModel {
     title: string;
@@ -55,6 +56,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             'context': {
                 'componentParent': this
             },
+            'sort' : [{
+              headingName: "updatedDate",
+              sort: SortType.DESC
+            }],
             'columnsettings': [
                 {
                     headerName: "Actions",
@@ -97,11 +102,11 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         this.appService.currentSBLink = link;
     }
     fileUpload(event) {
-        
+
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         var x = file.name;
-        let fileExists = this.isfileExists(file);  
+        let fileExists = this.isfileExists(file);
         var y = x.split(".");
         if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
             this.uploadArray.push({'name':x});
@@ -123,9 +128,9 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 .subscribe(
 
                 res => {
-                   
+
                     if (res['statusCode'] == 'SUCCESS') {
-                    
+
                         this.getFilesList();
 
                     }
@@ -294,8 +299,8 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         file.value = null;
         this.progress=0;
         this.uploadArray=[];
-       
+
     }
-   
+
 
 }

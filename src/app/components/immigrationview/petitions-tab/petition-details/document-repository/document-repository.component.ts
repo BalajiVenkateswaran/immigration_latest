@@ -7,6 +7,7 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import * as FileSaver from 'file-saver';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import {SortType} from "../../../../framework/smarttable/types/query-parameters";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -43,12 +44,15 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             'context': {
                 'componentParent': this
             },
+            'sort' : [{
+              headingName: "updatedDate",
+              sort: SortType.DESC
+            }],
             'columnsettings': [
                 {
                     headerName: "Actions",
                     cellRendererFramework: ActionIcons,
                     width: 80
-
                 },
                 {
                     headerName: "SL No",
@@ -56,12 +60,10 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                     width: 50
                 },
                 {
-
                     headerName: "File Name",
                     field: "fileName",
                 },
                 {
-
                     headerName: "Uploaded Date",
                     field: "updatedDate",
                     width: 100
@@ -145,7 +147,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                         );
 
                 }
-                
+
                 if (fileExists) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
@@ -240,7 +242,6 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         }
     }
     save() {
-
         if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
             this.warningMessage = true;
         }
