@@ -262,7 +262,7 @@ export class SmartTableFramework implements OnChanges {
         }
         if(this.settings.hasOwnProperty('sort')){
           //TODO implement in a generic way
-             this.queryParameters.addSort(this.settings['sort'][0]['headingName'],SortType.DESC);
+             this.queryParameters.addSort(this.settings['sort'][0]['headingName'],this.settings['sort'][0]['sort']);
         }
         //Configuring tool tip for header and data
         this.settings['columnsettings'].map(function (item) {

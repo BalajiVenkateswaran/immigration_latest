@@ -4,6 +4,7 @@ import { MenuComponent } from '../../../common/menu/menu.component';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { PetitionsService } from "./petitions.service";
 import { Router } from '@angular/router';
+import {SortType} from "../../../framework/smarttable/types/query-parameters";
 
 @Component({
     selector: 'app-petitions',
@@ -41,8 +42,7 @@ export class PetitionsComponent implements OnInit {
             }],
             'sort' : [{
                 headingName: "lastUpdate",
-                headerName: "Updated On",
-                sort: "desc"
+                sort: SortType.DESC
             }],
             'filter' : {
                 types : [{
