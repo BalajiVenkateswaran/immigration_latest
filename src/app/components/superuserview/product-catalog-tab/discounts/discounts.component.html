@@ -7,12 +7,12 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Discounts</h2>
-        <smart-table class="acctabprodcatDiscounts" [settings]="settings" [data]="data" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)"></smart-table>
+        <smart-table class="acctabprodcatDiscounts" [settings]="settings" [data]="data" [paginationData]="paginationData" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)" (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
-<div class="table-data-forms" *ngIf="viewDiscountPopup">
-    <div class="modal-dialog" ngDraggable style="margin-top:7% !important;">
+<div class="table-data-forms" ngDraggable *ngIf="viewDiscountPopup">
+    <div class="modal-dialog"  style="margin-top:7% !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>

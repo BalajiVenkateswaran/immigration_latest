@@ -1,5 +1,5 @@
 import { RestService } from '../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ProductCatalogProductService {
@@ -16,10 +16,13 @@ export class ProductCatalogProductService {
         };
         return this.restService.putData("/superuser/products", req);
     }
-    public editProducts(products){
-        var req={
-            "product":products
+    public editProducts(products) {
+        var req = {
+            "product": products
         }
-        return this.restService.putData("/superuser/products",req)
+        return this.restService.putData("/superuser/products", req)
+    }
+    public getProductDetailsWithQueryparams(queryParams) {
+        return this.restService.getData("/superuser/products"+queryParams);
     }
 }

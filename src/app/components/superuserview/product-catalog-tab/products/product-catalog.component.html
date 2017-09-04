@@ -6,14 +6,14 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Products</h2>
-        <smart-table class="acctabprodcatProducts" [settings]="settings" [data]="data"
-                     (onAddClick)="addProducts($event)" (onRowClick)="viewDetails($event)" ></smart-table>
+        <smart-table class="acctabprodcatProducts" [settings]="settings" [data]="data"  [paginationData]="paginationData" 
+                     (onAddClick)="addProducts($event)" (onRowClick)="viewDetails($event)" (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
 
-<div *ngIf="viewPopup">
-    <div class="modal-dialog" ngDraggable style="margin-top:7% !important;">
+<div *ngIf="viewPopup" ngDraggable>
+    <div class="modal-dialog"  style="margin-top:7% !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
