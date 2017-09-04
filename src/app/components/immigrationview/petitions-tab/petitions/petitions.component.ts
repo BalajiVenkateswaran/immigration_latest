@@ -78,6 +78,17 @@ export class PetitionsComponent implements OnInit {
                 {
                     headerName: "Status",
                     field: "status",
+                    cellStyle:function(params){
+                        if(params.value === 'M F D'){
+                            return {
+                                backgroundColor:'red'
+                            };
+                            
+                        }
+                        else{
+                                return null;
+                            }
+                    }
                 },
                 {
                     headerName: "Final Action",

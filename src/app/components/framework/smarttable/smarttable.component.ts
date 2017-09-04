@@ -138,6 +138,7 @@ export class SmartTableFramework implements OnChanges {
         this.queryParameters.filter.splice(index,1);
         this.queryParameters.setPagination(this.pageSize,0);
         this.itemStartIndex = 1;
+        this.pageNumber=0;
         this.invokeResource();
     }
     onPageSizeChanged(newPageSize) {
@@ -262,7 +263,10 @@ export class SmartTableFramework implements OnChanges {
         }
         if(this.settings.hasOwnProperty('sort')){
           //TODO implement in a generic way
-             this.queryParameters.addSort(this.settings['sort'][0]['headingName'],this.settings['sort'][0]['sort']);
+          for(var item of this.settings['sort']){
+              this.queryParameters.addSort(item.headingName,item.sort);
+          }
+             /*this.queryParameters.addSort(this.settings['sort'][0]['headingName'],this.settings['sort'][0]['sort']);*/
         }
         //Configuring tool tip for header and data
         this.settings['columnsettings'].map(function (item) {
