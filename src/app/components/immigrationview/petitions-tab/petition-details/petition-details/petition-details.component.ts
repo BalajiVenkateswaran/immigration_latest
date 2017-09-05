@@ -1,16 +1,13 @@
-import {Component, OnInit}from '@angular/core';
-import {NgbModule}from '@ng-bootstrap/ng-bootstrap';
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 
-import{ImmigrationViewPetitionInformation}from'../../../../../models/ImmigrationViewPetitionInformation';
-import {AppService}from '../../../../../services/app.service';
-import {PetitionDetailsService}from "./petition-details.service";
-import {IhDateUtil} from '../../../../framework/utils/date.component';
-export interface formControl {
-name: string;
-value: FormControl;
-}
+import { ImmigrationViewPetitionInformation } from '../../../../../models/ImmigrationViewPetitionInformation';
+import { AppService } from '../../../../../services/app.service';
+import { PetitionDetailsService } from "./petition-details.service";
+import { IhDateUtil } from '../../../../framework/utils/date.component';
+
 
 @Component({
     selector: 'app-petition-details',
@@ -18,69 +15,62 @@ value: FormControl;
     styleUrls: ['./petition-details.component.sass']
 })
 export class PetitionDetailsComponent implements OnInit {
-    sfmpi: boolean = false;
-    sfmRI: boolean = false;
-    private allPetitionTypesAndSubTypes;
-    private allSubTypes = {};
-    private petitionDetails: any = {};
-    petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
-    private notes: string;
-    private receiptInfo: any = {};
-    private petitionAdditionalDetails: any = {};
-    private lcaInfo: any = {};
-    private sponsorInfo: any = {};
-    private sponsorInfoAddress: any = {};
-    public datePickerOptions=IhDateUtil.datePickerOptions;
-    //Profile section variables
-    isPetitionInformationEdit;
     isNotesEdit;
+    private users;
+    private notes: string;
+    isPetitionInformationEdit;
+    private allPetitionTypesAndSubTypes;
+    private petitionStages;
+    private assignedToName;
+    private backendLCAInfo;
+    private backendReceiptInfo;
+    private beforeCancelSponsor;
+    private beforeCancelPetition;
+    public orgs: any = [];
     private status: any[];
-    private finalStatus: any[] = [
-      {name: 'Pending', value: 'Pending'},
-      { name: 'Approved', value: 'Approved'},
-      { name: 'Denied', value: 'Denied'},
-      { name: 'Withdrawn', value: 'Withdrawn'},
-      { name: 'Rejected', value: 'Rejected'}
-    ];
     private receiptNumber: any[];
     public delegatedOrgsList: any[];
-    isLCAInfoEdit: boolean = true;
-    isDelegatedOrgsEdit: boolean = true;
-    isReceiptInfoEdit: boolean = true;
-    isAdditionalDetailsEdit: boolean = true;
-    isSponsorInfoEdit: boolean = true;
-    private defaultSelected: string;
-    private startDate;
-    private deniedDate;
-    private withdrawDate;
+    private startDate: string;
+    private deniedDate: string;
+    private withdrawDate: string;
+    private assignedDate: string;
     private approvedDate: string;
     private validThruDate: string;
-    private assignedDate: string;
-    private effectiveOn:string;
+    private effectiveOn: string;
     private effectiveTill: string;
-    private rejectedDate:string;
+    private rejectedDate: string;
     private receiptDate: string;
     private shippingDate: string;
     private receiptNoticeDate: string;
     private approvedOn: string;
     private validFrom: string;
     private expiresOn: string;
+    private defaultSelected: string;
     private approvalReceivedOn: string;
     private sentToGovAgencyOn: string;
-    private backendLCAInfo;
-    private backendReceiptInfo;
-    private beforeCancelPetition;
-    private beforeCancelSponsor;
-    private petitionStages;
-    private users;
-    private assignedToName;
-    public orgs: any = [];
-
+    sfmpi: boolean = false;
+    sfmRI: boolean = false;
+    private petitionDetails: any = {};
+    private lcaInfo: any = {};
+    private sponsorInfo: any = {};
+    private receiptInfo: any = {};
+    private sponsorInfoAddress: any = {};
+    private petitionAdditionalDetails: any = {};
+    public datePickerOptions = IhDateUtil.datePickerOptions;
+    isLCAInfoEdit: boolean = true;
+    isReceiptInfoEdit: boolean = true;
+    isSponsorInfoEdit: boolean = true;
+    isDelegatedOrgsEdit: boolean = true;
+    isAdditionalDetailsEdit: boolean = true;
+    private finalStatus: any[] = [
+        { name: 'Pending', value: 'Pending' },
+        { name: 'Approved', value: 'Approved' },
+        { name: 'Denied', value: 'Denied' },
+        { name: 'Withdrawn', value: 'Withdrawn' },
+        { name: 'Rejected', value: 'Rejected' }
+    ];
+    petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
     constructor(public appService: AppService, private petitionDetailsService: PetitionDetailsService) {
-    }
-
-    highlightSBLink(link) {
-        this.appService.currentSBLink = link;
     }
     ngOnInit() {
         this.appService.showSideBarMenu("immigrationview-petition", "petitions");
@@ -89,9 +79,8 @@ export class PetitionDetailsComponent implements OnInit {
                 if (res['petitionInfo'] != undefined) {
                     this.petitionDetails = res['petitionInfo'];
                     this.appService.petitionDetails = res['petitionInfo']['name'];
-                    this.mapToPetitionInformation();
+                    this.petitionInformation = this.petitionDetails;
                     //TODO - Set client first name and last name to appService
-                    this.notes = this.petitionDetails['notes'];
                 }
                 if (res['receiptInfo'] != undefined) {
                     this.receiptInfo = res['receiptInfo'];
@@ -120,7 +109,7 @@ export class PetitionDetailsComponent implements OnInit {
                 this.startDate = this.petitionDetails.startDate;
                 this.deniedDate = this.petitionDetails.deniedDate;
                 this.withdrawDate = this.petitionDetails.withdrawDate;
-                this.rejectedDate=this.petitionDetails.rejectedDate;
+                this.rejectedDate = this.petitionDetails.rejectedDate;
                 this.approvedDate = this.lcaInfo.approvedDate;
                 this.assignedDate = this.lcaInfo.assignedDate;
                 this.validThruDate = this.lcaInfo.validThruDate;
@@ -134,19 +123,19 @@ export class PetitionDetailsComponent implements OnInit {
                 this.approvalReceivedOn = this.receiptInfo.approvalReceivedOn;
                 this.sentToGovAgencyOn = this.receiptInfo.sentToGovAgencyOn;
                 if (res['petitionTypeId'] != undefined) {
-                    this.petitionDetailsService.getPetitionStages(this.appService.user.accountId,res['petitionTypeId'])
+                    this.petitionDetailsService.getPetitionStages(this.appService.user.accountId, res['petitionTypeId'])
                         .subscribe((res) => {
-                        this.petitionStages = res['petitionStageList'];
+                            this.petitionStages = res['petitionStageList'];
                         });
-                 }
+                }
                 this.petitionDetailsService
                     .getUsersForAccount(this.appService.user.accountId)
                     .subscribe((res) => {
-                      this.users = res['users'];
-                      this.users.filter(user => {
-                      if(user.emailId == this.petitionDetails['assignedTo'])
-                          this.assignedToName =  user.firstName +', '+user.lastName;
-                          });
+                        this.users = res['users'];
+                        this.users.filter(user => {
+                            if (user.emailId == this.petitionDetails['assignedTo'])
+                                this.assignedToName = user.firstName + ', ' + user.lastName;
+                        });
                     });
             });
         this.getPetionDelOrgs();
@@ -170,6 +159,10 @@ export class PetitionDetailsComponent implements OnInit {
                 this.allPetitionTypesAndSubTypes = res['petitionTypes'];
             });
     }
+    highlightSBLink(link) {
+        this.appService.currentSBLink = link;
+    }
+
     getPetionDelOrgs() {
         this.petitionDetailsService.getDelegatedOrgs(this.appService.user.accountId, this.appService.petitionId).subscribe((res) => {
             if (res['orgs'] != undefined) {
@@ -179,49 +172,57 @@ export class PetitionDetailsComponent implements OnInit {
     }
     sendchecklist() {
         this.petitionDetailsService.sendChecklist(this.appService.user.accountId, this.appService.petitionId).subscribe((res) => {
-            console.log(res);
+    
         });
     }
 
     //is edit function for read only
-    editPetitionInfoForm() {
+    onEditPetitionInfoClick() {
         this.beforeCancelPetition = (<any>Object).assign({}, this.petitionInformation);
-        this.startDate = this.petitionDetails.startDate;
-        this.deniedDate = this.petitionDetails.deniedDate;
-        this.withdrawDate = this.petitionDetails.withdrawDate;
-        this.rejectedDate=this.petitionDetails.rejectedDate;
+        this.startDate = this.petitionInformation.startDate;
+        this.deniedDate = this.petitionInformation.deniedDate;
+        this.withdrawDate = this.petitionInformation.withdrawDate;
+        this.rejectedDate = this.petitionInformation.rejectedDate;
         this.petitionInformation.currentStage = this.petitionDetails.currentStageId;
         this.petitionInformation.markForDeletion = this.petitionInformation.markForDeletion;
         this.isPetitionInformationEdit = !this.isPetitionInformationEdit;
     }
 
     //cancel button function
-    cancelPetitionInfoEdit() {
+    onCancelPetitionInfoClick() {
         this.sfmpi = false;
         this.petitionInformation = this.beforeCancelPetition;
-        this.petitionInformation.startDate = this.petitionDetails.startDate;
-        this.petitionInformation.deniedDate = this.petitionDetails.deniedDate;
-        this.petitionInformation.withdrawDate = this.petitionDetails.startDate;
-        this.petitionInformation.rejectedDate = this.petitionDetails.rejectedDate;
+        if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
+            this.petitionInformation.startDate = this.petitionDetails.startDate.formatted;   
+        }
+        if (this.petitionDetails['deniedDate'] && this.petitionDetails['deniedDate']['formatted']) {
+            this.petitionInformation.deniedDate = this.petitionDetails.deniedDate.formatted;   
+        }
+        if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
+            this.petitionInformation.withdrawDate = this.petitionDetails.withdrawDate.formatted;   
+        }
+        if (this.petitionDetails['rejectedDate'] && this.petitionDetails['rejectedDate']['formatted']) {
+            this.petitionInformation.rejectedDate = this.petitionDetails.rejectedDate.formatted;   
+        }
         this.isPetitionInformationEdit = !this.isPetitionInformationEdit;
     }
 
     //Save Client Details
-    savePetitionInformation() {
+    onSavePetitionInfoClick() {
 
         this.petitionDetails['petitionId'] = this.appService.petitionId;
-        this.mapFromPetitionInformation();
+        this.petitionDetails=this.petitionInformation;
         if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
-            this.petitionDetails['startDate'] = this.petitionDetails['startDate']['formatted'];
+            this.petitionInformation['startDate'] = this.petitionDetails['startDate']['formatted'];
         }
         if (this.petitionDetails['deniedDate'] && this.petitionDetails['deniedDate']['formatted']) {
-            this.petitionDetails['deniedDate'] = this.petitionDetails['deniedDate']['formatted'];
+            this.petitionInformation['deniedDate'] = this.petitionDetails['deniedDate']['formatted'];
         }
         if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
-            this.petitionDetails['withdrawDate'] = this.petitionDetails['withdrawDate']['formatted'];
+            this.petitionInformation['withdrawDate'] = this.petitionDetails['withdrawDate']['formatted'];
         }
         if (this.petitionDetails['rejectedDate'] && this.petitionDetails['rejectedDate']['formatted']) {
-            this.petitionDetails['rejectedDate'] = this.petitionDetails['rejectedDate']['formatted'];
+            this.petitionInformation['rejectedDate'] = this.petitionDetails['rejectedDate']['formatted'];
         }
         if (this.petitionDetails['markForDeletion'] == true) {
             this.petitionDetails['status'] == "MFD";
@@ -243,81 +244,13 @@ export class PetitionDetailsComponent implements OnInit {
                                         this.assignedToName = user.firstName + ', ' + user.lastName;
                                 });
                             });
-                        this.mapToPetitionInformation();
+                        this.petitionInformation = this.petitionDetails;
 
                     }
                 });
         }
     }
-
-    mapToPetitionInformation() {
-        this.petitionInformation.name = this.petitionDetails['name'];
-        this.petitionInformation.description = this.petitionDetails['description'];
-        this.petitionInformation.fileNumber = this.petitionDetails['fileNumber'];
-        this.petitionInformation.startDate = this.petitionDetails['startDate'];
-        this.petitionInformation.status = this.petitionDetails['status'];
-        this.petitionInformation.tag = this.petitionDetails['tag'];
-        this.petitionInformation.currentStage = this.petitionDetails['currentStage'];
-        this.petitionInformation.nextStage = this.petitionDetails['nextStage'];
-        this.petitionInformation.deniedDate = this.petitionDetails['deniedDate'];
-        this.petitionInformation.withdrawDate = this.petitionDetails['withdrawDate'];
-        this.petitionInformation.rejectedDate = this.petitionDetails['rejectedDate'];
-        this.petitionInformation.assignedTo = this.petitionDetails['assignedTo'];
-        this.petitionInformation.createdBy = this.petitionDetails['createdByUserOn'];
-        this.petitionInformation.lastUpdatedBy = this.petitionDetails['lastUpdatedByUserOn'];
-        this.petitionInformation.markForDeletion = this.petitionDetails['markForDeletion'];
-        this.petitionInformation.deletedBy = this.petitionDetails['deletedBy'];
-        this.petitionInformation.deletedOn = this.petitionDetails['deletedByUserOn'];
-        this.petitionInformation.daysInCurrentStage = this.petitionDetails['daysInStage'];
-        this.petitionInformation.petitionType = this.petitionDetails['petitionType'];
-        this.petitionInformation.petitionSubType = this.petitionDetails['petitionSubType'];
-        this.petitionInformation.finalStatus = this.petitionDetails['finalStatus'];
-    }
-
-    mapFromPetitionInformation() {
-        this.petitionDetails['name'] = this.petitionInformation.name;
-        this.petitionDetails['description'] = this.petitionInformation.description;
-        this.petitionDetails['fileNumber'] = this.petitionInformation.fileNumber;
-        this.petitionDetails['startDate'] = this.petitionInformation.startDate;
-        this.petitionDetails['status'] = this.petitionInformation.status;
-        this.petitionDetails['tag'] = this.petitionInformation.tag;
-        this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
-        this.petitionDetails['nextStage'] = this.petitionInformation.nextStage;
-        this.petitionDetails['deniedDate'] = this.petitionInformation.deniedDate;
-        this.petitionDetails['withdrawDate'] = this.petitionInformation.rejectedDate;
-        this.petitionDetails['rejectedDate'] = this.petitionInformation.withdrawDate;
-        this.petitionDetails['assignedTo'] = this.petitionInformation.assignedTo;
-        this.petitionDetails['markForDeletion'] = this.petitionInformation.markForDeletion;
-        this.petitionDetails['deletedBy'] = this.petitionInformation.deletedBy;
-        this.petitionDetails['finalStatus'] = this.petitionInformation.finalStatus;
-    }
-
-    //is edit function for read only
-    editNotesForm() {
-        this.beforeCancelPetition = (<any>Object).assign({}, this.petitionDetails);
-        this.isNotesEdit = !this.isNotesEdit;
-    }
-
-    //cancel button function
-    cancelNotesEdit() {
-        this.petitionDetails = this.beforeCancelPetition;
-        this.isNotesEdit = !this.isNotesEdit;
-    }
-
-    //Save Client Details
-    saveNotes() {
-        this.petitionDetails['petitionId'] = this.appService.petitionId;
-        this.petitionDetails['notes'] = this.petitionDetails.notes;
-        this.petitionDetailsService.savePetitionDetails(this.petitionDetails,this.appService.user.userId)
-            .subscribe((res) => {
-                this.isNotesEdit = true;
-                if (res['petitionInfo'] != undefined) {
-                    this.notes = this.petitionDetails['notes'];
-                }
-            });
-    }
-
-    editReceiptInfoForm() {
+    onEditReceiptInfoClick() {
         this.backendReceiptInfo = (<any>Object).assign({}, this.receiptInfo);
         this.receiptDate = this.receiptInfo.receiptDate;
         this.receiptNoticeDate = this.receiptInfo.receiptNoticeDate;
@@ -337,7 +270,7 @@ export class PetitionDetailsComponent implements OnInit {
     }
 
     //cancel button function
-    cancelReceiptInfoEdit() {
+    onCancelReceiptInfoClick() {
         this.receiptInfo = this.backendReceiptInfo;
         if (this.receiptInfo['receiptDate'] && this.receiptInfo['receiptDate']['formatted']) {
             this.receiptInfo['receiptDate'] = this.receiptInfo['receiptDate']['formatted'];
@@ -364,7 +297,7 @@ export class PetitionDetailsComponent implements OnInit {
     }
 
     //Save Client Details
-    saveReceiptInformation() {
+    onSaveReceiptInfoClick() {
         this.receiptInfo.petitionId = this.appService.petitionId;
 
         if (this.receiptInfo['receiptDate'] && this.receiptInfo['receiptDate']['formatted']) {
@@ -392,9 +325,6 @@ export class PetitionDetailsComponent implements OnInit {
         this.receiptInfo['petitionId'] = this.appService.petitionId;
         this.receiptInfo['petitionReceiptId'] = this.receiptInfo['petitionReceiptId'];
 
-        //if (this.receiptInfo.showReceiptNumberToClient == '' || this.receiptInfo.showReceiptNumberToClient == null || this.receiptInfo.showReceiptNumberToClient==undefined) {
-        //    this.sfmRI = true;
-        //} 
         if (this.receiptInfo.showReceiptNumberToClient != 0 && this.receiptInfo.showReceiptNumberToClient != 1) {
             this.sfmRI = true;
         }
@@ -412,7 +342,7 @@ export class PetitionDetailsComponent implements OnInit {
 
     }
     //For LCA form Section
-    editLCAInfoForm() {
+    onEditLCAInfoClick() {
 
         this.backendLCAInfo = (<any>Object).assign({}, this.lcaInfo);
         this.approvedDate = this.lcaInfo.approvedDate;
@@ -425,7 +355,7 @@ export class PetitionDetailsComponent implements OnInit {
     }
 
     //cancel button function
-    cancelLCAInfoEdit() {
+    onCancelLCAInfoClick() {
         this.lcaInfo = this.backendLCAInfo;
         this.lcaInfo = this.backendLCAInfo;
         if (this.lcaInfo['approvedDate'] && this.lcaInfo['approvedDate']['formatted']) {
@@ -446,14 +376,14 @@ export class PetitionDetailsComponent implements OnInit {
 
         this.isLCAInfoEdit = !this.isLCAInfoEdit;
     }
-    saveLCAInforEidt() {
+    onSaveLCAInfoClick() {
         this.lcaInfo.petitionId = this.appService.petitionId;
 
-        if (this.lcaInfo['approvedDate'] && this.lcaInfo['approvedDate']['formatted'] ) {
+        if (this.lcaInfo['approvedDate'] && this.lcaInfo['approvedDate']['formatted']) {
             this.lcaInfo['approvedDate'] = this.lcaInfo['approvedDate']['formatted'];
         }
         if (this.lcaInfo['validThruDate'] && this.lcaInfo['validThruDate']['formatted']) {
-           this.lcaInfo['validThruDate'] = this.lcaInfo['validThruDate']['formatted'];
+            this.lcaInfo['validThruDate'] = this.lcaInfo['validThruDate']['formatted'];
         }
         if (this.lcaInfo['assignedDate'] && this.lcaInfo['assignedDate']['formatted']) {
             this.lcaInfo['assignedDate'] = this.lcaInfo['assignedDate']['formatted'];
@@ -475,17 +405,17 @@ export class PetitionDetailsComponent implements OnInit {
 
     }
     //For Sponsor Info On Form
-    editSponsorInfoForm() {
+    onEditSponsorInfoClick() {
         this.beforeCancelSponsor = (<any>Object).assign({}, this.sponsorInfo);
         this.isSponsorInfoEdit = !this.isSponsorInfoEdit;
     }
 
     //cancel button function
-    cancelSponsorInfoEdit() {
+    onCancelSponsorInfoClick() {
         this.sponsorInfo = this.beforeCancelSponsor;
         this.isSponsorInfoEdit = !this.isSponsorInfoEdit;
     }
-    saveSponsorInformation() {
+    onSaveSponsorInfoClick() {
 
         this.sponsorInfo.petitionId = this.appService.petitionId;
         if (this.sponsorInfoAddress != undefined) {
@@ -502,7 +432,7 @@ export class PetitionDetailsComponent implements OnInit {
     }
 
     //edit petitionAdditionalDetails Details
-    editAdditionalDetailsForm() {
+    onEditAdditionalDetailsClick() {
         this.backendReceiptInfo = (<any>Object).assign({}, this.petitionAdditionalDetails);
         this.receiptDate = this.petitionAdditionalDetails.receiptDate;
         this.receiptNoticeDate = this.petitionAdditionalDetails.receiptNoticeDate;
@@ -513,7 +443,7 @@ export class PetitionDetailsComponent implements OnInit {
     }
 
     //cancel button function
-    cancelAdditionalDetailsEdit() {
+    onCancelAdditionalDetailsClick() {
         this.petitionAdditionalDetails = this.backendReceiptInfo;
         if (this.petitionAdditionalDetails['shippingDate'] && this.petitionAdditionalDetails['shippingDate']['formatted']) {
             this.petitionAdditionalDetails['shippingDate'] = this.petitionAdditionalDetails['shippingDate']['formatted'];
@@ -522,7 +452,7 @@ export class PetitionDetailsComponent implements OnInit {
     }
 
     //Save petitionAdditionalDetails Details
-    saveAdditionalDetails() {
+    onSaveAdditionalDetailsClick() {
         this.petitionAdditionalDetails.petitionId = this.appService.petitionId;
 
         if (this.petitionAdditionalDetails['shippingDate'] && this.petitionAdditionalDetails['shippingDate']['formatted']) {
@@ -546,25 +476,25 @@ export class PetitionDetailsComponent implements OnInit {
     }
 
 
-    editdelOrgs() {
+    onEditDelegatedOrgsClick() {
         this.beforeCancelPetition = (<any>Object).assign({}, this.petitionDetails);
         this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
     }
 
     //cancel button function
-    canceldelOrgs() {
+    onCancelDelegatedOrgsClick() {
         this.petitionDetails = this.beforeCancelPetition;
         this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
     }
 
-    savedelOrgs() {
+    onSaveDelegatedOrgsClick() {
         this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
         for (var i = 0; i < this.delegatedOrgsList.length; i++) {
             if (this.delegatedOrgsList[i].petitionAssigned == true) {
                 this.orgs.push(this.delegatedOrgsList[i].orgId);
             }
         }
-        this.petitionDetailsService.saveDelegatedOrgs(this.orgs,this.appService.petitionId,this.appService.user.userId)
+        this.petitionDetailsService.saveDelegatedOrgs(this.orgs, this.appService.petitionId, this.appService.user.userId)
             .subscribe((res) => {
                 if (res['statusCode'] == "SUCCESS") {
                     this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;

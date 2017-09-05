@@ -183,6 +183,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
                         }
                         else{
                            this.getFormsData(); 
+                           this.dialogService.removeAll();
                         }    
                     }
 
