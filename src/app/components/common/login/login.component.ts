@@ -42,6 +42,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   public loginPopupForm: boolean;
   public userRoles: any = [];
   public forgotpwdsubmit: boolean = true;
+  private uiBuildNumber : string = "17.09.01";
   constructor(
     private router: Router,
     private appService: AppService,
@@ -116,6 +117,11 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     if (isValid) {
       this.loginservice.login(model).subscribe((res: any) => {
         console.log("Login User %o", res);
+        if(this.uiBuildNumber != res.uiBuildNumber){
+          //TODO - show popup saying reloading latest changes
+          window.location.reload(true);
+        }
+
         if (res.statusCode == "FAILURE") {
           this.message = res.statusDescription;
         } else {
@@ -137,7 +143,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
                 userRoles: res['userAccountRoleList']
               }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                  /*window.location.reload(true);*/
+
                 }
               });
               this.appService.user = res.user;
