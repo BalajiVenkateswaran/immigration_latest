@@ -9,7 +9,7 @@ import {PetitionDetailsComponent} from "./components/immigrationview/petitions-t
 import {NotesComponent} from "./components/immigrationview/petitions-tab/petition-details/notes/notes.component";
 import {FormsComponent} from "./components/immigrationview/petitions-tab/petition-details/forms/forms.component";
 import {OrganizationDocumentRepositoryComponent} from "./components/immigrationview/organization-tab/document-repository/document-repository.component";
-import {PetitionDocumentRepositoryComponent} from "./components/immigrationview/petitions-tab/petition-details/document-repository/document-repository.component";
+import {PetitionDocumentRepositoryComponent} from "./components/immigrationview/petitions-tab/petition-details/document-repository/petition-document-repository.component";
 import {ClientDocumentRepositoryComponent} from "./components/immigrationview/clients-tab/client-details/document-repository/document-repository.component";
 
 import {DependentDetailsComponent} from "./components/immigrationview/clients-tab/client-details/dependent-details/dependent-details.component";

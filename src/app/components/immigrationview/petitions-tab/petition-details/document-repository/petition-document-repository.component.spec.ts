@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PetitionDocumentRepositoryComponent } from './document-repository.component';
+import { PetitionDocumentRepositoryComponent } from './petition-document-repository.component';
 
 describe('PetitionDocumentRepositoryComponent', () => {
   let component: PetitionDocumentRepositoryComponent;

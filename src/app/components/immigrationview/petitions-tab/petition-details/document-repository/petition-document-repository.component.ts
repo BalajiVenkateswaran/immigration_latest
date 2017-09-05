@@ -20,8 +20,8 @@ export interface ConfirmModel {
 }
 @Component({
     selector: 'app-petition-details-document-repository',
-    templateUrl: './document-repository.component.html',
-    styleUrls: ['./document-repository.component.sass']
+    templateUrl: './petition-document-repository.component.html',
+    styleUrls: ['./petition-document-repository.component.sass']
 })
 export class PetitionDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public data;
