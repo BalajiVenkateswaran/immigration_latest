@@ -42,7 +42,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
     public editForms: boolean;
     public generateFormsPopup: boolean;
     public generateFormData: any = {};
-    public errorMessage:boolean=false;
+    public errorMessage: boolean = false;
     constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         this.settings = {
@@ -175,7 +175,7 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                             this.errorMessage=true;
                         }
                         else{
-                           
+                            this.dialogService.removeAll();
                                 this.getFormsData();
                            
                         }
