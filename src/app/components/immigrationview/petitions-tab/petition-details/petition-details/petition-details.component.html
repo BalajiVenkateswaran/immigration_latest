@@ -6,7 +6,7 @@
         <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h1>
 
         <h1 style="float:right;">{{petitionInformation.name}}</h1>
-        <!--<button type="submit" style="float:right;" value="Save" class="savebtn" (click)="sendchecklist()">Send Checklist</button>-->
+        <button type="submit" value="Save" class="sendchecklistbtn" (click)="sendchecklist()">Send Checklist</button>
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
