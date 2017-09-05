@@ -49,8 +49,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     private loginservice: loginService,
     public dialogService: DialogService,
     private headerService: HeaderService,
-    private manageAccountUserService: ManageAccountUserService,
-    private manageAccountPetitionStagesService: ManageAccountPetitionStagesService
+    private manageAccountUserService: ManageAccountUserService
   ) {
     super(dialogService);
     this.login = new FormGroup({
@@ -106,14 +105,8 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       }
     });
   }
-  getpetitontypes() {
-      this.manageAccountPetitionStagesService.getPetitionTypes().subscribe(
-          res => {
-              this.appService.petitionstageTypes = res['petitionTypes'];
-          });
-  }
+
   loginSubmit(model: User, isValid: boolean) {
-      this.getpetitontypes();
     if (isValid) {
       this.loginservice.login(model).subscribe((res: any) => {
         console.log("Login User %o", res);
