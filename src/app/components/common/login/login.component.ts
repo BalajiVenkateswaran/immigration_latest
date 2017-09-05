@@ -118,11 +118,15 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       this.loginservice.login(model).subscribe((res: any) => {
         console.log("Login User %o", res);
         if(this.uiBuildNumber != res.uiBuildNumber){
-          //TODO - show popup saying reloading latest changes
-          window.location.reload(true);
-        }
+          this.close();
+          this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Information',
+            message: 'TheImmigrationhub.com will be reloaded to get latest changes'
+          }).subscribe((isConfirmed) => {
+              window.location.reload(true);
+          });
 
-        if (res.statusCode == "FAILURE") {
+        } else if (res.statusCode == "FAILURE") {
           this.message = res.statusDescription;
         } else {
 
