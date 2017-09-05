@@ -1,25 +1,24 @@
-import { AppService } from '../../../../../services/app.service';
 import { Component, OnInit } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ImmigrationViewPetitionNotesService} from "./notes.service";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 
+import { AppService } from '../../../../../services/app.service';
+import {NotesService} from "./notes.service";
 
 @Component({
-    selector: 'app-petition-notes',
+    selector: 'app-petition-details-notes',
     templateUrl: './notes.component.html'
 })
-export class ImmigrationviewPetitionNotesComponent implements OnInit {
-    private notes: string;
-    private petitionDetails: any = {};
-    private beforeCancelPetition;
-    //Profile section variables
+export class NotesComponent implements OnInit {
     isNotesEdit;
+    private notes: string;
+    private beforeCancelPetition;
+    private petitionDetails: any = {};
+    //Profile section variables
+    
 
 
-    constructor(public appService: AppService, private petitionNotesService: ImmigrationViewPetitionNotesService) {
+    constructor(public appService: AppService, private petitionNotesService: NotesService) {
     }
 
     highlightSBLink(link) {

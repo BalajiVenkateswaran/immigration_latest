@@ -1,9 +1,6 @@
 import { Component, OnDestroy, EventEmitter, Output, Input } from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular/main';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
 
+import { ICellRendererAngularComp } from 'ag-grid-angular/main';
 @Component({
 
     template: `<button class="iportal-btn"   (click)="onGenerateFormClick()">Generate Form</button>`,
@@ -12,8 +9,6 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class GenerateFormButton implements ICellRendererAngularComp {
     public params: any;
-    public static onGenerateClick = new Subject<any>();
-    public generateDisable:boolean=false;
     agInit(params: any): void {
         this.params = params;
     }
@@ -25,7 +20,8 @@ export class GenerateFormButton implements ICellRendererAngularComp {
 
     }
     onGenerateFormClick(){
-        GenerateFormButton.onGenerateClick.next({'data':this.params.data,'generateFlag':true});
+        this.params.context.componentParent.onGenerateFormClick({ 'data': this.params.data});
+        
     }
 
 

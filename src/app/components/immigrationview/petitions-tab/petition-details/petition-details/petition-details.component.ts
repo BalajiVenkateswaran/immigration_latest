@@ -1,11 +1,11 @@
-import{ImmigrationViewPetitionInformation}from'../../../../../models/ImmigrationViewPetitionInformation';
-import {AppService}from '../../../../../services/app.service';
 import {Component, OnInit}from '@angular/core';
 import {NgbModule}from '@ng-bootstrap/ng-bootstrap';
-import {ImmigrationViewPetitionDetailsService}from "./petition-details.service";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
+
+import{ImmigrationViewPetitionInformation}from'../../../../../models/ImmigrationViewPetitionInformation';
+import {AppService}from '../../../../../services/app.service';
+import {PetitionDetailsService}from "./petition-details.service";
 import {IhDateUtil} from '../../../../framework/utils/date.component';
 export interface formControl {
 name: string;
@@ -17,7 +17,7 @@ value: FormControl;
     templateUrl: './petition-details.component.html',
     styleUrls: ['./petition-details.component.sass']
 })
-export class ImmigrationviewPetitionDetailsComponent implements OnInit {
+export class PetitionDetailsComponent implements OnInit {
     sfmpi: boolean = false;
     sfmRI: boolean = false;
     private allPetitionTypesAndSubTypes;
@@ -76,7 +76,7 @@ export class ImmigrationviewPetitionDetailsComponent implements OnInit {
     private assignedToName;
     public orgs: any = [];
 
-    constructor(public appService: AppService, private petitionDetailsService: ImmigrationViewPetitionDetailsService) {
+    constructor(public appService: AppService, private petitionDetailsService: PetitionDetailsService) {
     }
 
     highlightSBLink(link) {

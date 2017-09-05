@@ -1,9 +1,6 @@
 import { Component, OnDestroy, EventEmitter, Output, Input } from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular/main';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
 
+import { ICellRendererAngularComp } from 'ag-grid-angular/main';
 @Component({
 
     template: `<button class="iportal-btn"  [ngClass]="{'myclass':disableButton(),'iportal-btn':!disableButton()}"  [disabled]="disableButton()"
@@ -13,7 +10,6 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DownloadButton implements ICellRendererAngularComp {
     public params: any;
-    public static onDownloadClick = new Subject<any>();
     public downloadDisable:boolean=true;
     agInit(params: any): void {
         this.params = params;
@@ -23,10 +19,10 @@ export class DownloadButton implements ICellRendererAngularComp {
     }
     disableButton(){
         if(this.params.data.fileId){
-            this.downloadDisable=false;
+            this.downloadDisable = false;
         }
         else{
-            this.downloadDisable=true;
+            this.downloadDisable = true;
         }
         return this.downloadDisable;
     }
@@ -34,7 +30,8 @@ export class DownloadButton implements ICellRendererAngularComp {
 
     }
     onDonwloadClicked(){
-        DownloadButton.onDownloadClick.next({'data':this.params.data,'downloadFlag':true});
+        this.params.context.componentParent.onGenerateFormDownloadClick({ 'data': this.params.data});
+        
     }
 
 

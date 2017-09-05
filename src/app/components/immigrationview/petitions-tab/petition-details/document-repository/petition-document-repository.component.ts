@@ -1,13 +1,15 @@
-import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
 import { Component, OnInit } from '@angular/core';
-import { PetitionDocumentRepositoryService } from "./document-repository.service";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import * as FileSaver from 'file-saver';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+
+import { AppService } from '../../../../../services/app.service';
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
+import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
+import { PetitionDocumentRepositoryService } from "./petition-document-repository.service";
 import {SortType} from "../../../../framework/smarttable/types/query-parameters";
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -17,21 +19,22 @@ export interface ConfirmModel {
 
 }
 @Component({
-    selector: 'app-document-repository',
+    selector: 'app-petition-details-document-repository',
     templateUrl: './document-repository.component.html',
     styleUrls: ['./document-repository.component.sass']
 })
 export class PetitionDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    warningMessage: boolean;
-    private message: string;
-    private accountId;
-    public settings;
     public data;
+    public settings;
     public getFiles;
     public fileName;
-    public getData: boolean = true;
+    private accountId;
+    warningMessage: boolean;
+    private message: string;
     public editFiles: boolean;
     public editFileObject: any = {};
+    public getData: boolean = true;
+    
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService,
        public dialogService: DialogService) {
         super(dialogService);
@@ -61,7 +64,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                 },
                 {
                     headerName: "File Name",
-                    field: "fileName",
+                    field: "fileName"
                 },
                 {
                     headerName: "Uploaded Date",
@@ -71,6 +74,9 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             ]
         }
     };
+    ngOnInit() {
+        this.getFilesList();
+    }
     onDeleteClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
@@ -179,9 +185,6 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             error => console.log("Error Downloading....");
         () => console.log("OK");
 
-    }
-    ngOnInit() {
-        this.getFilesList();
     }
     getFilesList() {
         this.petitiondocumentrepositoryService.getFile(this.appService.petitionId)

@@ -5,9 +5,9 @@ import {ModuleWithProviders} from "@angular/core";
 import {HeaderComponent} from "./components/common/header/header.component";
 import {MenuComponent} from "./components/common/menu/menu.component";
 import {FooterComponent} from "./components/common/footer/footer.component";
-import {ImmigrationviewPetitionDetailsComponent} from "./components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.component";
-import {ImmigrationviewPetitionNotesComponent} from "./components/immigrationview/petitions-tab/petition-details/notes/notes.component";
-import {ImmigrationviewFormsComponent} from "./components/immigrationview/petitions-tab/petition-details/forms/forms.component";
+import {PetitionDetailsComponent} from "./components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.component";
+import {NotesComponent} from "./components/immigrationview/petitions-tab/petition-details/notes/notes.component";
+import {FormsComponent} from "./components/immigrationview/petitions-tab/petition-details/forms/forms.component";
 import {OrganizationDocumentRepositoryComponent} from "./components/immigrationview/organization-tab/document-repository/document-repository.component";
 import {PetitionDocumentRepositoryComponent} from "./components/immigrationview/petitions-tab/petition-details/document-repository/document-repository.component";
 import {ClientDocumentRepositoryComponent} from "./components/immigrationview/clients-tab/client-details/document-repository/document-repository.component";
@@ -247,11 +247,11 @@ export const appRoutes: Routes = [
     },
     {
         path: 'immigrationview-petition-details',
-        component: ImmigrationviewPetitionDetailsComponent
+        component: PetitionDetailsComponent
     },
     {
         path: 'immigrationview-petition-notes',
-        component: ImmigrationviewPetitionNotesComponent
+        component: NotesComponent
     },
     {
         path: 'immigrationview-questionnaire',
@@ -263,7 +263,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'immigrationview-forms',
-        component: ImmigrationviewFormsComponent
+        component: FormsComponent
     },
     {
         path: 'immigrationview-organization-document-repository',
