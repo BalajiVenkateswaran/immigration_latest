@@ -3,6 +3,7 @@ import { HeaderService } from '../../../common/header/header.service';
 import {profileuserservice} from './user.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from "../../../common/login/login.component";
 
 
 @Component({
@@ -22,6 +23,7 @@ export class profileusercomponent implements OnInit {
   public beforeCancelorgid: any;
   public selectedorg: any = {};
   public showdefaultorg: boolean = true;
+  public uiBuildNumber = LoginComponent.uiBuildNumber;
   ngOnInit() {
     if (this.headerService.organizations == undefined) {
       this.showdefaultorg = false;

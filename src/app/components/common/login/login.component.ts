@@ -43,7 +43,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   public userRoles: any = [];
   public forgotpwdsubmit: boolean = true;
   //Build number format: yy.mm.2 digit build number
-  private uiBuildNumber : string = "17.09.02";
+  public static uiBuildNumber : string = "17.09.02";
   constructor(
     private router: Router,
     private appService: AppService,
@@ -111,7 +111,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     if (isValid) {
       this.loginservice.login(model).subscribe((res: any) => {
         console.log("Login User %o", res);
-        if(res.uiBuildNumber != null && this.uiBuildNumber != res.uiBuildNumber){
+        if(res.uiBuildNumber != null && LoginComponent.uiBuildNumber != res.uiBuildNumber){
           this.close();
           this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
