@@ -52,12 +52,12 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
           field: "receiptNumber"
         },
         {
-          headerName: "Receipt Date",
-          field: "receiptDate"
-        },
-        {
           headerName: "Status On I-797",
           field: "status"
+        },
+        {
+          headerName: "Receipt Date",
+          field: "receiptDate"
         },
         {
           headerName: "Approved on",
@@ -77,15 +77,15 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
       ]
     }
   }
-
+  ngOnInit() {
+    this.geti797Data();
+  }
   geti797Data() {
     this.i797HistoryService.getI797Details(this.appService.user.userId).subscribe((res) => {
       this.data = res['i797HistoryList'];
     });
   }
-  ngOnInit() {
-    this.geti797Data();
-  }
+  
   addFunction() {
     this.dialogService.addDialog(I797HistoryComponent, {
       showAddi797popup: true,

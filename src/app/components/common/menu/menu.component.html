@@ -130,7 +130,7 @@
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl *ngIf="appservice.usersList&&manageUser" [(ngModel)]="appservice.usersList">
-                <li *ngFor='let value of appservice.usersList'><a (click)="appservice.moveToPageWithParams('user-details',value);highlightSBLink(value.userId);" [ngClass]="[checkForCurrentSBLink(value.userId) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
+                <li *ngFor='let value of appservice.usersList'><a (click)="appservice.moveToPageWithParams('user-details',value);highlightSBLink(value.userId);userDetailsClick()" [ngClass]="[checkForCurrentSBLink(value.userId) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
             </ul>
         </li>
         <li>
