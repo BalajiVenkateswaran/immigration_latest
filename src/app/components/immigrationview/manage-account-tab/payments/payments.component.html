@@ -30,29 +30,25 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">Transaction Type:</div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">Transaction Type:</div>
+                                    <div class="col-md-3">
                                         <input type="text" *ngIf="false" [(ngModel)]="payment.transactionType" class="form-control">
                                         <span *ngIf="true">{{payment.transactionType}}</span>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">Transaction Id:</div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">Transaction Id:</div>
+                                    <div class="col-md-3">
                                         <input type="text" *ngIf="false" [(ngModel)]="payment.transactionId" class="form-control">
                                         <span *ngIf="true">{{payment.transactionId}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">Account Name:</div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">Account Name:</div>
+                                    <div class="col-md-3">
                                         <input type="text" *ngIf="false" [(ngModel)]="payment.accountName" class="form-control">
                                         <span *ngIf="true">{{payment.accountName}}</span>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">Account Number:</div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">Account Number:</div>
+                                    <div class="col-md-3">
                                         <input type="text" *ngIf="false" [(ngModel)]="payment.accountNumber" class="form-control">
                                         <span *ngIf="true">{{payment.accountNumber}}</span>
                                     </div>
@@ -63,6 +59,7 @@
                                         <input type="text" *ngIf="false" [(ngModel)]="payment.invoiceDate" class="form-control">
                                         <span *ngIf="true">{{payment.invoiceDate}}</span>
                                     </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">Invoice Number:</div>
@@ -79,29 +76,25 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">Bill Start Date:</div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">Bill Start Date:</div>
+                                    <div class="col-md-3">
                                         <input type="text" *ngIf="false" [disabled]="true" [(ngModel)]="payment.billStartDate" class="form-control">
                                         <span *ngIf="true">{{payment.billStartDate}}</span>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">Bill End Date:</div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">Bill End Date:</div>
+                                    <div class="col-md-3">
                                         <input type="text" *ngIf="false" [disabled]="true" [(ngModel)]="payment.billEndDate" class="form-control">
                                         <span *ngIf="true">{{payment.billEndDate}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">Payment Date:</div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">Payment Date:</div>
+                                    <div class="col-md-3">
                                         <input type="text" *ngIf="false" [disabled]="true" [(ngModel)]="payment.paymentDate" class="form-control">
                                         <span *ngIf="true">{{payment.paymentDate}}</span>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">Payment Amount:</div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">Payment Amount:</div>
+                                    <div class="col-md-3">
                                         <input type="text" *ngIf="false" [disabled]="true" [(ngModel)]="payment.paymentAmount" class="form-control">
                                         <span *ngIf="true">{{payment.paymentAmount}}</span>
                                     </div>
@@ -116,8 +109,8 @@
                                 <div class="row">
                                     <div class="col-md-4">Comments:</div>
                                     <div class="col-md-8">
-                                        <input type="text" *ngIf="false" [disabled]="true" [(ngModel)]="payment.comments" class="form-control">
-                                        <span *ngIf="true">{{payment.comments}}</span>
+                                        <textarea  *ngIf="false" [disabled]="true" [(ngModel)]="payment.comments" class="form-control"></textarea>
+                                        <span *ngIf="true" style="height:100px">{{payment.comments}}</span>
                                     </div>
                                 </div>
                                 <div class="row">

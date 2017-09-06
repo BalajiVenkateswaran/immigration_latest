@@ -9,7 +9,7 @@ import { QuestionnaireCommonService } from '../../immigrationview/petitions-tab/
     templateUrl: 'menu.component.html'
 })
 export class MenuComponent implements OnInit {
-    userDetailsClicked: boolean=true;
+    userDetailsClicked: boolean;
 
     sideBarMenu: string;
     private docsideBarMenu: any;
@@ -39,12 +39,11 @@ export class MenuComponent implements OnInit {
     ngDoCheck() {
         this.sideBarMenu = this.appservice.sideBarMenu;
         this.docsideBarMenu = this.appservice.docsideBarMenu;
-        if(this.manageUser && this.appservice.currentSBLink != "User" && !this.userDetailsClicked){
-            console.log(this.manageUser+'is set');
+        if(this.manageUser && this.appservice.currentSBLink != "User"){
             this.manageUser = false;
         }
-        if(!this.manageUser && !this.userDetailsClicked){
-            this.manageUser=true;
+        if(this.userDetailsClicked){
+            this.manageUser = true;
         }
     }
     //immigration sidebar 
@@ -64,7 +63,7 @@ export class MenuComponent implements OnInit {
 
     }
     userDetailsClick(){
-        this.userDetailsClicked=false;
+        this.userDetailsClicked = true;
     }
     petrportsclick() {
         this.immipetitionreports = !this.immipetitionreports;
