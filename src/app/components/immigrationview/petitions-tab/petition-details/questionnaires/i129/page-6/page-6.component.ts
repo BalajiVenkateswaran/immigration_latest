@@ -43,7 +43,9 @@ export class i129Page6Component implements OnInit {
     savequestionnaireInformation() {
         //this.isquestionnaireEdit = true;
         this.page6.pageNumber = 6;
-        this.page6['dateOfSignature'] = this.page6['dateOfSignature']['formatted'];
+        if(this.page6['dateOfSignature'] != null){
+          this.page6['dateOfSignature'] = this.page6['dateOfSignature']['formatted'];
+        }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 6, this.page6).subscribe(res => {
 
         })

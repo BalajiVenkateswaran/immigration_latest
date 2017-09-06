@@ -82,8 +82,12 @@ export class i129Page5Component implements OnInit {
     savequestionnaireInformation() {
         //this.isquestionnaireEdit = true;
         this.page5.pageNumber = 5;
-        this.page5['intendentEmploymentFrom'] = this.page5['intendentEmploymentFrom']['formatted'];
-        this.page5['intendentEmploymentTo'] = this.page5['intendentEmploymentTo']['formatted'];
+        if(this.page5['intendentEmploymentFrom'] != null){
+          this.page5['intendentEmploymentFrom'] = this.page5['intendentEmploymentFrom']['formatted'];
+        }
+        if(this.page5['intendentEmploymentTo'] != null){
+          this.page5['intendentEmploymentTo'] = this.page5['intendentEmploymentTo']['formatted'];
+        }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 5, this.page5).subscribe(res => {
 
         })
