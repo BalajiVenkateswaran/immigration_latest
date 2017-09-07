@@ -172,7 +172,7 @@ export class PetitionDetailsComponent implements OnInit {
     }
     sendchecklist() {
         this.petitionDetailsService.sendChecklist(this.appService.user.accountId, this.appService.petitionId).subscribe((res) => {
-    
+
         });
     }
 
@@ -193,16 +193,16 @@ export class PetitionDetailsComponent implements OnInit {
         this.sfmpi = false;
         this.petitionInformation = this.beforeCancelPetition;
         if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
-            this.petitionInformation.startDate = this.petitionDetails.startDate.formatted;   
+            this.petitionInformation.startDate = this.petitionDetails.startDate.formatted;
         }
         if (this.petitionDetails['deniedDate'] && this.petitionDetails['deniedDate']['formatted']) {
-            this.petitionInformation.deniedDate = this.petitionDetails.deniedDate.formatted;   
+            this.petitionInformation.deniedDate = this.petitionDetails.deniedDate.formatted;
         }
         if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
-            this.petitionInformation.withdrawDate = this.petitionDetails.withdrawDate.formatted;   
+            this.petitionInformation.withdrawDate = this.petitionDetails.withdrawDate.formatted;
         }
         if (this.petitionDetails['rejectedDate'] && this.petitionDetails['rejectedDate']['formatted']) {
-            this.petitionInformation.rejectedDate = this.petitionDetails.rejectedDate.formatted;   
+            this.petitionInformation.rejectedDate = this.petitionDetails.rejectedDate.formatted;
         }
         this.isPetitionInformationEdit = !this.isPetitionInformationEdit;
     }
@@ -212,6 +212,7 @@ export class PetitionDetailsComponent implements OnInit {
 
         this.petitionDetails['petitionId'] = this.appService.petitionId;
         this.petitionDetails=this.petitionInformation;
+        this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
         if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
             this.petitionInformation['startDate'] = this.petitionDetails['startDate']['formatted'];
         }

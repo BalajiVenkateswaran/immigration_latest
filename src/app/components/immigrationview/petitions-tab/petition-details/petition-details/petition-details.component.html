@@ -138,23 +138,23 @@
                             <div class="col-md-4"><label for="pi-lastupdatedby">Assigned To <span class="redstar">*</span></label></div>
                             <div class="col-md-8">
                                 <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.assignedTo" [ngClass]="petitionInformation.assignedTo == '' ? 'redborder': ''">
-                                    <option *ngFor="let user of appService.usersList;" [value]="user.emailId">{{user.emailId}}</option>
+                                    <option *ngFor="let user of appService.usersList;" [value]="user.emailId">{{user.firstName}}, {{user.lastName}}</option>
                                 </select>
-                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.assignedTo}}</span>
+                                 <span *ngIf="isPetitionInformationEdit==true">{{assignedToName}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Created By</label></div>
                             <div class="col-md-8">
-                                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.createdBy" disabled />
-                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.createdBy}}</span>
+                                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.createdByUserOn" disabled />
+                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.createdByUserOn}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Last Updated By</label></div>
                             <div class="col-md-8">
-                                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.lastUpdatedBy" disabled />
-                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.lastUpdatedBy}}</span>
+                                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.lastUpdatedByUserOn" disabled />
+                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.lastUpdatedByUserOn}}</span>
                             </div>
                         </div>
                         <div class="row">
@@ -170,8 +170,8 @@
                         <div class="row">
                             <div class="col-md-4"><label for="pi-markfordeletiondetailsbyuser">Mark For Deletion details</label></div>
                             <div class="col-md-8">
-                                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.deletedOn" disabled />
-                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deletedOn}}</span>
+                                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.deletedByUserOn" disabled />
+                                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deletedByUserOn}}</span>
                             </div>
                         </div>
                     <div class="row sfm" *ngIf="sfmpi">
