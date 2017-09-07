@@ -32,7 +32,6 @@ export class i129Page8Component implements OnInit {
         this.isquestionnaireEdit = true;
     }
     savequestionnaireInformation() {
-        //this.isquestionnaireEdit = true;
         this.page8.pageNumber = 8;
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 8, this.page8).subscribe(res => {
 

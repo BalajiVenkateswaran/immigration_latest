@@ -18,13 +18,13 @@
         <div class="clearfix"></div>
         <h2>Client</h2>
         <smart-table class="immiview-ques-client" [settings]="settings" [data]="data"
-                     (onAddClick)="addNewQuestionnaire($event)" (onRowClick)="editQuestionnaire($event)" (onDeleteClick)="deleteConfirm($event)" ></smart-table>
+                     (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditQuestionnaireClick($event)" (onDeleteClick)="onDeleteClientQuestionnaireClick($event)" ></smart-table>
         <button [(disabled)]="sendQuestionnaire" type="submit" class="submitbtn" (click)="sendQuestionnaireClient()" [ngClass]="{'myclass':sendQuestionnaire,'submitbtn':!sendQuestionnaire}">Send Questionnaire to client </button>
         <div class="clearfix"></div>
 
         <h2 style="margin-top: 20px;">Immigration Officer</h2>
-         <smart-table class="immiview-ques-emp" [settings]="settings1" [data]="officerData"
-                     (onAddClick)="addNewQuestionnaire($event)" (onRowClick)="editEmpQuestionnaire($event)" (onDeleteClick)="deleteEmpQuestionnaire($event)" ></smart-table>
+         <smart-table class="immiview-ques-emp" [settings]="settings1" [data]="employerData"
+                     (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditEmpQuestionnaireClick($event)" (onDeleteClick)="onDeleteEmpQuestionniareClick($event)" ></smart-table>
     </div>
 </div>
 
@@ -69,8 +69,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="questionnaireSave()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="onSaveQuestionnaireClick()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="onCancelQuestionnaireClick()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>
@@ -111,8 +111,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="empquestionnaireSave()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="empcancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="onSaveEmpQuestionniaredeleteQuestionnaire()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="onCancelEmpQuestionnaireClick()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

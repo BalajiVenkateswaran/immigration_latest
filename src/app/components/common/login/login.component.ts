@@ -42,14 +42,15 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   public loginPopupForm: boolean;
   public userRoles: any = [];
   public forgotpwdsubmit: boolean = true;
+  //Build number format: yy.mm.2 digit build number
+  public static uiBuildNumber : string = "17.09.02";
   constructor(
     private router: Router,
     private appService: AppService,
     private loginservice: loginService,
     public dialogService: DialogService,
     private headerService: HeaderService,
-    private manageAccountUserService: ManageAccountUserService,
-    private manageAccountPetitionStagesService: ManageAccountPetitionStagesService
+    private manageAccountUserService: ManageAccountUserService
   ) {
     super(dialogService);
     this.login = new FormGroup({
@@ -105,18 +106,21 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       }
     });
   }
-  getpetitontypes() {
-      this.manageAccountPetitionStagesService.getPetitionTypes().subscribe(
-          res => {
-              this.appService.petitionstageTypes = res['petitionTypes'];
-          });
-  }
+
   loginSubmit(model: User, isValid: boolean) {
-      this.getpetitontypes();
     if (isValid) {
       this.loginservice.login(model).subscribe((res: any) => {
         console.log("Login User %o", res);
-        if (res.statusCode == "FAILURE") {
+        if(res.uiBuildNumber != null && LoginComponent.uiBuildNumber != res.uiBuildNumber){
+          this.close();
+          this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Information',
+            message: 'Page will be reloaded to get the latest updates'
+          }).subscribe((isConfirmed) => {
+              window.location.reload(true);
+          });
+
+        } else if (res.statusCode == "FAILURE") {
           this.message = res.statusDescription;
         } else {
 
@@ -137,7 +141,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
                 userRoles: res['userAccountRoleList']
               }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                  /*window.location.reload(true);*/
+
                 }
               });
               this.appService.user = res.user;

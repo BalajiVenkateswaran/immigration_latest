@@ -2,7 +2,7 @@ import { RestService } from '../../../../../services/rest.service';
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class ImmigrationViewPetitionNotesService {
+export class NotesService {
 
     constructor(private restService: RestService) {
     }

@@ -1,12 +1,12 @@
-import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { Component, OnInit } from '@angular/core';
-import { FormsService } from "./forms.service";
-import { FormGroup, FormControl } from "@angular/forms";
-import { GenerateFormButton } from './GenerateFormButton';
-import { DownloadButton } from './DownloadButton';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import * as FileSaver from 'file-saver';
+
+import { AppService } from '../../../../../services/app.service';
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
+import { FormsService } from "./forms.service";
+import { GenerateFormButton } from './GenerateFormButton';
+import { DownloadButton } from './DownloadButton';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -17,32 +17,26 @@ export interface ConfirmModel {
     generateFormData: Object;
 }
 @Component({
-    selector: 'app-forms',
+    selector: 'app-petition-details-forms',
     templateUrl: './forms.component.html',
     styleUrls: ['./forms.component.scss']
 })
-export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+export class FormsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+    public data;
+    public settings;
+    private beforeCancelForm;
+    public beforeEdit: any;
     private message: string;
+    public editForms: boolean;
+    public generateFormsPopup: boolean;
     formsData: any = [];
     private rowEdit: boolean[] = [];
     private isEditForms: boolean[] = [];
-    private beforeCancelForm;
-    public settings;
-    public data;
-    public generateSubscription;
-    public downloadSubscription;
     public formsList: any = {};
     public getForms: boolean = true;
     public editFlag: boolean = true;
-    public beforeEdit: any;
-    public checked: boolean = false;
-    public downloadFlag: boolean = false;
-    public generateChecked:boolean=true;
-    public generateChecked1:boolean=false;
-    public editForms: boolean;
-    public generateFormsPopup: boolean;
     public generateFormData: any = {};
-    public errorMessage: boolean = false;
+    public errorMessage:boolean=false;
     constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         this.settings = {
@@ -50,6 +44,9 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
             'pagination': false,
             'isDeleteEnable': false,
             'rowHeight': 45,
+            'context': {
+                'componentParent': this
+            },
             'columnsettings': [
 
                 {
@@ -59,12 +56,12 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 {
 
                     headerName: "Questionnaire Name",
-                    field: "questionnaireName",
+                    field: "questionnaireName"
                 },
                 {
 
                     headerName: "Generate Form",
-                    cellRendererFramework: GenerateFormButton,
+                    cellRendererFramework: GenerateFormButton
                 },
                 {
 
@@ -79,47 +76,18 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 {
 
                     headerName: "Download Form",
-                    cellRendererFramework: DownloadButton,
+                    cellRendererFramework: DownloadButton
                 }
             ]
         }
-        this.generateSubscription = GenerateFormButton.onGenerateClick.subscribe(res => {
-            if (res) {
-                console.log("Generate Clicked");
-                if (res.hasOwnProperty('generateFlag')) {
-                    this.checked = true;
-                    this.generateChecked1=true;
-                 
-                }
-                else {
-                    this.checked = false;
-                }
-            }
-        })
-        this.downloadSubscription = DownloadButton.onDownloadClick.subscribe(res => {
-            if (res) {
-                console.log("Download Clicked");
-                if (res.hasOwnProperty('downloadFlag')) {
-                    this.checked = true;
-                    this.downloadFlag = true;
-               this.generateChecked=true;
-                  
-
-                }
-                else {
-                    this.checked = false;
-
-                }
-
-            }
-        })
-    }
-    highlightSBLink(link) {
-        this.appService.currentSBLink = link;
+        
     }
     ngOnInit() {
         this.getFormsData()
 
+    }
+    highlightSBLink(link) {
+        this.appService.currentSBLink = link;
     }
     getFormsData() {
         this.formsService.getForms(this.appService.petitionId).subscribe(
@@ -152,56 +120,16 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
         this.isEditForms[i] = !this.isEditForms[i];
     }
     generateForm(forms) {
-        var data;
-        var questionnaireId = forms.questionnaireId;
-        this.generateFormData.formName = forms.questionnaireName + "_" + forms.formName;
-        this.dialogService.addDialog(ImmigrationviewFormsComponent, {
-            getForms: false,
-            editForms: false,
-            generateFormsPopup: true,
-            title: 'Form Name',
-            generateFormData: this.generateFormData
-
-        }).subscribe((isConfirmed) => {
-            
-            if (isConfirmed) {
-                this.dialogService.addDialog(ConfirmComponent,{
-                                title:'Please Wait...',
-                                message:'This may take sometime',
-                            })
-                this.formsService.generateForms(questionnaireId,this.appService.user.accountId, forms).subscribe(
-                    res => {
-                        if(res['statusCode']=='FAILURE'){
-                            this.errorMessage=true;
-                        }
-                        else{
-                            this.dialogService.removeAll();
-                                this.getFormsData();
-                           
-                        }
-                         
-                    }
-
-                );
-            }
-            this.generateChecked1=false;
-        })
-
+        
     }
     editFormsData(event) {
-        if(event.data.fileId ){
-            this.generateChecked=false;
-        }
-        else{
-            this.generateChecked=true;
-        }
-        if (!this.generateChecked && !this.downloadFlag && !this.generateChecked1) {
+        if (event.colDef.headerName != 'Generate Form' && event.colDef.headerName !='Download Form') {
             this.editFlag = true;
             if (this.editFlag) {
                 this.beforeEdit = (<any>Object).assign({}, event.data);
             }
 
-            this.dialogService.addDialog(ImmigrationviewFormsComponent, {
+            this.dialogService.addDialog(FormsComponent, {
                 getForms: false,
                 editForms: true,
                 generateFormsPopup: false,
@@ -225,24 +153,52 @@ export class ImmigrationviewFormsComponent extends DialogComponent<ConfirmModel,
                 } else {
                     this.editFlag = false;
                 }
-                this.checked = false;
+            
             });
         }
-        if(this.downloadFlag){
-            this.downloadForm(event.data);
-        } 
-        if(this.generateChecked1){
-            this.generateForm(event.data);
-        }  
+        
        
     }
-    downloadForm(formData) {
-        if (formData.fileId) {
-            let fileName=formData.fileName;
-            this.formsService.downloadFile(formData.fileId).subscribe(data => this.downloadFiles(data,fileName)),
-                error => console.log("Error Downloading....");
+    onGenerateFormClick(event){
+        var questionnaireId = event.data.questionnaireId;
+        this.generateFormData.formName = event.data.questionnaireName + "_" + event.data.formName;
+        this.dialogService.addDialog(FormsComponent, {
+            getForms: false,
+            editForms: false,
+            generateFormsPopup: true,
+            title: 'Form Name',
+            generateFormData: this.generateFormData
+
+        }).subscribe((isConfirmed) => {
+            
+            if (isConfirmed) {
+                this.dialogService.addDialog(ConfirmComponent,{
+                                title:'Please Wait...',
+                                message:'This may take sometime',
+                            })
+                this.formsService.generateForms(questionnaireId,this.appService.user.accountId,event.data).subscribe(
+                    res => {
+                        if(res['statusCode'] == 'FAILURE'){
+                            this.errorMessage = true;
+                        }
+                        else{
+                           this.getFormsData(); 
+                           this.dialogService.removeAll();
+                        }    
+                    }
+
+                );
+            }
+            
+        })
+
+    }
+    onGenerateFormDownloadClick(event){
+          if (event.data.fileId) {
+            let fileName = event.data.fileName;
+            this.formsService.downloadFile(event.data.fileId).subscribe(data => this.downloadFiles(data,fileName)),
+            error => console.log("Error Downloading....");
             () => console.log("OK");
-             this.downloadFlag=false;
         }
     }
     downloadFiles(data: any, fileName) {

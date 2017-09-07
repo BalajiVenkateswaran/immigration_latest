@@ -16,7 +16,6 @@ export class PetitionsService {
   }
 
   public getUsersForAccount(accountId: string){
-           console.log("PetitionsService|usersForAssignedTo|accountId:%o", accountId);
            return this.restService.getData("/user/immigration/"+accountId);
       }
   public getPetitionsWithQueryParams(orgId:string,queryData){

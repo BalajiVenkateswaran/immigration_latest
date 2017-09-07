@@ -83,7 +83,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     }
     ngOnInit() {
         this.appService.showSideBarMenu("manageaccount", "manageaccount-user");
-        this.getManageUsers();
+        //this.getManageUsers();
 
     }
 
@@ -152,9 +152,10 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
 
 
     dataWithParameters(queryData) {
-      if(queryData){
+      if(queryData != undefined){
         this.queryParams=queryData;
+        this.getManageUsers();
       }
-      this.getManageUsers();
+      
     }
 }

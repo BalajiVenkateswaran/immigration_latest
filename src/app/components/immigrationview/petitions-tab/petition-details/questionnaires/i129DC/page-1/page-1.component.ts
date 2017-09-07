@@ -87,7 +87,6 @@ export class i129dcPage1Component implements OnInit {
     }
 
     ngOnInit() {
-        //this.isquestionnaireEdit = true;
         this.route.params.subscribe(params => {
             this.page1 = {
                 "employerInfo":{}
@@ -114,7 +113,6 @@ export class i129dcPage1Component implements OnInit {
         this.isquestionnaireEdit = true;
     }
     savequestionnaireInformation() {
-        //this.isquestionnaireEdit = true;
         this.page1.pageNumber = 19;
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 19, this.page1).subscribe(res => {
 

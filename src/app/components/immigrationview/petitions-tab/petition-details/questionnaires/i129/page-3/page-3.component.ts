@@ -109,10 +109,18 @@ export class i129Page3Component implements OnInit {
     }
     saveQuestionnaireInformation() {
         this.page3.pageNumber = 3;
-        this.page3['dateOfLastArrival'] = this.page3['dateOfLastArrival']['formatted'];
-        this.page3['passportIssueDate'] = this.page3['passportIssueDate']['formatted'];
-        this.page3['passportExpiryDate'] = this.page3['passportExpiryDate']['formatted'];
-        this.page3['dateStatusExpires'] = this.page3['dateStatusExpires']['formatted'];
+        if(this.page3['dateOfLastArrival'] != null){
+          this.page3['dateOfLastArrival'] = this.page3['dateOfLastArrival']['formatted'];
+        }
+        if(this.page3['passportIssueDate'] != null){
+          this.page3['passportIssueDate'] = this.page3['passportIssueDate']['formatted'];
+        }
+        if(this.page3['passportExpiryDate'] != null){
+          this.page3['passportExpiryDate'] = this.page3['passportExpiryDate']['formatted'];
+        }
+        if(this.page3['dateStatusExpires'] != null){
+          this.page3['dateStatusExpires'] = this.page3['dateStatusExpires']['formatted'];
+        }
 
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3, this.page3).subscribe(res => {
 

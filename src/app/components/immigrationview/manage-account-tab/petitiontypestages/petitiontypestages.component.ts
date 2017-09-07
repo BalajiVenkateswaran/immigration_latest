@@ -6,13 +6,14 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import {ManageAccountPetitionStagesService} from './petitiontypestages.service';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService } from "ng2-bootstrap-modal";
+import {ImmigrationViewPetitionsService} from "../../clients-tab/client-details/petitions/petitions.service";
 @Component({
     selector: 'app-manageaccount-petitiontypestages',
     templateUrl: './petitiontypestages.component.html',
     styleUrls: ['./petitiontypestages.component.sass']
 })
 export class ManageAccountPetitionTypeStagesComponent implements OnInit {
- 
+
 
     dragbox;
     setClickedRowstages: Function;
@@ -40,7 +41,8 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
     private selectedPetitionType: any = {};
 
 
-    constructor(private dragulaService: DragulaService, private manageAccountPetitionStagesService: ManageAccountPetitionStagesService, private appService: AppService, private dialogService: DialogService) {
+    constructor(private dragulaService: DragulaService, private manageAccountPetitionStagesService: ManageAccountPetitionStagesService, private appService: AppService, private dialogService: DialogService,
+                private immigrationViewPetitionsService: ImmigrationViewPetitionsService) {
         this.setClickedRowstages = function (selectedpetitionstages, index) {
             this.deletetrue = true;
             this.edittrue = true;
@@ -98,7 +100,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
         }
 
         this.saveOrder = function () {
-            
+
             for (var stageIndex in this.petitionStages) {
               var stage = this.petitionStages[stageIndex];
               stage['orderNo'] = stageIndex;
@@ -118,7 +120,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
                         this.addDeleteBtn = true;
                     }
                 });
-            
+
         }
         dragulaService.drag.subscribe((value) => {
             this.onDrag(value.slice(1));
@@ -143,13 +145,14 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
         this.addDeleteBtn = true;
         this.selectedIdx = "none";
         this.selectedIdxstage = "none";
-      
-        this.petitionTypes = this.appService.petitionstageTypes;
-                this.selectedPetitionType = this.petitionTypes[0];
-                this.getpetitionstages();
 
-      
-       
+        this.immigrationViewPetitionsService.getPetitionTypes().subscribe(
+          res => {
+            this.petitionTypes = res['petitionTypes'];
+            this.selectedPetitionType = this.petitionTypes[0];
+            this.getpetitionstages();
+          }
+        );
     }
 
     onClickOfPetitionType(petitionType,index) {
