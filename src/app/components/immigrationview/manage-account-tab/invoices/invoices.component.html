@@ -10,7 +10,7 @@
     </div>
 </div>
 <div *ngIf="viewPopup">
-    <div class="modal-dialog" ngDraggable>
+    <div class="modal-dialog" ngDraggable style="max-width:700px">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
@@ -21,67 +21,83 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12 addresbox box-shadow">
+                            <div class="col-md-6 addresbox box-shadow">
                                 <div class="row">
-                                    <div class="col-md-3">Invoice Number:</div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-5">Invoice Number:</div>
+                                    <div class="col-md-7">
                                         <input type="text" *ngIf="false" [disabled]="true" [(ngModel)]="invoice.invoiceNumber" class="form-control">
                                         <span *ngIf="true">{{invoice.invoiceNumber}}</span>
                                     </div>
-                                    <div class="col-md-3">Invoice Date:</div>
-                                    <div class="col-md-3">
-                                        <input type="text" *ngIf="false" [disabled]="true" [(ngModel)]="invoice.invoiceDate" class="form-control">
-                                        <span *ngIf="true">{{invoice.invoiceDate}}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
 
                                 </div>
+
                                 <div class="row">
-                                    <div class="col-md-6">Invoice Amount:</div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">Invoice Amount:</div>
+                                    <div class="col-md-7">
                                         <input type="text" *ngIf="false" [(ngModel)]="invoice.invoiceAmount" class="form-control">
                                         <span *ngIf="true">{{invoice.invoiceAmount}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">Account Name:</div>
-                                    <div class="col-md-3">
-                                        <input type="text" *ngIf="false" [(ngModel)]="invoice.accountName" class="form-control">
-                                        <span *ngIf="true">{{invoice.accountName}}</span>
-                                    </div>
-                                    <div class="col-md-3">Account Number:</div>
-                                    <div class="col-md-3">
+
+                                    <div class="col-md-5">Account Number:</div>
+                                    <div class="col-md-7">
                                         <input type="text" *ngIf="false" [(ngModel)]="invoice.accountNumber" class="form-control">
                                         <span *ngIf="true">{{invoice.accountNumber}}</span>
                                     </div>
+
                                 </div>
-                                
+
                                 <div class="row">
-                                    <div class="col-md-3">Bill Start Date:</div>
-                                    <div class="col-md-3">
-                                        <input type="text" *ngIf="false" [(ngModel)]="invoice.billStartDate" class="form-control">
-                                        <span *ngIf="true">{{invoice.billStartDate}}</span>
-                                    </div>
-                                    <div class="col-md-3">Bill End Date:</div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-5">Bill End Date:</div>
+                                    <div class="col-md-7">
                                         <input type="text" *ngIf="false" [(ngModel)]="invoice.billEndDate" class="form-control">
                                         <span *ngIf="true">{{invoice.billEndDate}}</span>
                                     </div>
                                 </div>
-                               
+
+
+                                <div class="row">
+                                    <div class="col-md-5">Comments:</div>
+                                    <div class="col-md-7">
+                                        <textarea *ngIf="false" [(ngModel)]="invoice.comments" class="form-control"></textarea>
+                                        <span style="height:80px" *ngIf="true">{{invoice.comments}}</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-6 addresbox box-shadow">
+                                <div class="row">
+                                    <div class="col-md-5">Invoice Date:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="false" [disabled]="true" [(ngModel)]="invoice.invoiceDate" class="form-control">
+                                        <span *ngIf="true">{{invoice.invoiceDate}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Account Name:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="false" [(ngModel)]="invoice.accountName" class="form-control">
+                                        <span *ngIf="true">{{invoice.accountName}}</span>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-5">Bill Start Date:</div>
+                                    <div class="col-md-7">
+                                        <input type="text" *ngIf="false" [(ngModel)]="invoice.billStartDate" class="form-control">
+                                        <span *ngIf="true">{{invoice.billStartDate}}</span>
+                                    </div>
+
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-5">Payment Status:</div>
                                     <div class="col-md-7">
                                         <input type="text" *ngIf="false" [(ngModel)]="invoice.paymentStatus" class="form-control">
                                         <span *ngIf="true">{{invoice.paymentStatus}}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Comments:</div>
-                                    <div class="col-md-7">
-                                        <textarea  *ngIf="false" [(ngModel)]="invoice.comments" class="form-control"></textarea>
-                                        <span style="height:80px" *ngIf="true">{{invoice.comments}}</span>
                                     </div>
                                 </div>
                                 <div class="row">

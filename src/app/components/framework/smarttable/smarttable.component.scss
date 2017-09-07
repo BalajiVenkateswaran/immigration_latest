@@ -251,23 +251,23 @@ $dateColumnWidth:110px;
 
 .manageaccUser {
     .ag-fresh .ag-ltr .ag-header-cell[title~="Actions"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
-        width:5% !important;
-        left:2% !important;
+        width:7% !important;
+        left:0% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
-        width:17% !important;
-        left:9% !important;
+        width:20% !important;
+        left:6% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
         width:19.5% !important;
         left:25% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="emailId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="emailId"] {
-        width:19% !important;
-        left:44% !important;
+        width:19.5% !important;
+        left:43.5% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="phoneNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phoneNumber"] {
-        width:20% !important;
+        width:19.5% !important;
         left:62% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="roleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="roleName"] {
@@ -1041,16 +1041,16 @@ $dateColumnWidth:110px;
 
 .immiview-managAcctab-shippingaddress {
     .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
-    width:5% !important;
+    width:12% !important;
     left:0% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="slNo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="slNo"] {
-    width:5% !important;
-    left:5% !important;
+    width:30% !important;
+    left:12% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="addressName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="addressName"] {
-    width:65% !important;
-    left:10% !important;
+    width:29% !important;
+    left:42% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="address"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="address"] {
     width:25% !important;
