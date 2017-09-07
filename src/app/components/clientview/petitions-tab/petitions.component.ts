@@ -8,6 +8,7 @@ import {ConfirmComponent} from '../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MoreDetails} from './MoreDetails';
 import { ClientViewPetitionsService } from './petitions.service';
+import {SortType} from "../../framework/smarttable/types/query-parameters";
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -22,6 +23,7 @@ export interface ConfirmModel {
 })
 
 export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+  public paginationData: any;
   private outlet: any = {
     breadcrumbs: null,
     header: 'header',
@@ -48,16 +50,22 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   public checked = false;
   public viewData;
   public viewSubscription;
+  public queryParameters;
   constructor(private router: Router, private appService: AppService, private clientviewpetitionsService: ClientViewPetitionsService, public dialogService: DialogService) {
     super(dialogService);
     if (this.appService.user) {
       this.user = this.appService.user;
     }
     this.settings = {
-      'pagination': false,
-      'isDeleteEnable': false,
-      'isAddButtonEnable': false,
-      'columnFilter': true,
+
+      "isAddButtonEnable": false,
+      "columnFilter": true,
+      "isDeleteEnable": false,
+      'customPanel': true,
+      'sort' : [{
+        headingName: "lastUpdate",
+        sort: SortType.DESC
+      }],
       'columnsettings': [
         {
           headerName: "Petition Name",
@@ -112,29 +120,47 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
 
     })
   }
+
+  ngOnInit() {
+    //this.getClientPetitionData();
+
+    this.appService.showSideBarMenu(null, "clientview-petitions");
+    this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
+  }
+
   ngOnDestroy() {
     this.viewSubscription.unsubscribe();
   }
 
-  getClientPetitionData() {
+  /*getClientPetitionData() {
     this.clientviewpetitionsService.getPetitions(this.appService.user.userId)
       .subscribe((res) => {
         this.clientviewpetitionList = res['petitions'];
         this.data = res['petitions'];
         console.log(this.clientviewpetitionList);
       });
-  }
-  ngOnInit() {
-    this.getClientPetitionData();
+  }*/
 
-    this.appService.showSideBarMenu(null, "clientview-petitions");
-    this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
-  }
   filterData(filterQueries) {
     this.clientviewpetitionsService.getPetitionsFilteredData(this.appService.user.userId, filterQueries).subscribe(res => {
       this.data = res['petitions'];
     })
   }
+
+  dataWithParameters(queryData) {
+    if(queryData){
+      this.queryParameters=queryData
+    }
+
+    this.clientviewpetitionsService.getPetitions(this.appService.user.userId, queryData)
+      .subscribe((res) => {
+        this.clientviewpetitionList = res['petitions'];
+        this.data = res['petitions'];
+        this.paginationData = res['pageMetadata'];
+      });
+  }
+
+
   viewAllColumns() {
     if (this.checked) {
       this.editFlag = true;
@@ -150,17 +176,10 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
 
       }).subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.clientviewpetitionsService.getPetitions(this.appService.cvpmore).subscribe((res) => {
-            if (res['statusCode'] == 'SUCCESS') {
-              this.getClientPetitionData();
-            }
-
-          });
+           this.dataWithParameters(this.queryParameters);
         }
       });
     }
-
-
   }
   cancel() {
     this.result = false;

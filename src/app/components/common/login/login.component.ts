@@ -43,7 +43,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   public userRoles: any = [];
   public forgotpwdsubmit: boolean = true;
   //Build number format: yy.mm.2 digit build number
-  public static uiBuildNumber : string = "17.09.02";
+  public static uiBuildNumber : string = "17.09.03";
   constructor(
     private router: Router,
     private appService: AppService,

@@ -1,7 +1,12 @@
 ﻿<div class="main-content" *ngIf="getClientviewPetitionData">
     <div class="table-data">
         <h2>Petitions</h2>
-        <smart-table class="clientViewPetitions" [settings]="settings" [data]="data" (onColumnFilterClick)="filterData($event)"></smart-table>
+        <smart-table class="clientViewPetitions"
+                   [settings]="settings"
+                   [data]="data"
+                   [paginationData]="paginationData"
+                   (onColumnFilterClick)="filterData($event)"
+                   (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
     </div>
 </div>
 <div *ngIf="showclientviewPetitionpopup">
