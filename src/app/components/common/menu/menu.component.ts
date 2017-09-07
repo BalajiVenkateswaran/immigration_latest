@@ -60,6 +60,7 @@ export class MenuComponent implements OnInit {
     }
     manageacntuserclick() {
           this.manageUser = !this.manageUser;
+          this.userDetailsClicked=false;
 
     }
     userDetailsClick(){

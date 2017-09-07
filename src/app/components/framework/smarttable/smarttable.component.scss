@@ -251,24 +251,24 @@ $dateColumnWidth:110px;
 
 .manageaccUser {
     .ag-fresh .ag-ltr .ag-header-cell[title~="Actions"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
-        width:7% !important;
+        width:7.5% !important;
         left:0% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
-        width:20% !important;
-        left:6% !important;
+        width:18.5% !important;
+        left:7.5% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
-        width:19.5% !important;
-        left:25% !important;
+        width:18.5% !important;
+        left:26% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="emailId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="emailId"] {
-        width:19.5% !important;
-        left:43.5% !important;
+        width:18.5% !important;
+        left:44.5% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="phoneNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phoneNumber"] {
-        width:19.5% !important;
-        left:62% !important;
+        width:18.5% !important;
+        left:63% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="roleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="roleName"] {
         width:19% !important;
@@ -592,40 +592,44 @@ $dateColumnWidth:110px;
     left:8% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
-    width:8% !important;
+    width:7% !important;
     left:16% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
     width:8% !important;
-    left:24% !important;
+    left:23% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="email"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="email"] {
-    width:12% !important;
-    left:32% !important;
+    width:7% !important;
+    left:31% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="phone"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phone"] {
     width:8% !important;
-    left:44% !important;
+    left:38% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
     width:8% !important;
-    left:52% !important;
+    left:46% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="orgCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgCount"] {
+    width:8% !important;
+    left:54% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="clientCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientCount"] {
     width:8% !important;
-    left:60% !important;
+    left:62% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionCount"] {
     width:8% !important;
-    left:68% !important;
+    left:70% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="creationOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="creationOn"] {
-    width:8% !important;
-    left:76% !important;
+    width:6.5% !important;
+    left:78% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="lastPaymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastPaymentStatus"] {
     width:8% !important;
-    left:84% !important;
+    left:84.5% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="storageType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="storageType"] {
     width:8% !important;
