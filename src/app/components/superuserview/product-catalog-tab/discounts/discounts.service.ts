@@ -7,7 +7,7 @@ export class ProductCatalogDiscountService {
     constructor(private restService: RestService) {
 
     }
-    public getDiscounts(accountId: string) {
+    public getDiscounts() {
         return this.restService.getData("/superuser/discounts");
     }
     public saveDiscountDetails(discounts: any) {
@@ -21,5 +21,8 @@ export class ProductCatalogDiscountService {
             "discount":discounts
         }
         return this.restService.putData("/superuser/discounts",req);
+    }
+    public getDiscountDetailsWithQueryparams(queryParams){
+        return this.restService.getData("/superuser/discounts"+queryParams);
     }
 }

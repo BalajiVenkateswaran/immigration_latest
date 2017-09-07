@@ -1,9 +1,9 @@
-import {AppService} from '../../../../services/app.service';
-import {MenuComponent} from '../../../common/menu/menu.component';
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {ProductCatalogProductService} from './product-catalog.service';
+import { AppService } from '../../../../services/app.service';
+import { MenuComponent } from '../../../common/menu/menu.component';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { ProductCatalogProductService } from './product-catalog.service';
 
 export interface ConfirmModel {
   title: string;
@@ -21,49 +21,41 @@ export interface ConfirmModel {
   styleUrls: ['./product-catalog.component.sass']
 })
 export class SuperuserviewProductcatalogComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+  queryParameters: any;
+
+  public data;
+  public settings;
   public addPopup;
-  public products: any;
-  public addProduct: any = {};
-  private rowEdit: boolean[] = [];
-  public rowData: any;
-  public viewDetailsSection: boolean = false;
-  public getData: boolean = true;
+  public typeValues;
+  public paginationData;
+  public beforeEdit: any;
   public viewPopup: boolean;
   public product: any = {};
-  public isEditProducts: boolean = true;
+  public addProduct: any = {};
+  public getData: boolean = true;
   public editFlag: boolean = true;
-  public beforeEdit: any;
+  public isEditProducts: boolean = true;
   public warningMessage: boolean = false;
-  public settings;
-  public data;
-  public typeValues;
-  ngOnInit() {
-    this.menuComponent.highlightSBLink('Products');
-    this.appService.showSideBarMenu("superuserview-product", "ProductCatalog");
 
-  }
-  getProducts() {
-    this.productCatalogProductService.getProductDetails().subscribe(
-      res => {
-        if (res['statusCode'] == 'SUCCESS') {
-          this.products = res['products'];
-          this.data = res['products'];
-        }
-      }
-    )
-  }
   constructor(public appService: AppService, public dialogService: DialogService, public productCatalogProductService: ProductCatalogProductService, private menuComponent: MenuComponent) {
     super(dialogService);
     this.settings = {
       'isDeleteEnable': false,
+      'customPanel': true,
+      'defaultFilter': [{
+        headingName: "status",
+        headerName: "Status",
+        filterValue: "Active"
+      }
+      ],
       'columnsettings': [
         {
           headerName: "Name",
-          field: "name",
+          field: "name"
         },
         {
           headerName: "Code",
-          field: "code",
+          field: "code"
         },
         {
           headerName: "Max Users",
@@ -121,8 +113,22 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         "name": "Storage Add On"
       }
     ]
-    this.getProducts();
+    this.reloadData();
   }
+  ngOnInit() {
+    this.menuComponent.highlightSBLink('Products');
+    this.appService.showSideBarMenu("superuserview-product", "ProductCatalog");
+
+  }
+  /*reloadData() {
+    this.productCatalogProductService.getProductDetails().subscribe(
+      res => {
+        if (res['statusCode'] == 'SUCCESS') {
+          this.data = res['products'];
+        }
+      }
+    )
+  }*/
   viewDetails(event) {
     this.editFlag = true;
     if (this.editFlag) {
@@ -140,7 +146,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
       if (isConfirmed) {
         this.productCatalogProductService.editProducts(this.appService.addUsers).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
-            this.getProducts();
+            this.reloadData();
 
           }
         });
@@ -165,7 +171,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
       if (isConfirmed) {
         this.productCatalogProductService.saveProductDetails(this.appService.addUsers).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
-            this.getProducts();
+            this.reloadData();
             this.addProduct = {};
           }
         });
@@ -206,5 +212,36 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     this.result = true;
     this.close();
   }
+  dataWithParameters(queryData) {
+    if(queryData){
+      this.queryParameters=queryData;
+    }
+    this.productCatalogProductService.getProductDetailsWithQueryparams(queryData).subscribe(
+      res => {
+
+        this.data = res['products'];
+        this.paginationData = res['pageMetadata'];
+      })
+  }
+  reloadData(){
+    if(this.queryParameters != undefined){
+      this.productCatalogProductService.getProductDetailsWithQueryparams(this.queryParameters).subscribe(
+        res=>{
+          this.data = res['products'];
+          this.paginationData = res['pageMetadata'];
+        }
+      )
+    }
+     
+    if(this.queryParameters == null || this.queryParameters == undefined){
+       this.productCatalogProductService.getProductDetails().subscribe(
+        res=>{
+          this.data = res['products'];
+        }
+      )
+    }
+    
+  }
+
 }
 

@@ -9,9 +9,7 @@ import * as FileSaver from 'file-saver';
 
 @Component({
     template: `
-    <div>
-     <button class="iportal-btn" (click)="downloadClick($event)">Download</button>
-    </div>
+     <a class="iportal-btn" (click)="downloadClick($event)"><i aria-hidden="true" class="fa fa-download"></i></a>
    `,
 
 })

@@ -1,14 +1,12 @@
-import {AppService} from '../../../../../services/app.service';
-import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
-import {Component, OnInit} from '@angular/core';
-import {QuestionnaireService} from "./questionnaire.service";
-import {FormGroup, FormControl} from "@angular/forms";
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {SendToClientQuestionnaire} from './SendToClientQuestionnaire';
-import {QuestionnaireCommonService} from '../questionnaires/common/questionnaire-common.service';
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { Component, OnInit } from '@angular/core';
+import { DialogService, DialogComponent, BootstrapModalModule } from "ng2-bootstrap-modal";
+
+import { AppService } from '../../../../../services/app.service';
+import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
+import { QuestionnaireService } from "./questionnaire.service";
+import { SendToClientQuestionnaire } from './SendToClientQuestionnaire';
+import { QuestionnaireCommonService } from '../questionnaires/common/questionnaire-common.service';
 
 
 export interface ConfirmModel {
@@ -27,7 +25,7 @@ export interface ConfirmModel {
 }
 
 @Component({
-  selector: 'app-questionnaire',
+  selector: 'app-petition-details-questionnaire',
   templateUrl: './questionnaire.component.html',
   styleUrls: ['./questionnaire.component.sass'],
   styles: [`
@@ -40,42 +38,29 @@ export interface ConfirmModel {
     `]
 })
 export class ImmigrationviewQuestionnaireComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-  //1st table of quotionaries
-  sfmQuestionnaire: boolean = false;
-  confirmResult: boolean = null;
+  public data;
+  public employerData;
   private message: string;
-  public addQuestionnaireClient: FormGroup; // our model driven form
-  public submitted: boolean; // keep track on whether form is submitted
-  private checking: boolean = true;
-
+  public settings;
+  public settings1;
+  public delmessage;
+  private questionnaireId;
+  public questionnaireName;
+  private selectedForm: string;
+  public showAddEmpQuespopup: boolean;
   public showAddQuestionnairepopup: boolean;
+  public beforeEdit: any;
+  sfmQuestionnaire: boolean = false;
+  sendQuestionnaire: boolean = true;
+  public editFlag: boolean = true;
   public getQuestionnaireData: boolean = true;
+  private formsList = [];
+  questionnaireList = [];
+  public formattedData = [];
+  private sentQuestionnaireClient = [];
+  private questionnaire = {};
   public newQuestionnaireitem: any = {};
   public questionnaireEmployee: any = {};
-  public showAddEmpQuespopup: boolean;
-  private formsList = [];
-  private selectedForm: string;
-  rowToBeAdded = false;
-  private rowEdit: boolean[] = [];
-  private isEditQuestionnaire: boolean[] = [];
-  private checkboxDisable: boolean = false;
-  questionnaireList = [];
-  private questionnaire = {};
-  private questionnaireId;
-  private beforeCancel;
-  sendQuestionnaire: boolean = true;
-  private sentQuestionnaireClient = [];
-  public delmessage;
-  public editFlag: boolean = true;
-  public beforeEdit: any;
-  public settings;
-  public data;
-  public settings1;
-  public officerData;
-  public formattedData = [];
-  public checkedSubscription;
-  public checked = false;
-  public questionnaireName;
   private status = [
     {
       "id": "0",
@@ -96,12 +81,13 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       "employerStatus": "Accepted"
     }
   ];
-
-
   constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService,
-  private questionnaireCommonService: QuestionnaireCommonService) {
+    private questionnaireCommonService: QuestionnaireCommonService) {
     super(dialogService);
     this.settings = {
+      'context': {
+        'componentParent': this
+      },
       'columnsettings': [
 
         {
@@ -162,37 +148,13 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         }
       ]
     }
-    this.checkedSubscription = SendToClientQuestionnaire.onItemChecked.subscribe(res => {
-      if (res) {
-        if (res.hasOwnProperty('flag')) {
-          this.checked = true;
-
-        }
-        else {
-          this.checked = false;
-        }
-      }
-    })
-  }
-  deleteConfirm(questions) {
-    this.delmessage = questions.data.questionnaireName;
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-    })
-      .subscribe((isConfirmed) => {
-
-        if (isConfirmed) {
-          this.deleteQuestionnaire(questions);
-        }
-      });
-  }
-  highlightSBLink(link) {
-    this.appService.currentSBLink = link;
   }
   ngOnInit() {
     this.questionnaireCommonService.questionnaireList = null;
     this.getquesnreData();
+  }
+  highlightSBLink(link) {
+    this.appService.currentSBLink = link;
   }
   getFormName(formId: string) {
     for (let form of this.formsList) {
@@ -201,9 +163,55 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       }
     }
   }
+  formNameSelected(name) {
+    this.selectedForm = name;
+
+  }
+
+  onItemChanged(event) {
+    let value: string = event.target.value;
+    let formId = value.split(":").toString().trim().split(",")[1];
+    let formName = this.getFormName(formId.trim());
+    this.newQuestionnaireitem.questionnaireName = this.appService.petitionType + " " + formName;
+  }
+  getquesnreData() {
+    this.questionnaireService.getQuestionnaireForms(this.appService.petitionId).subscribe((res) => {
+      if (res['statusCode'] == 'SUCCESS') {
+        this.formsList = res['applicationForms'];
+        this.appService.formList = res['applicationForms'];
+
+        this.questionnaireService.getQuestionnaires(this.appService.petitionId).subscribe((res) => {
+          if (res['statusCode'] == 'SUCCESS') {
+            this.questionnaireList = res['questionnaires']['content'];
+            this.questionnaireCommonService.questionnaireList = res['questionnaires']['content'];
+            //this.appService.questionnaireName = res['questionnaires']['content'];
+            let that = this;
+            this.formattedData = this.objectMapper(this.questionnaireList);
+          }
+          this.questionnaireList.map(item => {
+            return item.checked = false;
+          })
+          this.data = this.formattedData;
+          this.employerData=this.formattedData;
+        });
+      }
 
 
-  addNewQuestionnaire() {
+    });
+  }
+  objectMapper(data) {
+    for (var i = 0; i < data.length; i++) {
+      data[i]['questionnairePetitionType'] = this.appService.petitionType + "  " + data[i]['formName'];
+      if (data[i]['sentToClient'] == false) {
+        data[i]['sentToClient'] = 'No';
+      } else {
+        data[i]['sentToClient'] = 'Yes';
+      }
+    }
+    return data;
+  }
+
+  onAddQuestionnaireClick() {
     this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
       showAddQuestionnairepopup: true,
       getQuestionnaireData: false,
@@ -227,102 +235,22 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       }
     });
   }
-  getquesnreData() {
-    this.questionnaireService.getQuestionnaireForms(this.appService.petitionId).subscribe((res) => {
-      if (res['statusCode'] == 'SUCCESS') {
-        this.formsList = res['applicationForms'];
-        this.appService.formList = res['applicationForms'];
 
-        this.questionnaireService.getQuestionnaires(this.appService.petitionId).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
-            this.questionnaireList = res['questionnaires']['content'];
-            this.questionnaireCommonService.questionnaireList = res['questionnaires']['content'];
-            //this.appService.questionnaireName = res['questionnaires']['content'];
-            let that = this;
-            this.formattedData = this.objectMapper(this.questionnaireList);
-          }
-          this.questionnaireList.map(item => {
-            return item.checked = false;
-          })
+  //client questionnaire
 
-          this.sendQuestionnaire = true;
-          this.data = this.formattedData;
-          this.officerData = this.formattedData;
-        });
-      }
-
-
-    });
-  }
-  objectMapper(data) {
-    for (var i = 0; i < data.length; i++) {
-      data[i]['questionnairePetitionType'] = this.appService.petitionType + "  " + data[i]['formName'];
-      if (data[i]['sentToClient'] == false) {
-        data[i]['sentToClient'] = 'No';
-      } else {
-        data[i]['sentToClient'] = 'Yes';
-      }
-    }
-    return data;
-  }
-  questionnaireSave() {
-    this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
-
-    if (this.newQuestionnaireitem['formId'] == '' || this.newQuestionnaireitem['formId'] == null || this.newQuestionnaireitem['formId'] == undefined || this.newQuestionnaireitem['questionnaireName'] == '' || this.newQuestionnaireitem['questionnaireName'] == null || this.newQuestionnaireitem['questionnaireName'] == undefined) {
-      this.sfmQuestionnaire = true;
-    } else {
-      this.sfmQuestionnaire = false;
-      this.appService.newQuestionnaireitem = this.newQuestionnaireitem;
-      this.result = true;
-      this.close();
-    }
-
-
-  }
-  cancel() {
-    this.result = false;
-    this.close();
-  }
-
-
-  addQuestionnaire() {
-    this.rowToBeAdded = true;
-    this.questionnaire = {};
-  }
-
-
-  cancelQuestion() {
-    this.questionnaire = {};
-    this.rowToBeAdded = false;
-
-  }
-  formNameSelected(name) {
-    this.selectedForm = name;
-
-  }
-  editQuestionnaire(newQuestionnaireitem) {
-    if (newQuestionnaireitem.data.itemChecked) {
-      this.sentQuestionnaireClient.push(newQuestionnaireitem.data);
+  onEditQuestionnaireClick(newQuestionnaireitem) {
+    if (newQuestionnaireitem.data['sentToClient'] == 'Yes') {
+      newQuestionnaireitem.data['sentToClient'] = true;
     }
     else {
-      this.sentQuestionnaireClient.splice(this.sentQuestionnaireClient.indexOf(newQuestionnaireitem.data, 1));
+      newQuestionnaireitem.data['sentToClient'] = false;
     }
-
-    if (this.sentQuestionnaireClient.length == 0) {
-      this.sendQuestionnaire = true;
-    }
-    if (!this.checked) {
-      if (newQuestionnaireitem.data['sentToClient'] == 'Yes') {
-        newQuestionnaireitem.data['sentToClient'] = true;
-      }
-      else {
-        newQuestionnaireitem.data['sentToClient'] = false;
-      }
-      this.editFlag = true;
+    this.editFlag = true;
+    this.editFlag = true;
+    if (newQuestionnaireitem.colDef.headerName != 'Checkbox') {
       if (this.editFlag) {
         this.beforeEdit = (<any>Object).assign({}, newQuestionnaireitem.data);
       }
-
       this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
         showAddQuestionnairepopup: true,
         getQuestionnaireData: false,
@@ -341,65 +269,61 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         } else {
           this.editFlag = false;
         }
-        this.checked = false;
       });
     }
-    else {
-      for (let i = 0; i < this.sentQuestionnaireClient.length; i++) {
-        if (this.sentQuestionnaireClient[i]['itemChecked'] == true) {
-          this.sendQuestionnaire = false;
-        }
-        else {
-          this.sendQuestionnaire = true;
-        }
-
-      }
-      this.checked = false;
-
-    }
   }
+  onDeleteClientQuestionnaireClick(questions) {
+    var questionaireName = questions.data.questionnaireName;
+    var questionaireId = questions.data.questionnaireId;
+    this.delmessage = questions.data.questionnaireName;
+    this.dialogService.addDialog(ConfirmComponent, {
+      title: 'Confirmation',
+      message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+    })
+      .subscribe((isConfirmed) => {
 
-  deleteQuestionnaire(questions) {
-    this.questionnaireService.deleteQuestionnaire(questions.data.questionnaireId).subscribe(
-      res => {
-        if (res['statusCode'] == 'SUCCESS') {
-          this.getquesnreData();
-        }
-      }
-    );
-  }
-  saveQuestionnaire(i, questions) {
-    this.checkboxDisable = false;
-    this.questionnaireService.saveNewQuestionnaireClient(questions)
-      .subscribe((res) => {
-        if (res['statusCode'] == 'SUCCESS') {
-          this.questionnaireList[i] = res['questionnaire'];
-          this.isEditQuestionnaire[i] = !this.isEditQuestionnaire[i];
-          this.rowEdit[i] = true;
-        } else {
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Error..!',
-            message: 'Unable to Edit Questionnaire..!'
-          });
+        if (isConfirmed) {
+          this.questionnaireService.deleteQuestionnaire(questionaireId).subscribe(
+            res => {
+              if (res['statusCode'] == 'SUCCESS') {
+                this.getquesnreData();
+              }
+            }
+          );
         }
       });
   }
-  cancelQuestionnaire(i, questions) {
-    this.questionnaireList[i] = this.beforeCancel;
-    this.checkboxDisable = false;
-    this.rowEdit[i] = !this.rowEdit[i];
-    this.isEditQuestionnaire[i] = !this.isEditQuestionnaire[i];
+
+
+  onSaveQuestionnaireClick() {
+    this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
+
+    if (this.newQuestionnaireitem['formId'] == '' || this.newQuestionnaireitem['formId'] == null || this.newQuestionnaireitem['formId'] == undefined || this.newQuestionnaireitem['questionnaireName'] == '' || this.newQuestionnaireitem['questionnaireName'] == null || this.newQuestionnaireitem['questionnaireName'] == undefined) {
+      this.sfmQuestionnaire = true;
+    } else {
+      this.sfmQuestionnaire = false;
+      this.appService.newQuestionnaireitem = this.newQuestionnaireitem;
+      this.result = true;
+      this.close();
+    }
+
+
   }
+  onCancelQuestionnaireClick() {
+    this.result = false;
+    this.close();
+  }
+
+  //end of client questionnaire
 
   //Employee Questionnaire
-  editEmpQuestionnaire(questionnaireEmployee) {
+  onEditEmpQuestionnaireClick(questionnaireEmployee) {
     if (questionnaireEmployee.data['sentToClient'] == 'Yes') {
       questionnaireEmployee.data['sentToClient'] = true;
     }
     else {
       questionnaireEmployee.data['sentToClient'] = false;
     }
-    this.editFlag = true;
     if (this.editFlag) {
       this.beforeEdit = (<any>Object).assign({}, questionnaireEmployee.data);
     }
@@ -424,20 +348,18 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
 
       }
     });
-
-
   }
 
-  empquestionnaireSave() {
+  onSaveEmpQuestionniaredeleteQuestionnaire() {
     this.appService.questionnaireEmployee = this.questionnaireEmployee;
     this.result = true;
     this.close();
   }
-  empcancel() {
+  onCancelEmpQuestionnaireClick() {
     this.result = false;
     this.close();
   }
-  deleteEmpQuestionnaire(questions) {
+  onDeleteEmpQuestionniareClick(questions) {
     var questionaireName = questions.data.questionnaireName;
     var questionaireId = questions.data.questionnaireId;
     this.dialogService.addDialog(ConfirmComponent, {
@@ -456,6 +378,9 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         }
       });
   }
+
+  //send questionnaire to client
+
   sendQuestionnaireClient() {
     var questionnaries = [];
     for (var questionnaire of this.sentQuestionnaireClient) {
@@ -472,11 +397,29 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         }
       });
   }
-  onItemChanged(event) {
-    let value: string = event.target.value;
-    let formId = value.split(":").toString().trim().split(",")[1];
-    let formName = this.getFormName(formId.trim());
-    this.newQuestionnaireitem.questionnaireName = this.appService.petitionType + " " + formName;
+
+
+
+  onQuestionnaireChecked(event) {
+    if (event.data.itemChecked) {
+      this.sentQuestionnaireClient.push(event.data);
+    }
+    else {
+      this.sentQuestionnaireClient.splice(this.sentQuestionnaireClient.indexOf(event.data, 1));
+    }
+
+    if (this.sentQuestionnaireClient.length == 0) {
+      this.sendQuestionnaire = true;
+    }
+    for (let i = 0; i < this.sentQuestionnaireClient.length; i++) {
+      if (this.sentQuestionnaireClient[i]['itemChecked'] == true) {
+        this.sendQuestionnaire = false;
+      }
+      else {
+        this.sendQuestionnaire = true;
+      }
+
+    }
   }
 
 }

@@ -2,6 +2,7 @@
 import {IHeaderAngularComp } from 'ag-grid-angular/main';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs';
+import {FilterEntry} from "./types/query-parameters";
 @Component({
     selector: 'params-cell',
     template: `<span style="word-wrap:break-word">{{params.displayName}}</span>
@@ -16,9 +17,9 @@ import { Observable } from 'rxjs';
 export class CustomFilterRow implements IHeaderAngularComp  {
     public params: any;
     public clsaddFilter: boolean = false;
-    public filterArray = [];
+    public filterArray = new Array<FilterEntry>();
     public filterText;
-    public static fillValues = new Subject<any[]>();
+    public static fillValues = new Subject<Array<FilterEntry>>();
     public count = 0;
     public deletedFilter: boolean = false;
     public static sendBoolean = new Subject<boolean>();
@@ -36,7 +37,7 @@ export class CustomFilterRow implements IHeaderAngularComp  {
     }
     public add(text) {
 
-        this.filterArray.push({ 'headingName': this.params.column.colId, 'filterValue': text,'headerName':this.params.displayName});
+        this.filterArray.push(new FilterEntry(this.params.displayName, this.params.column.colId, null, text));
 
         CustomFilterRow.fillValues.next(this.filterArray);
         this.clsaddFilter = false;

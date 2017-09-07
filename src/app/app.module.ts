@@ -22,11 +22,11 @@ import {SearchPipe} from './pipes/search-pipe';
 import {LooseCurrencyPipe} from "./pipes/loose.currency.pipe";
 import {Http, ConnectionBackend, RequestOptions, HttpModule} from "@angular/http";
 import {AppService} from "./services/app.service";
-import {ImmigrationviewPetitionDetailsComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.component';
-import {ImmigrationviewFormsComponent} from './components/immigrationview/petitions-tab/petition-details/forms/forms.component';
+import {PetitionDetailsComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.component';
+import {FormsComponent} from './components/immigrationview/petitions-tab/petition-details/forms/forms.component';
 import {OrganizationDocumentRepositoryComponent} from "./components/immigrationview/organization-tab/document-repository/document-repository.component";
 import {DocumentManagementComponent} from "./components/immigrationview/clients-tab/client-details/document-management/document-management.component";
-import {PetitionDocumentRepositoryComponent} from "./components/immigrationview/petitions-tab/petition-details/document-repository/document-repository.component";
+import {PetitionDocumentRepositoryComponent} from "./components/immigrationview/petitions-tab/petition-details/document-repository/petition-document-repository.component";
 import {ClientDocumentRepositoryComponent} from "./components/immigrationview/clients-tab/client-details/document-repository/document-repository.component";
 
 import {DependentDetailsComponent} from './components/immigrationview/clients-tab/client-details/dependent-details/dependent-details.component';
@@ -64,9 +64,9 @@ import {DocumentsComponent} from './components/clientview/documents-tab/document
 import {UiFieldService} from "./services/uifield.service";
 import {OrganizationService} from "./components/immigrationview/organization-tab/organization/organization.service";
 import {DependentDetailsService} from "./components/immigrationview/clients-tab/client-details/dependent-details/dependent-details.service";
-import {ImmigrationViewPetitionDetailsService} from "./components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.service";
+import {PetitionDetailsService} from "./components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.service";
 import {QuestionnaireService} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.service';
-import {PetitionDocumentRepositoryService} from './components/immigrationview/petitions-tab/petition-details/document-repository/document-repository.service';
+import {PetitionDocumentRepositoryService} from './components/immigrationview/petitions-tab/petition-details/document-repository/petition-document-repository.service';
 import {DocumentService} from './components/clientview/documents-tab/documents.service';
 import {MoreDetails} from './components/clientview/petitions-tab/MoreDetails';
 import {petitionsclientviewComponent} from './components/clientview/petitions-tab/petitions.component';
@@ -107,7 +107,7 @@ import {AccountsManagers} from './components/superuserview/accounts-tab/account-
 import {AccountManagersService} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.service';
 import {SuperuserviewAccountdetailsMfdComponent} from './components/superuserview/accounts-tab/account-details/mfd/mfd.component';
 import {ManageAccountInvoiceService} from "./components/immigrationview/manage-account-tab/invoices/invoices.service";
-import {ImmigrationviewPetitionNotesComponent} from './components/immigrationview/petitions-tab/petition-details/notes/notes.component';
+import {NotesComponent} from './components/immigrationview/petitions-tab/petition-details/notes/notes.component';
 import {SuperUserViewInvoicestabService} from './components/superuserview/invoices-tab/invoices.service';
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
 import {ReportsCommonService} from './components/superuserview/reports-tab/common/reports-common.service';
@@ -175,7 +175,7 @@ import { ManageAccountShippingAddressService } from './components/immigrationvie
 import { ManageaccountUserDetailsComponent } from './components/immigrationview/manage-account-tab/user-details/user-details.component';
 import { ManageAccountUserDetailsService } from './components/immigrationview/manage-account-tab/user-details/user-details.service';
 import { ManageAccountUserService } from './components/immigrationview/manage-account-tab/user/user.service';
-import { ImmigrationViewPetitionNotesService } from './components/immigrationview/petitions-tab/petition-details/notes/notes.service';
+import { NotesService } from './components/immigrationview/petitions-tab/petition-details/notes/notes.service';
 
 //superuser reports tab
 import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
@@ -320,9 +320,9 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     SearchPipe,
     LooseCurrencyPipe,
     ClientDetailsComponent,
-    ImmigrationviewPetitionDetailsComponent,
+    PetitionDetailsComponent,
     ImmigrationviewQuestionnaireComponent,
-    ImmigrationviewFormsComponent,
+    FormsComponent,
     OrganizationDocumentRepositoryComponent,
     DocumentManagementComponent,
     AddressinfoComponent,
@@ -392,7 +392,7 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     superuserpetstagereportscomponent,
     superuserpettagreportscomponent,
     SuperuserviewProductcatalogDiscountsComponent,
-    ImmigrationviewPetitionNotesComponent,
+    NotesComponent,
     ManageaccountUserDetailsComponent,
     superuserpetfinalactionreportscomponent,
     superuserclientstatusreportscomponent,
@@ -465,7 +465,7 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     DocumentManagementService,
     passportInfoService,
     ImmigrationViewClientDetailsService,
-    ImmigrationViewPetitionDetailsService,
+    PetitionDetailsService,
     JobdetailsService,
     loginService,
     QuestionnaireCommonService,
@@ -478,7 +478,7 @@ import {miscsuperusersservice} from './components/superuserview/misc-tab/superus
     ClientQuestionnaireService,
     MenuComponent,
     //
-    ImmigrationViewPetitionNotesService,
+    NotesService,
     ManageAccountInvoiceService,
     ManageAccountpreferencessService,
     ProductCatalogProductService,

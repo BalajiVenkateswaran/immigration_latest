@@ -4,6 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {ManageAccountUserService} from "./user.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import {SortType} from "../../../framework/smarttable/types/query-parameters";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -33,57 +34,56 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     public settings;
     public data;
     public emailId;
+    public queryParams: any;
+    public paginationData: any;
 
     constructor(private manageAccountUserService: ManageAccountUserService,
         private appService: AppService, public dialogService: DialogService) {
         super(dialogService);
         this.settings = {
-            'columnsettings': [
-                {
-
-                    headerName: "First Name",
-                    field: "firstName",
-                },
-                {
-
-                    headerName: "Last Name",
-                    field: "lastName",
-
-                },
-                {
-
-                    headerName: "Email",
-                    field: "emailId",
-                },
-                {
-                    headerName: "Phone",
-                    field: "phoneNumber",
-
-                },
-                {
-
-                    headerName: "Role",
-                    field: "roleName",
-
-                },
-
-
-            ]
+          'customPanel': true,
+          'sort' : [{
+            headingName: "firstName",
+            sort: SortType.ASC
+          }],
+          'columnsettings': [
+              {
+                  headerName: "First Name",
+                  field: "firstName"
+              },
+              {
+                  headerName: "Last Name",
+                  field: "lastName"
+              },
+              {
+                  headerName: "Email",
+                  field: "emailId"
+              },
+              {
+                  headerName: "Phone",
+                  field: "phoneNumber"
+              },
+              {
+                  headerName: "Role",
+                  field: "roleName"
+              }
+          ]
         }
     }
     getManageUsers() {
-        this.manageAccountUserService.getUsers(this.appService.user.accountId)
+        this.manageAccountUserService.getUsers(this.appService.user.accountId, this.queryParams)
             .subscribe((res) => {
                 for (var user of res['users']) {
                     user['roleName'] = user['role'];
                 }
-                                this.data=res['users'];
+                this.data=res['users'];
                 this.appService.usersList=res['users'];
+                this.paginationData = res['pageMetadata'];
             });
     }
     ngOnInit() {
         this.appService.showSideBarMenu("manageaccount", "manageaccount-user");
-        this.getManageUsers();
+        //this.getManageUsers();
 
     }
 
@@ -149,7 +149,13 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                 }
             });
     }
-    
-    
 
+
+    dataWithParameters(queryData) {
+      if(queryData != undefined){
+        this.queryParams=queryData;
+        this.getManageUsers();
+      }
+      
+    }
 }

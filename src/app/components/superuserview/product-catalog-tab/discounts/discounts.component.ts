@@ -18,30 +18,40 @@ export interface ConfirmModel {
     styleUrls: ['./discounts.component.sass']
 })
 export class SuperuserviewProductcatalogDiscountsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    public discounts: any = [];
-    public addDiscount: any = {};
-    public discount: any = {};
-    public viewDetails: boolean = true;
+    
+    public data;
+    public settings;
+    public paginationData;
+    public beforeEdit: any;
+    public queryParameters: any;
     public addDiscountPopup: boolean;
     public viewDiscountPopup: boolean;
-    public isEditDiscount: boolean = true;
+    public addDiscount: any = {};
+    public discount: any = {};
     public editFlag: boolean = true;
-    public beforeEdit: any;
+    public viewDetails: boolean = true;
+    public isEditDiscount: boolean = true;
     public warningMessage: boolean = false;
-    public settings;
-    public data;
+    
     constructor(private appService: AppService, public productCatalogDiscountService: ProductCatalogDiscountService, public dialogService: DialogService) {
         super(dialogService);
-        this.settings={
-            'isDeleteEnable':false,
+        this.settings = {
+            'isDeleteEnable': false,
+            'customPanel': true,
+            'defaultFilter': [{
+                headingName: "status",
+                headerName: "Status",
+                filterValue: "Active"
+            }
+            ],
             'columnsettings': [
                 {
                     headerName: "Name",
-                    field: "discountName",
+                    field: "discountName"
                 },
                 {
                     headerName: "Code",
-                    field: "discountCode",
+                    field: "discountCode"
                 },
                 {
                     headerName: "Cost",
@@ -52,8 +62,8 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
                     field: "discountPercentage"
                 },
                 {
-                    headerName:'Type',
-                    field:'type'
+                    headerName: 'Type',
+                    field: 'type'
                 },
                 {
                     headerName: "Status",
@@ -67,11 +77,10 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
         }
     }
     getDiscountDetails() {
-        this.productCatalogDiscountService.getDiscounts(this.appService.user.accountId).subscribe(
+        this.productCatalogDiscountService.getDiscounts().subscribe(
             res => {
                 if (res['statusCode'] == 'SUCCESS') {
-                    this.data=res['discountCatalogs'];
-                    this.discounts = res['discountCatalogs'];
+                    this.data = res['discountCatalogs'];
                 }
             }
         )
@@ -102,7 +111,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
         });
     }
     saveDiscounts() {
-        if (this.addDiscount['discountCode'] == '' || this.addDiscount['discountCode'] == null || this.addDiscount['discountCode'] == undefined || this.addDiscount['discountName'] == '' || this.addDiscount['discountName'] == null || this.addDiscount['discountName'] == undefined || this.addDiscount['type']==null || this.addDiscount['type']==undefined || this.addDiscount['type']=='') {
+        if (this.addDiscount['discountCode'] == '' || this.addDiscount['discountCode'] == null || this.addDiscount['discountCode'] == undefined || this.addDiscount['discountName'] == '' || this.addDiscount['discountName'] == null || this.addDiscount['discountName'] == undefined || this.addDiscount['type'] == null || this.addDiscount['type'] == undefined || this.addDiscount['type'] == '') {
             this.warningMessage = true;
         }
         else {
@@ -161,6 +170,17 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
         this.result = true;
         this.close();
     }
+    dataWithParameters(queryData) {
+    if(queryData){
+      this.queryParameters=queryData;
+    }
+    this.productCatalogDiscountService.getDiscountDetailsWithQueryparams(queryData).subscribe(
+      res => {
+
+        this.data = res['discountCatalogs'];
+        this.paginationData = res['pageMetadata'];
+      })
+  }
 
 
 }

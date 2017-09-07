@@ -8,6 +8,7 @@ import { ClientsService } from "./clients.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import {SortType} from "../../../framework/smarttable/types/query-parameters";
 
 
 export interface ConfirmModel {
@@ -49,23 +50,24 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
           filterValue: "Active"
         }
       ],
+      'sort' : [{
+        headingName: "lastUpdate",
+        sort: SortType.DESC
+      }],
       'columnsettings': [
         {
           headerName: "First Name",
           field: "firstName"
         },
         {
-
           headerName: "Last Name",
           field: "lastName",
         },
         {
-
           headerName: "Email",
           field: "email"
         },
         {
-
           headerName: "Phone",
           field: "phone"
         },
@@ -103,7 +105,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
               (res)=>{
                 this.data = res['clients'];
                 this.paginationData = res['pageMetadata'];
-                
+
               }
             )
           }

@@ -6,6 +6,7 @@ export class ImmigrationViewPetitionInformation {
     status: string;
     tag: string;
     currentStage: string;
+    currentStageId: string;
     daysInCurrentStage: string;
     nextStage: string;
     deniedDate: string;
@@ -20,4 +21,7 @@ export class ImmigrationViewPetitionInformation {
     petitionType: string;
     petitionSubType: string;
     finalStatus: string;
+    createdByUserOn: string;
+    lastUpdatedByUserOn: string;
+    deletedByUserOn: string;
 }

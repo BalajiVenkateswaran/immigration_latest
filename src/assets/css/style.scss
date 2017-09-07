@@ -572,6 +572,17 @@ section {
         transform: rotate(180deg);
     }
 }
+           .sendchecklistbtn {
+ 
+    background: #04a9fc;
+      margin: -3px 7px;
+  width: 106px;
+  height: 30px;
+  border: none;
+  color: #ffffff !important;
+  border-radius: 5px;
+  float:right;
+}
 /*Inner pages Css*/
 
 .main-content {
@@ -1129,6 +1140,7 @@ ul.edit-delete,
         }
     }
 }
+
 /*Media Screens*/
 
 @media screen and (max-width: 1366px) {
@@ -1774,6 +1786,21 @@ confirm {
             }
         }
     }
+     .col-md-3 {
+            span {
+                width: 110%;
+    border-radius: 4px;
+    border: solid 1px #c7c5c6;
+    padding: 3px 4px 2px 5px;
+    color: #585155;
+    font-weight: 500;
+    font-size: 14px;
+    /* background: rgba(0, 0, 0, 0.1); */
+    height: 30px;
+    margin-bottom: 12px;
+    float: left;
+            }
+        }
         }
     }
 

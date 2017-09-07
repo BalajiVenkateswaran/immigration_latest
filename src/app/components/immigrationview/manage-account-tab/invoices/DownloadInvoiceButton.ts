@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-    template: `<button class="iportal-btn" (click)="download()">Download</button>`,
+    template: `
+
+<a class="iportal-btn" (click)="download()"><i aria-hidden="true" class="fa fa-download"></i></a>
+`,
 
 })
 export class DownloadInvoiceButton implements ICellRendererAngularComp {

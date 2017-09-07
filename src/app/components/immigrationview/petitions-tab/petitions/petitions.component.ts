@@ -1,9 +1,11 @@
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AppService } from '../../../../services/app.service';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
-import { Component, OnInit, DoCheck } from '@angular/core';
 import { PetitionsService } from "./petitions.service";
-import { Router } from '@angular/router';
+import {SortType} from "../../../framework/smarttable/types/query-parameters";
 
 @Component({
     selector: 'app-petitions',
@@ -19,13 +21,12 @@ export class PetitionsComponent implements OnInit {
         menu: 'menu',
         footer: null
     };
-    private petitionfirstName: any = [];
-    private message: string;
-    private orgId: string;
-    public settings;
     public data;
+    public settings;
     public paginationData;
     public queryParameters;
+    private orgId: string;
+    
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
@@ -39,44 +40,59 @@ export class PetitionsComponent implements OnInit {
                 headerName: "Status",
                 filterValue: "Open"
             }],
+            'sort' : [{
+                headingName: "lastUpdate",
+                sort: SortType.DESC
+            }],
             'filter' : {
-                'types' : [{
-                    'headingName' : 'daysInStage',
-                    'type' : '>'
+                types : [{
+                    field : 'daysInStage',
+                    operator : '>'
                 }]
             },
             'columnsettings': [
                 {
                     headerName: "Name",
-                    field: "petitionName",
+                    field: "petitionName"
                 },
                 {
                     headerName: "File No.",
-                    field: "petitionNumber",
+                    field: "petitionNumber"
                 },
                 {
                     headerName: "First Name",
-                    field: "firstName",
+                    field: "firstName"
                 },
                 {
                     headerName: "Last Name",
-                    field: "lastName",
+                    field: "lastName"
                 },
                 {
                     headerName: "Type",
-                    field: "petitionType",
+                    field: "petitionType"
                 },
                 {
                     headerName: "Updated On",
-                    field: "lastUpdate",
+                    field: "lastUpdate"
                 },
                 {
                     headerName: "Status",
                     field: "status",
+                    cellStyle: function(params){
+                        if(params.value === 'M F D'){
+                            return {
+                                backgroundColor: 'red'
+                            };
+                            
+                        }
+                        else{
+                                return null;
+                            }
+                    }
                 },
                 {
                     headerName: "Final Action",
-                    field: "finalStatus",
+                    field: "finalStatus"
                 },
                 {
                     headerName: "Assigned To",
@@ -103,8 +119,17 @@ export class PetitionsComponent implements OnInit {
         this.appService.showSideBarMenu(null, "petitions");
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
+    ngDoCheck() {
+        if (this.headerService.selectedOrg) {
+            if (this.orgId != this.headerService.selectedOrg['orgId']) {
+                this.orgId = this.headerService.selectedOrg['orgId'];
+                this.dataWithParameters(this.queryParameters);
+            }
+        }
+
+    }
     gettingOrganizationId(value){
-        this.orgId=value;
+        this.orgId = value;
         this.dataWithParameters(this.queryParameters);
     }
     dataWithParameters(queryData) {
@@ -122,16 +147,8 @@ export class PetitionsComponent implements OnInit {
         }
     }
 
-    ngDoCheck() {
-        if (this.headerService.selectedOrg) {
-            if (this.orgId != this.headerService.selectedOrg['orgId']) {
-                this.orgId = this.headerService.selectedOrg['orgId'];
-                this.dataWithParameters(this.queryParameters);
-            }
-        }
-
-    }
-    moveTo(event): void {
+    
+    moveToPetitionDetails(event): void {
         this.menuComponent.highlightSBLink('Petition Details');
         this.appService.petitionId = event.data.petitionId;
         this.appService.clientId = event.data.clientId;

@@ -7,8 +7,8 @@ export class ManageAccountUserService {
     constructor(private restService: RestService) {
     }
 
-    public getUsers(accountId: string) {
-      return this.restService.getData("/user/immigration/" + accountId);
+    public getUsers(accountId: string, queryParams: any) {
+      return this.restService.getData("/user/immigration/" + accountId+queryParams);
     }
     public saveNewUser(userData: User) {
       return this.restService.postData("/user", userData);

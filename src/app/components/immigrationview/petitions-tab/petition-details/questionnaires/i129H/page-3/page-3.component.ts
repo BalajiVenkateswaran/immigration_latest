@@ -38,6 +38,6 @@ export class i129HPage3Component implements OnInit {
         this.appService.moveToPage('i129hPage4');
     }
     gotoPrev() {
-        this.appService.moveToPage('i129hPage2');
+        this.appService.moveToPage('i129hPage3');
     }
 }
