@@ -4,62 +4,73 @@ import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
+
 @Component({
     selector: 'app-petitionstatus-report',
     templateUrl: './status.component.html',
     styleUrls: ['./status.component.sass']
 })
-  
+
 export class petitionsstatusreportscomponent implements OnInit {
-  
-    public pieChartLabels: string[] = ['Opened Petitons', 'Closed Petitions'];
-    public pieChartData: number[] = [0, 0];
-    public pieChartType: string = 'pie';
+
     public orgsList: any = {};
     public orgsNames: any = [];
-    public closed: any;
-    public opened: any;
+    public open: any = [];
+    public closed: any = [];
     ngOnInit() {
         this.appService.showSideBarMenu("immiview-reports", "immiview-petitionreports");
+        
         this.petitionsStatusreportsservice.getpetitonstatusreports(this.appService.user.accountId)
             .subscribe((res) => {
+                this.barChartData = [];
                 this.orgsList = res['orgs'];
                 for (var item in this.orgsList) {
-                    this.orgsNames.push(item);
-                    if (res['orgs'][item][0] != undefined) {
-                        if (res['orgs'][item][0].status == "Open") {
-                            this.opened = res['orgs'][item][0].count;
+                    this.barChartLabels.push(item);
+                    for (var i = 0; i < this.orgsList[item].length; i++) {
+                        if (this.orgsList[item].length == "2") {
+                            if (this.orgsList[item][i].status == "Open") {
+                                this.open.push(this.orgsList[item][i]['count']);
+                            }
+                            if (this.orgsList[item][i].status == "Close") {
+                                this.closed.push(this.orgsList[item][i]['count']);
+                            }
                         }
-                        if (res['orgs'][item][0].status == "Close") {
-                            this.closed = res['orgs'][item][0].count;
+                        else {
+                            if (this.orgsList[item][i].status == "Open") {
+                                this.open.push(this.orgsList[item][i]['count']);
+                            }
+                            else {
+                                this.open.push(0);
+                            }
+                            if (this.orgsList[item][i].status == "Close") {
+                                this.closed.push(this.orgsList[item][i]['count']);
+                            }
+                            else {
+                                this.closed.push(0);
+                            }
                         }
+
                     }
-                    else {
-                        this.opened = 0;
-                        this.closed = 0;
-                    }
-                    if (res['orgs'][item][1] != undefined) {
-                        if (res['orgs'][item][1].status == "Open") {
-                            this.opened = res['orgs'][item][1].count;
-                        }
-                        if (res['orgs'][item][1].status == "Close") {
-                            this.closed = res['orgs'][item][1].count;
-                        }
-                    }
-                    else {
-                        if (this.closed==undefined) {
-                            this.closed = 0;
-                        }
-                        if (this.closed==undefined) {
-                            this.opened = 0;
-                        }
-                    }
-                    this.pieChartData[item] = [this.opened, this.closed];
-                    this.opened = 0;
-                    this.closed = 0;
+                                  
                 }
+                this.barChartData.push({ data: this.open, label: 'Open petiitons' }, { data: this.closed, label: 'Closed petiitons' }); 
             });
     }
+    constructor(public appService: AppService, private petitionsStatusreportsservice: petitionsstatusreportsservice) { }
+    public barChartOptions: any = {
+        scaleShowVerticalLines: false,
+        responsive: true,
+        scales: {
+            xAxes: [{
+                stacked: true,
+            }],
+            yAxes: [{
+                stacked: true,
+            }]
+        }
+    };
+    public barChartLabels = [];
+    public barChartLegend: boolean = true;
     // events
     public chartClicked(e: any): void {
         console.log(e);
@@ -68,7 +79,7 @@ export class petitionsstatusreportscomponent implements OnInit {
     public chartHovered(e: any): void {
         console.log(e);
     }
-    constructor(public appService: AppService, private petitionsStatusreportsservice:petitionsstatusreportsservice) { }
 
- 
+    public barChartData: any[] = [{ data: [], label: '' }, { data: [], label: '' }];
+
 }
