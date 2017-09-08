@@ -83,9 +83,15 @@ export class i129HPage2Component implements OnInit {
     this.savequestionnaireInformation();
     this.appService.moveToPage('i129hPage1/' + this.questionnaireService.selectedQuestionnaire['questionnaireId']);
   }
-
-  savequestionnaireInformation() {
+  submit(){
     this.I129Hpage2.pageNumber = 14;
+    this.mapDatesToSave();
+    this.questionnaireService.submitQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 14, this.I129Hpage2, true).subscribe(res => {
+      this.appService.moveToPage('clientview-Questionnaries');
+    });
+  }
+
+  mapDatesToSave(){
     if (this.I129Hpage2['petitionerDateOfSignature'] != null) {
       this.I129Hpage2['petitionerDateOfSignature'] = this.I129Hpage2['petitionerDateOfSignature']['formatted'];
     }
@@ -95,9 +101,15 @@ export class i129HPage2Component implements OnInit {
     if (this.I129Hpage2['projectManagerDateOfSignature'] != null) {
       this.I129Hpage2['projectManagerDateOfSignature'] = this.I129Hpage2['projectManagerDateOfSignature']['formatted'];
     }
+  }
 
+  savequestionnaireInformation() {
+    this.I129Hpage2.pageNumber = 14;
+    this.mapDatesToSave();
     this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 14, this.I129Hpage2).subscribe(res => {
 
     });
   }
+
+
 }

@@ -80,7 +80,6 @@ export class i129Page3Component implements OnInit {
     }
 
     ngOnInit() {
-        //this.isquestionnaireEdit = true;
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3).subscribe(res => {
             if (res['formPage']!=undefined) {
                 this.page3 = res['formPage'];
@@ -107,34 +106,59 @@ export class i129Page3Component implements OnInit {
         this.page3 = this.beforecancelquestionnaire;
         this.isquestionnaireEdit = true;
     }
-    saveQuestionnaireInformation() {
+
+    mapDatesToSave(){
+      if(this.page3['dateOfLastArrival'] != null && this.page3['dateOfLastArrival']['formatted'] != null){
+        this.page3['dateOfLastArrival'] = this.page3['dateOfLastArrival']['formatted'];
+      }
+      if(this.page3['passportIssueDate'] != null && this.page3['passportIssueDate']['formatted'] != null){
+        this.page3['passportIssueDate'] = this.page3['passportIssueDate']['formatted'];
+      }
+      if(this.page3['passportExpiryDate'] != null && this.page3['passportExpiryDate']['formatted'] != null){
+        this.page3['passportExpiryDate'] = this.page3['passportExpiryDate']['formatted'];
+      }
+      if(this.page3['dateStatusExpires'] != null && this.page3['dateStatusExpires']['formatted'] != null){
+        this.page3['dateStatusExpires'] = this.page3['dateStatusExpires']['formatted'];
+      }
+    }
+
+    saveQuestionnaireInformation(isNextPage: boolean) {
         this.page3.pageNumber = 3;
-        if(this.page3['dateOfLastArrival'] != null){
-          this.page3['dateOfLastArrival'] = this.page3['dateOfLastArrival']['formatted'];
-        }
-        if(this.page3['passportIssueDate'] != null){
-          this.page3['passportIssueDate'] = this.page3['passportIssueDate']['formatted'];
-        }
-        if(this.page3['passportExpiryDate'] != null){
-          this.page3['passportExpiryDate'] = this.page3['passportExpiryDate']['formatted'];
-        }
-        if(this.page3['dateStatusExpires'] != null){
-          this.page3['dateStatusExpires'] = this.page3['dateStatusExpires']['formatted'];
-        }
+        this.mapDatesToSave();
 
-        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3, this.page3).subscribe(res => {
-
+        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3,
+          this.page3).subscribe(res => {
+          //Call ngOnInit for client view page
+          if(isNextPage) {
+            if (this.appService.applicationViewMode == 'Client') {
+              this.ngOnInit();
+            } else {
+              this.appService.moveToPage('i129Page4');
+            }
+          } else {
+            this.appService.moveToPage('i129Page2');
+          }
         })
     }
+
+    submitClientQuestionnaireInformation(): any {
+      this.page3.pageNumber = 3;
+      this.mapDatesToSave();
+      this.questionnaireService.submitQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3,
+        this.page3, true).subscribe(res => {
+          this.appService.moveToPage('clientview-Questionnaries');
+      });
+    }
+
+
     gotoNext() {
-        this.saveQuestionnaireInformation();
-        if(this.appService.applicationViewMode == 'Immigration'){
-          this.appService.moveToPage('i129Page4');
-        }
+        this.saveQuestionnaireInformation(true);
     }
     gotoPrev() {
-        this.saveQuestionnaireInformation();
-        this.appService.moveToPage('i129Page2');
+        this.saveQuestionnaireInformation(false);
+    }
+    submit() {
+      this.submitClientQuestionnaireInformation();
     }
 
 }

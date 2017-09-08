@@ -58,7 +58,11 @@ export class QuestionnaireCommonService {
       return this.restService.getData("/immigration/questionnaire/"+questionnaireId+"/page/"+pageNo);
   }
 
-  public saveQuestionnaireData(questionnaireId,pageNo,data){
+  public saveQuestionnaireData(questionnaireId: string, pageNo: number, data: any){
      return this.restService.postData("/immigration/questionnaire/"+questionnaireId+"/page/"+pageNo,data);
+  }
+
+  public submitQuestionnaireData(questionnaireId: string, pageNo: number, data: any, isSubmit: boolean){
+    return this.restService.postData("/client/questionnaire/"+questionnaireId+"/page/"+pageNo+"/submit/"+isSubmit,data);
   }
 }
