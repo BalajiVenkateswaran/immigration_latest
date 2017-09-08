@@ -20,7 +20,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   isEditstorage;
   public cancelUserEdit: boolean = false;
   public createdOn: any;
-
+  public MFDdisable: boolean;
   constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
     private menuComponent: MenuComponent, private accountDetailsCommonService: AccountDetailsCommonService,
     public dialogService: DialogService) {
@@ -82,7 +82,13 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     this.cancelUserEdit = true;
     this.storagenable();
     this.createdOn = this.accountDetails.createdOn;
- 
+    if (this.accountDetails['status'] == "Active") {
+        this.MFDdisable = true;
+    }
+    else {
+        this.MFDdisable = false;
+
+    }
   }
   //cancel button function
   cancelEdit(event, i) {

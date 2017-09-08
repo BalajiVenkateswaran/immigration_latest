@@ -8,7 +8,6 @@ import {FormGroup, FormControl} from "@angular/forms";
 import {loginService} from "./login.service";
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {ManageAccountUserService} from "../../immigrationview/manage-account-tab/user/user.service";
-import {ManageAccountPetitionStagesService} from '../../immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.service';
 
 export interface ConfirmModel {
   title: string;
@@ -111,16 +110,17 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     if (isValid) {
       this.loginservice.login(model).subscribe((res: any) => {
         console.log("Login User %o", res);
-        if(res.uiBuildNumber != null && LoginComponent.uiBuildNumber != res.uiBuildNumber){
-          this.close();
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Information',
-            message: 'Page will be reloaded to get the latest updates'
-          }).subscribe((isConfirmed) => {
-              window.location.reload(true);
-          });
+        //if(res.uiBuildNumber != null && LoginComponent.uiBuildNumber != res.uiBuildNumber){
+        //  this.close();
+        //  this.dialogService.addDialog(ConfirmComponent, {
+        //    title: 'Information',
+        //    message: 'Page will be reloaded to get the latest updates'
+        //  }).subscribe((isConfirmed) => {
+        //      window.location.reload(true);
+        //  });
 
-        } else if (res.statusCode == "FAILURE") {
+        //}
+            if (res.statusCode == "FAILURE") {
           this.message = res.statusDescription;
         } else {
 

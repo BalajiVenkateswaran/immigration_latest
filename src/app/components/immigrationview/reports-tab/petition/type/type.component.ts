@@ -2,6 +2,7 @@
 import { petitionstypesreportsservice } from './type.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/petitiontypestages/petitiontypestages.service';
 
 @Component({
     selector: 'app-petitiontypes-report',
@@ -19,19 +20,25 @@ export class petitionstypesreportscomponent implements OnInit {
     public subTypes: any = [];
     public selectedsubtype: any;
     public selectedsubtypeId: any;
+    public petitionstageTypes: any = [];
     ngOnInit() {
- 
+        this.immigrationViewPetitionsService.getPetitionTypes().subscribe(
+            res => {
+                console.log(res);
+                this.petitionstageTypes = res['petitionTypes'];
+            });
     }
     petitionsubtypechange() {
-        for (var i = 0; i < this.appService.petitionstageTypes.length; i++) {
-            if (this.selectedsubtype == this.appService.petitionstageTypes[i].petitiontype) {
-                this.selectedsubtypeId = this.appService.petitionstageTypes[i].petitionTypeId;
+        for (var i = 0; i < this.petitionstageTypes.length; i++) {
+            if (this.selectedsubtype == this.petitionstageTypes[i].petitiontype) {
+                this.selectedsubtypeId = this.petitionstageTypes[i].petitionTypeId;
             }
         }
         this.petitionsTypesreportsservice.getpetitonTypesreports(this.appService.user.accountId, this.selectedsubtypeId)
             .subscribe((res) => {
                 console.log(res);
-              
+                this.pieChartData = [];
+                this.pieChartLabels = [];
                 this.orgsList = res['orgs'];
              
                 for (var item in this.orgsList) {
@@ -49,7 +56,7 @@ export class petitionstypesreportscomponent implements OnInit {
                 
             });
     }
-    constructor(public appService: AppService, private petitionsTypesreportsservice: petitionstypesreportsservice) { }
+    constructor(public appService: AppService, private petitionsTypesreportsservice: petitionstypesreportsservice, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
     public chartClicked(e: any): void {
         console.log(e);
     }
