@@ -1,0 +1,563 @@
+html,
+body {
+    font-family: 'Roboto', sans-serif !important;
+}
+.top-strip {
+    background: #222222;
+    width: 100% !important;
+    height: 60px;
+    display: block;
+}
+.logo {
+    margin: 5px 0 0 0;
+    float: left;
+}
+a.login {
+    background: #2298e7;
+    float: right;
+    width: 150px;
+    height: 60px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 15px;
+    color: #fff;
+    font-weight: 400;
+}
+a.login:hover {
+    text-decoration: none;
+    color: #fff;
+}
+.no-pad {
+    padding: 0px;
+}
+.contact {
+    height: 90px;
+    padding-top: 28px;
+    position: relative;
+}
+.contact .email,
+.contact .phone {
+    font-size: 14px;
+    color: #3f3f3f;
+    float: right;
+    margin-left: 30px;
+}
+.contact .email img,
+.contact .phone img {
+    width: 20px;
+    margin-right: 5px;
+    height: auto;
+}
+.carousel-control.left,
+.carousel-control.right {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+.carousel-inner > .item > img {
+    display: block;
+    height: 500px;
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1;
+}
+.main-slider {
+    width: 50px;
+    height: 100px;
+    top: calc(50% - 50px);
+}
+.main-slider i {
+    font-size: 34px;
+    margin: 32px 0 0 -7px;
+}
+.main-slider i.fa-angle-right {
+    margin: 32px -7px 0 0px;
+}
+.clients {
+    background: #f2f2f2;
+    width: 100%;
+    height: 130px;
+    padding: 20px 0px;
+}
+.clients-slider-left,
+.clients-slider-right {
+    left: -60px;
+    color: #7d7d7d;
+    text-shadow: none;
+}
+.clients-slider-right {
+    right: -60px !important;
+}
+.carousel-control.clients-slider-left,
+.carousel-control.clients-slider-right {
+    background: none !important;
+}
+.clientitem {
+    background: #fff;
+    width: 162px;
+    margin: 0px 90px 0 0;
+    height: 90px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 28px;
+}
+.clientitem:last-child {
+    margin-right: 0px;
+}
+.section-heading {
+	width: 100%;
+	text-align: center;
+	font-size:26px;
+	font-weight: 300;
+	margin: 60px 0 40px 0;
+}
+.bdrline {
+	background: #2298e7;
+	width: 110px;
+	margin: 10px auto;
+	height: 2px;
+}
+.businessgrowth, .sustainability, .performance {
+	background: url(../assets/images/web/business-growth.jpg) no-repeat right top;
+	width: 100%;
+	height: 420px;
+}
+.blackpatch {
+	width: 70%;
+	height: 100%;
+	min-height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	padding: 20px 0 0 20px;
+}
+.blackpatch h3 {
+	font-size: 24px;
+	font-weight: 400;
+	margin: 15px 0 10px 0;
+}
+.blackpatch p {
+	font-size: 16px;
+	line-height: 32px;
+	max-width: 80%;
+}
+
+.sustainability {
+	background: url(../assets/images/web/Mask-Group-28@2x.jpg) no-repeat right top;
+}
+.performance {
+	background: url(../assets/images/web/Mask-Group-30@2x.jpg) no-repeat right top;
+}
+.ourfeaturescnt {
+	font-size: 18px;
+	color: #404040;
+	font-weight: 300;
+	line-height: 34px;
+	text-align: center;
+	margin: 0px auto 15px auto;
+	max-width: 700px;
+}
+.ourfeatures {
+	cursor: pointer;
+	text-align: center;
+}
+.ourfeatures img {
+	margin: 15px auto;
+	width: 45px;
+	height: auto;
+
+}
+.ourfeatures h3 {
+	font-size: 18px;
+	font-weight: 600;
+	color: #333;
+	padding: 0px;
+	margin: 0px 0 20px 0;
+}
+.ourfeatures p {
+font-size: 12px;
+color: #7a7a7a;
+max-width: 70%;
+margin: 10px auto;
+	}
+
+.ourfeatures a {
+font-size: 12px;
+text-transform: uppercase;
+color: #d3d3d3;
+}
+.ourfeatures:hover h3, .ourfeatures:hover a {
+	color: #2298e7;
+	}
+	.video-strip {
+		background: url(../assets/images/web/BG-video-trends.jpg) no-repeat center top;
+		width: 100%;
+		height: 385px;
+		margin: 80px 0px;
+		padding: 0px;
+
+	}
+.videotxt {
+	color: #fff;
+	text-align:center;
+}
+.playbtn {
+	width: 60px;
+	height: 60px;
+	background: url(../assets/images/web/play.png) no-repeat left top;
+	margin: 50px auto 40px auto;
+	display: block;
+}	
+.videotxt h2 {
+	text-transform: uppercase;
+	font-size: 30px;
+	padding: 0px;
+	margin: 0px 0px 30px 0;
+}
+.videotxt p {
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 20px;
+	}
+.videotxt button {
+	width: 225px;
+	background: #2298e7;
+	border:none;
+	border-radius: 4px;
+	height: 56px;
+	font-size: 16px;
+	font-weight: 500;
+	padding: 5px 0 0 0
+	margin:25px 0px;
+
+}
+.propic {
+	border-radius: 50%;
+	border: solid 1px #dadada;
+}
+.current {
+	width: 110px;
+	height: auto;
+	margin: 0px auto 30px auto;
+}
+.previous, .next  {
+	width: 70px;
+	height: 70px;
+	float: right;
+}
+.next {
+	float: left;
+}
+.pro-cnt {
+	font-size: 18px;
+    color: #404040;
+    font-weight: 400;
+    line-height: 34px;
+    text-align: center;
+    margin: 0px auto;
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+.name {
+	font-size: 16px;
+    color: #404040;
+    font-weight: 700;
+    display: block;
+}
+.role {
+	font-size: 14px;
+    color: #cccccc;
+    font-weight: 300;
+    display: block;
+}
+.item {
+	text-align: center;
+}
+.prevnxtimgs {
+	padding-top: 30px;
+}
+.main-nav {
+	background: #2298e7;
+	height: 60px;
+	position: absolute;
+	bottom: -40px;
+	z-index: 999;
+	width: 100%
+}
+.navitems {
+	margin: 0px 0 0 30px;
+	padding: 0px;
+	float: left;
+}
+.navitems li {
+	display: inline;
+	margin-right: 40px;
+	margin-top:20px;
+	float: left;
+}
+.navitems li a, .navitems li a:hover {
+color: #fff;
+font-size: 14px;
+font-weight: 500;
+	}
+.req-demo {
+	float: right;
+	color: #2298e7;
+	padding: 10px 25px;
+	margin: 10px 10px 0 0;
+	background: #fff;
+	font-size: 16px;
+
+}
+.trackrecord-strip {
+	background: #f6f6f6;
+	margin-top: 100px;
+	padding:35px 0;
+}
+.tcs-img {
+	width: 32px;
+	height: auto;
+	display: block;
+	margin: 0px auto;
+}
+.tcs-count {
+	font-size: 40px;
+	display: block;
+	margin: 20px 0 10px 0;
+}
+.tcs-status {
+	font-size: 22px;
+	display: block;
+}
+.img50 {
+	background: url(../assets/images/web/img50bg.jpg) no-repeat right top;
+	background-size: cover;
+	height: 430px;
+	margin-top: 80px;
+}
+.color50 {
+	height: 430px;
+	background:#000;
+	margin-top: 80px;
+}
+.form {
+	float: left;
+	margin: 60px 0 0 15%;
+	min-width: 200px;
+	color: #fff;
+	max-width: 52%;
+}
+.form-title {
+	font-size: 14px;
+	margin-bottom: 40px;
+	width: 100%;
+	float: left;
+
+}
+.form input { 
+	background: none;
+	border: solid 1px #fff;
+	padding: 2px 3px 2px 4px;
+	margin: 0px;
+	color: #ccc;
+	width: 100%;
+    margin-bottom: 30px;
+    line-height: 26px;
+}
+.form button {
+	width: 100%;
+	color: #fff;
+	    background: #2298e7;
+    border: none;
+    height: 56px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.slide1 {
+	background: url(../assets/images/web/slide1.jpg) no-repeat center top #164a65;
+	width: 100%;
+	height: 500px;
+	text-align: left;
+	color: #fff;
+
+}
+
+.slide1 span {
+	font-size: 16px;
+	font-weight: 400;
+	width: 100%;
+	margin: 160px 0px 10px 0;
+	float: left;
+}
+.slide1 h1 {
+	font-size:36px;
+	font-weight:700;
+	margin:0px;
+	padding:0px;
+	margin-bottom: 20px;
+}
+.top-carousel-indicators {
+	margin: 0px !important;
+	padding: 0px !important;
+	position: absolute !important;
+    left: 15% !important;
+    bottom: 70px !important;
+    z-index: 99999 !important;
+}
+.top-carousel-indicators li {
+	display: inline-block !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin: 2px !important;
+    text-indent: -999px !important;
+    cursor: pointer !important;
+    background-color: #000 \9 !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: 1px solid #456e84 !important;
+    border-radius: 0px  !important;
+    float: left;
+}
+.top-carousel-indicators .active {
+    background-color: #fff !important;
+    border: none !important;
+}
+.ourservice, .getstart {
+	background: #2298e7;
+	width: 100%;
+	color: #fff;
+	height: 56px;
+	text-transform: capitalize;
+	border: solid 1px #2298e7;
+	border-radius: 4px;
+	font-size: 16px;
+	font-weight: 400;
+	margin: 30px 0 25px 0;
+}
+.getstart {
+	background: none;
+	border: solid 1px #fff;
+}
+.immi-software {
+	font-weight: 300;
+	font-size: 34px;
+	text-align: center;
+	margin: 10px 0 80px 0;
+	color: #333;
+	line-height: 34px;
+}
+.immi-software span { 
+font-weight: 300;
+	font-size: 30px;
+	color: #ccc;
+	}
+.projdisc {
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+	line-height: 24px;
+	text-transform: capitalize;
+}
+h4 {
+	color: #2298e7;
+	font-weight: 400;
+	font-size: 22px;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: 20px;
+}
+.projdisc ul {
+		margin: 20px 0 0 0;
+	padding: 0px;
+}
+.projdisc ul li {
+	list-style: none;
+	background: url(../assets/images/web/dot.jpg) no-repeat left 9px;
+	margin-bottom: 10px;
+	padding: 0 0 0 20px;
+
+}
+.footer-links, .copyright {
+	width: 100%;
+	padding: 50px 0;
+	background: #f2f2f2;
+	border-bottom: solid 1px #95989a; 
+	color: #333;
+}
+.copyright {
+	padding: 25px 0px;
+	border:none;
+	text-align: right;
+}
+.footer-links h1 {
+	font-size: 36px;
+	font-weight: 700;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+}
+
+.footer-links .email,
+.footer-links .phone {
+    font-size: 14px;
+    color: #3f3f3f;
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+}
+.footer-links .email img,
+.footer-links .phone img {
+    width: 25px;
+    margin-right: 20px;
+    height: auto;
+}
+.footer-links h4 {
+	font-size: 24px;
+	font-weight: 700;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: 31px;
+	color: #595959;
+}
+.flinks {
+	width: 50%;
+	float: left;
+	margin:0px;
+	padding: 0px;
+}
+.flinks li {
+	list-style: none;
+	padding: 0px;
+	margin-bottom: 15px;
+}
+.flinks li a {
+	color: #333;
+}
+
+.slinks {
+	float: left;
+	margin:0px;
+	padding: 0px;
+}
+.slinks li {
+	list-style: none;
+	padding: 0px;
+	margin-right: 15px;
+	float: left;
+}
+.slinks li a.fb, .slinks li a.twitter, .slinks li a.insta {
+	width: 32px;
+	height: 32px;
+	float: left;
+	background: url(../assets/images/web/facebook.png) no-repeat center center;
+	background-size: 100%;
+	border-radius: 50%;
+}
+.slinks li a.twitter {
+	background: url(../assets/images/web/twitter.png) no-repeat  center center;
+	background-size: 100%;
+}
+.slinks li a.insta {
+	background: url(../assets/images/web/instagram.png) no-repeat  center center;
+	background-size: 100%;
+}

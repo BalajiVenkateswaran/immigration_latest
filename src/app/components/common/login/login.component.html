@@ -1,107 +1,555 @@
-<div class="container-fluid login-bg no-pad" *ngIf="getloginpage">
-	<div class="login_side">
-		<div class="login_text">
-			<h4>Welcome to Immigration Hub</h4>
-			<p>Next gen case management, automation and document management
-				application for your immigration needs</p>
-		</div>
-	</div>
-	<div class="login_main">
-		<div class="col-md-7 pull-right">
-			<a (click)="loginPopup()" class="loginbtn">Login</a>
-			<div class="login_maintext">
-				<h4>Welcome to Immigration Hub</h4>
-				<p>Next gen case management, automation and document management
-					application for your immigration needs</p>
-			</div>
-		</div>
-	</div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Immigration Hub</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/Immigration.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid" *ngIf="getloginpage">
+        <div class="row">
+            <div class="top-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 no-pad"><img src="../../../../assets/images/web/logo.png" class="logo img-responsive"><a (click)="loginPopup()" class="login">Login</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="contact">
+                    <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
+                    <a href="#" class="phone"><img src="../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a>
+                    <div class="main-nav">
+                        <ul class="navitems">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Immigration Services</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Get In Touch</a></li>
+                        </ul>
+                        <a href="#" class="req-demo">Request Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators top-carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active" contenteditable="false"></li>
+                    <li data-target="#myCarousel" data-slide-to="1" class="" contenteditable="false"></li>
+                    <li data-target="#myCarousel" data-slide-to="2" class="" contenteditable="false"></li>
+                </ol>
 
-<div *ngIf="loginPopupForm">
-	<div class="modal-dialog loginpopup" ngDraggable style="margin-top:5% !important;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">
-					<img src="../../../assets/images/logo.png" />
-				</h4>
+                <div class="carousel-inner">
+                    <div class="item active" style="">
+                        <div class="slide1">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 no-pad">
+                                        <span>Our Clients are Our First Priority</span>
+                                        <h1>Never Bother With IT</h1>
+                                        <p>Description for First Slide, this First Slide. Description for First Slide, this First Slide. Description for First Slide, this First Slide.</p>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <button class="ourservice">our service</button>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button class="getstart">get started now</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
 
-				<button type="button" class="close" (click)="close()" style="margin-top: -50px;margin-right: 10px;">&times;</button>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-2"></div>
-							<div class="col-md-8">
-								<form action="" [formGroup]="login"
-									(ngSubmit)="onSubmitClick(login.value, login.valid)"
-									autocomplete="off">
-									<!--<h2>Immigration Hub</h2>-->
-									<div class="form-group row" [hidden]="!message">
-										{{message}}</div>
-									<div class="form-group" *ngIf="forgotPwd==true">
-										<div class="user_id">
-											<!--<label>Email</label>-->
-											<div class="emailicon"></div>
-											<input type="email" class="form-control" id="userId"
-												placeholder="Email Address" formControlName="emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                                    required />
-										</div>
-										<div class="password">
-											<!--<label>PASSWORD</label>-->
-											<div class="pwdicon"></div>
-											<input type="password" class="form-control"
-												id="inputPassword3" placeholder="Password"
-												formControlName="password" required />
-										</div>
-										<div class="sign_in">
-											<button type="submit" class="btn newlogbtn" [disabled]="!login.valid">Sign in</button>
-										</div>
-										<div class="forgot_password">
-											<a (click)="frgtPwd(login.valid)">Forgot Password?</a>
-										</div>
-									</div>
-									<div class="form-group" *ngIf="forgotPwd==false">
-										<div class="user_id">
-											<!--<label>Enter Registered Email Id</label>-->
-											<div class="emailicon"></div>
-											<input type="email" class="form-control" id="forgetPassword" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                                    required placeholder="Email" formControlName="emailId">
-										</div>
-										<div class="sign_in">
-											<button type="submit" class="btn newlogbtn" [disabled]="!login.valid">Submit</button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="col-md-2"></div>
-						</div>
-					</div>
-				</div>
-			</div>
 
-		</div>
-	</div>
-</div>
-<div *ngIf="selectrole">
-	<div class="modal-dialog orgnamebox" ngDraggable>
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">{{title}}</h4>
-				<button type="button" class="close" (click)="multiRolepopupClose()">&times;</button>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12">
-						<ul>
-							<li *ngFor="let user of userRoles" (click)="selectedRole(user)">
-								{{getRoleName(user)}}</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="slide1">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 no-pad">
+                                        <span>Our Clients are Our First Priority</span>
+                                        <h1>Never Bother With IT</h1>
+                                        <p>Description for First Slide, this First Slide. Description for First Slide, this First Slide. Description for First Slide, this First Slide.</p>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <button class="ourservice">our service</button>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button class="getstart">get started now</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
 
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" style="">
+                        <div class="slide1">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 no-pad">
+                                        <span>Our Clients are Our First Priority</span>
+                                        <h1>Never Bother With IT</h1>
+                                        <p>Description for First Slide, this First Slide. Description for First Slide, this First Slide. Description for First Slide, this First Slide.</p>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <button class="ourservice">our service</button>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button class="getstart">get started now</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="left carousel-control main-slider" href="#myCarousel" data-slide="prev">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                <a class="right carousel-control main-slider" href="#myCarousel" data-slide="next">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <!-- <div class="row">
+           <div class="clients">
+              <div class="container">
+                 <div class="row">
+                    <div id="myCarousel2" class="carousel slide">
+                       <ol class="carousel-indicators">
+                          <li data-target="#myCarousel2" data-slide-to="0" class="active" contenteditable="false"></li>
+                          <li data-target="#myCarousel2" data-slide-to="1" class="" contenteditable="false"></li>
+                          <li data-target="#myCarousel2" data-slide-to="2" class="" contenteditable="false"></li>
+                       </ol>
+                       <div class="carousel-inner">
+                          <div class="item active" style="">
+                             <div class="row">
+                                <div class="col-md-12">
+                                   <div class="clientitem"><img src="images/client1.jpg"></div>
+                                   <div class="clientitem"><img src="images/client2.jpg"></div>
+                                   <div class="clientitem"><img src="images/client3.jpg"></div>
+                                   <div class="clientitem"><img src="images/client4.jpg"></div>
+                                   <div class="clientitem"><img src="images/client5.jpg"></div>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="item" style="">
+                             <div class="row">
+                                <div class="col-md-12">
+                                   <div class="clientitem"><img src="images/client1.jpg"></div>
+                                   <div class="clientitem"><img src="images/client2.jpg"></div>
+                                   <div class="clientitem"><img src="images/client3.jpg"></div>
+                                   <div class="clientitem"><img src="images/client4.jpg"></div>
+                                   <div class="clientitem"><img src="images/client5.jpg"></div>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="item" style="">
+                             <div class="row">
+                                <div class="col-md-12">
+                                   <div class="clientitem"><img src="images/client1.jpg"></div>
+                                   <div class="clientitem"><img src="images/client2.jpg"></div>
+                                   <div class="clientitem"><img src="images/client3.jpg"></div>
+                                   <div class="clientitem"><img src="images/client4.jpg"></div>
+                                   <div class="clientitem"><img src="images/client5.jpg"></div>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                       <a class="left carousel-control main-slider clients-slider-left" href="#myCarousel2" data-slide="prev">
+                       <i class="fa fa-angle-left" aria-hidden="true"></i>
+                       </a>
+                       <a class="right carousel-control main-slider clients-slider-right" href="#myCarousel2" data-slide="next">
+                       <i class="fa fa-angle-right" aria-hidden="true"></i>
+                       </a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           </div> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="section-heading">
+                        Why to Choose Immigration Hub
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="businessgrowth">
+                        <div class="blackpatch">
+                            <img src="../../../../assets/images/web/Group-5@2x.png">
+                            <h3>Business Growth</h3>
+                            <p>This one is a lifetime FREE card. Yes, that’s true! Also get a 20% discount at select restaurants & lounges in India. This card is a gem, don’t you agree?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="sustainability">
+                        <div class="blackpatch">
+                            <img src="../../../../assets/images/web/portfolio-black-symbol@2x.png">
+                            <h3>Sustainability</h3>
+                            <p>This one is a lifetime FREE card. Yes, that’s true! Also get a 20% discount at select restaurants & lounges in India. This card is a gem, don’t you agree?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="performance">
+                        <div class="blackpatch">
+                            <img src="../../../../assets/images/web/internet@2x.png">
+                            <h3>Performance</h3>
+                            <p>This one is a lifetime FREE card. Yes, that’s true! Also get a 20% discount at select restaurants & lounges in India. This card is a gem, don’t you agree?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="section-heading">
+                        Our Features
+                    </h1>
+                    <p class="ourfeaturescnt">This one is a lifetime FREE card. Yes, that’s true! Also get a 20% discount at select restaurants & lounges in India. This card is a gem, don’t you agree?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 ourfeatures">
+                    <img src="../../../../assets/images/web/database@2x.png" class="featurimgs">
+                    <h3>Docs Storage</h3>
+                    <p>We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+                    <a href="#">Read More</a>
+                </div>
+                <div class="col-md-4 ourfeatures">
+                    <img src="../../../../assets/images/web/chat@2x.png" class="featurimgs">
+                    <h3>Client Web Portal</h3>
+                    <p>We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+                    <a href="#">Read More</a>
+                </div>
+                <div class="col-md-4 ourfeatures">
+                    <img src="../../../../assets/images/web/phone@2x.png" class="featurimgs">
+                    <h3>Online Forms & Questionnaries</h3>
+                    <p>We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+                    <a href="#">Read More</a>
+                </div>
+                <div class="col-md-4 ourfeatures">
+                    <img src="../../../../assets/images/web/Group-26@2x.png" class="featurimgs">
+                    <h3>Instant Notifications</h3>
+                    <p>We are looking for an expert/senior Full-Stack developer.we are using are angular</p>
+                    <a href="#">Read More</a>
+                </div>
+                <div class="col-md-4 ourfeatures">
+                    <img src="../../../../assets/images/web/Group-27@2x.png" class="featurimgs">
+                    <h3>Easy Understand Reports</h3>
+                    <p>We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+                    <a href="#">Read More</a>
+                </div>
+                <div class="col-md-4 ourfeatures">
+                    <img src="../../../../assets/images/web/cloud@2x.png" class="featurimgs">
+                    <h3>Saas Application</h3>
+                    <p>We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="video-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 videotxt">
+                            <a href="#" class="playbtn"></a>
+                            <h2>Check Our Intro Video</h2>
+                            <p>We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+                            <button type="submit">Watch Video</button>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="immi-software">
+                    Immigration Software <br>
+                    <span>Where Design meets your requirements</span>
+                </div>
+                <div class="col-md-8">
+                    <img src="../../../../assets/images/web/immi-portal-app.jpg" class="img-responsive">
+                </div>
+                <div class="col-md-4 projdisc">
+                    <h4>Immigration Hub</h4>
+                    <p>Immigration software is the most advanced integrated solution for Immigrationlaw firms and corporations. it doesn't get any easier than this. BlueDot's friendly user interface.</p>
+                    <ul>
+                        <li>Compatable with most devices</li>
+                        <li>Compatable with most common browsers</li>
+                        <li>no components to install</li>
+                        <li>Designed Beautifully</li>
+                        <li>powerful functionality</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="container">
+           <div class="row">
+                 <div class="col-md-1"></div>
+                 <div class="col-md-10">
+                    <div id="myCarousel3" class="carousel slide">
+                       <ol class="carousel-indicators">
+                          <li data-target="#myCarousel3" data-slide-to="0" class="active" contenteditable="false"></li>
+                          <li data-target="#myCarousel3" data-slide-to="1" class="" contenteditable="false"></li>
+                          <li data-target="#myCarousel3" data-slide-to="2" class="" contenteditable="false"></li>
+                       </ol>
+                       <div class="carousel-inner">
+                          <div class="item active">
+
+                                <div class="col-md-5 prevnxtimgs"><img src="images/prev-pro.jpg" class=" img-responsive propic previous"></div>
+                                <div class="col-md-2 text-center"><img src="images/current-pro.jpg" class=" img-responsive propic current"></div>
+                                <div class="col-md-5 prevnxtimgs"><img src="images/next-pro.jpg" class=" img-responsive propic next"></div>
+           <div class="col-md-12"><p class="pro-cnt">We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+           <span class="name">Greg Siskind</span>
+           <span class="role">Funding Partner | Siskind Susser P.C.</span>
+
+                             </div>
+                          </div>
+                          <div class="item">
+
+                                <div class="col-md-5 prevnxtimgs"><img src="images/current-pro.jpg" class=" img-responsive propic previous"></div>
+                                <div class="col-md-2 text-center"><img src="images/next-pro.jpg" class=" img-responsive propic current"></div>
+                                <div class="col-md-5 prevnxtimgs"><img src="images/prev-pro.jpg" class=" img-responsive propic next"></div>
+           <div class="col-md-12"><p class="pro-cnt">We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+           <span class="name">Greg Siskind</span>
+           <span class="role">Funding Partner | Siskind Susser P.C.</span>
+
+                             </div>
+                          </div>
+                          <div class="item" style="">
+
+                                <div class="col-md-5 prevnxtimgs"><img src="images/next-pro.jpg" class=" img-responsive propic previous"></div>
+                                <div class="col-md-2 text-center"><img src="images/prev-pro.jpg" class=" img-responsive propic current"></div>
+                                <div class="col-md-5 prevnxtimgs"><img src="images/current-pro.jpg" class=" img-responsive propic next"></div>
+           <div class="col-md-12"><p class="pro-cnt">We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular We are looking for an expert/senior Full-Stack developer. The main technologies that we are using are angular</p>
+           <span class="name">Greg Siskind</span>
+           <span class="role">Funding Partner | Siskind Susser P.C.</span>
+
+                             </div>
+                          </div>
+                       </div>
+                       <a class="left carousel-control main-slider" href="#myCarousel3" data-slide="prev">
+                       <i class="fa fa-angle-left" aria-hidden="true"></i>
+                       </a>
+                       <a class="right carousel-control main-slider" href="#myCarousel3" data-slide="next">
+                       <i class="fa fa-angle-right" aria-hidden="true"></i>
+                       </a>
+                    </div>
+                 </div>
+                 <div class="col-md-1"></div>
+
+
+
+
+                 </div>
+           </div> -->
+        <!-- <div class="row">
+           <div class="trackrecord-strip">
+              <div class="container">
+                 <div class="row">
+                    <div class="col-md-3" style="text-align: center;">
+                       <img src="images/Group-16@2x.png" class="tcs-img">
+                       <span class="tcs-count">15</span>
+                       <span class="tcs-status">Years In Business</span>
+                    </div>
+
+                    <div class="col-md-3" style="text-align: center;">
+                       <img src="images/Path-28@2x.png" class="tcs-img">
+                       <span class="tcs-count">1254</span>
+                       <span class="tcs-status">Case Managed</span>
+                    </div>
+
+                    <div class="col-md-3" style="text-align: center;">
+                       <img src="images/Group-17@2x.png" class="tcs-img">
+                       <span class="tcs-count">25634</span>
+                       <span class="tcs-status">Contacts Managed</span>
+                    </div>
+
+                    <div class="col-md-3" style="text-align: center;">
+                       <img src="images/Group-18@2x.png" class="tcs-img">
+                       <span class="tcs-count">25489</span>
+                       <span class="tcs-status">Support Tickets Resolved</span>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           </div> -->
+        <div class="row">
+            <div class="col-md-6 img50"></div>
+            <div class="col-md-6 color50">
+                <div class="form">
+                    <span class="form-title">
+                        I would Like toDiscuss
+                    </span>
+                    <div class="row">
+                        <div class="col-md-6"><input type="text" placeholder="Name" name=""></div>
+                        <div class="col-md-6"><input type="text" placeholder="Mobile" name=""></div>
+                        <div class="col-md-12"><input type="text" placeholder="Organization" name=""></div>
+                        <div class="col-md-12"><input type="text" placeholder="Email" name=""></div>
+                        <div class="col-md-12"><button type="submit">Submit a Request</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="footer-links">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h1>Immigration Hub</h1>
+                            <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
+                            <a href="#" class="phone" style="margin: 0px;"><img src="../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a><br>
+                            610 Overlook Circle Suite 323<br>
+                            Kalamazoo, MI 49009
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Explore</h4>
+                            <ul class="flinks">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Immigration Services</a></li>
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">About Us</a></li>
+                            </ul>
+                            <ul class="flinks">
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Get In Touch</a></li>
+                                <li><a href="#">Doc Storage</a></li>
+                                <li><a href="#">Saas Application</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Social</h4>
+                            <ul class="slinks">
+                                <li><a href="#" class="fb"></a></li>
+                                <li><a href="#" class="twitter"></a></li>
+                                <li><a href="#" class="insta"></a></li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            CopyRights @ Immigration Hub
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div *ngIf="loginPopupForm">
+        <div class="modal-dialog loginpopup" ngDraggable style="margin-top:5% !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <img src="../../../assets/images/logo.png" />
+                    </h4>
+                    <button type="button" class="close" (click)="close()" style="margin-top: -50px;margin-right: 10px;">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <form action="" [formGroup]="login"
+                                          (ngSubmit)="onSubmitClick(login.value, login.valid)"
+                                          autocomplete="off">
+                                        <!--<h2>Immigration Hub</h2>-->
+                                        <div class="form-group row" [hidden]="!message">
+                                            {{message}}
+                                        </div>
+                                        <div class="form-group" *ngIf="forgotPwd==true">
+                                            <div class="user_id">
+                                                <!--<label>Email</label>-->
+                                                <div class="emailicon"></div>
+                                                <input type="email" class="form-control" id="userId"
+                                                       placeholder="Email Address" formControlName="emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                                       required />
+                                            </div>
+                                            <div class="password">
+                                                <!--<label>PASSWORD</label>-->
+                                                <div class="pwdicon"></div>
+                                                <input type="password" class="form-control"
+                                                       id="inputPassword3" placeholder="Password"
+                                                       formControlName="password" required />
+                                            </div>
+                                            <div class="sign_in">
+                                                <button type="submit" class="btn newlogbtn" [disabled]="!login.valid">Sign in</button>
+                                            </div>
+                                            <div class="forgot_password">
+                                                <a (click)="frgtPwd(login.valid)">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" *ngIf="forgotPwd==false">
+                                            <div class="user_id">
+                                                <!--<label>Enter Registered Email Id</label>-->
+                                                <div class="emailicon"></div>
+                                                <input type="email" class="form-control" id="forgetPassword" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                                       required placeholder="Email" formControlName="emailId">
+                                            </div>
+                                            <div class="sign_in">
+                                                <button type="submit" class="btn newlogbtn" [disabled]="!login.valid">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="selectrole">
+        <div class="modal-dialog orgnamebox" ngDraggable>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{title}}</h4>
+                    <button type="button" class="close" (click)="multiRolepopupClose()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul>
+                                <li *ngFor="let user of userRoles" (click)="selectedRole(user)">
+                                    {{getRoleName(user)}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
