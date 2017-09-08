@@ -6,6 +6,8 @@ import {DocumentManagementService} from "./document-management.service";
 import {FormGroup, FormControl} from "@angular/forms";
 import {Http} from "@angular/http";
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import {ConfirmComponent} from "../../../../framework/confirmbox/confirm.component";
+import {DialogService} from "ng2-bootstrap-modal";
 
 @Component({
     selector: 'app-document-management',
@@ -24,15 +26,18 @@ export class DocumentManagementComponent implements OnInit {
     private formControlValues: any = {};
     isEdit: boolean[] = [true];
     isSaveOrderVisible :  boolean = false;
+    isMergeOrderVisible :  boolean = false;
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
 
     constructor(private documentManagementService: DocumentManagementService, private http: Http,
-        public appService: AppService, private dragulaService: DragulaService, private headerService: HeaderService) {
+        public appService: AppService, private dragulaService: DragulaService, private headerService: HeaderService,
+                private dialogService: DialogService) {
 
         dragulaService.dropModel.subscribe((value) => {
           this.isSaveOrderVisible = true;
+          this.isMergeOrderVisible = false;
         });
 
     }
@@ -42,6 +47,7 @@ export class DocumentManagementComponent implements OnInit {
           .getDocOrder(this.appService.petitionId)
           .subscribe((res: any) => {
               this.selectedDocList = res.petitionDocs;
+              this.isMergeOrderVisible = this.selectedDocList != null && this.selectedDocList.length > 0;
               this.documentManagementService
                   .getOrgdocs(this.headerService.selectedOrg['orgId'])
                   .subscribe((res: any) => {
@@ -75,6 +81,7 @@ export class DocumentManagementComponent implements OnInit {
     onDocSelection(x, checkBox) {
         console.log("onDocSelection %o %o", x, checkBox);
         this.isSaveOrderVisible = true;
+        this.isMergeOrderVisible = false;
         if (checkBox.checked) {
             this.addDocToSelectedList(x);
         } else {
@@ -87,6 +94,7 @@ export class DocumentManagementComponent implements OnInit {
         }
         if (this.selectedDocList.length == 0) {
             this.isSaveOrderVisible = false;
+            this.isMergeOrderVisible = true;
         }
     }
 
@@ -121,10 +129,14 @@ export class DocumentManagementComponent implements OnInit {
         .subscribe((res: any) => {
             console.log("SaveDocOrder response:%o", res);
             this.isSaveOrderVisible = false;
+            this.isMergeOrderVisible = true || this.selectedDocList.length > 0;
         });
     }
     mergeOrder() {
-
+        this.dialogService.addDialog(ConfirmComponent, {
+          title: 'Information',
+          message: 'Document merge process has been scheduled. Once the merge document is generated. Will notify you in email'
+        });
         this.documentManagementService.mergeFile(this.appService.petitionId).subscribe(
             res => { console.log(res); }
         );
