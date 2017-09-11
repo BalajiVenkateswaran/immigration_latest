@@ -13,6 +13,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 export class profiletodolistcomponent implements OnInit {
     public newTodo: string;
     public todos: any = [];
+    public hideAddButton:boolean = false;
+    
+    constructor(public appService: AppService, private profileTodolistservice: profiletodolistservice) {
+        this.newTodo = '';
+    }
     ngOnInit() {
       
         this.getTodos();
@@ -36,8 +41,11 @@ export class profiletodolistcomponent implements OnInit {
                 }
             });
     }
-    constructor(public appService: AppService, private profileTodolistservice: profiletodolistservice) {
-        this.newTodo = '';
+    enableAddButton(textEntered){
+        this.hideAddButton = true;
+        if(textEntered.length == 0){
+            this.hideAddButton = false;
+        }
     }
     addTodo(event) {
         var data = {"completed":"NO", "todoText": this.newTodo, "userId": this.appService.user.userId };

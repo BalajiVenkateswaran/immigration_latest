@@ -65,7 +65,7 @@
               <div class="col-md-4">
                 <div class="row">
                   <div class="col-md-4">Signature of Petitioner</div>
-                  <div class="col-md-8"><input type="text"/></div>
+                  <div class="col-md-8"><input type="text" [disabled]="true"/></div>
                 </div>
               </div>
               <div class="col-md-4">
@@ -154,12 +154,14 @@
           <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
             <div class="row">
               <div class="col-md-12">Employment is: (select only one box)</div>
+              <div class="col-md-12">
               <div class="row" *ngFor="let x of I129Hpage2Employment">
                 <div class="col-md-3">
                   <input type="radio" name="employment" [value]="x.value" [(ngModel)]="I129Hpage2.employment">{{x.display}}
                 </div>
               </div>
-            </div>
+              </div>
+           <div class="col-md-6">
             <div class="row">
               <div class="col-md-12">Temporary need is: (select only one box)</div>
               <div class="row" *ngFor="let x of I129Hpage2TemporaryNeed">
@@ -168,6 +170,8 @@
                 </div>
               </div>
             </div>
+            </div>
+             </div>
           </div>
         </div>
       </div>

@@ -105,7 +105,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Comments:</div>
                                             <div class="col-md-7">
-                                                <textarea  *ngIf="isEditInvoice==false" [(ngModel)]="invoice.comments" class="form-control"></textarea>
+                                                <textarea *ngIf="isEditInvoice==false" [(ngModel)]="invoice.comments" class="form-control"></textarea>
                                                 <span style="height:100px" *ngIf="isEditInvoice==true">{{invoice.comments}}</span>
                                             </div>
                                         </div>
@@ -143,17 +143,24 @@
                                         <div class="row">
                                             <div class="col-md-5">Downdload:</div>
                                             <div class="col-md-7">
-                                                
-                                                    <button type="button" class="btn btn-primary" (click)="downloadInvoice(invoice)">Download</button>
-                                                  
-                                               
+
+                                                <button type="button" class="btn btn-primary" (click)="downloadInvoice(invoice)">Download</button>
+
+
                                             </div>
                                         </div>
                                     </div>
-                                     <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="row">
-                                             <div class="col-md-5"></div>
-                                             <div class="col-md-7"><button type="button" class="btn btn-default" (click)="cancel()">Close</button></div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6" style="margin-left:140px;margin-top:12px">
+                                                <button type="button" class="btn btn-default" style="width:164px" (click)="cancel()">Close</button>
+                                            </div>
+
                                         </div>
                                     </div>
 
@@ -166,3 +173,4 @@
             </div>
         </div>
     </div>
+</div>
