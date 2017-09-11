@@ -34,8 +34,7 @@ export class OrganizationComponent implements OnInit {
     public emailRegex;
     private status = [
                 { value: 'Active', name: 'Active' },
-                { value: 'Inactive', name: 'Inactive' },
-                { value: 'Mark for Deletion', name: 'Mark for Deletion' }
+                { value: 'Inactive', name: 'Inactive' }
                 ];
 
     constructor(private appService: AppService, private  organizationService: OrganizationService,
@@ -74,7 +73,7 @@ export class OrganizationComponent implements OnInit {
     }
 
 
-   
+
 
     saveOrgProfile() {
         if (this.orgDetails['openDate'] && this.orgDetails['openDate']['formatted']) {
@@ -93,7 +92,7 @@ export class OrganizationComponent implements OnInit {
             this.warningMessage = true;
         }
          else if(this.email.errors!=null){
-            this.warningMessage=false;
+            this.warningMessage = true;
         } else {
             this.warningMessage = false;
             this.organizationService.saveOrgDetails(this.orgDetails, this.appService.user.userId)
@@ -122,7 +121,7 @@ export class OrganizationComponent implements OnInit {
                     }
                 });
         }
-       
+
 
     }
 

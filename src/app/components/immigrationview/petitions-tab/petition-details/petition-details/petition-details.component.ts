@@ -67,7 +67,8 @@ export class PetitionDetailsComponent implements OnInit {
         { name: 'Approved', value: 'Approved' },
         { name: 'Denied', value: 'Denied' },
         { name: 'Withdrawn', value: 'Withdrawn' },
-        { name: 'Rejected', value: 'Rejected' }
+        { name: 'Rejected', value: 'Rejected' },
+        { name: 'RFE', value: 'RFE' }
     ];
     petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
     constructor(public appService: AppService, private petitionDetailsService: PetitionDetailsService) {

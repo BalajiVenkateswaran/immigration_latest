@@ -16,7 +16,7 @@
     </head>
 <body>
 <div class="main-content">
-    
+
     <div class="table-data petition-docs">
         <h2 class="clickname" style="width:60%;float:left;" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h2>
         <h2 style="float:right;width:40%; text-align:right;">{{appService.petitionDetails}}</h2>
@@ -67,9 +67,7 @@
                             <div class="col-md-1"></div>
                             <button type="submit" class="saveorder" [(disabled)]="!isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'saveorder':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
                             <div class="col-md-1"></div>
-                            <button type="submit" class="saveorder" (click)="mergeOrder()">Merge Order</button>
-
-
+                            <button type="submit" class="saveorder" [(disabled)]="!isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'saveorder':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
                         </div>
 
                         <div class="row">
