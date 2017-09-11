@@ -1,6 +1,10 @@
 html,
 body {
     font-family: 'Roboto', sans-serif !important;
+    background:none !important;
+}
+.clear {
+    clear:both;
 }
 .top-strip {
     background: #222222;
@@ -35,6 +39,7 @@ a.login:hover {
     height: 90px;
     padding-top: 28px;
     position: relative;
+    width:100%;
 }
 .contact .email,
 .contact .phone {
@@ -373,6 +378,9 @@ font-weight: 500;
     font-size: 16px;
     font-weight: 500;
 }
+.slide {
+    width: 100% !important;
+}
 .slide1 {
 	background: url(../assets/images/web/slide1.jpg) no-repeat center top #164a65;
 	width: 100%;
@@ -403,6 +411,7 @@ font-weight: 500;
     left: 15% !important;
     bottom: 70px !important;
     z-index: 99999 !important;
+    justify-content: left !important;
 }
 .top-carousel-indicators li {
 	display: inline-block !important;
@@ -416,6 +425,7 @@ font-weight: 500;
     border: 1px solid #456e84 !important;
     border-radius: 0px  !important;
     float: left;
+    max-width:14px !important;
 }
 .top-carousel-indicators .active {
     background-color: #fff !important;
@@ -444,6 +454,7 @@ font-weight: 500;
 	margin: 10px 0 80px 0;
 	color: #333;
 	line-height: 34px;
+    width:100%;
 }
 .immi-software span { 
 font-weight: 300;
