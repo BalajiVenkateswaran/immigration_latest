@@ -38,9 +38,6 @@
 						</div>
 					</div>
 				</div>
-				<div>
-					  <button type="submit" class="btn btn-primary" (click)="onUsageSummaryClick()" >Usage Summary</button>
-				</div>
 			</div>
 
 		</div>
@@ -99,7 +96,10 @@
 							<div class="clearfix"></div> Profile
 							<div class="arrow-up"></div>
 					</a></li>
-				</ul>
+          <li>
+            <button type="submit" class="btn btn-primary" (click)="onUsageSummaryClick()" >Usage Summary</button>
+          </li>
+        </ul>
 				<ul *ngIf="applicationViewMode=='Client'">
 					<li style="margin-right: 30px;"><a
 						(click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');"
