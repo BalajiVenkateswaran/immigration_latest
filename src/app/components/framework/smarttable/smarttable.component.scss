@@ -520,7 +520,7 @@ $dateColumnWidth:110px;
         width:10% !important;
         left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="stage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="stage"] {
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionStage"] {
         width:10% !important;
         left:50% !important;
     }
@@ -528,7 +528,7 @@ $dateColumnWidth:110px;
         width:10% !important;
         left:60% !important;
     }
-   .ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdated"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdated"] {
+   .ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
         width:10% !important;
         left:70% !important;
     }
