@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="header">
 	<div class="container-fluid">
 		<div class="col-md-4 pull-left no-pad">
 			<div class="logo">
@@ -38,7 +38,11 @@
 						</div>
 					</div>
 				</div>
+				<div>
+					  <button type="submit" class="btn btn-primary" (click)="onUsageSummaryClick()" >Usage Summary</button>
+				</div>
 			</div>
+			
 		</div>
 		<div class="clearfix"></div>
 		<!--Mani Menu Start-->
@@ -213,3 +217,70 @@
 
 </header>
 <div class="clearfix"></div>
+
+<div *ngIf="usageSummaryPopup">
+    <div class="modal-dialog" ngDraggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+                <button type="button" class="close" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+							<table style="margin-left:10px">
+								<tr>
+									<td>Plan Name:</td>
+									<td>Plan-Premium</td>
+								</tr>
+								<tr>
+									<td>Plan Code:</td>
+									<td>P-200</td>
+								</tr>
+								<tr>
+									<td>Storage Type:</td>
+									<td>S3</td>
+								</tr>
+							</table>
+                            <table width="95%" border="2px" style="margin:20px 0 0 10px">
+								<tr>
+									<th>Feature</th>
+									<th>Allowed</th>
+									<th>Used</th>
+								</tr>
+								<tr>
+								  <td>Immigration Users</td>
+								  <td>3</td>
+								  <td>{{usageSummaryDetails.usersUsed}}</td>
+								</tr>
+								<tr>
+								  <td>Organizations</td>
+								  <td>10</td>
+								  <td>{{usageSummaryDetails.orgUsed}}</td>
+								</tr>
+								<tr>
+								  <td>Clients</td>
+								  <td>10/Month</td>
+								  <td>{{usageSummaryDetails.clientsUsed}}</td>
+								</tr>
+								<tr>
+								  <td>Petition</td>
+								  <td>30/Month </td>
+								  <td>{{usageSummaryDetails.petitionsUsed}}</td>
+								</tr>
+								<tr>
+								  <td>Storage</td>
+								  <td>1TB (If S3)<br>
+									  NA (if GD)</td>
+								  <td>{{usageSummaryDetails.storageUsed}}</td>
+								</tr>
+							</table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
