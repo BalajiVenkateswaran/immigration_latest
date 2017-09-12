@@ -69,8 +69,10 @@
             <div class="col-md-4">
               <div class="row">
                 <div class="col-md-6">State</div>
-                <div class="col-md-6"><input type="text" *ngIf="isquestionnaireEdit==false"
-                                             [(ngModel)]="page5.address.state"/>
+                <div class="col-md-6">
+                  <select  *ngIf="isquestionnaireEdit==false" [(ngModel)]="page5.address.state">
+                     <option [value]="address.name" *ngFor="let address of states">{{address.name}}</option>
+                  </select>
                   <span *ngIf="isquestionnaireEdit==true">{{page5.address.state}}</span>
                 </div>
               </div>

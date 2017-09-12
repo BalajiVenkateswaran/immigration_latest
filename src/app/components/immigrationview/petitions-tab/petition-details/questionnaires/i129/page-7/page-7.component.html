@@ -65,7 +65,10 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">State</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.state"/>
+                                <div class="col-md-8">
+                                 <select  *ngIf="isquestionnaireEdit==false" [(ngModel)]="page7.preparerAddress.state" >
+                                    <option [value]="petitionerState.name" *ngFor="let petitionerState of states">{{petitionerState.name}}</option>
+                                 </select>
                                  <span *ngIf="isquestionnaireEdit==true">{{page7.preparerAddress.state}}</span>
                                 </div>
                             </div>

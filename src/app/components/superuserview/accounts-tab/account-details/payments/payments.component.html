@@ -1,24 +1,25 @@
-    <div class="main-content" *ngIf="getPayments">
-        <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
-        <ul class="breadcrumb">
-            <li><a href="#">Account Preferences</a></li>
-        </ul>
-        <div class="clearfix"></div>
-        <div class="table-data">
-            <h2>payments 
-               
-            </h2>
-            <smart-table class="superUserViewaccPayments" [settings]="settings" [data]="data" (onAddClick)="addPayments($event)" (onRowClick)="editPayments($event)" (onDeleteClick)="deleteRecord($event)">
-            </smart-table>
-           
-        </div>
+<div class="main-content" *ngIf="getPayments">
+    <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
+    <ul class="breadcrumb">
+        <li><a href="#">Account Preferences</a></li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="table-data">
+        <h2>payments
+
+        </h2>
+        <smart-table class="superUserViewaccPayments" [settings]="settings" [data]="data" (onAddClick)="addPayments($event)" (onRowClick)="editPayments($event)"
+            (onDeleteClick)="deleteRecord($event)">
+        </smart-table>
+
     </div>
-    <div class="table-data-forms" *ngIf="viewAccountPopup">
-    <div class="modal-dialog" ngDraggable style="margin-top:5% !important;">
+</div>
+<div class="table-data-forms" *ngIf="viewAccountPopup">
+    <div class="modal-dialog" ngDraggable style="margin-top:5% !important;max-width:900px">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                
+
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
@@ -27,121 +28,149 @@
                         <div class="row">
                             <div class="col-md-12 addresbox box-shadow">
                                 <div class="row">
-                                    <div class="col-md-5">Payment Id:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" [disabled]="true" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentId" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.paymentId}}</span>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-5">Payment Id:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" [disabled]="true" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentId" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.paymentId}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Transaction Type:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.transactionType" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.transactionType}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Transaction Type:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.transactionType" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.transactionType}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Transaction Id:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.transactionId" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.transactionId}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Transaction Id:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.transactionId" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.transactionId}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Account Name:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountName" class="form-control" [disabled]="true">
-                                        <span *ngIf="isEditpayments==true">{{payment.accountName}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Account Name:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountName" class="form-control" [disabled]="true">
+                                                <span *ngIf="isEditpayments==true">{{payment.accountName}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Account Number:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountNumber" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.accountNumber}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Account Number:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountNumber" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.accountNumber}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Invoice Date:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceDate" class="form-control" [disabled]="true">
-                                        <span *ngIf="isEditpayments==true">{{payment.invoiceDate}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Invoice Date:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceDate" class="form-control" [disabled]="true">
+                                                <span *ngIf="isEditpayments==true">{{payment.invoiceDate}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Invoice Number:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceNumber" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.invoiceNumber}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Invoice Number:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceNumber" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.invoiceNumber}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Invoice Amount:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.invoiceAmount" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.invoiceAmount}}</span>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-5">Invoice Amount:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.invoiceAmount" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.invoiceAmount}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Bill Start Date:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billStartDate" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.billStartDate}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Bill Start Date:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billStartDate" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.billStartDate}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Bill End Date:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billEndDate" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.billEndDate}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Bill End Date:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billEndDate" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.billEndDate}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Payment Date:</div>
-                                    <div class="col-md-7">
-                                         <my-date-picker *ngIf="isEditpayments==false" [options]="myDatePickerOptions"
-                                                 [(ngModel)]="payment.paymentDate"
-                                                [selDate]="paymentDate"></my-date-picker>
-                                        <span *ngIf="isEditpayments==true">{{payment.paymentDate}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Payment Date:</div>
+                                            <div class="col-md-7">
+                                                <my-date-picker *ngIf="isEditpayments==false" [options]="myDatePickerOptions" [(ngModel)]="payment.paymentDate" [selDate]="paymentDate"></my-date-picker>
+                                                <span *ngIf="isEditpayments==true">{{payment.paymentDate}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Payment Amount:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentAmount" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.paymentAmount}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Payment Amount:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentAmount" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.paymentAmount}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Payment Status:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentStatus" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.paymentStatus}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Payment Status:</div>
+                                            <div class="col-md-7">
+                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentStatus" class="form-control">
+                                                <span *ngIf="isEditpayments==true">{{payment.paymentStatus}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">Comments:</div>
-                                    <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.comments" class="form-control">
-                                        <span *ngIf="isEditpayments==true">{{payment.comments}}</span>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">Comments:</div>
+                                            <div class="col-md-7">
+                                                <textarea  *ngIf="isEditpayments==false" [(ngModel)]="payment.comments" class="form-control"></textarea>
+                                                <span style="height:100px" *ngIf="isEditpayments==true">{{payment.comments}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-5">
+                                        <div class="row">
                                         <div class="row sfm" *ngIf="warningMessage">
                                             <div class="col-md-12">
                                                 <span class="redstar">* Fields are Mandatory.</span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <button type="submit" class="btn btn-primary" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
-                                                <button type="submit" value="Save" class="btn btn-primary" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
-                                            </div>
-                                            <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
                                         </div>
+                                    </div>
+                                
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
+                                            <button type="submit" value="Save" class="btn btn-primary" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
+                                        </div>
+                                        <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -149,12 +178,14 @@
                     </div>
                 </div>
             </div>
-             
         </div>
     </div>
+
+</div>
 </div>
 
-    <div *ngIf="addPopups">
+
+<div *ngIf="addPopups">
     <div class="modal-dialog" ngDraggable>
         <div class="modal-content">
             <div class="modal-header">
@@ -171,9 +202,7 @@
                             <div class="col-md-7"><input type="text" [(ngModel)]="payments.transactionId" class="form-control"></div>
                             <div class="col-md-5">Payment Date:<span class="redstar">*</span></div>
                             <div class="col-md-7">
-                                 <my-date-picker [options]="myDatePickerOptions"
-                                                 [(ngModel)]="payments.paymentDate"
-                                                [selDate]="paymentDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="payments.paymentDate" [selDate]="paymentDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Payment Amount:<span class="redstar">*</span></div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="payments.paymentAmount" class="form-control"></div>
