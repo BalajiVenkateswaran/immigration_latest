@@ -124,7 +124,7 @@ a.login:hover {
 	height: 2px;
 }
 .businessgrowth, .sustainability, .performance {
-	background: url(../assets/images/web/business-growth.jpg) no-repeat right top;
+	background: url(../../assets/images/web/business-growth.jpg) no-repeat right top;
 	width: 100%;
 	height: 420px;
 }
@@ -148,10 +148,10 @@ a.login:hover {
 }
 
 .sustainability {
-	background: url(../assets/images/web/Mask-Group-28@2x.jpg) no-repeat right top;
+	background: url(../../assets/images/web/Mask-Group-28@2x.jpg) no-repeat right top;
 }
 .performance {
-	background: url(../assets/images/web/Mask-Group-30@2x.jpg) no-repeat right top;
+	background: url(../../assets/images/web/Mask-Group-30@2x.jpg) no-repeat right top;
 }
 .ourfeaturescnt {
 	font-size: 18px;
@@ -195,7 +195,7 @@ color: #d3d3d3;
 	color: #2298e7;
 	}
 	.video-strip {
-		background: url(../assets/images/web/BG-video-trends.jpg) no-repeat center top;
+		background: url(../../assets/images/web/BG-video-trends.jpg) no-repeat center top;
 		width: 100%;
 		height: 385px;
 		margin: 80px 0px;
@@ -209,10 +209,10 @@ color: #d3d3d3;
 .playbtn {
 	width: 60px;
 	height: 60px;
-	background: url(../assets/images/web/play.png) no-repeat left top;
+	background: url(../../assets/images/web/play.png) no-repeat left top;
 	margin: 50px auto 40px auto;
 	display: block;
-}	
+}
 .videotxt h2 {
 	text-transform: uppercase;
 	font-size: 30px;
@@ -232,7 +232,7 @@ color: #d3d3d3;
 	height: 56px;
 	font-size: 16px;
 	font-weight: 500;
-	padding: 5px 0 0 0
+	padding: 5px 0 0 0;
 	margin:25px 0px;
 
 }
@@ -247,7 +247,7 @@ color: #d3d3d3;
 }
 .previous, .next  {
 	width: 70px;
-	height: 70px;
+	height: 70px;
 	float: right;
 }
 .next {
@@ -335,7 +335,7 @@ font-weight: 500;
 	display: block;
 }
 .img50 {
-	background: url(../assets/images/web/img50bg.jpg) no-repeat right top;
+	background: url(../../assets/images/web/img50bg.jpg) no-repeat right top;
 	background-size: cover;
 	height: 430px;
 	margin-top: 80px;
@@ -359,7 +359,7 @@ font-weight: 500;
 	float: left;
 
 }
-.form input { 
+.form input {
 	background: none;
 	border: solid 1px #fff;
 	padding: 2px 3px 2px 4px;
@@ -382,7 +382,7 @@ font-weight: 500;
     width: 100% !important;
 }
 .slide1 {
-	background: url(../assets/images/web/slide1.jpg) no-repeat center top #164a65;
+	background: url(../../assets/images/web/slide1.jpg) no-repeat center top #164a65;
 	width: 100%;
 	height: 500px;
 	text-align: left;
@@ -456,7 +456,7 @@ font-weight: 500;
 	line-height: 34px;
     width:100%;
 }
-.immi-software span { 
+.immi-software span {
 font-weight: 300;
 	font-size: 30px;
 	color: #ccc;
@@ -482,7 +482,7 @@ h4 {
 }
 .projdisc ul li {
 	list-style: none;
-	background: url(../assets/images/web/dot.jpg) no-repeat left 9px;
+	background: url(../../assets/images/web/dot.jpg) no-repeat left 9px;
 	margin-bottom: 10px;
 	padding: 0 0 0 20px;
 
@@ -491,7 +491,7 @@ h4 {
 	width: 100%;
 	padding: 50px 0;
 	background: #f2f2f2;
-	border-bottom: solid 1px #95989a; 
+	border-bottom: solid 1px #95989a;
 	color: #333;
 }
 .copyright {
@@ -560,15 +560,15 @@ h4 {
 	width: 32px;
 	height: 32px;
 	float: left;
-	background: url(../assets/images/web/facebook.png) no-repeat center center;
+	background: url(../../assets/images/web/facebook.png) no-repeat center center;
 	background-size: 100%;
 	border-radius: 50%;
 }
 .slinks li a.twitter {
-	background: url(../assets/images/web/twitter.png) no-repeat  center center;
+	background: url(../../assets/images/web/twitter.png) no-repeat  center center;
 	background-size: 100%;
 }
 .slinks li a.insta {
-	background: url(../assets/images/web/instagram.png) no-repeat  center center;
+	background: url(../../assets/images/web/instagram.png) no-repeat  center center;
 	background-size: 100%;
 }
