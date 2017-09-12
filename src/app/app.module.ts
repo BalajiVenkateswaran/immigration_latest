@@ -272,7 +272,6 @@ import {demorequestdetailsComponent} from './components/superuserview/misc-tab/d
 import {Demorequestdetailsservice} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
 import {miscsuperusersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
 import {miscsuperusersservice} from './components/superuserview/misc-tab/superusers/miscsuperusers.service';
-import { L1Page1Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/l1-page-1/l1-page-1.component';
 import { Page1Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-1/page-1.component';
 import { Page2Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-2/page-2.component';
 import { Page3Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-3/page-3.component';
@@ -429,7 +428,6 @@ import { Page4Component } from './components/immigrationview/petitions-tab/petit
       ManageaccountChecklistComponent,
       demorequestdetailsComponent,
       miscsuperusersComponent,
-      L1Page1Component,
       Page1Component,
       Page2Component,
       Page3Component,
