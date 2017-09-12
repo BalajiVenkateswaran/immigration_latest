@@ -61,7 +61,7 @@ export class MarkforDeletionComponent implements OnInit {
                 {
                   headerName: "Deleted by",
                   field: "deletedByUser",
-                },
+                }
             ]
         }
     }

@@ -17,39 +17,37 @@ export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
       'columnsettings': [
         {
 
-          headerName: "Entity Name",
+          headerName: "Name",
           field: "entityName",
         },
         {
 
-          headerName: "Entity Type",
+          headerName: "Type",
           field: "entityType",
         },
         {
-
-          headerName: "Deleted By",
-          field: "deletedByUser"
-        },
-        {
-          headerName: "MFD on",
-          field: "markedForDeletionDate"
-        },
-        {
-
-          headerName: "Deleted on",
-          field: "deletionDate"
-        },
-        {
           headerName: "Organization",
-          field: "orgName"
+          field: "orgName",
         },
         {
           headerName: "Client Name",
-          field: ""
+          field: "clientName",
         },
         {
           headerName: "Petition Name",
-          field: "petitionName"
+          field: "petitionName",
+        },
+        {
+          headerName: "MFD on",
+          field: "markedForDeletionDate",
+        },
+        {
+          headerName: "Deleted on",
+          field: "deletionDate",
+        },
+        {
+          headerName: "Deleted by",
+          field: "deletedByUser",
         }
       ]
     }
