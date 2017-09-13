@@ -11,33 +11,63 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class clientstatusreportscomponent implements OnInit {
-  public pieChartLabels: string[] = [];
-  public pieChartData: number[] = [];
-  public pieChartType: string = 'pie';
-  public orgsList: any = {};
-  public orgsNames: any = [];
-  public count: any = [];
-  public Status: any = [];
+    public orgsList: any = {};
+    public orgsNames: any = [];
+    public open: any = [];
+    public closed: any = [];
   constructor(public appService: AppService, private clientStatusreportsservice: clientstatusreportsservice) {}
   ngOnInit() {
     this.clientStatusreportsservice.getclientstatusreports(this.appService.user.accountId)
       .subscribe((res) => {
         console.log(res);
+        this.barChartData = [];
         this.orgsList = res['orgs'];
         for (var item in this.orgsList) {
-          this.count = [];
-          this.Status = [];
-          this.orgsNames.push(item);
-          for (var i = 0; i < this.orgsList[item].length; i++) {
-            this.count.push(this.orgsList[item][i]['count']);
-            this.Status.push(this.orgsList[item][i]['status']);
-          }
-          this.pieChartLabels[item] = this.Status;
-          this.pieChartData[item] = this.count;
-        }
-      });
-  }
+            this.barChartLabels.push(item);
+            for (var i = 0; i < this.orgsList[item].length; i++) {
+                if (this.orgsList[item].length == "2") {
+                    if (this.orgsList[item][i].status == "Active") {
+                        this.open.push(this.orgsList[item][i]['count']);
+                    }
+                    if (this.orgsList[item][i].status == "Inactive") {
+                        this.closed.push(this.orgsList[item][i]['count']);
+                    }
+                }
+                else {
+                    if (this.orgsList[item][i].status == "Active") {
+                        this.open.push(this.orgsList[item][i]['count']);
+                    }
+                    else {
+                        this.open.push(0);
+                    }
+                    if (this.orgsList[item][i].status == "Inactive") {
+                        this.closed.push(this.orgsList[item][i]['count']);
+                    }
+                    else {
+                        this.closed.push(0);
+                    }
+                }
 
+            }
+
+        }
+        this.barChartData.push({ data: this.open, label: 'Active Clients' }, { data: this.closed, label: 'InActive Clients' });
+        });
+  }
+  public barChartOptions: any = {
+      scaleShowVerticalLines: false,
+      responsive: true,
+      scales: {
+          xAxes: [{
+              stacked: true,
+          }],
+          yAxes: [{
+              stacked: true,
+          }]
+      }
+  };
+  public barChartLabels = [];
+  public barChartLegend: boolean = true;
   public chartClicked(e: any): void {
     console.log(e);
   }
@@ -45,4 +75,6 @@ export class clientstatusreportscomponent implements OnInit {
   public chartHovered(e: any): void {
     console.log(e);
   }
+  public barChartData: any[] = [{ data: [], label: '' }, { data: [], label: '' }];
+
 }

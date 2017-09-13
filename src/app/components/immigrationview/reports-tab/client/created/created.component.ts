@@ -38,7 +38,14 @@ export class clientscreatedreportscomponent implements OnInit {
   constructor(public appService: AppService, private clientsCreatedreportsservice: clientscreatedreportsservice) {}
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true,
+            }
+        }]
+    }
   };
   public barChartLabels: number[] = [];
   public barChartType: string = 'bar';

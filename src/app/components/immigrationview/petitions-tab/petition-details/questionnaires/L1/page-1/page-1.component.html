@@ -21,14 +21,14 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-12">Name of the Petitioner</div>
-                <div class="col-md-12"><input type="text" [(ngModel)]="I129Hpage1.petitonerName" /></div>
+                <div class="col-md-12"><input type="text" /></div>
               </div>
             </div>
           </div>
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-12">Name of the Beneficiary</div>
-              <div class="col-md-12"><input type="text" [(ngModel)]="I129Hpage1.beneficiaryName" /></div>
+              <div class="col-md-12"><input type="text" /></div>
             </div>
           </div>
           <div class="col-md-12">
@@ -41,7 +41,7 @@
 
                 <label for="">
                         <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
-                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                            />
                         {{x.display}}
                       </label>
 
@@ -56,7 +56,7 @@
               <div class="col-md-2" *ngFor="let x of questions">
                 <label for="">
                         <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
-                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                              />
                         {{x.display}}
                       </label>
 
@@ -71,7 +71,7 @@
               <div class="col-md-2" *ngFor="let x of questions">
                 <label for="">
                         <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
-                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                               />
                         {{x.display}}
                       </label>
 
@@ -89,7 +89,7 @@
               <div class="col-md-4" *ngFor="let x of classificationSought">
                 <label for="">
                         <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
-                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                              />
                         {{x.display}}
                       </label>
 
@@ -97,12 +97,11 @@
             </div>
           </div>
           <div class="col-md-12">
-            <p>List each beneficiary's prior periods of stay in H or L classification in the United States for the last six
-              years (beneficiaries requesting H-2A or H-2B classification need only list the last three years). Be sure to
-              only list those periods in which each beneficiary was actually in the United States in an H or L classification.
-              Do not include periods in which the beneficiary was in a dependent status, for example, H-4 or L-2 status.</p>
-            <p>NOTE: Submit photocopies of Forms I-94, I-797, and/or other USCIS issued documents noting these periods of stay
-              in the H or L classification. (If more space is needed, attach an additional sheet.)</p>
+            <p>List the beneficiary's and any dependent family member's prior periods of stay in an H or L classification in the United States for 
+              the last seven years.  Be sure to list only those periods in which the beneficiary and/or family members were physically present in 
+              the U.S. in an H or L classification.  Do not include periods in which the beneficiary was in a dependent status, for example, H-4 
+              the U.S. in an H or L classification.  Do not include periods in which the beneficiary was in a dependent status, for example, H-4 </p>
+            <p>NOTE:  Submit photocopies of Forms I-94, I-797, and/or other USCIS issued documents noting these periods of stay in the H or L classification. (If more space is needed, attach an additional sheet.)</p>
             <table width='100%' border="1" cellpadding="3" cellspacing="0">
               <tr>
                 <td width="70%" align="center" valign="middle">Subject's Name</td>
@@ -120,79 +119,79 @@
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName1" class="form-control" /></td>
+                <td><input type="text"  class="form-control" /></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate1" [selDate]="fromDate1"></my-date-picker>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate1" [selDate]="toDate1"></my-date-picker>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
                 </td>
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName2" /></td>
+                <td><input type="text" /></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate2" [selDate]="fromDate2"></my-date-picker>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate2" [selDate]="toDate2"></my-date-picker>
-                </td>
-
-              </tr>
-              <tr>
-                <!--<td><span></span><td>-->
-
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName3" /></td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate3" [selDate]="fromDate3"></my-date-picker>
-                </td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate3" [selDate]="toDate3"></my-date-picker>
-                </td>
-
-              </tr>
-              <tr>
-                <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName4" /></td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate4" [selDate]="fromDate4"></my-date-picker>
-                </td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate4" [selDate]="toDate4"></my-date-picker>
-                </td>
-
-              </tr>
-              <tr>
-                <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName5" /></td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate5" [selDate]="fromDate5"></my-date-picker>
-                </td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate5" [selDate]="toDate5"></my-date-picker>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
                 </td>
 
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
 
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName6" /></td>
+                <td><input type="text"  /></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate6" [selDate]="fromDate6"></my-date-picker>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate6" [selDate]="toDate6"></my-date-picker>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
                 </td>
 
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName2" /></td>
+                <td><input type="text"  /></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate2" [selDate]="fromDate2"></my-date-picker>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate2" [selDate]="toDate2"></my-date-picker>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text"  /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions"  ></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+
+                <td><input type="text"  /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text"  /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" ></my-date-picker>
                 </td>
 
               </tr>
@@ -203,7 +202,7 @@
             <div class="row">
 
               <div class="col-md-12">Name of the Employer Abroad</div>
-              <div class="col-md-12"><input type="text" [(ngModel)]="I129Hpage1.beneficiaryName" /></div>
+              <div class="col-md-12"><input type="text"  /></div>
 
             </div>
           </div>
@@ -222,7 +221,7 @@
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-4" *ngFor="let x of aptType">
-                      <input type="radio" [(disabled)]="isquestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType">{{x.display}}
+                      <input type="radio"  name="aptType" [value]="x.value" >{{x.display}}
                     </div>
                   </div>
                 </div>
