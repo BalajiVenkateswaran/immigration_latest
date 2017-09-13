@@ -104,6 +104,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   }
   saveAccountDetails() {
 
+
     if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
       this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
     }
@@ -114,12 +115,13 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
       || this.accountDetails['email'] == '' || this.accountDetails['email'] == null || this.accountDetails['email'] == undefined
       || this.accountDetails['phone'] == '' || this.accountDetails['phone'] == null || this.accountDetails['phone'] == undefined
       || this.accountDetails['storageType'] == '' || this.accountDetails['storageType'] == null || this.accountDetails['storageType'] == undefined
-      || /*this.accountDetails['markForDeletion'] == '' ||*/ this.accountDetails['markForDeletion'] == null || this.accountDetails['markForDeletion'] == undefined
+      || this.accountDetails['markForDeletion'] == null || this.accountDetails['markForDeletion'] == undefined
       || this.accountDetails['status'] == '' || this.accountDetails['status'] == null || this.accountDetails['status'] == undefined) {
       this.errormsg = true;
     } else {
       this.errormsg = false;
       this.accountDetails['accountId'] = this.accountDetailsCommonService.accountId;
+      this.accountDetails['mfdBy'] = this.appService.user.userId;
       this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
         .subscribe((res) => {
           this.isEditstorage = true;

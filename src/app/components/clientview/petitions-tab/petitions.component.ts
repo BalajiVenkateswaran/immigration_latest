@@ -85,7 +85,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "Stage",
-          field: "stage"
+          field: "petitionStage"
         },
         {
           headerName: "Start Date",
@@ -93,7 +93,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "Last Updated",
-          field: "lastUpdated"
+          field: "lastUpdate"
         },
         {
           headerName: "Receipt Number",

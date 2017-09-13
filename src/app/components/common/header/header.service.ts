@@ -88,4 +88,7 @@ export class HeaderService {
     this._menuSlider = null;
     this._organizations = null;
   }
+  getUsageSummaryDetails(accountId : String){
+    return this.restService.getData("/immigration/account/getProductUsageSummary/"+accountId);
+  }
 }

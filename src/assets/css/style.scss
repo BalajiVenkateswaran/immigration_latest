@@ -1556,8 +1556,8 @@ confirm {
     .modal-dialog {
     margin: 15% auto 0px auto;
         .modal-content {
-                    background:#32353e;
-        border:solid 2px #000;
+                    background:#32353e !important;
+        border:solid 2px #000 !important;
         padding-bottom:15px;
             .modal-header {
                 display:block !important;
@@ -1592,10 +1592,11 @@ confirm {
 }
 .orgnamebox {
     .modal-content {
-        background:#32353e;
-        border:solid 2px #000;
+        background:#32353e !important;
+        border:solid 2px #000 !important;
         padding-bottom:15px;
         .modal-header {
+            border-bottom:none !important;
             .close {
                     color: #e9eaec !important;
                     text-shadow: none !important;
@@ -1838,7 +1839,8 @@ confirm {
 }
 .loginpopup {
     .modal-header {
-        padding:0px 15px;
+            padding: 0px 15px !important;
+    border: none !important;
     }
     .modal-title {
     /*background: #2f323a;  For browsers that do not support gradients */
@@ -1863,7 +1865,7 @@ confirm {
         margin-bottom:20px;
         padding:0;
         width:32px;
-        height:32px;
+        height:34px;
         float:left;
     }
     input[type~="email"], input[type~="password"] {

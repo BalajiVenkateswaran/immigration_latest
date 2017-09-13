@@ -4,15 +4,21 @@ import { ConfirmorgComponent } from '../../framework/confirmbox/confirmorg.compo
 import {Component, OnInit, DoCheck, ViewChild, AfterViewChecked} from '@angular/core';
 import {Router} from "@angular/router";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService,DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import { HeaderService } from './header.service';
+export interface ConfirmModel {
+    title: string;
+    message: string;
+    header:boolean;
+    usageSummaryPopup: boolean;
 
+}
 @Component({
     selector: 'immp-header',
     templateUrl: 'header.component.html',
 })
-export class HeaderComponent implements AfterViewChecked{
+export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> implements AfterViewChecked {
   applicationViewMode;
   private Immigrant;
   private immigrationManager;
@@ -22,7 +28,9 @@ export class HeaderComponent implements AfterViewChecked{
   private i;
   public user: User;
   public orgnames: any = {};
-
+  public header:boolean=true;
+  public usageSummaryPopup:boolean=false;
+  public usageSummaryDetails;
   @ViewChild('orgSelect') vc;
 
   public ngAfterViewChecked():void {
@@ -40,13 +48,18 @@ export class HeaderComponent implements AfterViewChecked{
   checkForCurrentTab(tab){
     return this.appService.currentTab == tab;
   }
-  constructor(private router: Router, public appService: AppService, private dialogService: DialogService, public headerService: HeaderService) {
+  constructor(private router: Router, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
+    super(dialogService);
     this.headerService.onHeaderPageLoad();
     if(this.appService.user != null){
       this.user = this.appService.user;
     }
+    this.headerService.getUsageSummaryDetails(this.user.accountId).subscribe(
+      res=>{
+        this.usageSummaryDetails=res;
+      }
+    )
   }
-
 
   editorgname() {
       this.dialogService.addDialog(ConfirmorgComponent, {
@@ -73,5 +86,22 @@ export class HeaderComponent implements AfterViewChecked{
   logOut() {
       this.appService.destroy();
       this.appService.moveToPage('');
+  }
+  onUsageSummaryClick(){
+    this.dialogService.addDialog(HeaderComponent,{
+      title:'Account Usage Summary',
+      usageSummaryPopup:true,
+      header:false
+    })
+  }
+
+  onLogoClick(){
+    if(this.appService.applicationViewMode == 'Immigration'){
+      this.appService.moveToPage('petitions');
+      this.highlightTab('petitions');
+    } else if(this.appService.applicationViewMode == 'Client'){
+      this.appService.moveToPage('clientview-petitions');
+      this.highlightTab('clientview-petitions');
+    }
   }
 }
