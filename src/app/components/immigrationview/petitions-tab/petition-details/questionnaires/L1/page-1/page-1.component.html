@@ -1,3 +1,300 @@
-<p>
-  page-1 works!
-</p>
+<div class="main-content">
+  <div class="table-data">
+    <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+    <h1 style="float:right;">{{appService.petitionDetails}}</h1>
+    <div class="clearfix"></div>-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-4">
+            <!--<a (click)="gotoPrev()" class="prevbtn">Back</a>-->
+          </div>
+          <div class="col-md-4 pagenoof36">Page 22 of 36</div>
+          <div class="col-md-4">
+            <a (click)="gotoNext()" class="nextbtn">Save & Continue</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-12 addresbox box-shadow clientview-ques129h">
+          <div>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12">Name of the Petitioner</div>
+                <div class="col-md-12"><input type="text" [(ngModel)]="I129Hpage1.petitonerName" /></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">Name of the Beneficiary</div>
+              <div class="col-md-12"><input type="text" [(ngModel)]="I129Hpage1.beneficiaryName" /></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4">
+                <p>This petition is (select only one box):</p>
+              </div>
+              <div class="col-md-4" *ngFor="let x of isPetition">
+
+
+                <label for="">
+                        <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
+                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                        {{x.display}}
+                      </label>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-8">
+                <p>Does the petitioner employ 50 or more individual in the U.S.?</p>
+              </div>
+              <div class="col-md-2" *ngFor="let x of questions">
+                <label for="">
+                        <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
+                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                        {{x.display}}
+                      </label>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-8">
+                <p>If yes, are more than 50 percent of these employee in H-1B,L-1A, or L-1B nonimmigrant status?</p>
+              </div>
+              <div class="col-md-2" *ngFor="let x of questions">
+                <label for="">
+                        <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
+                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                        {{x.display}}
+                      </label>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <h2>Complete This Section If Filing For An Individual Petition</h2>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4">
+                <p>Classification sought (select only one box): </p>
+              </div>
+              <div class="col-md-4" *ngFor="let x of classificationSought">
+                <label for="">
+                        <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
+                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                        {{x.display}}
+                      </label>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <p>List each beneficiary's prior periods of stay in H or L classification in the United States for the last six
+              years (beneficiaries requesting H-2A or H-2B classification need only list the last three years). Be sure to
+              only list those periods in which each beneficiary was actually in the United States in an H or L classification.
+              Do not include periods in which the beneficiary was in a dependent status, for example, H-4 or L-2 status.</p>
+            <p>NOTE: Submit photocopies of Forms I-94, I-797, and/or other USCIS issued documents noting these periods of stay
+              in the H or L classification. (If more space is needed, attach an additional sheet.)</p>
+            <table width='100%' border="1" cellpadding="3" cellspacing="0">
+              <tr>
+                <td width="70%" align="center" valign="middle">Subject's Name</td>
+                <td width="30%;" colspan="2">
+                  <table width='100%'>
+                    <tr>
+                      <td colspan="2" align="center" valign="middle">Period of Stay (mm/dd/yyyy)</td>
+                    </tr>
+                    <tr>
+                      <td width="50%" align="center" valign="middle">From</td>
+                      <td width="50%" align="center" valign="middle">To</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName1" class="form-control" /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate1" [selDate]="fromDate1"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate1" [selDate]="toDate1"></my-date-picker>
+                </td>
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName2" /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate2" [selDate]="fromDate2"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate2" [selDate]="toDate2"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+
+                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName3" /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate3" [selDate]="fromDate3"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate3" [selDate]="toDate3"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName4" /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate4" [selDate]="fromDate4"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate4" [selDate]="toDate4"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName5" /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate5" [selDate]="fromDate5"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate5" [selDate]="toDate5"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+
+                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName6" /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate6" [selDate]="fromDate6"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate6" [selDate]="toDate6"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName2" /></td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.fromDate2" [selDate]="fromDate2"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="I129Hpage1.toDate2" [selDate]="toDate2"></my-date-picker>
+                </td>
+
+              </tr>
+            </table>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row">
+
+              <div class="col-md-12">Name of the Employer Abroad</div>
+              <div class="col-md-12"><input type="text" [(ngModel)]="I129Hpage1.beneficiaryName" /></div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-4">Street Number and Name</div>
+                <div class="col-md-8"><input type="text" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-4" *ngFor="let x of aptType">
+                      <input type="radio" [(disabled)]="isquestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType">{{x.display}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-4">Number </div>
+                <div class="col-md-8"><input type="text" />
+
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-4">City or Town</div>
+                  <div class="col-md-8"><input type="text" />
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-4">State</div>
+                  <div class="col-md-8">
+                    <select>
+                                              <option [value]="mailingAddress.name" *ngFor="let mailingAddress of states">{{mailingAddress.name}}</option>
+                                          </select>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-4">ZIP Code</div>
+                  <div class="col-md-8"><input type="text" />
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-4">Province</div>
+                  <div class="col-md-8"><input type="text" />
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-4">Postal Code</div>
+                  <div class="col-md-8"><input type="text" />
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-4">Country</div>
+                  <div class="col-md-8"><input type="text" />
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
