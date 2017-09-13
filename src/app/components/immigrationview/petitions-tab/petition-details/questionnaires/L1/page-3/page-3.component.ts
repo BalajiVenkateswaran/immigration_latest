@@ -6,8 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-3.component.scss']
 })
 export class Page3Component implements OnInit {
-
-  constructor() { }
+  public questions: any = [];
+  constructor() {
+      this.questions = [
+      {
+        "id": "0",
+        "display": "Yes",
+        "value": "Y"
+      },
+      {
+        "id": "1",
+        "display": "No",
+        "value": "N"
+      },
+    ];
+   }
 
   ngOnInit() {
   }

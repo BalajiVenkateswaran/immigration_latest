@@ -1,3 +1,158 @@
-<p>
-  page-2 works!
-</p>
+<div class="main-content">
+  <div class="table-data">
+    <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+        <h1 style="float:right;">{{appService.petitionDetails}}</h1>
+        <div class="clearfix"></div>-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-4">
+            <a (click)="gotoPrev()" class="prevbtn">Back</a>
+          </div>
+          <div class="col-md-4 pagenoof36">Page 8 of 36</div>
+          <div class="col-md-4">
+            <a (click)="gotoNext()" class="nextbtn">Save</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <h2> Complete This Selection If Filing For An Individual Petition (Continued) </h2>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
+          <div class="row">
+            <div class="col-md-12">
+              <p>Dates of beneficiary employment with this employer. Explain any interruptions in employement.</p>
+            </div>
+            <div class="col-md-12">
+              <table width='100%' border="1" cellpadding="3" cellspacing="0">
+                <tr>
+                   <td width="50%" align="center" valign="middle">From</td>
+                    <td width="50%" align="center" valign="middle">To</td>
+                     <tr>
+                        <td colspan="2" align="center" valign="middle">Date of Employment (mm/dd/yyyy)</td>
+                      </tr>
+               
+                    <table width='100%'>
+
+                      <tr>
+                          <td width="70%" align="center" valign="middle">Explanation of Interruptions</td>
+                  <td width="30%;" colspan="2">
+                      </tr>
+                     
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <!--<td><span></span><td>-->
+
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td><input type="text" class="form-control" /></td>
+                </tr>
+                <tr>
+                  <!--<td><span></span><td>-->
+
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td><input type="text" /></td>
+                </tr>
+                <tr>
+                  <!--<td><span></span><td>-->
+
+
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td><input type="text" /></td>
+                </tr>
+                <tr>
+                  <!--<td><span></span><td>-->
+
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td><input type="text" /></td>
+                </tr>
+                <tr>
+                  <!--<td><span></span><td>-->
+
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td><input type="text" /></td>
+                </tr>
+                <tr>
+                  <!--<td><span></span><td>-->
+
+
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                  </td>
+                  <td><input type="text" /></td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-12">
+              <p>Describe the beneficiary's duties abroad for 3 years preceding the filing of the petition. (If the beneficiary
+                is currently inside the United States, describe the beneficiary's duties abroad for the 3 years preceding
+                the beneficiary admission to the United States.)</p>
+            </div>
+
+            <div class="col-md-12"><textarea rows="6" style="min-height:120px;" textarea></textarea>
+
+            </div>
+            <div class="col-md-12">
+              <p>Describe the beneficiary's proposed duties in United States.</p>
+            </div>
+
+
+            <div class="col-md-12"><textarea rows="6" style="min-height:120px;"></textarea>
+
+            </div>
+            <div class="col-md-12">
+              <p>Summarize the beneficiary's education and work experience.</p>
+            </div>
+            <div class="col-md-12"><textarea rows="6" style="min-height:120px;"></textarea>
+
+            </div>
+            <div class="col-md-12">
+              <p>How is the U.S. company related to the compnay abroad? (select only one box)</p>
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-2" *ngFor="let x of companyRelated">
+                  <label for="">
+                        <input type="radio" [value]="x.value"/>
+                        {{x.display}}
+                      </label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
