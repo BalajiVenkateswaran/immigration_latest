@@ -29,7 +29,7 @@ import {ManageAccountUserComponent} from "./components/immigrationview/manage-ac
 import {ManageAccountOrganizationsComponent} from "./components/immigrationview/manage-account-tab/organizations/organizations.component";
 import {ImmigrationViewClientDetailsService} from './components/immigrationview/clients-tab/client-details/client-details/client-details.service';
 import {ImmigrationViewClientDetailsComponent} from './components/immigrationview/clients-tab/client-details/client-details/client-details.component';
-import {LoginComponent} from "./components/common/login/login.component";
+import {LoginComponent} from "./components/common/website/login/login.component";
 import {petitionsclientviewComponent} from "./components/clientview/petitions-tab/petitions.component";
 import { clientviewQuestionnaireComponent } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.component';
 import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
@@ -137,7 +137,14 @@ import { Page3Component } from "./components/immigrationview/petitions-tab/petit
 import { Page2Component } from "./components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-2/page-2.component";
 
 
+// Website Components
+import { webImmigrationServicesComponent } from './components/common/website/immigration-services/immigration-services.component';
+
 export const appRoutes: Routes = [
+    {
+        path: 'web-immigration-services',
+        component: webImmigrationServicesComponent,
+    },
     {
         path: 'i129hPage1/:questionnaireId',
         component: i129HPage1Component,

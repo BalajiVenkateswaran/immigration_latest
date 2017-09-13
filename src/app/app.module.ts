@@ -76,8 +76,8 @@ import { ClientQuestionnaireService } from './components/clientview/questionnari
 import {RequestButton} from './components/clientview/request-tab/RequestButton';
 import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
 import { HeaderComponent } from './components/common/header/header.component';
-import { LoginComponent } from './components/common/login/login.component';
-import { loginService } from './components/common/login/login.service';
+import { LoginComponent } from './components/common/website/login/login.component';
+import { loginService } from './components/common/website/login/login.service';
 import { MenuComponent } from './components/common/menu/menu.component';
 import { MenuService } from './components/common/menu/menu.service';
 import { ResetPasswordComponent } from './components/common/reset-password/reset-password.component';
@@ -277,6 +277,9 @@ import { Page2Component } from './components/immigrationview/petitions-tab/petit
 import { Page3Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-3/page-3.component';
 import { Page4Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-4/page-4.component';
 
+// Website components Here
+import { webImmigrationServicesComponent } from './components/common/website/immigration-services/immigration-services.component';
+import { webImmigrationServicesService } from './components/common/website/immigration-services/immigration-services.service';
 
 @NgModule({
   imports: [
@@ -297,6 +300,7 @@ import { Page4Component } from './components/immigrationview/petitions-tab/petit
       GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton,checklistuploadButton,MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton
   ],
   declarations: [
+      webImmigrationServicesComponent,
     i129Page1Component,
     i129Page2Component,
     i129Page3Component,
@@ -435,7 +439,8 @@ import { Page4Component } from './components/immigrationview/petitions-tab/petit
 
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: '/'},
+      { provide: APP_BASE_HREF, useValue: '/' },
+      webImmigrationServicesService,
     HeaderService,
     CurrencyPipe,
     RestService,
