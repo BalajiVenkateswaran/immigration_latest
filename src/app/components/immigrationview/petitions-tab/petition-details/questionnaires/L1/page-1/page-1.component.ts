@@ -7,10 +7,10 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 })
 export class Page1Component implements OnInit {
   public questions: any = [];
-  public isPetition:any =[]; 
+  public isPetition:any =[];
   public states: any[] = [];
   public classificationSought:any =[];
-  public aptType; 
+  public aptType;
   public I129Hpage1: any = {};
   public fromDate1:string;
   public fromDate2:string;
@@ -24,13 +24,13 @@ export class Page1Component implements OnInit {
   public toDate4:string;
   public toDate5:string;
   public toDate6:string;
-  private myDatePickerOptions: IMyOptions = {
+  public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
         editableDateField: false
     };
-  constructor() { 
+  constructor() {
     this.questions = [
       {
         "id": "0",
@@ -165,5 +165,7 @@ export class Page1Component implements OnInit {
 
   ngOnInit() {
   }
+  gotoNext(){
 
+  }
 }

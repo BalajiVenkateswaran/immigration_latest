@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IMyOptions} from "mydatepicker";
 
 @Component({
   selector: 'app-page-2',
@@ -7,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page2Component implements OnInit {
   public companyRelated: any = [];
+  public myDatePickerOptions: IMyOptions = {
+    // other options...
+    dateFormat: 'mm-dd-yyyy',
+    showClearDateBtn: false,
+    editableDateField: false
+  };
   constructor() {
     this.companyRelated = [
       {
@@ -38,6 +45,12 @@ export class Page2Component implements OnInit {
    }
 
   ngOnInit() {
+  }
+  gotoNext(){
+
+  }
+  gotoPrev(){
+
   }
 
 }

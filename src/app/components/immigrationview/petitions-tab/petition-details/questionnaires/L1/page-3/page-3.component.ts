@@ -24,5 +24,10 @@ export class Page3Component implements OnInit {
 
   ngOnInit() {
   }
+  gotoNext(){
 
+  }
+  gotoPrev(){
+
+  }
 }
