@@ -26,21 +26,20 @@ export class petitionstypesreportscomponent implements OnInit {
             res => {
                 console.log(res);
                 this.petitionstageTypes = res['petitionTypes'];
+                this.selectedsubtype = "H1B";
+                this.selectedsubtypeId = this.petitionstageTypes[0].petitionTypeId;
+                this.getpetitiontypereports();
             });
+    
     }
-    petitionsubtypechange() {
-        for (var i = 0; i < this.petitionstageTypes.length; i++) {
-            if (this.selectedsubtype == this.petitionstageTypes[i].petitiontype) {
-                this.selectedsubtypeId = this.petitionstageTypes[i].petitionTypeId;
-            }
-        }
+    getpetitiontypereports() {
         this.petitionsTypesreportsservice.getpetitonTypesreports(this.appService.user.accountId, this.selectedsubtypeId)
             .subscribe((res) => {
                 console.log(res);
                 this.pieChartData = [];
                 this.pieChartLabels = [];
                 this.orgsList = res['orgs'];
-             
+
                 for (var item in this.orgsList) {
                     this.count = [];
                     this.subTypes = [];
@@ -51,10 +50,19 @@ export class petitionstypesreportscomponent implements OnInit {
                     }
                     this.pieChartLabels[item] = this.subTypes;
                     this.pieChartData[item] = this.count;
-                 
+
                 }
-                
+
             });
+    }
+    petitionsubtypechange() {
+        for (var i = 0; i < this.petitionstageTypes.length; i++) {
+            if (this.selectedsubtype == this.petitionstageTypes[i].petitiontype) {
+                this.selectedsubtypeId = this.petitionstageTypes[i].petitionTypeId;
+            }
+        }
+        this.getpetitiontypereports();
+
     }
     constructor(public appService: AppService, private petitionsTypesreportsservice: petitionstypesreportsservice, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
     public chartClicked(e: any): void {
