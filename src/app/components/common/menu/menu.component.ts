@@ -2,6 +2,8 @@ import { AppService } from '../../../services/app.service';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { MenuService } from "./menu.service";
 import { QuestionnaireCommonService } from '../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
+import { Subscription } from 'rxjs/Subscription';
+
 
 @Component({
     selector: 'menu',
@@ -46,72 +48,56 @@ export class MenuComponent implements OnInit {
             this.manageUser = true;
         }
     }
-    //immigration sidebar 
-    immiQstnreclick() {
-        this.immiQstnre = !this.immiQstnre;
-        this.immipetitiondoc = false;
-    }
-    immiPetDoc() {
-        this.immipetitiondoc = !this.immipetitiondoc;
+    submenuclick(menu) {
         this.immiQstnre = false;
-    }
-    immidependentsclick() {
-        this.immidependents = !this.immidependents;
-    }
-    manageacntuserclick() {
-          this.manageUser = !this.manageUser;
-          this.userDetailsClicked=false;
-
-    }
-    userDetailsClick(){
-        this.userDetailsClicked = true;
-    }
-    petrportsclick() {
-        this.immipetitionreports = !this.immipetitionreports;
-        this.immicilentreports = false;
-        this.immiuserreports = false;
-    }
-    clinetreportsclick() {
-        this.immicilentreports = !this.immicilentreports;
-        this.immiuserreports = false;
-        this.immipetitionreports = false;
-    }
-    userpetiitonsclick() {
-        this.immiuserreports = !this.immiuserreports;
+        this.immipetitiondoc = false;
+        this.immidependents = false;
+        this.manageUser = false;
         this.immipetitionreports = false;
         this.immicilentreports = false;
-    }
-    //clientview sidebar
-    clientDepClick() {
-        this.clientdependents = !this.clientdependents;
-    }
-    clientquestionaireclick() {
-        this.clientQuest = !this.clientQuest;
-    }
-    //super user sidebar
-    showquespdfpages() {
-        this.quespdfPages = !this.quespdfPages;
-    }
-    superuserpetionsclick() {
-        this.superuserpetitions = !this.superuserpetitions;
+        this.immiuserreports = false;
+        this.clientdependents = false;
+        this.clientQuest = false;
+        this.quespdfPages = false;
+        this.superuserpetitions = false;
         this.superuserclientreports = false;
         this.superuserpetitins = false;
-    }
-    superuserclientreportsclick() {
-        this.superuserclientreports = !this.superuserclientreports;
-        this.superuserpetitions = false;
-        this.superuserpetitins = false;
-    }
-    superuserpetitonreport() {
-        this.superuserpetitins = !this.superuserpetitins;
-        this.superuserclientreports = false;
-        this.superuserpetitions = false;
-    }
-    superuserstatsclick() {
-        this.superuserstats = !this.superuserstats;
-    }
-    superuserpaymentsclick() {
-        this.superuserpayments = !this.superuserpayments;
+        this.superuserstats = false;
+        this.superuserpayments = false;
+        if (menu == "immiQstnre") {
+            this.immiQstnre = true;
+        }
+        if (menu == "immipetitiondoc") {
+            this.immipetitiondoc = true;
+        }
+        if (menu == "immidependents") {
+            this.immidependents = true;
+        }
+        if (menu == "manageUser") {
+            this.manageUser = true;
+        }
+        if (menu == "immipetitionreports") {
+            this.immipetitionreports = true;
+        }
+        if (menu == "immicilentreports") {
+            this.immicilentreports = true;
+        }
+        if (menu == "clientdependents") {
+            this.clientdependents = true;
+        }
+        if (menu == "clientQuest") {
+            this.clientQuest = true;
+        }
+        if (menu == "superuserpetitions") {
+            this.superuserpetitions = true;
+        }
+        if (menu == "superuserclientreports") {
+            this.superuserclientreports = true;
+        }
+        if (menu == "superuserpetitins") {
+            this.superuserpetitins = true;
+        }
+      
     }
     checkForCurrentSBLink(sblink) {
         return this.appservice.currentSBLink == sblink;

@@ -22,6 +22,7 @@ export class HeaderComponent implements AfterViewChecked{
   private i;
   public user: User;
   public orgnames: any = {};
+
   @ViewChild('orgSelect') vc;
 
   public ngAfterViewChecked():void {
@@ -45,6 +46,7 @@ export class HeaderComponent implements AfterViewChecked{
       this.user = this.appService.user;
     }
   }
+
 
   editorgname() {
       this.dialogService.addDialog(ConfirmorgComponent, {
