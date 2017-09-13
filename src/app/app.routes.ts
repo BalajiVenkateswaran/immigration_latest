@@ -131,6 +131,10 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
 
 import {demorequestdetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
 import {miscsuperusersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
+import { Page1Component } from "./components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-1/page-1.component";
+import { Page4Component } from "./components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-4/page-4.component";
+import { Page3Component } from "./components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-3/page-3.component";
+import { Page2Component } from "./components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-2/page-2.component";
 
 
 export const appRoutes: Routes = [
@@ -205,6 +209,22 @@ export const appRoutes: Routes = [
     {
         path: 'i129dcPage3',
         component: i129dcPage3Component,
+    },
+    {
+        path: 'page1l1',
+        component: Page1Component
+    },
+    {
+        path: 'page2l1',
+        component: Page2Component
+    },
+    {
+        path: 'page3l1',
+        component: Page3Component
+    },
+    {
+        path: 'page4l1',
+        component: Page4Component
     },
     {
         path: 'login',

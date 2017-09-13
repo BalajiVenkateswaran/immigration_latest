@@ -38,7 +38,7 @@
 						</div>
 					</div>
 				</div>
-                <button type="submit" class="btn btn-primary" style="position: absolute;right: 0px;bottom: -40px;z-index:9999;" (click)="onUsageSummaryClick()">Usage Summary</button>
+                <button *ngIf="applicationViewMode=='Immigration'" type="submit" class="btn btn-primary" style="position: absolute;right: 0px;bottom: -65px;z-index:9999;" (click)="onUsageSummaryClick()">Usage Summary</button>
 			</div>
 
 		</div>
@@ -250,28 +250,27 @@
 								</tr>
 								<tr>
 								  <td>Immigration Users</td>
-								  <td>3</td>
+								  <td>{{usageSummaryDetails.usersAllowed}}</td>
 								  <td>{{usageSummaryDetails.usersUsed}}</td>
 								</tr>
 								<tr>
 								  <td>Organizations</td>
-								  <td>10</td>
+								  <td>{{usageSummaryDetails.orgAllowed}}</td>
 								  <td>{{usageSummaryDetails.orgUsed}}</td>
 								</tr>
 								<tr>
 								  <td>Clients</td>
-								  <td>10/Month</td>
+								  <td>{{usageSummaryDetails.clientsAllowed}}</td>
 								  <td>{{usageSummaryDetails.clientsUsed}}</td>
 								</tr>
 								<tr>
 								  <td>Petition</td>
-								  <td>30/Month </td>
+								  <td>{{usageSummaryDetails.petitionsAllowed}}</td>
 								  <td>{{usageSummaryDetails.petitionsUsed}}</td>
 								</tr>
 								<tr>
 								  <td>Storage</td>
-								  <td>1TB (If S3)<br>
-									  NA (if GD)</td>
+								  <td>{{usageSummaryDetails.storageAllowed}}</td>
 								  <td>{{usageSummaryDetails.storageUsed}}</td>
 								</tr>
 							</table>
