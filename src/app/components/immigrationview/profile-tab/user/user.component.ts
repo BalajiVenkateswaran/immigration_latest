@@ -3,7 +3,7 @@ import { HeaderService } from '../../../common/header/header.service';
 import {profileuserservice} from './user.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {LoginComponent} from "../../../common/login/login.component";
+import {LoginComponent} from "../../../common/website/login/login.component";
 
 
 @Component({
