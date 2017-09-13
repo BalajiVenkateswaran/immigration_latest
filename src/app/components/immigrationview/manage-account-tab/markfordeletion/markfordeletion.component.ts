@@ -11,9 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class MarkforDeletionComponent implements OnInit {
     public user:User;
     public markForDeletionInfoList;
-    public settings;   
+    public settings;
     public data;
-    ngOnInit() { 
+    ngOnInit() {
         if (this.appService.user) {
             this.user = this.appService.user;
 
@@ -24,23 +24,31 @@ export class MarkforDeletionComponent implements OnInit {
             }
         )
     }
-    constructor(public markForDeletionservice:markfordeletionservice,public appService:AppService) { 
-   
+    constructor(public markForDeletionservice:markfordeletionservice,public appService:AppService) {
+
     this.settings={
            "isAddButtonEnable":false,
            'isDeleteEnable':false,
             'columnsettings': [
                 {
-                    headerName: "Entity Name",
+                    headerName: "Name",
                     field: "entityName",
                 },
                 {
-                    headerName: "Entity type",
+                    headerName: "Type",
                     field: "entityType",
                 },
                 {
-                    headerName: "Deleted by",
-                    field: "deletedByUser",
+                  headerName: "Organization",
+                  field: "orgName",
+                },
+                {
+                  headerName: "Client Name",
+                  field: "clientName",
+                },
+                {
+                  headerName: "Petition Name",
+                  field: "petitionName",
                 },
                 {
                     headerName: "MFD on",
@@ -51,19 +59,11 @@ export class MarkforDeletionComponent implements OnInit {
                     field: "deletionDate",
                 },
                 {
-                    headerName: "Organization",
-                    field: "orgName",
-                },
-                  {
-                    headerName: "Client Name",
-                    field: "firstName",
-                },
-                {
-                    headerName: "Petition Name",
-                    field: "petitionName",
-                },
+                  headerName: "Deleted by",
+                  field: "deletedByUser",
+                }
             ]
         }
     }
-   
+
 }

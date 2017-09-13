@@ -3,7 +3,7 @@
 		<div class="col-md-4 pull-left no-pad">
 			<div class="logo">
 				<a
-					(click)="appService.moveToPage('petitions'); highlightTab('petitions');">
+					(click)="onLogoClick()">
 					<img src="assets/images/logo.png" />
 				</a>
 			</div>
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="col-md-4 pull-left">
-			<div class="profile-container pull-right">
+			<div class="profile-container pull-right" style="position:relative;">
 				<div class="profile">
 					<div class="profile-name">
 						<h4>{{user.firstName}} {{user.lastName}}</h4>
@@ -38,11 +38,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="row" *ngIf="applicationViewMode=='Immigration'">
-					  <button type="submit" class="btn btn-primary" (click)="onUsageSummaryClick()" >Usage Summary</button>
-				</div>
+                <button type="submit" class="btn btn-primary" style="position: absolute;right: 0px;bottom: -40px;z-index:9999;" (click)="onUsageSummaryClick()">Usage Summary</button>
 			</div>
-			
+
 		</div>
 		<div class="clearfix"></div>
 		<!--Mani Menu Start-->
@@ -89,7 +87,7 @@
 						(click)="appService.moveToPage('immiview-petitionreports'); highlightTab('immiview-petitionreports');highlightSBLink('immiview-petitionreports');"
 						[ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']"
 						routerLinkActive="active"> <span class="maintab-Reports"></span>
-							<div class="clearfix"></div> Reports
+							<div class="clearfix"></div> Reports 
 							<div class="arrow-up"></div>
 					</a></li>
 					<li><a
@@ -99,7 +97,8 @@
 							<div class="clearfix"></div> Profile
 							<div class="arrow-up"></div>
 					</a></li>
-				</ul>
+          
+        </ul>
 				<ul *ngIf="applicationViewMode=='Client'">
 					<li style="margin-right: 30px;"><a
 						(click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');"

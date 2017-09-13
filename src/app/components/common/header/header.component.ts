@@ -18,7 +18,7 @@ export interface ConfirmModel {
     selector: 'immp-header',
     templateUrl: 'header.component.html',
 })
-export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> implements AfterViewChecked { 
+export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> implements AfterViewChecked {
   applicationViewMode;
   private Immigrant;
   private immigrationManager;
@@ -56,7 +56,7 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
     }
     this.headerService.getUsageSummaryDetails(this.user.accountId).subscribe(
       res=>{
-        this.usageSummaryDetails=res;  
+        this.usageSummaryDetails=res;
       }
     )
   }
@@ -93,5 +93,15 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
       usageSummaryPopup:true,
       header:false
     })
+  }
+
+  onLogoClick(){
+    if(this.appService.applicationViewMode == 'Immigration'){
+      this.appService.moveToPage('petitions');
+      this.highlightTab('petitions');
+    } else if(this.appService.applicationViewMode == 'Client'){
+      this.appService.moveToPage('clientview-petitions');
+      this.highlightTab('clientview-petitions');
+    }
   }
 }

@@ -10,8 +10,10 @@ export class HeaderService {
   private _organizations: any;
   private _selectedOrg: any;
 
+
   constructor(private appService: AppService, private restService: RestService) {
   }
+
   get Immigrant(): string {
     return this.immigrationview;
   }
