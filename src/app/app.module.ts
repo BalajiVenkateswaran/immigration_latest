@@ -280,8 +280,18 @@ import { Page4Component } from './components/immigrationview/petitions-tab/petit
 // Website components Here
 import { webImmigrationServicesComponent } from './components/common/website/immigration-services/immigration-services.component';
 import { webImmigrationServicesService } from './components/common/website/immigration-services/immigration-services.service';
+
 import { webPricingComponent } from './components/common/website/pricing/pricing.component';
 import { webPricingService } from './components/common/website/pricing/pricing.component.service';
+
+import { webAboutusComponent } from './components/common/website/aboutus/aboutus.component';
+import { webAboutusService } from './components/common/website/aboutus/aboutus.service';
+
+import { webFeaturesComponent } from './components/common/website/features/features.component';
+import { webFeaturesService } from './components/common/website/features/features.service';
+
+import { webGetinTouchComponent } from './components/common/website/get-in-touch/get-in-touch.component';
+import { webGetinTouchService } from './components/common/website/get-in-touch/get-in-touch.service';
 
 @NgModule({
   imports: [
@@ -304,6 +314,9 @@ import { webPricingService } from './components/common/website/pricing/pricing.c
   declarations: [
       webImmigrationServicesComponent,
       webPricingComponent,
+      webAboutusComponent,
+      webFeaturesComponent,
+      webGetinTouchComponent,
     i129Page1Component,
     i129Page2Component,
     i129Page3Component,

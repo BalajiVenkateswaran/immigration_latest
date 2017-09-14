@@ -582,7 +582,7 @@ h4 {
 	clear: both;
 }
 .img50-2 {
-	background: url(../images/img502.jpg) no-repeat left top;
+	background: url(../../assets/images/web/img502.jpg) no-repeat left top;
 	background-size: cover;
 	height: 600px;
 	margin-top: 80px;
@@ -617,7 +617,7 @@ h4 {
 }
 .clicktocall {
 	width: 100%;
-	background: url(../images/white-phone-call.png) no-repeat center 25px #32ae82;
+	background: url(../../assets/images/web/white-phone-call.png) no-repeat center 25px #32ae82;
 	min-height: 200px;
 	text-align: center;
 	color: #fff;
@@ -768,7 +768,7 @@ h4 {
 	padding-left: 60px;
 }
 .requestademo {
-	background: url(../images/request-a-demo.jpg) no-repeat center top;
+	background: url(../../assets/images/web/request-a-demo.jpg) no-repeat center top;
 	width: 100%;
 	height: 320px;
 	background-size: cover;
@@ -946,30 +946,30 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 	float: left;
 }
 .faq-immi-services, .faq-h1b1, .faq-19forms, .faq-b1b2, .faq-visacomps {
-	background: url(../images/about-2.jpg) no-repeat right center;
+	background: url(../../assets/images/web/about-2.jpg) no-repeat right center;
 	background-size: cover;
 	width: 50%;
 	height: 240px;
 	float: left;
 }
 .faq-h1b1 {
-	background: url(../images/about-3.jpg) no-repeat left top;
+	background: url(../../assets/images/web/about-3.jpg) no-repeat left top;
 	background-size: cover;
 }
 
 .faq-19forms {
-	background: url(../images/about-6.jpg) no-repeat right center;
+	background: url(../../assets/images/web/about-6.jpg) no-repeat right center;
 	background-size: cover;
 }
 
 .faq-b1b2 {
-	background: url(../images/about-4.jpg) no-repeat left top;
+	background: url(../../assets/images/web/about-4.jpg) no-repeat left top;
 	background-size: cover;
 }
 
 .faq-visacomps {
 	width: 100%;
-	background: url(../images/about-5.jpg) no-repeat center center;
+	background: url(../../assets/images/web/about-5.jpg) no-repeat center center;
 	background-size: cover;
 }
 .faq-black-patch {

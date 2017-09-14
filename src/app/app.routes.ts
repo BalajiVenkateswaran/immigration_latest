@@ -140,6 +140,9 @@ import { Page2Component } from "./components/immigrationview/petitions-tab/petit
 // Website Components
 import { webImmigrationServicesComponent } from './components/common/website/immigration-services/immigration-services.component';
 import { webPricingComponent } from './components/common/website/pricing/pricing.component';
+import { webAboutusComponent } from './components/common/website/aboutus/aboutus.component';
+import { webFeaturesComponent } from './components/common/website/features/features.component';
+import { webGetinTouchComponent } from './components/common/website/get-in-touch/get-in-touch.component';
 
 export const appRoutes: Routes = [
     {
@@ -149,6 +152,18 @@ export const appRoutes: Routes = [
     {
         path: 'web-pricing',
         component: webPricingComponent,
+    },
+    {
+        path: 'web-aboutus',
+        component: webAboutusComponent,
+    },
+    {
+        path: 'web-features',
+        component: webFeaturesComponent,
+    },
+    {
+        path: 'web-getintouch',
+        component: webGetinTouchComponent,
     },
     {
         path: 'i129hPage1/:questionnaireId',
