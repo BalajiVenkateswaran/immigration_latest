@@ -42,7 +42,13 @@ export class clientscreatedreportscomponent implements OnInit {
     scales: {
         yAxes: [{
             ticks: {
-                beginAtZero:true,
+                beginAtZero: true,
+                userCallback: function (label, index, labels) {
+                    if (Math.floor(label) === label) {
+                        return label;
+                    }
+
+                },
             }
         }]
     }
