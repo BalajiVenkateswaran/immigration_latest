@@ -11,5 +11,10 @@ export class Page4Component implements OnInit {
 
   ngOnInit() {
   }
+  gotoPrev(){
 
+  }
+  gotoNext(){
+
+  }
 }
