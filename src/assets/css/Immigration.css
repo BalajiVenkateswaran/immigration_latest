@@ -1,6 +1,9 @@
 html,
 body {
     font-family: 'Roboto', sans-serif !important;
+    background:none;
+}
+.container-fluid {
     background: #fff;
 }
 .top-strip {
@@ -1084,4 +1087,8 @@ a, a:hover {
     display: none;
     text-align: center;
     cursor: pointer;
+}
+.cmap {
+    width:100% !important;
+    height:680px !important;
 }
