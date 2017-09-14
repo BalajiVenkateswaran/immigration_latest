@@ -42,14 +42,14 @@ ul.todolistItems {
           display      : inline-block;
           margin-left  : -20px;
           padding-left : 26px;
-          background   : url(../../../../../assets/images/green-checke.png) no-repeat left 2px;
+          background   : url(../../../../../assets/images/unchecked-checkbox.png) no-repeat left 2px;
           line-height  : 22px;
               font-size: 14px;
     text-transform: capitalize;
         }
 
         input[type=checkbox]:not(old):checked + label{
-            background   : url(../../../../../assets/images/green-checked.png) no-repeat left 2px;
+            background   : url(../../../../../assets/images/checked-checkbox.png) no-repeat left 2px;
         }
 
         input[type=radio]:not(old):checked + label{
