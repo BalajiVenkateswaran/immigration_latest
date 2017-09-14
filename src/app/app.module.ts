@@ -293,6 +293,9 @@ import { webFeaturesService } from './components/common/website/features/feature
 import { webGetinTouchComponent } from './components/common/website/get-in-touch/get-in-touch.component';
 import { webGetinTouchService } from './components/common/website/get-in-touch/get-in-touch.service';
 
+import { webFaqComponent } from './components/common/website/faqs/faqs.component';
+import { webFaqService } from './components/common/website/faqs/faqs.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -317,6 +320,7 @@ import { webGetinTouchService } from './components/common/website/get-in-touch/g
       webAboutusComponent,
       webFeaturesComponent,
       webGetinTouchComponent,
+      webFaqComponent,
     i129Page1Component,
     i129Page2Component,
     i129Page3Component,

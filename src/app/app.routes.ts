@@ -143,6 +143,7 @@ import { webPricingComponent } from './components/common/website/pricing/pricing
 import { webAboutusComponent } from './components/common/website/aboutus/aboutus.component';
 import { webFeaturesComponent } from './components/common/website/features/features.component';
 import { webGetinTouchComponent } from './components/common/website/get-in-touch/get-in-touch.component';
+import { webFaqComponent } from './components/common/website/faqs/faqs.component';
 
 export const appRoutes: Routes = [
     {
@@ -164,6 +165,10 @@ export const appRoutes: Routes = [
     {
         path: 'web-getintouch',
         component: webGetinTouchComponent,
+    },
+    {
+        path: 'web-faqs',
+        component: webFaqComponent,
     },
     {
         path: 'i129hPage1/:questionnaireId',
