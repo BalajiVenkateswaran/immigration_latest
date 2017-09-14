@@ -26,12 +26,12 @@
                     <a href="#" class="phone"><img src="../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a>
                     <div class="main-nav">
                         <ul class="navitems">
-                            <li><a href="#">Home</a></li>
+                            <li><a (click)="appService.moveToPage('login')">Home</a></li>
                             <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
-                            <li><a href="../immigration-services/immigration-services.html">Pricing</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Get In Touch</a></li>
+                            <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
+                            <li><a (click)="appService.moveToPage('login')">About Us</a></li>
+                            <li><a (click)="appService.moveToPage('login')">Features</a></li>
+                            <li><a (click)="appService.moveToPage('login')">Get In Touch</a></li>
                         </ul>
                         <a href="#" class="req-demo">Request Demo</a>
                     </div>

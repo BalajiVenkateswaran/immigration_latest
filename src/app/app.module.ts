@@ -280,6 +280,8 @@ import { Page4Component } from './components/immigrationview/petitions-tab/petit
 // Website components Here
 import { webImmigrationServicesComponent } from './components/common/website/immigration-services/immigration-services.component';
 import { webImmigrationServicesService } from './components/common/website/immigration-services/immigration-services.service';
+import { webPricingComponent } from './components/common/website/pricing/pricing.component';
+import { webPricingService } from './components/common/website/pricing/pricing.component.service';
 
 @NgModule({
   imports: [
@@ -301,6 +303,7 @@ import { webImmigrationServicesService } from './components/common/website/immig
   ],
   declarations: [
       webImmigrationServicesComponent,
+      webPricingComponent,
     i129Page1Component,
     i129Page2Component,
     i129Page3Component,
@@ -441,6 +444,7 @@ import { webImmigrationServicesService } from './components/common/website/immig
   providers: [
       { provide: APP_BASE_HREF, useValue: '/' },
       webImmigrationServicesService,
+      webPricingService,
     HeaderService,
     CurrencyPipe,
     RestService,

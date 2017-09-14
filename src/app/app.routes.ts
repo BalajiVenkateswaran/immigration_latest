@@ -139,11 +139,16 @@ import { Page2Component } from "./components/immigrationview/petitions-tab/petit
 
 // Website Components
 import { webImmigrationServicesComponent } from './components/common/website/immigration-services/immigration-services.component';
+import { webPricingComponent } from './components/common/website/pricing/pricing.component';
 
 export const appRoutes: Routes = [
     {
         path: 'web-immigration-services',
         component: webImmigrationServicesComponent,
+    },
+    {
+        path: 'web-pricing',
+        component: webPricingComponent,
     },
     {
         path: 'i129hPage1/:questionnaireId',
