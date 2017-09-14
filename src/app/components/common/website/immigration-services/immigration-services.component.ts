@@ -35,6 +35,7 @@ export class webImmigrationServicesComponent extends DialogComponent<ConfirmMode
   public login: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   message: string;
+  showConctent: string;
   forgotPwd;
   private frgtEmail;
   public getloginpage: boolean = true;

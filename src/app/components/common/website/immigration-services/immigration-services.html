@@ -54,8 +54,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 bhoechie-tab-menu">
                         <div class="list-group">
-                            <a class="list-group-item active">I-9 and E-Verify Compliance Solution</a>
-                            <a class="list-group-item">H1 Nand H2 Visas</a>
+                            <a (click)="showConctent = 'i9-eVerify'" class="list-group-item active">I-9 and E-Verify Compliance Solution</a>
+                            <a (click)="showConctent = 'h1h2Visas'" class="list-group-item">H1 and H2 Visas</a>
                             <a class="list-group-item">B1 and B2</a>
                             <a class="list-group-item">Immigration Software Serveces</a>
                             <a class="list-group-item">I-9 and E-Verify Compliance Solution</a>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab">
                         <!-- flight section -->
-                        <div class="bhoechie-tab-content active">
+                        <div *ngIf="showConctent == 'i9-eVerify'" class="bhoechie-tab-content">
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="contentheading">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h3>
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <!-- train section -->
-                        <div class="bhoechie-tab-content">
+                        <div  *ngIf="showConctent == 'h1h2Visas'" class="bhoechie-tab-content">
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="contentheading">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h3>
@@ -191,7 +191,7 @@
 
         </div>
     </div>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
          $(document).ready(function() {
              $("div.bhoechie-tab-menu>div.list-group>a.list-group-item").click(function (e) {
         e.preventDefault();
@@ -202,7 +202,7 @@
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
 });
-    </script>
+    </script>-->
     <script type="text/javascript">
          $(window).scroll(function() {
     if ($(this).scrollTop()) {
