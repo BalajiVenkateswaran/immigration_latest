@@ -28,6 +28,9 @@ export class petitionstagsreportscomponent implements OnInit {
                     this.orgsNames.push(item);
                     for (var i = 0; i < this.orgsList[item].length; i++) {
                         this.count.push(this.orgsList[item][i]['count']);
+                        if (this.orgsList[item][i]['tag'] == null) {
+                            this.orgsList[item][i]['tag'] = "empty";
+                        }
                         this.tags.push(this.orgsList[item][i]['tag']);
                     }
                     this.pieChartLabels[item] = this.tags;

@@ -10,17 +10,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
                             <form (submit)="addTodo($event)">
                                 <input [(ngModel)]="newTodo" type="text" style="width: calc(100% - 40px);"  name="newTodo" (keyup)="enableAddButton(newTodo)"   >
                                 <button *ngIf="hideAddButton" type="submit" [disabled]="newTodo===''" class="addTodo">+</button>
                             </form>
                         </div>
-                        <div class="col-md-2"></div>
+                        <div class="col-md-1"></div>
 
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
                             <ul class="todolistItems">
                                 <li *ngFor="let todo of todos; let i=index">
                                     <input type="checkbox" id="{{ todo.todoText }}" [checked]="todo.completed" [(ngModel)]="todo.completed" (change)="changed(todo)" />
@@ -29,7 +29,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-md-2"></div>
+                        <div class="col-md-1"></div>
                     </div>
                 </div>
             </div>
