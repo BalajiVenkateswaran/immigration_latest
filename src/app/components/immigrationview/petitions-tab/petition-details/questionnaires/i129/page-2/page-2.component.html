@@ -87,7 +87,7 @@
                         <div class="col-md-12">
                             <p class="fieldsetheading">Provide Name of Beneficiary</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Family Name (Last Name)</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.lastName"/>
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Given Name (First Name)</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.firstName"/>
@@ -103,7 +103,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Middle Name </div>
                                 <div class="col-md-8">
@@ -115,7 +115,7 @@
                         <div class="col-md-12">
                             <p class="fieldsetheading">Provide all other names the beneficiary has used. Include nicknames, aliases, maiden name, and names from all previous marriages </p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Family Name (Last Name)</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName1" />
@@ -123,7 +123,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName2" />
+                                    <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName2}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName3" />
+                                    <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName3}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Given Name (First Name)</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName1"/>
@@ -131,7 +147,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName2" />
+                                    <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName2}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName3" />
+                                    <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName3}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Middle Name </div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherMiddleName1"/>
@@ -139,50 +171,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName2"/>
-                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName2}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName2" />
-                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName2}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherMiddleName2" />
+                                <div class="col-md-12"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherMiddleName2" />
                                 <span *ngIf="isquestionnaireEdit==true">{{page2.otherMiddleName2}}</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName3"/>
-                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName3}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName3"/>
-                                <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName3}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.otherMiddleName3"/>
+                                <div class="col-md-12"><input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.otherMiddleName3"/>
                                 <span *ngIf="isquestionnaireEdit==true">{{page2.otherMiddleName3}}</span>
                                 </div>
                             </div>
@@ -190,7 +188,7 @@
                         <div class="col-md-12">
                             <p class="fieldsetheading">Other Information</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Date of birth (mm-dd-yyyy)</div>
                                 <div class="col-md-8">
@@ -201,7 +199,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Gender </div>
                                 <div class="col-md-8">
@@ -213,7 +211,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">U.S.Social Security Number (if any)</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"  [(ngModel)]="page2.ssn"/>
