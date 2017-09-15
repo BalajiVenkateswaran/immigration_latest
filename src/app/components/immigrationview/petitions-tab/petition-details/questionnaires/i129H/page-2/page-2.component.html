@@ -62,20 +62,20 @@
                 <p>I further understand that I cannot charge the beneficiary the ACWIA fee, and that any other required
                   reimbursement will be considered an offset against wages and benefits paid relative to the LCA. </p>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-4">Signature of Petitioner</div>
                   <div class="col-md-8"><input type="text" [disabled]="true"/></div>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-4">Name of Petitioner</div>
                   <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.petitonerName"/></div>
 
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-4">Date (mm/dd/yyyy)</div>
                   <div class="col-md-8">
@@ -155,20 +155,20 @@
             <div class="row">
               <div class="col-md-12">Employment is: (select only one box)</div>
               <div class="col-md-12">
-              <div class="row" *ngFor="let x of I129Hpage2Employment">
-                <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-3" *ngFor="let x of I129Hpage2Employment">
                   <input type="radio" name="employment" [value]="x.value" [(ngModel)]="I129Hpage2.employment">{{x.display}}
                 </div>
               </div>
               </div>
-           <div class="col-md-6">
+           <div class="col-md-12">
             <div class="row">
               <div class="col-md-12">Temporary need is: (select only one box)</div>
-              <div class="row" *ngFor="let x of I129Hpage2TemporaryNeed">
-                <div class="col-md-3">
+             
+                <div class="col-md-3" *ngFor="let x of I129Hpage2TemporaryNeed">
                   <input type="radio" name="temporaryneed" [value]="x.value" [(ngModel)]="I129Hpage2.temporaryNeed">{{x.display}}
                 </div>
-              </div>
+              
             </div>
             </div>
              </div>
