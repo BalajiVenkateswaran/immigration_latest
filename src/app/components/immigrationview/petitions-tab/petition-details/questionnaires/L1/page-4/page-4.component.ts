@@ -23,4 +23,5 @@ export class Page4Component implements OnInit {
       this.appService.currentSBLink = "page3l1";
 
   }
+gotoNext(){}
 }
