@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IMyOptions} from "mydatepicker";
+import { AppService } from "../../../../../../../services/app.service";
+import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
   selector: 'app-page-2',
@@ -14,7 +16,8 @@ export class Page2Component implements OnInit {
     showClearDateBtn: false,
     editableDateField: false
   };
-  constructor() {
+  public page23: any = {};
+  constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
     this.companyRelated = [
       {
         "id": "0",
@@ -46,11 +49,18 @@ export class Page2Component implements OnInit {
 
   ngOnInit() {
   }
-  gotoNext(){
-
+  savequestionnaireInformation() {
+      this.page23.pageNumber = 23;
+  }
+  gotoNext() {
+      this.savequestionnaireInformation();
+      this.appService.moveToPage('page3l1');
+      this.appService.currentSBLink = "page3l1";
   }
   gotoPrev(){
-
+      this.savequestionnaireInformation();
+      this.appService.moveToPage('page1l1');
+      this.appService.currentSBLink = "page1l1";
   }
 
 }
