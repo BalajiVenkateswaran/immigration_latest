@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import { AppService } from "../../../../../../../services/app.service";
+import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+
 @Component({
   selector: 'app-page-1',
   templateUrl: './page-1.component.html',
@@ -23,14 +26,15 @@ export class Page1Component implements OnInit {
   public toDate3:string;
   public toDate4:string;
   public toDate5:string;
-  public toDate6:string;
+  public toDate6: string;
+  public page22: any = {};
   public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
         editableDateField: false
     };
-  constructor() {
+  constructor(public questionnaireService: QuestionnaireCommonService,public appService: AppService) {
     this.questions = [
       {
         "id": "0",
@@ -165,7 +169,12 @@ export class Page1Component implements OnInit {
 
   ngOnInit() {
   }
-  gotoNext(){
-
+  savequestionnaireInformation() {
+      this.page22.pageNumber = 22;
+      }
+      gotoNext() {
+      this.savequestionnaireInformation();
+      this.appService.moveToPage('page2l1');
+      this.appService.currentSBLink = "page2l1";
   }
 }

@@ -9,9 +9,9 @@
           <div class="col-md-4">
             <a (click)="gotoPrev()" class="prevbtn">Back</a>
           </div>
-          <div class="col-md-4 pagenoof36">Page 8 of 36</div>
+          <div class="col-md-4 pagenoof36">Page 23 of 36</div>
           <div class="col-md-4">
-            <a (click)="gotoNext()" class="nextbtn">Save</a>
+            <a (click)="gotoNext()" class="nextbtn">Save & Continue</a>
           </div>
         </div>
       </div>
@@ -44,21 +44,21 @@
                   <!--<td><span></span><td>-->
 
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
-                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="page23"/></td>
                 </tr>
                 <tr>
                   <!--<td><span></span><td>-->
 
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td><input type="text" /></td>
                 </tr>
@@ -67,21 +67,10 @@
 
 
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
-                  </td>
-                  <td><input type="text" /></td>
-                </tr>
-                <tr>
-                  <!--<td><span></span><td>-->
-
-                  <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
-                  </td>
-                  <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td><input type="text" /></td>
                 </tr>
@@ -89,10 +78,21 @@
                   <!--<td><span></span><td>-->
 
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
+                  </td>
+                  <td><input type="text" /></td>
+                </tr>
+                <tr>
+                  <!--<td><span></span><td>-->
+
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
+                  </td>
+                  <td>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td><input type="text" /></td>
                 </tr>
@@ -101,10 +101,10 @@
 
 
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td>
-                    <my-date-picker [options]="myDatePickerOptions"></my-date-picker>
+                    <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page23"></my-date-picker>
                   </td>
                   <td><input type="text" /></td>
                 </tr>
@@ -116,7 +116,7 @@
                 the beneficiary admission to the United States.)</p>
             </div>
 
-            <div class="col-md-12"><textarea rows="6" style="min-height:120px;" textarea></textarea>
+            <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(ngModel)]="page23" textarea></textarea>
 
             </div>
             <div class="col-md-12">
@@ -124,13 +124,13 @@
             </div>
 
 
-            <div class="col-md-12"><textarea rows="6" style="min-height:120px;"></textarea>
+            <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(ngModel)]="page23"></textarea>
 
             </div>
             <div class="col-md-12">
               <p>Summarize the beneficiary's education and work experience.</p>
             </div>
-            <div class="col-md-12"><textarea rows="6" style="min-height:120px;"></textarea>
+            <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(ngModel)]="page23"></textarea>
 
             </div>
             <div class="col-md-12">
