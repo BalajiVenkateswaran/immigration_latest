@@ -27,7 +27,6 @@ import { VisasComponent } from './components/clientview/client-details-tab/visas
 import { DocumentsComponent } from './components/clientview/documents-tab/documents.component';
 import {ManageAccountUserComponent} from "./components/immigrationview/manage-account-tab/user/user.component";
 import {ManageAccountOrganizationsComponent} from "./components/immigrationview/manage-account-tab/organizations/organizations.component";
-import {ImmigrationViewClientDetailsService} from './components/immigrationview/clients-tab/client-details/client-details/client-details.service';
 import {ImmigrationViewClientDetailsComponent} from './components/immigrationview/clients-tab/client-details/client-details/client-details.component';
 import {LoginComponent} from "./components/common/website/login/login.component";
 import {petitionsclientviewComponent} from "./components/clientview/petitions-tab/petitions.component";
