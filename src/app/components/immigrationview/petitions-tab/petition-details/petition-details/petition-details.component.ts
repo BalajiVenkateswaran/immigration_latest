@@ -7,6 +7,8 @@ import { ImmigrationViewPetitionInformation } from '../../../../../models/Immigr
 import { AppService } from '../../../../../services/app.service';
 import { PetitionDetailsService } from "./petition-details.service";
 import { IhDateUtil } from '../../../../framework/utils/date.component';
+import {ConfirmComponent} from "../../../../framework/confirmbox/confirm.component";
+import {DialogService} from "ng2-bootstrap-modal";
 
 
 @Component({
@@ -71,7 +73,8 @@ export class PetitionDetailsComponent implements OnInit {
         { name: 'RFE', value: 'RFE' }
     ];
     petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
-    constructor(public appService: AppService, private petitionDetailsService: PetitionDetailsService) {
+    constructor(public appService: AppService, private petitionDetailsService: PetitionDetailsService,
+                public dialogService: DialogService) {
     }
     ngOnInit() {
         this.appService.showSideBarMenu("immigrationview-petition", "petitions");
@@ -505,4 +508,14 @@ export class PetitionDetailsComponent implements OnInit {
 
             });
     }
+
+
+  onPetitionStatusChange(event){
+      if(event.target.value === 'Close'){
+        this.dialogService.addDialog(ConfirmComponent, {
+          title: 'Information',
+          message: 'Closing a Petition will lead to removal of the Questionnaires (if any) in the Petition'
+        }).subscribe((isConfirmed) => {});
+      }
+  }
 }
