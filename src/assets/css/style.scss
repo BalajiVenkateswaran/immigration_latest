@@ -202,9 +202,13 @@ header {
                 padding:0px;
                 z-index: 9999999;
 
-                button{
+                a{
                     background-color:#0891D4;
                     color: $White;
+                    width: 100%;
+                    padding:5px 15px;
+                    float:left;
+                    font-size: 16px;
                 }
            }
             .profile-pic{
@@ -1962,4 +1966,7 @@ float:right;
     margin: 0px 0 7px 0;
     float:left;
     margin-right:15px;
+}
+.main-content .table-data .addresbox .mydp .selectiongroup button {
+    background:#fff;
 }

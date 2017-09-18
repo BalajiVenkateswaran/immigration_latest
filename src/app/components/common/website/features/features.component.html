@@ -26,17 +26,29 @@
                 <div class="contact">
                     <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
                     <a href="#" class="phone"><img src="../../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a>
-                    <div class="main-nav">
-                        <ul class="navitems">
-                            <li><a (click)="appService.moveToPage('login')">Home</a></li>
-                            <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
-                            <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
-                            <li><a (click)="appService.moveToPage('web-aboutus')">About Us</a></li>
-                            <li><a (click)="appService.moveToPage('web-features')">Features</a></li>
-                            <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
-                        </ul>
-                        <a href="#" class="req-demo">Request Demo</a>
-                    </div>
+                    <nav class="navbar navbar-inverse navbar-static-top main-nav" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navitems">
+                                <li><a (click)="appService.moveToPage('login')">Home</a></li>
+                                <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
+                                <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
+                                <li><a (click)="appService.moveToPage('web-aboutus')">About Us</a></li>
+                                <li><a (click)="appService.moveToPage('web-features')" class="active">Features</a></li>
+                                <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
+                                <li><a href="#" class="req-demo">Request Demo</a></li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -45,10 +57,12 @@
 
             <div class="container contentpage">
                 <div class="row">
-                    <h1 class="iph">Data Storage</h1>
+                    
                     <div class="row">
                         <div class="col-md-6">
-                            <p>No storage restrictions....upload all you want to store. A strong well-thought out document management process can make an organization effective and efficient. Immigration Hub meets your need by providing well-organized document storage at minimal cost. All client documentation in one place. All documents are secured and stored as long as you need them. Empower your productivity by using Google drive too.</p>
+                            <h1 class="iph" style="margin-top: 80px;">Data Storage</h1>
+                            <p>No storage restrictions....upload all you want to store. A strong well-thought out document management process can make an organization effective and efficient. Immigration Hub meets your need by providing well-organized document storage at minimal cost. All client documentation in one place. All documents are secured and stored as long as you need them. Empower your productivity by using Google drive too. </p>
+                            <p>We make it simple move to store your records at off-site as well. We are providing. You can attach emails to case files with integrator. Easily and quickly add any emails directly to the client file. A complete solution for proper record management and communication no more confusion and no more lot emails.</p>
                         </div>
                         <div class="col-md-6">
                             <!--<h3 class="contentheading">What is Lorem Ipsum?</h3>-->
@@ -59,14 +73,16 @@
                             <!--<h3 class="contentheading">What is Lorem Ipsum?</h3>-->
                             <img src="../../../../assets/images/web/features5.jpg" class="img-responsive">
                         </div><div class="col-md-6">
-                                  <h1 class="iph">Client Web Portal</h1>
-                            <p>Stop relying on phone and email to communicate with clients. IH client web portal allows your clients to track progress of their status/application. It enables clients to login to the website directly. It acts as a secure media in which you and your client can exchange documents. One thing to say, by using IH client portal can makes you maintain efficient client relationship.</p>
+                                  <h1 class="iph" style="margin-top: 60px;">Client Web Portal</h1>
+                            <p>Stop relying on phone and email to communicate with clients. IH client web portal allows your clients to track progress of their status/application. It enables clients to login to the website directly. It acts as a secure media in which you and your client can exchange documents. One thing to say, by using IH client portal can makes you maintain efficient client relationship. </p>
+                        <p>We are providing login details for every user so that they access the same without having any difficulty. It provides high security, reduces entry time of any data, increases accuracy and it enables clients to take questionnaires which is more convenient for them.</p>
                         </div>
 
                         <div class="clear"></div>
                         <div class="col-md-6">
-                            <h1 class="iph">Online Forms Questionnaires</h1>
+                            <h1 class="iph" style="margin-top: 160px;">Online Forms Questionnaires</h1>
                             <p>IH has smart questionnaires to make client intake faster and easier. Questionnaires are available for many processes. It has been designed to access to observe any changes in US regulations. IH come up with its true automation; it avoids lengthy, repetitive, awkward DIBP form filling. IH coupled with questionnaires, it can save lots of time. Updates and changes to the forms are preserved in distinct versions. So that you can access your previous documents and historical data intact.</p>
+                            <p>We are providing regular revisions and updates that means form updates are readily available within the system without any patches. Data from questionnaires automatically populated in forms which reduces data entry time and errors.</p>
                         </div>
                         <div class="col-md-6">
                             <!--<h3 class="contentheading">What is Lorem Ipsum?</h3>-->
@@ -79,14 +95,16 @@
                         </div>
 
                         <div class="col-md-6">
-                            <h1 class="iph">Instant Notifications</h1>
-                            <p>Give your clients flexible and a rich experience with your alerts and notifications. Get engage your clients with regular notification and updates. Real time messaging can keep you in the loop. You can configure the events that require attention. Navigate each and every update to your client.</p>
+                            <h1 class="iph" style="margin-top: 220px;">Instant Notifications</h1>
+                            <p>Give your clients flexible and a rich experience with your alerts and notifications. Get engage your clients with regular notification and updates. Real-time messaging can keep you in the loop. You can configure the events that require attention. Navigate each and every update to your client.</p>
+                            <p>Notifications and alerts are improved version of communications these days.  You can monitor events and alerts with the incident alert dashboard. You can get billing alerts, report status, validation, expiry about any payment request and more.</p>
                         </div>
 
                         <div class="clear"></div>
                         <div class="col-md-6">
-                            <h1 class="iph">Easy Understand Reports</h1>
-                            <p>IH allows you to produce reports in real time and enables you to analyze and act. Stay organized and easily access and understandable crucial reports. You can use filters to get specific records by clients or date.</p>
+                            <h1 class="iph" style="margin-top: 210px;">Easy Understand Reports</h1>
+                            <p>IH allows you to produce reports in real time and enables you to analyze and act. Stay organized and easily access and understandable crucial reports. You can use filters to get specific records by clients or date. You can track deadlines to identify the new revenue opportunities to track overdue accounts. IH assures a scalable way to manage your business and clients related to immigration work.</p>
+                            <p>In-built report tool enables you to create customizable reports to grab new revenue opportunities with your existing clients. You could find case status reports, expiration status reports, and reminder reports. Visa priority date reports, billing reports, sales and payments reports, case activity reports.</p>
                         </div>
                         <div class="col-md-6">
                             <!--<h3 class="contentheading">What is Lorem Ipsum?</h3>-->
@@ -98,8 +116,9 @@
                             <img src="../../../../assets/images/web/features1.jpg" class="img-responsive">
                         </div>
                         <div class="col-md-6">
-                            <h1 class="iph">Saas Application</h1>
-                            <p>Get a high level of personalization by using SaaS application. The multi-tenant architecture enables you to expand your services. No need for databases, servers, and spread sheets everything is available round the clock. It completely eliminates manual process provides transparency and real time reporting. It will automatically integrate all your clients of the process. Upload infinite documents to the cloud storage. You can able to schedule calendar events for your clients</p>
+                            <h1 class="iph" style="margin-top: 40px;">Saas Application</h1>
+                            <p>Get a high level of personalization by using SaaS application. The multi-tenant architecture enables you to expand your services. No need for databases, servers, and spread sheets everything is available round the clock. It completely eliminates manual process provides transparency and real time reporting. It will automatically integrate all your clients of the process. Upload infinite documents to the cloud storage. You can able to schedule calendar events for your clients.</p>
+                            <p>SaaS removes the requirement for firms to install and run applications in their own data centers or on their own computers. This abolishes the expense of hardware provisioning, acquisition, and maintenance, as well as software installation licensing, and support.</p>
                         </div>
 
                     </div>
