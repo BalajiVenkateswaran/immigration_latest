@@ -58,7 +58,7 @@
             <div class="clearfix"></div> Clients
             <div class="arrow-up"></div>
           </a></li>
-          <li
+          <li style="margin-right: 30px;"
 						*ngIf="applicationViewMode=='Immigration'||headerService.isDelegatedOrg()"><a
 						(click)="appService.moveToPage('petitions'); highlightTab('petitions');"
 						[ngClass]="[checkForCurrentTab('petitions') ? 'active': '']"
