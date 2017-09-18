@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 
 @Injectable()
-export class superpetitionsstatusreportsservice {
+export class SuperUserPetitionsStatusReportsService {
 
     constructor(private restService: RestService) {
 

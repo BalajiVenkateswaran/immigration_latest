@@ -2,7 +2,7 @@
 import { ReportsCommonService } from '../../common/reports-common.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {superuserpetitionstagesreportsservice} from "./stage.service";
+import {SuperUserPetitionStagesReportsService} from "./stage.service";
 
 @Component({
     selector: 'app-petitionstages',
@@ -10,7 +10,7 @@ import {superuserpetitionstagesreportsservice} from "./stage.service";
     styleUrls: ['./stage.component.sass']
 })
 
-export class superuserpetstagereportscomponent implements OnInit {
+export class SuperUserPetitionStageReportsComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -19,10 +19,10 @@ export class superuserpetstagereportscomponent implements OnInit {
     public count: any = [];
     public stages: any = [];
     public selectedaccountId: string;
-    constructor(public appService: AppService, private superuserPetitionstagesreportsservice: superuserpetitionstagesreportsservice,
-        public ReportscommonService: ReportsCommonService) { }
+    constructor(public appService: AppService, private superUserPetitionStagesReportsService: SuperUserPetitionStagesReportsService,
+        public reportsCommonService: ReportsCommonService) { }
     ngOnInit() {
-        this.selectedaccountId = this.ReportscommonService.totalAccounts[0].accountId;
+        this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
 
     }
@@ -31,7 +31,7 @@ export class superuserpetstagereportscomponent implements OnInit {
         this.getreports();
     }
     getreports() {
-        this.superuserPetitionstagesreportsservice.getpetitonStagereports(this.selectedaccountId)
+        this.superUserPetitionStagesReportsService.getpetitonStagereports(this.selectedaccountId)
             .subscribe((res) => {
                 console.log(res);
                 if (res['orgs']) {

@@ -76,10 +76,10 @@ import { ManageaccountUserDetailsComponent } from './components/immigrationview/
 
 //superuser reports
 import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
-import {superpetitionsstatusreportscomponent} from './components/superuserview/reports-tab/petitions/status/status.component';
+import {SuperUserPetitionsStatusReportsComponent} from './components/superuserview/reports-tab/petitions/status/status.component';
 import {superuserpetfinalactionreportscomponent} from './components/superuserview/reports-tab/petitions/final-action/final-action.component';
 import {SuperUserClientsCreatedReportsComponent} from './components/superuserview/reports-tab/clients/created/created.component';
-import {superusertotalpetitionsreportscomponent} from './components/superuserview/reports-tab/users/totalpetitions/totalpetitions.component';
+import {SuperUserTotalPetitionsReportsComponent} from './components/superuserview/reports-tab/users/totalpetitions/totalpetitions.component';
 import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/openpetitions.component';
 import {superuserstatsotgsReportsComponent} from './components/superuserview/reports-tab/stats/orgs/orgs.component';
 
@@ -105,10 +105,10 @@ import { petitionstagesreportscomponent } from './components/immigrationview/rep
 import { petitionstagsreportscomponent } from './components/immigrationview/reports-tab/petition/tags/tags.component';
 import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
 import { clientstatusreportscomponent } from './components/immigrationview/reports-tab/client/status/status.component';
-import { superuserpetstagereportscomponent } from './components/superuserview/reports-tab/petitions/stage/stage.component';
-import { superuserL1Areportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
-import { superuserH1Breportscomponent } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
-import { superuserpettagreportscomponent } from './components/superuserview/reports-tab/petitions/tag/tag.component';
+import { SuperUserPetitionStageReportsComponent } from './components/superuserview/reports-tab/petitions/stage/stage.component';
+import { SuperUserL1AReportsComponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
+import { SuperUserH1BReportsComponent } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
+import { SuperUserPetitionTagReportsComponent } from './components/superuserview/reports-tab/petitions/tag/tag.component';
 import {superuserstatsclientsReportsComponent} from './components/superuserview/reports-tab/stats/clients/clients.component';
 import {superuserstatspetitionReportsComponent} from './components/superuserview/reports-tab/stats/petitions/petitions.component';
 import {superusermonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
@@ -124,7 +124,7 @@ import {i129HPage6Component} from './components/immigrationview/petitions-tab/pe
 import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
 import {ImmigrationviewQuestionnaireComponent} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.component';
 import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview/product-catalog-tab/discounts/discounts.component';
-import {superuserclientstatusreportscomponent} from './components/superuserview/reports-tab/clients/status/status.component';
+import {SuperUserClientStatusReportsComponent} from './components/superuserview/reports-tab/clients/status/status.component';
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
 
@@ -572,23 +572,23 @@ export const appRoutes: Routes = [
     },
     {
         path: 'superuser-petitionreports',
-        component: superpetitionsstatusreportscomponent
+        component: SuperUserPetitionsStatusReportsComponent
     },
     {
         path: 'superuser-petiontypes',
-        component: superuserH1Breportscomponent
+        component: SuperUserH1BReportsComponent
     },
     {
         path: 'superuser-petiontypesL1A',
-        component: superuserL1Areportscomponent
+        component: SuperUserL1AReportsComponent
     },
     {
         path: 'superuser-petionstagereports',
-        component: superuserpetstagereportscomponent
+        component: SuperUserPetitionStageReportsComponent
     },
     {
         path: 'superuser-petiontagreports',
-        component: superuserpettagreportscomponent
+        component: SuperUserPetitionTagReportsComponent
     },
     {
         path: 'superuser-finalaction',
@@ -597,7 +597,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'superuser-clientstatusreports',
-        component: superuserclientstatusreportscomponent
+        component: SuperUserClientStatusReportsComponent
     },
     {
         path: 'superuser-clientscreated',
@@ -605,7 +605,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'superuser-totalpetitions',
-        component: superusertotalpetitionsreportscomponent
+        component: SuperUserTotalPetitionsReportsComponent
     },
     {
         path: 'superuser-openpetitions',

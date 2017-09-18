@@ -23,13 +23,13 @@ export class SuperUserOpenPetitionComponent implements OnInit {
     public username: any = [];
     public fullMonth: any = [];
     public selectedaccountId: string;
-    
+
     constructor(public appService: AppService, private superUsersopenpetitionservice: SuperUsersOpenPetitionService,
-        public reportscommonService: ReportsCommonService) { }
-    
+        public reportsCommonService: ReportsCommonService) { }
+
 
     ngOnInit() {
-        this.selectedaccountId = this.reportscommonService.totalAccounts[0].accountId;
+        this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
 
     }

@@ -11,7 +11,7 @@ import {superuserclientstatusreportsservice} from "./status.service";
     styleUrls: ['./status.component.sass']
 })
 
-export class superuserclientstatusreportscomponent implements OnInit {
+export class SuperUserClientStatusReportsComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -21,9 +21,9 @@ export class superuserclientstatusreportscomponent implements OnInit {
     public Status: any = [];
     public selectedaccountId: string;
    constructor(public appService: AppService, private superuserClientstatusreportsservice: superuserclientstatusreportsservice,
-        public ReportscommonService: ReportsCommonService) { }
+        public reportsCommonService: ReportsCommonService) { }
     ngOnInit() {
-        this.selectedaccountId = this.ReportscommonService.totalAccounts[0].accountId;
+        this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
 
     }
@@ -51,7 +51,7 @@ export class superuserclientstatusreportscomponent implements OnInit {
                 }
             });
     }
-   
+
     public chartClicked(e: any): void {
         console.log(e);
     }

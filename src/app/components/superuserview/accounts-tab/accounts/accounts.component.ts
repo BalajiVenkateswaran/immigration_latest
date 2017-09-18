@@ -37,6 +37,9 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   public queryParameters;
   public getAccountsData: boolean = true;
   private user: User;
+  private deleteclients: any;
+  private clientName: any;
+  public addAccounts: boolean;
   public accountDetails: any = {};
 
 

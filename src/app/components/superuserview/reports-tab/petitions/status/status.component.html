@@ -5,7 +5,7 @@
                 <span class="listofusers">Please select Account</span>
 
                 <select class="form-control" (change)="changeaccount($event.target.value)" style="max-width:250px;">
-                    <option *ngFor="let account of reportscommonService.totalAccounts" [value]="account.accountId">{{account.accountName}}</option>
+                    <option *ngFor="let account of reportsCommonService.totalAccounts" [value]="account.accountId">{{account.accountName}}</option>
                 </select>
             </div>
         </div>

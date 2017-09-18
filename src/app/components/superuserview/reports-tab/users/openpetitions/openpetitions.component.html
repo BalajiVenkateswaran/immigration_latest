@@ -5,7 +5,7 @@
         <h6>Please select Account</h6>
         <div>
             <select class="col-md-3 form-control" (change)="changeaccount($event.target.value)">
-                <option *ngFor="let account of reportscommonService.totalAccounts" [value]="account.accountId">{{account.accountName}}</option>
+                <option *ngFor="let account of reportsCommonService.totalAccounts" [value]="account.accountId">{{account.accountName}}</option>
             </select>
         </div>
 
@@ -20,7 +20,7 @@
                 <span style="color:white;">{{org}}</span>
             </div>
         </div>
-       
+
     </div>
 </div>
 

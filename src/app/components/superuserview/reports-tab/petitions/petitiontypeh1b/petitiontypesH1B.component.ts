@@ -11,7 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./petitiontypesH1B.component.sass']
 })
 
-export class superuserH1Breportscomponent implements OnInit {
+export class SuperUserH1BReportsComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -21,9 +21,9 @@ export class superuserH1Breportscomponent implements OnInit {
     public subTypes: any = [];
     public selectedaccountId: string;
     ngOnInit() {
-        this.selectedaccountId = this.ReportscommonService.totalAccounts[0].accountId;
+        this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
-      
+
     }
     changeaccount(value) {
         this.selectedaccountId = value;
@@ -50,7 +50,7 @@ export class superuserH1Breportscomponent implements OnInit {
             });
     }
     constructor(public appService: AppService, private superUserH1Breportsservice: superuserH1Breportsservice,
-        public ReportscommonService: ReportsCommonService) { }
+        public reportsCommonService: ReportsCommonService) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

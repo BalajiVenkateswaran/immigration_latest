@@ -2,7 +2,7 @@
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class sperusertotalpetitionsreportsservice {
+export class SuperUserTotalPetitionsReportsService {
     constructor(private restService: RestService) {
     }
     public gettotalpetitionsreports(accountId: string) {

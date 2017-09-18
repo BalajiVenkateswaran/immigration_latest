@@ -1,6 +1,6 @@
 ﻿import { AppService } from '../../../../../services/app.service';
 import { ReportsCommonService } from '../../common/reports-common.service';
-import { sperusertotalpetitionsreportsservice } from './totalpetitions.service';
+import { SuperUserTotalPetitionsReportsService } from './totalpetitions.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,7 +10,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./totalpetitions.component.sass']
 })
 
-export class superusertotalpetitionsreportscomponent implements OnInit {
+export class SuperUserTotalPetitionsReportsComponent implements OnInit {
     public data: any = [];
     public Year: any = [];
     public orgsList: any = {};
@@ -21,9 +21,9 @@ export class superusertotalpetitionsreportscomponent implements OnInit {
     public fullname: any = [];
     public finalLbl: any = [];
     public selectedaccountId: string;
-    constructor(public appService: AppService, private speruserTotalpetitionsreportsservice: sperusertotalpetitionsreportsservice, public ReportscommonService: ReportsCommonService) { }
+    constructor(public appService: AppService, private superUserTotalPetitionsReportsService: SuperUserTotalPetitionsReportsService, public reportsCommonService: ReportsCommonService) { }
     ngOnInit() {
-        this.selectedaccountId = this.ReportscommonService.totalAccounts[0].accountId;
+        this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
 
     }
@@ -33,7 +33,7 @@ export class superusertotalpetitionsreportscomponent implements OnInit {
     }
     getreports() {
 
-        this.speruserTotalpetitionsreportsservice.gettotalpetitionsreports(this.appService.user.accountId)
+        this.superUserTotalPetitionsReportsService.gettotalpetitionsreports(this.appService.user.accountId)
             .subscribe((res) => {
                 if (res['orgs']) {
                     this.orgsList = res['orgs'];

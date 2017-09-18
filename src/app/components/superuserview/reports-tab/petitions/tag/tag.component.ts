@@ -1,6 +1,6 @@
 ﻿import { AppService } from '../../../../../services/app.service';
 import { ReportsCommonService } from '../../common/reports-common.service';
-import { superuserpetitiontagreportsservice } from './tag.service';
+import { SuperUserPetitionTagReportsService } from './tag.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,7 +10,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./tag.component.sass']
 })
 
-export class superuserpettagreportscomponent implements OnInit {
+export class SuperUserPetitionTagReportsComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -20,12 +20,12 @@ export class superuserpettagreportscomponent implements OnInit {
     public tags: any = [];
     public selectedaccountId: string;
 
-    constructor(public appService: AppService, private superUserpetitiontagreportsservice: superuserpetitiontagreportsservice,
-        public ReportscommonService: ReportsCommonService) { }
+    constructor(public appService: AppService, private superUserPetitionTagReportsService: SuperUserPetitionTagReportsService,
+        public reportsCommonService: ReportsCommonService) { }
 
 
     ngOnInit() {
-        this.selectedaccountId = this.ReportscommonService.totalAccounts[0].accountId;
+        this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
 
     }
@@ -34,7 +34,7 @@ export class superuserpettagreportscomponent implements OnInit {
         this.getreports();
     }
     getreports() {
-        this.superUserpetitiontagreportsservice.getpetitontagreports(this.selectedaccountId)
+        this.superUserPetitionTagReportsService.getpetitontagreports(this.selectedaccountId)
             .subscribe((res) => {
                 console.log(res);
                 if (res['orgs']) {
