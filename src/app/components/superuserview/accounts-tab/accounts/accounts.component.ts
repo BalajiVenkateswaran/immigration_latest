@@ -1,10 +1,8 @@
 import {Component, OnInit} from "@angular/core";
-import {superUserviewAccountService} from "./accounts.service";
+import {SuperUserviewAccountService} from "./accounts.service";
 import {AppService} from "../../../../services/app.service";
 import {Router} from "@angular/router";
 import {User} from "../../../../models/user";
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../../../common/menu/menu.component";
 import {AccountDetailsCommonService} from "../account-details/common/account-details-common.service";
@@ -35,22 +33,28 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   private message: string;
   public data;
   public settings;
-  private user: User;
-  private deleteclients: any;
-  private clientName: any;
-  public addAccounts: boolean;
+  public paginationData;
+  public queryParameters;
   public getAccountsData: boolean = true;
+  private user: User;
   public accountDetails: any = {};
+
 
   public DefaultResponse = {"status": "Active"};
   public accountsList: any;
-  constructor(private clientService: superUserviewAccountService, private appService: AppService,
-    private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
-    private accountDetailsCommonService: AccountDetailsCommonService, public ReportscommonService: ReportsCommonService) {
+  constructor(private superUserAccountService: SuperUserviewAccountService, private appService: AppService,
+              private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
+              private accountDetailsCommonService: AccountDetailsCommonService, public reportscommonService: ReportsCommonService) {
     super(dialogService);
     this.settings = {
       'isDeleteEnable': false,
       'columnFilter': true,
+      'customPanel': true,
+      'defaultFilter': [{
+        headingName: "status",
+        headerName: "Status",
+        filterValue: "Active"
+      }],
       'columnsettings': [
         {
           headerName: "Account Name",
@@ -82,7 +86,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
         },
         {
             headerName: "Orgs",
-            field: "orgCount"
+            field: "organizatinCount"
         },
         {
           headerName: "Clients",
@@ -105,17 +109,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
           field: "storageType"
         }
       ]
-    }
-  }
-  getAccountDetail() {
-    this.appService.showSideBarMenu(null, "accounts");
-    this.clientService.getAccountDetails().subscribe((res) => {
-      if (res['statusCode'] == 'SUCCESS') {
-        this.ReportscommonService.totalAccounts = res['accountInfoList'];
-        console.log(res['accountInfoList']);
-        this.data = res['accountInfoList'];
-      }
-    });
+    };
   }
 
   ngOnInit() {
@@ -123,8 +117,21 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
       this.user = this.appService.user;
     }
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
-    this.getAccountDetail();
+    this.appService.showSideBarMenu(null, "accounts");
+    //this.getAccountDetail(this.queryParameters);
   }
+
+  getAccountDetail(queryData) {
+    this.superUserAccountService.getAccountDetails(queryData).subscribe((res) => {
+      if (res['statusCode'] == 'SUCCESS') {
+        this.reportscommonService.totalAccounts = res['accountInfoList'];
+        console.log(res['accountInfoList']);
+        this.data = res['accountInfoList'];
+        this.paginationData = res['pageMetadata'];
+      }
+    });
+  }
+
   addFunction(event) {
     this.dialogService.addDialog(SuperUserViewAccountsComponent, {
       addAccounts: true,
@@ -133,14 +140,15 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
 
-        this.clientService.createAccount(this.appService.newclitem).subscribe((res) => {
+        this.superUserAccountService.createAccount(this.appService.newclitem).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
-            this.getAccountDetail();
+            this.getAccountDetail(this.queryParameters);
           }
         });
       }
     });
   }
+
   accountSave(email) {
     if (this.accountDetails['status'] == "" || this.accountDetails['status'] == undefined) {
       this.accountDetails['status'] = "Active";
@@ -161,8 +169,8 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
       this.result = true;
       this.close();
     }
-
   }
+
   cancel() {
     this.result = false;
     this.close();
@@ -176,4 +184,10 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
     this.accountDetailsCommonService.accountId = event.data.accountId;
   }
 
+  dataWithParameters(queryData) {
+    if(queryData){
+      this.queryParameters=queryData
+    }
+    this.getAccountDetail(queryData);
+  }
 }

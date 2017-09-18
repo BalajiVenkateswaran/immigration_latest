@@ -1,13 +1,17 @@
 <div class="main-content" *ngIf="getAccountsData">
-    <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
     <ul class="breadcrumb">
         <li><a href="#">Accounts</a></li>
     </ul>
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Accounts</h2>
-        <smart-table class="superUserViewAccounts" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onColumnFilterClick)="filterData($event)">
-        </smart-table>
+        <smart-table class="superUserViewAccounts"
+                   [settings]="settings"
+                   [data]="data"
+                   (onAddClick)="addFunction($event)"
+                   [paginationData]="paginationData"
+                   (onRowClick)="editRecord($event)"
+                   (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
     </div>
 </div>
 
@@ -69,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

@@ -97,7 +97,7 @@ import {checklistuploadButton} from './components/immigrationview/manage-account
 //superusersview
 
 import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';
-import {superUserviewAccountService} from './components/superuserview/accounts-tab/accounts/accounts.service';
+import {SuperUserviewAccountService} from './components/superuserview/accounts-tab/accounts/accounts.service';
 import {SuperuserViewAccountDetailsComponent} from './components/superuserview/accounts-tab/account-details/account-details/account-details.component';
 import {SuperuserViewAccountDetailsService} from './components/superuserview/accounts-tab/account-details/account-details/account-details.service';
 import {AccountInvoiceComponent} from './components/superuserview/accounts-tab/account-details/invoice/invoice.component';
@@ -519,7 +519,7 @@ import { webFaqService } from './components/common/website/faqs/faqs.service';
     ManageAccountPaymentsService,
     ManageAccountChecklistService,
     //superuserview
-    superUserviewAccountService,
+    SuperUserviewAccountService,
     SuperuserViewAccountDetailsService,
     AccountInvoiceService,
     AccountManagersService,
@@ -529,7 +529,7 @@ import { webFaqService } from './components/common/website/faqs/faqs.service';
     AccountDetailsPaymentsService,
     ProductCatalogDiscountService,
     //superuserview
-    superUserviewAccountService,
+    SuperUserviewAccountService,
     SuperuserViewAccountDetailsService,
     AccountInvoiceService,
     AccountManagersService,
