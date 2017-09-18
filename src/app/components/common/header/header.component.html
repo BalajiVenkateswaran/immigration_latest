@@ -50,20 +50,20 @@
 					<input type="checkbox" (click)="slideMenu()" /><label></label>
 				</div>
 				<ul *ngIf="applicationViewMode=='Immigration'">
-					<li
+          <li *ngIf="!headerService.isDelegatedOrg()"
+              style="margin-right: 37px;"><a
+            (click)="appService.moveToPage('clients'); highlightTab('clients');"
+            [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
+            routerLinkActive="active"> <span class="maintab-Clients"></span>
+            <div class="clearfix"></div> Clients
+            <div class="arrow-up"></div>
+          </a></li>
+          <li
 						*ngIf="applicationViewMode=='Immigration'||headerService.isDelegatedOrg()"><a
 						(click)="appService.moveToPage('petitions'); highlightTab('petitions');"
 						[ngClass]="[checkForCurrentTab('petitions') ? 'active': '']"
 						routerLinkActive="active"> <span class="maintab-Petitions"></span>
 							<div class="clearfix"></div> Petitions
-							<div class="arrow-up"></div>
-					</a></li>
-					<li *ngIf="!headerService.isDelegatedOrg()"
-						style="margin-right: 37px;"><a
-						(click)="appService.moveToPage('clients'); highlightTab('clients');"
-						[ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-Clients"></span>
-							<div class="clearfix"></div> Clients
 							<div class="arrow-up"></div>
 					</a></li>
 					<li *ngIf="!headerService.isDelegatedOrg()"
@@ -87,7 +87,7 @@
 						(click)="appService.moveToPage('immiview-petitionreports'); highlightTab('immiview-petitionreports');highlightSBLink('immiview-petitionreports');"
 						[ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']"
 						routerLinkActive="active"> <span class="maintab-Reports"></span>
-							<div class="clearfix"></div> Reports 
+							<div class="clearfix"></div> Reports
 							<div class="arrow-up"></div>
 					</a></li>
 					<li><a
@@ -97,7 +97,7 @@
 							<div class="clearfix"></div> Profile
 							<div class="arrow-up"></div>
 					</a></li>
-          
+
         </ul>
 				<ul *ngIf="applicationViewMode=='Client'">
 					<li style="margin-right: 30px;"><a
