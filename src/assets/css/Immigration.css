@@ -290,17 +290,17 @@ color: #d3d3d3;
 	position: absolute;
 	bottom: -40px;
 	z-index: 999;
-	width: 100%
+	width: 100%;
+    border:none;
 }
 .navitems {
-	margin: 0px 0 0 30px;
+	margin: 0px;
 	padding: 0px;
 	float: left;
 }
 .navitems li {
 	display: inline;
 	margin-right: 40px;
-	margin-top:20px;
 	float: left;
 }
 .navitems li a, .navitems li a:hover {
@@ -308,15 +308,7 @@ color: #fff !important;
 font-size: 14px;
 font-weight: 500;
 	}
-.req-demo {
-	float: right;
-	color: #2298e7;
-	padding: 10px 25px;
-	margin: 10px 10px 0 0;
-	background: #fff;
-	font-size: 16px;
 
-}
 .trackrecord-strip {
 	background: #f6f6f6;
 	margin-top: 100px;
@@ -446,7 +438,7 @@ font-weight: 500;
 	position: absolute !important;
     left: 15% !important;
     bottom: 70px !important;
-    z-index: 99999 !important;
+    /*z-index: 99999 !important;*/
     justify-content: left !important;
 }
 .top-carousel-indicators li {
@@ -1130,4 +1122,47 @@ a, a:hover {
 }
 #exTab1 {
     width:100%;
+}
+.navbar {
+    margin-bottom:0px !important;
+}
+.navitems li a {
+    padding: 20px 0px 18px 0;
+    border-bottom: solid 2px #2298e7;
+}
+.navitems li a:hover, .navitems li a.active {
+        border-bottom: solid 2px #fff;
+    }
+.navitems li:first-child {
+    margin-left:30px;
+}
+.navitems li:last-child {
+    margin-right:0px;
+    float:right;
+
+}
+.navitems li a.req-demo {
+	float: right;
+	color: #2298e7 !important;
+	padding: 10px 25px;
+	margin: 10px 10px 0 0;
+	background: #fff;
+	font-size: 16px;
+    font-weight:400;
+
+}
+.navbar-inverse   .navbar-collapse, .navbar-inverse   .navbar-form {
+    border:none;
+    background:#2298e7;
+}
+@media (max-width:760px) {
+    .navitems li:first-child {
+        margin:0px;
+    }
+    .navitems li, .navitems li a{
+        width:100%;
+        margin:0px;
+        padding-left:0px;
+        padding-right:0px;
+    }
 }
