@@ -27,14 +27,14 @@
 						<h6>{{user.roleName}}</h6>
 					</div>
 
-					<div ngbDropdown class="d-inline-block float-right">
+					<div ngbDropdown class="d-inline-block pull-right">
 						<button class="btn" id="dropdownMenu1" ngbDropdownToggle>
 							<div class="profile-pic">
 								<img src="assets/images/user_icon.png" alt="profile-img">
 							</div>
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<button class="dropdown-item" (click)="logOut()">Logout</button>
+							<a class="dropdown-item" (click)="logOut()">Logout</a>
 						</div>
 					</div>
 				</div>

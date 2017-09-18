@@ -1141,12 +1141,13 @@ a, a:hover {
     float:right;
 
 }
-.navitems li a.req-demo {
+.navitems li a.req-demo, .navitems li a.req-demo:hover  {
 	float: right;
 	color: #2298e7 !important;
 	padding: 10px 25px;
 	margin: 10px 10px 0 0;
-	background: #fff;
+	background: #fff !important;
+    border:none !important;
 	font-size: 16px;
     font-weight:400;
 
