@@ -20,13 +20,15 @@ export class Page1Component implements OnInit {
   public fromDate3:string;
   public fromDate4:string;
   public fromDate5:string;
-  public fromDate6:string;
+  public fromDate6: string;
+  public fromDate7: string;
   public toDate1:string;
   public toDate2:string;
   public toDate3:string;
   public toDate4:string;
   public toDate5:string;
   public toDate6: string;
+  public toDate7: string;
   public page22: any = {};
   public myDatePickerOptions: IMyOptions = {
         // other options...
@@ -51,24 +53,24 @@ export class Page1Component implements OnInit {
       {
         "id": "0",
         "display": "An individual petition",
-        "value": ""
+        "value": "INDIVIDUAL_PETITION"
       },
       {
         "id": "1",
         "display": "A blanket petition",
-        "value": ""
+        "value": "BLANKET_PETITION"
       },
     ];
     this.classificationSought = [
       {
         "id": "0",
         "display": "L-1A manager or executive",
-        "value": ""
+        "value": "L1A_MANAGER"
       },
       {
         "id": "1",
         "display": "L-1B specialized knowledge",
-        "value": ""
+        "value": "L1B_SPECIALIZED_KNOWLEDGE"
       },
     ];
     this.aptType = [
@@ -168,9 +170,103 @@ export class Page1Component implements OnInit {
   }
 
   ngOnInit() {
+      this.page22.employerAddress = {};
+      this.questionnaireService.getQuestionnaireData("402859815e23b336015e23b5e9680005", 22).subscribe(res => {
+          console.log(res);
+          this.page22 = res['formPage'];
+          if (this.page22['fromDate1']) {
+              this.fromDate1 = this.page22['fromDate1'];
+          }
+          if (this.page22['fromDate2']) {
+              this.fromDate2 = this.page22['fromDate2'];
+          }
+          if (this.page22['fromDate3']) {
+              this.fromDate3 = this.page22['fromDate3'];
+          }
+          if (this.page22['fromDate4']) {
+              this.fromDate4 = this.page22['fromDate4'];
+          }
+          if (this.page22['fromDate5']) {
+              this.fromDate5 = this.page22['fromDate5'];
+          }
+          if (this.page22['fromDate6']) {
+              this.fromDate6 = this.page22['fromDate6'];
+          }
+          if (this.page22['fromDate7']) {
+              this.fromDate7 = this.page22['fromDate7'];
+          }
+          if (this.page22['toDate1']) {
+              this.toDate1 = this.page22['toDate1'];
+          }
+          if (this.page22['toDate2']) {
+              this.toDate2 = this.page22['toDate2'];
+          }
+          if (this.page22['toDate3']) {
+              this.toDate3 = this.page22['toDate3'];
+          }
+          if (this.page22['toDate4']) {
+              this.toDate4 = this.page22['toDate4'];
+          }
+          if (this.page22['toDate5']) {
+              this.toDate5 = this.page22['toDate5'];
+
+          }
+          if (this.page22['toDate6']) {
+              this.toDate6 = this.page22['toDate6'];
+
+          }
+          if (this.page22['toDate7']) {
+              this.toDate7 = this.page22['toDate7'];
+
+          }
+      });
   }
   savequestionnaireInformation() {
-      this.page22.pageNumber = 22;
+      if (this.page22.fromDate1) {
+          this.page22.fromDate1 = this.page22.fromDate1['formatted'];
+      }
+      if (this.page22.fromDate2) {
+          this.page22.fromDate2 = this.page22.fromDate2['formatted'];
+      }
+      if (this.page22.fromDate3) {
+          this.page22.fromDate3 = this.page22.fromDate3['formatted'];
+      }
+      if (this.page22.fromDate4) {
+          this.page22.fromDate4 = this.page22.fromDate4['formatted'];
+      }
+      if (this.page22.fromDate5) {
+          this.page22.fromDate5 = this.page22.fromDate5['formatted'];
+      }
+      if (this.page22.fromDate6) {
+          this.page22.fromDate6 = this.page22.fromDate6['formatted'];
+      }
+      if (this.page22.fromDate7) {
+          this.page22.fromDate7 = this.page22.fromDate7['formatted'];
+      }
+      if (this.page22.toDate1) {
+          this.page22.toDate1 = this.page22.toDate1['formatted'];
+      }
+      if (this.page22.toDate2) {
+          this.page22.toDate2 = this.page22.toDate2['formatted'];
+      }
+      if (this.page22.toDate3) {
+          this.page22.toDate3 = this.page22.toDate3['formatted'];
+      }
+      if (this.page22.toDate4) {
+          this.page22.toDate4 = this.page22.toDate4['formatted'];
+      }
+      if (this.page22.toDate5) {
+          this.page22.toDate5 = this.page22.toDate5['formatted'];
+      }
+      if (this.page22.toDate6) {
+          this.page22.toDate6 = this.page22.toDate6['formatted'];
+      }
+      if (this.page22.toDate7) {
+          this.page22.toDate7 = this.page22.toDate7['formatted'];
+      }
+      this.questionnaireService.saveQuestionnaireData("402859815e23b336015e23b5e9680005", 22,this.page22).subscribe(res => {
+          console.log(res);
+      });
       }
       gotoNext() {
       this.savequestionnaireInformation();

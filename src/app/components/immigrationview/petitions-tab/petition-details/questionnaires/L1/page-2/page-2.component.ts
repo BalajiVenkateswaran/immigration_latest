@@ -22,35 +22,41 @@ export class Page2Component implements OnInit {
       {
         "id": "0",
         "display": "Parent",
-        "value": ""
+        "value": "PARENT"
       },
       {
         "id": "1",
         "display": "Branch",
-        "value": ""
+        "value": "BRANCH"
       },
        {
         "id": "2",
         "display": "Subsidiary",
-        "value": ""
+        "value": "SUBSIDARY"
       },
        {
         "id": "3",
         "display": "Affiliate",
-        "value": ""
+        "value": "AFFILIATE"
       },
        {
         "id": "4",
         "display": "Joint Venture",
-        "value": ""
+        "value": "JOINT_VENTURE"
       }
     ];
    }
 
   ngOnInit() {
+      this.questionnaireService.getQuestionnaireData("402859815e23b336015e23b5e9680005", 23).subscribe(res => {
+          console.log(res);
+
+      });
   }
   savequestionnaireInformation() {
-      this.page23.pageNumber = 23;
+      this.questionnaireService.saveQuestionnaireData("402859815e23b336015e23b5e9680005", 23, this.page23).subscribe(res => {
+          console.log(res);
+      });
   }
   gotoNext() {
       this.savequestionnaireInformation();
