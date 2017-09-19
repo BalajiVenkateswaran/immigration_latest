@@ -11,10 +11,19 @@ export class Page4Component implements OnInit {
 
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) { }
 
-  ngOnInit() {
+    ngOnInit() {
+        this.questionnaireService.getQuestionnaireData("402859815e23b336015e23b5e9680005", 25).subscribe(res => {
+            console.log(res);
+            if (res['formPage']) {
+                this.page25 = res['formPage'];
+            }
+        });
   }
   savequestionnaireInformation() {
       this.page25.pageNumber = 25;
+      this.questionnaireService.saveQuestionnaireData("402859815e23b336015e23b5e9680005", this.page25.pageNumber, this.page25).subscribe(res => {
+          console.log(res);
+      });
   }
 
   gotoPrev() {
@@ -23,5 +32,7 @@ export class Page4Component implements OnInit {
       this.appService.currentSBLink = "page3l1";
 
   }
-gotoNext(){}
+    gotoNext() {
+        this.savequestionnaireInformation();
+    }
 }

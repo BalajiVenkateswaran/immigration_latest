@@ -25,10 +25,19 @@ export class Page3Component implements OnInit {
     ];
    }
 
-  ngOnInit() {
+    ngOnInit() {
+        this.questionnaireService.getQuestionnaireData("402859815e23b336015e23b5e9680005", 24).subscribe(res => {
+            console.log(res);
+            if (res['formPage']) {
+                this.page24 = res['formPage'];
+            }
+        });
   }
   savequestionnaireInformation() {
       this.page24.pageNumber = 24;
+      this.questionnaireService.saveQuestionnaireData("402859815e23b336015e23b5e9680005", this.page24.pageNumber, this.page24).subscribe(res => {
+          console.log(res);
+      });
   }
   gotoNext() {
       this.savequestionnaireInformation();

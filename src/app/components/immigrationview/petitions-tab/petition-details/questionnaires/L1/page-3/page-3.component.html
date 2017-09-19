@@ -41,34 +41,34 @@
 
                 <tr>
                   <!--<td><span></span><td>-->
-                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="page24.percentageOfCompanyStockOwnership1"/></td>
 
-                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="page24.federalEmployerIdentification1"/></td>
                 </tr>
                 <tr>
                   <!--<td><span></span><td>-->
-                  <td><input type="text" /></td>
+                  <td><input type="text" [(ngModel)]="page24.percentageOfCompanyStockOwnership2"/></td>
 
-                  <td><input type="text" /></td>
-                </tr>
-                <tr>
-                  <!--<td><span></span><td>-->
-
-
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
+                  <td><input type="text" [(ngModel)]="page24.federalEmployerIdentification2"/></td>
                 </tr>
                 <tr>
                   <!--<td><span></span><td>-->
 
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
+
+                  <td><input type="text" [(ngModel)]="page24.percentageOfCompanyStockOwnership3"/></td>
+                  <td><input type="text" [(ngModel)]="page24.federalEmployerIdentification3"/></td>
                 </tr>
                 <tr>
                   <!--<td><span></span><td>-->
 
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
+                  <td><input type="text" [(ngModel)]="page24.percentageOfCompanyStockOwnership4"/></td>
+                  <td><input type="text" [(ngModel)]="page24.federalEmployerIdentification4"/></td>
+                </tr>
+                <tr>
+                  <!--<td><span></span><td>-->
+
+                  <td><input type="text" [(ngModel)]="page24.percentageOfCompanyStockOwnership5"/></td>
+                  <td><input type="text" [(ngModel)]="page24.federalEmployerIdentification5"/></td>
                 </tr>
 
               </table>
@@ -83,7 +83,7 @@
                 <div class="col-md-2" *ngFor="let x of questions">
 
                   <label for="">
-                        <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
+                        <input type="radio" name="aliens" [value]="x.value" [(ngModel)]="page24.doTheCompaniesCurrentlyHaveTheSameQualifyingRelationship"
                               />
                         {{x.display}}
                       </label>
@@ -101,7 +101,7 @@
               <div class="row">
                 <div class="col-md-2" *ngFor="let x of questions">
                   <label for="">
-                        <input type="radio" [value]="x.value"/>
+                        <input type="radio" name="newoff" [value]="x.value" [(ngModel)]="page24.isTheBeneficiaryComingUSToOpenNewOffice"/>
                         {{x.display}}
                       </label>
                 </div>
@@ -121,7 +121,7 @@
             <div class="row">
               <div class="col-md-2" *ngFor="let x of questions">
                 <label for="">
-                        <input type="radio" [value]="x.value"/>
+                        <input type="radio" name="offsite" [value]="x.value" [(ngModel)]="page24.willTheBeneficiaryBeStationedPrimarilyOffsite"/>
                         {{x.display}}
                       </label>
               </div>
@@ -131,14 +131,14 @@
           <div class="col-md-12">
             <p>If you answered yes to the preceding question, describe how and by whom the beneficiary's work will be controlled and supervised.  Include a description of the amount of time each supervisor is expected to control and supervise the work.  If you need additional space to respond to this question, proceed to Part 9. of the Form I-129, and type or print your explanation.</p>
           </div>
-          <div class="col-md-12"><textarea rows="6" style="min-height:120px;" textarea></textarea>
+          <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(ngModel)]="page24.describHowAndByWhomTheBeneficiaryWorkControlled" textarea></textarea>
 
           </div>
           <div class="col-md-12">
             <p>If you answered yes to the preceding question, describe the reasons why placement at another worksite outside the petitioner, subsidiary, affiliate, or parent is needed.  Include a description of how the beneficiary's duties at another worksite relate to the need for the specialized knowledge he or she possesses.  If you need additional space to respond to this question, proceed to Part 9. of the Form I-129, and type or print your explanation.</p>
           </div>
 
-          <div class="col-md-12"><textarea rows="6" style="min-height:120px;"></textarea>
+          <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(ngModel)]="page24.reasonsWhyPlacementAtAnotherWorksiteOutsidePetitioner"></textarea>
 
           </div>
         </div>
