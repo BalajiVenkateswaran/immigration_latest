@@ -119,6 +119,14 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       }
     });
   }
+  capitialize(data){
+    if(this.newclitem['firstName']){
+      this.newclitem['firstName']=data['firstName'].split(' ').map(item=>{return item.charAt(0).toUpperCase()+item.slice(1)}).join(' ');
+    }
+    if(this.newclitem['lastName']){
+      this.newclitem['lastName']=data['lastName'].split(' ').map(item=>{return item.charAt(0).toUpperCase()+item.slice(1)}).join(' ');
+    }
+  }
   clientSave(email, phone) {
     this.newclitem['accountId'] = this.appService.user.accountId;
     this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];

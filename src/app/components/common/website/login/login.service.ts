@@ -1,11 +1,12 @@
 ﻿import { User } from '../../../../models/user';
 import { RestService } from '../../../../services/rest.service';
 import {Injectable} from "@angular/core";
+import {Http} from '@angular/http';
 
 @Injectable()
 export class loginService {
 
-    constructor(private restService: RestService) {
+    constructor(private restService: RestService,private http:Http) {
     }
     public login(user: User) {
       return this.restService.postData("/user/authenticate", user);
@@ -20,5 +21,8 @@ export class loginService {
     public updateLoginHistory(userLoginHistoryId: string, roleId: string){
       return this.restService.postData("/user/login/history/"+userLoginHistoryId, {roleId: roleId});
 
+    }
+    public getIPAndLocation(){
+      return this.http.get("//freegeoip.net/json/").map(res=>res.json());
     }
 }

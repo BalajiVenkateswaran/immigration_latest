@@ -22,6 +22,7 @@ export interface ConfirmModel {
   templateUrl: 'login.component.html'
 })
 export class LoginComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+  [x: string]: any;
 
   private outlet: any = {
     breadcrumbs: null,
@@ -60,6 +61,10 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     if (this.appService.user) {
       this.appService.moveToPage("petitions");
     }
+    this.loginservice.getIPAndLocation().subscribe(res=>{
+      this.locationObject = res;
+      console.log(this.locationObject);
+    })
 
   }
   frgtPwd(isValid) {

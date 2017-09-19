@@ -170,10 +170,18 @@
           </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-ssn">U.S. Social Security Number (if any)</label></div>
-            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-ssn" [(ngModel)]="clientPersonalInfo.ssn" />
+            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-ssn" [formControl]="ssn" [(ngModel)]="clientPersonalInfo.ssn" />
               <span
                 *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span>
             </div>
+          </div>
+          <div class="row sfm" *ngIf="isPersonalInfoEdit==false && ssn != null && ssn.errors">
+              <div class="col-md-12">
+                  
+                  <div class="redstar" *ngIf="ssn.errors.pattern">
+                      * Invalid SSN Number(Can contain only digits and -)
+                  </div>
+              </div>
           </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-aleinRegistrationNumber">Alien Registration Number</label></div>

@@ -158,4 +158,12 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
       }
       
     }
+    capitialize(data){
+    if(this.addUsers['firstName']){
+      this.addUsers['firstName']=data['firstName'].split(' ').map(item=>{return item.charAt(0).toUpperCase()+item.slice(1)}).join(' ');
+    }
+    if(this.addUsers['lastName']){
+      this.addUsers['lastName']=data['lastName'].split(' ').map(item=>{return item.charAt(0).toUpperCase()+item.slice(1)}).join(' ');
+    }
+  }
 }

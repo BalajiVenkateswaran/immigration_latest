@@ -16,12 +16,14 @@ import { DialogService } from "ng2-bootstrap-modal";
     styleUrls: ['./client-details.component.scss']
 })
 export class ImmigrationViewClientDetailsComponent implements OnInit {
+    ssnRegex: RegExp;
 
     clientDetails: any = {};
     private client: any = {};
     private clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
     private clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
     phoneNumber: FormControl;
+    ssn: FormControl;
     public phoneRegex;
     //Profile section variables
     isProfileEdit;
@@ -45,15 +47,17 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         if (this.appService.user) {
             this.user = this.appService.user;
         }
-       this.phoneRegex=/^[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}$/;
-       this.phoneNumber=new FormControl('', [Validators.required,Validators.pattern(this.phoneRegex)]);
-       this.getClientDetails();
+        this.phoneRegex = /^[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}$/;
+        this.ssnRegex = /^(?=.*[0-9])[-0-9]+$/;
+        this.phoneNumber = new FormControl('', [Validators.required, Validators.pattern(this.phoneRegex)]);
+        this.ssn = new FormControl('', Validators.pattern(this.ssnRegex));
+        this.getClientDetails();
     }
 
     ngOnInit() {
         this.appService.showSideBarMenu("immigrationview-client", "clients");
         this.appService.dependents = [];
-         this.status = [
+        this.status = [
             { value: 'Active', name: 'Active' },
             { value: 'Inactive', name: 'Inactive' }
         ]
@@ -65,7 +69,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         ]
 
     }
-    getClientDetails(){
+    getClientDetails() {
         this.clientDetailsService.getClientDetails(this.appService.clientId)
             .subscribe((res) => {
                 if (res['clientDetails']) {
@@ -88,8 +92,8 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                     this.clientProfile.markForDeletion = this.client['markForDeletion'];
                 }
 
-                if(res['enableSendInvite'] != undefined){
-                  this.disableSendInvite = !res['enableSendInvite'];
+                if (res['enableSendInvite'] != undefined) {
+                    this.disableSendInvite = !res['enableSendInvite'];
                 }
 
                 this.isProfileEdit = true;
@@ -153,8 +157,8 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         if (this.clientDetails['fileNumber'] == '' || this.client['clientStatus'] == '' || this.clientProfile['email'] == '' || this.clientProfile['firstName'] == '' || this.clientProfile['lastName'] == '' || this.clientProfile['phoneNumber'] == '') {
             this.warningMessage = true;
         }
-        else if(this.phoneNumber.errors!=null){
-            this.warningMessage=false;
+        else if (this.phoneNumber.errors != null) {
+            this.warningMessage = false;
         }
         else {
             this.warningMessage = false;
@@ -187,30 +191,38 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
     //Save Client Details
     saveClientPersonalInfo() {
-        this.mapFromClientPersonalInfo();
-        if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
-            this.clientDetails['dateOfBirth'] = this.clientDetails['dateOfBirth']['formatted'];
+      
+        
+        if (this.ssn.errors != null) {
+            this.warningMessage = false;
+        }
+        else {
+            this.mapFromClientPersonalInfo();
+            if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
+                this.clientDetails['dateOfBirth'] = this.clientDetails['dateOfBirth']['formatted'];
+            }
+            this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.user.userId)
+                .subscribe((res) => {
+                    
+                    this.isPersonalInfoEdit = true;
+                    if (res['clientDetails']) {
+                        this.clientDetails = res['clientDetails'];
+                        this.mapToClientPersonalInfo();
+                    }
+                    if (res['client']) {
+                        this.client = res['client'];
+                        this.clientProfile.deletedByUserOn = this.client['deletedByUserOn'];
+                        this.clientProfile.lastUpdatedByUserOn = this.client['lastUpdatedByUserOn'];
+                        this.clientProfile.createdByUserOn = this.client['createdByUserOn'];
+                        this.clientProfile.markForDeletion = this.client['markForDeletion'];
+                    }
+                });
         }
 
-        this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.user.userId)
-            .subscribe((res) => {
-                this.isPersonalInfoEdit = true;
-                if (res['clientDetails']) {
-                    this.clientDetails = res['clientDetails'];
-                    this.mapToClientPersonalInfo();
-                }
-                if (res['client']) {
-                    this.client = res['client'];
-                    this.clientProfile.deletedByUserOn = this.client['deletedByUserOn'];
-                    this.clientProfile.lastUpdatedByUserOn = this.client['lastUpdatedByUserOn'];
-                    this.clientProfile.createdByUserOn = this.client['createdByUserOn'];
-                    this.clientProfile.markForDeletion = this.client['markForDeletion'];
-                }
-            });
     }
 
-    isProfileSaveButtonEnabled(): boolean{
-      return this.phoneNumber.errors == null;
+    isProfileSaveButtonEnabled(): boolean {
+        return this.phoneNumber.errors == null;
     }
 
     mapToClientProfile() {
