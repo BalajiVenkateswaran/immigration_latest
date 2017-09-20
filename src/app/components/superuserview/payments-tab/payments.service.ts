@@ -7,12 +7,8 @@ export class SuperUserViewPaymentstabService {
   constructor(private restService: RestService) {
 
   }
-
-  public getPayments() {
-    return this.restService.getData("/superuser/payments");
-  }
-  public getClientsFilteredData(accountId:string,filterQueries:any){
-    return this.restService.getData("/superuser/payments"+accountId+'?'+"filter="+filterQueries);
+  public getPaymentsWithQueryParams(queryData :any){
+    return this.restService.getData("/superuser/payments"+queryData);
   }
 
 

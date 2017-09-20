@@ -1,12 +1,13 @@
-import {AppService} from '../../../services/app.service';
-import {HeaderService} from '../../common/header/header.service';
-import {MenuComponent} from '../../common/menu/menu.component';
-import {AccountDetailsCommonService} from '../accounts-tab/account-details/common/account-details-common.service';
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {SuperUserViewPaymentstabService} from "./payments.service";
+import { AppService } from '../../../services/app.service';
+import { HeaderService } from '../../common/header/header.service';
+import { MenuComponent } from '../../common/menu/menu.component';
+import { AccountDetailsCommonService } from '../accounts-tab/account-details/common/account-details-common.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { SuperUserViewPaymentstabService } from "./payments.service";
+import { SortType } from "../../framework/smarttable/types/query-parameters";
 
 export interface ConfirmModel {
   title: string;
@@ -28,7 +29,7 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
   public addNewClient: boolean;
   public getClientsData: boolean = true;
   public newclitem: any = {};
-  public DefaultResponse = {"status": "Active"};
+  public DefaultResponse = { "status": "Active" };
   public settings;
   constructor(private superuserviewPaymentstabService: SuperUserViewPaymentstabService, private appService: AppService,
     private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
@@ -38,6 +39,10 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
       'isDeleteEnable': false,
       'isAddButtonEnable': false,
       'columnFilter': true,
+      'sort': [{
+        headingName: "paymentDate",
+        sort: SortType.DESC
+      }],
       'columnsettings': [
         {
           headerName: "Payment Id",
@@ -77,9 +82,6 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
 
   ngOnInit() {
     this.appService.showSideBarMenu(null, "payments");
-    this.superuserviewPaymentstabService.getPayments().subscribe((res: any) => {
-      this.data = res.payments;
-    });
   }
 
   clientSave() {
@@ -105,10 +107,14 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
     this.appService.showSideBarMenu("superuser-accounts", "accounts");
 
   }
-  filterData(filterQueries) {
-    this.superuserviewPaymentstabService.getClientsFilteredData(this.accountDetailsCommonService.accountId, filterQueries).subscribe(res => {
-      this.data = res['payments'];
-    })
+  dataWithParameters(queryParams) {
+    if(queryParams) {
+        console.log(''+queryParams);
+        this.superuserviewPaymentstabService.getPaymentsWithQueryParams(queryParams).subscribe(res => {
+        this.data = res.payments;
+      })
+    }
+
   }
 
 }
