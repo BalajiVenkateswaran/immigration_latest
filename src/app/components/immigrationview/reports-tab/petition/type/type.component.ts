@@ -36,6 +36,7 @@ export class petitionstypesreportscomponent implements OnInit {
         this.petitionsTypesreportsservice.getpetitonTypesreports(this.appService.user.accountId, this.selectedsubtypeId)
             .subscribe((res) => {
                 console.log(res);
+                this.orgsNames = [];
                 this.pieChartData = [];
                 this.pieChartLabels = [];
                 this.orgsList = res['orgs'];
