@@ -5,7 +5,7 @@
   <div class="clearfix"></div>
   <div class="table-data">
     <h2>Invoices</h2>
-              <smart-table [settings]="settings" [data]="data" (onRowClick)="moveToInvoiceTab($event)" (onColumnFilterClick)="filterData($event)"></smart-table>
+              <smart-table [settings]="settings" [data]="data" (onRowClick)="moveToInvoiceTab($event)" (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
 </div>
 </div>
 

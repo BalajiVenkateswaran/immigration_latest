@@ -8,10 +8,8 @@ export class SuperUserViewInvoicestabService {
 
   }
 
-  public getInvoices (orgId: string) {
-      return this.restService.getData("/superuser/invoices");
-  }
-  public getClientsFilteredData(accountId:string,filterQueries:any){
-    return this.restService.getData("/superuser/invoices"+accountId+'?'+"filter="+filterQueries);
+ 
+  public getInvoicesWithQueryParams(queryData :any){
+    return this.restService.getData("/superuser/invoices"+queryData);
   }
 }

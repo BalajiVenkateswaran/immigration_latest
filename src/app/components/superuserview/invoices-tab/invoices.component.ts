@@ -4,10 +4,11 @@ import { HeaderService } from '../../common/header/header.service';
 import { MenuComponent } from '../../common/menu/menu.component';
 import { AccountDetailsCommonService } from '../accounts-tab/account-details/common/account-details-common.service';
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {SuperUserViewInvoicestabService} from "./invoices.service";
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { SuperUserViewInvoicestabService } from "./invoices.service";
+import { SortType } from "../../framework/smarttable/types/query-parameters";
 
 export interface ConfirmModel {
     title: string;
@@ -19,8 +20,8 @@ export interface ConfirmModel {
 
 
 @Component({
-  selector: 'app-invoices',
-  templateUrl: './invoices.component.html'
+    selector: 'app-invoices',
+    templateUrl: './invoices.component.html'
 })
 export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     private invoicesList: invoice[];
@@ -31,13 +32,17 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
     public settings;
     public data;
     constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService,
-       private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
-       private accountDetailsCommonService: AccountDetailsCommonService, private headerService: HeaderService) {
+        private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
+        private accountDetailsCommonService: AccountDetailsCommonService, private headerService: HeaderService) {
         super(dialogService);
-        this.settings={
-            'isDeleteEnable':false,
-            'isAddButtonEnable':false,
-            'columnFilter':true,
+        this.settings = {
+            'isDeleteEnable': false,
+            'isAddButtonEnable': false,
+            'columnFilter': true,
+            'sort': [{
+                headingName: "invoiceDate",
+                sort: SortType.DESC
+            }],
             'columnsettings': [
                 {
                     headerName: "Invoice Number",
@@ -67,19 +72,14 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
                     headerName: "PDF Generated",
                     field: "pdfGenerated"
                 }
-                
+
             ]
         }
     }
-   
-      ngOnInit() {
-      this.appService.showSideBarMenu(null, "invoices");
-      this.superuserviewInvoicestabService.getInvoices(this.headerService.selectedOrg['orgId'])
-        .subscribe((res: any) => {
-            this.invoicesList = res.invoices;
-            this.data=this.invoicesList;
-          });
-  }
+
+    ngOnInit() {
+        this.appService.showSideBarMenu(null, "invoices");
+    }
 
     clientSave() {
         this.newclitem['accountId'] = this.appService.user.accountId;
@@ -97,16 +97,20 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
         this.close();
     }
 
-  moveToInvoiceTab(event): void{
-      this.menuComponent.highlightSBLink('Account Details Invoices');
-      this.appService.showSideBarMenu('superuser-accounts', "accounts");
-      this.appService.moveToPage("accountdetails-invoice");
-      this.accountDetailsCommonService.accountId = event.data.accountId;
+    moveToInvoiceTab(event): void {
+        this.menuComponent.highlightSBLink('Account Details Invoices');
+        this.appService.showSideBarMenu('superuser-accounts', "accounts");
+        this.appService.moveToPage("accountdetails-invoice");
+        this.accountDetailsCommonService.accountId = event.data.accountId;
 
-  }
-  filterData(filterQueries) {
-        this.superuserviewInvoicestabService.getClientsFilteredData(this.accountDetailsCommonService.accountId, filterQueries).subscribe(res => {
-            this.data = res['invoices'];
-        })
+    }
+    dataWithParameters(queryParams) {
+        if (queryParams) {
+            this.superuserviewInvoicestabService.getInvoicesWithQueryParams(queryParams).subscribe(res=>{
+                 this.invoicesList = res.invoices;
+                 this.data = this.invoicesList;
+            })
+        }
+
     }
 }
