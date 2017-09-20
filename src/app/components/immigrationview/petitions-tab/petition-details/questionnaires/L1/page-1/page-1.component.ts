@@ -171,7 +171,7 @@ export class Page1Component implements OnInit {
 
   ngOnInit() {
       this.page22.employerAddress = {};
-      this.questionnaireService.getQuestionnaireData("402859815e23b336015e23b5e9680005", 22).subscribe(res => {
+      this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],  22).subscribe(res => {
           console.log(res);
           if (res['formPage']) {
               this.page22 = res['formPage'];
@@ -268,7 +268,7 @@ export class Page1Component implements OnInit {
       if (this.page22.toDate7) {
           this.page22.toDate7 = this.page22.toDate7['formatted'];
       }
-      this.questionnaireService.saveQuestionnaireData("402859815e23b336015e23b5e9680005", this.page22.pageNumber,this.page22).subscribe(res => {
+      this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],  this.page22.pageNumber,this.page22).subscribe(res => {
           console.log(res);
       });
       }

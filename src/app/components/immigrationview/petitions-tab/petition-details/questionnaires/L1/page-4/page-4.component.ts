@@ -12,7 +12,7 @@ export class Page4Component implements OnInit {
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) { }
 
     ngOnInit() {
-        this.questionnaireService.getQuestionnaireData("402859815e23b336015e23b5e9680005", 25).subscribe(res => {
+        this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],  25).subscribe(res => {
             console.log(res);
             if (res['formPage']) {
                 this.page25 = res['formPage'];
@@ -21,7 +21,7 @@ export class Page4Component implements OnInit {
   }
   savequestionnaireInformation() {
       this.page25.pageNumber = 25;
-      this.questionnaireService.saveQuestionnaireData("402859815e23b336015e23b5e9680005", this.page25.pageNumber, this.page25).subscribe(res => {
+      this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],  this.page25.pageNumber, this.page25).subscribe(res => {
           console.log(res);
       });
   }

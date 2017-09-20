@@ -242,7 +242,7 @@ export const appRoutes: Routes = [
         component: i129dcPage3Component,
     },
     {
-        path: 'page1l1',
+        path: 'page1l1/:questionnaireId',
         component: Page1Component
     },
     {

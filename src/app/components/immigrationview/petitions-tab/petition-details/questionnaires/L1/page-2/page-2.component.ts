@@ -64,7 +64,7 @@ export class Page2Component implements OnInit {
    }
 
   ngOnInit() {
-      this.questionnaireService.getQuestionnaireData("402859815e23b336015e23b5e9680005", 23).subscribe(res => {
+      this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],  23).subscribe(res => {
           console.log(res);
           if (res['formPage']) {
               this.page23 = res['formPage'];
@@ -162,7 +162,7 @@ export class Page2Component implements OnInit {
       if (this.page23.toDate7) {
           this.page23.toDate7 = this.page23.toDate7['formatted'];
       }
-      this.questionnaireService.saveQuestionnaireData("402859815e23b336015e23b5e9680005", this.page23.pageNumber, this.page23).subscribe(res => {
+      this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], this.page23.pageNumber, this.page23).subscribe(res => {
           console.log(res);
       });
   }
@@ -173,7 +173,7 @@ export class Page2Component implements OnInit {
   }
   gotoPrev(){
       this.savequestionnaireInformation();
-      this.appService.moveToPage('page1l1');
+      this.appService.moveToPage('page1l1/' + this.questionnaireService.selectedQuestionnaire['questionnaireId']);
       this.appService.currentSBLink = "page1l1";
   }
 

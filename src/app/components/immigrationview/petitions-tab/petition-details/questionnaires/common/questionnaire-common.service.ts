@@ -27,25 +27,29 @@ export class QuestionnaireCommonService {
 
   public moveToQuestionnaire(questionnaire: any) {
       this.selectedQuestionnaire = questionnaire;
-
       var pageName = "";
       if (this.selectedQuestionnaire['formName'] == "I-129") {
-          if(this.appService.applicationViewMode == "Immigration"){
+          if (this.appService.applicationViewMode == "Immigration") {
               pageName = 'i129Page1';
           } else {
-             pageName = 'clientview-i129Page2';
+              pageName = 'clientview-i129Page2';
           }
       }
       else if (this.selectedQuestionnaire['formName'] == "I-129 DC") {
-            if(this.appService.applicationViewMode == "Immigration"){
-               pageName = 'i129dcPage1';
-            }
+          if (this.appService.applicationViewMode == "Immigration") {
+              pageName = 'i129dcPage1';
+          }
       }
-      else {
-          if(this.appService.applicationViewMode == "Immigration"){
+      else if (this.selectedQuestionnaire['formName'] == "I-129 H") {
+          if (this.appService.applicationViewMode == "Immigration") {
               pageName = 'i129hPage1';
           } else {
-             pageName = 'clientview-i129hPage1';
+              pageName = 'clientview-i129hPage1';
+          }
+      }
+      else {
+          if (this.appService.applicationViewMode == "Immigration") {
+              pageName = 'page1l1';
           }
       }
 
