@@ -6,6 +6,7 @@ import { ImmigrationViewArrivalDepartureInfoService } from './arrival-departure-
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../../common/header/header.service";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -40,7 +41,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       showClearDateBtn: false,
   };
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
-      public appService: AppService, public dialogService: DialogService) {
+      public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
       super(dialogService);
       this.settings = {
 
@@ -100,7 +101,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       }).subscribe((isConfirmed) => {
           if (isConfirmed) {
 
-              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture,this.appService.user.userId).subscribe((res) => {
+              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture,this.headerService.user.userId).subscribe((res) => {
                   if (res['statusCode'] == 'SUCCESS') {
                       this.getArrivalDepartueInfo();
                   }
@@ -156,7 +157,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
 
      }).subscribe((isConfirmed) => {
          if (isConfirmed) {
-              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture,this.appService.user.userId).subscribe((res) => {
+              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture,this.headerService.user.userId).subscribe((res) => {
                   if (res['statusCode'] == 'SUCCESS') {
                       this.getArrivalDepartueInfo();
                   }

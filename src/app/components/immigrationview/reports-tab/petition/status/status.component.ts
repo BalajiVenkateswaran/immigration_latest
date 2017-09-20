@@ -2,6 +2,7 @@
 import { petitionsstatusreportsservice } from './status.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 
 
@@ -17,10 +18,11 @@ export class petitionsstatusreportscomponent implements OnInit {
     public orgsNames: any = [];
     public open: any = [];
     public closed: any = [];
-    ngOnInit() {
-        this.appService.showSideBarMenu("immiview-reports", "immiview-petitionreports");
-        
-        this.petitionsStatusreportsservice.getpetitonstatusreports(this.appService.user.accountId)
+  constructor(public appService: AppService, private petitionsStatusreportsservice: petitionsstatusreportsservice, public headerService: HeaderService) { }
+  ngOnInit() {
+        this.headerService.showSideBarMenu("immiview-reports", "immiview-petitionreports");
+
+        this.petitionsStatusreportsservice.getpetitonstatusreports(this.headerService.user.accountId)
             .subscribe((res) => {
                 this.barChartData = [];
                 this.orgsList = res['orgs'];
@@ -51,12 +53,11 @@ export class petitionsstatusreportscomponent implements OnInit {
                         }
 
                     }
-                                  
+
                 }
-                this.barChartData.push({ data: this.open, label: 'Open petiitons' }, { data: this.closed, label: 'Closed petiitons' }); 
+                this.barChartData.push({ data: this.open, label: 'Open petiitons' }, { data: this.closed, label: 'Closed petiitons' });
             });
     }
-    constructor(public appService: AppService, private petitionsStatusreportsservice: petitionsstatusreportsservice) { }
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true,

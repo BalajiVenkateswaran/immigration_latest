@@ -1,9 +1,8 @@
-import { User } from '../../../../models/user';
-import { AppService } from '../../../../services/app.service';
-import { Component, OnInit } from '@angular/core';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {User} from '../../../../models/user';
+import {Component, OnInit} from '@angular/core';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {ManageAccountPaymentsService} from './payments.service'
+import {HeaderService} from "../../../common/header/header.service";
 
 export interface ConfirmModel {
     title: string;
@@ -23,14 +22,11 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
     public payments:any={};
     public getPayments:boolean=true;
     public viewAccountPopup:boolean;
-    public settings;   
+    public settings;
     private data;
     private user: User;
-    constructor(private appService: AppService,public manageAccountPaymentsService:ManageAccountPaymentsService,public dialogService: DialogService) {
+    constructor(private headerService: HeaderService,public manageAccountPaymentsService:ManageAccountPaymentsService,public dialogService: DialogService) {
         super(dialogService);
-        if (this.appService.user) {
-            this.user = this.appService.user;
-        }
 
     this.settings={
          "isAddButtonEnable":false,
@@ -68,18 +64,18 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
                     headerName: "Payment Status",
                     field: "paymentStatus",
                 }
-                
-                
+
+
             ]
         }
-    
+
     }
     getPaymentDetails(){
-        this.manageAccountPaymentsService.getPaymentDetails(this.user.accountId).subscribe(
+        this.manageAccountPaymentsService.getPaymentDetails(this.headerService.user.accountId).subscribe(
             res=>{
                 if(res['statusCode']=='SUCCESS'){
                    this.data=res['payments'];
-                  
+
                 }
             }
         )
@@ -88,7 +84,7 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
     ngOnInit() {
         this.getPaymentDetails();
     }
-    
+
     editRecord(event){
         this.dialogService.addDialog(ManageAccountPaymentsComponent, {
             viewAccountPopup: true,
@@ -97,11 +93,11 @@ export class ManageAccountPaymentsComponent  extends DialogComponent<ConfirmMode
             payment: event.data,
         }).subscribe((isConfirmed) => {
            if(isConfirmed){
-                   
+
            }
         });
     }
     cancel() {
         this.close();
-    }    
+    }
 }

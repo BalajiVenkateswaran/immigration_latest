@@ -6,6 +6,7 @@ import {FormGroup, FormControl} from "@angular/forms";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../../common/header/header.service";
 
 
 export interface ConfirmModel {
@@ -50,7 +51,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     // event properties are: event.date, event.jsdate, event.formatted and event.epoc
   }
 
-  constructor(private immigrationviewVisasService: ImmigrationViewVisasService, public appService: AppService, public dialogService: DialogService) {
+  constructor(private immigrationviewVisasService: ImmigrationViewVisasService, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -111,7 +112,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       title: 'Add Visa',
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem,this.appService.user.userId).subscribe((res) => {
+        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem,this.headerService.user.userId).subscribe((res) => {
           this.message = res['statusCode'];
           if (this.message == 'SUCCESS') {
             this.getVisaaData();
@@ -163,7 +164,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
 
-        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.appService.user.userId).subscribe((res) => {
+        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.headerService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getVisaaData();
 

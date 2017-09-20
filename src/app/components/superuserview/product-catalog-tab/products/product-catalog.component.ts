@@ -4,6 +4,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import { ProductCatalogProductService } from './product-catalog.service';
+import {HeaderService} from "../../../common/header/header.service";
 
 export interface ConfirmModel {
   title: string;
@@ -37,7 +38,8 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   public isEditProducts: boolean = true;
   public warningMessage: boolean = false;
 
-  constructor(public appService: AppService, public dialogService: DialogService, public productCatalogProductService: ProductCatalogProductService, private menuComponent: MenuComponent) {
+  constructor(public appService: AppService, public dialogService: DialogService, public productCatalogProductService: ProductCatalogProductService,
+              private menuComponent: MenuComponent, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'isDeleteEnable': false,
@@ -117,7 +119,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   }
   ngOnInit() {
     this.menuComponent.highlightSBLink('Products');
-    this.appService.showSideBarMenu("superuserview-product", "ProductCatalog");
+    this.headerService.showSideBarMenu("superuserview-product", "ProductCatalog");
 
   }
   /*reloadData() {
@@ -232,7 +234,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         }
       )
     }
-     
+
     if(this.queryParameters == null || this.queryParameters == undefined){
        this.productCatalogProductService.getProductDetails().subscribe(
         res=>{
@@ -240,7 +242,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         }
       )
     }
-    
+
   }
 
 }

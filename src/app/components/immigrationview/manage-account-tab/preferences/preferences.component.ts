@@ -1,10 +1,6 @@
-import { AppService } from '../../../../services/app.service';
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl} from "@angular/forms";
-import {Router} from "@angular/router";
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {Component, OnInit} from '@angular/core';
 import {ManageAccountpreferencessService} from './preferences.service';
+import {HeaderService} from "../../../common/header/header.service";
 
 
 @Component({
@@ -17,10 +13,10 @@ export class ManageAccountPreferencesComponent implements OnInit {
     public products:any=[];
     public discounts:any=[];
     public settings;
-    public data;   
+    public data;
     public settings1;
-    public data1;   
-    constructor(private appService: AppService,private manageAccountpreferencessService:ManageAccountpreferencessService) {
+    public data1;
+    constructor(private headerService: HeaderService,private manageAccountpreferencessService:ManageAccountpreferencessService) {
         this.settings= {
             "isAddButtonEnable": false,
             "isDeleteEnable": false,
@@ -124,14 +120,14 @@ export class ManageAccountPreferencesComponent implements OnInit {
         this.getdiscounts();
     }
     getproducts() {
-        this.manageAccountpreferencessService.getproductsAccount(this.appService.user.accountId).subscribe((res) => {
+        this.manageAccountpreferencessService.getproductsAccount(this.headerService.user.accountId).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
                 this.data = res['products'];
             }
         });
     }
     getdiscounts() {
-        this.manageAccountpreferencessService.getdiscountsAccount(this.appService.user.accountId).subscribe((res) => {
+        this.manageAccountpreferencessService.getdiscountsAccount(this.headerService.user.accountId).subscribe((res) => {
             if (res['statusCode'] == "SUCCESS") {
                 this.data1 = res['discounts'];
 

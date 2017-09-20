@@ -39,7 +39,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public warningMessage:boolean=false;
     public settings;
     public data;
-    private user: User;
     public countryNames: string[] = [];
 
     highlightSBLink(link) {
@@ -48,9 +47,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     constructor(private immigrationviewpetitionService: ImmigrationViewPetitionsService, public appService: AppService,
         private menuService: MenuService, private router: Router, public dialogService: DialogService, private headerService: HeaderService) {
         super(dialogService);
-        if (this.appService.user) {
-            this.user = this.appService.user;
-        }
         this.addPetition = new FormGroup({
             petitionName: new FormControl(''),
             petitionNumber: new FormControl(''),
@@ -213,8 +209,8 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       this.newpetitionitem['orgId'] = this.headerService.selectedOrg['orgId'];
       this.newpetitionitem['petitionTypeId'] = this.getPetitionTypeId(this.newpetitionitem['petitiontype']);
       this.newpetitionitem['petitionSubTypeId'] = this.getPetitionSubTypeId(this.newpetitionitem['petitiontype'], this.newpetitionitem['petitionSubType']);
-      this.newpetitionitem['userId'] = this.user.userId;
-      this.newpetitionitem['accountId'] = this.user.accountId;
+      this.newpetitionitem['userId'] = this.headerService.user.userId;
+      this.newpetitionitem['accountId'] = this.headerService.user.accountId;
 
       //Set default values
       if (this.newpetitionitem['status'] == undefined) {

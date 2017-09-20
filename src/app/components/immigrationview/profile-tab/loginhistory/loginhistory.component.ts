@@ -2,6 +2,7 @@
 import {profileloginhisservice} from './loginhistory.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../common/header/header.service";
 
 @Component({
   selector: 'app-profileloginhistory',
@@ -14,20 +15,7 @@ export class profileloginhiscomponent implements OnInit {
   public userInfo: any = {};
   public settings;
   public data;
-  ngOnInit() {
-    this.profileLoginhisservice.getLoginHistory(this.appService.user.userId)
-      .subscribe((res) => {
-        console.log(res);
-        if (res['userLoginHistory']) {
-          this.data = res['userLoginHistory'];
-          for (var i = 0; i < this.data.length; i++) {
-            this.data[i]['accountName'] = this.appService.user.firstName.concat(" " + this.appService.user.lastName);
-          }
-        }
-      });
-
-  }
-  constructor(public appService: AppService, private profileLoginhisservice: profileloginhisservice) {
+  constructor(public headerService: HeaderService, private profileLoginhisservice: profileloginhisservice) {
 
     this.settings = {
       "isAddButtonEnable": false,
@@ -68,5 +56,18 @@ export class profileloginhiscomponent implements OnInit {
         }
       ]
     }
+  }
+  ngOnInit() {
+    this.profileLoginhisservice.getLoginHistory(this.headerService.user.userId)
+      .subscribe((res) => {
+        console.log(res);
+        if (res['userLoginHistory']) {
+          this.data = res['userLoginHistory'];
+          for (var i = 0; i < this.data.length; i++) {
+            this.data[i]['accountName'] = this.headerService.user.firstName.concat(" " + this.headerService.user.lastName);
+          }
+        }
+      });
+
   }
 }

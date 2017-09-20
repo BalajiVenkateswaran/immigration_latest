@@ -7,6 +7,7 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {MenuComponent} from "../../../../common/menu/menu.component";
 import {AccountDetailsCommonService} from "../common/account-details-common.service";
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
   selector: 'app-account-details',
@@ -23,7 +24,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   public MFDdisable: boolean;
   constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
     private menuComponent: MenuComponent, private accountDetailsCommonService: AccountDetailsCommonService,
-    public dialogService: DialogService) {
+    public dialogService: DialogService, public headerService: HeaderService) {
   }
 
   private myDatePickerOptions: IMyOptions = {
@@ -33,7 +34,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   };
   private beforeCancelAccountdetails;
   ngOnInit() {
-    this.appService.showSideBarMenu("superuser-accounts", null);
+    this.headerService.showSideBarMenu("superuser-accounts", null);
     this.storagenable();
     this.getAcountDetails();
     this.menuComponent.highlightSBLink('Account Details');
@@ -121,7 +122,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     } else {
       this.errormsg = false;
       this.accountDetails['accountId'] = this.accountDetailsCommonService.accountId;
-      this.accountDetails['mfdBy'] = this.appService.user.userId;
+      this.accountDetails['mfdBy'] = this.headerService.user.userId;
       this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
         .subscribe((res) => {
           this.isEditstorage = true;

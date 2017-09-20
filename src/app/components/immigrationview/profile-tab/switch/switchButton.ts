@@ -5,6 +5,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular/main';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
+import {HeaderService} from "../../../common/header/header.service";
 
 @Component({
     template: `
@@ -17,42 +18,41 @@ import { Subscription } from 'rxjs/Subscription';
 export class switchButton implements ICellRendererAngularComp {
     public params: any;
  public switchdisable: boolean;
-    agInit(params: any): void {
+  constructor(private profileSwitchservice: profileswitchservice, public appService: AppService, public headerService: HeaderService) {
+  }
+  agInit(params: any): void {
         this.params = params;
-        if (this.params.data.roleName == this.appService.user.roleName &&
-            this.params.data.accountId == this.appService.user.accountId) {
+        if (this.params.data.roleName == this.headerService.user.roleName &&
+            this.params.data.accountId == this.headerService.user.accountId) {
             this.switchdisable = true;
         }
     }
-    refresh(): boolean {
+  refresh(): boolean {
       return false;
-    }
-    constructor(private profileSwitchservice: profileswitchservice, public appService: AppService) {
     }
     onSwitchClick(params) {
         this.appService.destroy();
-        this.appService.selacntId = params.data.accountId;
-        this.appService.user = params.context.componentParent.user;
-        this.appService.user.accountId=params.data.accountId;
-        this.appService.selroleId = params.data.roleId;
+        this.headerService.user = params.context.componentParent.user;
+        this.headerService.user.accountId=params.data.accountId;
+        this.headerService.selectedRoleId = params.data.roleId;
         this.appService.rolemultiple = true;
-        this.appService.user['roleName'] = params.data.roleName;
+        this.headerService.user['roleName'] = params.data.roleName;
         params.context.componentParent.headerService.onHeaderPageLoad();
         if (params.data.roleName == "Client") {
             this.appService.applicationViewMode = "Client";
-            this.appService.clientId = params.context.componentParent.user.userId;//this.appService.user.userId;
-            this.appService.currentTab = 'clientview-petitions';
+            this.appService.clientId = params.context.componentParent.user.userId;
+            this.headerService.currentTab = 'clientview-petitions';
             this.appService.moveToPage("clientview-petitions");
         }
         if (params.data.roleName == "Immigration Manager" || params.data.roleName == "Immigration Officer") {
             this.appService.applicationViewMode = "Immigration";
-            this.appService.currentTab = 'petitions';
+            this.headerService.currentTab = 'petitions';
             this.appService.moveToPage("petitions");
 
         }
         if (params.data.roleName == "Super User") {
             this.appService.applicationViewMode = "Superuser";
-            this.appService.currentTab = 'superuser-accounts';
+            this.headerService.currentTab = 'superuser-accounts';
             this.appService.moveToPage("superuser-accounts");
         }
     }

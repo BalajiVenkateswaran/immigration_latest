@@ -7,6 +7,7 @@ import {ImmigrationViewDependentService} from "./dependents.service";
 import {FormGroup, FormControl} from "@angular/forms";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {HeaderService} from "../../../../common/header/header.service";
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -25,7 +26,6 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   public addDependent: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
-  private user: User;
   private deleteDependents: any;
   private dependent: any;
   public addDependents: any = {};
@@ -35,10 +35,9 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   public warningMessage: boolean = false;
   public settings;
   public data;
-  constructor(private ImmigrationViewDependentService: ImmigrationViewDependentService, public appService: AppService, public dialogService: DialogService) {
-    super(dialogService); if (this.appService.user) {
-      this.user = this.appService.user;
-    }
+  constructor(private ImmigrationViewDependentService: ImmigrationViewDependentService, public appService: AppService, public dialogService: DialogService,
+              public headerService: HeaderService) {
+    super(dialogService);
     this.settings = {
       'columnsettings': [
         {
@@ -87,7 +86,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.addDependents = this.appService.addDependents;
-        this.ImmigrationViewDependentService.saveDependentsSummary(this.addDependents,this.appService.user.userId).subscribe((res) => {
+        this.ImmigrationViewDependentService.saveDependentsSummary(this.addDependents,this.headerService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getDepData();
           }

@@ -24,27 +24,29 @@ export class profileusercomponent implements OnInit {
   public selectedorg: any = {};
   public showdefaultorg: boolean = true;
   public uiBuildNumber = LoginComponent.uiBuildNumber;
+  constructor(public appService: AppService, private profileUserservice: profileuserservice, public headerService: HeaderService) {}
   ngOnInit() {
     if (this.headerService.organizations == undefined) {
       this.showdefaultorg = false;
     }
-    this.appService.showSideBarMenu("immiview-profuser", "immiview-profileuser");
-    this.profileUserservice.getUserInfo(this.appService.user.userId)
+    this.headerService.showSideBarMenu("immiview-profuser", "immiview-profileuser");
+    this.profileUserservice.getUserInfo(this.headerService.user.userId)
       .subscribe((res) => {
         console.log(res);
         if (res['user']) {
           this.userInfo = res['user'];
         }
       });
-    this.profileUserservice.getDefaultOrg(this.appService.user.accountId, this.appService.user.userId)
+    this.profileUserservice.getDefaultOrg(this.headerService.user.accountId, this.headerService.user.userId)
       .subscribe((res) => {
         console.log(res);
         if (res['statusCode'] == "SUCCESS") {
-          this.defaultorg = res['userDefaultOrg']['orgId'];
+          if(res['userDefaultOrg'] != null && res['userDefaultOrg'] != undefined){
+            this.defaultorg = res['userDefaultOrg']['orgId'];
+          }
         }
       });
   }
-  constructor(public appService: AppService, private profileUserservice: profileuserservice, public headerService: HeaderService) {}
 
   editDefaultorg() {
     this.beforeCancelorgid = this.defaultorg;
@@ -61,7 +63,8 @@ export class profileusercomponent implements OnInit {
     this.selectedorg = selorg;
   }
   saveDefaultorg() {
-    var data = {"accountId": this.selectedorg.accountId, "creationDate": this.selectedorg.creationDate, "lastUpdate": this.selectedorg.lastUpdate, "orgId": this.selectedorg.orgId, "userId": this.appService.user.userId};
+    var data = {"accountId": this.selectedorg.accountId, "creationDate": this.selectedorg.creationDate, "lastUpdate": this.selectedorg.lastUpdate,
+      "orgId": this.selectedorg.orgId, "userId": this.headerService.user.userId};
     this.profileUserservice.setDefaultOrg(data)
       .subscribe((res) => {
         console.log(res);
@@ -88,9 +91,9 @@ export class profileusercomponent implements OnInit {
     else {
       this.warningMessage = false;
       this.isUserEdit = true;
-      this.userInfo['accountId'] = this.appService.user.userId;
-      this.userInfo['role'] = this.appService.user.roleName;
-      this.userInfo['userId'] = this.appService.user.userId;
+      this.userInfo['accountId'] = this.headerService.user.userId;
+      this.userInfo['role'] = this.headerService.user.roleName;
+      this.userInfo['userId'] = this.headerService.user.userId;
       this.profileUserservice.updateUser(this.userInfo).subscribe((res) => {
         if (res['statusCode'] == "SUCCESS") {
           console.log(res);

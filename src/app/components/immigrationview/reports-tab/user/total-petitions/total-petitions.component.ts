@@ -2,6 +2,7 @@
 import { usertotalpetitionservice } from './total-petitions.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
   selector: 'app-usertotalpetitions',
@@ -19,9 +20,11 @@ export class usertotalpetitionscomponent implements OnInit {
   public fullName: any = [];
   public fullname: any = [];
   public finalLbl: any = [];
+  constructor(public appService: AppService, private userTotalpetitionservice: usertotalpetitionservice, public headerService: HeaderService) {
+  }
   ngOnInit() {
 
-    this.userTotalpetitionservice.getuserstotpetitions(this.appService.user.accountId)
+    this.userTotalpetitionservice.getuserstotpetitions(this.headerService.user.accountId)
       .subscribe((res) => {
         console.log(res);
         this.orgsList = res['orgs'];
@@ -44,8 +47,6 @@ export class usertotalpetitionscomponent implements OnInit {
           this.barChartData[item] = [{data: this.data, label: 'Clients Created'}];
         }
       });
-  }
-  constructor(public appService: AppService, private userTotalpetitionservice: usertotalpetitionservice) {
   }
   public barChartOptions: any = {
     scaleShowVerticalLines: false,

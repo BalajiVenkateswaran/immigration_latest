@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import {JobdetailsService} from "./job-details.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../../common/header/header.service";
 export interface formControl {
     name: string;
     value: FormControl;
@@ -31,7 +32,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
     private lastDayWorkedDate: string;
     private terminationDate: string;
     private beforeCancelJobDetails;
-    constructor(private uiFieldService: UiFieldService,
+    constructor(private uiFieldService: UiFieldService, public headerService: HeaderService,
         private formBuilder: FormBuilder, public appService: AppService, private jobdetails: JobdetailsService) {
     }
 
@@ -148,7 +149,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
             this.jobDetails['terminationDate'] = this.jobDetails['terminationDate']['formatted'];
         }
         this.jobDetails['clientId'] = this.appService.clientId;
-        this.jobdetails.saveJobDetails(this.jobDetails,this.appService.user.userId)
+        this.jobdetails.saveJobDetails(this.jobDetails,this.headerService.user.userId)
             .subscribe((res) => {
                 this.isjobdetailsEdit = true;
                 if (res['jobDetails']) {

@@ -1,284 +1,286 @@
-<header *ngIf="header">
-	<div class="container-fluid">
-		<div class="col-md-4 pull-left no-pad">
-			<div class="logo">
-				<a
-					(click)="onLogoClick()">
-					<img src="assets/images/logo.png" />
-				</a>
-			</div>
-		</div>
-		<div class="col-md-4 text-center pull-left">
-			<div class="datails-holder-name"
-				*ngIf="applicationViewMode=='Immigration'">
-				<div class="pull-left" *ngIf="headerService.selectedOrg">
-					<h4>{{headerService.selectedOrg.displayName}}</h4>
-				</div>
-				<div class="pull-left">
-					<a class="ico-edit" (click)="editorgname(orgSelect)"></a>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 pull-left">
-			<div class="profile-container pull-right" style="position:relative;">
-				<div class="profile">
-					<div class="profile-name">
-						<h4>{{user.firstName}} {{user.lastName}}</h4>
-						<h6>{{user.roleName}}</h6>
-					</div>
-
-					<div ngbDropdown class="d-inline-block pull-right">
-						<button class="btn" id="dropdownMenu1" ngbDropdownToggle>
-							<div class="profile-pic">
-								<img src="assets/images/user_icon.png" alt="profile-img">
-							</div>
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<a class="dropdown-item" (click)="logOut()">Logout</a>
-						</div>
-					</div>
-				</div>
-                <button *ngIf="applicationViewMode=='Immigration'" type="submit" class="btn btn-primary" style="position: absolute;right: 0px;bottom: -65px;z-index:9999;" (click)="onUsageSummaryClick()">Usage Summary</button>
-			</div>
-
-		</div>
-		<div class="clearfix"></div>
-		<!--Mani Menu Start-->
-		<div class="row">
-			<div class="mainmenu">
-				<div *ngIf="appService.isBurgerMenuVisible" class="burger-menu">
-					<input type="checkbox" (click)="slideMenu()" /><label></label>
-				</div>
-				<ul *ngIf="applicationViewMode=='Immigration'">
-          <li *ngIf="!headerService.isDelegatedOrg()"
-              style="margin-right: 37px;"><a
-            (click)="appService.moveToPage('clients'); highlightTab('clients');"
-            [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
-            routerLinkActive="active"> <span class="maintab-Clients"></span>
-            <div class="clearfix"></div> Clients
-            <div class="arrow-up"></div>
-          </a></li>
-          <li style="margin-right: 30px;"
-						*ngIf="applicationViewMode=='Immigration'||headerService.isDelegatedOrg()"><a
-						(click)="appService.moveToPage('petitions'); highlightTab('petitions');"
-						[ngClass]="[checkForCurrentTab('petitions') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-Petitions"></span>
-							<div class="clearfix"></div> Petitions
-							<div class="arrow-up"></div>
-					</a></li>
-					<li *ngIf="!headerService.isDelegatedOrg()"
-						style="margin-right: 10px;"><a
-						(click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');"
-						[ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"
-						routerLinkActive="active"> <span class="maintab-Organization"></span>
-							<div class="clearfix"></div> Organization
-							<div class="arrow-up"></div>
-					</a></li>
-					<!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
-					<li style="margin-right: 22px;"
-						*ngIf="immigrationManager=='Immigration Manager'"><a
-						(click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');"
-						[ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-Manageaccount"></span>
-							<div class="clearfix"></div> Manage Account
-							<div class="arrow-up"></div>
-					</a></li>
-					<li *ngIf="!headerService.isDelegatedOrg()"><a
-						(click)="appService.moveToPage('immiview-petitionreports'); highlightTab('immiview-petitionreports');highlightSBLink('immiview-petitionreports');"
-						[ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']"
-						routerLinkActive="active"> <span class="maintab-Reports"></span>
-							<div class="clearfix"></div> Reports
-							<div class="arrow-up"></div>
-					</a></li>
-					<li><a
-						(click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
-						[ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
-						routerLinkActive="active"> <span class="maintab-Profile"></span>
-							<div class="clearfix"></div> Profile
-							<div class="arrow-up"></div>
-					</a></li>
-
-        </ul>
-				<ul *ngIf="applicationViewMode=='Client'">
-					<li style="margin-right: 30px;"><a
-						(click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');"
-						[ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-Petitions"></span>
-							<div class="clearfix"></div> Petitions
-							<div class="arrow-up"></div>
-					</a></li>
-					<li style="margin-right: 20px;"><a
-						(click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');"
-						[ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-clientdetails"></span>
-							<div class="clearfix"></div> Client Details
-							<div class="arrow-up"></div>
-					</a></li>
-					<li style="margin-right: 15px;"><a
-						(click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');"
-						[ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-clientdocuments"></span>
-							<div class="clearfix"></div> Documents
-							<div class="arrow-up"></div>
-					</a></li>
-					<li style="margin-right: 20px;"><a
-						(click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');"
-						[ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-clientQuestionnaire"></span>
-							<div class="clearfix"></div> Questionnaire
-							<div class="arrow-up"></div>
-					</a></li>
-					<li><a
-						(click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');"
-						[ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-clientrquests"></span>
-							<div class="clearfix"></div> Requests
-							<div class="arrow-up"></div>
-					</a></li>
-                    <li>
-                        <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
-                           [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
-                           routerLinkActive="active">
-                            <span class="maintab-Profile"></span>
-                            <div class="clearfix"></div> Profile
-                            <div class="arrow-up"></div>
-                        </a>
-                    </li>
-					<!--<li>
-                        <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');" [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']" routerLinkActive="active">
-                            <span class="maintab-Reports"></span>
-                            <div class="clearfix"></div>
-                            Profile
-                            <div class="arrow-up"></div>
-                        </a>
-                    </li>-->
-
-				</ul>
-				<ul *ngIf="applicationViewMode=='Superuser'">
-					<li style="margin-right: 20px;"><a
-						(click)="appService.moveToPage('superuser-accounts'); highlightTab('accounts');"
-						[ngClass]="[checkForCurrentTab('accounts') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-Accounts"></span>
-							<div class="clearfix"></div> Accounts
-							<div class="arrow-up"></div>
-					</a></li>
-					<li style="margin-right: 20px;"><a
-						(click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('ProductCatalog');"
-						[ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-procat"></span>
-							<div class="clearfix"></div> Product Catalog
-							<div class="arrow-up"></div>
-					</a></li>
-					<li style="margin-right: 40px;"><a
-						(click)="appService.moveToPage('invoices'); highlightTab('invoices');"
-						[ngClass]="[checkForCurrentTab('invoices') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-invoices"></span>
-							<div class="clearfix"></div> Invoices
-							<div class="arrow-up"></div>
-					</a></li>
-					<li style="margin-right: 30px;"><a
-						(click)="appService.moveToPage('payments'); highlightTab('payments');"
-						[ngClass]="[checkForCurrentTab('payments') ? 'active': '']"
-						routerLinkActive="active"> <span class="maintab-payments"></span>
-							<div class="clearfix"></div> Payments
-							<div class="arrow-up"></div>
-					</a></li>
-					<li><a
-						(click)="appService.moveToPage('superuser-statsaccounts'); highlightTab('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts');"
-						[ngClass]="[checkForCurrentTab('superuser-statsaccounts') ? 'active' : '']"
-						routerLinkActive="active"> <span class="maintab-Reports"></span>
-							<div class="clearfix"></div> Reports
-							<div class="arrow-up"></div>
-					</a></li>
-                    <li>
-                        <a (click)="appService.moveToPage('superuser-misc'); highlightTab('superuser-misc');highlightSBLink('superuser-misc');"
-                           [ngClass]="[checkForCurrentTab('superuser-misc') ? 'active' : '']"
-                           routerLinkActive="active">
-                            <span class="maintab-Profile"></span>
-                            <div class="clearfix"></div> Misc
-                            <div class="arrow-up"></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
-                           [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
-                           routerLinkActive="active">
-                            <span class="maintab-Profile"></span>
-                            <div class="clearfix"></div> Profile
-                            <div class="arrow-up"></div>
-                        </a>
-                    </li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-
-</header>
-<div class="clearfix"></div>
-
-<div *ngIf="usageSummaryPopup">
-    <div class="modal-dialog" ngDraggable>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-							<table style="margin-left:10px">
-								<tr>
-									<td>Plan Name:</td>
-									<td>Plan-Premium</td>
-								</tr>
-								<tr>
-									<td>Plan Code:</td>
-									<td>P-200</td>
-								</tr>
-								<tr>
-									<td>Storage Type:</td>
-									<td>S3</td>
-								</tr>
-							</table>
-                            <table width="95%" border="2px" style="margin:20px 0 0 10px">
-								<tr>
-									<th>Feature</th>
-									<th>Allowed</th>
-									<th>Used</th>
-								</tr>
-								<tr>
-								  <td>Immigration Users</td>
-								  <td>{{usageSummaryDetails.usersAllowed}}</td>
-								  <td>{{usageSummaryDetails.usersUsed}}</td>
-								</tr>
-								<tr>
-								  <td>Organizations</td>
-								  <td>{{usageSummaryDetails.orgAllowed}}</td>
-								  <td>{{usageSummaryDetails.orgUsed}}</td>
-								</tr>
-								<tr>
-								  <td>Clients</td>
-								  <td>{{usageSummaryDetails.clientsAllowed}}</td>
-								  <td>{{usageSummaryDetails.clientsUsed}}</td>
-								</tr>
-								<tr>
-								  <td>Petition</td>
-								  <td>{{usageSummaryDetails.petitionsAllowed}}</td>
-								  <td>{{usageSummaryDetails.petitionsUsed}}</td>
-								</tr>
-								<tr>
-								  <td>Storage</td>
-								  <td>{{usageSummaryDetails.storageAllowed}}</td>
-								  <td>{{usageSummaryDetails.storageUsed}}</td>
-								</tr>
-							</table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+<div *ngIf="appService.showHeader">
+  <header *ngIf="header">
+    <div class="container-fluid">
+      <div class="col-md-4 pull-left no-pad">
+        <div class="logo">
+          <a
+            (click)="onLogoClick()">
+            <img src="assets/images/logo.png" />
+          </a>
         </div>
+      </div>
+      <div class="col-md-4 text-center pull-left">
+        <div class="datails-holder-name"
+             *ngIf="applicationViewMode=='Immigration'">
+          <div class="pull-left" *ngIf="headerService.selectedOrg">
+            <h4>{{headerService.selectedOrg.displayName}}</h4>
+          </div>
+          <div class="pull-left">
+            <a class="ico-edit" (click)="editorgname(orgSelect)"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 pull-left">
+        <div class="profile-container pull-right" style="position:relative;">
+          <div class="profile">
+            <div class="profile-name">
+              <h4>{{user.firstName}} {{user.lastName}}</h4>
+              <h6>{{user.roleName}}</h6>
+            </div>
+
+            <div ngbDropdown class="d-inline-block pull-right">
+              <button class="btn" id="dropdownMenu1" ngbDropdownToggle>
+                <div class="profile-pic">
+                  <img src="assets/images/user_icon.png" alt="profile-img">
+                </div>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <a class="dropdown-item" (click)="logOut()">Logout</a>
+              </div>
+            </div>
+          </div>
+          <button *ngIf="applicationViewMode=='Immigration'" type="submit" class="btn btn-primary" style="position: absolute;right: 0px;bottom: -65px;z-index:9999;" (click)="onUsageSummaryClick()">Usage Summary</button>
+        </div>
+
+      </div>
+      <div class="clearfix"></div>
+      <!--Mani Menu Start-->
+      <div class="row">
+        <div class="mainmenu">
+          <div *ngIf="appService.isBurgerMenuVisible" class="burger-menu">
+            <input type="checkbox" (click)="slideMenu()" /><label></label>
+          </div>
+          <ul *ngIf="applicationViewMode=='Immigration'">
+            <li *ngIf="!headerService.isDelegatedOrg()"
+                style="margin-right: 37px;"><a
+              (click)="appService.moveToPage('clients'); highlightTab('clients');"
+              [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-Clients"></span>
+              <div class="clearfix"></div> Clients
+              <div class="arrow-up"></div>
+            </a></li>
+            <li style="margin-right: 30px;"
+                *ngIf="applicationViewMode=='Immigration'||headerService.isDelegatedOrg()"><a
+              (click)="appService.moveToPage('petitions'); highlightTab('petitions');"
+              [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-Petitions"></span>
+              <div class="clearfix"></div> Petitions
+              <div class="arrow-up"></div>
+            </a></li>
+            <li *ngIf="!headerService.isDelegatedOrg()"
+                style="margin-right: 10px;"><a
+              (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');"
+              [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"
+              routerLinkActive="active"> <span class="maintab-Organization"></span>
+              <div class="clearfix"></div> Organization
+              <div class="arrow-up"></div>
+            </a></li>
+            <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
+            <li style="margin-right: 22px;"
+                *ngIf="immigrationManager=='Immigration Manager'"><a
+              (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');"
+              [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-Manageaccount"></span>
+              <div class="clearfix"></div> Manage Account
+              <div class="arrow-up"></div>
+            </a></li>
+            <li *ngIf="!headerService.isDelegatedOrg()"><a
+              (click)="appService.moveToPage('immiview-petitionreports'); highlightTab('immiview-petitionreports');highlightSBLink('immiview-petitionreports');"
+              [ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']"
+              routerLinkActive="active"> <span class="maintab-Reports"></span>
+              <div class="clearfix"></div> Reports
+              <div class="arrow-up"></div>
+            </a></li>
+            <li><a
+              (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
+              [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
+              routerLinkActive="active"> <span class="maintab-Profile"></span>
+              <div class="clearfix"></div> Profile
+              <div class="arrow-up"></div>
+            </a></li>
+
+          </ul>
+          <ul *ngIf="applicationViewMode=='Client'">
+            <li style="margin-right: 30px;"><a
+              (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');"
+              [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-Petitions"></span>
+              <div class="clearfix"></div> Petitions
+              <div class="arrow-up"></div>
+            </a></li>
+            <li style="margin-right: 20px;"><a
+              (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');"
+              [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-clientdetails"></span>
+              <div class="clearfix"></div> Client Details
+              <div class="arrow-up"></div>
+            </a></li>
+            <li style="margin-right: 15px;"><a
+              (click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');"
+              [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-clientdocuments"></span>
+              <div class="clearfix"></div> Documents
+              <div class="arrow-up"></div>
+            </a></li>
+            <li style="margin-right: 20px;"><a
+              (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');"
+              [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-clientQuestionnaire"></span>
+              <div class="clearfix"></div> Questionnaire
+              <div class="arrow-up"></div>
+            </a></li>
+            <li><a
+              (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');"
+              [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-clientrquests"></span>
+              <div class="clearfix"></div> Requests
+              <div class="arrow-up"></div>
+            </a></li>
+            <li>
+              <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
+                 [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
+                 routerLinkActive="active">
+                <span class="maintab-Profile"></span>
+                <div class="clearfix"></div> Profile
+                <div class="arrow-up"></div>
+              </a>
+            </li>
+            <!--<li>
+                          <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');" [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']" routerLinkActive="active">
+                              <span class="maintab-Reports"></span>
+                              <div class="clearfix"></div>
+                              Profile
+                              <div class="arrow-up"></div>
+                          </a>
+                      </li>-->
+
+          </ul>
+          <ul *ngIf="applicationViewMode=='Superuser'">
+            <li style="margin-right: 20px;"><a
+              (click)="appService.moveToPage('superuser-accounts'); highlightTab('accounts');"
+              [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-Accounts"></span>
+              <div class="clearfix"></div> Accounts
+              <div class="arrow-up"></div>
+            </a></li>
+            <li style="margin-right: 20px;"><a
+              (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('ProductCatalog');"
+              [ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-procat"></span>
+              <div class="clearfix"></div> Product Catalog
+              <div class="arrow-up"></div>
+            </a></li>
+            <li style="margin-right: 40px;"><a
+              (click)="appService.moveToPage('invoices'); highlightTab('invoices');"
+              [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-invoices"></span>
+              <div class="clearfix"></div> Invoices
+              <div class="arrow-up"></div>
+            </a></li>
+            <li style="margin-right: 30px;"><a
+              (click)="appService.moveToPage('payments'); highlightTab('payments');"
+              [ngClass]="[checkForCurrentTab('payments') ? 'active': '']"
+              routerLinkActive="active"> <span class="maintab-payments"></span>
+              <div class="clearfix"></div> Payments
+              <div class="arrow-up"></div>
+            </a></li>
+            <li><a
+              (click)="appService.moveToPage('superuser-statsaccounts'); highlightTab('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts');"
+              [ngClass]="[checkForCurrentTab('superuser-statsaccounts') ? 'active' : '']"
+              routerLinkActive="active"> <span class="maintab-Reports"></span>
+              <div class="clearfix"></div> Reports
+              <div class="arrow-up"></div>
+            </a></li>
+            <li>
+              <a (click)="appService.moveToPage('superuser-misc'); highlightTab('superuser-misc');highlightSBLink('superuser-misc');"
+                 [ngClass]="[checkForCurrentTab('superuser-misc') ? 'active' : '']"
+                 routerLinkActive="active">
+                <span class="maintab-Profile"></span>
+                <div class="clearfix"></div> Misc
+                <div class="arrow-up"></div>
+              </a>
+            </li>
+            <li>
+              <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
+                 [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
+                 routerLinkActive="active">
+                <span class="maintab-Profile"></span>
+                <div class="clearfix"></div> Profile
+                <div class="arrow-up"></div>
+              </a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+      </div>
     </div>
+
+  </header>
+  <div class="clearfix"></div>
+
+  <div *ngIf="usageSummaryPopup">
+    <div class="modal-dialog" ngDraggable>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{title}}</h4>
+          <button type="button" class="close" (click)="close()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <table style="margin-left:10px">
+                  <tr>
+                    <td>Plan Name:</td>
+                    <td>Plan-Premium</td>
+                  </tr>
+                  <tr>
+                    <td>Plan Code:</td>
+                    <td>P-200</td>
+                  </tr>
+                  <tr>
+                    <td>Storage Type:</td>
+                    <td>S3</td>
+                  </tr>
+                </table>
+                <table width="95%" border="2px" style="margin:20px 0 0 10px">
+                  <tr>
+                    <th>Feature</th>
+                    <th>Allowed</th>
+                    <th>Used</th>
+                  </tr>
+                  <tr>
+                    <td>Immigration Users</td>
+                    <td>{{usageSummaryDetails.usersAllowed}}</td>
+                    <td>{{usageSummaryDetails.usersUsed}}</td>
+                  </tr>
+                  <tr>
+                    <td>Organizations</td>
+                    <td>{{usageSummaryDetails.orgAllowed}}</td>
+                    <td>{{usageSummaryDetails.orgUsed}}</td>
+                  </tr>
+                  <tr>
+                    <td>Clients</td>
+                    <td>{{usageSummaryDetails.clientsAllowed}}</td>
+                    <td>{{usageSummaryDetails.clientsUsed}}</td>
+                  </tr>
+                  <tr>
+                    <td>Petition</td>
+                    <td>{{usageSummaryDetails.petitionsAllowed}}</td>
+                    <td>{{usageSummaryDetails.petitionsUsed}}</td>
+                  </tr>
+                  <tr>
+                    <td>Storage</td>
+                    <td>{{usageSummaryDetails.storageAllowed}}</td>
+                    <td>{{usageSummaryDetails.storageUsed}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>

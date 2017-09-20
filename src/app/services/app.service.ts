@@ -5,19 +5,29 @@ import {User} from "../models/user";
 
 @Injectable()
 export class AppService {
+  /**
+   * New variables
+   */
+  //Application section flags
+  private _showHeader : boolean = true;
+  private _headerPage : string;
+  private _showFooter: boolean = true;
+  private _showMenu: boolean = true;
+  private _expandMenu: boolean = true;
 
+
+  /**
+   * Old variables that need refactoring
+   */
     private _menuSlider: boolean;
-    private _sideBarMenu: string;
     private _documentSideMenu;
     public docsidemenu;
     public orgnamemenu;
-    private _user: User;
     public _currentPage: string;
     public _applicationViewMode: string;
     private _accountId: string;
     private _clientId: string;
     private _petitionId: string;
-    private _isBurgerMenuVisible: boolean;
     private _dependents: any[] = [];
     private _dependentsClient: any[] = [];
     private _clientViewDependents: any[] = [];
@@ -36,7 +46,6 @@ export class AppService {
     private _formList: any[] = [];
     public _questionarydependent: any[] = [];
     private _questionaryName:string;
-    private _currentTab: string;
     private _currentSBLink: string;
     public addDependents: any = {};
     public newclitem: any = {};
@@ -59,8 +68,6 @@ export class AppService {
     public formListData:any={};
     public addNewVisa: any = {};
     public addNewI797: any = {};
-    public selacntId: string;
-    public selroleId: string;
     public rolemultiple: boolean;
     public usersList: any;
     public petitionType: string;
@@ -69,7 +76,48 @@ export class AppService {
     public userLoginHistoryId: string;
     constructor(private _router: Router) { }
 
-    allsubtypesarray(allSubTypes) {
+
+  get showHeader(): boolean {
+    return this._showHeader;
+  }
+
+  set showHeader(value: boolean) {
+    this._showHeader = value;
+  }
+
+  get headerPage(): string {
+    return this._headerPage;
+  }
+
+  set headerPage(value: string) {
+    this._headerPage = value;
+  }
+
+  get showFooter(): boolean {
+    return this._showFooter;
+  }
+
+  set showFooter(value: boolean) {
+    this._showFooter = value;
+  }
+
+  get showMenu(): boolean {
+    return this._showMenu;
+  }
+
+  set showMenu(value: boolean) {
+    this._showMenu = value;
+  }
+
+  get expandMenu(): boolean {
+    return this._expandMenu;
+  }
+
+  set expandMenu(value: boolean) {
+    this._expandMenu = value;
+  }
+
+  allsubtypesarray(allSubTypes) {
         this._subtypes = allSubTypes;
     }
 
@@ -79,17 +127,14 @@ export class AppService {
 
     destroy() {
         this._menuSlider=null;
-        this._sideBarMenu=null;
         this._documentSideMenu = null;
         this.docsidemenu = null;
         this.orgnamemenu = null;
-        this._user = null;
         this._currentPage = null;
         this._applicationViewMode = null;
         this._accountId = null;
         this._clientId = null;
         this._petitionId = null;
-        this._isBurgerMenuVisible = null;
         this._dependents = [];
         this._dependentsClient = [];
         this._clientViewDependents = [];
@@ -107,10 +152,11 @@ export class AppService {
         this._formList = [];
         this._questionarydependent = [];
         this._questionaryName = null;
-        this._currentTab = null;
         this._currentSBLink = null;
         this.orgClientId = null;
     }
+
+
     public moveToPageWithParams(pageLink, params) {
         if (pageLink != this._currentPage) {
             this._currentPage = "";
@@ -190,15 +236,6 @@ export class AppService {
     set menuSlider(value: boolean) {
         this._menuSlider = value;
     }
-
-    get user(): User {
-        return this._user;
-    }
-
-    set user(value: User) {
-        this._user = value;
-    }
-
 
     get petitDetails(): string {
         return this._petitionDetails;
@@ -282,13 +319,7 @@ export class AppService {
     get docsideBarMenu(): any {
         return this._documentSideMenu;
     }
-    get sideBarMenu(): string {
-        return this._sideBarMenu;
-    }
 
-    set sideBarMenu(sideBarMenu: string) {
-        this._sideBarMenu = sideBarMenu;
-    }
     get formList(): any[] {
         return this._formList;
     }
@@ -309,31 +340,6 @@ export class AppService {
 
     set clientDependents(_dependentsClient: any[]) {
         this._dependentsClient = _dependentsClient;
-    }
-
-
-
-
-    public showSideBarMenu(sideBarName, tab) {
-        this._currentTab = tab;
-        if (sideBarName == null || sideBarName == undefined) {
-            this._sideBarMenu = null;
-            this._menuSlider = true;
-            this._isBurgerMenuVisible = false;
-        } else {
-            this._sideBarMenu = sideBarName;
-            this._menuSlider = false;
-            this._isBurgerMenuVisible = true;
-        }
-    }
-
-
-    get isBurgerMenuVisible(): boolean {
-        return this._isBurgerMenuVisible;
-    }
-
-    set isBurgerMenuVisible(isBurgerMenuVisible: boolean) {
-        this._isBurgerMenuVisible = isBurgerMenuVisible;
     }
 
     get selectedOrgClienttId(): string {
@@ -371,12 +377,6 @@ export class AppService {
     set formId(formId: string) {
         this._formId = formId;
     }
-    get currentTab() {
-        return this._currentTab;
-    }
-    set currentTab(currentTab: string) {
-        this._currentTab = currentTab;
-    }
 
     get currentSBLink() {
         return this._currentSBLink;
@@ -384,6 +384,4 @@ export class AppService {
     set currentSBLink(currentSBLink: string) {
         this._currentSBLink = currentSBLink;
     }
-
-
 }

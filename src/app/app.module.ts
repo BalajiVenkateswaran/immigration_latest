@@ -293,6 +293,7 @@ import { webGetinTouchService } from './components/common/website/get-in-touch/g
 
 import { webFaqComponent } from './components/common/website/faqs/faqs.component';
 import { webFaqService } from './components/common/website/faqs/faqs.service';
+import {HomeComponent} from "./components/common/website/home/home.component";
 
 @NgModule({
   imports: [
@@ -414,7 +415,7 @@ import { webFaqService } from './components/common/website/faqs/faqs.service';
     statsaccountscomponent,
     SuperUserPetitionsStatusReportsComponent,
     SuperUserH1BReportsComponent,
-  
+
     SuperUserPetitionStageReportsComponent,
     SuperUserPetitionTagReportsComponent,
     SuperuserviewProductcatalogDiscountsComponent,
@@ -453,7 +454,8 @@ import { webFaqService } from './components/common/website/faqs/faqs.service';
       Page1Component,
       Page2Component,
       Page3Component,
-      Page4Component
+      Page4Component,
+    HomeComponent
 
   ],
   providers: [

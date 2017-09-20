@@ -73,7 +73,7 @@
                                 <span *ngIf="isjobdetailsEdit==true">{{jobinDetail.noOfHoursPerWeek}}</span>
                             </div>
                         </div>
-                        <div class="row">                      
+                        <div class="row">
 
                             <div class="col-md-4"><label for="pi-createdby">Hire Date</label></div>
                             <div class="col-md-8">
@@ -85,7 +85,7 @@
                         </div>
 
 
-                        <div class="row">                        
+                        <div class="row">
 
                             <div class="col-md-4"><label for="pi-lastupdatedby">International Hire Date</label></div>
                             <div class="col-md-8">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
 
-                        <div class="row">                          
+                        <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Rehire Date</label></div>
                             <div class="col-md-8">
                                 <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.rehireDate" [selDate]="rehireDate"></my-date-picker>
@@ -102,14 +102,14 @@
                             </div>
 
                         </div>
-                        <div class="row">                          
+                        <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Last Day Worked Date</label></div>
                             <div class="col-md-8">
                                 <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
                                 <span *ngIf="isjobdetailsEdit==true">{{jobinDetail.lastDayWorkedDate}}</span>
                             </div>
                         </div>
-                        <div class="row">                          
+                        <div class="row">
                             <div class="col-md-4"><label for="pi-lastupdatedby">Termination Date</label></div>
                             <div class="col-md-8">
                                 <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.terminationDate" [selDate]="terminationDate"></my-date-picker>

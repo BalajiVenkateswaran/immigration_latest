@@ -2,6 +2,7 @@
 import { profiletodolistservice } from './todolist.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../common/header/header.service";
 
 
 @Component({
@@ -14,16 +15,16 @@ export class profiletodolistcomponent implements OnInit {
     public newTodo: string;
     public todos: any = [];
     public hideAddButton:boolean = false;
-    
-    constructor(public appService: AppService, private profileTodolistservice: profiletodolistservice) {
+
+    constructor(public headerService: HeaderService, private profileTodolistservice: profiletodolistservice) {
         this.newTodo = '';
     }
     ngOnInit() {
-      
+
         this.getTodos();
     }
     getTodos() {
-        this.profileTodolistservice.getTodos(this.appService.user.userId)
+        this.profileTodolistservice.getTodos(this.headerService.user.userId)
             .subscribe((res) => {
                 console.log(res);
                 if (res['statusCode'] == "SUCCESS") {
@@ -48,7 +49,7 @@ export class profiletodolistcomponent implements OnInit {
         }
     }
     addTodo(event) {
-        var data = {"completed":"NO", "todoText": this.newTodo, "userId": this.appService.user.userId };
+        var data = {"completed":"NO", "todoText": this.newTodo, "userId": this.headerService.user.userId };
         this.profileTodolistservice.addTodo(data)
             .subscribe((res) => {
                 console.log(res);
@@ -65,7 +66,7 @@ export class profiletodolistcomponent implements OnInit {
         if (selectedtodo.completed == false) {
             selectedtodo.completed = "NO";
         }
-        var data = { "completed": selectedtodo.completed, "todoText": selectedtodo.todoText,"id": selectedtodo.id, "userId": this.appService.user.userId};
+        var data = { "completed": selectedtodo.completed, "todoText": selectedtodo.todoText,"id": selectedtodo.id, "userId": this.headerService.user.userId};
         this.profileTodolistservice.addTodo(data)
             .subscribe((res) => {
                 console.log(res);
@@ -83,5 +84,5 @@ export class profiletodolistcomponent implements OnInit {
             });
     }
 
-   
+
 }

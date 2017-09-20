@@ -9,6 +9,7 @@ import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.compo
 import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
 import { PetitionDocumentRepositoryService } from "./petition-document-repository.service";
 import {SortType} from "../../../../framework/smarttable/types/query-parameters";
+import {HeaderService} from "../../../../common/header/header.service";
 
 export interface ConfirmModel {
     title: string;
@@ -34,11 +35,11 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     public editFiles: boolean;
     public editFileObject: any = {};
     public getData: boolean = true;
-    
+
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService,
-       public dialogService: DialogService) {
+       public dialogService: DialogService, public headerService: HeaderService) {
         super(dialogService);
-        this.accountId = this.appService.user.accountId;
+        this.accountId = this.headerService.user.accountId;
         this.settings = {
             'pagination': false,
             'isDeleteEnable': false,

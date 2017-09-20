@@ -20,16 +20,20 @@ export class SuperUserH1BReportsComponent implements OnInit {
     public count: any = [];
     public subTypes: any = [];
     public selectedaccountId: string;
-    ngOnInit() {
+  selectedsubtype;
+  petitionsubtypechange;
+  constructor(public appService: AppService, private superUserH1Breportsservice: superuserH1Breportsservice,
+              public reportsCommonService: ReportsCommonService) { }
+  ngOnInit() {
         this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
 
     }
-    changeaccount(value) {
+  changeaccount(value) {
         this.selectedaccountId = value;
         this.getreports();
     }
-    getreports() {
+  getreports() {
         this.superUserH1Breportsservice.getpetitonTypesreports(this.selectedaccountId, "14a8e52f-2f5a-11e7-bf66-0aac8eb8f426")
             .subscribe((res) => {
                 console.log(res);
@@ -49,8 +53,6 @@ export class SuperUserH1BReportsComponent implements OnInit {
                 }
             });
     }
-    constructor(public appService: AppService, private superUserH1Breportsservice: superuserH1Breportsservice,
-        public reportsCommonService: ReportsCommonService) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

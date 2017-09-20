@@ -34,7 +34,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http,
     public appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
-    this.accountId = this.appService.user.accountId;
+    this.accountId = this.headerService.user.accountId;
     this.settings = {
       'pagination': false,
       'isDeleteEnable': false,

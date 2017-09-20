@@ -3,6 +3,7 @@ import { ReportsCommonService } from '../../common/reports-common.service';
 import { SuperUserClientsCreatedReportsService } from './created.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 
 @Component( {
@@ -19,7 +20,7 @@ export class SuperUserClientsCreatedReportsComponent implements OnInit {
     public yearMonth: any = [];
     public selectedaccountId: string;
 
-    constructor( public appService: AppService, private superUserClientsCreatedReportsService: SuperUserClientsCreatedReportsService,
+    constructor( public headerService: HeaderService, private superUserClientsCreatedReportsService: SuperUserClientsCreatedReportsService,
         public reportsCommonService: ReportsCommonService) { }
 
 
@@ -34,7 +35,7 @@ export class SuperUserClientsCreatedReportsComponent implements OnInit {
     }
     getreports() {
 
-        this.superUserClientsCreatedReportsService.getClientCreationreports( this.appService.user.accountId )
+        this.superUserClientsCreatedReportsService.getClientCreationreports( this.headerService.user.accountId )
             .subscribe(( res ) => {
                 this.orgsList = res['orgs'];
                 for ( var item in this.orgsList ) {

@@ -7,6 +7,7 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../common/header/header.service";
 
 
 export interface ConfirmModel {
@@ -43,7 +44,8 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     dateFormat: 'mm-dd-yyyy',
     showClearDateBtn: false,
   };
-  constructor(private arrivalDespartureInfoService: ArrivalDespartureInfoService, public appService: AppService, public dialogService: DialogService) {
+  constructor(private arrivalDespartureInfoService: ArrivalDespartureInfoService, public appService: AppService, public dialogService: DialogService,
+              public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -76,14 +78,14 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
 
   }
   getarvdptData() {
-    this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.appService.user.userId).subscribe((res) => {
+    this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.headerService.user.userId).subscribe((res) => {
       this.data = res['arrivalDepartures'];
 
     });
   }
 
   ngOnInit() {
-    this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.appService.user.userId)
+    this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.headerService.user.userId)
       .subscribe((res) => {
         this.data = res['arrivalDepartures'];
       });

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AppService} from "../../../services/app.service";
 
 
 @Component({
@@ -7,4 +8,6 @@ import {Component} from '@angular/core';
 })
 export class FooterComponent {
 
+  constructor(public appService: AppService) {
+  }
 }

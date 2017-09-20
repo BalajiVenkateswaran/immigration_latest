@@ -1,15 +1,13 @@
-﻿import { AppService } from '../../../../../services/app.service';
-import { usersopenpetitionservice } from './open-petitions.service';
+﻿import {usersopenpetitionservice} from './open-petitions.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import {HeaderService} from "../../../../common/header/header.service";
+import {AppService} from "../../../../../services/app.service";
 
 @Component({
     selector: 'app-useropenpetitons',
     templateUrl: './open-petitions.component.html',
     styleUrls: ['./open-petitions.component.sass']
 })
-
 export class useropenpetitioncomponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
@@ -19,8 +17,10 @@ export class useropenpetitioncomponent implements OnInit {
     public count: any = [];
     public username: any = [];
     public fullMonth: any = [];
+    constructor(public headerService: HeaderService, public appService: AppService, private usersOpenpetitionservice: usersopenpetitionservice) { }
+
     ngOnInit() {
-        this.usersOpenpetitionservice.getuseropenpetitions(this.appService.user.accountId)
+        this.usersOpenpetitionservice.getuseropenpetitions(this.headerService.user.accountId)
             .subscribe((res) => {
                 console.log(res);
                 this.orgsList = res['orgs'];
@@ -38,8 +38,6 @@ export class useropenpetitioncomponent implements OnInit {
                 }
             });
     }
-
-    constructor(public appService: AppService, private usersOpenpetitionservice: usersopenpetitionservice) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

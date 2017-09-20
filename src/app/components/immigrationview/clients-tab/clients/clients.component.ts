@@ -86,8 +86,8 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
 
   ngOnInit() {
-    this.appService.showSideBarMenu(null, "clients");
-    this.appService.showSideBarMenu(null, "clients");
+    this.headerService.showSideBarMenu(null, "clients");
+    this.headerService.showSideBarMenu(null, "clients");
   }
   getClients(){
 
@@ -128,9 +128,9 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     }
   }
   clientSave(email, phone) {
-    this.newclitem['accountId'] = this.appService.user.accountId;
+    this.newclitem['accountId'] = this.headerService.user.accountId;
     this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
-    this.newclitem['createdBy'] = this.appService.user.userId;
+    this.newclitem['createdBy'] = this.headerService.user.userId;
     if (this.newclitem['status'] == '' || null || undefined) {
       this.newclitem['status'] = "Active";
     }
@@ -166,7 +166,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       .subscribe((isConfirmed) => {
         //Get dialog result
         if (isConfirmed) {
-          this.clientService.removeclient(clients.data['clientId'], this.appService.user.userId).subscribe((res) => {
+          this.clientService.removeclient(clients.data['clientId'], this.headerService.user.userId).subscribe((res) => {
             this.message = res['statusCode'];
             clients.data.clientStatus = "Mark for Deletion";
             clients.confirm.reject();

@@ -2,8 +2,7 @@ import { AppService } from '../../../services/app.service';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { MenuService } from "./menu.service";
 import { QuestionnaireCommonService } from '../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
-import { Subscription } from 'rxjs/Subscription';
-
+import {HeaderService} from "../header/header.service";
 
 @Component({
     selector: 'menu',
@@ -31,17 +30,17 @@ export class MenuComponent implements OnInit {
     public superuserclientreports: boolean;
     public superuserpetitins: boolean;
     public immiQstnre: boolean;
-    constructor(private menuService: MenuService, private appservice: AppService,
-        public questionnaireCommonService: QuestionnaireCommonService) {
-        this.sideBarMenu = appservice.sideBarMenu;
+    constructor(private menuService: MenuService, public appService: AppService,
+        public questionnaireCommonService: QuestionnaireCommonService, private headerService: HeaderService) {
+        this.sideBarMenu = headerService.sideBarMenu;
     }
     ngOnInit(): void {
-        this.sideBarMenu = this.appservice.sideBarMenu;
+        this.sideBarMenu = this.headerService.sideBarMenu;
     }
     ngDoCheck() {
-        this.sideBarMenu = this.appservice.sideBarMenu;
-        this.docsideBarMenu = this.appservice.docsideBarMenu;
-        if(this.manageUser && this.appservice.currentSBLink != "User"){
+        this.sideBarMenu = this.headerService.sideBarMenu;
+        this.docsideBarMenu = this.appService.docsideBarMenu;
+        if(this.manageUser && this.appService.currentSBLink != "User"){
             this.manageUser = false;
         }
         if(this.userDetailsClicked){
@@ -97,12 +96,12 @@ export class MenuComponent implements OnInit {
         if (menu == "superuserpetitins") {
             this.superuserpetitins = true;
         }
-      
+
     }
     checkForCurrentSBLink(sblink) {
-        return this.appservice.currentSBLink == sblink;
+        return this.appService.currentSBLink == sblink;
     }
     highlightSBLink(sblink) {
-        this.appservice.currentSBLink = sblink;
+        this.appService.currentSBLink = sblink;
     }
 }

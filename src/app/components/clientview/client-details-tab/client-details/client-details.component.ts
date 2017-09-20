@@ -9,6 +9,7 @@ import {ImmigrationViewClientPersonalInfo} from "../../../../models/ImmigrationV
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {User} from "../../../../models/user";
+import {HeaderService} from "../../../common/header/header.service";
 
 export interface formControl {
   name: string;
@@ -51,14 +52,14 @@ export class ClientDetailsComponent implements OnInit {
   private beforeCancelPersonal;
   constructor(private ClientDetailsService: ClientDetailsService,
     private formBuilder: FormBuilder, private parserFormatter: NgbDateParserFormatter,
-    public appService: AppService, private clientDetailsService: ClientDetailsService) {
+    public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService) {
 
-    if (this.appService.user) {
-      this.user = this.appService.user;
+    if (this.headerService.user) {
+      this.user = this.headerService.user;
     }
   }
   ngOnInit() {
-    this.appService.showSideBarMenu("clientView-client", "clientview-client-details");
+    this.headerService.showSideBarMenu("clientView-client", "clientview-client-details");
     this.clientDetailsService.getClientDetails(this.user.userId)
       .subscribe((res) => {
         if (res['clientDetails']) {

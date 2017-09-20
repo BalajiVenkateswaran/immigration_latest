@@ -5,6 +5,7 @@ import {Demorequestdetailsservice} from "./demorequestdetails.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../common/header/header.service";
 
 export interface ConfirmModel {
     title: string;
@@ -17,7 +18,7 @@ export interface ConfirmModel {
 @Component({
     selector: 'misc-demorequest',
     templateUrl: './demorequestdetails.component.html',
-   
+
 })
 
 
@@ -33,63 +34,63 @@ export class demorequestdetailsComponent extends DialogComponent<ConfirmModel, b
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    ngOnInit() {
-        this.appService.showSideBarMenu("superuser-misc", "superuser-misc");
-        this.getDemoRequests();       
+  constructor(private demorequestdetailsservice: Demorequestdetailsservice,
+              private appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
+    super(dialogService);
+
+    this.settings = {
+      'columnsettings': [
+        {
+
+          headerName: "Name",
+          field: "name",
+        },
+        {
+
+          headerName: "Email",
+          field: "email",
+
+        },
+        {
+
+          headerName: "Phone",
+          field: "phone",
+        },
+        {
+          headerName: "Date",
+          field: "demoRequestDate",
+
+        },
+        {
+
+          headerName: "Referral",
+          field: "referral",
+
+        },
+        {
+
+          headerName: "Comments",
+          field: "comments",
+
+        },
+        {
+
+          headerName: "Status",
+          field: "status",
+
+        },
+      ]
     }
-    getDemoRequests() {
+  }
+  ngOnInit() {
+        this.headerService.showSideBarMenu("superuser-misc", "superuser-misc");
+        this.getDemoRequests();
+    }
+  getDemoRequests() {
         this.demorequestdetailsservice.getDemoRequests()
             .subscribe((res: any) => {
                 this.data = res.demoRequests;
             });
-    }
-    constructor(private demorequestdetailsservice: Demorequestdetailsservice,
-        private appService: AppService, public dialogService: DialogService) {
-        super(dialogService);
-
-        this.settings = {
-            'columnsettings': [
-                {
-
-                    headerName: "Name",
-                    field: "name",
-                },
-                {
-
-                    headerName: "Email",
-                    field: "email",
-
-                },
-                {
-
-                    headerName: "Phone",
-                    field: "phone",
-                },
-                {
-                    headerName: "Date",
-                    field: "demoRequestDate",
-
-                },
-                {
-
-                    headerName: "Referral",
-                    field: "referral",
-
-                },
-                {
-
-                    headerName: "Comments",
-                    field: "comments",
-
-                },
-                {
-
-                    headerName: "Status",
-                    field: "status",
-
-                },
-            ]
-        }
     }
     addFunction() {
         this.dialogService.addDialog(demorequestdetailsComponent, {
@@ -98,7 +99,7 @@ export class demorequestdetailsComponent extends DialogComponent<ConfirmModel, b
             title: 'Add New Demo Request',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.getDemoRequests();       
+                this.getDemoRequests();
 
 
             }
@@ -113,7 +114,7 @@ export class demorequestdetailsComponent extends DialogComponent<ConfirmModel, b
             demoRequestDate: event.data.demoRequestDate
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.getDemoRequests();       
+                this.getDemoRequests();
             }
         });
     }
@@ -121,11 +122,11 @@ export class demorequestdetailsComponent extends DialogComponent<ConfirmModel, b
         this.adddemoRequests['demoRequestDate'] = this.adddemoRequests['demoRequestDate']['formatted'];
           this.demorequestdetailsservice.savedemoRequest(this.adddemoRequests).subscribe((res) => {
               console.log(res);
-             
+
             });
             this.result = true;
             this.close();
-      
+
     }
     cancel() {
         this.close();

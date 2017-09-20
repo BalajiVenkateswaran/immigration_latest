@@ -8,6 +8,7 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import * as FileSaver from 'file-saver';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {SortType} from "../../../../framework/smarttable/types/query-parameters";
+import {HeaderService} from "../../../../common/header/header.service";
 
 export interface ConfirmModel {
     title: string;
@@ -41,10 +42,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public circularProgess:number=0;
     public selectedindex: number;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http,
-        public appService: AppService, public dialogService: DialogService) {
+        public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
         super(dialogService);
-        if (this.appService.user) {
-            this.user = this.appService.user;
+        if (this.headerService.user) {
+            this.user = this.headerService.user;
         }
         this.circularProgess=50;
         this.accountId = this.user.accountId;
@@ -299,8 +300,5 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         file.value = null;
         this.progress=0;
         this.uploadArray=[];
-
     }
-
-
 }

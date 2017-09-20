@@ -1,8 +1,9 @@
 
 <button *ngIf="isAddButtonEnable" type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="addRecord()">ADD</button>
 <div *ngIf="queryParameters.filter">
+  <span>Filters :</span>
 <div class="addedfilter"*ngFor="let x of queryParameters.filter let i=index">
-            <span class="filtretype">{{x.fieldHeader}} :</span><span class="filtrename">{{x.fieldValue}}</span><span class="close" (click)="deleteFilter(i,x)">&times;</span>
+    <span class="filtretype">{{x.fieldHeader}} :</span><span class="filtrename">{{x.fieldValue}}</span><span class="close" (click)="deleteFilter(i,x)">&times;</span>
 </div>
 </div>
 <div class="clearfix"></div>

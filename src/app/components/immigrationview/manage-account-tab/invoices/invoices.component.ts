@@ -1,11 +1,11 @@
 import {User} from '../../../../models/user';
-import {AppService} from '../../../../services/app.service';
 import {Component, OnInit} from '@angular/core';
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {ManageAccountInvoiceService} from "./invoices.service";
 import {DownloadInvoiceButton} from './DownloadInvoiceButton'
 import * as FileSaver from 'file-saver';
+import {HeaderService} from "../../../common/header/header.service";
+
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -25,12 +25,8 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
   public settings;
   public data;
   private user: User;
-  constructor(private appService: AppService, public dialogService: DialogService, private manageAccountInvoiceService: ManageAccountInvoiceService) {
+  constructor(private headerService: HeaderService, public dialogService: DialogService, private manageAccountInvoiceService: ManageAccountInvoiceService) {
     super(dialogService);
-    if (this.appService.user) {
-      this.user = this.appService.user;
-
-    }
     this.settings = {
       'isDeleteEnable': false,
       'rowHeight': 40,
@@ -68,7 +64,7 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
 
   }
   ngOnInit() {
-    this.manageAccountInvoiceService.getAccountInvoice(this.user.accountId)
+    this.manageAccountInvoiceService.getAccountInvoice(this.headerService.user.accountId)
       .subscribe((res) => {
         console.log("getinoices%o", res);
         if (res['invoices']) {
@@ -87,8 +83,6 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
         invoice: event.data,
       })
     }
-
-
   }
 
   onDownloadClick(event) {

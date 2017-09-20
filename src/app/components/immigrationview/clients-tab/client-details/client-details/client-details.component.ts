@@ -9,6 +9,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms"
 import { ImmigrationViewClientDetailsService } from "./client-details.service";
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { DialogService } from "ng2-bootstrap-modal";
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-client-details',
@@ -43,9 +44,9 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     private beforeCancelProfile;
     private beforeCancelPersonal;
     public disableSendInvite: boolean;
-    constructor(public appService: AppService, private clientDetailsService: ImmigrationViewClientDetailsService, private dialogService: DialogService) {
-        if (this.appService.user) {
-            this.user = this.appService.user;
+    constructor(public appService: AppService, public headerService: HeaderService, private clientDetailsService: ImmigrationViewClientDetailsService, private dialogService: DialogService) {
+        if (this.headerService.user) {
+            this.user = this.headerService.user;
         }
         this.phoneRegex = /^[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}$/;
         this.ssnRegex = /^(?=.*[0-9])[-0-9]+$/;
@@ -55,7 +56,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.appService.showSideBarMenu("immigrationview-client", "clients");
+        this.headerService.showSideBarMenu("immigrationview-client", "clients");
         this.appService.dependents = [];
         this.status = [
             { value: 'Active', name: 'Active' },
@@ -191,8 +192,8 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
     //Save Client Details
     saveClientPersonalInfo() {
-      
-        
+
+
         if (this.ssn.errors != null) {
             this.warningMessage = false;
         }
@@ -203,7 +204,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
             }
             this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.user.userId)
                 .subscribe((res) => {
-                    
+
                     this.isPersonalInfoEdit = true;
                     if (res['clientDetails']) {
                         this.clientDetails = res['clientDetails'];

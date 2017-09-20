@@ -36,11 +36,11 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
   public settings;
   public data;
   constructor(private manageaccountorganizationService: ManageAccountOrganizationsService,
-    private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent, 
+    private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService) {
     super(dialogService);
-    if (this.appService.user) {
-      this.user = this.appService.user;
+    if (this.headerService.user) {
+      this.user = this.headerService.user;
     }
     this.settings = {
         'isDeleteEnable': false,
@@ -75,13 +75,13 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
 
   }
   getorganizationData() {
-    this.manageaccountorganizationService.getManageAccountOrganizations(this.appService.user.accountId).subscribe((res: any) => {
+    this.manageaccountorganizationService.getManageAccountOrganizations(this.headerService.user.accountId).subscribe((res: any) => {
       this.data = res['orgs'];
     });
   }
   ngOnInit() {
     this.manageaccountorganizationService
-      .getManageAccountOrganizations(this.appService.user.accountId)
+      .getManageAccountOrganizations(this.headerService.user.accountId)
       .subscribe((res: any) => {
         console.log("PetitionsComponent|ngOnInit|res:%o", res);
         this.data = res['orgs'];
@@ -121,7 +121,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     }
     else {
       this.warningMessage = false;
-      this.neworgitem['accountId'] = this.appService.user.accountId;
+      this.neworgitem['accountId'] = this.headerService.user.accountId;
       this.appService.neworgitem = this.neworgitem;
       this.result = true;
       this.close();

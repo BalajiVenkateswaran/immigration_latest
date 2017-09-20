@@ -4,6 +4,7 @@ import {jobdetails} from "../../../../models/jobdetails";
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import {AppService} from "../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../common/header/header.service";
 export interface formControl {
     name: string;
     value: FormControl;
@@ -29,17 +30,17 @@ export class JobDetailsComponent implements OnInit {
     private lastDayWorkedDate: string;
     private terminationDate: string;
     private beforeCancelJobDetails;
-    constructor(private JobDetailsService: JobDetailsService,
-        private formBuilder: FormBuilder, public appService: AppService) {
-    }
     private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
+    constructor(private JobDetailsService: JobDetailsService,
+                private formBuilder: FormBuilder, public headerService: HeaderService, public appService: AppService) {
+    }
 
     ngOnInit() {
-        this.JobDetailsService.getJobDetails(this.appService.user.userId).subscribe((res) => {
+        this.JobDetailsService.getJobDetails(this.headerService.user.userId).subscribe((res) => {
 
             if (res['jobDetails']) {
                 this.jobinDetail = res['jobDetails'];
@@ -52,8 +53,6 @@ export class JobDetailsComponent implements OnInit {
 
 
     onDateChanged(event: IMyDateModel) {
-
-
     }
 
     editJobInfoForm() {
@@ -118,7 +117,7 @@ export class JobDetailsComponent implements OnInit {
         if (this.jobinDetail['terminationDate'] && this.jobinDetail['terminationDate']['formatted']) {
             this.jobinDetail['terminationDate'] = this.jobinDetail['terminationDate']['formatted'];
         }
-        this.jobinDetail['clientId'] = this.appService.user.userId;
+        this.jobinDetail['clientId'] = this.headerService.user.userId;
         this.JobDetailsService.saveJobDetails(this.jobinDetail)
             .subscribe((res) => {
                 this.isjobdetailsEdit = true;

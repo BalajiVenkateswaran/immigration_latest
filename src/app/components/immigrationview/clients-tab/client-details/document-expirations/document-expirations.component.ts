@@ -7,6 +7,7 @@ import {FormGroup, FormControl} from "@angular/forms";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../../common/header/header.service";
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -40,7 +41,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     showClearDateBtn: false,
   };
   constructor(private ImmigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService,
-    public appService: AppService, public dialogService: DialogService) {
+    public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -61,7 +62,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
           field: "status",
         }
       ]
-    }
+    };
     this.addDocumentExpairation = new FormGroup({
       documentType: new FormControl(''),
       validFrom: new FormControl(''),
@@ -88,7 +89,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
       if (isConfirmed) {
 
         this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
-        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp,this.appService.user.userId).subscribe((res) => {
+        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp,this.headerService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getDocumentsExpirations();
           }
@@ -131,7 +132,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
       validTo: event.data.validTo,
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp, this.appService.user.userId).subscribe((res) => {
+        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp, this.headerService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getDocumentsExpirations();
           }

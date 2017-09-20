@@ -26,7 +26,7 @@ export class PetitionsComponent implements OnInit {
     public paginationData;
     public queryParameters;
     private orgId: string;
-    
+
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
@@ -83,7 +83,7 @@ export class PetitionsComponent implements OnInit {
                             return {
                                 backgroundColor: 'red'
                             };
-                            
+
                         }
                         else{
                                 return null;
@@ -116,7 +116,7 @@ export class PetitionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.appService.showSideBarMenu(null, "petitions");
+        this.headerService.showSideBarMenu(null, "petitions");
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
     ngDoCheck() {
@@ -147,7 +147,7 @@ export class PetitionsComponent implements OnInit {
         }
     }
 
-    
+
     moveToPetitionDetails(event): void {
         this.menuComponent.highlightSBLink('Petition Details');
         this.appService.petitionId = event.data.petitionId;

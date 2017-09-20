@@ -40,19 +40,19 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   }
 
   highlightTab(tab) {
-      this.appService.currentTab = tab;
+      this.headerService.currentTab = tab;
   }
   highlightSBLink(sblink) {
       this.appService.currentSBLink = sblink;
   }
   checkForCurrentTab(tab){
-    return this.appService.currentTab == tab;
+    return this.headerService.currentTab == tab;
   }
   constructor(private router: Router, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
     super(dialogService);
     this.headerService.onHeaderPageLoad();
-    if(this.appService.user != null){
-      this.user = this.appService.user;
+    if(this.headerService.user != null){
+      this.user = this.headerService.user;
     }
     this.headerService.getUsageSummaryDetails(this.user.accountId).subscribe(
       res=>{
@@ -81,7 +81,7 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
 
   ngDoCheck() {
       this.applicationViewMode = this.appService.applicationViewMode;
-      this.immigrationManager = this.appService.user.roleName;
+      this.immigrationManager = this.headerService.user.roleName;
   }
   logOut() {
       this.appService.destroy();

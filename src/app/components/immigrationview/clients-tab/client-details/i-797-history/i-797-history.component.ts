@@ -6,6 +6,7 @@ import {FormGroup, FormControl} from "@angular/forms";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../../common/header/header.service";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -39,7 +40,8 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
     };
     public editi797Flag: boolean = true;
     public beforei797Edit: any;
-    constructor(private immigrationViewI797HistoryService: ImmigrationViewI797HistoryService, public appService: AppService, public dialogService: DialogService) {
+    constructor(private immigrationViewI797HistoryService: ImmigrationViewI797HistoryService, public appService: AppService, public dialogService: DialogService,
+                public headerService: HeaderService) {
         super(dialogService);
         this.settings={
             'columnsettings': [
@@ -101,7 +103,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
            title: 'Add I-797 History',
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
-               this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797, this.appService.user.userId).subscribe((res) => {
+               this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797, this.headerService.user.userId).subscribe((res) => {
                    if (res['statusCode'] == 'SUCCESS') {
        this.get1797history();
 
@@ -151,7 +153,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
        }).subscribe((isConfirmed) => {
            if (isConfirmed) {
 
-             this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797, this.appService.user.userId).subscribe((res) => {
+             this.immigrationViewI797HistoryService.saveI797Details(this.appService.addNewI797, this.headerService.user.userId).subscribe((res) => {
                  if (res['statusCode'] == 'SUCCESS') {
 
        this.get1797history();

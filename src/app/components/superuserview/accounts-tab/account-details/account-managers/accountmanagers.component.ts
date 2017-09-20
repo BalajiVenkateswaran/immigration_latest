@@ -5,6 +5,7 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {AccountManagersService} from './accountmanagers.service';
 import {AccountDetailsCommonService} from "../common/account-details-common.service";
+import {HeaderService} from "../../../../common/header/header.service";
 
 export interface ConfirmModel {
   title: string;
@@ -32,7 +33,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     "Immigration Manager": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
   };
   constructor(public appService: AppService, public managersAccountService: AccountManagersService, public dialogService: DialogService,
-    private accountDetailsCommonService: AccountDetailsCommonService) {
+    private accountDetailsCommonService: AccountDetailsCommonService, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -132,7 +133,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     })
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.managersAccountService.deleteUser(event.data['userId'], this.accountDetailsCommonService.accountId, this.appService.user.userId).subscribe((res) => {
+          this.managersAccountService.deleteUser(event.data['userId'], this.accountDetailsCommonService.accountId, this.headerService.user.userId).subscribe((res) => {
 
             if (res['statusCode'] == 'SUCCESS') {
               this.getAccountsManagers();

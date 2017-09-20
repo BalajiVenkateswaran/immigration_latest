@@ -7,6 +7,7 @@ import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.compo
 import { FormsService } from "./forms.service";
 import { GenerateFormButton } from './GenerateFormButton';
 import { DownloadButton } from './DownloadButton';
+import {HeaderService} from "../../../../common/header/header.service";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -37,7 +38,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
     public editFlag: boolean = true;
     public generateFormData: any = {};
     public errorMessage:boolean=false;
-    constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService) {
+    constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
         super(dialogService);
         this.settings = {
             'isAddButtonEnable': false,
@@ -80,7 +81,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
                 }
             ]
         }
-        
+
     }
     ngOnInit() {
         this.getFormsData()
@@ -120,7 +121,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
         this.isEditForms[i] = !this.isEditForms[i];
     }
     generateForm(forms) {
-        
+
     }
     editFormsData(event) {
         if (event.colDef.headerName != 'Generate Form' && event.colDef.headerName !='Download Form') {
@@ -139,7 +140,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
                 if (isConfirmed) {
                     let url = "/file/rename";
                     let data = {
-                        "accountId": this.appService.user.accountId,
+                        "accountId": this.headerService.user.accountId,
                         "fileId": event.data.fileId,
                         "fileName": this.beforeEdit.fileName
                     };
@@ -153,11 +154,11 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
                 } else {
                     this.editFlag = false;
                 }
-            
+
             });
         }
-        
-       
+
+
     }
     onGenerateFormClick(event){
         var questionnaireId = event.data.questionnaireId;
@@ -170,26 +171,26 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
             generateFormData: this.generateFormData
 
         }).subscribe((isConfirmed) => {
-            
+
             if (isConfirmed) {
                 this.dialogService.addDialog(ConfirmComponent,{
                                 title:'Please Wait...',
                                 message:'This may take sometime',
                             })
-                this.formsService.generateForms(questionnaireId,this.appService.user.accountId,event.data).subscribe(
+                this.formsService.generateForms(questionnaireId,this.headerService.user.accountId,event.data).subscribe(
                     res => {
                         if(res['statusCode'] == 'FAILURE'){
                             this.errorMessage = true;
                         }
                         else{
-                           this.getFormsData(); 
+                           this.getFormsData();
                            this.dialogService.removeAll();
-                        }    
+                        }
                     }
 
                 );
             }
-            
+
         })
 
     }
@@ -206,7 +207,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
-       
+
 
     }
     fileNameSave() {

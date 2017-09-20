@@ -4,12 +4,11 @@ import { HeaderService } from '../../common/header/header.service';
 import { MenuComponent } from '../../common/menu/menu.component';
 import { AccountDetailsCommonService } from '../accounts-tab/account-details/common/account-details-common.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import {Router} from "@angular/router";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import { SuperUserViewInvoicestabService } from "./invoices.service";
+import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {SuperUserViewInvoicestabService} from "./invoices.service";
 import { SortType } from "../../framework/smarttable/types/query-parameters";
-
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -17,11 +16,9 @@ export interface ConfirmModel {
     getClientsData: boolean;
 
 }
-
-
 @Component({
-    selector: 'app-invoices',
-    templateUrl: './invoices.component.html'
+  selector: 'app-invoices',
+  templateUrl: './invoices.component.html'
 })
 export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     private invoicesList: invoice[];
@@ -32,8 +29,8 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
     public settings;
     public data;
     constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService,
-        private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
-        private accountDetailsCommonService: AccountDetailsCommonService, private headerService: HeaderService) {
+       private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
+       private accountDetailsCommonService: AccountDetailsCommonService, private headerService: HeaderService) {
         super(dialogService);
         this.settings = {
             'isDeleteEnable': false,
@@ -78,13 +75,13 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
     }
 
     ngOnInit() {
-        this.appService.showSideBarMenu(null, "invoices");
+        this.headerService.showSideBarMenu(null, "invoices");
     }
 
     clientSave() {
-        this.newclitem['accountId'] = this.appService.user.accountId;
+        this.newclitem['accountId'] = this.headerService.user.accountId;
         this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
-        this.newclitem['createdBy'] = this.appService.user.userId;
+        this.newclitem['createdBy'] = this.headerService.user.userId;
         if (this.newclitem['status'] == '' || null || undefined) {
             this.newclitem['status'] = "Active";
         }
@@ -97,11 +94,11 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
         this.close();
     }
 
-    moveToInvoiceTab(event): void {
-        this.menuComponent.highlightSBLink('Account Details Invoices');
-        this.appService.showSideBarMenu('superuser-accounts', "accounts");
-        this.appService.moveToPage("accountdetails-invoice");
-        this.accountDetailsCommonService.accountId = event.data.accountId;
+  moveToInvoiceTab(event): void{
+      this.menuComponent.highlightSBLink('Account Details Invoices');
+      this.headerService.showSideBarMenu('superuser-accounts', "accounts");
+      this.appService.moveToPage("accountdetails-invoice");
+      this.accountDetailsCommonService.accountId = event.data.accountId;
 
     }
     dataWithParameters(queryParams) {
