@@ -247,8 +247,6 @@ import { clientstatusreportscomponent } from './components/immigrationview/repor
 import { clientstatusreportsservice } from './components/immigrationview/reports-tab/client/status/status.service';
 import { SuperUserPetitionStagesReportsService } from './components/superuserview/reports-tab/petitions/stage/stage.service';
 import { SuperUserPetitionsStatusReportsService } from './components/superuserview/reports-tab/petitions/status/status.service';
-import { SuperUserL1AReportsComponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
-import { superuserL1Areportsservice } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.service';
 import { SuperUserH1BReportsComponent } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
 import { superuserH1Breportsservice } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.service';
 import { SuperUserPetitionTagReportsComponent } from './components/superuserview/reports-tab/petitions/tag/tag.component';
@@ -416,7 +414,7 @@ import { webFaqService } from './components/common/website/faqs/faqs.service';
     statsaccountscomponent,
     SuperUserPetitionsStatusReportsComponent,
     SuperUserH1BReportsComponent,
-    SuperUserL1AReportsComponent,
+  
     SuperUserPetitionStageReportsComponent,
     SuperUserPetitionTagReportsComponent,
     SuperuserviewProductcatalogDiscountsComponent,
@@ -564,7 +562,6 @@ import { webFaqService } from './components/common/website/faqs/faqs.service';
     statsaccountsservice,
     SuperUserPetitionsStatusReportsService,
     superuserH1Breportsservice,
-    superuserL1Areportsservice,
     SuperUserPetitionStagesReportsService,
     SuperUserPetitionFinalActionReportsService,
     SuperUserPetitionTagReportsService,
