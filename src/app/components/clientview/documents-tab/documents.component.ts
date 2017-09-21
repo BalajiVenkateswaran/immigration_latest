@@ -10,6 +10,7 @@ import { ActionIcons } from '../../framework/smarttable/cellRenderer/ActionsIcon
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as FileSaver from 'file-saver';
 import {HeaderService} from "../../common/header/header.service";
+import {FileUtils} from "../../common/FileUtils";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -118,10 +119,9 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     fileUpload(event) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        var fileName = file.name;
         let fileExists = this.isfileExists(file);
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
 
@@ -164,7 +164,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        var fileName = file.name;
 
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
@@ -172,8 +172,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             message: 'Do You Want to Replace this file?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
                     let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
                     this.documentservice.replaceFile(event.data.fileId, formData)
@@ -190,7 +189,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                         message: 'Filename is already exists.'
                     });
                 }
-                if (y[1] !== 'pdf') {
+                if (!FileUtils.checkFileExtension(fileName)) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'Please Upload Only Pdf files.'
@@ -227,7 +226,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     }
     editFileName(event) {
         if (event.colDef.headerName != 'Actions') {
-            this.editFileObject.fileName = event.data.fileName.split(".")[0];
+            this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
             this.dialogService.addDialog(DocumentsComponent, {
                 editFiles: true,
                 getData: false,

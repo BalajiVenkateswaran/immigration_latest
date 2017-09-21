@@ -10,6 +10,7 @@ import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/Actio
 import { PetitionDocumentRepositoryService } from "./petition-document-repository.service";
 import {SortType} from "../../../../framework/smarttable/types/query-parameters";
 import {HeaderService} from "../../../../common/header/header.service";
+import {FileUtils} from "../../../../common/FileUtils";
 
 export interface ConfirmModel {
     title: string;
@@ -99,10 +100,9 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         let formData: FormData = new FormData();
-        var x = file.name;
+        var fileName = file.name;
         let fileExists = this.isfileExists(file);
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
 
             formData.append('file', file, file.name);
             this.petitiondocumentrepositoryService.uploadFile(this.appService.petitionId, formData)
@@ -133,26 +133,20 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        var fileName = file.name;
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
-            message: 'Do you want to replace '+x+' file ?'
+            message: 'Do you want to replace '+fileName+' file ?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 let formData: FormData = new FormData();
-                var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
-
+                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
                     formData.append('file', file, file.name);
-
                     this.petitiondocumentrepositoryService.replaceFile(event.data.fileId, formData)
-                        .subscribe(
-                        res => {
+                        .subscribe(res => {
                             this.getFilesList();
-                        }
-                        );
-
+                        });
                 }
 
                 if (fileExists) {
@@ -161,7 +155,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                         message: 'File already exists'
                     });
                 }
-                if (y[1] !== 'pdf') {
+                if (!FileUtils.checkFileExtension(fileName)) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'Please upload only PDF file'
@@ -208,7 +202,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     }
     editFileName(event) {
         if (event.colDef.headerName != 'Actions') {
-            this.editFileObject.fileName = event.data.fileName.split(".")[0];
+            this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
             this.dialogService.addDialog(PetitionDocumentRepositoryComponent, {
                 editFiles: true,
                 getData: false,

@@ -9,6 +9,7 @@ import * as FileSaver from 'file-saver';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {SortType} from "../../../framework/smarttable/types/query-parameters";
+import {FileUtils} from "../../../common/FileUtils";
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -92,10 +93,9 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     let fileList: FileList = event.target.files;
     let file: File = fileList[0];
     let formData: FormData = new FormData();
-    var x = file.name;
+    var fileName = file.name;
     let fileExists = this.isfileExists(file);
-    var y = x.split(".");
-    if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+    if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
       formData.append('file', file, file.name);
       this.organizationdocumentrepositoryService.uploadFile(this.headerService.selectedOrg['orgId'], formData)
         .subscribe(
@@ -125,18 +125,17 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   onReplaceClick(event) {
     let fileList: FileList = event.event.target.files;
     let file: File = fileList[0];
-    var x = file.name;
+    var fileName = file.name;
     let fileExists = this.isfileExists(file);
     this.dialogService.addDialog(ConfirmComponent, {
       title: 'Information',
-      message: 'Do you want to replace '+x+' file ?'
+      message: 'Do you want to replace '+fileName+' file ?'
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
 
         let formData: FormData = new FormData();
 
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
           formData.append('file', file, file.name);
           this.organizationdocumentrepositoryService.replaceFile(event.data.fileId, formData)
             .subscribe(
@@ -153,7 +152,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
             message: 'File already exists.'
           });
         }
-        if (y[1] !== 'pdf') {
+        if (!FileUtils.checkFileExtension(fileName)) {
           this.dialogService.addDialog(ConfirmComponent, {
             title: 'Error..!',
             message: 'Please upload only PDF file'
@@ -202,7 +201,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   }
   editFileName(event) {
     if (event.colDef.headerName != 'Actions') {
-      this.editFileObject.fileName = event.data.fileName.split(".")[0];
+      this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
       this.dialogService.addDialog(OrganizationDocumentRepositoryComponent, {
         editFiles: true,
         getData: false,

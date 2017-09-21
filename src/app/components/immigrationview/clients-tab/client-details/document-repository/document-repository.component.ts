@@ -9,6 +9,7 @@ import * as FileSaver from 'file-saver';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {SortType} from "../../../../framework/smarttable/types/query-parameters";
 import {HeaderService} from "../../../../common/header/header.service";
+import {FileUtils} from "../../../../common/FileUtils";
 
 export interface ConfirmModel {
     title: string;
@@ -102,15 +103,16 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
+
     fileUpload(event) {
 
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        var fileName = file.name;
         let fileExists = this.isfileExists(file);
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
-            this.uploadArray.push({'name':x});
+
+        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
+            this.uploadArray.push({'name':fileName});
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
              let that = this;
@@ -131,15 +133,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 res => {
 
                     if (res['statusCode'] == 'SUCCESS') {
-
                         this.getFilesList();
-
                     }
-
-
                 }
                 );
-
         }
         else {
             if (fileExists == true) {
@@ -171,15 +168,14 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var x = this.getFiles[this.selectedindex].fileName;
+        var fileName = this.getFiles[this.selectedindex].fileName;
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
-            message: 'Do you want to replace ' + x + ' file ?'
+            message: 'Do you want to replace ' + fileName + ' file ?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName)  && fileExists != true) {
                     let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
                     this.clientdocumentrepositoryService.replaceFile(event.data.fileId, formData)
@@ -195,7 +191,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         message: 'File already exists'
                     });
                 }
-                if (y[1] !== 'pdf') {
+                if (!FileUtils.checkFileExtension(fileName) ) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'Please upload only PDF file'
@@ -243,7 +239,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     editFileName(event) {
         this.selectedindex=event.rowIndex;
         if (event.colDef.headerName != 'Actions') {
-            this.editFileObject.fileName = event.data.fileName.split(".")[0];
+            this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
             this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
                 editFiles: true,
                 getData: false,
