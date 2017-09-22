@@ -104,10 +104,9 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
         this.dialogService.addDialog(ConfirmComponent, {
           title: 'Information',
           message: 'Password reset information is sent to ' + email
-        })
-          .subscribe((isConfirmed) => {
-            this.appService.moveToPage('login');
-          });
+        }).subscribe((isConfirmed) => {
+          this.appService.moveToPage('login');
+        });
       } else {
         this.dialogService.addDialog(ConfirmComponent, {
           title: 'Information',

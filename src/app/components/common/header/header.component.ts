@@ -84,6 +84,9 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
       this.immigrationManager = this.headerService.user.roleName;
   }
   logOut() {
+      this.headerService.destroy();
+      //Explict clean up of user object from headerService while logout
+      this.headerService.user = null;
       this.appService.destroy();
       this.appService.moveToPage('');
   }

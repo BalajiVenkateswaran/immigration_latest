@@ -138,10 +138,14 @@ export class HeaderService {
   }
 
 
-  private destroy() {
+  public destroy() {
     this.immigrationview = null;
     this._menuSlider = null;
     this._organizations = null;
+    this._selectedOrg = null;
+    this._sideBarMenu = null;
+    this._currentTab = null;
+    this._isBurgerMenuVisible = null;
   }
   getUsageSummaryDetails(accountId : String){
     return this.restService.getData("/immigration/account/getProductUsageSummary/"+accountId);
