@@ -22,6 +22,8 @@ export interface ConfirmModel {
   templateUrl: 'login.component.html'
 })
 export class LoginComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+
+
   [x: string]: any;
 
   private outlet: any = {
@@ -251,5 +253,10 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.close();
     this.appService.moveToPage('login');
 
+  }
+
+
+  clicktogotop() {
+      window.scrollTo(1000, 500);
   }
 }

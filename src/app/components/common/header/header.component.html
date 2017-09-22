@@ -1,6 +1,6 @@
 <header *ngIf="header">
-	<div class="container-fluid">
-		<div class="col-md-4 pull-left no-pad">
+
+		<div class="col-md-4 pull-left">
 			<div class="logo">
 				<a
 					(click)="onLogoClick()">
@@ -44,7 +44,7 @@
 		</div>
 		<div class="clearfix"></div>
 		<!--Mani Menu Start-->
-		<div class="row">
+		<div class="row no-marg">
 			<div class="mainmenu">
 				<div *ngIf="appService.isBurgerMenuVisible" class="burger-menu">
 					<input type="checkbox" (click)="slideMenu()" /><label></label>
@@ -212,7 +212,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-	</div>
+
 
 </header>
 <div class="clearfix"></div>

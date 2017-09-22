@@ -114,6 +114,7 @@ a.login:hover {
 }
 .section-heading {
 	width: 100%;
+    color:#333 !important;
 	text-align: center;
 	font-size:26px;
 	font-weight: 300;
@@ -534,6 +535,7 @@ h4 {
 	margin: 0px;
 	padding: 0px;
 	margin-bottom: 20px;
+    color: #333;
 	text-transform: uppercase;
 }
 
@@ -1113,7 +1115,6 @@ a, a:hover {
     position: fixed;
     bottom:15px;
     right: 15px;
-    display: none;
     text-align: center;
     cursor: pointer;
 }
