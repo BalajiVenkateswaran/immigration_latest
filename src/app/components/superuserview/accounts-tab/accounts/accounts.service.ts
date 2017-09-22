@@ -18,4 +18,7 @@ export class SuperUserviewAccountService {
     public createAccount(accountDetails) {
         return this.restService.postData("/superuser/account", accountDetails);
     }
+    public getaccountnames() {
+        return this.restService.getData("/superuser/account/names");
+    }
 }

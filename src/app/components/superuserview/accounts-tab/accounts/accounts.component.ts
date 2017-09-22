@@ -120,12 +120,14 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
     this.headerService.showSideBarMenu(null, "accounts");
     //this.getAccountDetail(this.queryParameters);
+    this.superUserAccountService.getaccountnames().subscribe((res) => {
+        this.reportscommonService.totalAccounts = res['accounts'];
+    });
   }
 
   getAccountDetail(queryData) {
     this.superUserAccountService.getAccountDetails(queryData).subscribe((res) => {
       if (res['statusCode'] == 'SUCCESS') {
-        this.reportscommonService.totalAccounts = res['accountInfoList'];
         console.log(res['accountInfoList']);
         this.data = res['accountInfoList'];
         this.paginationData = res['pageMetadata'];

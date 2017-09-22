@@ -3,6 +3,7 @@ import { ReportsCommonService } from '../../common/reports-common.service';
 import { superuserH1Breportsservice } from './petitiontypesH1B.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ManageAccountPetitionStagesService} from '../../../../immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.service';
 
 
 @Component({
@@ -20,11 +21,17 @@ export class SuperUserH1BReportsComponent implements OnInit {
     public count: any = [];
     public subTypes: any = [];
     public selectedaccountId: string;
+    public petitionstageTypes: any = [];
   selectedsubtype;
   petitionsubtypechange;
   constructor(public appService: AppService, private superUserH1Breportsservice: superuserH1Breportsservice,
-              public reportsCommonService: ReportsCommonService) { }
+      public reportsCommonService: ReportsCommonService, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
   ngOnInit() {
+      this.immigrationViewPetitionsService.getPetitionTypes().subscribe(
+          res => {
+              console.log(res);
+              this.petitionstageTypes = res['petitionTypes'];
+          });
         this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
 
