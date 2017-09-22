@@ -378,35 +378,41 @@ font-weight: 500;
 .slide {
     width: 100% !important;
 }
-.slide1, .slide2, .slide3, .slide4, .slide5, .slide6 {
-	background:#164a65;
+.slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8, .slide9 {
+     background: url(../../assets/images/web/slide1.jpg) no-repeat center top #164a65;
 	width: 100%;
 	min-height: 500px;
 	text-align: left;
 	color: #fff;
 }
 
-.slide1 span,
+/*.slide1 span,
 .slide2 span,
 .slide3 span,
 .slide4 span,
 .slide5 span,
-.slide6 span {
+.slide6 span,
+.slide7 span,
+.slide8 span,
+.slide9 span {
 	font-size: 16px;
 	font-weight: 400;
 	width: 100%;
 	margin: 160px 0px 10px 0;
 	float: left;
-}
+}*/
 .slide1 h1,
 .slide2 h1,
 .slide3 h1,
 .slide4 h1,
 .slide5 h1,
-.slide6 h1 {
+.slide6 h1,
+.slide7 h1,
+.slide8 h1,
+.slide9 h1 {
 	font-size:36px;
 	font-weight:700;
-	margin:0px;
+	margin: 190px 0px 0px 0;
 	padding:0px;
 	margin-bottom: 20px;
 }
@@ -431,6 +437,18 @@ font-weight: 500;
 }
 .slide6 {
     background: url(../../assets/images/web/slide6.jpg) no-repeat center top #c9ac69;
+    color:#fff !important;
+}
+.slide7 {
+    background:#90a4ae;
+    color:#fff !important;
+}
+.slide8 {
+    background:#00bcd4;
+    color:#fff !important;
+}
+.slide9 {
+    background:#ff7a7d;
     color:#fff !important;
 }
 .top-carousel-indicators {
