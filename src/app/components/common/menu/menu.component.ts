@@ -3,6 +3,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { MenuService } from "./menu.service";
 import { QuestionnaireCommonService } from '../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
 import {HeaderService} from "../header/header.service";
+import {DocumentService} from "../../clientview/documents-tab/documents.service";
 
 @Component({
     selector: 'menu',
@@ -31,7 +32,7 @@ export class MenuComponent implements OnInit {
     public superuserpetitins: boolean;
     public immiQstnre: boolean;
     constructor(private menuService: MenuService, public appService: AppService,
-        public questionnaireCommonService: QuestionnaireCommonService, private headerService: HeaderService) {
+        public questionnaireCommonService: QuestionnaireCommonService, private headerService: HeaderService, public clientViewDocuments: DocumentService) {
         this.sideBarMenu = headerService.sideBarMenu;
     }
     ngOnInit(): void {

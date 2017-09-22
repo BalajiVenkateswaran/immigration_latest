@@ -87,7 +87,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             .subscribe((isConfirmed) => {
                 //Get dialog result
                 if (isConfirmed) {
-                    this.petitiondocumentrepositoryService.deleteFile(event.data.fileId).subscribe(res => {
+                    this.petitiondocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
                         this.getFilesList();
                     });
                 }
@@ -105,7 +105,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
 
             formData.append('file', file, file.name);
-            this.petitiondocumentrepositoryService.uploadFile(this.appService.petitionId, formData)
+            this.petitiondocumentrepositoryService.uploadFile(this.appService.petitionId,this.headerService.selectedOrg['orgId'], formData)
                 .subscribe(
                 res => {
                     this.getFilesList();
@@ -143,7 +143,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                 let formData: FormData = new FormData();
                 if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
                     formData.append('file', file, file.name);
-                    this.petitiondocumentrepositoryService.replaceFile(event.data.fileId, formData)
+                    this.petitiondocumentrepositoryService.replaceFile(event.data.fileId, this.headerService.selectedOrg['orgId'], formData)
                         .subscribe(res => {
                             this.getFilesList();
                         });
@@ -175,7 +175,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
       return fileExists;
     }
     onDownloadClick(event) {
-        this.petitiondocumentrepositoryService.downloadFile(event.data.fileId).subscribe
+        this.petitiondocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
             (data => this.downloadFiles(data, event.data.fileName)),
             error => console.log("Error Downloading....");
         () => console.log("OK");
@@ -215,6 +215,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                     var url = "/file/rename";
                     var data = {
                         "accountId": this.accountId,
+                        "orgId": this.headerService.selectedOrg['orgId'],
                         "fileId": event.data.fileId,
                         "fileName": this.editFileObject.fileName.concat(".pdf")
                     };

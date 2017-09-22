@@ -241,7 +241,8 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                     var data = {
                         "accountId": this.headerService.user.accountId,
                         "fileId": event.data.fileId,
-                        "fileName": fileName
+                        "fileName": fileName,
+                        "orgId": this.documentservice.selectedOrgId
                     };
                     this.documentservice.renameFile(url, data).subscribe(
                         res => {

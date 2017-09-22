@@ -381,7 +381,7 @@
     </ul>
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-document'">
         <li *ngFor='let value of docsideBarMenu'>
-            <a (click)="appService.selectedOrgClienttId=value.clientId;appService.moveToPageWithParams('clientview-documents',value.clientId);highlightSBLink(value.orgName);submenuclick('')" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" routerLinkActive="active">{{value.orgName}}</a>
+            <a (click)="appService.selectedOrgClienttId=value.clientId;clientViewDocuments.selectedOrgId=value.orgId;appService.moveToPageWithParams('clientview-documents',value.clientId);highlightSBLink(value.orgName);submenuclick('')" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" routerLinkActive="active">{{value.orgName}}</a>
         </li>
 
     </ul>

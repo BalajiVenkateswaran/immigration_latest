@@ -94,7 +94,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             .subscribe((isConfirmed) => {
                 //Get dialog result
                 if (isConfirmed) {
-                    this.clientdocumentrepositoryService.deleteFile(event.data.fileId).subscribe(res => {
+                    this.clientdocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
                         this.getFilesList();
                     });
                 }
@@ -127,7 +127,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                             }
                         }
                     },200)
-            this.clientdocumentrepositoryService.uploadFile(this.appService.clientId, formData)
+            this.clientdocumentrepositoryService.uploadFile(this.appService.clientId, this.headerService.selectedOrg['orgId'], formData)
                 .subscribe(
 
                 res => {
@@ -178,7 +178,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                 if (fileList.length > 0 && FileUtils.checkFileExtension(fileName)  && fileExists != true) {
                     let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
-                    this.clientdocumentrepositoryService.replaceFile(event.data.fileId, formData)
+                    this.clientdocumentrepositoryService.replaceFile(event.data.fileId, this.headerService.selectedOrg['orgId'], formData)
                         .subscribe(
                         res => {
                             this.getFilesList();
@@ -204,7 +204,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     }
 
     onDownloadClick(event) {
-        this.clientdocumentrepositoryService.downloadFile(event.data.fileId).subscribe
+        this.clientdocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
             (data => this.downloadFiles(data, event.data.fileName)),
             error => console.log("Error Downloading....");
         () => console.log("OK");
@@ -253,6 +253,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                     var url = "/file/rename";
                     var data = {
                         "accountId": this.accountId,
+                        "orgId": this.headerService.selectedOrg['orgId'],
                         "fileId": event.data.fileId,
                         "fileName": fileName
                     };
@@ -260,7 +261,6 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         res => {
                             if (res['statusCode'] == 'SUCCESS') {
                                 this.getFilesList();
-
                             }
                             if (res['statusDescription'] == "File Name Exists, Use a different Name") {
                                 this.dialogService.addDialog(ConfirmComponent, {

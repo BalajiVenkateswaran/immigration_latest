@@ -80,7 +80,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
       .subscribe((isConfirmed) => {
         //Get dialog result
         if (isConfirmed) {
-          this.organizationdocumentrepositoryService.deleteFile(event.data.fileId).subscribe(res => {
+          this.organizationdocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
             this.getFilesList();
           });
         }
@@ -137,7 +137,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
 
         if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
           formData.append('file', file, file.name);
-          this.organizationdocumentrepositoryService.replaceFile(event.data.fileId, formData)
+          this.organizationdocumentrepositoryService.replaceFile(event.data.fileId, this.headerService.selectedOrg['orgId'], formData)
             .subscribe(
             res => {
               this.getFilesList();
@@ -163,7 +163,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
 
   }
   onDownloadClick(event) {
-    this.organizationdocumentrepositoryService.downloadFile(event.data.fileId).subscribe
+    this.organizationdocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
       (data => this.downloadFiles(data, event.data.fileName)),
       error => console.log("Error Downloading....");
     () => console.log("OK");
@@ -216,6 +216,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
           var url = "/file/rename";
           var data = {
             "accountId": this.accountId,
+            "orgId": this.headerService.selectedOrg['orgId'],
             "fileId": FileId,
             "fileName": fileName
           };
