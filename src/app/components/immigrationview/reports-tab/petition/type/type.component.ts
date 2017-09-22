@@ -3,6 +3,7 @@ import { petitionstypesreportsservice } from './type.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/petitiontypestages/petitiontypestages.service';
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-petitiontypes-report',
@@ -21,7 +22,9 @@ export class petitionstypesreportscomponent implements OnInit {
     public selectedsubtype: any;
     public selectedsubtypeId: any;
     public petitionstageTypes: any = [];
-    ngOnInit() {
+  constructor(public headerService: HeaderService, private petitionsTypesreportsservice: petitionstypesreportsservice,
+              private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
+  ngOnInit() {
         this.immigrationViewPetitionsService.getPetitionTypes().subscribe(
             res => {
                 console.log(res);
@@ -30,12 +33,13 @@ export class petitionstypesreportscomponent implements OnInit {
                 this.selectedsubtypeId = this.petitionstageTypes[0].petitionTypeId;
                 this.getpetitiontypereports();
             });
-    
+
     }
-    getpetitiontypereports() {
-        this.petitionsTypesreportsservice.getpetitonTypesreports(this.appService.user.accountId, this.selectedsubtypeId)
+  getpetitiontypereports() {
+        this.petitionsTypesreportsservice.getpetitonTypesreports(this.headerService.user.accountId, this.selectedsubtypeId)
             .subscribe((res) => {
                 console.log(res);
+                this.orgsNames = [];
                 this.pieChartData = [];
                 this.pieChartLabels = [];
                 this.orgsList = res['orgs'];
@@ -55,7 +59,7 @@ export class petitionstypesreportscomponent implements OnInit {
 
             });
     }
-    petitionsubtypechange() {
+  petitionsubtypechange() {
         for (var i = 0; i < this.petitionstageTypes.length; i++) {
             if (this.selectedsubtype == this.petitionstageTypes[i].petitiontype) {
                 this.selectedsubtypeId = this.petitionstageTypes[i].petitionTypeId;
@@ -64,7 +68,6 @@ export class petitionstypesreportscomponent implements OnInit {
         this.getpetitiontypereports();
 
     }
-    constructor(public appService: AppService, private petitionsTypesreportsservice: petitionstypesreportsservice, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

@@ -5,6 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DialogService } from "ng2-bootstrap-modal";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+import {HeaderService} from "../../../common/header/header.service";
 
 @Component({
     selector: 'app-profilchangepassword',
@@ -17,9 +18,10 @@ export class profilechangepwdcomponent implements OnInit {
     public profilechange: any = {};
     newpwd: FormControl;
     ngOnInit() {
-       
+
     }
-    constructor(public appService: AppService, private profileChangepwdservice: profilechangepwdservice, private dialogService: DialogService) { 
+    constructor(public appService: AppService, private profileChangepwdservice: profilechangepwdservice, private dialogService: DialogService,
+                public headerService: HeaderService) {
         this.passwordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?#_&+=^,.:;\-])[A-Za-z\d$@$!%*?#_&+=^,.:;\-]{8,}/;
         this.newpwd = new FormControl('', [Validators.required,Validators.pattern(this.passwordRegex)]);
     }
@@ -38,7 +40,7 @@ export class profilechangepwdcomponent implements OnInit {
         }
         else {
             var req = {
-                "emailId": this.appService.user.emailId,
+                "emailId": this.headerService.user.emailId,
                 "newPassword": this.profilechange.newpwd,
                 "password": this.profilechange.currentpwd
             };

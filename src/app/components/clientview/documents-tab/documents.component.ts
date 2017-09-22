@@ -9,6 +9,8 @@ import { MenuComponent } from "../../common/menu/menu.component";
 import { ActionIcons } from '../../framework/smarttable/cellRenderer/ActionsIcons';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as FileSaver from 'file-saver';
+import {HeaderService} from "../../common/header/header.service";
+import {FileUtils} from "../../common/FileUtils";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -43,12 +45,10 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     public editFlag: boolean = true;
     public beforeEdit: any;
     public count = 0;
-    constructor(private documentservice: DocumentService, private http: Http, public appService: AppService, public dialogService: DialogService, private router: Router, private route: ActivatedRoute, private menuComponent: MenuComponent) {
+    constructor(private documentservice: DocumentService, private http: Http, public appService: AppService,
+                public dialogService: DialogService, private router: Router, private route: ActivatedRoute,
+                private menuComponent: MenuComponent, public headerService: HeaderService) {
         super(dialogService);
-        if (this.appService.user) {
-            this.user = this.appService.user;
-        }
-        this.accountId = this.user.accountId;
 
         this.settings = {
             'pagination': false,
@@ -87,7 +87,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     ngOnInit() {
         this.route.params.subscribe(params => {
             if (params['clientId'] == "") {
-                this.documentservice.getOrgNames(this.appService.user.userId).subscribe((res) => {
+                this.documentservice.getOrgNames(this.headerService.user.userId).subscribe((res) => {
                     this.orgNames = res['orgs'];
                     this.appService.documentSideMenu(this.orgNames);
                     this.appService.selectedOrgClienttId = this.orgNames[0].clientId;
@@ -97,7 +97,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             } else {
                 this.getFilesList();
             }
-            this.appService.showSideBarMenu("clientview-document", "clientview-documents");
+            this.headerService.showSideBarMenu("clientview-document", "clientview-documents");
 
         });
     }
@@ -119,10 +119,9 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     fileUpload(event) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        var fileName = file.name;
         let fileExists = this.isfileExists(file);
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
 
@@ -165,16 +164,15 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
-      
+        var fileName = file.name;
+
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
             message: 'Do You Want to Replace this file?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
                     let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
                     this.documentservice.replaceFile(event.data.fileId, formData)
@@ -191,7 +189,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                         message: 'Filename is already exists.'
                     });
                 }
-                if (y[1] !== 'pdf') {
+                if (!FileUtils.checkFileExtension(fileName)) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'Please Upload Only Pdf files.'
@@ -228,7 +226,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     }
     editFileName(event) {
         if (event.colDef.headerName != 'Actions') {
-            this.editFileObject.fileName = event.data.fileName.split(".")[0];
+            this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
             this.dialogService.addDialog(DocumentsComponent, {
                 editFiles: true,
                 getData: false,
@@ -241,9 +239,10 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                     event.data.fileName = fileName;
                     var url = "/file/rename";
                     var data = {
-                        "accountId": this.accountId,
+                        "accountId": this.headerService.user.accountId,
                         "fileId": event.data.fileId,
-                        "fileName": fileName
+                        "fileName": fileName,
+                        "orgId": this.documentservice.selectedOrgId
                     };
                     this.documentservice.renameFile(url, data).subscribe(
                         res => {

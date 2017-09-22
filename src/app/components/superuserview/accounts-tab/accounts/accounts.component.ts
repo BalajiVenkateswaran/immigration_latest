@@ -7,6 +7,7 @@ import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../../../common/menu/menu.component";
 import {AccountDetailsCommonService} from "../account-details/common/account-details-common.service";
 import {ReportsCommonService} from "../../reports-tab/common/reports-common.service";
+import {HeaderService} from "../../../common/header/header.service";
 
 export interface ConfirmModel {
   title: string;
@@ -36,7 +37,6 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   public paginationData;
   public queryParameters;
   public getAccountsData: boolean = true;
-  private user: User;
   private deleteclients: any;
   private clientName: any;
   public addAccounts: boolean;
@@ -47,7 +47,8 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   public accountsList: any;
   constructor(private superUserAccountService: SuperUserviewAccountService, private appService: AppService,
               private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
-              private accountDetailsCommonService: AccountDetailsCommonService, public reportscommonService: ReportsCommonService) {
+              private accountDetailsCommonService: AccountDetailsCommonService, public reportscommonService: ReportsCommonService,
+              private headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'isDeleteEnable': false,
@@ -116,18 +117,17 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   }
 
   ngOnInit() {
-    if (this.appService.user) {
-      this.user = this.appService.user;
-    }
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
-    this.appService.showSideBarMenu(null, "accounts");
+    this.headerService.showSideBarMenu(null, "accounts");
     //this.getAccountDetail(this.queryParameters);
+    this.superUserAccountService.getaccountnames().subscribe((res) => {
+        this.reportscommonService.totalAccounts = res['accounts'];
+    });
   }
 
   getAccountDetail(queryData) {
     this.superUserAccountService.getAccountDetails(queryData).subscribe((res) => {
       if (res['statusCode'] == 'SUCCESS') {
-        this.reportscommonService.totalAccounts = res['accountInfoList'];
         console.log(res['accountInfoList']);
         this.data = res['accountInfoList'];
         this.paginationData = res['pageMetadata'];

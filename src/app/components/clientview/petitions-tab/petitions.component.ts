@@ -9,6 +9,7 @@ import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {MoreDetails} from './MoreDetails';
 import { ClientViewPetitionsService } from './petitions.service';
 import {SortType} from "../../framework/smarttable/types/query-parameters";
+import {HeaderService} from "../../common/header/header.service";
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -37,7 +38,6 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   private message: string;
   public clientviewpetitionList;
   public addPetition: FormGroup;
-  private user: User;
   public editFlag: boolean = true;
   public beforeEdit: any;
   public cvpmore: any = {};
@@ -51,11 +51,10 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   public viewData;
   public viewSubscription;
   public queryParameters;
-  constructor(private router: Router, private appService: AppService, private clientviewpetitionsService: ClientViewPetitionsService, public dialogService: DialogService) {
+  constructor(private router: Router, private appService: AppService, private clientviewpetitionsService: ClientViewPetitionsService,
+              public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
-    if (this.appService.user) {
-      this.user = this.appService.user;
-    }
+
     this.settings = {
 
       "isAddButtonEnable": false,
@@ -124,25 +123,15 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   ngOnInit() {
     //this.getClientPetitionData();
 
-    this.appService.showSideBarMenu(null, "clientview-petitions");
+    this.headerService.showSideBarMenu(null, "clientview-petitions");
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
   }
 
   ngOnDestroy() {
     this.viewSubscription.unsubscribe();
   }
-
-  /*getClientPetitionData() {
-    this.clientviewpetitionsService.getPetitions(this.appService.user.userId)
-      .subscribe((res) => {
-        this.clientviewpetitionList = res['petitions'];
-        this.data = res['petitions'];
-        console.log(this.clientviewpetitionList);
-      });
-  }*/
-
   filterData(filterQueries) {
-    this.clientviewpetitionsService.getPetitionsFilteredData(this.appService.user.userId, filterQueries).subscribe(res => {
+    this.clientviewpetitionsService.getPetitionsFilteredData(this.headerService.user.userId, filterQueries).subscribe(res => {
       this.data = res['petitions'];
     })
   }
@@ -152,7 +141,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
       this.queryParameters=queryData
     }
 
-    this.clientviewpetitionsService.getPetitions(this.appService.user.userId, queryData)
+    this.clientviewpetitionsService.getPetitions(this.headerService.user.userId, queryData)
       .subscribe((res) => {
         this.clientviewpetitionList = res['petitions'];
         this.data = res['petitions'];

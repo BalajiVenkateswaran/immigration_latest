@@ -2,6 +2,7 @@
 import { petitionstagsreportsservice } from './tags.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-petitiontags-report',
@@ -17,8 +18,18 @@ export class petitionstagsreportscomponent implements OnInit {
     public orgsNames: any = [];
     public count: any = [];
     public tags: any = [];
-    ngOnInit() {
-        this.petitionStagsreportsservice.getpetitonTagsreports(this.appService.user.accountId)
+    public petitiontags: any = [];
+  constructor(public headerService: HeaderService, private petitionStagsreportsservice: petitionstagsreportsservice) { }
+
+  ngOnInit() {
+      this.petitionStagsreportsservice.getpetitonstags(this.headerService.user.accountId)
+          .subscribe((res) => {
+              console.log(res);
+              if (res['tags']) {
+                  this.petitiontags=res['tags'];
+              }
+          });
+        this.petitionStagsreportsservice.getpetitonTagsreports(this.headerService.user.accountId)
             .subscribe((res) => {
                 console.log(res);
                 this.orgsList = res['orgs'];
@@ -38,8 +49,6 @@ export class petitionstagsreportscomponent implements OnInit {
                 }
             });
     }
-
-    constructor(public appService: AppService, private petitionStagsreportsservice: petitionstagsreportsservice) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

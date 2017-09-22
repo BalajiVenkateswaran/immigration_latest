@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppService } from '../../../../../services/app.service';
 import { NotesService } from "./notes.service";
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-petition-details-notes',
@@ -14,11 +15,11 @@ export class NotesComponent implements OnInit {
     private notes: string;
     private beforeCancelPetition;
     private petitionDetails: any = {};
-    constructor(public appService: AppService, private petitionNotesService: NotesService) {
+    constructor(public appService: AppService, private petitionNotesService: NotesService, public headerService: HeaderService) {
     }
 
     ngOnInit() {
-        this.appService.showSideBarMenu("immigrationview-petition", "petitions");
+        this.headerService.showSideBarMenu("immigrationview-petition", "petitions");
         this.petitionNotesService.getPetitionDetails(this.appService.petitionId).subscribe((res) => {
             if (res['petitionInfo'] != undefined) {
                 this.petitionDetails = res['petitionInfo'];
@@ -50,7 +51,7 @@ export class NotesComponent implements OnInit {
     onSaveNotesClick() {
         this.petitionDetails['petitionId'] = this.appService.petitionId;
         this.petitionDetails['notes'] = this.petitionDetails.notes;
-        this.petitionNotesService.savePetitionDetails(this.petitionDetails, this.appService.user.userId)
+        this.petitionNotesService.savePetitionDetails(this.petitionDetails, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isNotesEdit = true;
                 if (res['petitionInfo'] != undefined) {

@@ -3,6 +3,7 @@ import { ReportsCommonService } from '../../common/reports-common.service';
 import { SuperUserTotalPetitionsReportsService } from './totalpetitions.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-superuserusertotalpetitions',
@@ -21,7 +22,8 @@ export class SuperUserTotalPetitionsReportsComponent implements OnInit {
     public fullname: any = [];
     public finalLbl: any = [];
     public selectedaccountId: string;
-    constructor(public appService: AppService, private superUserTotalPetitionsReportsService: SuperUserTotalPetitionsReportsService, public reportsCommonService: ReportsCommonService) { }
+    constructor(private superUserTotalPetitionsReportsService: SuperUserTotalPetitionsReportsService,
+                public reportsCommonService: ReportsCommonService, public headerService: HeaderService) { }
     ngOnInit() {
         this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
@@ -33,7 +35,7 @@ export class SuperUserTotalPetitionsReportsComponent implements OnInit {
     }
     getreports() {
 
-        this.superUserTotalPetitionsReportsService.gettotalpetitionsreports(this.appService.user.accountId)
+        this.superUserTotalPetitionsReportsService.gettotalpetitionsreports(this.headerService.user.accountId)
             .subscribe((res) => {
                 if (res['orgs']) {
                     this.orgsList = res['orgs'];

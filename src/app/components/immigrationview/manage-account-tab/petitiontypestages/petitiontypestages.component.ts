@@ -7,6 +7,7 @@ import {ManageAccountPetitionStagesService} from './petitiontypestages.service';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService } from "ng2-bootstrap-modal";
 import {ImmigrationViewPetitionsService} from "../../clients-tab/client-details/petitions/petitions.service";
+import {HeaderService} from "../../../common/header/header.service";
 @Component({
     selector: 'app-manageaccount-petitiontypestages',
     templateUrl: './petitiontypestages.component.html',
@@ -41,8 +42,8 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
     private selectedPetitionType: any = {};
 
 
-    constructor(private dragulaService: DragulaService, private manageAccountPetitionStagesService: ManageAccountPetitionStagesService, private appService: AppService, private dialogService: DialogService,
-                private immigrationViewPetitionsService: ImmigrationViewPetitionsService) {
+    constructor(private dragulaService: DragulaService, private manageAccountPetitionStagesService: ManageAccountPetitionStagesService,
+                private dialogService: DialogService, private immigrationViewPetitionsService: ImmigrationViewPetitionsService, private headerService: HeaderService) {
         this.setClickedRowstages = function (selectedpetitionstages, index) {
             this.deletetrue = true;
             this.edittrue = true;
@@ -76,7 +77,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
             this.saveBtn = false;
             this.addStages = false;
             var petitionname = this.addPetionStagesName;
-            var petitionstages = { "accountId": this.appService.user.accountId, "petitionStageName": petitionname, "petitionTypeId": petitionstage[0].petitionTypeId };
+            var petitionstages = { "accountId": this.headerService.user.accountId, "petitionStageName": petitionname, "petitionTypeId": petitionstage[0].petitionTypeId };
             this.manageAccountPetitionStagesService.addPetitionStage(petitionstages).subscribe((res) => {
                 if (res.statusCode == "SUCCESS") {
                     this.getpetitionstages();
@@ -91,7 +92,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
             if (this.updatename != undefined){
                 stage.name = this.updatename;
             }
-            var updatedname = { "accountId": this.appService.user.accountId, "petitionStages": [stage], "petitionTypeId": stage.petitionTypeId};
+            var updatedname = { "accountId": this.headerService.user.accountId, "petitionStages": [stage], "petitionTypeId": stage.petitionTypeId};
             this.manageAccountPetitionStagesService.updatePetitionStage(updatedname).subscribe((res) => {
                 if (res.statusCode == "SUCCESS") {
 
@@ -107,7 +108,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
             }
             var req = {
                 petitionStages: this.petitionStages,
-                accountId: this.appService.user.accountId,
+                accountId: this.headerService.user.accountId,
                 petitionTypeId: this.selectedPetitionType['petitionTypeId']
             };
 
@@ -158,7 +159,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
     onClickOfPetitionType(petitionType,index) {
         this.selectedIdx = index;
         this.selectedPetitionType = petitionType;
-        this.manageAccountPetitionStagesService.getPetitionStages(petitionType['petitionTypeId'], this.appService.user.accountId).subscribe(
+        this.manageAccountPetitionStagesService.getPetitionStages(petitionType['petitionTypeId'], this.headerService.user.accountId).subscribe(
             res => {
                 this.petitionStages = res['petitionStageList'];
             }
@@ -229,7 +230,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
     }
 
     getpetitionstages() {
-        this.manageAccountPetitionStagesService.getPetitionStages(this.selectedPetitionType['petitionTypeId'], this.appService.user.accountId).subscribe(
+        this.manageAccountPetitionStagesService.getPetitionStages(this.selectedPetitionType['petitionTypeId'], this.headerService.user.accountId).subscribe(
             res => {
                 this.petitionStages = res['petitionStageList'];
                 for (var stage of this.petitionStages){

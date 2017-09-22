@@ -2,6 +2,7 @@ import {AppService} from '../../../../services/app.service';
 import {Component, OnInit} from '@angular/core';
 import {ManageAccountShippingAddressService} from "./shippingaddress.service";
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {HeaderService} from "../../../common/header/header.service";
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -25,22 +26,22 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
   public beforeshippingEdit: any;
   public settings;
   constructor(private manageAccountShippingAddressService: ManageAccountShippingAddressService, private appService: AppService,
-    public dialogService: DialogService) {
+    public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
     this.settings = {
-       
+
       'columnsettings': [
         {
 
           headerName: "SL.NO",
           field: "slNo",
-      
+
         },
         {
 
           headerName: "Address Name",
           field: "addressName",
-        
+
 
         },
         {
@@ -57,7 +58,7 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
   getaccountid = function(accountid) {
   }
   getShippingDetails() {
-    this.manageAccountShippingAddressService.getShipmentAddress(this.appService.user.accountId)
+    this.manageAccountShippingAddressService.getShipmentAddress(this.headerService.user.accountId)
       .subscribe((res) => {
 
         for (var i = 0; i < res.length; i++) {
@@ -80,7 +81,7 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
       title: 'Add Shipping Address',
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.appService.addAdress['accountId'] = this.appService.user.accountId;
+        this.appService.addAdress['accountId'] = this.headerService.user.accountId;
         this.manageAccountShippingAddressService.createShipmentAddress(this.appService.addAdress).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getShippingDetails();

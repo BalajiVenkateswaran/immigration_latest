@@ -4,8 +4,7 @@
             <div class="col-md-12">
                 <span class="listofusers">Select Petition Type</span>
                 <select class="form-control" [(ngModel)]="selectedsubtype" (change)="petitionsubtypechange()" style="max-width:250px;">
-                    <option value="H1B">H1B</option>
-                    <option value="L1">L1A</option>
+                    <option *ngFor="let type of petitionstageTypes" value={{type.petitiontype}}>{{type.petitiontype}}</option>
                 </select>
             </div>
             <div class="col-md-6" *ngFor="let org of orgsNames">

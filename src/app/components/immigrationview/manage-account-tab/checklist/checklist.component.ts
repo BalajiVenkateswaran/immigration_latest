@@ -6,6 +6,7 @@ import { checklistdownloadButton } from './downloadButton';
 import { checklistuploadButton } from './uploadButton';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {ManageAccountPetitionStagesService} from '../petitiontypestages/petitiontypestages.service';
+import {HeaderService} from "../../../common/header/header.service";
 
 export interface ConfirmModel {
   title: string;
@@ -23,7 +24,7 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
   public fileId: any;
   public petitionTypes: any;
   constructor(public dialogService: DialogService, public manageAccountCheckListService: ManageAccountChecklistService,
-      public appService: AppService, public manageAccountPetitionStagesService: ManageAccountPetitionStagesService) {
+      public headerService: HeaderService, public manageAccountPetitionStagesService: ManageAccountPetitionStagesService) {
     super(dialogService);
     this.settings = {
         'isAddButtonEnable': false,
@@ -70,7 +71,7 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
 
   }
   getchecklist() {
-      this.manageAccountCheckListService.getChecklist(this.appService.selacntId).subscribe(res => {
+      this.manageAccountCheckListService.getChecklist(this.headerService.user.accountId).subscribe(res => {
           this.data = res['accountCheckList'];
           for (var i = 0; i < this.data.length; i++) {
               this.data[i]['slNo'] = i + 1;
@@ -78,6 +79,6 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
       });
   }
 
- 
+
 
 }

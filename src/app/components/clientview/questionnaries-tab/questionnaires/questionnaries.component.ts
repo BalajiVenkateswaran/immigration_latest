@@ -4,6 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
 import {QuestionnaireCommonService} from "../../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service";
+import {HeaderService} from "../../../common/header/header.service";
 @Component({
   selector: 'app-petitions-Questionnaires.component',
   templateUrl: './questionnaries.component.html',
@@ -27,7 +28,7 @@ export class clientviewQuestionnaireComponent implements OnInit {
   private formsList: any[] = [];
 
   constructor(private router: Router, public appService: AppService, private clientQuestionnaireSerivce: ClientQuestionnaireService,
-    public questionnaireCommonService: QuestionnaireCommonService) {
+    public questionnaireCommonService: QuestionnaireCommonService, public headerService: HeaderService) {
 
     this.settings = {
       "isAddButtonEnable": false,
@@ -58,7 +59,7 @@ export class clientviewQuestionnaireComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appService.showSideBarMenu("clientview-Questionnaire", "clientview-Questionnaries");
+    this.headerService.showSideBarMenu("clientview-Questionnaire", "clientview-Questionnaries");
     this.clientQuestionnaireSerivce.getQuestionnaireForClient(this.appService.clientId).subscribe(
       (res) => {
         if (res['statusCode'] == 'SUCCESS') {

@@ -7,6 +7,7 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../common/header/header.service";
 
 export interface ConfirmModel {
   title: string;
@@ -40,7 +41,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
   public settings;
   public data;
 
-  constructor(private visasService: VisasService, public appService: AppService, public dialogService: DialogService) {
+  constructor(private visasService: VisasService, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
     super(dialogService);
     this.addVisa = new FormGroup({
       country: new FormControl(''),
@@ -88,7 +89,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
   }
 
   getClientviewvisa() {
-    this.visasService.getClientVisas(this.appService.user.userId)
+    this.visasService.getClientVisas(this.headerService.user.userId)
       .subscribe((res) => {
         this.data = res['visas'];
 

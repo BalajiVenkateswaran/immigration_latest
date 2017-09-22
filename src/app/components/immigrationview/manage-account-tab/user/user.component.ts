@@ -5,6 +5,7 @@ import {ManageAccountUserService} from "./user.service";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {SortType} from "../../../framework/smarttable/types/query-parameters";
+import {HeaderService} from "../../../common/header/header.service";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -38,7 +39,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     public paginationData: any;
 
     constructor(private manageAccountUserService: ManageAccountUserService,
-        private appService: AppService, public dialogService: DialogService) {
+        private appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
         super(dialogService);
         this.settings = {
           'customPanel': true,
@@ -71,7 +72,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         }
     }
     getManageUsers() {
-        this.manageAccountUserService.getUsers(this.appService.user.accountId, this.queryParams)
+        this.manageAccountUserService.getUsers(this.headerService.user.accountId, this.queryParams)
             .subscribe((res) => {
                 for (var user of res['users']) {
                     user['roleName'] = user['role'];
@@ -82,7 +83,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             });
     }
     ngOnInit() {
-        this.appService.showSideBarMenu("manageaccount", "manageaccount-user");
+        this.headerService.showSideBarMenu("manageaccount", "manageaccount-user");
         //this.getManageUsers();
 
     }
@@ -111,7 +112,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     }
     manageUserSave(email,roles) {
         this.addUsers['role'] = this.roles[this.addUsers['role']];
-        this.addUsers['accountId'] = this.appService.user.accountId;
+        this.addUsers['accountId'] = this.headerService.user.accountId;
         if ((this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || roles.value=='' || roles.value==null || roles.value==undefined)) {
             this.warningMessage = true;
 
@@ -141,7 +142,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         })
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    this.manageAccountUserService.deleteUser(event.data['userId'], this.appService.user.accountId, this.appService.user.userId).subscribe((res) => {
+                    this.manageAccountUserService.deleteUser(event.data['userId'], this.headerService.user.accountId, this.headerService.user.userId).subscribe((res) => {
                         if (res['statusCode'] == 'SUCCESS') {
                             this.getManageUsers();
                         }
@@ -156,7 +157,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         this.queryParams=queryData;
         this.getManageUsers();
       }
-      
+
     }
     capitialize(data){
     if(this.addUsers['firstName']){

@@ -4,6 +4,7 @@ import {passportinfo} from "../../../../models/passportinfo";
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import {AppService} from "../../../../services/app.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../common/header/header.service";
 
 export interface formControl {
     name: string;
@@ -31,7 +32,7 @@ export class PassportInfoComponent implements OnInit {
     countryofbirth;
 
     constructor(private PassportInfoService: PassportInfoService,
-        private formBuilder: FormBuilder, public appService: AppService) {
+        private formBuilder: FormBuilder, public appService: AppService, public headerService: HeaderService) {
     }
     private myDatePickerOptions: IMyOptions = {
         // other options...
@@ -41,7 +42,7 @@ export class PassportInfoComponent implements OnInit {
     private beforeCancelPassport;
     ngOnInit() {
 
-        this.PassportInfoService.getFile(this.appService.user.userId)
+        this.PassportInfoService.getFile(this.headerService.user.userId)
             .subscribe((res) => {
                 console.log("filesGetmethod%o", res);
                 this.passportDetailsFileList = res['passport'];
@@ -133,7 +134,7 @@ export class PassportInfoComponent implements OnInit {
         if (this.passportDetailsFileList['dateOfBirth'] && this.passportDetailsFileList['dateOfBirth']['formatted']) {
             this.passportDetailsFileList['dateOfBirth'] = this.passportDetailsFileList['dateOfBirth']['formatted'];
         }
-        this.passportDetailsFileList['clientId'] =  this.appService.user.userId;
+        this.passportDetailsFileList['clientId'] =  this.headerService.user.userId;
         this.PassportInfoService.savePassportDetails(this.passportDetailsFileList)
             .subscribe((res) => {
                 console.log(res);

@@ -12,4 +12,7 @@ export class petitionstagsreportsservice {
         console.log("petiontypereportsreports|getstatus|", accountId);
         return this.restService.getData("/immigration/account/" + accountId + "/petition/tag");
     }
+    public getpetitonstags(accountId: string) {
+        return this.restService.getData("/immigration/getTags/" + accountId );
+    }
 }

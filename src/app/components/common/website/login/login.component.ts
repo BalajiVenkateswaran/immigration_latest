@@ -60,7 +60,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       password: new FormControl('')
     });
 
-    if (this.appService.user) {
+    if (this.headerService.user) {
       this.appService.moveToPage("petitions");
     }
     this.loginservice.getIPAndLocation().subscribe(res=>{
@@ -74,6 +74,10 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   }
 
   ngOnInit(): void {
+    this.appService.showMenu = false;
+    this.appService.showHeader = false;
+    this.appService.showFooter = false;
+    this.appService.expandMenu = false;
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
     this.appService.currentPage = 'login';
     this.forgotPwd = true;
@@ -117,17 +121,17 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     if (isValid) {
       this.loginservice.login(model).subscribe((res: any) => {
         console.log("Login User %o", res);
-        //if(res.uiBuildNumber != null && LoginComponent.uiBuildNumber != res.uiBuildNumber){
-        //  this.close();
-        //  this.dialogService.addDialog(ConfirmComponent, {
-        //    title: 'Information',
-        //    message: 'Page will be reloaded to get the latest updates'
-        //  }).subscribe((isConfirmed) => {
-        //      window.location.reload(true);
-        //  });
+        if(res.uiBuildNumber != null && LoginComponent.uiBuildNumber != res.uiBuildNumber){
+          this.close();
+          this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Information',
+            message: 'Page will be reloaded to get the latest updates'
+          }).subscribe((isConfirmed) => {
+            window.location.reload(true);
+          });
 
-        //}
-            if (res.statusCode == "FAILURE") {
+        }
+        if (res.statusCode == "FAILURE") {
           this.message = res.statusDescription;
         } else {
 
@@ -151,37 +155,41 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
 
                 }
               });
-              this.appService.user = res.user;
+              this.headerService.user = res.user;
 
             }
             if (res.hasMultipleRoles == false) {
-              this.appService.user = res.user;
-              this.appService.selroleId = res.userAccountRoleList[0].roleId;
+              this.headerService.user = res.user;
+              this.headerService.selectedRoleId = res.userAccountRoleList[0].roleId;
               this.appService.rolemultiple = false;
               this.headerService.organizations = res.organizationList;
-              this.appService.user['roleName'] = res.userAccountRoleList[0].roleName;
-              this.appService.user.accountId = res.userAccountRoleList[0].accountId;
-              this.appService.selacntId = res.userAccountRoleList[0].accountId;
+              this.headerService.user['roleName'] = res.userAccountRoleList[0].roleName;
+              this.headerService.user.accountId = res.userAccountRoleList[0].accountId;
 
               if (res.userAccountRoleList[0].roleName == "Immigration Manager"
                 || res.userAccountRoleList[0].roleName == "Immigration Officer") {
                 this.appService.applicationViewMode = "Immigration";
                 this.headerService.selectedOrg = res.organizationList[0];
-                this.appService.currentTab = 'petitions';
+                this.headerService.currentTab = 'petitions';
                 this.appService.moveToPage("petitions");
               }
               if (res.userAccountRoleList[0].roleName == "Client") {
                 this.appService.applicationViewMode = "Client";
-                this.appService.clientId = this.appService.user.userId;
-                this.appService.currentTab = 'clientview-petitions';
+                this.appService.clientId = this.headerService.user.userId;
+                this.headerService.currentTab = 'clientview-petitions';
                 this.appService.moveToPage("clientview-petitions");
               }
               if (res.userAccountRoleList[0].roleName == "Super User") {
                 this.appService.applicationViewMode = "Superuser";
-                this.appService.currentTab = 'superuser-accounts';
+                this.headerService.currentTab = 'superuser-accounts';
                 this.appService.moveToPage("superuser-accounts");
               }
               this.getUsers();
+
+              this.appService.showHeader = true;
+              this.appService.showFooter = false;
+              this.appService.showMenu = false;
+              this.headerService.onHeaderPageLoad();
             }
 
           }
@@ -194,44 +202,48 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   }
 
   selectedRole(userdet) {
-
-    this.appService.selacntId = userdet.accountId;
-    this.appService.user.accountId = userdet.accountId;
-    this.appService.selroleId = userdet.roleId;
+    this.headerService.user.accountId = userdet.accountId;
+    this.headerService.selectedRoleId = userdet.roleId;
     this.appService.rolemultiple = true;
     this.result = true;
-    this.appService.user['roleName'] = userdet.roleName;
+    this.headerService.user['roleName'] = userdet.roleName;
     if (userdet.roleName == "Client") {
       this.appService.applicationViewMode = "Client";
-      this.appService.clientId = this.appService.user.userId;
-      this.appService.currentTab = 'clientview-petitions';
+      this.appService.clientId = this.headerService.user.userId;
+      this.headerService.currentTab = 'clientview-petitions';
       this.appService.moveToPage("clientview-petitions");
     }
     if (userdet.roleName == "Immigration Manager" || userdet.roleName == "Immigration Officer") {
       this.appService.applicationViewMode = "Immigration";
-      this.appService.currentTab = 'petitions';
+      this.headerService.currentTab = 'petitions';
       this.appService.moveToPage("petitions");
 
     }
     if (userdet.roleName == "Super User") {
       this.appService.applicationViewMode = "Superuser";
-      this.appService.currentTab = 'superuser-accounts';
+      this.headerService.currentTab = 'superuser-accounts';
       this.appService.moveToPage("superuser-accounts");
     }
+
+    this.appService.showHeader = true;
+    this.appService.showFooter = false;
+    this.appService.showMenu = false;
+
+    this.headerService.onHeaderPageLoad();
 
     this.loginservice.updateLoginHistory(this.appService.userLoginHistoryId, userdet.roleId).subscribe((res: any) => { });
     this.getUsers();
     this.close();
   }
   getUsers() {
-      this.manageAccountUserService.getUsers(this.appService.user.accountId, '')
-          .subscribe((res) => {
-              this.appService.usersList = res['users'];
-          });
+    this.manageAccountUserService.getUsers(this.headerService.user.accountId, '')
+      .subscribe((res) => {
+        this.appService.usersList = res['users'];
+      });
   }
   /**
-  *
-  */
+   *
+   */
   getRoleName(user) {
     return user.accountName == null ? user.roleName : user.roleName + ' in ' + user.accountName;
   }

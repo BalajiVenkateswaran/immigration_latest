@@ -7,6 +7,7 @@ import {AppService} from "../../../../services/app.service";
 import {ManageAccountChecklistService} from './checklist.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import {HeaderService} from "../../../common/header/header.service";
 
 
 @Component({
@@ -31,7 +32,7 @@ export class checklistuploadButton implements ICellRendererAngularComp {
       return false;
     }
 
-    constructor(private manageAccountChecklistService: ManageAccountChecklistService, public appService: AppService, public dialogService: DialogService) {
+    constructor(private manageAccountChecklistService: ManageAccountChecklistService, public headerService: HeaderService, public dialogService: DialogService) {
     }
 
     fileUpload(event) {
@@ -44,7 +45,7 @@ export class checklistuploadButton implements ICellRendererAngularComp {
         if (fileList.length > 0 && y[1] == "pdf") {
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
-            this.manageAccountChecklistService.uploadFile(this.appService.selacntId,this.params.data.petitionTypeId,formData)
+            this.manageAccountChecklistService.uploadFile(this.headerService.user.accountId,this.params.data.petitionTypeId,formData)
                 .subscribe(
                 res => {
                     console.log(res);

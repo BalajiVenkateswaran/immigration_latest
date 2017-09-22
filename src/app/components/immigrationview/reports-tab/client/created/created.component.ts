@@ -2,6 +2,7 @@
 import { clientscreatedreportsservice } from './created.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
   selector: 'app-clientcreated-report',
@@ -16,9 +17,10 @@ export class clientscreatedreportscomponent implements OnInit {
   public orgsNames: any = [];
   public yearMonth: any = [];
 
+  constructor(public headerService: HeaderService, private clientsCreatedreportsservice: clientscreatedreportsservice) {}
   ngOnInit() {
 
-    this.clientsCreatedreportsservice.getClientCreationreports(this.appService.user.accountId)
+    this.clientsCreatedreportsservice.getClientCreationreports(this.headerService.user.accountId)
       .subscribe((res) => {
         this.orgsList = res['orgs'];
         for (var item in this.orgsList) {
@@ -35,7 +37,6 @@ export class clientscreatedreportscomponent implements OnInit {
         }
       });
   }
-  constructor(public appService: AppService, private clientsCreatedreportsservice: clientscreatedreportsservice) {}
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,

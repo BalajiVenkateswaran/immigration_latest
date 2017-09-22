@@ -55,12 +55,12 @@ export class ManageaccountUserDetailsComponent implements OnInit {
         }
     }
     getUserDetails() {
-        this.manageAccountUserDetailsService.getUserDet(this.userId, this.appService.user.accountId).subscribe((res) => {
+        this.manageAccountUserDetailsService.getUserDet(this.userId, this.headerService.user.accountId).subscribe((res) => {
             this.userProfOrgsList = res['userOrgsDetail'];
             this.userList = res['userOrgsDetail']['userProfileInfo'];
             this.userList['role'] = res['userOrgsDetail']['userRoleInfo']['roleName'];
             this.userList['roleId'] = res['userOrgsDetail']['userRoleInfo']['roleId'];
-            this.userList['accountId'] = this.appService.user.accountId;
+            this.userList['accountId'] = this.headerService.user.accountId;
             this.orgsList = res['userOrgsDetail']['organizationsInfo'];
             if (this.userList.role == "Immigration Officer") {
                 this.isAccessEdit = true;

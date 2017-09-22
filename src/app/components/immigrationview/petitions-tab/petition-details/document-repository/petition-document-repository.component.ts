@@ -9,6 +9,8 @@ import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.compo
 import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
 import { PetitionDocumentRepositoryService } from "./petition-document-repository.service";
 import {SortType} from "../../../../framework/smarttable/types/query-parameters";
+import {HeaderService} from "../../../../common/header/header.service";
+import {FileUtils} from "../../../../common/FileUtils";
 
 export interface ConfirmModel {
     title: string;
@@ -34,11 +36,11 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     public editFiles: boolean;
     public editFileObject: any = {};
     public getData: boolean = true;
-    
+
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService,
-       public dialogService: DialogService) {
+       public dialogService: DialogService, public headerService: HeaderService) {
         super(dialogService);
-        this.accountId = this.appService.user.accountId;
+        this.accountId = this.headerService.user.accountId;
         this.settings = {
             'pagination': false,
             'isDeleteEnable': false,
@@ -85,7 +87,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             .subscribe((isConfirmed) => {
                 //Get dialog result
                 if (isConfirmed) {
-                    this.petitiondocumentrepositoryService.deleteFile(event.data.fileId).subscribe(res => {
+                    this.petitiondocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
                         this.getFilesList();
                     });
                 }
@@ -98,13 +100,12 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         let formData: FormData = new FormData();
-        var x = file.name;
+        var fileName = file.name;
         let fileExists = this.isfileExists(file);
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
 
             formData.append('file', file, file.name);
-            this.petitiondocumentrepositoryService.uploadFile(this.appService.petitionId, formData)
+            this.petitiondocumentrepositoryService.uploadFile(this.appService.petitionId,this.headerService.selectedOrg['orgId'], formData)
                 .subscribe(
                 res => {
                     this.getFilesList();
@@ -132,26 +133,20 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        var fileName = file.name;
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
-            message: 'Do you want to replace '+x+' file ?'
+            message: 'Do you want to replace '+fileName+' file ?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 let formData: FormData = new FormData();
-                var y = x.split(".");
-                if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
-
+                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
                     formData.append('file', file, file.name);
-
-                    this.petitiondocumentrepositoryService.replaceFile(event.data.fileId, formData)
-                        .subscribe(
-                        res => {
+                    this.petitiondocumentrepositoryService.replaceFile(event.data.fileId, this.headerService.selectedOrg['orgId'], formData)
+                        .subscribe(res => {
                             this.getFilesList();
-                        }
-                        );
-
+                        });
                 }
 
                 if (fileExists) {
@@ -160,7 +155,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                         message: 'File already exists'
                     });
                 }
-                if (y[1] !== 'pdf') {
+                if (!FileUtils.checkFileExtension(fileName)) {
                     this.dialogService.addDialog(ConfirmComponent, {
                         title: 'Error..!',
                         message: 'Please upload only PDF file'
@@ -180,7 +175,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
       return fileExists;
     }
     onDownloadClick(event) {
-        this.petitiondocumentrepositoryService.downloadFile(event.data.fileId).subscribe
+        this.petitiondocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
             (data => this.downloadFiles(data, event.data.fileName)),
             error => console.log("Error Downloading....");
         () => console.log("OK");
@@ -207,7 +202,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     }
     editFileName(event) {
         if (event.colDef.headerName != 'Actions') {
-            this.editFileObject.fileName = event.data.fileName.split(".")[0];
+            this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
             this.dialogService.addDialog(PetitionDocumentRepositoryComponent, {
                 editFiles: true,
                 getData: false,
@@ -220,6 +215,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                     var url = "/file/rename";
                     var data = {
                         "accountId": this.accountId,
+                        "orgId": this.headerService.selectedOrg['orgId'],
                         "fileId": event.data.fileId,
                         "fileName": this.editFileObject.fileName.concat(".pdf")
                     };

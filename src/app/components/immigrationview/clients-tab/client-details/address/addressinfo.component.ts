@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../../common/header/header.service";
 export interface formControl {
     name: string;
     value: FormControl;
@@ -48,7 +49,8 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
             dateFormat: 'mm-dd-yyyy',
             showClearDateBtn: false,
         };
-    constructor(private formBuilder: FormBuilder, public appService: AppService, private addressinfoservice: Addressinfoservice) {
+    constructor(private formBuilder: FormBuilder, public appService: AppService, private addressinfoservice: Addressinfoservice,
+                public headerService: HeaderService) {
         this.addressinfoservice.getClientAddress(this.appService.clientId)
             .subscribe((res) => {
                 console.log("clientaddress%o", res);
@@ -195,16 +197,16 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
             this.foreignedit = true;
         }
     }
-  
+
     saveClientAdress(addresstype) {
-    
+
         if (addresstype == "WORK") {
             this.WorkaddressinfoList.addressType = addresstype;
             if (this.WorkaddressinfoList['residingSince'] && this.WorkaddressinfoList['residingSince']['formatted']) {
                         this.WorkaddressinfoList['residingSince'] = this.WorkaddressinfoList['residingSince']['formatted'];
                     }
 
-            this.addressinfoservice.saveClientAddress(this.WorkaddressinfoList, this.appService.clientId,this.appService.user.userId)
+            this.addressinfoservice.saveClientAddress(this.WorkaddressinfoList, this.appService.clientId,this.headerService.user.userId)
                 .subscribe((res) => {
                     this.workedit = true;
                     if (res['clientAddress']) {
@@ -218,7 +220,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
                                     this.ResidenceaddressinfoList['residingSince'] = this.ResidenceaddressinfoList['residingSince']['formatted'];
                                 }
 
-            this.addressinfoservice.saveClientAddress(this.ResidenceaddressinfoList, this.appService.clientId,this.appService.user.userId)
+            this.addressinfoservice.saveClientAddress(this.ResidenceaddressinfoList, this.appService.clientId,this.headerService.user.userId)
                 .subscribe((res) => {
                     this.residenceedit = true;
                     if (res['clientAddress']) {
@@ -228,7 +230,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
         }
         if (addresstype == "MAILING") {
             this.MailingaddressinfoList.addressType = addresstype;
-            this.addressinfoservice.saveClientAddress(this.MailingaddressinfoList, this.appService.clientId,this.appService.user.userId)
+            this.addressinfoservice.saveClientAddress(this.MailingaddressinfoList, this.appService.clientId,this.headerService.user.userId)
                 .subscribe((res) => {
                     this.mailingedit = true;
                     if (res['clientAddress']) {
@@ -240,7 +242,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
         }
         if (addresstype == "FOREIGN") {
             this.ForiegnaddressinfoList.addressType = addresstype;
-            this.addressinfoservice.saveClientAddress(this.ForiegnaddressinfoList, this.appService.clientId,this.appService.user.userId)
+            this.addressinfoservice.saveClientAddress(this.ForiegnaddressinfoList, this.appService.clientId,this.headerService.user.userId)
             .subscribe((res) => {
                 this.foreignedit = true;
                 if (res['clientAddress']) {

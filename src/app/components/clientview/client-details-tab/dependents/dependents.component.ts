@@ -6,6 +6,7 @@ import {AppService} from "../../../../services/app.service";
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {HeaderService} from "../../../common/header/header.service";
 
 
 export interface ConfirmModel {
@@ -36,7 +37,7 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
   public editFlag: boolean = true;
   public beforeEdit: any;
   public warningMessage: boolean = false;
-  constructor(private dependentService: DependentService, public appService: AppService, public dialogService: DialogService) {
+  constructor(private dependentService: DependentService, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -69,7 +70,7 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
   }
 
   getCVDpntData() {
-    this.dependentService.getDependentSummary(this.appService.user.userId).subscribe((res) => {
+    this.dependentService.getDependentSummary(this.headerService.user.userId).subscribe((res) => {
       this.data = res['dependents'];
       this.appService.dependents = res['dependents'];
     });
@@ -106,7 +107,7 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
       }).join(' ');
       record.lastName=capitalizedLastName;
     }
-    
+
   }
   addFunction() {
     this.dialogService.addDialog(DependentsComponent, {
@@ -161,11 +162,11 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
     this.result = false;
     this.close();
   }
-  
+
 
 
   onCreateConfirm(event): void {
-    event.newData['clientId'] = this.appService.user.userId;
+    event.newData['clientId'] = this.headerService.user.userId;
     this.dependentService.saveDependentsSummary(event.newData).subscribe((res) => {
       this.message = res['statusCode'];
       if (this.message == 'SUCCESS') {

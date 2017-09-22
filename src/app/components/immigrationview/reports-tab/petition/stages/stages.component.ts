@@ -2,6 +2,8 @@
 import { petitionstagesreportsservice } from './stages.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
+import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/petitiontypestages/petitiontypestages.service';
 
 
 @Component({
@@ -18,8 +20,17 @@ export class petitionstagesreportscomponent implements OnInit {
     public orgsNames: any = [];
     public count: any = [];
     public stages: any = [];
-    ngOnInit() {
-        this.petitionStagesreportsservice.getpetitonStagereports(this.appService.user.accountId)
+    public petitionstageTypes: any = [];
+    constructor(public headerService: HeaderService, private petitionStagesreportsservice: petitionstagesreportsservice, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
+
+  ngOnInit() {
+      this.immigrationViewPetitionsService.getPetitionTypes().subscribe(
+          res => {
+              console.log(res);
+              this.petitionstageTypes = res['petitionTypes'];
+              
+          });
+        this.petitionStagesreportsservice.getpetitonStagereports(this.headerService.user.accountId)
             .subscribe((res) => {
                 console.log(res);
                 this.orgsList = res['orgs'];
@@ -36,8 +47,6 @@ export class petitionstagesreportscomponent implements OnInit {
                 }
             });
     }
-
-    constructor(public appService: AppService, private petitionStagesreportsservice: petitionstagesreportsservice) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

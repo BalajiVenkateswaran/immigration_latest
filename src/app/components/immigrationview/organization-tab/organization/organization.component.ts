@@ -44,7 +44,7 @@ export class OrganizationComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.appService.showSideBarMenu("organization", "organization");
+      this.headerService.showSideBarMenu("organization", "organization");
 
       this.organizationService.getOrganizationDetails(this.headerService.selectedOrg['orgId'])
         .subscribe((res) => {
@@ -95,7 +95,7 @@ export class OrganizationComponent implements OnInit {
             this.warningMessage = true;
         } else {
             this.warningMessage = false;
-            this.organizationService.saveOrgDetails(this.orgDetails, this.appService.user.userId)
+            this.organizationService.saveOrgDetails(this.orgDetails, this.headerService.user.userId)
                 .subscribe((res) => {
                     this.isProfileEdit = true;
                     if (res['organizationDetails']) {

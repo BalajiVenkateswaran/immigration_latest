@@ -5,6 +5,7 @@ import {AppService} from "../../../../../services/app.service";
 import {RestService} from "../../../../../services/rest.service";
 import {SuperUsersOpenPetitionService} from "./openpetitions.service";
 import {ReportsCommonService} from "../../common/reports-common.service";
+import {HeaderService} from "../../../../common/header/header.service";
 
 
 @Component({
@@ -24,7 +25,7 @@ export class SuperUserOpenPetitionComponent implements OnInit {
     public fullMonth: any = [];
     public selectedaccountId: string;
 
-    constructor(public appService: AppService, private superUsersopenpetitionservice: SuperUsersOpenPetitionService,
+    constructor(public headerService: HeaderService, private superUsersopenpetitionservice: SuperUsersOpenPetitionService,
         public reportsCommonService: ReportsCommonService) { }
 
 
@@ -39,7 +40,7 @@ export class SuperUserOpenPetitionComponent implements OnInit {
     }
 
     getreports() {
-        this.superUsersopenpetitionservice.getuseropenpetitions(this.appService.user.accountId)
+        this.superUsersopenpetitionservice.getuseropenpetitions(this.headerService.user.accountId)
             .subscribe((res) => {
                 console.log(res);
                 this.orgsList = res['orgs'];

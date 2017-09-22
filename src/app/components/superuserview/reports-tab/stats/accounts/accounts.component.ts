@@ -2,6 +2,7 @@
 import { statsaccountsservice } from './accounts.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-statsaccountsreports',
@@ -10,11 +11,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class statsaccountscomponent implements OnInit {
-  
-    ngOnInit() {
-        this.appService.showSideBarMenu("superuser-reports", "superuser-statsaccounts");
-    }
-    constructor(public appService: AppService, private statsAccountsservice: statsaccountsservice) {
+
+  constructor(public headerService: HeaderService, private statsAccountsservice: statsaccountsservice) {
+  }
+  ngOnInit() {
+        this.headerService.showSideBarMenu("superuser-reports", "superuser-statsaccounts");
     }
     public barChartOptions: any = {
         scaleShowVerticalLines: false,

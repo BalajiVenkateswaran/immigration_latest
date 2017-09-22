@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {ICellRendererAngularComp} from 'ag-grid-angular/main';
 import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs';
-import {Subscription} from 'rxjs/Subscription';
 import {ClientRequestService} from "./request.service";
-import {AppService} from "../../../services/app.service";
+import {HeaderService} from "../../common/header/header.service";
+
 @Component({
   template: `
     <div *ngIf="buttonVisible==true">
@@ -46,14 +45,14 @@ export class RequestButton implements ICellRendererAngularComp {
       this.buttonVisible = false;
     }
   }
-  constructor(private clientviewrequestservice: ClientRequestService, public appService: AppService) {
+  constructor(private clientviewrequestservice: ClientRequestService, public headerService: HeaderService) {
   }
   onRequestClick() {
     this.updateStatus['clientInviteId'] = this.params.data.clientInviteId;
     this.updateStatus['status'] = "Accept";
     this.clientviewrequestservice.updateClientInviteStatus(this.updateStatus).subscribe((res) => {
       if (res['statusCode'] == "SUCCESS") {
-        this.clientviewrequestservice.getClientInvites(this.appService.user.userId).subscribe(res => {
+        this.clientviewrequestservice.getClientInvites(this.headerService.user.userId).subscribe(res => {
           if (res['statusCode'] == "SUCCESS") {
             let invite = res['clientInvite'].filter(item => {
               if (item['clientInviteId'] == this.params.data.clientInviteId) {
@@ -73,7 +72,7 @@ export class RequestButton implements ICellRendererAngularComp {
     this.updateStatus['status'] = "Decline";
     this.clientviewrequestservice.updateClientInviteStatus(this.updateStatus).subscribe((res) => {
       if (res['statusCode'] == "SUCCESS") {
-        this.clientviewrequestservice.getClientInvites(this.appService.user.userId).subscribe(res => {
+        this.clientviewrequestservice.getClientInvites(this.headerService.user.userId).subscribe(res => {
           if (res['statusCode'] == "SUCCESS") {
             let invite = res['clientInvite'].filter(item => {
               if (item['clientInviteId'] == this.params.data.clientInviteId) {

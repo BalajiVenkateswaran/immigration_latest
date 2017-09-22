@@ -2,6 +2,7 @@
 import {clientstatusreportsservice} from './status.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 
 @Component({
@@ -15,9 +16,9 @@ export class clientstatusreportscomponent implements OnInit {
     public orgsNames: any = [];
     public open: any = [];
     public closed: any = [];
-  constructor(public appService: AppService, private clientStatusreportsservice: clientstatusreportsservice) {}
+  constructor(public appService: AppService, private clientStatusreportsservice: clientstatusreportsservice, public headerService: HeaderService) {}
   ngOnInit() {
-    this.clientStatusreportsservice.getclientstatusreports(this.appService.user.accountId)
+    this.clientStatusreportsservice.getclientstatusreports(this.headerService.user.accountId)
       .subscribe((res) => {
         console.log(res);
         this.barChartData = [];

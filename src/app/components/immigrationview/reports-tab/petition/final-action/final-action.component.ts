@@ -2,6 +2,7 @@
 import { petitionfinalactionservice } from './final-action.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-petitionfinalaction',
@@ -18,7 +19,7 @@ export class petitionfinalactioncomponent implements OnInit {
     public count: any = [];
     public status: any = [];
     ngOnInit() {
-        this.petitionFinalactionservice.getfinalstatus(this.appService.user.accountId)
+        this.petitionFinalactionservice.getfinalstatus(this.headerService.user.accountId)
             .subscribe((res) => {
                 console.log(res);
                 this.orgsList = res['orgs'];
@@ -39,7 +40,7 @@ export class petitionfinalactioncomponent implements OnInit {
             });
     }
 
-    constructor(public appService: AppService, private petitionFinalactionservice: petitionfinalactionservice) { }
+    constructor(public headerService: HeaderService, private petitionFinalactionservice: petitionfinalactionservice) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

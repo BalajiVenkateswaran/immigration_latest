@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {passportInfoService} from "./passport-info.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-passport-info',
@@ -20,7 +21,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
     private expirationDate: string;
     private dateOfBirth: string;
     public warningMessage:boolean=false;
-    constructor(public appService: AppService, private passportinfoservice: passportInfoService) {
+    constructor(public appService: AppService, private passportinfoservice: passportInfoService, public headerService: HeaderService) {
     }
 
     private myDatePickerOptions: IMyOptions = {
@@ -97,7 +98,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
         else{
             this.warningMessage=false;
              this.passport['clientId'] = this.appService.clientId;
-            this.passportinfoservice.savePassport(this.passport, this.appService.user.userId)
+            this.passportinfoservice.savePassport(this.passport, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isEdit = true;
                 if (res['passport']) {

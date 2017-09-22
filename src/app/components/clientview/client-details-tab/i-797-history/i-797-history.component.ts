@@ -7,6 +7,7 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../common/header/header.service";
 
 
 export interface ConfirmModel {
@@ -43,7 +44,8 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
     showClearDateBtn: false,
   };
 
-  constructor(private i797HistoryService: I797HistoryService, public appService: AppService, public dialogService: DialogService) {
+  constructor(private i797HistoryService: I797HistoryService, public appService: AppService, public dialogService: DialogService,
+              public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -81,11 +83,11 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
     this.geti797Data();
   }
   geti797Data() {
-    this.i797HistoryService.getI797Details(this.appService.user.userId).subscribe((res) => {
+    this.i797HistoryService.getI797Details(this.headerService.user.userId).subscribe((res) => {
       this.data = res['i797HistoryList'];
     });
   }
-  
+
   addFunction() {
     this.dialogService.addDialog(I797HistoryComponent, {
       showAddi797popup: true,

@@ -7,6 +7,7 @@ import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {HeaderService} from "../../../../common/header/header.service";
 
 export interface formControl {
     name: string;
@@ -47,7 +48,7 @@ export class DependentDetailsComponent implements OnInit {
 
     constructor(private dependentDetailsService: DependentDetailsService,
         private formBuilder: FormBuilder, private appService: AppService,
-        private route: ActivatedRoute,
+        private route: ActivatedRoute, private headerService: HeaderService,
           private router: Router) {
     }
 
@@ -141,7 +142,7 @@ export class DependentDetailsComponent implements OnInit {
         else{
             this.warningMessage = false;
             this.mapFromClientProfile();
-            this.dependentDetailsService.saveDependentDetails(this.dependent,this.appService.user.userId)
+            this.dependentDetailsService.saveDependentDetails(this.dependent,this.headerService.user.userId)
             .subscribe((res) => {
                 this.isProfileEdit = true;
                 if (res['dependent']) {
@@ -165,7 +166,7 @@ export class DependentDetailsComponent implements OnInit {
 
         this.mapFromClientPersonalInfo();
 
-          this.dependentDetailsService.saveDependentDetails(this.dependent,this.appService.user.userId)
+          this.dependentDetailsService.saveDependentDetails(this.dependent,this.headerService.user.userId)
             .subscribe((res) => {
                 this.isPersonalInfoEdit = true;
                 if (res['dependent']) {

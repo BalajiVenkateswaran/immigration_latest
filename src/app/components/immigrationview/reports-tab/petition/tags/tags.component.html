@@ -1,6 +1,12 @@
 ﻿<div class="main-content">
     <div class="table-data-forms">
         <div class="row">
+            <div class="col-md-12">
+                <span class="listofusers">Select Tag</span>
+                <select class="form-control" [(ngModel)]="selectedtag" (change)="tagchange()" style="max-width:250px;">
+                    <option *ngFor="let tag of petitiontags" value={{tag}}>{{tag}}</option>
+                </select>
+            </div>
             <div class="col-md-6" *ngFor="let org of orgsNames">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">

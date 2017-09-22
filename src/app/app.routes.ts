@@ -106,7 +106,6 @@ import { petitionstagsreportscomponent } from './components/immigrationview/repo
 import { petitionstypesreportscomponent } from './components/immigrationview/reports-tab/petition/type/type.component';
 import { clientstatusreportscomponent } from './components/immigrationview/reports-tab/client/status/status.component';
 import { SuperUserPetitionStageReportsComponent } from './components/superuserview/reports-tab/petitions/stage/stage.component';
-import { SuperUserL1AReportsComponent } from './components/superuserview/reports-tab/petitions/petitiontypeL1A/petitionsubtypeL1A.component';
 import { SuperUserH1BReportsComponent } from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
 import { SuperUserPetitionTagReportsComponent } from './components/superuserview/reports-tab/petitions/tag/tag.component';
 import {superuserstatsclientsReportsComponent} from './components/superuserview/reports-tab/stats/clients/clients.component';
@@ -577,10 +576,6 @@ export const appRoutes: Routes = [
     {
         path: 'superuser-petiontypes',
         component: SuperUserH1BReportsComponent
-    },
-    {
-        path: 'superuser-petiontypesL1A',
-        component: SuperUserL1AReportsComponent
     },
     {
         path: 'superuser-petionstagereports',
