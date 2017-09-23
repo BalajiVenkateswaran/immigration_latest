@@ -21,6 +21,8 @@ export class petitionstagesreportscomponent implements OnInit {
     public count: any = [];
     public stages: any = [];
     public petitionstageTypes: any = [];
+    public selectedsubtype: string;
+    public petitionsubtypechange: any;
     constructor(public headerService: HeaderService, private petitionStagesreportsservice: petitionstagesreportsservice, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class petitionstagesreportscomponent implements OnInit {
           res => {
               console.log(res);
               this.petitionstageTypes = res['petitionTypes'];
-              
+
           });
         this.petitionStagesreportsservice.getpetitonStagereports(this.headerService.user.accountId)
             .subscribe((res) => {

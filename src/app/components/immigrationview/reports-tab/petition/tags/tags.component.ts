@@ -19,6 +19,8 @@ export class petitionstagsreportscomponent implements OnInit {
     public count: any = [];
     public tags: any = [];
     public petitiontags: any = [];
+    public selectedtag: any;
+    public tagchange: any;
   constructor(public headerService: HeaderService, private petitionStagsreportsservice: petitionstagsreportsservice) { }
 
   ngOnInit() {
