@@ -17,7 +17,7 @@ export class HeaderService {
   private _currentTab: string;
   private _isBurgerMenuVisible: boolean;
 
-  constructor(private restService: RestService, private appService: AppService) {
+  constructor(private appService: AppService) {
   }
 
   get Immigrant(): string {
@@ -96,30 +96,6 @@ export class HeaderService {
     return this.selectedOrg != null && this.selectedOrg.orgType == HeaderService.delegatedOrgTypeConstant;
   }
 
-  public getUserOrgs(accountid: string, userid: string, roleid: string) {
-    return this.restService.getData("/org/account/" + accountid + "/user/" + userid + "/role/" + roleid);
-  }
-
-  public onHeaderPageLoad(){
-    this.invokeHeaderPageLoad(true);
-  }
-
-  public invokeHeaderPageLoad(isDestroy: boolean) {
-    if(isDestroy){
-        this.destroy();
-    }
-    this.getUserOrgs(this._user.accountId, this._user.userId, this._selectedRoleId).subscribe((res: any) => {
-      this.organizations = res.orgs;
-      if (this.organizations && this.organizations.length != 0) {
-        this.selectedOrg = this.organizations[0];
-      }
-      else {
-        this.selectedOrg = {'displayName' : ''};
-      }
-    });
-
-  }
-
   public showSideBarMenu(sideBarName, tab) {
     this._currentTab = tab;
     if (sideBarName == null || sideBarName == undefined) {
@@ -147,7 +123,14 @@ export class HeaderService {
     this._currentTab = null;
     this._isBurgerMenuVisible = null;
   }
-  getUsageSummaryDetails(accountId : String){
-    return this.restService.getData("/immigration/account/getProductUsageSummary/"+accountId);
+
+  logOut() {
+    this.destroy();
+    //Explict clean up of user object from headerService while logout
+    this._user = null;
+    this._selectedRoleId = null;
+
+    this.appService.destroy();
+    this.appService.moveToPage('');
   }
 }

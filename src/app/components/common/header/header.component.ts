@@ -7,6 +7,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService,DialogComponent} from "ng2-bootstrap-modal";
 import {MenuComponent} from "../menu/menu.component";
 import { HeaderService } from './header.service';
+import {HeaderComponentService} from "./header.component.service";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -30,7 +31,6 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   public orgnames: any = {};
   public header:boolean=true;
   public usageSummaryPopup:boolean=false;
-  public usageSummaryDetails;
   @ViewChild('orgSelect') vc;
 
   public ngAfterViewChecked():void {
@@ -48,17 +48,12 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   checkForCurrentTab(tab){
     return this.headerService.currentTab == tab;
   }
-  constructor(private router: Router, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
+  constructor(private router: Router, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
     super(dialogService);
-    this.headerService.onHeaderPageLoad();
+    this.headerComponentService.onHeaderPageLoad();
     if(this.headerService.user != null){
       this.user = this.headerService.user;
     }
-    this.headerService.getUsageSummaryDetails(this.user.accountId).subscribe(
-      res=>{
-        this.usageSummaryDetails=res;
-      }
-    )
   }
 
   editorgname() {
@@ -84,20 +79,19 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
       this.immigrationManager = this.headerService.user.roleName;
   }
   logOut() {
-      this.headerService.destroy();
-      //Explict clean up of user object from headerService while logout
-      this.headerService.user = null;
-      this.headerService.selectedRoleId = null;
-
-      this.appService.destroy();
-      this.appService.moveToPage('');
+      this.headerService.logOut();
   }
   onUsageSummaryClick(){
+    this.headerComponentService.getUsageSummaryDetails(this.user.accountId).subscribe(
+      res=>{
+        this.headerComponentService.usageSummaryDetails=res;
+      }
+    )
     this.dialogService.addDialog(HeaderComponent,{
       title:'Account Usage Summary',
       usageSummaryPopup:true,
       header:false
-    })
+    });
   }
 
   onLogoClick(){

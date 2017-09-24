@@ -146,6 +146,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
   }
 
   addNewPetition() {
+      
       this.dialogService.addDialog(ImmigrationViewPetitionsComponent, {
           showAddPetitionpopup: true,
           getPetitionsData: false,

@@ -37,7 +37,7 @@ export class switchButton implements ICellRendererAngularComp {
         this.headerService.selectedRoleId = params.data.roleId;
         this.appService.rolemultiple = true;
         this.headerService.user['roleName'] = params.data.roleName;
-        params.context.componentParent.headerService.onHeaderPageLoad();
+        params.context.componentParent.headerComponentService.onHeaderPageLoad();
         if (params.data.roleName == "Client") {
             this.appService.applicationViewMode = "Client";
             this.appService.clientId = params.context.componentParent.user.userId;

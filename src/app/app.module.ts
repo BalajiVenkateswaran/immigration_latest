@@ -294,6 +294,7 @@ import { webGetinTouchService } from './components/common/website/get-in-touch/g
 import { webFaqComponent } from './components/common/website/faqs/faqs.component';
 import { webFaqService } from './components/common/website/faqs/faqs.service';
 import {HomeComponent} from "./components/common/website/home/home.component";
+import {HeaderComponentService} from "./components/common/header/header.component.service";
 
 @NgModule({
   imports: [
@@ -456,13 +457,13 @@ import {HomeComponent} from "./components/common/website/home/home.component";
       Page3Component,
       Page4Component,
     HomeComponent
-
   ],
   providers: [
       { provide: APP_BASE_HREF, useValue: '/' },
       webImmigrationServicesService,
       webPricingService,
     HeaderService,
+    HeaderComponentService,
     CurrencyPipe,
     RestService,
     AppService,
