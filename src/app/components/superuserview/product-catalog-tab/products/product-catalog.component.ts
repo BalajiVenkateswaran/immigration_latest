@@ -64,6 +64,10 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
           field: "maxUsers"
         },
         {
+          headerName: "Max Orgs",
+          field: "maxOrgs"
+        },
+        {
           headerName: "Max Clients/Month",
           field: "maxClientsPerMonth"
         },
@@ -89,7 +93,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         },
         {
           headerName: "Created On",
-          field: "startDate"
+          field: "createdOn"
         }
       ]
     }
