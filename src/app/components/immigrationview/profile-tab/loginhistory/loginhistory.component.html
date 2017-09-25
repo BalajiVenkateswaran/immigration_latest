@@ -1,7 +1,10 @@
 ﻿<div class="main-content">
     <div class="clearfix"></div>
     <div class="table-data">
-        <smart-table [settings]="settings" [data]="data"> </smart-table>
-
+      <smart-table
+        [settings]="settings"
+        [data]="data"
+        [paginationData]="paginationData"
+        (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
     </div>
 </div>

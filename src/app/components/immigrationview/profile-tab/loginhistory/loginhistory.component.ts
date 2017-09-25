@@ -3,6 +3,7 @@ import {profileloginhisservice} from './loginhistory.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HeaderService} from "../../../common/header/header.service";
+import {SortType} from "../../../framework/smarttable/types/query-parameters";
 
 @Component({
   selector: 'app-profileloginhistory',
@@ -15,59 +16,69 @@ export class profileloginhiscomponent implements OnInit {
   public userInfo: any = {};
   public settings;
   public data;
+  public paginationData;
+  public queryParameters;
   constructor(public headerService: HeaderService, private profileLoginhisservice: profileloginhisservice) {
 
     this.settings = {
       "isAddButtonEnable": false,
       "isDeleteEnable": false,
+      'customPanel': true,
+      'sort' : [{
+        headingName: "loginDate",
+        sort: SortType.DESC
+      }],
       'columnsettings': [
         {
-
           headerName: "Date",
-          field: "loginDate",
+          field: "loginDate"
         },
         {
-
           headerName: "Time",
-          field: "loginTime",
-
+          field: "loginTime"
         },
         {
-
           headerName: "IP Address",
-          field: "ipAddress",
+          field: "ipAddress"
         },
         {
-
           headerName: "Location",
-          field: "location",
-
+          field: "location"
         },
         {
-
           headerName: "Role",
-          field: "roleId",
+          field: "role"
         },
         {
-
           headerName: "Account",
-          field: "accountName",
-
+          field: "accountName"
         }
       ]
-    }
+    };
   }
   ngOnInit() {
-    this.profileLoginhisservice.getLoginHistory(this.headerService.user.userId)
-      .subscribe((res) => {
-        console.log(res);
-        if (res['userLoginHistory']) {
-          this.data = res['userLoginHistory'];
-          for (var i = 0; i < this.data.length; i++) {
-            this.data[i]['accountName'] = this.headerService.user.firstName.concat(" " + this.headerService.user.lastName);
-          }
-        }
-      });
 
+
+  }
+
+
+  dataWithParameters(queryData) {
+    if(queryData){
+      this.queryParameters=queryData
+    }
+
+    if (this.headerService.user && this.headerService.user.userId && queryData) {
+      this.profileLoginhisservice.getLoginHistory(this.headerService.user.userId, queryData)
+        .subscribe((res) => {
+          console.log(res);
+          if (res['userLoginHistory']) {
+            this.data = res['userLoginHistory'];
+            for (var i = 0; i < this.data.length; i++) {
+              this.data[i]['accountName'] = this.headerService.user.firstName.concat(" " + this.headerService.user.lastName);
+            }
+          }
+          this.paginationData = res['pageMetadata'];
+        });
+    }
   }
 }
