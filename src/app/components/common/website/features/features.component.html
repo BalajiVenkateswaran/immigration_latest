@@ -149,16 +149,15 @@
                         <div class="col-md-4">
                             <h4>Explore</h4>
                             <ul class="flinks">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Immigration Services</a></li>
-                                <li><a href="#">Pricing</a></li>
-                                <li><a href="#">About Us</a></li>
+                                <li><a (click)="appService.moveToPage('login')" class="active">Home</a></li>
+                                <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
+                                <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
+                                <li><a (click)="appService.moveToPage('web-aboutus')">About Us</a></li>
                             </ul>
                             <ul class="flinks">
-                                <li><a href="#">Features</a></li>
-                                <li><a href="#">Get In Touch</a></li>
-                                <li><a href="#">Doc Storage</a></li>
-                                <li><a href="#">Saas Application</a></li>
+                                <li><a (click)="appService.moveToPage('web-features')">Features</a></li>
+                                <li><a (click)="appService.moveToPage('web-faqs')">FAQs</a></li>
+                                <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3">
