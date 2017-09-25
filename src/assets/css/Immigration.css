@@ -855,8 +855,8 @@ h4 {
 	color: #fff;
 	position: relative;
 }
-#exTab1 .nav-pills > li.active > a .arrow-up{
-width: 0;
+#exTab1 .nav-pills > li.active > a div.arrow-up{
+    width: 0;
     height: 0;
     margin: 0px auto;
     border-left: 12px solid transparent;
@@ -1184,6 +1184,44 @@ a, a:hover {
 .show768 {
         display:none;
     }
+.immiservicetab {
+    
+    width:100%;
+    
+}
+.immiservicetab a {
+    width:100% !important;
+    border-radius:0px !important;
+    padding:20px 15px !important;
+    border-bottom:solid 1px #ccc !important;
+    font-size:16px !important;
+    font-weight:600 !important;
+    background:none !important;
+    color:#333 !important;
+}
+
+
+#imsTab1 .nav-pills > li.active > a {
+    background:none;
+    border-color:#2298e7 !important;
+    color:#2298e7 !important;
+}
+#imsTab1 .nav-pills > li.active > a div.arrow-up{
+    width: 0;
+    height: 0;
+    margin: 0px auto;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #000;
+    position: absolute;
+    bottom: -12px;
+    left: 47%;
+}
+#imsTab1 {
+    margin-bottom:40px;
+}
+
+
 @media (max-width:1000px) {
     .navitems li {
      margin-right: 25px;
