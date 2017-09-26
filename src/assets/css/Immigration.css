@@ -1283,3 +1283,8 @@ a, a:hover {
     bottom: 4px !important;
 }
 }
+@media (max-width:480px) {
+    .top-carousel-indicators {
+        display:none;
+    }
+}
