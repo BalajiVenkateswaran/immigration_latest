@@ -32,7 +32,7 @@ export class PetitionsComponent implements OnInit {
         private menuComponent: MenuComponent, private headerService: HeaderService) {
         this.settings = {
             "isAddButtonEnable": false,
-            "columnFilter": true,
+            "columnFilter": false,
             "isDeleteEnable": false,
             'customPanel': true,
             'defaultFilter': [{

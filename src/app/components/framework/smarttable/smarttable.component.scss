@@ -69,7 +69,11 @@ $dateColumnWidth:110px;
   background: #1377ab !important;
   color:#fff !important;
 }
-
+.filterheading{
+    float:left;
+    padding: 2px 4px;
+    font-size: 17px;
+}
 .customfilterinput {
   padding-top: 3px;
   padding-bottom: 3px;
@@ -81,8 +85,8 @@ $dateColumnWidth:110px;
   width: 30px;
   position: absolute;
   z-index: 10;
-  top: 40px;
-  right:15px; }
+  top: 6px;
+  right:23px; }
   .addremovefilter .close {
     float: right;
     font-size: 26px;

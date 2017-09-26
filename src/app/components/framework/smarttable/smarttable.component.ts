@@ -9,17 +9,29 @@ import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
 import { RequestButton } from '../../clientview/request-tab/RequestButton';
 import {QueryParameters, SortType} from "./types/query-parameters";
+import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
+import { FilterpopupComponent } from "./filterpopup/filterpopup.component";
+import {ConfirmComponent} from '../confirmbox/confirm.component';
+import { SmartTableService } from './common/smarttable.service'
+export interface ConfirmModel {
+title: string;
+message: string;
+
+}
+
 @Component({
     selector: 'smart-table',
     templateUrl: './smarttable.component.html'
 })
-export class SmartTableFramework implements OnChanges {
+export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> implements OnChanges{
     pageSize: number;
     totalElements: number;
     totalPages: number;
     public pageNumber: number = 0;
     public itemStartIndex = 1;
     public endNumber: number;
+    public filterPopupForm : boolean;
+    public tableView : boolean = true;
 
     /*
     * following options are available in IH smart table
@@ -46,11 +58,12 @@ export class SmartTableFramework implements OnChanges {
     public deleteSubscription;
     public deleteData;
     public isAddButtonEnable: boolean;
-
+    public headerArray:any;
     public pageSelectionDisable: boolean = false;
     public queryParameters : QueryParameters;
     public deleteFilterClicked: boolean = false;
-    constructor() {
+    constructor(public dialogService: DialogService,public smartTableService: SmartTableService) {
+        super(dialogService);
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
         this.queryParameters = new QueryParameters();
@@ -75,6 +88,11 @@ export class SmartTableFramework implements OnChanges {
                 this.invokeResource();
             }
         });
+        this.smartTableService.getFilterData().subscribe(data=>{
+           this.queryParameters.addFilter(data.data.headerName,data.data.fieldName,this.getFilterType(data.data.headerName),data.filterValue);
+           this.invokeResource();
+            
+        })
     }
     removeDuplicates(data) {
         return data.filter((obj, pos, arr) => {
@@ -131,8 +149,10 @@ export class SmartTableFramework implements OnChanges {
                 }
             }
         }
+        this.smartTableService.headerNamesArray = this.settings['columnsettings'].map(item=>{return {'headerName':item.headerName,'fieldName':item.field}});  
+        this.smartTableService.filteredData=this.queryParameters.filter;
     }
-
+    
     deleteFilter(index, x) {
         this.deleteFilterClicked = true;
         this.queryParameters.filter.splice(index,1);
@@ -376,6 +396,12 @@ export class SmartTableFramework implements OnChanges {
         console.log("Query String after slice: %o", queryString);
 
         this.dataWithQueryParams.emit(queryString);
+    }
+    filterPopup(){
+        this.dialogService.addDialog(FilterpopupComponent,{
+            title: 'Add Filter',
+            message: 'Add Filter'
+        })
     }
 }
 

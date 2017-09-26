@@ -41,7 +41,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     super(dialogService);
 
     this.settings = {
-      'columnFilter': true,
+      'columnFilter': false,
       'isDeleteEnable': false,
       'customPanel': true,
       'defaultFilter': [{
