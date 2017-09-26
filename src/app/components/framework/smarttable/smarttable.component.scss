@@ -811,18 +811,21 @@ $dateColumnWidth:110px;
         width:8% !important;
         left:12% !important;
     }
-
     .ag-fresh .ag-ltr .ag-header-cell[colid~="maxUsers"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxUsers"] {
         width:8% !important;
         left:20% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxClientsPerMonth"] {
-      width:14% !important;
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxOrgs"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxOrgs"] {
+        width:8% !important;
         left:28% !important;
     }
+    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxClientsPerMonth"] {
+      width:10% !important;
+        left:36% !important;
+    }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxPetitionsPerMonth"] {
-        width:14% !important;
-        left:42% !important;
+        width:10% !important;
+        left:46% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[colid~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxS3Storage"] {
         width:10% !important;

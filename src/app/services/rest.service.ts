@@ -1,15 +1,15 @@
 import {Injectable} from "@angular/core";
-import {Http, ResponseContentType, RequestOptions, Headers} from "@angular/http";
-import {Observable}     from 'rxjs/Observable';
+import {Headers, Http, RequestOptions, ResponseContentType} from "@angular/http";
+import {Observable} from 'rxjs/Observable';
 import '../rxjs-operators';
-import {AppService} from "./app.service";
+import {HeaderService} from "../components/common/header/header.service";
 
 @Injectable()
 export class RestService {
       immp_endpoint_url: String = "http://34.200.77.115:8080/immigrationPortal";
-      //immp_endpoint_url: String = "http://localhost:8080/immigrationPortal";
+      // immp_endpoint_url: String = "http://localhost:8080/immigrationPortal";
 
-  constructor(private http: Http, private appService: AppService) {
+  constructor(private http: Http, private headerService: HeaderService) {
   }
 
   getData(url: string): Observable<any> {
@@ -73,8 +73,7 @@ export class RestService {
 
     unauthorised(): Observable<any>
     {
-        this.appService.destroy();
-        this.appService.moveToPage('');
+        this.headerService.logOut();
         return Observable.empty();
     }
 }

@@ -6,7 +6,7 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Products</h2>
-        <smart-table class="acctabprodcatProducts" [settings]="settings" [data]="data"  [paginationData]="paginationData" 
+        <smart-table class="acctabprodcatProducts" [settings]="settings" [data]="data"  [paginationData]="paginationData"
                      (onAddClick)="addProducts($event)" (onRowClick)="viewDetails($event)" (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
         <div class="clearfix"></div>
     </div>
@@ -107,9 +107,9 @@
                                 <div class="row">
                                     <div class="col-md-5">Created On:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.startDate"
+                                        <input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.createdOn"
                                                class="form-control">
-                                        <span *ngIf="isEditProducts==true">{{product.startDate}}</span>
+                                        <span *ngIf="isEditProducts==true">{{product.createdOn}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -123,12 +123,12 @@
                                     <div class="col-md-7">
                                         <div class="row">
                                             <div class="col-md-6">
-                                               
+
                                                 <button type="submit" class="btn btn-primary" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
-                                                
-                                                  
+
+
                                                     <button type="submit" value="Save" class="btn btn-primary" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
-                                                
+
                                             </div>
                                             <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
                                         </div>

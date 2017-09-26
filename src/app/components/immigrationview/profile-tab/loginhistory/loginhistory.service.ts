@@ -8,8 +8,8 @@ export class profileloginhisservice {
     constructor(private restService: RestService) {
 
     }
-    public getLoginHistory(userid: string) {
-        return this.restService.getData("/profile/user/loginHistory/" + userid);
+    public getLoginHistory(userid: string, queryData: string) {
+        return this.restService.getData("/profile/user/loginHistory/" + userid+queryData);
     }
-   
+
 }
