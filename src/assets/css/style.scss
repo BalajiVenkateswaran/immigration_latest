@@ -125,9 +125,9 @@ label {
 section {
     .left-opened, .rightwithmenu {
         position: absolute;
-        top: 170px;
+        top: 180px;
         bottom: 0px;
-        height: calc(100vh - 170px);
+        height: calc(100vh - 180px);
     }
     .left-opened {
         left: 0px;
@@ -138,7 +138,7 @@ section {
         left: -200px;
         width: 200px;
         position: absolute;
-        top: 170px;
+        top: 180px;
     }
     .rightwithmenu {
         left: 200px;
@@ -148,7 +148,7 @@ section {
         left: 0px;
         right: 0;
         position: absolute;
-        top: 170px;
+        top: 180px;
     }
 }
 .navbar-nav {
@@ -298,7 +298,7 @@ section {
     float: left;
     /*height:100%;*/
 
-    height: calc(100vh - 170px);
+    height: calc(100vh - 180px);
     overflow-y: auto;
     padding-bottom: 15px;
     h1 {
@@ -1687,14 +1687,14 @@ float:right;
     background:#f6f7fa;
     height:100px;
     width:100%;
-	-webkit-box-shadow: 0 8px 6px -6px #dcdada;
-	   -moz-box-shadow: 0 8px 6px -6px #dcdada;
-	        box-shadow: 0 8px 6px -6px #dcdada;
+	-webkit-box-shadow: 0 5px 3px -3px #dcdada;
+	   -moz-box-shadow: 0 5px 3px -3px #dcdada;
+	        box-shadow: 0 5px 3px -3px #dcdada;
 
 }
 header {
     background-color: #2f323a;
-    height:170px;
+    height:180px;
     display: block;
     .logo {
         display: block;
@@ -1806,6 +1806,7 @@ header {
         display: block;
         width: 100%;
         position:relative;
+        float:left;
 
             .burger-menu {
                 position:absolute;
@@ -1848,7 +1849,7 @@ header {
         }
     }
         ul {
-            margin: 0px;
+            margin:20px 0 0 0;
             padding: 0px;
             display: block;
             /*display: flex;
@@ -1863,13 +1864,16 @@ header {
 
                 a {
                     font-size: 14px;
-                    color: #c2c2c2 !important;
+                    color: #333 !important;
                     padding: 0;
                     float: left;
                     text-align:center;
-                    font-weight: 600;
+                    font-weight: 400;
+                    border-bottom:solid 3px #f6f7fa;
+                    padding-bottom:7px;
                     &:hover, &:focus {
-                        color:#fff !important;
+                        color:#333 !important;
+                        border-bottom:solid 3px #232f3f;
                     }
                     .arrow-up {
                       width: 0;
@@ -1879,6 +1883,12 @@ header {
                       border-right: 12px solid transparent;
                       border-bottom: 12px solid red;
                       margin-top: 0px;
+                    }
+                    img {
+                        margin:0px auto;
+                        margin-bottom: 8px;
+                        height: 36px;
+                        width: auto;
                     }
                     span.maintab-Petitions, 
                     span.maintab-Clients, 
@@ -1897,30 +1907,30 @@ header {
                         width:50px;
                         height:50px;
                         margin:0px auto;
-                        background:url(../images/Petitions.png) no-repeat center center #ffa812;
+                        background:url(../images/Petitions.png) no-repeat center center;
                         display:block;
                         border-radius:5px;
                         margin-bottom: 8px;
                         background-size: 50%;
                     }
                     span.maintab-Clients {
-                        background:url(../images/Clients.png) no-repeat center center #f56954;
+                        background:url(../images/Clients.png) no-repeat center center;
                             background-size: 65%;
                     }
                     span.maintab-Organization {
-                        background:url(../images/Organization.png) no-repeat center center #3baeda;
+                        background:url(../images/Organization.png) no-repeat center center;
                             background-size: 70%;
                     }
                     span.maintab-Manageaccount {
-                        background:url(../images/Manage_account.png) no-repeat center center #00a65a;
+                        background:url(../images/Manage_account.png) no-repeat center center;
                             background-size: 70%;
                     }
                     span.maintab-Reports {
-                        background:url(../images/Reports.png) no-repeat center center #967bdc;
+                        background:url(../images/Reports.png) no-repeat center center;
                         background-size: 50%;
                     }
                     span.maintab-Profile {
-                        background:url(../images/Profile.png) no-repeat center center #36bc9b;
+                        background:url(../images/Profile.png) no-repeat center center;
                         /*background-size: 50%;*/
                     }
 
@@ -1963,7 +1973,8 @@ header {
 
                 }
                 a.active {
-                    color:#c2c2c2 !important;
+                    color:#333 !important;
+                    border-bottom:solid 3px #232f3f;
                     .arrow-up {
                       width: 0;
                       height: 0;

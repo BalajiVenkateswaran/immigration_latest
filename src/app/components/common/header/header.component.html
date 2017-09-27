@@ -44,69 +44,60 @@
                       <input type="checkbox" (click)="slideMenu()" /><label></label>
                   </div>
                   <ul *ngIf="applicationViewMode=='Immigration'">
-                      <li *ngIf="!headerService.isDelegatedOrg()"
-                          style="margin-right: 37px;">
+                      <li *ngIf="!headerService.isDelegatedOrg()" >
                           <a (click)="appService.moveToPage('clients'); highlightTab('clients');"
                              [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
                              routerLinkActive="active">
-                              <span class="maintab-Clients"></span>
+                              <img src="../../../../assets/images/Clients.png" />
                               <div class="clearfix"></div> Clients
-                              <div class="arrow-up"></div>
                           </a>
                       </li>
-                      <li style="margin-right: 30px;"
-                          *ngIf="applicationViewMode=='Immigration'||headerService.isDelegatedOrg()">
+                      <li *ngIf="applicationViewMode=='Immigration'||headerService.isDelegatedOrg()">
                           <a (click)="appService.moveToPage('petitions'); highlightTab('petitions');"
                              [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']"
                              routerLinkActive="active">
-                              <span class="maintab-Petitions"></span>
+                              <img src="../../../../assets/images/Pettions.png" />
+                             
                               <div class="clearfix"></div> Petitions
-                              <div class="arrow-up"></div>
                           </a>
                       </li>
-                      <li *ngIf="!headerService.isDelegatedOrg()"
-                          style="margin-right: 10px;">
+                      <li *ngIf="!headerService.isDelegatedOrg()" >
                           <a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');"
                              [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"
                              routerLinkActive="active">
-                              <span class="maintab-Organization"></span>
+                              <img src="../../../../assets/images/Organization.png" />
                               <div class="clearfix"></div> Organization
-                              <div class="arrow-up"></div>
                           </a>
                       </li>
                       <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
-                      <li style="margin-right: 22px;"
-                          *ngIf="immigrationManager=='Immigration Manager'">
+                      <li  *ngIf="immigrationManager=='Immigration Manager'">
                           <a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');"
                              [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"
                              routerLinkActive="active">
-                              <span class="maintab-Manageaccount"></span>
+                              <img src="../../../../assets/images/manage.png" />
                               <div class="clearfix"></div> Manage Account
-                              <div class="arrow-up"></div>
                           </a>
                       </li>
                       <li *ngIf="!headerService.isDelegatedOrg()">
                           <a (click)="appService.moveToPage('immiview-petitionreports'); highlightTab('immiview-petitionreports');highlightSBLink('immiview-petitionreports');"
                              [ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']"
                              routerLinkActive="active">
-                              <span class="maintab-Reports"></span>
+                              <img src="../../../../assets/images/Reports.png" />
                               <div class="clearfix"></div> Reports
-                              <div class="arrow-up"></div>
                           </a>
                       </li>
                       <li>
                           <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
                              [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
                              routerLinkActive="active">
-                              <span class="maintab-Profile"></span>
+                              <img src="../../../../assets/images/Profile.png" />
                               <div class="clearfix"></div> Profile
-                              <div class="arrow-up"></div>
                           </a>
                       </li>
 
                   </ul>
                   <ul *ngIf="applicationViewMode=='Client'">
-                      <li style="margin-right: 30px;">
+                      <li>
                           <a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');"
                              [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']"
                              routerLinkActive="active">
@@ -115,7 +106,7 @@
                               <div class="arrow-up"></div>
                           </a>
                       </li>
-                      <li style="margin-right: 20px;">
+                      <li>
                           <a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');"
                              [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']"
                              routerLinkActive="active">
@@ -124,7 +115,7 @@
                               <div class="arrow-up"></div>
                           </a>
                       </li>
-                      <li style="margin-right: 15px;">
+                      <li>
                           <a (click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');"
                              [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']"
                              routerLinkActive="active">
@@ -133,7 +124,7 @@
                               <div class="arrow-up"></div>
                           </a>
                       </li>
-                      <li style="margin-right: 20px;">
+                      <li>
                           <a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');"
                              [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']"
                              routerLinkActive="active">
@@ -171,7 +162,7 @@
 
                   </ul>
                   <ul *ngIf="applicationViewMode=='Superuser'">
-                      <li style="margin-right: 20px;">
+                      <li>
                           <a (click)="appService.moveToPage('superuser-accounts'); highlightTab('accounts');"
                              [ngClass]="[checkForCurrentTab('accounts') ? 'active': '']"
                              routerLinkActive="active">
@@ -180,7 +171,7 @@
                               <div class="arrow-up"></div>
                           </a>
                       </li>
-                      <li style="margin-right: 20px;">
+                      <li>
                           <a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('ProductCatalog');"
                              [ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']"
                              routerLinkActive="active">
@@ -189,7 +180,7 @@
                               <div class="arrow-up"></div>
                           </a>
                       </li>
-                      <li style="margin-right: 40px;">
+                      <li>
                           <a (click)="appService.moveToPage('invoices'); highlightTab('invoices');"
                              [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']"
                              routerLinkActive="active">
@@ -198,7 +189,7 @@
                               <div class="arrow-up"></div>
                           </a>
                       </li>
-                      <li style="margin-right: 30px;">
+                      <li>
                           <a (click)="appService.moveToPage('payments'); highlightTab('payments');"
                              [ngClass]="[checkForCurrentTab('payments') ? 'active': '']"
                              routerLinkActive="active">
