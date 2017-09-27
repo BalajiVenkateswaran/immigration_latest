@@ -121,309 +121,7 @@ label {
 }
 /*Dashboard page css*/
 
-header {
-    background-color: #2f323a;
-    height:135px;
-    display: block;
-    .logo {
-        display: block;
-        float: left;
-        margin:10px 0 0 0px;
-    }
 
-    .ico-edit {
-        width: 16px;
-        height: 16px;
-        padding: 1px 16px 1px 0px;
-        margin: 0 0 0 10px;
-    }
-    #logobeta{
-          color: white;
-    position: relative;
-    font-size: 15px;
-    top: 10px;
-    right: 10px;
-    }
-.datails-holder-name {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 4px 10px;
-        border-radius: 5px;
-        text-align:left;
-        div {
-            display: inline-block;
-            color: $White;
-            h4 {
-                margin:0px 0 0 0;
-                font-size:18px;
-                text-transform:capitalize;
-            }
-            select{
-                margin:0px 0 0 0;
-                min-width:220px;
-                font-size:18px;
-                color: $White;
-                background-color:transparent;
-                border:1px solid;
-                border-color:rgba(255, 255, 255, 0.5);
-                padding:6px;
-                @include border-radius(0);
-                option{
-                    background-color:#282828 !important;
-                    border-bottom:1px solid;
-                    border-color:rgba(255, 255, 255, 0.5);
-                    color: $White;
-                }
-            }
-        }
-    }
-    .profile-container {
-        padding: 12px 0;
-        display: block;
-        margin: 0;
-        .profile {
-            display: block;
-            float: right;
-            .profile-name, .profile-pic {
-                display: block;
-                float: left;
-                width: auto;
-                margin-bottom: 11px;
-            }
-           .dropdown{
-
-            > button{
-                padding:0px;background:none;border:none;box-shadow:none;
-            }
-            }
-           .dropdown-menu{
-                background-color:#0891D4;
-                color: $White;
-                padding:0px;
-                z-index: 9999999;
-
-                a{
-                    background-color:#0891D4;
-                    color: $White;
-                    width: 100%;
-                    padding:5px 15px;
-                    float:left;
-                    font-size: 16px;
-                }
-           }
-            .profile-pic{
-                width:45px;
-                height:45px;
-                margin:0px !important;
-                img{
-                    width:100%;
-                    height:100%;
-                }
-            }
-            .profile-name {
-                margin: 0 20px 0 0;
-                h4 {
-                    margin: 5px 0px 0 0;
-                    color: $White;
-                    font-weight: 700;
-                    text-align: right;
-                    font-size:16px;
-                }
-                h6 {
-                    margin: 5px 0 0 0;
-                    color: $White;
-                    font-weight: normal;
-                    text-align: right;
-                    font-size:14px;
-                }
-            }
-        }
-    }
-    .mainmenu {
-        /*background: #181818;*/
-        padding:0px;
-        display: block;
-        width: 100%;
-        position:relative;
-        margin-top:-20px;
-
-            .burger-menu {
-                position:absolute;
-                left:0px;
-                top:0px;
-        input[type=checkbox]:not(old) {
-                width: 30px;
-                height: 40px;
-                margin: 0;
-                padding: 0;
-                opacity: 0;
-
-                cursor: pointer;
-            & + label {
-                display: inline-block;
-                margin-left: -30px;
-                padding-left: 30px;
-                background: url(../images/expand.png) no-repeat  center center #9b9ca0;
-                line-height: 24px;
-                width: 30px;
-                height: 40px;
-                border-radius:0px 5px 5px 0px;
-                margin-bottom: 0px;
-            }
-            &:checked + label {
-                background: url(../images/Collapse.png) no-repeat center center #9b9ca0;
-                width: 30px;
-                height: 40px;
-            }
-        }
-        a {
-            width: 24px;
-            height: 18px;
-            text-indent: -9999px;
-            display: block;
-        }
-        a:hover,
-        a:focus {
-            background: url(../images/burger_menu_over.png) no-repeat 0 0;
-        }
-    }
-        ul {
-            margin: 0px;
-            padding: 0px;
-            display: block;
-            /*display: flex;
-            display: -webkit-flex;  Safari */
-            
-            text-align:center !important;
-            li {
-                list-style: none;
-                margin: 0 50px 0 0;
-                padding: 0px;
-                display:inline-flex;
-
-                a {
-                    font-size: 14px;
-                    color: #c2c2c2 !important;
-                    padding: 0;
-                    float: left;
-                    text-align:center;
-                    font-weight: 600;
-                    &:hover, &:focus {
-                        color:#fff !important;
-                    }
-                    .arrow-up {
-                      width: 0;
-                      height: 0;
-                      margin:0px auto;
-                      border-left: 12px solid transparent;
-                      border-right: 12px solid transparent;
-                      border-bottom: 12px solid red;
-                      margin-top: 0px;
-                    }
-                    span.maintab-Petitions, 
-                    span.maintab-Clients, 
-                    span.maintab-Organization, 
-                    span.maintab-Manageaccount, 
-                    span.maintab-Reports, 
-                    span.maintab-Profile, 
-                    span.maintab-Accounts, 
-                    span.maintab-procat, 
-                    span.maintab-invoices, 
-                    span.maintab-payments, 
-                    span.maintab-clientdetails,
-                    span.maintab-clientdocuments, 
-                    span.maintab-clientQuestionnaire, 
-                    span.maintab-clientrquests {
-                        width:50px;
-                        height:50px;
-                        margin:0px auto;
-                        background:url(../images/Petitions.png) no-repeat center center #ffa812;
-                        display:block;
-                        border-radius:5px;
-                        margin-bottom: 8px;
-                        background-size: 50%;
-                    }
-                    span.maintab-Clients {
-                        background:url(../images/Clients.png) no-repeat center center #f56954;
-                            background-size: 65%;
-                    }
-                    span.maintab-Organization {
-                        background:url(../images/Organization.png) no-repeat center center #3baeda;
-                            background-size: 70%;
-                    }
-                    span.maintab-Manageaccount {
-                        background:url(../images/Manage_account.png) no-repeat center center #00a65a;
-                            background-size: 70%;
-                    }
-                    span.maintab-Reports {
-                        background:url(../images/Reports.png) no-repeat center center #967bdc;
-                        background-size: 50%;
-                    }
-                    span.maintab-Profile {
-                        background:url(../images/Profile.png) no-repeat center center #36bc9b;
-                        /*background-size: 50%;*/
-                    }
-
-                    span.maintab-Accounts {
-                        background:url(../images/Accounts.png) no-repeat center center #8cc051;
-                            background-size: 110%;
-                    }
-                    span.maintab-procat {
-                        background:url(../images/Productcatalog.png) no-repeat center center #0073b7;
-                            background-size: 110%;
-                    }
-                    span.maintab-invoices {
-                        background:url(../images/Invoices.png) no-repeat center center #d870ad;
-                            background-size: 110%;
-                    }
-                    span.maintab-payments {
-                        background:url(../images/Payments.png) no-repeat center center #6c811e;
-                            background-size:110%;
-                    }
-                    
-                    span.maintab-clientdetails {
-                        background:url(../images/ClientDetails.png) no-repeat center center #4b89dc;
-                            background-size:110%;
-                    }
-                    span.maintab-clientdocuments {
-                        background:url(../images/Documents.png) no-repeat center center #ba79cb;
-                            background-size:110%;
-                    }
-                    span.maintab-clientQuestionnaire {
-                        background:url(../images/Questionnaires.png) no-repeat center center #db4453;
-                            background-size:110%;
-                    }
-                    span.maintab-clientrquests {
-                        background:url(../images/Requests.png) no-repeat center center #ec3b83;
-                            background-size:110%;
-                    }
-                    
-                    
-
-
-                }
-                a.active {
-                    color:#c2c2c2 !important;
-                    .arrow-up {
-                      width: 0;
-                      height: 0;
-                      margin:0px auto;
-                      border-left: 12px solid transparent;
-                      border-right: 12px solid transparent;
-                      border-bottom: 12px solid #fff;
-                      margin-top:0px;
-                    }
-                }
-                a[ng-reflect-ng-class=active] {
-                    color:#c2c2c2 !important;
-                }
-            }
-            li:last-child {
-                border: none;
-            }
-        }
-    }
-}
 section {
     .left-opened, .rightwithmenu {
         position: absolute;
@@ -1970,4 +1668,310 @@ float:right;
 }
 .main-content .table-data .addresbox .mydp .selectiongroup button {
     background:#fff;
+}
+
+/* New Design Integration Starts */
+
+.topstripNew {
+    width:100%;
+    height:70px;
+    background:#232f3f;
+    border-bottom:solid 1px #ccc;
+}
+.mainContainer {
+    width:calc(100% - 200px);
+    background:red;
+    height:70px;
+    margin:0px auto;
+}
+header {
+    background-color: #2f323a;
+    height:135px;
+    display: block;
+    .logo {
+        display: block;
+        float: left;
+        margin:10px 0 0 0px;
+    }
+
+    .ico-edit {
+        width: 16px;
+        height: 16px;
+        padding: 1px 16px 1px 0px;
+        margin: 0 0 0 10px;
+    }
+    #logobeta{
+          color: white;
+    position: relative;
+    font-size: 15px;
+    top: 10px;
+    right: 10px;
+    }
+.datails-holder-name {
+    display: inline-block;
+    margin: 0px 0px 0px 30px;
+    padding: 28px 20px 0px;
+    border-radius: 0px;
+    text-align: left;
+    border-left: solid 1px #fff;
+    border-right: solid 1px #fff;
+    height: 70px;
+        div {
+            display: inline-block;
+            color: $White;
+            h4 {
+                margin:0px 0 0 0;
+                font-size:18px;
+                text-transform:capitalize;
+            }
+            select{
+                margin:0px 0 0 0;
+                min-width:220px;
+                font-size:18px;
+                color: $White;
+                background-color:transparent;
+                border:1px solid;
+                border-color:rgba(255, 255, 255, 0.5);
+                padding:6px;
+                @include border-radius(0);
+                option{
+                    background-color:#282828 !important;
+                    border-bottom:1px solid;
+                    border-color:rgba(255, 255, 255, 0.5);
+                    color: $White;
+                }
+            }
+        }
+    }
+    .profile-container {
+        padding: 12px 0;
+        display: block;
+        margin: 0;
+        .profile {
+            display: block;
+            float: right;
+
+            .logoutbtn {
+                color:#fff;
+                font-size:30px;
+                font-weight:600;
+            }
+            .profile-name, .profile-pic {
+                display: block;
+                float: left;
+                width: auto;
+                margin-bottom: 11px;
+            }
+            .profile-pic{
+                width:45px;
+                height:45px;
+                margin:0px !important;
+                img{
+                    width:100%;
+                    height:100%;
+                }
+            }
+            .profile-name {
+                margin: 0 20px 0 0;
+                h4 {
+                    margin: 5px 0px 0 0;
+                    color: $White;
+                    font-weight: 700;
+                    text-align: right;
+                    font-size:16px;
+                }
+                h6 {
+                    margin: 5px 0 0 0;
+                    color: $White;
+                    font-weight: normal;
+                    text-align: right;
+                    font-size:14px;
+                }
+            }
+        }
+    }
+    .mainmenu {
+        /*background: #181818;*/
+        padding:0px;
+        display: block;
+        width: 100%;
+        position:relative;
+        margin-top:-20px;
+
+            .burger-menu {
+                position:absolute;
+                left:0px;
+                top:0px;
+        input[type=checkbox]:not(old) {
+                width: 30px;
+                height: 40px;
+                margin: 0;
+                padding: 0;
+                opacity: 0;
+
+                cursor: pointer;
+            & + label {
+                display: inline-block;
+                margin-left: -30px;
+                padding-left: 30px;
+                background: url(../images/expand.png) no-repeat  center center #9b9ca0;
+                line-height: 24px;
+                width: 30px;
+                height: 40px;
+                border-radius:0px 5px 5px 0px;
+                margin-bottom: 0px;
+            }
+            &:checked + label {
+                background: url(../images/Collapse.png) no-repeat center center #9b9ca0;
+                width: 30px;
+                height: 40px;
+            }
+        }
+        a {
+            width: 24px;
+            height: 18px;
+            text-indent: -9999px;
+            display: block;
+        }
+        a:hover,
+        a:focus {
+            background: url(../images/burger_menu_over.png) no-repeat 0 0;
+        }
+    }
+        ul {
+            margin: 0px;
+            padding: 0px;
+            display: block;
+            /*display: flex;
+            display: -webkit-flex;  Safari */
+            
+            text-align:center !important;
+            li {
+                list-style: none;
+                margin: 0 50px 0 0;
+                padding: 0px;
+                display:inline-flex;
+
+                a {
+                    font-size: 14px;
+                    color: #c2c2c2 !important;
+                    padding: 0;
+                    float: left;
+                    text-align:center;
+                    font-weight: 600;
+                    &:hover, &:focus {
+                        color:#fff !important;
+                    }
+                    .arrow-up {
+                      width: 0;
+                      height: 0;
+                      margin:0px auto;
+                      border-left: 12px solid transparent;
+                      border-right: 12px solid transparent;
+                      border-bottom: 12px solid red;
+                      margin-top: 0px;
+                    }
+                    span.maintab-Petitions, 
+                    span.maintab-Clients, 
+                    span.maintab-Organization, 
+                    span.maintab-Manageaccount, 
+                    span.maintab-Reports, 
+                    span.maintab-Profile, 
+                    span.maintab-Accounts, 
+                    span.maintab-procat, 
+                    span.maintab-invoices, 
+                    span.maintab-payments, 
+                    span.maintab-clientdetails,
+                    span.maintab-clientdocuments, 
+                    span.maintab-clientQuestionnaire, 
+                    span.maintab-clientrquests {
+                        width:50px;
+                        height:50px;
+                        margin:0px auto;
+                        background:url(../images/Petitions.png) no-repeat center center #ffa812;
+                        display:block;
+                        border-radius:5px;
+                        margin-bottom: 8px;
+                        background-size: 50%;
+                    }
+                    span.maintab-Clients {
+                        background:url(../images/Clients.png) no-repeat center center #f56954;
+                            background-size: 65%;
+                    }
+                    span.maintab-Organization {
+                        background:url(../images/Organization.png) no-repeat center center #3baeda;
+                            background-size: 70%;
+                    }
+                    span.maintab-Manageaccount {
+                        background:url(../images/Manage_account.png) no-repeat center center #00a65a;
+                            background-size: 70%;
+                    }
+                    span.maintab-Reports {
+                        background:url(../images/Reports.png) no-repeat center center #967bdc;
+                        background-size: 50%;
+                    }
+                    span.maintab-Profile {
+                        background:url(../images/Profile.png) no-repeat center center #36bc9b;
+                        /*background-size: 50%;*/
+                    }
+
+                    span.maintab-Accounts {
+                        background:url(../images/Accounts.png) no-repeat center center #8cc051;
+                            background-size: 110%;
+                    }
+                    span.maintab-procat {
+                        background:url(../images/Productcatalog.png) no-repeat center center #0073b7;
+                            background-size: 110%;
+                    }
+                    span.maintab-invoices {
+                        background:url(../images/Invoices.png) no-repeat center center #d870ad;
+                            background-size: 110%;
+                    }
+                    span.maintab-payments {
+                        background:url(../images/Payments.png) no-repeat center center #6c811e;
+                            background-size:110%;
+                    }
+                    
+                    span.maintab-clientdetails {
+                        background:url(../images/ClientDetails.png) no-repeat center center #4b89dc;
+                            background-size:110%;
+                    }
+                    span.maintab-clientdocuments {
+                        background:url(../images/Documents.png) no-repeat center center #ba79cb;
+                            background-size:110%;
+                    }
+                    span.maintab-clientQuestionnaire {
+                        background:url(../images/Questionnaires.png) no-repeat center center #db4453;
+                            background-size:110%;
+                    }
+                    span.maintab-clientrquests {
+                        background:url(../images/Requests.png) no-repeat center center #ec3b83;
+                            background-size:110%;
+                    }
+                    
+                    
+
+
+                }
+                a.active {
+                    color:#c2c2c2 !important;
+                    .arrow-up {
+                      width: 0;
+                      height: 0;
+                      margin:0px auto;
+                      border-left: 12px solid transparent;
+                      border-right: 12px solid transparent;
+                      border-bottom: 12px solid #fff;
+                      margin-top:0px;
+                    }
+                }
+                a[ng-reflect-ng-class=active] {
+                    color:#c2c2c2 !important;
+                }
+            }
+            li:last-child {
+                border: none;
+            }
+        }
+    }
 }
