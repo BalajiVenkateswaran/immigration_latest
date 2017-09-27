@@ -110,8 +110,8 @@
                                         <div class="row">
                                             <div class="col-md-5">Comments:</div>
                                             <div class="col-md-7">
-                                                <textarea *ngIf="false" [(ngModel)]="invoice.comments" class="form-control"></textarea>
-                                                <span style="height:80px" *ngIf="true">{{invoice.comments}}</span>
+                                                <textarea [disabled]=true [(ngModel)]="invoice.comments" class="form-control"></textarea>
+                                                <!--<span style="height:80px" *ngIf="true">{{invoice.comments}}</span>-->
                                             </div>
                                         </div>
 
