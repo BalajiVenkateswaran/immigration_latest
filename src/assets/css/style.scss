@@ -125,9 +125,9 @@ label {
 section {
     .left-opened, .rightwithmenu {
         position: absolute;
-        top: 135px;
+        top: 170px;
         bottom: 0px;
-        height: calc(100vh - 135px);
+        height: calc(100vh - 170px);
     }
     .left-opened {
         left: 0px;
@@ -138,7 +138,7 @@ section {
         left: -200px;
         width: 200px;
         position: absolute;
-        top: 135px;
+        top: 170px;
     }
     .rightwithmenu {
         left: 200px;
@@ -148,7 +148,7 @@ section {
         left: 0px;
         right: 0;
         position: absolute;
-        top: 135px;
+        top: 170px;
     }
 }
 .navbar-nav {
@@ -298,7 +298,7 @@ section {
     float: left;
     /*height:100%;*/
 
-    height: calc(100vh - 135px);
+    height: calc(100vh - 170px);
     overflow-y: auto;
     padding-bottom: 15px;
     h1 {
@@ -1680,13 +1680,21 @@ float:right;
 }
 .mainContainer {
     width:calc(100% - 200px);
-    background:red;
     height:70px;
     margin:0px auto;
 }
+.tabsMenu {
+    background:#f6f7fa;
+    height:100px;
+    width:100%;
+	-webkit-box-shadow: 0 8px 6px -6px #dcdada;
+	   -moz-box-shadow: 0 8px 6px -6px #dcdada;
+	        box-shadow: 0 8px 6px -6px #dcdada;
+
+}
 header {
     background-color: #2f323a;
-    height:135px;
+    height:170px;
     display: block;
     .logo {
         display: block;
@@ -1752,9 +1760,11 @@ header {
             float: right;
 
             .logoutbtn {
-                color:#fff;
-                font-size:30px;
-                font-weight:600;
+                color: #fff;
+                font-size: 28px;
+                font-weight: 100;
+                margin: 3px 0 0 30px;
+                float: right;
             }
             .profile-name, .profile-pic {
                 display: block;
@@ -1796,7 +1806,6 @@ header {
         display: block;
         width: 100%;
         position:relative;
-        margin-top:-20px;
 
             .burger-menu {
                 position:absolute;

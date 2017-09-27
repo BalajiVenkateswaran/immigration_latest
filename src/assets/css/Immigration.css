@@ -379,7 +379,7 @@ font-weight: 500;
     width: 100% !important;
 }
 .slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8, .slide9 {
-     background: url(../../assets/images/web/slide1.jpg) no-repeat center top #164a65;
+     background: #164a65;
 	width: 100%;
 	min-height: 500px;
 	text-align: left;
