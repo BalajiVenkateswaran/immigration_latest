@@ -1,15 +1,14 @@
 <div>
     <button *ngIf="isAddButtonEnable" type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="addRecord()">ADD</button>
     <div *ngIf="queryParameters.filter">
-        <div class="filterheading" ><span>Filters :</span></div>
+        <div class="filterheading"><span>Filters :</span></div>
         <div class="addedfilter" *ngFor="let x of queryParameters.filter let i=index">
             <span class="filtretype">{{x.fieldHeader}} :</span><span class="filtrename">{{x.fieldValue}}</span><span class="close"
                 (click)="deleteFilter(i,x)">&times;</span>
 
         </div>
-        <i style="font-size:27px" class="fa fa-plus-circle" aria-hidden="true" (click)="filterPopup()"></i>
-        
     </div>
+    <button *ngIf="isAddFilterButtonEnable" type="button" class="iportal-btn " (click)="filterPopup()">Add Filters</button>
     <div class="clearfix"></div>
     <div class="agtblOptions">
         <ag-grid-angular id="grid" #grid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (cellClicked)="onCellClick($event)">

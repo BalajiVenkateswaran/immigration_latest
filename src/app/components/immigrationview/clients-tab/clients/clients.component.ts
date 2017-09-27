@@ -44,6 +44,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       'columnFilter': false,
       'isDeleteEnable': false,
       'customPanel': true,
+      'isAddFilterButtonEnable':true,
       'defaultFilter': [{
           headingName: "status",
           headerName: "Status",

@@ -52,7 +52,8 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
     super(dialogService);
     this.settings = {
       'isDeleteEnable': false,
-      'columnFilter': true,
+      'columnFilter': false,
+      'isAddFilterButtonEnable':true,
       'customPanel': true,
       'defaultFilter': [{
         headingName: "status",

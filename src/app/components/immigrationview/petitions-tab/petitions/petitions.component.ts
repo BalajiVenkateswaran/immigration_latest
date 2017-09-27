@@ -5,7 +5,7 @@ import { AppService } from '../../../../services/app.service';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
 import { PetitionsService } from "./petitions.service";
-import {SortType} from "../../../framework/smarttable/types/query-parameters";
+import { SortType } from "../../../framework/smarttable/types/query-parameters";
 
 @Component({
     selector: 'app-petitions',
@@ -26,28 +26,68 @@ export class PetitionsComponent implements OnInit {
     public paginationData;
     public queryParameters;
     private orgId: string;
-
+    private petitionTypesData: any;
+    public statusTypes: any = [];
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
+        this.petitionService.getAllPetitionTypesAndSubTypes().subscribe(
+            res => {
+                this.petitionTypesData = res['petitionTypes'];
+
+            }
+        )
+        this.petitionTypesData = [
+            {
+                'display': 'H1B',
+                'value': 'H1B'
+            },
+            {
+                'display': 'L1',
+                'value': 'L1'
+            },
+
+            {
+                'display': 'H1B-RFE',
+                'value': 'H1B-RFE'
+            },
+
+            {
+                'display': 'B1',
+                'value': 'B1'
+            },
+
+        ];
+        this.statusTypes = [
+            {
+               'display': 'Open',
+               'value': 'Open'  
+            },
+            {
+               'display': 'Close',
+               'value': 'Close'  
+            }
+        ];
+        //console.log(this.petitionTypesData);
         this.settings = {
             "isAddButtonEnable": false,
             "columnFilter": false,
             "isDeleteEnable": false,
             'customPanel': true,
+            'isAddFilterButtonEnable':true,
             'defaultFilter': [{
                 headingName: "status",
                 headerName: "Status",
                 filterValue: "Open"
             }],
-            'sort' : [{
+            'sort': [{
                 headingName: "lastUpdate",
                 sort: SortType.DESC
             }],
-            'filter' : {
-                types : [{
-                    field : 'daysInStage',
-                    operator : '>'
+            'filter': {
+                types: [{
+                    field: 'daysInStage',
+                    operator: '>'
                 }]
             },
             'columnsettings': [
@@ -57,7 +97,8 @@ export class PetitionsComponent implements OnInit {
                 },
                 {
                     headerName: "File No.",
-                    field: "petitionNumber"
+                    field: "petitionNumber",
+                    type: 'datePicker'
                 },
                 {
                     headerName: "First Name",
@@ -69,25 +110,30 @@ export class PetitionsComponent implements OnInit {
                 },
                 {
                     headerName: "Type",
-                    field: "petitionType"
+                    field: "petitionType",
+                    type: 'dropDown',
+                    data: this.petitionTypesData
                 },
                 {
                     headerName: "Updated On",
-                    field: "lastUpdate"
+                    field: "lastUpdate",
+                    type: 'datePicker'
                 },
                 {
                     headerName: "Status",
                     field: "status",
-                    cellStyle: function(params){
-                        if(params.value === 'M F D'){
+                    type: 'dropDown',
+                    data: this.statusTypes,
+                    cellStyle: function (params) {
+                        if (params.value === 'M F D') {
                             return {
                                 backgroundColor: 'red'
                             };
 
                         }
-                        else{
-                                return null;
-                            }
+                        else {
+                            return null;
+                        }
                     }
                 },
                 {
@@ -113,9 +159,11 @@ export class PetitionsComponent implements OnInit {
                 }
             ]
         }
+
     }
 
     ngOnInit() {
+
         this.headerService.showSideBarMenu(null, "petitions");
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
@@ -128,13 +176,13 @@ export class PetitionsComponent implements OnInit {
         }
 
     }
-    gettingOrganizationId(value){
+    gettingOrganizationId(value) {
         this.orgId = value;
         this.dataWithParameters(this.queryParameters);
     }
     dataWithParameters(queryData) {
-        if(queryData){
-            this.queryParameters=queryData
+        if (queryData) {
+            this.queryParameters = queryData
         }
 
         if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId'] && queryData) {

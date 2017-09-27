@@ -58,6 +58,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     public deleteSubscription;
     public deleteData;
     public isAddButtonEnable: boolean;
+    public isAddFilterButtonEnable: boolean;
     public headerArray:any;
     public pageSelectionDisable: boolean = false;
     public queryParameters : QueryParameters;
@@ -89,9 +90,11 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             }
         });
         this.smartTableService.getFilterData().subscribe(data=>{
-           this.queryParameters.addFilter(data.data.headerName,data.data.fieldName,this.getFilterType(data.data.headerName),data.filterValue);
-           this.invokeResource();
-            
+            var newData=data.data
+            for(var i = 0; i < newData.length; i++){
+                this.queryParameters.addFilter(newData[i].headerName,newData[i].fieldName,this.getFilterType(newData[i].headerName),newData[i].fieldValue);
+                this.invokeResource();
+            }
         })
     }
     removeDuplicates(data) {
@@ -149,8 +152,9 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
                 }
             }
         }
-        this.smartTableService.headerNamesArray = this.settings['columnsettings'].map(item=>{return {'headerName':item.headerName,'fieldName':item.field}});  
-        this.smartTableService.filteredData=this.queryParameters.filter;
+        this.smartTableService.headerNamesArray = this.settings['columnsettings'].map(item=>{return {'headerName':item.headerName,'fieldName':item.field,'type':item.type,'data':item.data}});  
+        
+        this.smartTableService.filteredData = this.queryParameters.filter;
     }
     
     deleteFilter(index, x) {
@@ -229,7 +233,10 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
         if (this.settings.hasOwnProperty('context')) {
             this.gridOptions['context'] = this.settings['context'];
         }
-
+        //Add Filter Button to enable or disable add filter button to open filter popup
+        if (this.settings.hasOwnProperty('isAddFilterButtonEnable')) {
+            this.isAddFilterButtonEnable = this.settings['isAddFilterButtonEnable'];
+        }
         if (this.settings.hasOwnProperty('headerHeight')) {
             this.gridOptions['headerHeight'] = this.settings['headerHeight'];
         }

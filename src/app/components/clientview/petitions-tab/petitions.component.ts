@@ -1,15 +1,15 @@
-﻿import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {clientviewpetition} from "../../../models/clientviewpetitions";
-import {FormGroup, FormControl} from "@angular/forms";
-import {AppService} from "../../../services/app.service";
-import {User} from "../../../models/user";
-import {ConfirmComponent} from '../../framework/confirmbox/confirm.component';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {MoreDetails} from './MoreDetails';
+﻿import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { clientviewpetition } from "../../../models/clientviewpetitions";
+import { FormGroup, FormControl } from "@angular/forms";
+import { AppService } from "../../../services/app.service";
+import { User } from "../../../models/user";
+import { ConfirmComponent } from '../../framework/confirmbox/confirm.component';
+import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { MoreDetails } from './MoreDetails';
 import { ClientViewPetitionsService } from './petitions.service';
-import {SortType} from "../../framework/smarttable/types/query-parameters";
-import {HeaderService} from "../../common/header/header.service";
+import { SortType } from "../../framework/smarttable/types/query-parameters";
+import { HeaderService } from "../../common/header/header.service";
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -51,17 +51,50 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   public viewData;
   public viewSubscription;
   public queryParameters;
+  public petitionTypesData:any = [];
+  public statusTypes:any = [];
   constructor(private router: Router, private appService: AppService, private clientviewpetitionsService: ClientViewPetitionsService,
-              public dialogService: DialogService, private headerService: HeaderService) {
+    public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
+    this.petitionTypesData = [
+      {
+        'display': 'H1B',
+        'value': 'H1B'
+      },
+      {
+        'display': 'L1',
+        'value': 'L1'
+      },
 
+      {
+        'display': 'H1B-RFE',
+        'value': 'H1B-RFE'
+      },
+
+      {
+        'display': 'B1',
+        'value': 'B1'
+      },
+
+    ];
+    this.statusTypes = [
+      {
+        'display': 'Open',
+        'value': 'Open'
+      },
+      {
+        'display': 'Closed',
+        'value': 'Closed'
+      }
+    ];
     this.settings = {
 
       "isAddButtonEnable": false,
       "columnFilter": true,
+      'isAddFilterButtonEnable': true,
       "isDeleteEnable": false,
       'customPanel': true,
-      'sort' : [{
+      'sort': [{
         headingName: "lastUpdate",
         sort: SortType.DESC
       }],
@@ -72,7 +105,9 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "Petition Type",
-          field: "petitionType"
+          field: "petitionType",
+          type: 'dropDown',
+          data: this.petitionTypesData
         },
         {
           headerName: "Organization",
@@ -80,7 +115,9 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "Status",
-          field: "status"
+          field: "status",
+          type:'dropDown',
+          data:this.statusTypes
         },
         {
           headerName: "Stage",
@@ -88,11 +125,13 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "Start Date",
-          field: "startDate"
+          field: "startDate",
+          type: 'datePicker'
         },
         {
           headerName: "Last Updated",
-          field: "lastUpdate"
+          field: "lastUpdate",
+          type: 'datePicker'
         },
         {
           headerName: "Receipt Number",
@@ -100,7 +139,8 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "More",
-          cellRendererFramework: MoreDetails
+          cellRendererFramework: MoreDetails,
+          type: 'none'
         }
       ]
     };
@@ -124,7 +164,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
     //this.getClientPetitionData();
 
     this.headerService.showSideBarMenu(null, "clientview-petitions");
-    this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
+    this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
   }
 
   ngOnDestroy() {
@@ -137,8 +177,8 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   }
 
   dataWithParameters(queryData) {
-    if(queryData){
-      this.queryParameters=queryData
+    if (queryData) {
+      this.queryParameters = queryData
     }
 
     this.clientviewpetitionsService.getPetitions(this.headerService.user.userId, queryData)
@@ -165,7 +205,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
 
       }).subscribe((isConfirmed) => {
         if (isConfirmed) {
-           this.dataWithParameters(this.queryParameters);
+          this.dataWithParameters(this.queryParameters);
         }
       });
     }

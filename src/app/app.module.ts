@@ -93,6 +93,8 @@ import {AgGridModule} from "ag-grid-angular/main";
 import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
 import {checklistdownloadButton} from './components/immigrationview/manage-account-tab/checklist/downloadButton';
 import {checklistuploadButton} from './components/immigrationview/manage-account-tab/checklist/uploadButton';
+import {FilterpopupComponent} from "./components/framework/smarttable/filterpopup/filterpopup.component";
+import {SmartTableService} from "./components/framework/smarttable/common/smarttable.service";
 
 //superusersview
 
@@ -296,6 +298,9 @@ import { webFaqService } from './components/common/website/faqs/faqs.service';
 import {HomeComponent} from "./components/common/website/home/home.component";
 import {HeaderComponentService} from "./components/common/header/header.component.service";
 
+
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -312,7 +317,7 @@ import {HeaderComponentService} from "./components/common/header/header.componen
     NgbModule.forRoot()],
   entryComponents: [
     ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons,
-      GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton,checklistuploadButton,MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton
+      GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton,checklistuploadButton,MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton,FilterpopupComponent
   ],
   declarations: [
       webImmigrationServicesComponent,
@@ -401,7 +406,7 @@ import {HeaderComponentService} from "./components/common/header/header.componen
 
 
     //SmartTableFramework
-    SmartTableFramework, CustomFilterRow,
+    SmartTableFramework, CustomFilterRow,FilterpopupComponent,
     //superuserview
     AccountInvoiceComponent,
     accountDetailsPaymentsComponent,
@@ -573,7 +578,8 @@ import {HeaderComponentService} from "./components/common/header/header.componen
     SuperUserTotalPetitionsReportsService,
       SuperUsersOpenPetitionService,
       miscsuperusersservice,
-      Demorequestdetailsservice
+      Demorequestdetailsservice,
+      SmartTableService
 
   ],
   bootstrap: [AppComponent]
