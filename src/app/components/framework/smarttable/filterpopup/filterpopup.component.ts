@@ -20,6 +20,7 @@ export class FilterpopupComponent extends DialogComponent<ConfirmModel, boolean>
   public datePickerOptions = IhDateUtil.datePickerOptions;
   public datePickerValue: any = [];
   public data: any = [];
+  public title: string;
   constructor(public dialogService: DialogService, public smartTableService: SmartTableService) {
     super(dialogService);
     this.queryParameters = new QueryParameters();
@@ -73,7 +74,7 @@ export class FilterpopupComponent extends DialogComponent<ConfirmModel, boolean>
         this.headerNamesArray.splice(index,1);
       }
       return true;
-     
+
     })
   }
 
