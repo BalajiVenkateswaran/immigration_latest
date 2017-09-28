@@ -273,7 +273,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
                 }
             }
             else {
-                this.gridOptions['headerHeight'] = 25;
+                this.gridOptions['headerHeight'] = 90;
             }
         }
         else {
@@ -317,7 +317,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         }
         else {
-            this.gridOptions['rowHeight'] = 25;
+            this.gridOptions['rowHeight'] = 60;
         }
         this.gridOptions['columnDefs'] = this.settings['columnsettings'];
     }

@@ -2,8 +2,10 @@ $dateColumnWidth:110px;
 
 /*ag-grid Table Styles*/
 .ag-fresh .ag-root {
-  border: 1px solid #e0e0e0 !important;
-  border-radius: 5px; }
+  border:none !important;
+  /*border-radius: 5px;*/
+
+}
 
 .ag-fresh .ag-header {
   border-bottom: 1px solid #e0e0e0 !important; }
@@ -12,12 +14,12 @@ $dateColumnWidth:110px;
   background: #eaeaeb; }
 
 .ag-fresh .ag-ltr .ag-header-cell {
-  border-right: 1px solid #e0e0e0 !important;
-  color: #fff !important;
+  border-right:none !important;
+  color: #333 !important;
   font-size: 14px !important;
-  font-weight: 700;
+  font-weight:300;
   text-align: left;
-  padding:0px 5px 0 5px;
+  padding:35px 5px 0px 20px;
 
   params-cell {
       span:first-child {
@@ -40,8 +42,8 @@ $dateColumnWidth:110px;
 }
 
 .ag-fresh .ag-ltr .ag-cell-no-focus, .ag-fresh .ag-ltr .ag-cell-focus {
-  padding: 3px 5px;
-  border-right: 1px solid #e0e0e0 !important;
+  padding:22px 5px 0px 20px;
+  /*border-right: 1px solid #e0e0e0 !important;*/
   border-bottom: 1px solid #e0e0e0 !important;
   outline: none;
   border : none;
@@ -52,22 +54,23 @@ $dateColumnWidth:110px;
   cursor: pointer; }
 
 .ag-fresh .ag-row-odd:hover {
-  background: #1377ab !important;
+  background: #232f3f !important;
   color:#fff !important;
 }
 
 .ag-fresh .ag-row-even {
-  background: #d4e6fd !important;
+  background: #f6f7fa !important;
   cursor: pointer; }
 
 .ag-fresh .ag-row-even:hover {
-  background: #1377ab !important;
+  background: #232f3f !important;
   color:#fff !important;
 }
 
 .ag-layout-auto-height .ag-header-row {
-  background: #1377ab !important;
-  color:#fff !important;
+  background: #fff !important;
+  color:#000 !important;
+
 }
 .filterheading{
     float:left;
