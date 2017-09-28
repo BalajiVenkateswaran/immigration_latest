@@ -1,13 +1,40 @@
 <div class="main-content">
-  <div class="clearfix"></div>
-  <div class="table-data">
-    <h2>Petitions</h2>
-       <smart-table class="petitionslistTbl"
-       [settings]="settings"
-       [data]="data"
-       [paginationData]="paginationData"
-       (onRowClick)="moveToPetitionDetails($event)"
-       (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
-          <div class="clearfix"></div>
-</div>
-</div>
+    <div class="pagetitleandfilters">
+        <div class="mainContainer">
+            <h2>Petitions</h2>
+            <div class="clearfix"></div>
+            <div class="filters">
+                <div class="styled-select">
+                    <select class="type">
+                        <option>Type</option>
+                        <option>The second option</option>
+                        <option>The third option</option>
+                    </select>
+                    <select>
+                        <option>Updated On</option>
+                        <option>The second option</option>
+                        <option>The third option</option>
+                    </select>
+                    <select>
+                        <option>Status</option>
+                        <option>The second option</option>
+                        <option>The third option</option>
+                    </select>
+                    <span>More Filters</span>
+                    <a class="addfilter"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainContainer">
+        <div class="table-data">
+            <smart-table class="petitionslistTbl"
+                         [settings]="settings"
+                         [data]="data"
+                         [paginationData]="paginationData"
+                         (onRowClick)="moveToPetitionDetails($event)"
+                         (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>

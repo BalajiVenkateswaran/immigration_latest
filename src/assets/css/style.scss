@@ -125,9 +125,9 @@ label {
 section {
     .left-opened, .rightwithmenu {
         position: absolute;
-        top: 180px;
+        top: 176px;
         bottom: 0px;
-        height: calc(100vh - 180px);
+        height: calc(100vh - 176px);
     }
     .left-opened {
         left: 0px;
@@ -138,7 +138,7 @@ section {
         left: -200px;
         width: 200px;
         position: absolute;
-        top: 180px;
+        top: 176px;
     }
     .rightwithmenu {
         left: 200px;
@@ -148,7 +148,7 @@ section {
         left: 0px;
         right: 0;
         position: absolute;
-        top: 180px;
+        top: 176px;
     }
 }
 .navbar-nav {
@@ -291,14 +291,14 @@ section {
 .main-content {
     /*background:url(../images/bg-maincontent.jpg) no-repeat left top #485499;*/
 
-    background: #2f323a;
+    background: none !important;
     background-size: cover;
-    padding:0px 15px 0px 15px;
+    padding:0px 0px ;
     width: 100%;
     float: left;
     /*height:100%;*/
 
-    height: calc(100vh - 180px);
+    height: calc(100vh - 176px);
     overflow-y: auto;
     padding-bottom: 15px;
     h1 {
@@ -334,7 +334,7 @@ section {
         background:#fff;
         @include border-radius(4px);
         width: 100%;
-        padding:15px 15px 20px 15px;
+        padding:15px 0px 20px 0px;
             height: 100%;
             overflow-y:auto;
         .submitbtn {
@@ -1679,13 +1679,12 @@ float:right;
     border-bottom:solid 1px #ccc;
 }
 .mainContainer {
-    width:calc(100% - 200px);
-    height:70px;
+    width:calc(100% - 100px);
     margin:0px auto;
 }
 .tabsMenu {
     background:#f6f7fa;
-    height:100px;
+    height:95px;
     width:100%;
 	-webkit-box-shadow: 0 5px 3px -3px #dcdada;
 	   -moz-box-shadow: 0 5px 3px -3px #dcdada;
@@ -1693,8 +1692,8 @@ float:right;
 
 }
 header {
-    background-color: #2f323a;
-    height:180px;
+    background:none !important;
+    height:176px;
     display: block;
     .logo {
         display: block;
@@ -1849,7 +1848,7 @@ header {
         }
     }
         ul {
-            margin:20px 0 0 0;
+            margin:15px 0 0 0;
             padding: 0px;
             display: block;
             /*display: flex;
@@ -1995,3 +1994,57 @@ header {
         }
     }
 }
+.pagetitleandfilters {
+    width:100%;
+    border-bottom:solid 1px #d6d6d6;
+    color:#333 !important;
+    float:left;
+
+    h2 {
+        font-size:30px;
+        color:#333;
+        font-weight:300;
+        display:block;
+        margin:15px 0;
+    }
+    .filters {
+        font-size:14px;
+        span {
+            float:left;
+            margin:5px 12px 0 0;
+        }
+        .addfilter {
+            width:24px;
+            height:24px;
+            border-radius:50%;
+            margin:0px;
+            background: url(../images/add-circular-outlined-button.png) no-repeat 0 0;
+            float:left;
+        }
+
+        .styled-select {
+           height: 29px;
+           overflow: hidden;
+           /*width: 240px;*/
+
+           select {
+               -webkit-appearance: none;
+               -moz-appearance: none;
+               appearance: none;
+               background: url(../images/DownArrow.png) no-repeat 96% 5px;
+               border: none;
+               font-size: 14px;
+               height: 29px;
+               padding: 5px; /* If you add too much padding here, the options won't show in IE */
+               /*width: 268px;*/
+               margin-right:40px;
+               float:left;
+            }
+          
+           
+        }
+    }
+}
+.styled-select select:last-child {
+               margin-right:10px !important;
+               }
