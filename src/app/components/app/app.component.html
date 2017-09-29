@@ -4,14 +4,15 @@
 <router-outlet name="message"></router-outlet>
 <router-outlet name="carousel" *ngIf="currentPage != 'login'"></router-outlet>
 
-<section >
-  <aside class="left-opened smoothness" [ngClass]="{ 'left-opened': (appService.showMenu && appService.expandMenu), 'left-closed': (appService.showMenu && !appService.expandMenu), 'loginScreen': !appService.showMenu}">
-    <router-outlet name="menu"></router-outlet>
-  </aside>
 
-  <aside class="rightwithmenu smoothness" [ngClass]="{'rightwithmenu':(appService.showMenu && appService.expandMenu) , 'rightwithoutmenu': (appService.showMenu && !appService.expandMenu), 'loginScreen' : (!appService.showMenu)}">
-    <router-outlet></router-outlet>
-  </aside>
+    <section>
+        <aside class="left-opened smoothness" [ngClass]="{ 'left-opened': (appService.showMenu && appService.expandMenu), 'left-closed': (appService.showMenu && !appService.expandMenu), 'loginScreen': !appService.showMenu}">
+            <router-outlet name="menu"></router-outlet>
+        </aside>
+        <aside class="rightwithmenu smoothness" [ngClass]="{'rightwithmenu':(appService.showMenu && appService.expandMenu) , 'rightwithoutmenu': (appService.showMenu && !appService.expandMenu), 'loginScreen' : (!appService.showMenu)}">
+            <router-outlet></router-outlet>
+        </aside>
+    </section>
 
-</section>
+
 <router-outlet name="footer"></router-outlet>

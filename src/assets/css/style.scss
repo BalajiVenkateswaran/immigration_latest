@@ -130,18 +130,18 @@ section {
         height: calc(100vh - 176px);
     }
     .left-opened {
-        left: 0px;
-        width: 200px;
-        background-color: #2f323a !important;
+            left: 50px;
+                width: 250px;
+        background: none !important;
     }
     .left-closed {
-        left: -200px;
-        width: 200px;
+        left: -250px;
+        width: 250px;
         position: absolute;
         top: 176px;
     }
     .rightwithmenu {
-        left: 200px;
+        left: 300px;
         right: 0;
     }
     .rightwithoutmenu {
@@ -159,17 +159,17 @@ section {
     @include border-radius(0);
 }
 .navbar-fixed-left {
-    width:calc(100% - 15px);
-   @include border-radius(0);
-    height:calc(100% - 15px);
+        width: 100%;
+    border-radius: 0;
+    height: 100%;
     border: none;
     overflow: auto;
-    background-color:#2f323a;
-    position: absolute;
-    padding:10px 0 0 0px;
-    background: #fff;
+    /* background-color: #2f323a; */
+    /* position: absolute; */
+    padding: 0px;
+    background: none;
     border-radius: 4px;
-    margin:0px 0px 0 15px;
+    margin: 0px;
     .navbar-nav {
         > li {
             float: none;
@@ -226,19 +226,16 @@ section {
 .navbar {} .left-opened .navbar-inverse,
 .left-closed .navbar-inverse {
     .navbar-nav>li>a {
-        display: block;
-        height: 42px !important;
-        padding: 0 0 0 13px !important;
-        text-shadow: none;
+
+        padding: 0 !important;
         font-size: 14px !important;
         text-decoration: none;
-        color: #2f323a;
-        line-height: 42px !important;
-        white-space: nowrap;
+        color: #232f3f;
+        /*white-space: nowrap;
         overflow: hidden;
         -webkit-transition: transform 0.2s linear;
         -moz-transition: transform 0.2s linear;
-        transition: transform 0.2s linear;
+        transition: transform 0.2s linear;*/
         span[class*="ico-"] {
             width: 12px;
             height: 12px;
@@ -255,10 +252,9 @@ section {
     }
     .navbar-nav>li>a:hover,
     .navbar-nav>li>a:focus, .navbar-nav>li>a.active {
-        color: #fff;
-        background-color: #44474e !important;
-        margin:0px 7px;
-        border-radius:10px;
+        color: #109bf8;
+        margin:0px;
+        background:none !important;
     }
     li.dropdown span.ico-arrow {
         position: absolute;
