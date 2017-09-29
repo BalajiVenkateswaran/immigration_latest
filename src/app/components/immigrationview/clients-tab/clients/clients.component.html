@@ -1,21 +1,42 @@
-<div class="main-content" *ngIf="getClientsData">
-    <ul class="breadcrumb">
-        <li><a href="#">Clients</a></li>
-    </ul>
-    <div class="clearfix"></div>
-    <div class="table-data">
-        <h2>Clients</h2>
-        <smart-table class="immiviewClientsTable" 
-        [settings]="settings" 
-        [data]="data" 
-        [paginationData]="paginationData" 
-        (onAddClick)="addNewCli($event)" 
-        (onRowClick)="onUserRowClick($event)" 
-      
-        
-        (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
+
+
+<div class="main-content"  *ngIf="getClientsData">
+    <div class="pagetitleandfilters">
+        <div class="mainContainer">
+            <h2>Clients</h2>
+            <div class="clearfix"></div>
+            <div class="filters">
+                <div class="styled-select">
+                    <select>
+                        <option>Status</option>
+                        <option>The second option</option>
+                        <option>The third option</option>
+                    </select>
+                    <span>More Filters</span>
+                    <a class="addfilter"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainContainer">
+        <div class="table-data">
+            <smart-table class="immiviewClientsTable"
+                         [settings]="settings"
+                         [data]="data"
+                         [paginationData]="paginationData"
+                         (onAddClick)="addNewCli($event)"
+                         (onRowClick)="onUserRowClick($event)"
+                         (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
+            <div class="clearfix"></div>
+        </div>
     </div>
 </div>
+
+
+
+
+
+
 
 <div *ngIf="addNewClient">
     <div class="modal-dialog" ngDraggable>
