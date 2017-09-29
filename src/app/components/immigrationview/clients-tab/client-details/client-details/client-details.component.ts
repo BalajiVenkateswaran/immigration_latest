@@ -44,6 +44,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     private beforeCancelProfile;
     private beforeCancelPersonal;
     public disableSendInvite: boolean;
+    
     constructor(public appService: AppService, public headerService: HeaderService, private clientDetailsService: ImmigrationViewClientDetailsService, private dialogService: DialogService) {
         if (this.headerService.user) {
             this.user = this.headerService.user;
@@ -143,11 +144,26 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
     }
     //send Invite Button function
-    sendInvite() {
-        this.clientDetailsService.sendClientInvite(this.appService.clientId)
-            .subscribe((res) => {
-                console.log("Email sent");
-            });
+    sendInvite(event) {
+        let targetEvent=event;
+        targetEvent.preventDefault();
+        this.dialogService.addDialog(ConfirmComponent,{
+            message: 'An email will be sent to'+this.appService.firstName+" "+this.appService.lastName+" "+'accept the invitation to join org'+' '+this.headerService.selectedOrg.displayName+".",
+            title: 'Send Invite'
+        }).subscribe((isConfirmed)=>{
+          if(isConfirmed){
+           
+            this.clientDetailsService.sendClientInvite(this.appService.clientId)
+              .subscribe((res) => {
+                event.stopPropagation();
+                targetEvent.preventDefault();
+              });
+          }
+          else{
+             
+          }
+        })
+
     }
     onDateChanged(event: IMyDateModel) {
     }

@@ -1,8 +1,12 @@
 <div class="main-content">
   <div class="table-data-forms">
-      <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
-      <button type="submit" class="sendinvite no-marg-right" [ngClass]="{'disableClass':disableSendInvite,'sendinvite no-marg-right':!disableSendInvite}"   [disabled]="disableSendInvite"  (click)="sendInvite()">Send Invite</button>
-      <div class="clearfix"></div>
+    <h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+    <div>
+      <button type="submit" class="sendinvite no-marg-right" [ngClass]="{'disableClass':disableSendInvite,'sendinvite no-marg-right':!disableSendInvite}"
+        [disabled]="disableSendInvite" (click)="sendInvite($event)">Send Invite</button>
+    </div>
+
+    <div class="clearfix"></div>
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="col-md-12 addresbox box-shadow">
@@ -14,7 +18,8 @@
               <div class="tbl-head-btn" [hidden]="isProfileEdit">
                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel
                 </button>
-                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn': 'savebtn btndisabled'" (click)="saveClientProfile()" [disabled]="!isProfileSaveButtonEnabled()" *ngIf="isProfileEdit==false">Save
+                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn': 'savebtn btndisabled'" (click)="saveClientProfile()"
+                  [disabled]="!isProfileSaveButtonEnabled()" *ngIf="isProfileEdit==false">Save
                 </button>
               </div>
             </div>
@@ -43,7 +48,8 @@
           <div class="row">
             <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
             <div class="col-md-8">
-              <input type="text" *ngIf="isProfileEdit==false" [readonly]=true [(ngModel)]="clientProfile.email" [ngClass]="clientProfile.email == '' ? 'redborder': ''"/>
+              <input type="text" *ngIf="isProfileEdit==false" [readonly]=true [(ngModel)]="clientProfile.email" [ngClass]="clientProfile.email == '' ? 'redborder': ''"
+              />
               <span *ngIf="isProfileEdit==true">{{clientProfile.email}}</span>
             </div>
           </div>
@@ -56,8 +62,7 @@
           <div class="row">
             <div class="col-md-4"><label for="wa-state">Middle Name</label></div>
             <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-state" [(ngModel)]="clientProfile.middleName" />
-              <span
-                *ngIf="isProfileEdit==true">{{clientProfile.middleName}}</span>
+              <span *ngIf="isProfileEdit==true">{{clientProfile.middleName}}</span>
             </div>
           </div>
           <div class="row">
@@ -68,19 +73,19 @@
           </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-country">Phone Number<span class="redstar">*</span>  </label></div>
-            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-country" [formControl]="phoneNumber" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''"
-              /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span>
+            <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-country" [formControl]="phoneNumber" [(ngModel)]="clientProfile.phoneNumber"
+                [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span>
             </div>
           </div>
           <div class="row sfm" *ngIf="isProfileEdit==false && phoneNumber != null && phoneNumber.errors">
-              <div class="col-md-12">
-                  <div class="redstar" *ngIf="phoneNumber.errors.required">
-                      * Phone Number is required
-                  </div>
-                  <div class="redstar" *ngIf="phoneNumber.errors.pattern">
-                      * Invalid Phone Number
-                  </div>
+            <div class="col-md-12">
+              <div class="redstar" *ngIf="phoneNumber.errors.required">
+                * Phone Number is required
               </div>
+              <div class="redstar" *ngIf="phoneNumber.errors.pattern">
+                * Invalid Phone Number
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-country">Created By</label></div>
@@ -121,7 +126,8 @@
                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isProfileEdit==false">
                             Cancel
                         </button>
-                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn bottombtns': 'savebtn bottombtns btndisabled'" [disabled]="!isProfileSaveButtonEnabled()" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">
+                <button type="submit" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'savebtn bottombtns': 'savebtn bottombtns btndisabled'"
+                  [disabled]="!isProfileSaveButtonEnabled()" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">
                             Save
                         </button>
               </div>
@@ -170,18 +176,18 @@
           </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-ssn">U.S. Social Security Number (if any)</label></div>
-            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-ssn" [formControl]="ssn" [(ngModel)]="clientPersonalInfo.ssn" />
-              <span
-                *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span>
+            <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-ssn" [formControl]="ssn" [(ngModel)]="clientPersonalInfo.ssn"
+              />
+              <span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span>
             </div>
           </div>
           <div class="row sfm" *ngIf="isPersonalInfoEdit==false && ssn != null && ssn.errors">
-              <div class="col-md-12">
-                  
-                  <div class="redstar" *ngIf="ssn.errors.pattern">
-                      * Invalid SSN Number(Can contain only digits and -)
-                  </div>
+            <div class="col-md-12">
+
+              <div class="redstar" *ngIf="ssn.errors.pattern">
+                * Invalid SSN Number(Can contain only digits and -)
               </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-4"><label for="wa-aleinRegistrationNumber">Alien Registration Number</label></div>

@@ -1,10 +1,14 @@
 ﻿<div class="main-content">
-
-    <div class="table-data">
-        <h2>{{appService.firstName}} {{appService.lastName}}</h2>
-        <div class="clearfix"></div>
-        <!--<h2>Invites/Requests</h2>-->
-          <smart-table class="clientViewRequests" [settings]="settings" [data]="data"></smart-table>
-        <div class="clearfix"></div>
+    <div class="pagetitleandfilters">
+        <div class="mainContainer">
+            <h2>{{appService.firstName}} {{appService.lastName}}</h2>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="mainContainer">
+        <div class="table-data">
+            <smart-table class="clientViewRequests" [settings]="settings" [data]="data"></smart-table>
+            <div class="clearfix"></div>
+        </div>
     </div>
 </div>
