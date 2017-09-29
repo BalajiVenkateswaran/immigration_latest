@@ -31,41 +31,16 @@ export class PetitionsComponent implements OnInit {
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
-        this.petitionService.getAllPetitionTypesAndSubTypes().subscribe(
-            res => {
-                this.petitionTypesData = res['petitionTypes'];
+      
 
-            }
-        )
-        this.petitionTypesData = [
-            {
-                'display': 'H1B',
-                'value': 'H1B'
-            },
-            {
-                'display': 'L1',
-                'value': 'L1'
-            },
-
-            {
-                'display': 'H1B-RFE',
-                'value': 'H1B-RFE'
-            },
-
-            {
-                'display': 'B1',
-                'value': 'B1'
-            },
-
-        ];
         this.statusTypes = [
             {
-               'display': 'Open',
-               'value': 'Open'  
+                'display': 'Open',
+                'value': 'Open'
             },
             {
-               'display': 'Close',
-               'value': 'Close'  
+                'display': 'Close',
+                'value': 'Close'
             }
         ];
         //console.log(this.petitionTypesData);
@@ -74,7 +49,7 @@ export class PetitionsComponent implements OnInit {
             "columnFilter": false,
             "isDeleteEnable": false,
             'customPanel': true,
-            'isAddFilterButtonEnable':true,
+            'isAddFilterButtonEnable': true,
             'defaultFilter': [{
                 headingName: "status",
                 headerName: "Status",
@@ -112,7 +87,7 @@ export class PetitionsComponent implements OnInit {
                     headerName: "Type",
                     field: "petitionType",
                     type: 'dropDown',
-                    data: this.petitionTypesData
+                    data: this.getPetitionTypeValues()
                 },
                 {
                     headerName: "Updated On",
@@ -163,7 +138,7 @@ export class PetitionsComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        
         this.headerService.showSideBarMenu(null, "petitions");
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
@@ -174,7 +149,6 @@ export class PetitionsComponent implements OnInit {
                 this.dataWithParameters(this.queryParameters);
             }
         }
-
     }
     gettingOrganizationId(value) {
         this.orgId = value;
@@ -204,5 +178,18 @@ export class PetitionsComponent implements OnInit {
         this.appService.clientlastName = event.data.lastName;
         this.appService.petitionType = event.data.petitionType;
         this.appService.moveToPage("immigrationview-petition-details");
+    }
+    getPetitionTypeValues() {
+        let x = [];
+        this.petitionService.getAllPetitionTypesAndSubTypes().subscribe(res => {
+            if (res['petitionTypes'] != undefined) {
+                let data = res['petitionTypes'];
+               for(var i=0;i<data.length;i++){
+                   x.push({'display':data[i]['petitiontype'],'value':data[i]['petitiontype']});
+               }
+            }
+            
+        })
+        return x;
     }
 }

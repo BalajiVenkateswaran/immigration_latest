@@ -51,8 +51,8 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   public viewData;
   public viewSubscription;
   public queryParameters;
-  public petitionTypesData:any = [];
-  public statusTypes:any = [];
+  public petitionTypesData: any = [];
+  public statusTypes: any = [];
   constructor(private router: Router, private appService: AppService, private clientviewpetitionsService: ClientViewPetitionsService,
     public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
@@ -90,7 +90,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
     this.settings = {
 
       "isAddButtonEnable": false,
-      "columnFilter": true,
+      "columnFilter": false,
       'isAddFilterButtonEnable': true,
       "isDeleteEnable": false,
       'customPanel': true,
@@ -107,7 +107,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
           headerName: "Petition Type",
           field: "petitionType",
           type: 'dropDown',
-          data: this.petitionTypesData
+          data: this.getPetitionTypeValues()
         },
         {
           headerName: "Organization",
@@ -116,8 +116,8 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         {
           headerName: "Status",
           field: "status",
-          type:'dropDown',
-          data:this.statusTypes
+          type: 'dropDown',
+          data: this.statusTypes
         },
         {
           headerName: "Stage",
@@ -213,6 +213,19 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   cancel() {
     this.result = false;
     this.close();
+  }
+  getPetitionTypeValues() {
+    let x = [];
+    this.clientviewpetitionsService.getAllPetitionTypesAndSubTypes().subscribe(res => {
+      if (res['petitionTypes'] != undefined) {
+        let data = res['petitionTypes'];
+        for (var i = 0; i < data.length; i++) {
+          x.push({ 'display': data[i]['petitiontype'], 'value': data[i]['petitiontype'] });
+        }
+      }
+
+    })
+    return x;
   }
 
 }

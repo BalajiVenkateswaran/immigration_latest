@@ -51,6 +51,7 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   constructor(private router: Router, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
     super(dialogService);
     this.headerComponentService.onHeaderPageLoad();
+    this.highlightTab('petitions')
     if(this.headerService.user != null){
       this.user = this.headerService.user;
     }
