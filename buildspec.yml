@@ -3,7 +3,7 @@ version: 0.1
 phases:
   build:
     commands:
-      - npm run build
+      - npm i && npm run build
   post_build:
     commands:
       - mkdir -p upload_folder
