@@ -2,16 +2,13 @@
 import { ReportsCommonService } from '../../common/reports-common.service';
 import { SuperUsermonthlyReportsService } from './monthly.service';
 import { Component, OnInit } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 
 @Component({
     selector: 'app-monthly',
     templateUrl: './monthly.component.html',
     styleUrls: ['./monthly.component.sass']
 })
-
-export class superusermonthlyReportsComponent implements OnInit {
+export class SuperUserMonthlyReportsComponent implements OnInit {
     public data: any = [];
 
 
