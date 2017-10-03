@@ -1,11 +1,11 @@
 require 'net/http'
 
-uri = URI('http://localhost:8080/health')
+uri = URI('http://localhost/assets/css/Immigration.css')
 
 req = Net::HTTP::Get.new(uri)
 
 $i = 0
-$num = 600
+$num = 120
 $smoke_test_status = 'fail'
 
 while  $i < $num  do
