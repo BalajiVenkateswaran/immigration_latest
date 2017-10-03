@@ -3,7 +3,7 @@ version: 0.1
 phases:
   build:
     commands:
-      - npm install @angular/cli@1.4.3 && npm install @angular/animations@4.3.6 @angular/common@4.3.6 @angular/compiler@4.3.6 @angular/compiler-cli@2.4.6 @angular/core@4.3.6 @angular/forms@4.3.6 @angular/http@4.3.6 @angular/platform-browser@4.3.6 @angular/platform-browser-dynamic@4.3.6 @angular/platform-server@4.3.6 @angular/router@4.3.6 typescript@2.4.2 && npm i && node --max_old_space_size=2048 ./node_modules/@angular/cli/bin/ng build --prod
+      - npm install @angular/cli@1.4.3 rxjs@5.4.3 zone.js@0.8.4 && npm install typescript@'>=2.1.0 <2.4.0' && npm install @angular/animations@4.3.6 @angular/common@4.3.6 @angular/compiler@4.3.6 @angular/compiler-cli@4.3.6 @angular/core@4.3.6 @angular/forms@4.3.6 @angular/http@4.3.6 @angular/platform-browser@4.3.6 @angular/platform-browser-dynamic@4.3.6 @angular/platform-server@4.3.6 @angular/router@4.3.6 typescript@2.4.2 && npm i && node --max_old_space_size=2048 ./node_modules/@angular/cli/bin/ng build --prod
   post_build:
     commands:
       - mkdir -p upload_folder
