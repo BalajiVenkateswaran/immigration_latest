@@ -199,7 +199,7 @@ import {superuserstatsclientsReportsComponent} from './components/superuserview/
 import {SuperUserstatclientsReportsService} from './components/superuserview/reports-tab/stats/clients/clients.service';
 import {superuserstatspetitionReportsComponent} from './components/superuserview/reports-tab/stats/petitions/petitions.component';
 import {SuperUserstatpetitonReportsService} from './components/superuserview/reports-tab/stats/petitions/petitions.service';
-import {superusermonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
+import {SuperUserMonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
 import {SuperUsermonthlyReportsService} from './components/superuserview/reports-tab/payments/monthly/monthly.service';
 
 //PDF Pages for testing only
@@ -435,7 +435,7 @@ import {HeaderComponentService} from "./components/common/header/header.componen
       superuserstatsotgsReportsComponent,
       superuserstatsclientsReportsComponent,
       superuserstatspetitionReportsComponent,
-      superusermonthlyReportsComponent,
+      SuperUserMonthlyReportsComponent,
     //reports
     petitionsstatusreportscomponent,
     clientscreatedreportscomponent,
