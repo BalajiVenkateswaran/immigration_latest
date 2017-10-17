@@ -5,7 +5,7 @@ uri = URI('http://localhost/assets/css/Immigration.css')
 req = Net::HTTP::Get.new(uri)
 
 $i = 0
-$num = 120
+$num = 600
 $smoke_test_status = 'fail'
 
 while  $i < $num  do
