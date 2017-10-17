@@ -3,6 +3,8 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/
+  - source: scripts/
+    destination: /tmp/scripts/
 hooks:
   ApplicationStart:
     - location: scripts/run.sh
