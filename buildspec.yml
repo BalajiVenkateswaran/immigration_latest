@@ -11,7 +11,7 @@ phases:
   post_build:
     commands:
       - mkdir -p upload_folder
-      - export GIT_SHA=`git rev-parse --short HEAD` && echo $GIT_SHA && tar -cvf upload_folder/immigrationhub-ui-$GIT_SHA.tar .
+      - export GIT_SHA=`git rev-parse --short HEAD` && echo $GIT_SHA && tar -cvf upload_folder/immigrationhub-ui-$GIT_SHA-$BUILD_ENV.tar .
 artifacts:
   files:
     - upload_folder/*
