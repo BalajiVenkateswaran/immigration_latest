@@ -9,6 +9,7 @@ import {loginService} from "./login.service";
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {ManageAccountUserService} from "../../../immigrationview/manage-account-tab/user/user.service";
 import {HeaderComponentService} from "../../header/header.component.service";
+import { environment } from '../../../../../environments/environment';
 
 export interface ConfirmModel {
   title: string;
@@ -46,7 +47,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   public userRoles: any = [];
   public forgotpwdsubmit: boolean = true;
   //Build number format: yy.mm.2 digit build number
-  public static uiBuildNumber : string = "17.09.07";
+  public static uiBuildNumber : string = environment.buildNumber;//"17.09.07";
   constructor(
     private router: Router,
     private appService: AppService,
