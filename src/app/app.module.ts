@@ -197,8 +197,8 @@ import {superuserstatsclientsReportsComponent} from './components/superuserview/
 import {SuperUserstatclientsReportsService} from './components/superuserview/reports-tab/stats/clients/clients.service';
 import {superuserstatspetitionReportsComponent} from './components/superuserview/reports-tab/stats/petitions/petitions.component';
 import {SuperUserstatpetitonReportsService} from './components/superuserview/reports-tab/stats/petitions/petitions.service';
-import {superusermonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
-import {SuperUsermonthlyReportsService} from './components/superuserview/reports-tab/payments/monthly/monthly.service';
+import {superusermonthlyReportsComponent} from './components/superuserview/reports-tab/payments/Monthly/monthly.component';
+import {SuperUsermonthlyReportsService} from './components/superuserview/reports-tab/payments/Monthly/monthly.service';
 
 //PDF Pages for testing only
 import {i129Page1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
