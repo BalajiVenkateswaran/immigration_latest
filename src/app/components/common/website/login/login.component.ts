@@ -9,7 +9,7 @@ import {loginService} from "./login.service";
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {ManageAccountUserService} from "../../../immigrationview/manage-account-tab/user/user.service";
 import {HeaderComponentService} from "../../header/header.component.service";
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 export interface ConfirmModel {
   title: string;
