@@ -40,7 +40,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   public submitted: boolean; // keep track on whether form is submitted
   message: string;
   forgotPwd;
-  private frgtEmail;
+  public frgtEmail;
   public getloginpage: boolean = true;
   public selectrole: boolean;
   public loginPopupForm: boolean;
@@ -90,23 +90,17 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     if (isValid) {
       this.forgotpwdsubmit = false;
     }
-
-    if (!this.forgotPwd) {
-      this.forgetPassword(model.emailId);
-    } else {
-      this.loginSubmit(model, isValid);
-    }
-
+    this.loginSubmit(model, isValid);
   }
 
-  forgetPassword(email: string) {
-    this.loginservice.forgetPassword(email).subscribe((res) => {
+  forgetPassword() {
+    this.loginservice.forgetPassword(this.frgtEmail).subscribe((res) => {
       console.log("ForgetPassword Response %o", res);
       if (res['statusCode'] == 'SUCCESS') {
         this.close();
         this.dialogService.addDialog(ConfirmComponent, {
           title: 'Information',
-          message: 'Password reset information is sent to ' + email
+          message: 'Password reset information is sent to ' + this.frgtEmail
         }).subscribe((isConfirmed) => {
           this.appService.moveToPage('login');
         });

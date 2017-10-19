@@ -87,7 +87,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-2"></div>
                                             </div>
@@ -110,7 +110,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-2"></div>
                                             </div>
@@ -136,7 +136,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5 col-sm-5 col-xs-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-1 col-sm-1 col-xs-1 show768"></div>
                                                 <div class="col-md-2 hide768"></div>
@@ -146,7 +146,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!--<div class="item">
                             <div class="slide3">
                                 <div class="container">
@@ -159,7 +159,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-2"></div>
                                             </div>
@@ -208,7 +208,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-2"></div>
                                             </div>
@@ -257,7 +257,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-2"></div>
                                             </div>
@@ -306,7 +306,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-2"></div>
                                             </div>
@@ -359,7 +359,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5 col-sm-5 col-xs-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-1 col-sm-1 col-xs-1 show768"></div>
                                                 <div class="col-md-2 hide768"></div>
@@ -386,7 +386,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5 col-sm-5 col-xs-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-1 col-sm-1 col-xs-1 show768"></div>
                                                 <div class="col-md-2 hide768"></div>
@@ -413,7 +413,7 @@
                                                     <button class="ourservice">get started now</button>
                                                 </div>
                                                 <div class="col-md-5 col-sm-5 col-xs-5">
-                                                    
+
                                                 </div>
                                                 <div class="col-md-1 col-sm-1 col-xs-1 show768"></div>
                                                 <div class="col-md-2 hide768"></div>
@@ -822,18 +822,18 @@
                                                     <a (click)="frgtPwd(login.valid)">Forgot Password?</a>
                                                 </div>
                                             </div>
-                                            <div class="form-group" *ngIf="forgotPwd==false">
-                                                <div class="user_id">
-                                                    <!--<label>Enter Registered Email Id</label>-->
-                                                    <div class="emailicon"></div>
-                                                    <input type="email" class="form-control" id="forgetPassword" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                                                           required placeholder="Email" formControlName="emailId">
-                                                </div>
-                                                <div class="sign_in">
-                                                    <button type="submit" class="btn newlogbtn" [disabled]="!login.valid">Submit</button>
-                                                </div>
-                                            </div>
                                         </form>
+                                        <div class="form-group" *ngIf="forgotPwd==false">
+                                          <div class="user_id">
+                                            <!--<label>Enter Registered Email Id</label>-->
+                                            <div class="emailicon"></div>
+                                            <input type="email" class="form-control" id="forgetPassword" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                                   required placeholder="Email" [(ngModel)]="frgtEmail" #forgotPassword_emailId="ngModel">
+                                          </div>
+                                          <div class="sign_in">
+                                            <button class="btn newlogbtn" [disabled]="forgotPassword_emailId.errors" (click)="forgetPassword()">Submit</button>
+                                          </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-2"></div>
                                 </div>
