@@ -8,8 +8,6 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class RestService {
       immp_endpoint_url: String = environment.appUrl;
-      //"http://34.200.77.115:8080/immigrationPortal";
-      // immp_endpoint_url: String = "http://localhost:8080/immigrationPortal";
 
   constructor(private http: Http, private headerService: HeaderService) {
   }

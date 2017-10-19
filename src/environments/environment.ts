@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  appUrl: 'http://34.200.77.115:8080/immigrationPortal'
+  appUrl: 'http://34.200.77.115:8080/immigrationPortal',
+  buildNumber: '17.09.07'
 };
