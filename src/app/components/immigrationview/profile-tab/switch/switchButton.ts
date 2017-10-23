@@ -10,7 +10,7 @@ import {HeaderService} from "../../../common/header/header.service";
 @Component({
     template: `
     <div>
-     <button class="iportal-btn" [ngClass]="{'myclass':switchdisable,'iportal-btn':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
+     <button class="iportal-btn" id="{{this.getId()}}" [ngClass]="{'myclass':switchdisable,'iportal-btn':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
     </div>
    `
 
@@ -27,9 +27,18 @@ export class switchButton implements ICellRendererAngularComp {
             this.switchdisable = true;
         }
     }
-  refresh(): boolean {
+    refresh(): boolean {
       return false;
     }
+
+    getId() : string {
+      if(this.params.data.accountId){
+        return this.params.data.accountId;
+      } else {
+        return this.params.data.roleName;
+      }
+    }
+
     onSwitchClick(params) {
         this.appService.destroy();
         this.headerService.user = params.context.componentParent.user;

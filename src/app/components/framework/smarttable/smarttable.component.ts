@@ -14,9 +14,8 @@ import { FilterpopupComponent } from "./filterpopup/filterpopup.component";
 import {ConfirmComponent} from '../confirmbox/confirm.component';
 import { SmartTableService } from './common/smarttable.service'
 export interface ConfirmModel {
-title: string;
-message: string;
-
+  title: string;
+  message: string;
 }
 
 @Component({
@@ -152,11 +151,11 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
                 }
             }
         }
-        this.smartTableService.headerNamesArray = this.settings['columnsettings'].map(item=>{return {'headerName':item.headerName,'fieldName':item.field,'type':item.type,'data':item.data}});  
-        
+        this.smartTableService.headerNamesArray = this.settings['columnsettings'].map(item=>{return {'headerName':item.headerName,'fieldName':item.field,'type':item.type,'data':item.data}});
+
         this.smartTableService.filteredData = this.queryParameters.filter;
     }
-    
+
     deleteFilter(index, x) {
         this.deleteFilterClicked = true;
         this.queryParameters.filter.splice(index,1);
