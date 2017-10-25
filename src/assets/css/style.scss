@@ -2005,6 +2005,7 @@ header {
     }
     .filters {
         font-size:14px;
+            margin-bottom: 5px;
         span {
             float:left;
             margin:5px 12px 0 0;
@@ -2032,7 +2033,7 @@ header {
                font-size: 14px;
                height: 29px;
                padding: 5px; /* If you add too much padding here, the options won't show in IE */
-               /*width: 268px;*/
+               width: 69px!important;
                margin-right:40px;
                float:left;
             }

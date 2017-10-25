@@ -62,10 +62,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         },
         {
           headerName: "Last Name",
-          field: "lastName",
+          field: "lastName"
         },
         {
-          headerName: "Email",
+          headerName: "Email Address",
           field: "email"
         },
         {

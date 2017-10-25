@@ -132,7 +132,7 @@ $dateColumnWidth:110px;
     margin-right: 5px; }
 
 .agridadd {
-  margin-top:-42px;
+  margin-top:0px!important;
 }
 
 .itemsperpage {
@@ -283,12 +283,12 @@ $dateColumnWidth:110px;
     }
 }
 
-.petitionslistTbl {
+/*.petitionslistTbl {*/
     /*.ag-fresh .ag-ltr .ag-header-cell[title~="Actions"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:10% !important;
     left:0% !important;
     }*/
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
       width:8% !important;
       left:0% !important;
     }
@@ -307,56 +307,56 @@ $dateColumnWidth:110px;
     .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionType"] {
       width:5% !important;
       left:48% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
-      /*width:$dateColumnWidth !important;*/
+    }*/
+    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
+      width:$dateColumnWidth !important;
       width:7% !important;
       left:53% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    }*/
+    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
       width:5% !important;
-      /*left:-webkit-calc(53% + #{$dateColumnWidth}) !important;
+      left:-webkit-calc(53% + #{$dateColumnWidth}) !important;
       left:-moz-calc(53% + #{$dateColumnWidth}) !important;
-      left:calc(53% + #{$dateColumnWidth}) !important;*/
-      /*left:calc(53%+$dateColumnWidth);*/
+      left:calc(53% + #{$dateColumnWidth}) !important;
+      left:calc(53%+$dateColumnWidth);
       left:60% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="finalStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="finalStatus"] {
-      width:6% !important;
+    }*/
+    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="finalStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="finalStatus"] {
+      width:6% !important;*/
       /*left:-webkit-calc(58% + #{$dateColumnWidth}) !important;
       left:-moz-calc(58% + #{$dateColumnWidth}) !important;
       left:calc(58% + #{$dateColumnWidth}) !important;*/
-      left:65% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
-      width:7% !important;
+      /*left:65% !important;*/
+    /*}*/
+    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
+      width:7% !important;*/
       /*left:-webkit-calc(64% + #{$dateColumnWidth}) !important;
       left:-moz-calc(64% + #{$dateColumnWidth}) !important;
       left:calc(64% + #{$dateColumnWidth}) !important;*/
-      left:71% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionStage"] {
-      width:12% !important;
+      /*left:71% !important;
+    }*/
+    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="petitionStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionStage"] {
+      width:12% !important;*/
       /*left:-webkit-calc(71% + #{$dateColumnWidth}) !important;
       left:-moz-calc(71% + #{$dateColumnWidth}) !important;
       left:calc(71% + #{$dateColumnWidth}) !important;*/
-      left:78% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="daysInStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="daysInStage"] {
-      width:5% !important;
+      /*left:78% !important;
+    }*/
+    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="daysInStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="daysInStage"] {
+      width:5% !important;*/
       /*left:-webkit-calc(83% + #{$dateColumnWidth}) !important;
       left:-moz-calc(83% + #{$dateColumnWidth}) !important;
-      left:calc(83% + #{$dateColumnWidth}) !important*/;
+      left:calc(83% + #{$dateColumnWidth}) !important*//*;
         left:90% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="tag"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="tag"] {
-      width:5% !important;
+    }*/
+    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="tag"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="tag"] {
+      width:5% !important;*/
       /*left:-webkit-calc(88% + #{$dateColumnWidth}) !important;
       left:-moz-calc(88% + #{$dateColumnWidth}) !important;
       left:calc(88% + #{$dateColumnWidth}) !important;*/
-      left:95% !important;
+      /*left:95% !important;
     }
-}
+}*/
 
 .immiview-ques-client {
     .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
@@ -463,7 +463,7 @@ $dateColumnWidth:110px;
         left:90% !important;
     }
  }
-.immiviewClientsTable {
+/*.immiviewClientsTable {
     .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
     width:20% !important;
     left:0% !important;
@@ -488,7 +488,7 @@ $dateColumnWidth:110px;
         width:10% !important;
         left:90% !important;
     }
- }
+ }*/
 .immiview-clienttab-dependents {
     .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:4% !important;

@@ -1,6 +1,6 @@
 
 
-<div class="main-content"  *ngIf="getClientsData">
+<div class="main-content" *ngIf="getClientsData">
     <div class="pagetitleandfilters">
         <div class="mainContainer">
             <h2>Clients</h2>
@@ -8,12 +8,13 @@
             <div class="filters">
                 <div class="styled-select">
                     <select>
-                        <option>Status</option>
-                        <option>The second option</option>
-                        <option>The third option</option>
+                        <option value="Status">Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
                     </select>
                     <span>More Filters</span>
                     <a class="addfilter"></a>
+                    <button type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="addRecord()">ADD</button>
                 </div>
             </div>
         </div>
@@ -50,17 +51,25 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">First Name:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newclitem.firstName" (blur)="capitialize(newclitem)" [ngClass]="newclitem.firstName == '' ? 'redborder': ''"
-                                    class="form-control"></div>
+                            <div class="col-md-5">
+                                <input type="text" [(ngModel)]="newclitem.firstName" (blur)="capitialize(newclitem)" [ngClass]="newclitem.firstName == '' ? 'redborder': ''"
+                                       class="form-control">
+                            </div>
                             <div class="col-md-5">Last Name:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newclitem.lastName" (blur)="capitialize(newclitem)" [ngClass]="newclitem.lastName == '' ? 'redborder': ''"
-                                    class="form-control"></div>
+                            <div class="col-md-7">
+                                <input type="text" [(ngModel)]="newclitem.lastName" (blur)="capitialize(newclitem)" [ngClass]="newclitem.lastName == '' ? 'redborder': ''"
+                                       class="form-control">
+                            </div>
                             <div class="col-md-5">Email:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newclitem.email" [ngClass]="newclitem.email == '' ? 'redborder': ''"
-                                    class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel"></div>
+                            <div class="col-md-7">
+                                <input type="text" [(ngModel)]="newclitem.email" [ngClass]="newclitem.email == '' ? 'redborder': ''"
+                                       class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel">
+                            </div>
                             <div class="col-md-5">Phone:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="tel" [(ngModel)]="newclitem.phone" required #phone="ngModel" pattern="[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}" [ngClass]="newclitem.phone == '' ? 'redborder': ''"
-                                    class="form-control"></div>
+                            <div class="col-md-7">
+                                <input type="tel" [(ngModel)]="newclitem.phone" required #phone="ngModel" pattern="[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}" [ngClass]="newclitem.phone == '' ? 'redborder': ''"
+                                       class="form-control">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
@@ -75,18 +84,18 @@
                                             * Email is required
                                         </div>
                                         <div class="redstar" *ngIf="emailId.errors && emailId.errors.pattern">
-                                        
+
                                             * Email is invalid
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="row sfm" [hidden]="phone.valid || phone.untouched">
+                                <div class="row sfm" [hidden]="phone.valid || phone.untouched">
                                     <div class="col-md-12">
                                         <div class="redstar" *ngIf="phone.errors && phone.errors.required">
                                             * Phone is required
                                         </div>
                                         <div class="redstar" *ngIf="phone.errors && phone.errors.pattern">
-                                            * Phone field can contain numbers, '+' , '(' , ')'  
+                                            * Phone field can contain numbers, '+' , '(' , ')'
                                         </div>
                                     </div>
                                 </div>
