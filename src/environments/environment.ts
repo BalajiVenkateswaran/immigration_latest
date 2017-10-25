@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  appUrl: 'http://services.dev-theimmigrationhub.com/immigrationPortal',
+  appUrl: 'https://services.dev-theimmigrationhub.com/immigrationPortal',
   buildNumber: '17.09.07'
 };
