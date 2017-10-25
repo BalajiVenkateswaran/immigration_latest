@@ -15,6 +15,7 @@ export interface ConfirmModel {
   title: string;
   message: string;
   addNewClient: boolean;
+  addMorefilters: boolean;
   getClientsData: boolean;
 }
 
@@ -29,6 +30,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   private message: string;
   private clientName: any;
   public addNewClient: boolean;
+  public addMorefilters: boolean;
   public getClientsData: boolean = true;
   public newclitem: any = {};
   public warningMessage: boolean = false;
@@ -93,6 +95,34 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   getClients(){
 
   }
+  filteradd() {
+      this.dialogService.addDialog(ClientsComponent, {
+          addMorefilters: true,
+          getClientsData: false,
+          title: 'Add Client',
+      }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
+              //this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
+              //    if (res['statusCode'] == 'SUCCESS') {
+              //        this.clientService.getClients(this.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
+              //            (res) => {
+              //                this.data = res['clients'];
+              //                this.paginationData = res['pageMetadata'];
+
+              //            }
+              //        )
+              //    }
+              //    if (res['statusDescription'] == 'Duplicate client') {
+              //        this.dialogService.addDialog(ConfirmComponent, {
+              //            title: 'Error..!',
+              //            message: 'User already Exists'
+              //        })
+              //    }
+              //});
+          }
+      });
+  }
+
   addNewCli() {
     this.dialogService.addDialog(ClientsComponent, {
       addNewClient: true,
