@@ -1,5 +1,4 @@
-import {Component, Input} from '@angular/core';
-import {QueryParameters} from '../types/query-parameters';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SmartTableFramework} from '../smarttable.component';
 
 @Component({
@@ -10,6 +9,7 @@ import {SmartTableFramework} from '../smarttable.component';
 export class FilterComponent{
   @Input() public quickFilters: any[];
   @Input() public smartTable : SmartTableFramework;
+  @Output() onMoreFiltersClick = new EventEmitter();
 
   onChange(event){
     console.log("Filter Component: %o", event);
@@ -19,6 +19,11 @@ export class FilterComponent{
     this.smartTable.queryParameters.addFilter(headerName, field, this.smartTable.getFilterType(headerName), event.target.value);
     this.smartTable.invokeResource();
     event.target.value = event.target.options[0].value;
+  }
+
+  moreFilters(){
+    console.log("moreFilters: %o", this.smartTable.queryParameters.filter);
+    this.onMoreFiltersClick.emit(this.smartTable.queryParameters.filter);
   }
 
 }

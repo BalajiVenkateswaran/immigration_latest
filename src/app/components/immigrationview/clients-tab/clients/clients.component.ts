@@ -108,6 +108,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
   }
   filteradd() {
+    console.log("Filter Add");
       this.dialogService.addDialog(ClientsComponent, {
           addMorefilters: true,
           getClientsData: false,

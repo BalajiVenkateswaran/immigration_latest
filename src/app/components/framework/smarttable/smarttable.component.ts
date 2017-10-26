@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChange, OnChanges, EventEmitter, Output } from '@angular/core';
+import { Component, Input, SimpleChange, OnChanges, EventEmitter, Output } from '@angular/core';
 import { CustomFilterRow } from './CustomFilterRow';
 import { AgGridModule } from "ag-grid-angular/main";
 import { GridOptions } from "ag-grid";
@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
-import { RequestButton } from '../../clientview/request-tab/RequestButton';
 import {QueryParameters, SortType} from "./types/query-parameters";
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { FilterpopupComponent } from "./filterpopup/filterpopup.component";
@@ -50,6 +49,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     @Output() onColumnFilterClick = new EventEmitter();
     @Output() onPaginationTemplateClick = new EventEmitter();
     @Output() dataWithQueryParams = new EventEmitter();
+    @Output() onMoreFiltersClick = new EventEmitter();
     public gridOptions;
     public paginationTemplate: boolean;
     public clickFlag: boolean = false;
@@ -418,6 +418,10 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             title: 'Add Filter',
             message: 'Add Filter'
         })
+    }
+    onMoreFiltersClickMethod(filters){
+      console.log("onMoreFiltersClickMethod");
+      this.onMoreFiltersClick.emit(filters);
     }
 }
 
