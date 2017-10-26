@@ -28,6 +28,13 @@ export class FilterEntry {
   }
 }
 
+/**
+ * Class to manage the information used to query data. It has 3 parts
+ *  1. paginaton
+ *  2. sort
+ *  3. filter - Applied filters
+ *
+ */
 export class QueryParameters {
   pagination : Pagination;
   sort: Map<string, SortType>;

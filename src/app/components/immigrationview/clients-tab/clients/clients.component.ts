@@ -53,6 +53,18 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
           filterValue: "Active"
         }
       ],
+      filter : {
+        quick : [
+          {
+            headerName : 'Status',
+            field : 'status',
+            values : [
+              {alias : 'Active', value : 'Active'},
+              {alias : 'Inactive', value : 'Inactive'}
+            ]
+          }
+        ]
+      },
       'sort' : [{
         headingName: "lastUpdate",
         sort: SortType.DESC

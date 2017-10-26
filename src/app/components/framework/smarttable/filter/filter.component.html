@@ -1,0 +1,16 @@
+<div class="filters-container">
+  <div class="filters">
+    <div class="styled-select">
+      <div *ngIf="quickFilters != null && quickFilters.length > 0">
+        <select *ngFor="let quickFilter of quickFilters" (change)="onChange($event)" id="{{quickFilter['field']}}">
+          <option value="{{quickFilter['field']}}">{{quickFilter['headerName']}}</option>
+          <option *ngFor="let values of quickFilter['values']" value="{{values['value']}}">{{values['alias']}}</option>
+        </select>
+      </div>
+      <span>More Filters</span>
+      <a (click)="filteradd()" class="addfilter"></a>
+      <button type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="addRecord()">ADD</button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

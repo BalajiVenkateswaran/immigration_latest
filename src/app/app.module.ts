@@ -297,6 +297,7 @@ import { webFaqComponent } from './components/common/website/faqs/faqs.component
 import { webFaqService } from './components/common/website/faqs/faqs.service';
 import {HomeComponent} from "./components/common/website/home/home.component";
 import {HeaderComponentService} from "./components/common/header/header.component.service";
+import {FilterComponent} from './components/framework/smarttable/filter/filter.component';
 
 
 
@@ -406,7 +407,7 @@ import {HeaderComponentService} from "./components/common/header/header.componen
 
 
     //SmartTableFramework
-    SmartTableFramework, CustomFilterRow,FilterpopupComponent,
+    SmartTableFramework, CustomFilterRow,FilterpopupComponent, FilterComponent,
     //superuserview
     AccountInvoiceComponent,
     accountDetailsPaymentsComponent,

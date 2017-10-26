@@ -62,6 +62,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     public pageSelectionDisable: boolean = false;
     public queryParameters : QueryParameters;
     public deleteFilterClicked: boolean = false;
+    public quickFilters: any[] = [];
     constructor(public dialogService: DialogService,public smartTableService: SmartTableService) {
         super(dialogService);
         console.log('constructor %o', this.settings);
@@ -286,6 +287,15 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             for (var item of this.settings['defaultFilter']) {
                 this.queryParameters.addFilter(item.headerName, item.headingName,this.getFilterType(item.headingName),item.filterValue)
             }
+        }
+
+        if(this.settings.hasOwnProperty('filter')){
+          let filter = this.settings['filter'];
+          if(filter != null && filter.hasOwnProperty('quick')){
+            this.quickFilters = filter['quick'];
+          }
+
+
         }
         if(this.settings.hasOwnProperty('sort')){
           //TODO implement in a generic way

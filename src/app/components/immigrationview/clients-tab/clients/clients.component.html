@@ -4,31 +4,17 @@
     <div class="pagetitleandfilters">
         <div class="mainContainer">
             <h2>Clients</h2>
-            <div class="clearfix"></div>
-            <div class="filters">
-                <div class="styled-select">
-                    <select>
-                        <option value="Status">Status</option>
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                    </select>
-                    <span>More Filters</span>
-                    <a (click)="filteradd()" class="addfilter"></a>
-                    <button type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="addRecord()">ADD</button>
-                </div>
+
+            <div class="table-data">
+                <smart-table class="immiviewClientsTable"
+                             [settings]="settings"
+                             [data]="data"
+                             [paginationData]="paginationData"
+                             (onAddClick)="addNewCli($event)"
+                             (onRowClick)="onUserRowClick($event)"
+                             (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
+              <div class="clearfix"></div>
             </div>
-        </div>
-    </div>
-    <div class="mainContainer">
-        <div class="table-data">
-            <smart-table class="immiviewClientsTable"
-                         [settings]="settings"
-                         [data]="data"
-                         [paginationData]="paginationData"
-                         (onAddClick)="addNewCli($event)"
-                         (onRowClick)="onUserRowClick($event)"
-                         (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>

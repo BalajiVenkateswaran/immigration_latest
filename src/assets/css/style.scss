@@ -8,7 +8,7 @@
     width: 100%;
     height: 100vh;
 
-    
+
 }
 .login_side {
     background-color: $Secindary-color;
@@ -272,7 +272,7 @@ section {
     }
 }
            .sendchecklistbtn {
- 
+
     background: #04a9fc;
       margin: -3px 7px;
   width: 106px;
@@ -1580,7 +1580,7 @@ confirm {
         color:#a9a6a8;
         width:calc(100% - 32px) !important;
     }
-    
+
     .pwdicon {
         background:url("../images/Password.png") no-repeat 5px 7px #fff !important;
     }
@@ -1602,7 +1602,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     padding: 11px 0px;
     border: none;
 }
-    
+
     .forgot_password {
             font-size: 14px;
     color: #a9a6a8;
@@ -1849,7 +1849,7 @@ header {
             display: block;
             /*display: flex;
             display: -webkit-flex;  Safari */
-            
+
             text-align:center !important;
             li {
                 list-style: none;
@@ -1885,19 +1885,19 @@ header {
                         height: 36px;
                         width: auto;
                     }
-                    span.maintab-Petitions, 
-                    span.maintab-Clients, 
-                    span.maintab-Organization, 
-                    span.maintab-Manageaccount, 
-                    span.maintab-Reports, 
-                    span.maintab-Profile, 
-                    span.maintab-Accounts, 
-                    span.maintab-procat, 
-                    span.maintab-invoices, 
-                    span.maintab-payments, 
+                    span.maintab-Petitions,
+                    span.maintab-Clients,
+                    span.maintab-Organization,
+                    span.maintab-Manageaccount,
+                    span.maintab-Reports,
+                    span.maintab-Profile,
+                    span.maintab-Accounts,
+                    span.maintab-procat,
+                    span.maintab-invoices,
+                    span.maintab-payments,
                     span.maintab-clientdetails,
-                    span.maintab-clientdocuments, 
-                    span.maintab-clientQuestionnaire, 
+                    span.maintab-clientdocuments,
+                    span.maintab-clientQuestionnaire,
                     span.maintab-clientrquests {
                         width:50px;
                         height:50px;
@@ -1945,7 +1945,7 @@ header {
                         background:url(../images/Payments.png) no-repeat center center #6c811e;
                             background-size:110%;
                     }
-                    
+
                     span.maintab-clientdetails {
                         background:url(../images/ClientDetails.png) no-repeat center center #4b89dc;
                             background-size:110%;
@@ -1962,8 +1962,8 @@ header {
                         background:url(../images/Requests.png) no-repeat center center #ec3b83;
                             background-size:110%;
                     }
-                    
-                    
+
+
 
 
                 }
@@ -1992,7 +1992,7 @@ header {
 }
 .pagetitleandfilters {
     width:100%;
-    border-bottom:solid 1px #d6d6d6;
+    //border-bottom:solid 1px #d6d6d6;
     color:#333 !important;
     float:left;
 
@@ -2037,8 +2037,8 @@ header {
                margin-right:40px;
                float:left;
             }
-          
-           
+
+
         }
     }
 }
