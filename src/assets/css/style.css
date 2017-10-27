@@ -1611,3 +1611,52 @@ tr.i129htblRow:nth-child(even) {
     margin: 10% auto; } }
 
 /*# sourceMappingURL=style.css.map */
+/*Client-Tab styles*/
+ .pagination {
+        display: inline-block;
+        margin: 0px 0%;
+        font-family:Roboto Bold!important;
+        font-size:12pt!important;
+        color:#232F3F!important;
+
+    }
+
+        .pagination a {
+           padding: 7px 14px;
+            text-decoration: none;
+            font-family: Roboto Bold !important;
+            font-size: 12pt !important;
+            color: #232F3F !important;
+        }
+
+            .pagination a:hover {
+                background: #109BF8;
+                border-radius: 50%;
+            }
+
+            .pagination a:nth-child(1):hover {
+                background: none;
+            }
+
+            .pagination a:nth-child(2):hover {
+                background: none;
+            }
+
+            .pagination a:nth-last-child(2):hover {
+                background: none;
+            }
+
+            .pagination a:nth-last-child(1):hover {
+                background: none;
+            }
+            .rigicon{
+                color:#61BBF8;
+                font-size: 31px;
+                padding: 3px 1px 0px 10px;
+            }
+            .leficon{
+                color:#61BBF8;
+                font-size: 31px;
+                padding: 3px 1px 0px 10px;
+            }
+/*Client-Tab Styles ends*/

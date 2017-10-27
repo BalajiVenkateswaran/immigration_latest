@@ -2,40 +2,46 @@
     <div *ngIf="quickFilters != null && quickFilters.length > 0">
       <smart-table-filter [quickFilters]="quickFilters" [smartTable]="this" (onMoreFiltersClick)="onMoreFiltersClickMethod($event)"></smart-table-filter>
     </div>
-    <div *ngIf="queryParameters.filter">
-        <div class="filterheading"><span>Filters :</span></div>
-        <div class="addedfilter" *ngFor="let x of queryParameters.filter let i=index">
-            <span class="filtretype">{{x.fieldHeader}} :</span><span class="filtrename">{{x.fieldValue}}</span><span class="close"
-                                                                                                                     (click)="deleteFilter(i,x)">&times;</span>
-
-        </div>
-    </div>
     <!--<button *ngIf="isAddFilterButtonEnable" type="button" class="iportal-btn " (click)="filterPopup()">Add Filters</button>-->
     <div class="clearfix"></div>
     <div class="agtblOptions">
         <ag-grid-angular id="grid" #grid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (cellClicked)="onCellClick($event)">
         </ag-grid-angular>
-        <div *ngIf="paginationTemplate">
+        <div *ngIf="paginationTemplate" style="margin-top:10px !important;">
             <div style="width:20%; float:left;"><span>{{itemStartIndex}} to {{endNumber}} of {{totalElements}}</span></div>
-
-            <div class="ag-paging-page-summary-panel">
+            <div class="pagination">
+                <a href="#"><i class="rigicon" aria-hidden="true"><img src="../../../../assets/images/left arrow.png" /></i></a>
+                <a>Previous</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">7</a>
+                <a href="#">8</a>
+                <a href="#">9</a>
+                <a href="#">10</a>
+                <a href="#">...</a>
+                <a>Next</a>
+                <a href="#"><img src="../../../../assets/images/Right arrow.png" /></a>
+            </div>
+            <!--<div class="ag-paging-page-summary-panel">
                 <button [disabled]="pageNumber===0" (click)="firstPage()" class="ag-paging-button">First</button>
                 <button [disabled]="pageNumber===0" (click)="previousPage()" class="ag-paging-button">Previous</button>
                 <span>{{totalElements === 0? 0 : (pageNumber+1)}} of {{totalPages}}</span>
                 <button [disabled]="totalPages == 0 || pageNumber===totalPages-1" (click)="nextPage()" class="ag-paging-button">Next</button>
                 <button [disabled]="totalPages == 0 || pageNumber===totalPages-1" (click)="lastPage()" class="ag-paging-button">Last</button>
-            </div>
+            </div>-->
             <div style="width:20%; float:right; text-align:right;">
                 Page Size:
                 <select #pages [disabled]=pageSelectionDisable (change)="onPageSizeChanged(pages.value)">
-                    <option value="20" [selected]>20</option>
-                    <option value="30">30</option>
-                    <option value="50">50</option>
+                    <option value="5" [selected]>5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
                 </select>
             </div>
         </div>
-
-
     </div>
 
 
