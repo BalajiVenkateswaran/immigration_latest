@@ -35,7 +35,7 @@ testem.log
 .DS_Store
 Thumbs.db
 /immigration-portal-ui.iml
-
+*.sln
 /src/**/*.js
 /src/**/*.js.map
 /.vs

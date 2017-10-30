@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChange, OnChanges, EventEmitter, Output } from '@angular/core';
+import {Component, Input, SimpleChange, OnChanges, EventEmitter, Output} from '@angular/core';
 import { CustomFilterRow } from './CustomFilterRow';
 import { AgGridModule } from "ag-grid-angular/main";
 import { GridOptions } from "ag-grid";
@@ -7,10 +7,9 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
-import {QueryParameters, SortType} from "./types/query-parameters";
+import {QueryParameters, SortType, FilterEntry} from "./types/query-parameters";
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { FilterpopupComponent } from "./filterpopup/filterpopup.component";
-import {ConfirmComponent} from '../confirmbox/confirm.component';
 import { SmartTableService } from './common/smarttable.service'
 export interface ConfirmModel {
   title: string;
@@ -63,6 +62,9 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     public queryParameters : QueryParameters;
     public deleteFilterClicked: boolean = false;
     public quickFilters: any[] = [];
+
+    @Input() public applyFilters : Object;
+
     constructor(public dialogService: DialogService,public smartTableService: SmartTableService) {
         super(dialogService);
         console.log('constructor %o', this.settings);
@@ -111,6 +113,14 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         console.log('ngOnChanges %o', this.settings);
+
+        for(let propName in changes){
+          console.log("PropName:%o, First Change:%o, currentValue: %o, previousValue: %o", propName, changes[propName].isFirstChange(),
+            changes[propName].currentValue, changes[propName].previousValue);
+        }
+
+
+
         if (changes['settings']) {
             console.log("Settings are changed");
             this.prepareSettings();
@@ -152,11 +162,22 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
                 }
             }
         }
+
+        //TODO - applyFilters changes are not detected by below code. Need to work on it.
+        if(changes['applyFilters']){
+          console.log("applyFilters changed: %o", this.applyFilters);
+          if(this.applyFilters && this.applyFilters['filters'] != null && this.applyFilters['filters']['length'] > 0){
+            for(let filter of this.applyFilters['filters']){
+              this.queryParameters.addFilter(filter.fieldHeader, filter.fieldName, filter.operator != null ? filter.operator : this.getFilterType(filter.fieldHeader), filter.fieldValue);
+            }
+            this.invokeResource();
+          }
+        }
+
         this.smartTableService.headerNamesArray = this.settings['columnsettings'].map(item=>{return {'headerName':item.headerName,'fieldName':item.field,'type':item.type,'data':item.data}});
 
         this.smartTableService.filteredData = this.queryParameters.filter;
     }
-
     deleteFilter(index, x) {
         this.deleteFilterClicked = true;
         this.queryParameters.filter.splice(index,1);

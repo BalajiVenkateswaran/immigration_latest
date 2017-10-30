@@ -1,47 +1,64 @@
-import { client } from '../../../../models/client';
 import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
 import { StatusButton } from './StatusButton';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClientsService } from "./clients.service";
-import { FormGroup, FormControl } from "@angular/forms";
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {SortType} from "../../../framework/smarttable/types/query-parameters";
+import {SortType, FilterEntry} from "../../../framework/smarttable/types/query-parameters";
+import {Router} from '@angular/router';
 
 
 export interface ConfirmModel {
-    title: string;
-    message: string;
-    addNewClient: boolean;
-    addMorefilters: boolean;
-    getClientsData: boolean;
+  title: string;
+  message: string;
+  addNewClient: boolean;
+  addMorefilters: boolean;
+  getClientsData: boolean;
 }
 
 
 @Component({
-    selector: 'app-clients',
-    templateUrl: './clients.component.html',
-    styleUrls: ['./clients.component.sass']
+  selector: 'app-clients',
+  templateUrl: './clients.component.html',
+  styleUrls: ['./clients.component.sass']
 })
 export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    public queryParams: any;
-    private message: string;
-    private clientName: any;
-    public addNewClient: boolean;
-    public addMorefilters: boolean;
-    public getClientsData: boolean = true;
-    public newclitem: any = {};
-    public warningMessage: boolean = false;
-    public settings;
-    public data;
-    public paginationData;
-    constructor(private clientService: ClientsService, private appService: AppService,
-        public dialogService: DialogService, private menuComponent: MenuComponent,
-        private headerService: HeaderService) {
-        super(dialogService);
+  private outlet: any = {
+    breadcrumbs: null,
+    header: 'header',
+    message: null,
+    carousel: null,
+    menu: 'menu',
+    footer: null
+  };
+  public queryParams: any;
+  private message: string;
+  private clientName: any;
+  public addNewClient: boolean;
+  public addMorefilters: boolean;
+  public getClientsData: boolean = true;
+  public newclitem: any = {};
+  public warningMessage: boolean = false;
+  public settings;
+  public data;
+  public paginationData;
+  public applyFilters : Object = {'filters':''};
+
+  //More filter popup variables
+  public openPetitions : string;
+  public status: string;
+  public phoneNumber: string;
+  public email: string;
+  public lastName : string;
+  public firstName : string;
+  private orgId: string;
+
+  constructor(private router: Router, private clientService: ClientsService, private appService: AppService,
+    public dialogService: DialogService, private menuComponent: MenuComponent,
+    private headerService: HeaderService) {
+    super(dialogService);
 
         this.settings = {
             'columnFilter': false,
@@ -102,9 +119,18 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
 
     ngOnInit() {
-        this.headerService.showSideBarMenu(null, "clients");
-        this.headerService.showSideBarMenu(null, "clients");
+      this.headerService.showSideBarMenu(null, "clients");
+      this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
+    ngDoCheck() {
+      if (this.headerService.selectedOrg) {
+        if (this.orgId != this.headerService.selectedOrg['orgId']) {
+          this.orgId = this.headerService.selectedOrg['orgId'];
+          this.dataWithParameters(this.queryParams);
+        }
+      }
+    }
+
     getClients() {
 
     }
@@ -227,15 +253,41 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
     }
     dataWithParameters(queryData) {
-        if (queryData) {
-            this.queryParams = queryData;
-        }
+      if (queryData) {
+          this.queryParams = queryData;
+      }
+      if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId'] && queryData) {
         this.clientService.getClientsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
-            res => {
-                this.data = res['clients'];
-                this.paginationData = res['pageMetadata'];
-            })
+          res => {
+            this.data = res['clients'];
+            this.paginationData = res['pageMetadata'];
+          })
+      }
     }
 
+  onApplyFiltersClick(){
+    console.log("onApplyFiltersClick");
+    let applyFilters = [];
+    if(this.openPetitions != null){
+      applyFilters.push(new FilterEntry('Open Petitions', 'openPetitions',null,this.openPetitions));
+    }
+    if(this.status != null){
+      applyFilters.push(new FilterEntry('Status', 'status',null,this.status));
+    }
+    if(this.phoneNumber != null){
+      applyFilters.push(new FilterEntry('Phone', 'phone',null,this.phoneNumber));
+    }
+    if(this.email != null){
+      applyFilters.push(new FilterEntry('Email Address', 'email',null,this.email));
+    }
+    if(this.lastName != null){
+      applyFilters.push(new FilterEntry('Last Name', 'lastName',null,this.lastName));
+    }
+    if(this.firstName != null){
+      applyFilters.push(new FilterEntry('First Name', 'firstName',null,this.firstName));
+    }
+
+    this.applyFilters['filters'] = applyFilters;
+  }
 
 }

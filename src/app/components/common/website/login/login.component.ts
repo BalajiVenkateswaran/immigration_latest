@@ -172,8 +172,8 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
                 || res.userAccountRoleList[0].roleName == "Immigration Officer") {
                 this.appService.applicationViewMode = "Immigration";
                 this.headerService.selectedOrg = res.organizationList[0];
-                this.headerService.currentTab = 'petitions';
-                this.appService.moveToPage("petitions");
+                this.headerService.currentTab = 'clients';
+                this.appService.moveToPage('clients');
               }
               if (res.userAccountRoleList[0].roleName == "Client") {
                 this.appService.applicationViewMode = "Client";
@@ -217,8 +217,8 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     }
     if (userdet.roleName == "Immigration Manager" || userdet.roleName == "Immigration Officer") {
       this.appService.applicationViewMode = "Immigration";
-      this.headerService.currentTab = 'petitions';
-      this.appService.moveToPage("petitions");
+      this.headerService.currentTab = 'clients';
+      this.appService.moveToPage('clients');
 
     }
     if (userdet.roleName == "Super User") {

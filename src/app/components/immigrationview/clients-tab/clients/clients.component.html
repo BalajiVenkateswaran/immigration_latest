@@ -10,6 +10,7 @@
                              [settings]="settings"
                              [data]="data"
                              [paginationData]="paginationData"
+                             [(applyFilters)]="applyFilters"
                              (onAddClick)="addNewCli($event)"
                              (onRowClick)="onUserRowClick($event)"
                              (dataWithQueryParams)="dataWithParameters($event)"
@@ -30,46 +31,46 @@
                 <div class='row'>
                     <div class='col-sm-4'>
                         <div class='form-group'>
-                            <label for="user_title">First Name</label>
-                            <input class="form-control" id="user_title" name="user[title]" size="30" type="text" />
+                            <label for="filter_firstName">First Name</label>
+                            <input class="form-control" id="filter_firstName" name="filter[firstname]" [(ngModel)]="firstName" size="30" type="text" />
                         </div>
                     </div>
                     <div class='col-sm-4'>
                         <div class='form-group'>
-                            <label for="user_firstname">Last Name</label>
-                            <input class="form-control" id="user_firstname" name="user[firstname]"size="30" type="text" />
+                            <label for="filter_lastname">Last Name</label>
+                            <input class="form-control" id="filter_lastname" name="filter[lastname]" [(ngModel)]="lastName" size="30" type="text" />
                         </div>
                     </div>
                     <div class='col-sm-4'>
                         <div class='form-group'>
-                            <label for="user_lastname">Email Address</label>
-                            <input class="form-control" id="user_lastname" name="user[lastname]"  size="30" type="text" />
+                            <label for="filter_email">Email Address</label>
+                            <input class="form-control" id="filter_email" name="filter[email]" [(ngModel)]="email" size="30" type="text" />
                         </div>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='col-sm-4'>
                         <div class='form-group'>
-                            <label for="user_title">Phone Number</label>
-                            <input class="form-control" id="user_title" name="user[title]" size="30" type="text" />
+                            <label for="filter_phoneNumber">Phone Number</label>
+                            <input class="form-control" id="filter_phoneNumber" name="filter[phonenumber]" [(ngModel)]="phoneNumber" size="30" type="text" />
                         </div>
                     </div>
                     <div class='col-sm-4'>
                         <div class='form-group'>
-                            <label for="user_firstname">Status</label>
-                            <input class="form-control" id="user_firstname" name="user[firstname]" size="30" type="text" />
+                            <label for="filter_status">Status</label>
+                            <input class="form-control" id="filter_status" name="filter[status]" [(ngModel)]="status" size="30" type="text" />
                         </div>
                     </div>
                     <div class='col-sm-4'>
                         <div class='form-group'>
-                            <label for="user_lastname">Open Petitions</label>
-                            <input class="form-control" id="user_lastname" name="user[lastname]" size="30" type="text" />
+                            <label for="filter_openPetitions">Open Petitions</label>
+                            <input class="form-control" id="filter_openPetitions" name="filter[openpetitions]" [(ngModel)]="openPetitions" size="30" type="text" />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class='col-sm-4'></div>
-                    <div class='col-sm-4'><button type="button" style="width: 100%;" class="btn btn-info">Apply Filters</button></div>
+                    <div class='col-sm-4'><button type="button" style="width: 100%;" class="btn btn-info" (click)="onApplyFiltersClick()">Apply Filters</button></div>
                     <div class='col-sm-4'></div>
                 </div>
             </div>
