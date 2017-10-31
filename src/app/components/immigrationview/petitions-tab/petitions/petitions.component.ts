@@ -63,7 +63,34 @@ export class PetitionsComponent implements OnInit {
                 types: [{
                     field: 'daysInStage',
                     operator: '>'
-                }]
+                }],
+                quick: [
+                    {
+                        headerName: 'Status',
+                        field: 'status',
+                        values: [
+                            { alias: 'Open', value: 'Open' },
+                            { alias: 'Close', value: 'Close' }
+                        ]
+                    },
+                    {
+                        headerName: 'Type',
+                        field: 'petitionType',
+                        values: [
+                            { alias: 'H1B', value: 'H1B' },
+                            { alias: 'L1', value: 'L1' },
+                            { alias: 'H1B-RFE', value: 'H1B-RFE' },
+                            { alias: 'B1', value: 'B1' }
+                        ]
+                    },
+                    {
+                        headerName: 'Updated On',
+                        field: 'lastUpdate',
+                        values: [
+                            { alias: '10-25-2017', value: '10-25-2017' }
+                        ]
+                    }
+                ]
             },
             'columnsettings': [
                 {
