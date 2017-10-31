@@ -2070,7 +2070,7 @@ header {
     .inputBox {
         margin:25px 0 15px ;
 
-        span, input {
+        /*span, input {
         border-bottom:solid 1px #ccc;
         color:#ccc;
         font-size:14px;
@@ -2079,8 +2079,17 @@ header {
         width:100%;
         float:left;
         height:23px;
-    }
+    }*/
     }
 
     
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
 }
