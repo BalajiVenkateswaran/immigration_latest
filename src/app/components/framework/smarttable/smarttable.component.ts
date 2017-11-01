@@ -44,7 +44,6 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     @Output() onColumnFilterClick = new EventEmitter();
     @Output() onPaginationTemplateClick = new EventEmitter();
     @Output() dataWithQueryParams = new EventEmitter();
-    @Output() onMoreFiltersClick = new EventEmitter();
     public gridOptions;
     public paginationTemplate: boolean;
     public clickFlag: boolean = false;
@@ -379,10 +378,6 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             title: 'Add Filter',
             message: 'Add Filter'
         })
-    }
-    onMoreFiltersClickMethod(filters){
-      console.log("onMoreFiltersClickMethod");
-      this.onMoreFiltersClick.emit(filters);
     }
 }
 

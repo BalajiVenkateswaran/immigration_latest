@@ -10,9 +10,9 @@
                              [settings]="settings"
                              [data]="data"
                              [paginationData]="paginationData"
-                             
                              (onRowClick)="onUserRowClick($event)"
                              (dataWithQueryParams)="dataWithParameters($event)"
+                             (onAddClick)="addNewCli()"
                            ></smart-table>
               <div class="clearfix"></div>
             </div>

@@ -234,30 +234,4 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
           })
       }
     }
-
-  onApplyFiltersClick(){
-    console.log("onApplyFiltersClick");
-    let applyFilters = [];
-    if(this.openPetitions != null){
-      applyFilters.push(new FilterEntry('Open Petitions', 'openPetitions',null,this.openPetitions));
-    }
-    if(this.status != null){
-      applyFilters.push(new FilterEntry('Status', 'status',null,this.status));
-    }
-    if(this.phoneNumber != null){
-      applyFilters.push(new FilterEntry('Phone', 'phone',null,this.phoneNumber));
-    }
-    if(this.email != null){
-      applyFilters.push(new FilterEntry('Email Address', 'email',null,this.email));
-    }
-    if(this.lastName != null){
-      applyFilters.push(new FilterEntry('Last Name', 'lastName',null,this.lastName));
-    }
-    if(this.firstName != null){
-      applyFilters.push(new FilterEntry('First Name', 'firstName',null,this.firstName));
-    }
-
-    // this.applyFilters['filters'] = applyFilters;
-  }
-
 }

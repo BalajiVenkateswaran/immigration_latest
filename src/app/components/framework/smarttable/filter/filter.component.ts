@@ -19,7 +19,7 @@ export interface ConfirmModel {
 export class FilterComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit{
   @Input() public quickFilters: any[];
   @Input() public smartTable: SmartTableFramework;
-  @Output() onMoreFiltersClick = new EventEmitter();
+  @Output() addRecordClick = new EventEmitter();
 
   showFilters = true;
   addMorefilters = false;
@@ -96,7 +96,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> impl
     this.smartTable.invokeResource();
     this.close();
   }
-  addRecord(){
-
+  onAddClick(){
+    this.addRecordClick.emit();
   }
 }
