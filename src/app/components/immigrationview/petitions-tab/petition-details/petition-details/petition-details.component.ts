@@ -64,6 +64,8 @@ export class PetitionDetailsComponent implements OnInit {
     public datePickerOptions = IhDateUtil.datePickerOptions;
     isLCAInfoEdit: boolean = true;
     isReceiptInfoEdit: boolean = true;
+    isReceiptInfoSave: boolean = false;
+    isReceiptInfoSaveStatus: boolean = false;
     isSponsorInfoEdit: boolean = true;
     isDelegatedOrgsEdit: boolean = true;
     isAdditionalDetailsEdit: boolean = true;
@@ -113,6 +115,8 @@ export class PetitionDetailsComponent implements OnInit {
                 this.isLCAInfoEdit = true;
                 this.isDelegatedOrgsEdit = true;
                 this.isReceiptInfoEdit = true;
+                this.isReceiptInfoSave = false;
+                this.isReceiptInfoSaveStatus = false;
                 this.isAdditionalDetailsEdit = true;
                 this.isSponsorInfoEdit = true;
                 this.startDate = this.petitionDetails.startDate;
@@ -275,7 +279,8 @@ export class PetitionDetailsComponent implements OnInit {
         this.expiresOn = this.receiptInfo.expiresOn;
         this.approvalReceivedOn = this.receiptInfo.approvalReceivedOn;
         this.sentToGovAgencyOn = this.receiptInfo.sentToGovAgencyOn;
-        this.isReceiptInfoEdit = !this.isReceiptInfoEdit;
+        this.isReceiptInfoEdit = false;
+        this.isReceiptInfoSave = true;
         if (this.receiptInfo.showReceiptNumberToClient == 1) {
             this.receiptInfo['showReceiptNumberToClient'] = 1;
         }
@@ -348,9 +353,17 @@ export class PetitionDetailsComponent implements OnInit {
             this.sfmRI = false;
             this.petitionDetailsService.saveReceiptInfo(this.receiptInfo, this.headerService.user.userId)
                 .subscribe((res) => {
-                    this.isReceiptInfoEdit = true;
                     if (res['receiptInfo'] != undefined) {
+                        this.isReceiptInfoSave = false;
                         this.receiptInfo = res['receiptInfo'];
+
+                        this.isReceiptInfoSaveStatus = true;
+                        setTimeout(() => {    //<<<---    using ()=> syntax
+                            this.isReceiptInfoSaveStatus = false;
+                            this.isReceiptInfoEdit = true;
+                        }, 3000);
+
+
                     }
                 });
         }
