@@ -22,6 +22,7 @@ export class PetitionDetailsComponent implements OnInit {
     private users;
     private notes: string;
     isPetitionInformationEdit;
+    isPetitionInformationSave;
     isPetitionInformationSaveStatus;
     private allPetitionTypesAndSubTypes;
     private petitionStages;
@@ -106,6 +107,7 @@ export class PetitionDetailsComponent implements OnInit {
                     this.appService.clientId = res['clientId'];
                 }
                 this.isPetitionInformationEdit = true;
+                this.isPetitionInformationSave = false;
                 this.isPetitionInformationSaveStatus = false;
                 this.isNotesEdit = true;
                 this.isLCAInfoEdit = true;
@@ -192,7 +194,8 @@ export class PetitionDetailsComponent implements OnInit {
         this.rejectedDate = this.petitionInformation.rejectedDate;
         this.petitionInformation.currentStage = this.petitionDetails.currentStageId;
         this.petitionInformation.markForDeletion = this.petitionInformation.markForDeletion;
-        this.isPetitionInformationEdit = !this.isPetitionInformationEdit;
+        this.isPetitionInformationEdit = false;
+        this.isPetitionInformationSave = true;
     }
 
     //cancel button function
@@ -241,8 +244,8 @@ export class PetitionDetailsComponent implements OnInit {
             this.sfmpi = false;
             this.petitionDetailsService.savePetitionDetails(this.petitionDetails, this.headerService.user.userId)
                 .subscribe((res) => {
-                    
                     if (res['petitionInfo'] != undefined) {
+                        this.isPetitionInformationSave = false;
                         this.petitionDetails = res['petitionInfo'];
                         this.petitionDetailsService.getUsersForAccount(this.headerService.user.accountId)
                             .subscribe((res) => {
@@ -252,20 +255,15 @@ export class PetitionDetailsComponent implements OnInit {
                                         this.assignedToName = user.firstName + ', ' + user.lastName;
                                 });
                             });
+                        this.isPetitionInformationSaveStatus = true;
+                        setTimeout(() => {    //<<<---    using ()=> syntax
+                            this.isPetitionInformationSaveStatus = false;
+                            this.isPetitionInformationEdit = true;
+                        }, 3000);
                         this.petitionInformation = this.petitionDetails;
-                        
+
                     }
-                    
                 });
-            this.isPetitionInformationSaveStatus = true;
-            this.isPetitionInformationEdit = false;
-
-
-            setTimeout(() => {    //<<<---    using ()=> syntax
-                this.isPetitionInformationSaveStatus = false;
-                
-            }, 3000);
-           
         }
     }
     onEditReceiptInfoClick() {
