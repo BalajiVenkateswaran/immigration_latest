@@ -360,7 +360,8 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         NgbModule.forRoot()],
     entryComponents: [
         ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons,
-        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton, FilterpopupComponent, StatusButton
+        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton,
+      InvoicedownloadButton, InvoiceUploadButton, FilterpopupComponent, StatusButton, FilterComponent
     ],
     declarations: [
         webImmigrationServicesComponent,

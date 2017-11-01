@@ -6,6 +6,8 @@ export interface ConfirmModel {
   title: string;
   message: string;
   addMorefilters: boolean;
+  showFilters: boolean;
+  moreFilterFields: any[];
 }
 
 @Component({
@@ -16,10 +18,19 @@ export interface ConfirmModel {
 export class FilterComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit{
   @Input() public quickFilters: any[];
   @Input() public smartTable: SmartTableFramework;
-  @Input() public addMorefilters: boolean;  //for morefilters
   @Output() onMoreFiltersClick = new EventEmitter();
 
-  moreFilterFields: Object = {};
+  showFilters = true;
+  addMorefilters = false;
+  /**
+   * Parent array has array of objects: (Each object represents an row)
+   *  - Each object is an array:
+   *    - Each object in child array represents a field, with name, value, type
+   *
+   *
+   * Note: Each rows will have 3 fields
+   */
+  moreFilterFields: any[] = [];
 
   constructor(public dialogService: DialogService){
     super(dialogService);
@@ -38,11 +49,33 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> impl
   }
 
   moreFilters() {
-      this.addMorefilters = true;
-    console.log("moreFilters: %o", this.smartTable.queryParameters.filter);
+      console.log("moreFilters: %o", this.smartTable.queryParameters.filter);
+
+      //Prepare moreFilterFields information from smartTable.settings
+      if(this.moreFilterFields.length == 0){
+        let columnsettings = this.smartTable.settings['columnsettings'];
+        let fieldCount = 0, rowCount = 0;
+        //Have 3 fields in one object
+        for(let column of columnsettings){
+          if(fieldCount == 3){
+            fieldCount = 0;
+            rowCount++;
+          }
+          if(fieldCount == 0){
+            this.moreFilterFields[rowCount] = [];
+          }
+          this.moreFilterFields[rowCount][fieldCount] = {};
+          this.moreFilterFields[rowCount][fieldCount]['field'] = column['field'];
+          this.moreFilterFields[rowCount][fieldCount]['headerName'] = column['headerName'];
+          this.moreFilterFields[rowCount][fieldCount]['type'] = column['type'];
+          fieldCount++;
+        }
+      }
 
     this.dialogService.addDialog(FilterComponent, {
       addMorefilters: true,
+      showFilters: false,
+      moreFilterFields: this.moreFilterFields,
       title: 'More Fiters'
     });
 
