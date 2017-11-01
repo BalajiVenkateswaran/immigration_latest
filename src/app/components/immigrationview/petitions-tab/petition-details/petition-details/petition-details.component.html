@@ -226,18 +226,56 @@
                             <mat-datepicker-toggle matSuffix [for]="receiptDate"></mat-datepicker-toggle>
                             <mat-datepicker #receiptDate></mat-datepicker>
                         </mat-form-field>
-
                     </div>
-
-                    <!--<div class="col-md-3 inputBox">
+                    <div class="col-md-3 inputBox">
                         <mat-form-field>
-                            <mat-select placeholder="Status" [disabled]="isReceiptInfoEdit==true" [(ngModel)]="petitionInformation.status">
-                                <mat-option *ngFor="let petitionStatus of status" [value]="petitionStatus.name">
-                                    {{ petitionStatus.name }}
+                            <input matInput [matDatepicker]="approvedOn" placeholder="Approved On" [disabled]="isReceiptInfoEdit==true" [(ngModel)]="receiptInfo.approvedOn" />
+                            <mat-datepicker-toggle matSuffix [for]="approvedOn"></mat-datepicker-toggle>
+                            <mat-datepicker #approvedOn></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 inputBox">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="validFrom" placeholder="Valid From" [disabled]="isReceiptInfoEdit==true" [(ngModel)]="receiptInfo.validFrom" />
+                            <mat-datepicker-toggle matSuffix [for]="validFrom"></mat-datepicker-toggle>
+                            <mat-datepicker #validFrom></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 inputBox">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="expiresOn" placeholder="Expires On" [disabled]="isReceiptInfoEdit==true" [(ngModel)]="receiptInfo.expiresOn" />
+                            <mat-datepicker-toggle matSuffix [for]="expiresOn"></mat-datepicker-toggle>
+                            <mat-datepicker #expiresOn></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 inputBox">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="approvalReceivedOn" placeholder="Sent to Gov. Agency On" [disabled]="isReceiptInfoEdit==true" [(ngModel)]="receiptInfo.approvalReceivedOn" />
+                            <mat-datepicker-toggle matSuffix [for]="approvalReceivedOn"></mat-datepicker-toggle>
+                            <mat-datepicker #approvalReceivedOn></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 inputBox">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Comments" [disabled]="isReceiptInfoEdit==true" [(ngModel)]="receiptInfo.comments" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 inputBox">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="sentToGovAgencyOn" placeholder="Approval Received On" [disabled]="isReceiptInfoEdit==true" [(ngModel)]="receiptInfo.sentToGovAgencyOn" />
+                            <mat-datepicker-toggle matSuffix [for]="sentToGovAgencyOn"></mat-datepicker-toggle>
+                            <mat-datepicker #sentToGovAgencyOn></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 inputBox">
+                        <mat-form-field>
+                            <mat-select placeholder="Show Receipt Number to Client*" [disabled]="isReceiptInfoEdit==true" [(ngModel)]="receiptInfo.showReceiptNumberToClient">
+                                <mat-option *ngFor="let receiptnumber of receiptNumber" [value]="receiptnumber.value">
+                                    {{ receiptnumber.name }}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                    </div>-->
+                    </div>
                 </div>
             </div>
 
