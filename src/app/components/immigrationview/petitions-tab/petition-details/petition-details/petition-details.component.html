@@ -54,105 +54,153 @@
             <div class="col-md-12 title">
                 <h2>Petition Information</h2>
                 <p>Please fill the all required fields.</p>
-                <button type="submit" class="editbtn  no-marg-right" (click)="onEditPetitionInfoClick()" *ngIf="isPetitionInformationEdit==true">Edit</button>
+                <a class="editbtn  no-marg-right" (click)="onEditPetitionInfoClick()" *ngIf="isPetitionInformationEdit">Edit Section</a>
+                <a value="Save" class="savebtn" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationSave">Save Section</a>
+                <span value="Save" class="sectionsave" *ngIf="isPetitionInformationSaveStatus">Section Saved</span>
                 <div class="tbl-head-btn" [hidden]="isPetitionInformationEdit">
-                    <button type="button" (click)="onCancelPetitionInfoClick()" class="editbtn tbl-head-btn" *ngIf="isPetitionInformationEdit==false">Cancel</button>
-                    <button type="submit" value="Save" class="savebtn" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save</button>
+                    <!--<a (click)="onCancelPetitionInfoClick()" class="canbtn tbl-head-btn" *ngIf="isPetitionInformationEdit==false">Cancel</a>-->
+                    
                 </div>
             </div>
             <div class="col-md-3 inputBox">
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="First name" [(ngModel)]="petitionInformation.name">
+                    <input matInput placeholder="Name" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.name" />
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 inputBox">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Petition Type" [(ngModel)]="petitionInformation.petitionType" disabled />
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 inputBox">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Petition Sub Type" [(ngModel)]="petitionInformation.petitionSubType" disabled />
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 inputBox">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Description" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.description" />
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 inputBox">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="File Number" [(ngModel)]="petitionInformation.fileNumber" disabled />
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 inputBox">
+                <mat-form-field>
+                    <mat-select placeholder="Status" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.status">
+                        <mat-option *ngFor="let petitionStatus of status" [value]="petitionStatus.name">
+                            {{ petitionStatus.name }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
 
-                <!--<input type="text" placeholder="Name *" *ngIf="isPetitionInformationEdit==false" [readonly]="isEdit" [(ngModel)]="petitionInformation.name" [ngClass]="petitionInformation.name == '' ? 'redborder': ''" />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.name}}</span>-->
             </div>
             <div class="col-md-3 inputBox">
-                <input type="text" placeholder="Petition Type" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitionType" disabled />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitionType}}</span>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Tag" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.tag" />
+                </mat-form-field>
+
             </div>
             <div class="col-md-3 inputBox">
-                <input type="text" placeholder="Petition Sub Type" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.petitionSubType" disabled />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitionSubType}}</span>
+                <mat-form-field>
+                    <mat-select placeholder="Status" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.currentStage">
+                        <mat-option *ngFor="let petitionStage of petitionStages" [value]="petitionStage.stageId">
+                            {{ petitionStage.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
             </div>
             <div class="col-md-3 inputBox">
-                <input type="text" placeholder="Description" *ngIf="isPetitionInformationEdit==false" [readonly]="isEdit" [(ngModel)]="petitionInformation.description" />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.description}}</span>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Days in Current Stage" [(ngModel)]="petitionInformation.daysInStage" disabled />
+                </mat-form-field>
+
             </div>
             <div class="col-md-3 inputBox">
-                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.fileNumber" disabled />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.fileNumber}}</span>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Next Stage" [(ngModel)]="petitionInformation.nextStage" disabled />
+                </mat-form-field>
             </div>
             <div class="col-md-3 inputBox">
-                <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.status" [ngClass]="petitionInformation.status == '' ? 'redborder': ''" (change)="onPetitionStatusChange($event)">
-                    <option *ngFor="let petitionStatus of status">{{petitionStatus.name}}</option>
-                </select>
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.status}}</span>
+                <mat-form-field>
+                    <mat-select placeholder="Final Action" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.finalStatus">
+                        <mat-option *ngFor="let petitionFinalStatus of finalStatus" [value]="petitionFinalStatus.name">
+                            {{ petitionFinalStatus.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
             </div>
             <div class="col-md-3 inputBox">
-                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]="isEdit" [(ngModel)]="petitionInformation.tag" />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.tag}}</span>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Denied Date" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.deniedDate" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+
+                <!--<my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions" [(ngModel)]="petitionInformation.deniedDate" [selDate]="deniedDate"></my-date-picker>
+                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deniedDate}}</span>-->
             </div>
             <div class="col-md-3 inputBox">
-                <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.currentStage" [ngClass]="petitionInformation.currentStage == '' ? 'redborder': ''">
-                    <option *ngFor="let petitionStage of petitionStages;" [value]="petitionStage.stageId" [selected]="petitionStage.stageId">{{petitionStage.name}}</option>
-                </select>
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.currentStage}}</span>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Withdrawn Date" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.withdrawDate" />
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+
+                <!--<my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions" [(ngModel)]="petitionInformation.withdrawDate" [selDate]="withdrawDate"></my-date-picker>
+                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.withdrawDate}}</span>-->
             </div>
             <div class="col-md-3 inputBox">
-                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.daysInStage" disabled />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.daysInStage}}</span>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker3" placeholder="Rejected Date" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.rejectedDate" />
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+
+                <!--<my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions" [(ngModel)]="petitionInformation.rejectedDate" [selDate]="rejectedDate"></my-date-picker>
+                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.rejectedDate}}</span>-->
             </div>
             <div class="col-md-3 inputBox">
-                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.nextStage" disabled />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.nextStage}}</span>
+                <mat-form-field>
+                    <mat-select placeholder="Assigned To" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.assignedTo">
+                        <mat-option *ngFor="let user of appService.usersList" [value]="user.emailId">
+                           {{user.firstName}}, {{user.lastName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
             <div class="col-md-3 inputBox">
-                <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.finalStatus" [ngClass]="petitionInformation.finalStatus == '' ? 'redborder': ''">
-                    <option *ngFor="let petitionFinalStatus of finalStatus">{{petitionFinalStatus.name}}</option>
-                </select>
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.finalStatus}}</span>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Created By" [(ngModel)]="petitionInformation.createdByUserOn" disabled />
+                </mat-form-field>
+
             </div>
             <div class="col-md-3 inputBox">
-                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions" [(ngModel)]="petitionInformation.deniedDate" [selDate]="deniedDate"></my-date-picker>
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deniedDate}}</span>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Updated By" [(ngModel)]="petitionInformation.lastUpdatedByUserOn" disabled />
+                </mat-form-field> 
+               
             </div>
             <div class="col-md-3 inputBox">
-                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions" [(ngModel)]="petitionInformation.withdrawDate" [selDate]="withdrawDate"></my-date-picker>
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.withdrawDate}}</span>
+                <mat-form-field>
+                    <mat-select placeholder="Mark for Deletion" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.markForDeletion">
+                        <mat-option [value]="true">Yes</mat-option>
+                        <mat-option [value]="false">No</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                
             </div>
             <div class="col-md-3 inputBox">
-                <my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions" [(ngModel)]="petitionInformation.rejectedDate" [selDate]="rejectedDate"></my-date-picker>
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.rejectedDate}}</span>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Mark For Deletion details" [(ngModel)]="petitionInformation.deletedByUserOn" disabled />
+                </mat-form-field>
             </div>
-            <div class="col-md-3 inputBox">
-                <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.assignedTo" [ngClass]="petitionInformation.assignedTo == '' ? 'redborder': ''">
-                    <option *ngFor="let user of appService.usersList;" [value]="user.emailId">{{user.firstName}}, {{user.lastName}}</option>
-                </select>
-                <span *ngIf="isPetitionInformationEdit==true">{{assignedToName}}</span>
-            </div>
-            <div class="col-md-3 inputBox">
-                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.createdByUserOn" disabled />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.createdByUserOn}}</span>
-            </div>
-            <div class="col-md-3 inputBox">
-                <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.lastUpdatedByUserOn" disabled />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.lastUpdatedByUserOn}}</span>
-            </div>
-            <div class="col-md-3 inputBox">
-                <select *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.markForDeletion">
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.markForDeletion ? 'Yes' : 'No'}}</span>
-            </div>
-            <div class="col-md-3 inputBox">
-                <input type="text" *ngIf="isPetitionInformationEdit==false" [readonly]=true [(ngModel)]="petitionInformation.deletedByUserOn" disabled />
-                <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deletedByUserOn}}</span>
-            </div>
-            <div class="col-md-3 inputBox"></div>
-            <div class="col-md-3 inputBox"></div>
         </div>
 
     </div>

@@ -342,6 +342,9 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
 @NgModule({
     imports: [
         MatInputModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
         BrowserAnimationsModule,
         BrowserModule,
         AngularDraggableModule,
