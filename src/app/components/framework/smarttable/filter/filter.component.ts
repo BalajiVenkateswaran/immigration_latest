@@ -8,7 +8,8 @@ import {SmartTableFramework} from '../smarttable.component';
 })
 export class FilterComponent{
   @Input() public quickFilters: any[];
-  @Input() public smartTable : SmartTableFramework;
+  @Input() public smartTable: SmartTableFramework;
+  @Input() public addMorefilters: boolean;  //for morefilters
   @Output() onMoreFiltersClick = new EventEmitter();
 
   onChange(event){
@@ -21,7 +22,8 @@ export class FilterComponent{
     event.target.value = event.target.options[0].value;
   }
 
-  moreFilters(){
+  moreFilters() {
+      this.addMorefilters = true;
     console.log("moreFilters: %o", this.smartTable.queryParameters.filter);
     this.onMoreFiltersClick.emit(this.smartTable.queryParameters.filter);
   }
