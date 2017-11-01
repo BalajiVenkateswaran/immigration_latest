@@ -37,6 +37,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     @Input() settings: Object = {};
     @Input() data: Object = {};
     @Input() paginationData: Object = {};
+    @Input() addMorefilters: boolean;  //for morefilters
     @Output() onAddClick = new EventEmitter();
     @Output() onRowClick = new EventEmitter();
     @Output() onDeleteClick = new EventEmitter();

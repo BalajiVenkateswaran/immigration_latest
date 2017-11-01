@@ -37,7 +37,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   private message: string;
   private clientName: any;
   public addNewClient: boolean;
-  public addMorefilters: boolean;
+  public addMorefilters: boolean; 
   public getClientsData: boolean = true;
   public newclitem: any = {};
   public warningMessage: boolean = false;

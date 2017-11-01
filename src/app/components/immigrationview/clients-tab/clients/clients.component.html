@@ -10,16 +10,16 @@
                              [settings]="settings"
                              [data]="data"
                              [paginationData]="paginationData"
-                             (onAddClick)="addNewCli($event)"
+                             
                              (onRowClick)="onUserRowClick($event)"
                              (dataWithQueryParams)="dataWithParameters($event)"
-                             (onMoreFiltersClick)="filteradd()"></smart-table>
+                           ></smart-table>
               <div class="clearfix"></div>
             </div>
         </div>
     </div>
 </div>
-<div *ngIf="addMorefilters">
+<!--<div *ngIf="addMorefilters">
     <div class="modal-dialog" ngDraggable>
         <div class="modal-content">
             <div class="modal-header">
@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 
 
