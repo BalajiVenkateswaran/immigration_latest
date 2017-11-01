@@ -2065,14 +2065,13 @@ header {
             color:#ccc;
             margin: 0 0 10px 0;
         }
-        .editbtn, .savebtn, .canbtn {
-            font-size:14px;
-            font-weight:300;
-            color:#ccc;
-            text-transform:uppercase;
-        }
-        .canbtn {
-            color:red;
+        .editbtn, .savebtn, .sectionsave {
+                font-size: 16px;
+                font-weight: 500;
+                color: #ccc;
+                text-transform: uppercase;
+                float: right;
+                margin-top: -34px;
         }
         .savebtn {
             color: #109bf8 !important;
@@ -2099,6 +2098,10 @@ header {
         .mat-form-field {
             width:100%;
             font-size: 18px !important;
+
+            .mat-input-element:disabled {
+                color:#333;
+            }
         }
     }
 

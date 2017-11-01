@@ -22,6 +22,7 @@ export class PetitionDetailsComponent implements OnInit {
     private users;
     private notes: string;
     isPetitionInformationEdit;
+    isPetitionInformationSaveStatus;
     private allPetitionTypesAndSubTypes;
     private petitionStages;
     private assignedToName;
@@ -105,6 +106,7 @@ export class PetitionDetailsComponent implements OnInit {
                     this.appService.clientId = res['clientId'];
                 }
                 this.isPetitionInformationEdit = true;
+                this.isPetitionInformationSaveStatus = false;
                 this.isNotesEdit = true;
                 this.isLCAInfoEdit = true;
                 this.isDelegatedOrgsEdit = true;
@@ -239,7 +241,7 @@ export class PetitionDetailsComponent implements OnInit {
             this.sfmpi = false;
             this.petitionDetailsService.savePetitionDetails(this.petitionDetails, this.headerService.user.userId)
                 .subscribe((res) => {
-                    this.isPetitionInformationEdit = true;
+                    
                     if (res['petitionInfo'] != undefined) {
                         this.petitionDetails = res['petitionInfo'];
                         this.petitionDetailsService.getUsersForAccount(this.headerService.user.accountId)
@@ -251,9 +253,19 @@ export class PetitionDetailsComponent implements OnInit {
                                 });
                             });
                         this.petitionInformation = this.petitionDetails;
-
+                        
                     }
+                    
                 });
+            this.isPetitionInformationSaveStatus = true;
+            this.isPetitionInformationEdit = false;
+
+
+            setTimeout(() => {    //<<<---    using ()=> syntax
+                this.isPetitionInformationSaveStatus = false;
+                
+            }, 3000);
+           
         }
     }
     onEditReceiptInfoClick() {

@@ -55,9 +55,11 @@
                 <h2>Petition Information</h2>
                 <p>Please fill the all required fields.</p>
                 <a class="editbtn  no-marg-right" (click)="onEditPetitionInfoClick()" *ngIf="isPetitionInformationEdit==true">Edit Section</a>
+                <a value="Save" class="savebtn" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save Section</a>
+                <span value="Save" class="sectionsave" *ngIf="isPetitionInformationSaveStatus">Section Saved</span>
                 <div class="tbl-head-btn" [hidden]="isPetitionInformationEdit">
                     <!--<a (click)="onCancelPetitionInfoClick()" class="canbtn tbl-head-btn" *ngIf="isPetitionInformationEdit==false">Cancel</a>-->
-                    <a value="Save" class="savebtn" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save Section</a>
+                    
                 </div>
             </div>
             <div class="col-md-3 inputBox">
