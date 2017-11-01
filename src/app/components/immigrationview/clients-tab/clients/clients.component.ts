@@ -2,7 +2,7 @@ import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
-import { StatusButton } from './StatusButton';
+import { StatusButton } from './statusButton';
 import { Component, OnInit } from '@angular/core';
 import { ClientsService } from "./clients.service";
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
@@ -37,7 +37,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   private message: string;
   private clientName: any;
   public addNewClient: boolean;
-  public addMorefilters: boolean; 
+  public addMorefilters: boolean;
   public getClientsData: boolean = true;
   public newclitem: any = {};
   public warningMessage: boolean = false;

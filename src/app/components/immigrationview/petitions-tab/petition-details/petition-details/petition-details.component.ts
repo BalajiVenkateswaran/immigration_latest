@@ -33,7 +33,7 @@ export class PetitionDetailsComponent implements OnInit {
     private beforeCancelPetition;
     public orgs: any = [];
     public status: any[];
-    private receiptNumber: any[];
+    public receiptNumber: any[];
     public delegatedOrgsList: any[];
     private startDate: string;
     private deniedDate: string;
