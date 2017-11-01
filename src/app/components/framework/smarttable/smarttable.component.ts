@@ -1,15 +1,9 @@
 import {Component, Input, SimpleChange, OnChanges, EventEmitter, Output} from '@angular/core';
 import { CustomFilterRow } from './CustomFilterRow';
-import { AgGridModule } from "ag-grid-angular/main";
 import { GridOptions } from "ag-grid";
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
-import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { ActionColumns } from './ActionColumns';
 import {QueryParameters, SortType, FilterEntry} from "./types/query-parameters";
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
-import { FilterpopupComponent } from "./filterpopup/filterpopup.component";
 import { SmartTableService } from './common/smarttable.service'
 import {PaginationMetadata} from './types/pagination-metadata';
 export interface ConfirmModel {
@@ -54,7 +48,6 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     public isAddFilterButtonEnable: boolean;
     public headerArray:any;
     public queryParameters : QueryParameters;
-    public deleteFilterClicked: boolean = false;
     public quickFilters: any[] = [];
     private defaultPageSize : number = 15;
 
@@ -156,29 +149,11 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             }
         }
 
-        //TODO - applyFilters changes are not detected by below code. Need to work on it.
-        /*if(changes['applyFilters']){
-          console.log("applyFilters changed: %o", this.applyFilters);
-          if(this.applyFilters && this.applyFilters['filters'] != null && this.applyFilters['filters']['length'] > 0){
-            for(let filter of this.applyFilters['filters']){
-              this.queryParameters.addFilter(filter.fieldHeader, filter.fieldName, filter.operator != null ? filter.operator : this.getFilterType(filter.fieldHeader), filter.fieldValue);
-            }
-            this.invokeResource();
-          }
-        }*/
-
         this.smartTableService.headerNamesArray = this.settings['columnsettings'].map(item=>{return {'headerName':item.headerName,'fieldName':item.field,'type':item.type,'data':item.data}});
 
         this.smartTableService.filteredData = this.queryParameters.filter;
     }
-    deleteFilter(index, x) {
-        this.deleteFilterClicked = true;
-        this.queryParameters.filter.splice(index,1);
-        this.queryParameters.setPagination(this.paginationMetadata.pageSize,0);
-        this.paginationMetadata.itemStartIndex = 1;
-        this.paginationMetadata.pageNumber=0;
-        this.invokeResource();
-    }
+
 
     addRecord() {
         this.onAddClick.emit(this.isAddButtonEnable);
@@ -372,12 +347,6 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
         console.log("Query String after slice: %o", queryString);
 
         this.dataWithQueryParams.emit(queryString);
-    }
-    filterPopup(){
-        this.dialogService.addDialog(FilterpopupComponent,{
-            title: 'Add Filter',
-            message: 'Add Filter'
-        })
     }
 }
 

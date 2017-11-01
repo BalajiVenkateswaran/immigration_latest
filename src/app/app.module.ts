@@ -93,7 +93,6 @@ import {AgGridModule} from "ag-grid-angular/main";
 import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
 import {checklistdownloadButton} from './components/immigrationview/manage-account-tab/checklist/downloadButton';
 import {checklistuploadButton} from './components/immigrationview/manage-account-tab/checklist/uploadButton';
-import {FilterpopupComponent} from "./components/framework/smarttable/filterpopup/filterpopup.component";
 import {SmartTableService} from "./components/framework/smarttable/common/smarttable.service";
 
 //superusersview
@@ -361,7 +360,7 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
     entryComponents: [
         ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons,
         GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton,
-      InvoicedownloadButton, InvoiceUploadButton, FilterpopupComponent, StatusButton, FilterComponent
+      InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
     declarations: [
         webImmigrationServicesComponent,
@@ -450,7 +449,7 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
 
 
         //SmartTableFramework
-        SmartTableFramework, CustomFilterRow, FilterpopupComponent, FilterComponent, PaginationComponent,
+        SmartTableFramework, CustomFilterRow, FilterComponent, PaginationComponent,
         //superuserview
         AccountInvoiceComponent,
         accountDetailsPaymentsComponent,

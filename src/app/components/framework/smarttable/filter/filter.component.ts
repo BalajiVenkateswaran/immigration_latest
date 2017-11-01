@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SmartTableFramework} from '../smarttable.component';
 import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {FilterEntry} from '../types/query-parameters';
 
 export interface ConfirmModel {
   title: string;
@@ -16,7 +17,7 @@ export interface ConfirmModel {
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit{
+export class FilterComponent extends DialogComponent<ConfirmModel, boolean>{
   @Input() public quickFilters: any[];
   @Input() public smartTable: SmartTableFramework;
   @Output() addRecordClick = new EventEmitter();
@@ -28,16 +29,12 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> impl
    *  - Each object is an array:
    *    - Each object in child array represents a field, with name, value, type
    *
-   *
    * Note: Each rows will have 3 fields
    */
   moreFilterFields: any[] = [];
 
   constructor(public dialogService: DialogService){
     super(dialogService);
-  }
-  ngOnInit(){
-
   }
   onChange(event){
     console.log("Filter Component: %o", event);
@@ -98,5 +95,21 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> impl
   }
   onAddClick(){
     this.addRecordClick.emit();
+  }
+
+  deleteFilter(index, x) {
+    this.smartTable.queryParameters.filter.splice(index,1);
+    this.smartTable.queryParameters.setPagination(this.smartTable.paginationMetadata.pageSize,0);
+    this.smartTable.paginationMetadata.itemStartIndex = 1;
+    this.smartTable.paginationMetadata.pageNumber=0;
+    this.smartTable.invokeResource();
+  }
+
+  clearAllFilters(){
+    this.smartTable.queryParameters.filter = new Array<FilterEntry>();
+    this.smartTable.queryParameters.setPagination(this.smartTable.paginationMetadata.pageSize,0);
+    this.smartTable.paginationMetadata.itemStartIndex = 1;
+    this.smartTable.paginationMetadata.pageNumber=0;
+    this.smartTable.invokeResource();
   }
 }
