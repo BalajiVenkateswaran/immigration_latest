@@ -58,7 +58,7 @@ export class PetitionDetailsComponent implements OnInit {
     private petitionDetails: any = {};
     private lcaInfo: any = {};
     private sponsorInfo: any = {};
-    private receiptInfo: any = {};
+    public receiptInfo: any = {};
     private sponsorInfoAddress: any = {};
     private petitionAdditionalDetails: any = {};
     public datePickerOptions = IhDateUtil.datePickerOptions;
