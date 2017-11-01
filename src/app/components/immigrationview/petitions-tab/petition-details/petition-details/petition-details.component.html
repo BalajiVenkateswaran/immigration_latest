@@ -56,8 +56,8 @@
                 <p>Please fill the all required fields.</p>
                 <a class="editbtn  no-marg-right" (click)="onEditPetitionInfoClick()" *ngIf="isPetitionInformationEdit==true">Edit Section</a>
                 <div class="tbl-head-btn" [hidden]="isPetitionInformationEdit">
-                    <a (click)="onCancelPetitionInfoClick()" class="editbtn tbl-head-btn" *ngIf="isPetitionInformationEdit==false">Cancel</a>
-                    <a class="savebtn" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save Section</a>
+                    <!--<a (click)="onCancelPetitionInfoClick()" class="canbtn tbl-head-btn" *ngIf="isPetitionInformationEdit==false">Cancel</a>-->
+                    <a value="Save" class="savebtn" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save Section</a>
                 </div>
             </div>
             <div class="col-md-3 inputBox">
@@ -145,9 +145,9 @@
             </div>
             <div class="col-md-3 inputBox">
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Withdrawn Date" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.withdrawDate" />
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker2" placeholder="Withdrawn Date" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.withdrawDate" />
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
 
                 <!--<my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions" [(ngModel)]="petitionInformation.withdrawDate" [selDate]="withdrawDate"></my-date-picker>
@@ -155,9 +155,9 @@
             </div>
             <div class="col-md-3 inputBox">
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Rejected Date" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.rejectedDate" />
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker3" placeholder="Rejected Date" [disabled]="isPetitionInformationEdit==true" [(ngModel)]="petitionInformation.rejectedDate" />
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
 
                 <!--<my-date-picker *ngIf="isPetitionInformationEdit==false" [options]="datePickerOptions" [(ngModel)]="petitionInformation.rejectedDate" [selDate]="rejectedDate"></my-date-picker>
@@ -191,6 +191,8 @@
                         <mat-option [value]="false">No</mat-option>
                     </mat-select>
                 </mat-form-field>
+
+                
             </div>
             <div class="col-md-3 inputBox">
                 <mat-form-field class="example-full-width">

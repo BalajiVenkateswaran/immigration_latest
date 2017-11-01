@@ -2065,9 +2065,26 @@ header {
             color:#ccc;
             margin: 0 0 10px 0;
         }
+        .editbtn, .savebtn, .canbtn {
+            font-size:14px;
+            font-weight:300;
+            color:#ccc;
+            text-transform:uppercase;
+        }
+        .canbtn {
+            color:red;
+        }
+        .savebtn {
+            color: #109bf8 !important;
+            background: none;
+            width: auto;
+            }
+        .sectionsave {
+            color:#27ae60;
+            }
     }
     .inputBox {
-        margin:25px 0 15px ;
+        margin:0 ;
 
         /*span, input {
         border-bottom:solid 1px #ccc;
@@ -2079,6 +2096,10 @@ header {
         float:left;
         height:23px;
     }*/
+        .mat-form-field {
+            width:100%;
+            font-size: 18px !important;
+        }
     }
 
     
