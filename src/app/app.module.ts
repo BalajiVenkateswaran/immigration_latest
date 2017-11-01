@@ -256,7 +256,7 @@ import { SuperUserPetitionTagReportsService } from './components/superuserview/r
 import { SuperUserViewPaymentstabService } from './components/superuserview/payments-tab/payments.service';
 import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview/product-catalog-tab/discounts/discounts.component';
 import { ProductCatalogDiscountService } from './components/superuserview/product-catalog-tab/discounts/discounts.service';
-import { StatusButton } from './components/immigrationview/clients-tab/clients/StatusButton';
+import { StatusButton } from './components/immigrationview/clients-tab/clients/statusButton';
 import {HeaderService} from './components/common/header/header.service';
 
 import {QuestionnaireCommonService} from './components/immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
