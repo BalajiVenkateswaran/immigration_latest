@@ -586,7 +586,6 @@ export const appRoutes: Routes = [
     {
         path: 'superuser-finalaction',
         component: superuserpetfinalactionreportscomponent
-
     },
     {
         path: 'superuser-clientstatusreports',

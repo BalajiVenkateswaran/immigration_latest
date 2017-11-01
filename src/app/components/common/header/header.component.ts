@@ -50,8 +50,8 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   }
   constructor(private router: Router, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
     super(dialogService);
-    this.headerComponentService.onHeaderPageLoad();
-    this.highlightTab('petitions')
+    this.headerComponentService.onHeaderPageLoad('clients');
+    this.highlightTab('clients')
     if(this.headerService.user != null){
       this.user = this.headerService.user;
     }
@@ -97,8 +97,8 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
 
   onLogoClick(){
     if(this.appService.applicationViewMode == 'Immigration'){
-      this.appService.moveToPage('petitions');
-      this.highlightTab('petitions');
+      this.appService.moveToPage('clients');
+      this.highlightTab('clients');
     } else if(this.appService.applicationViewMode == 'Client'){
       this.appService.moveToPage('clientview-petitions');
       this.highlightTab('clientview-petitions');

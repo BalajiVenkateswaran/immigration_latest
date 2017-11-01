@@ -16,18 +16,18 @@ export class HeaderComponentService {
     this._usageSummaryDetails = value;
   }
 
-  constructor(private restService: RestService, private headerService: HeaderService) {
+  constructor(private restService: RestService, private headerService: HeaderService, private appService: AppService) {
   }
 
   public getUserOrgs(accountid: string, userid: string, roleid: string) {
     return this.restService.getData("/org/account/" + accountid + "/user/" + userid + "/role/" + roleid);
   }
 
-  public onHeaderPageLoad(){
-    this.invokeHeaderPageLoad(true);
+  public onHeaderPageLoad(moveToPage: string){
+    this.invokeHeaderPageLoad(true, moveToPage);
   }
 
-  public invokeHeaderPageLoad(isDestroy: boolean) {
+  public invokeHeaderPageLoad(isDestroy: boolean, moveToPage: string) {
     if(isDestroy){
         this.headerService.destroy();
     }
@@ -39,6 +39,8 @@ export class HeaderComponentService {
       else {
         this.headerService.selectedOrg = {'displayName' : ''};
       }
+
+      this.appService.moveToPage(moveToPage);
     });
 
   }

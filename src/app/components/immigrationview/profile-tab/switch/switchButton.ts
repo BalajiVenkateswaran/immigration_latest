@@ -55,8 +55,8 @@ export class switchButton implements ICellRendererAngularComp {
         }
         if (params.data.roleName == "Immigration Manager" || params.data.roleName == "Immigration Officer") {
             this.appService.applicationViewMode = "Immigration";
-            this.headerService.currentTab = 'petitions';
-            this.appService.moveToPage("petitions");
+            this.headerService.currentTab = 'clients';
+            this.appService.moveToPage('clients');
 
         }
         if (params.data.roleName == "Super User") {

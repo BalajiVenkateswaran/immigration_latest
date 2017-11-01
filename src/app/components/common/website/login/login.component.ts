@@ -58,13 +58,15 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     private manageAccountUserService: ManageAccountUserService
   ) {
     super(dialogService);
+    console.log("Login Component Constructor");
     this.login = new FormGroup({
       emailId: new FormControl(''),
       password: new FormControl('')
     });
 
-    if (this.headerService.user) {
-      this.appService.moveToPage("petitions");
+    if (this.headerService.user) { //If user already logged in. Redirect to home page
+      console.log('Login Component: Header service user exists');
+      this.appService.moveToPage('clients');
     }
     this.loginservice.getIPAndLocation().subscribe(res=>{
       this.locationObject = res;
@@ -167,31 +169,34 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
               this.headerService.organizations = res.organizationList;
               this.headerService.user['roleName'] = res.userAccountRoleList[0].roleName;
               this.headerService.user.accountId = res.userAccountRoleList[0].accountId;
-
+              let moveToPage : string = '';
               if (res.userAccountRoleList[0].roleName == "Immigration Manager"
                 || res.userAccountRoleList[0].roleName == "Immigration Officer") {
                 this.appService.applicationViewMode = "Immigration";
                 this.headerService.selectedOrg = res.organizationList[0];
                 this.headerService.currentTab = 'clients';
-                this.appService.moveToPage('clients');
+                //this.appService.moveToPage('clients');
+                moveToPage = 'clients';
               }
               if (res.userAccountRoleList[0].roleName == "Client") {
                 this.appService.applicationViewMode = "Client";
                 this.appService.clientId = this.headerService.user.userId;
                 this.headerService.currentTab = 'clientview-petitions';
-                this.appService.moveToPage("clientview-petitions");
+                //this.appService.moveToPage("clientview-petitions");
+                moveToPage = 'clientview-petitions';
               }
               if (res.userAccountRoleList[0].roleName == "Super User") {
                 this.appService.applicationViewMode = "Superuser";
                 this.headerService.currentTab = 'superuser-accounts';
-                this.appService.moveToPage("superuser-accounts");
+                // this.appService.moveToPage("superuser-accounts");
+                moveToPage = 'superuser-accounts';
               }
               this.getUsers();
 
               this.appService.showHeader = true;
               this.appService.showFooter = false;
               this.appService.showMenu = false;
-              this.headerComponentService.onHeaderPageLoad();
+              this.headerComponentService.onHeaderPageLoad(moveToPage);
             }
 
           }
@@ -209,29 +214,32 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.appService.rolemultiple = true;
     this.result = true;
     this.headerService.user['roleName'] = userdet.roleName;
+    let moveToPage : string = '';
     if (userdet.roleName == "Client") {
       this.appService.applicationViewMode = "Client";
       this.appService.clientId = this.headerService.user.userId;
       this.headerService.currentTab = 'clientview-petitions';
-      this.appService.moveToPage("clientview-petitions");
+      //this.appService.moveToPage("clientview-petitions");
+      moveToPage = 'clientview-petitions';
     }
     if (userdet.roleName == "Immigration Manager" || userdet.roleName == "Immigration Officer") {
       this.appService.applicationViewMode = "Immigration";
       this.headerService.currentTab = 'clients';
-      this.appService.moveToPage('clients');
-
+      //this.appService.moveToPage('clients');
+      moveToPage = 'clients';
     }
     if (userdet.roleName == "Super User") {
       this.appService.applicationViewMode = "Superuser";
       this.headerService.currentTab = 'superuser-accounts';
-      this.appService.moveToPage("superuser-accounts");
+      //this.appService.moveToPage("superuser-accounts");
+      moveToPage = 'superuser-accounts';
     }
 
     this.appService.showHeader = true;
     this.appService.showFooter = false;
     this.appService.showMenu = false;
 
-    this.headerComponentService.onHeaderPageLoad();
+    this.headerComponentService.onHeaderPageLoad(moveToPage);
 
     this.loginservice.updateLoginHistory(this.appService.userLoginHistoryId, userdet.roleId).subscribe((res: any) => { });
     this.getUsers();

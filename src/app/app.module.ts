@@ -337,6 +337,7 @@ import {
     MatStepperModule,
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
+import {PaginationComponent} from './components/framework/smarttable/pagination/pagination.component';
 
 @NgModule({
     imports: [
@@ -445,7 +446,7 @@ import {CdkTableModule} from '@angular/cdk/table';
 
 
         //SmartTableFramework
-        SmartTableFramework, CustomFilterRow, FilterpopupComponent, FilterComponent,
+        SmartTableFramework, CustomFilterRow, FilterpopupComponent, FilterComponent, PaginationComponent,
         //superuserview
         AccountInvoiceComponent,
         accountDetailsPaymentsComponent,

@@ -31,7 +31,7 @@ export class PetitionsComponent implements OnInit {
     constructor(private router: Router,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
-      
+
 
         this.statusTypes = [
             {
@@ -165,18 +165,18 @@ export class PetitionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+
         this.headerService.showSideBarMenu(null, "petitions");
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
-    ngDoCheck() {
+    /*ngDoCheck() {
         if (this.headerService.selectedOrg) {
             if (this.orgId != this.headerService.selectedOrg['orgId']) {
                 this.orgId = this.headerService.selectedOrg['orgId'];
                 this.dataWithParameters(this.queryParameters);
             }
         }
-    }
+    }*/
     gettingOrganizationId(value) {
         this.orgId = value;
         this.dataWithParameters(this.queryParameters);
@@ -215,7 +215,7 @@ export class PetitionsComponent implements OnInit {
                    x.push({'display':data[i]['petitiontype'],'value':data[i]['petitiontype']});
                }
             }
-            
+
         })
         return x;
     }

@@ -35,7 +35,7 @@ export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> 
     }
     changeOrgName(org: Organizations) {
         this.headerService.selectedOrg = org;
-        this.appService.moveToPage('petitions');
+        this.appService.moveToPage('clients');
         this.close();
     }
     ngOnInit() {

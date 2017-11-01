@@ -44,7 +44,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public settings;
   public data;
   public paginationData;
-  public applyFilters : Object = {'filters':''};
 
   //More filter popup variables
   public openPetitions : string;
@@ -59,7 +58,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService) {
     super(dialogService);
-
+      console.log("Clients component constructor");
         this.settings = {
             'columnFilter': false,
             'isDeleteEnable': false,
@@ -122,18 +121,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       this.headerService.showSideBarMenu(null, "clients");
       this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
-    ngDoCheck() {
-      if (this.headerService.selectedOrg) {
-        if (this.orgId != this.headerService.selectedOrg['orgId']) {
-          this.orgId = this.headerService.selectedOrg['orgId'];
-          this.dataWithParameters(this.queryParams);
-        }
-      }
-    }
-
-    getClients() {
-
-    }
     filteradd() {
         console.log("Filter Add");
         this.dialogService.addDialog(ClientsComponent, {
@@ -142,23 +129,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             title: 'Add Client',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                //this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
-                //    if (res['statusCode'] == 'SUCCESS') {
-                //        this.clientService.getClients(this.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
-                //            (res) => {
-                //                this.data = res['clients'];
-                //                this.paginationData = res['pageMetadata'];
-
-                //            }
-                //        )
-                //    }
-                //    if (res['statusDescription'] == 'Duplicate client') {
-                //        this.dialogService.addDialog(ConfirmComponent, {
-                //            title: 'Error..!',
-                //            message: 'User already Exists'
-                //        })
-                //    }
-                //});
             }
         });
     }
@@ -287,7 +257,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       applyFilters.push(new FilterEntry('First Name', 'firstName',null,this.firstName));
     }
 
-    this.applyFilters['filters'] = applyFilters;
+    // this.applyFilters['filters'] = applyFilters;
   }
 
 }

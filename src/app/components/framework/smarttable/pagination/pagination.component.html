@@ -1,0 +1,21 @@
+<div style="margin-top:10px !important;">
+  <div style="width:20%; float:left;"><span>{{paginationMetadata.itemStartIndex}} to {{paginationMetadata.endNumber}} of {{paginationMetadata.totalElements}}</span></div>
+  <div class="pagination">
+    <a [class.disabled]="paginationMetadata.pageNumber===0"  (click)="paginationMetadata.pageNumber!=0 && previousPage()"><i class="rigicon" aria-hidden="true"><img src="../../../../assets/images/left arrow.png" /></i></a>
+    <a>Previous</a>
+    <a *ngFor="let pageNo of getPageNumbers()" (click)="gotoPage(pageNo)" ng-class="{selected-page: pageNo === paginationMetadata.pageNumber}">{{pageNo}}</a>
+    <a>Next</a>
+    <a [class.disabled]="paginationMetadata.totalPages == 0 || paginationMetadata.pageNumber===paginationMetadata.totalPages-1"
+       (click)="!(paginationMetadata.totalPages == 0 || paginationMetadata.pageNumber===paginationMetadata.totalPages-1) && nextPage()">
+      <img src="../../../../assets/images/Right arrow.png" />
+    </a>
+  </div>
+  <div style="width:20%; float:right; text-align:right;">
+    Page Size:
+    <select #pages [disabled]=pageSelectionDisable (change)="onPageSizeChanged(pages.value)">
+      <option value="15" [selected]>15</option>
+      <option value="30">30</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import {QueryParameters, SortType, FilterEntry} from "./types/query-parameters";
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { FilterpopupComponent } from "./filterpopup/filterpopup.component";
 import { SmartTableService } from './common/smarttable.service'
+import {PaginationMetadata} from './types/pagination-metadata';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -21,13 +22,7 @@ export interface ConfirmModel {
     templateUrl: './smarttable.component.html'
 })
 export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> implements OnChanges{
-    pageSize: number;
-    totalElements: number;
-    totalPages: number;
-    public pageNumber: number = 0;
-    public itemStartIndex = 1;
-    public endNumber: number;
-    public filterPopupForm : boolean;
+    public paginationMetadata : PaginationMetadata = new PaginationMetadata();
     public tableView : boolean = true;
 
     /*
@@ -58,12 +53,10 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     public isAddButtonEnable: boolean;
     public isAddFilterButtonEnable: boolean;
     public headerArray:any;
-    public pageSelectionDisable: boolean = false;
     public queryParameters : QueryParameters;
     public deleteFilterClicked: boolean = false;
     public quickFilters: any[] = [];
-
-    @Input() public applyFilters : Object;
+    private defaultPageSize : number = 15;
 
     constructor(public dialogService: DialogService,public smartTableService: SmartTableService) {
         super(dialogService);
@@ -86,7 +79,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
                   filter.operator = this.getFilterType(filter.fieldName);
                   this.queryParameters.addFilter(filter.fieldHeader, filter.fieldName,this.getFilterType(filter.fieldName),filter.fieldValue)
                 });
-                this.pageNumber = 0;
+                this.paginationMetadata.pageNumber = 0;
                 this.queryParameters.pagination.pageNumber = 0;
                 this.invokeResource();
             }
@@ -147,24 +140,24 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
         if (changes['paginationData']) {
              console.log('Pagination Data change:%o',this.paginationData);
             if (this.paginationData) {
-                this.pageSize = this.paginationData['size'];
-                this.totalElements = this.paginationData['totalElements'];
-                this.totalPages = this.paginationData['totalPages'];
+                this.paginationMetadata.pageSize = this.paginationData['size'];
+                this.paginationMetadata.totalElements = this.paginationData['totalElements'];
+                this.paginationMetadata.totalPages = this.paginationData['totalPages'];
                 let number = this.paginationData['number'];
 
-                this.itemStartIndex = this.totalElements == 0 ? 0 : (number * this.pageSize) +1;
+                this.paginationMetadata.itemStartIndex = this.paginationMetadata.totalElements == 0 ? 0 : (number * this.paginationMetadata.pageSize) +1;
 
-                if ((number * this.pageSize) + this.pageSize > this.totalElements) {
-                    this.endNumber = this.totalElements;
+                if ((number * this.paginationMetadata.pageSize) + this.paginationMetadata.pageSize > this.paginationMetadata.totalElements) {
+                    this.paginationMetadata.endNumber = this.paginationMetadata.totalElements;
                 }
                 else {
-                    this.endNumber = (number * this.pageSize) + this.pageSize;
+                    this.paginationMetadata.endNumber = (number * this.paginationMetadata.pageSize) + this.paginationMetadata.pageSize;
                 }
             }
         }
 
         //TODO - applyFilters changes are not detected by below code. Need to work on it.
-        if(changes['applyFilters']){
+        /*if(changes['applyFilters']){
           console.log("applyFilters changed: %o", this.applyFilters);
           if(this.applyFilters && this.applyFilters['filters'] != null && this.applyFilters['filters']['length'] > 0){
             for(let filter of this.applyFilters['filters']){
@@ -172,7 +165,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             }
             this.invokeResource();
           }
-        }
+        }*/
 
         this.smartTableService.headerNamesArray = this.settings['columnsettings'].map(item=>{return {'headerName':item.headerName,'fieldName':item.field,'type':item.type,'data':item.data}});
 
@@ -181,21 +174,9 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
     deleteFilter(index, x) {
         this.deleteFilterClicked = true;
         this.queryParameters.filter.splice(index,1);
-        this.queryParameters.setPagination(this.pageSize,0);
-        this.itemStartIndex = 1;
-        this.pageNumber=0;
-        this.invokeResource();
-    }
-    onPageSizeChanged(newPageSize) {
-        this.pageNumber = 0;
-        this.pageSize = +newPageSize;
-        this.itemStartIndex = 1;
-        if (this.totalElements < this.pageSize) {
-            this.endNumber = this.totalElements;
-        } else {
-            this.endNumber = this.pageSize;
-        }
-        this.queryParameters.setPagination(this.pageSize,this.pageNumber);
+        this.queryParameters.setPagination(this.paginationMetadata.pageSize,0);
+        this.paginationMetadata.itemStartIndex = 1;
+        this.paginationMetadata.pageNumber=0;
         this.invokeResource();
     }
 
@@ -238,17 +219,17 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
         }
         else {
             this.gridOptions.pagination = true;
-            this.queryParameters.setPagination(20,0);
+            this.queryParameters.setPagination(this.defaultPageSize,0);
         }
 
         if (this.settings.hasOwnProperty('customPanel')) {
             this.gridOptions.suppressPaginationPanel = true;
             this.paginationTemplate = true;
-            this.queryParameters.setPagination(20,0);
+            this.queryParameters.setPagination(this.defaultPageSize,0);
         }
         else {
             this.gridOptions.suppressPaginationPanel = false;
-            this.gridOptions.paginationPageSize = 10;
+            this.gridOptions.paginationPageSize = this.defaultPageSize;
         }
         //Pass any objects to child components through context
         if (this.settings.hasOwnProperty('context')) {
@@ -301,7 +282,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             this.settings['columnFilter'] = false;
             this.settings['headerHeight'] = 25;
 
-            this.queryParameters.setPagination(20,0);
+            this.queryParameters.setPagination(this.defaultPageSize,0);
         }
 
         if (this.settings.hasOwnProperty('defaultFilter')) {
@@ -356,48 +337,6 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
         this.filterSubscription.unsubscribe();
     }
 
-    nextPage() {
-        this.itemStartIndex = this.endNumber + 1;
-        this.pageNumber = this.pageNumber + 1;
-        if (this.totalPages - 1 == this.pageNumber) {
-            this.endNumber = this.totalElements
-        }
-        else {
-            this.endNumber = (this.pageNumber + 1) * (this.pageSize);
-        }
-
-       this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-       this.invokeResource();
-    }
-    firstPage() {
-        this.pageNumber = 0;
-        this.itemStartIndex = this.pageNumber + 1;
-        this.endNumber = this.pageSize;
-
-       this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-           this.invokeResource();
-    }
-    lastPage() {
-        this.endNumber = this.totalElements;
-        this.pageNumber = this.totalPages - 1;
-        this.itemStartIndex = this.pageNumber * this.pageSize + 1;
-
-       this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-          this.invokeResource();
-    }
-    previousPage() {
-        if (this.pageNumber == 1) {
-            this.itemStartIndex = this.pageNumber;
-        }
-        else {
-            this.itemStartIndex = (this.pageNumber - 1) * (this.pageSize) + 1;
-        }
-        this.endNumber = this.pageSize * this.pageNumber;
-        this.pageNumber = this.pageNumber - 1;
-
-        this.queryParameters.setPagination(this.pageSize,this.pageNumber);
-          this.invokeResource();
-    }
     invokeResource() {
         let queryString : string = '?';
         if(this.queryParameters.pagination != null){
@@ -428,7 +367,7 @@ export class SmartTableFramework extends DialogComponent<ConfirmModel, boolean> 
             queryString += sortUrl.slice(0, -1)+ '&';
           }
         }
-        console.log("Query String before slice: %o", queryString);
+
         queryString = queryString.slice(0, -1);
         console.log("Query String after slice: %o", queryString);
 

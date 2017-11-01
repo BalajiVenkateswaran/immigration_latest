@@ -1,4 +1,4 @@
-class Pagination {
+export class Pagination {
   //Number of records per page
   size: number;
   //PageNumber
