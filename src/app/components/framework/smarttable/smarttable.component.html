@@ -1,7 +1,7 @@
 <div>
-    <div *ngIf="quickFilters != null && quickFilters.length > 0">
-      <smart-table-filter [quickFilters]="quickFilters" [smartTable]="this" ></smart-table-filter>
-    </div>
+  <div *ngIf="quickFilters != null && quickFilters.length > 0">
+    <smart-table-filter [quickFilters]="quickFilters" [smartTable]="this" ></smart-table-filter>
+  </div>
   <div *ngIf="queryParameters.filter">
     <div class="clearfix"></div>
     <div class="filterheading"><span>Filters :</span></div>
@@ -9,13 +9,10 @@
       <span class="filtretype">{{x.fieldHeader}} :</span><span class="filtrename">{{x.fieldValue}}</span><span class="close" (click)="deleteFilter(i,x)">&times;</span>
     </div>
   </div>
-    <!--<button *ngIf="isAddFilterButtonEnable" type="button" class="iportal-btn " (click)="filterPopup()">Add Filters</button>-->
-    <div class="clearfix"></div>
-    <div class="agtblOptions">
-        <ag-grid-angular id="grid" #grid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (cellClicked)="onCellClick($event)">
-        </ag-grid-angular>
-        <smart-table-pagination [smartTable]="this" [paginationMetadata]="paginationMetadata" ></smart-table-pagination>
-    </div>
-
-
+  <div class="clearfix"></div>
+  <div class="agtblOptions">
+      <ag-grid-angular id="grid" #grid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (cellClicked)="onCellClick($event)">
+      </ag-grid-angular>
+      <smart-table-pagination [smartTable]="this" [paginationMetadata]="paginationMetadata" ></smart-table-pagination>
+  </div>
 </div>

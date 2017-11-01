@@ -7,6 +7,7 @@ export interface ConfirmModel {
   message: string;
   addMorefilters: boolean;
   showFilters: boolean;
+  smartTable: SmartTableFramework;
   moreFilterFields: any[];
 }
 
@@ -76,13 +77,26 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> impl
       addMorefilters: true,
       showFilters: false,
       moreFilterFields: this.moreFilterFields,
+      smartTable: this.smartTable,
       title: 'More Fiters'
     });
 
   }
 
   onApplyFiltersClick(){
+    //Add filters for the columns that has values entered
+    for(let row of this.moreFilterFields){
+      for(let column of row){
+        if(column['value'] != null){
+          this.smartTable.queryParameters.addFilter(column['headerName'], column['field'], this.smartTable.getFilterType(column['headerName']), column['value']);
+        }
+      }
+    }
+
+    this.smartTable.invokeResource();
+    this.close();
+  }
+  addRecord(){
 
   }
-  addRecord(){}
 }
