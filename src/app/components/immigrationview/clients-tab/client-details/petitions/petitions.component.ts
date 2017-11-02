@@ -4,11 +4,11 @@ import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.compo
 import { HeaderService } from '../../../../common/header/header.service';
 import { MenuService } from '../../../../common/menu/menu.service';
 import { Component, OnInit } from '@angular/core';
-import {ImmigrationViewPetitionsService} from "./petitions.service";
-import {FormGroup, FormControl} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ImmigrationViewPetitionsService} from './petitions.service';
+import {FormGroup, FormControl} from '@angular/forms';
+import {Router} from '@angular/router';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 
 import { CustomRenderComponent } from './custom-render.component';
 
@@ -34,9 +34,9 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     private message: string;
     private allPetitionTypesAndSubTypes;
     public showAddPetitionpopup: boolean;
-    public getPetitionsData: boolean = true;
+    public getPetitionsData = true;
     public newpetitionitem: any = {};
-    public warningMessage:boolean=false;
+    public warningMessage= false;
     public settings;
     public data;
     public countryNames: string[] = [];
@@ -62,43 +62,42 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
             userId: new FormControl(''),
             accountId: new FormControl('')
         });
-         this.settings={
-            'isDeleteEnable':false,
-            'newVariable':'abc',
+         this.settings = {
+            'isDeleteEnable': false,
             'columnsettings': [
                 {
-                    headerName: "Petition Name",
-                    field: "petitionName"
+                    headerName: 'Petition Name',
+                    field: 'petitionName'
                 },
                 {
-                    headerName: "Petition Type",
-                    field: "petitionType"
+                    headerName: 'Petition Type',
+                    field: 'petitionType'
                 },
                 {
-                    headerName: "Petition SubType",
-                    field: "petitionSubType"
+                    headerName: 'Petition SubType',
+                    field: 'petitionSubType'
                 },
                 {
-                    headerName: "Status",
-                    field: "status"
+                    headerName: 'Status',
+                    field: 'status'
                 },
                 {
-                    headerName: "Stage",
-                    field: "stage"
+                    headerName: 'Stage',
+                    field: 'stage'
                 },
                 {
-                    headerName: "Created On",
-                    field: "createdOn",
-                    width:350
+                    headerName: 'Created On',
+                    field: 'createdOn',
+                    width: 350
                 },
                 {
-                    headerName: "Last Updated",
-                    field: "lastUpdate",
-                    width:350
+                    headerName: 'Last Updated',
+                    field: 'lastUpdate',
+                    width: 350
                 },
                 {
-                    headerName: "Assigned To",
-                    field: "assignedToName"
+                    headerName: 'Assigned To',
+                    field: 'assignedToName'
                 }
             ],
             filter: {
@@ -107,8 +106,8 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
                         headerName: 'Status',
                         field: 'status',
                         values: [
-                            { alias: 'Active', value: 'Active' },
-                            { alias: 'Inactive', value: 'Inactive' }
+                            { alias: 'Open', value: 'Open' },
+                            { alias: 'Close', value: 'Close' }
                         ]
                     }
                 ]
@@ -118,12 +117,12 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
     getPetitionData() {
         this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId).subscribe((res) => {
-            this.data=res['petitions'];
+            this.data = res['petitions'];
         });
         this.getPetitionTypes();
     }
 
-    getPetitionTypes(){
+    getPetitionTypes() {
       this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
         .subscribe((res) => {
             this.allPetitionTypesAndSubTypes = res['petitionTypes'];
@@ -138,27 +137,27 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
     handleChange(event) {
         console.log(event.target.value);
-        for (var i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
+        for (let i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
             if (event.target.value == this.allPetitionTypesAndSubTypes[i].petitiontype) {
                 this.allSubTypes = this.allPetitionTypesAndSubTypes[i].petitionSubTypes;
             }
         }
         this.appService.allsubtypesarray(this.allSubTypes);
 
-            var currentYear = new Date().getFullYear();
-            this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype']+ " " + currentYear;
+            let currentYear = new Date().getFullYear();
+            this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + ' ' + currentYear;
     }
 
   ngOnInit() {
       this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId)
         .subscribe((res) => {
-            this.data=res['petitions'];
+            this.data = res['petitions'];
         });
       this.getPetitionTypes();
   }
 
   addNewPetition() {
-      
+
       this.dialogService.addDialog(ImmigrationViewPetitionsComponent, {
           showAddPetitionpopup: true,
           getPetitionsData: false,
@@ -171,7 +170,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
                       this.getPetitionData();
                   } else {
                       let errorMessage = 'Unable to add petition';
-                      if(res['statusDescription'] != null){
+                      if (res['statusDescription'] != null) {
                         errorMessage = res['statusDescription'];
                       }
 
@@ -185,22 +184,22 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       });
   }
 
-  getPetitionTypeId(petitionType: string) : string{
-    for(let petitionTypeObj of this.allPetitionTypesAndSubTypes){
-      if(petitionTypeObj['petitiontype'] === petitionType){
+  getPetitionTypeId(petitionType: string): string {
+    for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
+      if (petitionTypeObj['petitiontype'] === petitionType) {
         return petitionTypeObj['petitionTypeId'];
       }
     }
   }
 
-  getPetitionSubTypeId(petitionType: string, petitionSubType: string) : string{
-      for(let petitionTypeObj of this.allPetitionTypesAndSubTypes){
-        if(petitionTypeObj['petitiontype'] === petitionType){
-          if(petitionTypeObj['petitionSubTypes'].length == 0){
+  getPetitionSubTypeId(petitionType: string, petitionSubType: string): string {
+      for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
+        if (petitionTypeObj['petitiontype'] === petitionType) {
+          if (petitionTypeObj['petitionSubTypes'].length == 0) {
             return;
           }
-          for(let petitionSubTypeObj of petitionTypeObj['petitionSubTypes']){
-            if(petitionSubTypeObj['petitionSubType'] === petitionSubType){
+          for (let petitionSubTypeObj of petitionTypeObj['petitionSubTypes']) {
+            if (petitionSubTypeObj['petitionSubType'] === petitionSubType) {
               return petitionSubTypeObj['petitionSubTypeId'];
             }
           }
@@ -208,9 +207,9 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       }
     }
 
-    isPetitionSubTypeExists(petitionType: string){
-      for(let petitionTypeObj of this.allPetitionTypesAndSubTypes){
-            if(petitionTypeObj['petitiontype'] === petitionType && petitionTypeObj['petitionSubTypes'].length > 0){
+    isPetitionSubTypeExists(petitionType: string) {
+      for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
+            if (petitionTypeObj['petitiontype'] === petitionType && petitionTypeObj['petitionSubTypes'].length > 0) {
               return true;
             }
       }
@@ -227,17 +226,16 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
       //Set default values
       if (this.newpetitionitem['status'] == undefined) {
-          this.newpetitionitem['status'] = "Open";
+          this.newpetitionitem['status'] = 'Open';
       }
       if (this.newpetitionitem['petitionName'] == undefined || this.newpetitionitem['petitionName'] == '') {
-          var currentYear = new Date().getFullYear();
+          let currentYear = new Date().getFullYear();
           this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
       }
-      if((this.isPetitionSubTypeExists(this.newpetitionitem['petitiontype']) && this.newpetitionitem['petitionSubType']==undefined)||this.newpetitionitem['petitiontype']==undefined||this.newpetitionitem['petitionName']==''){
-          this.warningMessage=true;
-      }
-      else{
-          this.warningMessage=false;
+      if ((this.isPetitionSubTypeExists(this.newpetitionitem['petitiontype']) && this.newpetitionitem['petitionSubType'] == undefined) || this.newpetitionitem['petitiontype'] == undefined || this.newpetitionitem['petitionName'] == '') {
+          this.warningMessage = true;
+      } else {
+          this.warningMessage = false;
           this.appService.newpetitionitem = this.newpetitionitem;
           this.result = true;
           this.close();
@@ -257,7 +255,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         this.delmessage = immViewpetitions.data.petitionName;
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
-            message: 'Are you sure you want to Delete '+this.delmessage+' ?'
+            message: 'Are you sure you want to Delete ' + this.delmessage + ' ?'
         })
             .subscribe((isConfirmed) => {
                 //Get dialog result
@@ -268,10 +266,10 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     }
 
   onUserRowClick(event): void {
-      console.log("petitions:::::%o", event.data);
+      console.log('petitions:::::%o', event.data);
       this.appService.petitionId = event.data.petitionId;
       this.appService.clientId = event.data.clientId;
-      this.appService.moveToPage("immigrationview-petition-details");
-      this.appService.currentSBLink = "Petition Details";
+      this.appService.moveToPage('immigrationview-petition-details');
+      this.appService.currentSBLink = 'Petition Details';
   }
 }
