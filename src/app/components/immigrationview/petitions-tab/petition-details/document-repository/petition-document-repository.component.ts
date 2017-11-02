@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from "@angular/http";
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import * as FileSaver from 'file-saver';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 
 import { AppService } from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
-import { PetitionDocumentRepositoryService } from "./petition-document-repository.service";
-import {SortType} from "../../../../framework/smarttable/types/query-parameters";
-import {HeaderService} from "../../../../common/header/header.service";
-import {FileUtils} from "../../../../common/FileUtils";
+import { PetitionDocumentRepositoryService } from './petition-document-repository.service';
+import {SortType} from '../../../../framework/smarttable/types/query-parameters';
+import {HeaderService} from '../../../../common/header/header.service';
+import {FileUtils} from '../../../../common/FileUtils';
 
 import { FileUploader } from 'ng2-file-upload';
 
@@ -32,19 +32,8 @@ export interface ConfirmModel {
 })
 export class PetitionDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public uploader: FileUploader = new FileUploader({ url: URL });
-    public hasBaseDropZoneOver: boolean = false;
-    public hasAnotherDropZoneOver: boolean = false;
-
-    public fileOverBase(e: any): void {
-        this.hasBaseDropZoneOver = e;
-    }
-
-    public fileOverAnother(e: any): void {
-        this.hasAnotherDropZoneOver = e;
-    }
-
-
-
+    public hasBaseDropZoneOver = false;
+    public hasAnotherDropZoneOver = false;
     public data;
     public settings;
     public getFiles;
@@ -54,7 +43,15 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     private message: string;
     public editFiles: boolean;
     public editFileObject: any = {};
-    public getData: boolean = true;
+    public getData = true;
+
+    public fileOverBase(e: any): void {
+        this.hasBaseDropZoneOver = e;
+    }
+
+    public fileOverAnother(e: any): void {
+        this.hasAnotherDropZoneOver = e;
+    }
 
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService,
        public dialogService: DialogService, public headerService: HeaderService) {
@@ -69,27 +66,27 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                 'componentParent': this
             },
             'sort' : [{
-              headingName: "updatedDate",
+              headingName: 'updatedDate',
               sort: SortType.DESC
             }],
             'columnsettings': [
                 {
-                    headerName: "Actions",
+                    headerName: 'Actions',
                     cellRendererFramework: ActionIcons,
                     width: 80
                 },
                 {
-                    headerName: "SL No",
-                    field: "orderNo",
+                    headerName: 'SL No',
+                    field: 'orderNo',
                     width: 50
                 },
                 {
-                    headerName: "File Name",
-                    field: "fileName"
+                    headerName: 'File Name',
+                    field: 'fileName'
                 },
                 {
-                    headerName: "Uploaded Date",
-                    field: "updatedDate",
+                    headerName: 'Uploaded Date',
+                    field: 'updatedDate',
                     width: 100
                 }
             ]
@@ -104,7 +101,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             message: 'Are you sure you want to delete ' + event.data.fileName + ' ?'
         })
             .subscribe((isConfirmed) => {
-                //Get dialog result
+                // Get dialog result
                 if (isConfirmed) {
                     this.petitiondocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
                         this.getFilesList();
@@ -119,27 +116,25 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         let formData: FormData = new FormData();
-        var fileName = file.name;
+        let fileName = file.name;
         let fileExists = this.isfileExists(file);
-        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
+        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
 
             formData.append('file', file, file.name);
-            this.petitiondocumentrepositoryService.uploadFile(this.appService.petitionId,this.headerService.selectedOrg['orgId'], formData)
+            this.petitiondocumentrepositoryService.uploadFile(this.appService.petitionId, this.headerService.selectedOrg['orgId'], formData)
                 .subscribe(
                 res => {
                     this.getFilesList();
                 }
                 );
 
-        }
-        else {
-            if (fileExists == true) {
+        } else {
+            if (fileExists === true) {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
                     message: 'File already exists'
                 });
-            }
-            else {
+            } else {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
                     message: 'Please upload only PDF file'
@@ -152,11 +147,11 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var fileName = file.name;
+        let fileName = file.name;
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
-            message: 'Do you want to replace '+fileName+' file ?'
+            message: 'Do you want to replace ' + fileName + ' file ?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 let formData: FormData = new FormData();
@@ -185,7 +180,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
 
     }
     isfileExists(file) {
-      let fileExists : boolean = false;
+      let fileExists = false;
       this.getFiles.filter(item => {
         if (file.name == item.fileName) {
           fileExists = true;
@@ -196,8 +191,8 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     onDownloadClick(event) {
         this.petitiondocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
             (data => this.downloadFiles(data, event.data.fileName)),
-            error => console.log("Error Downloading....");
-        () => console.log("OK");
+            error => console.log('Error Downloading....');
+        () => console.log('OK');
 
     }
     getFilesList() {
@@ -205,7 +200,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             .subscribe((res) => {
                 if (res != undefined) {
                     let data = res['files'];
-                    for (var i = 0; i < data.length; i++) {
+                    for (let i = 0; i < data.length; i++) {
                         data[i]['orderNo'] = i + 1;
                     }
                     this.getFiles = data;
@@ -214,13 +209,13 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             });
     }
     downloadFiles(data: any, fileName) {
-        var blob = new Blob([data], {
+        let blob = new Blob([data], {
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
     }
     editFileName(event) {
-        if (event.colDef.headerName != 'Actions') {
+        if (event.colDef.headerName !== 'Actions') {
             this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
             this.dialogService.addDialog(PetitionDocumentRepositoryComponent, {
                 editFiles: true,
@@ -230,21 +225,21 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
 
             }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    event.data.fileName = this.editFileObject.fileName.concat(".pdf");
-                    var url = "/file/rename";
-                    var data = {
-                        "accountId": this.accountId,
-                        "orgId": this.headerService.selectedOrg['orgId'],
-                        "fileId": event.data.fileId,
-                        "fileName": this.editFileObject.fileName.concat(".pdf")
+                    event.data.fileName = this.editFileObject.fileName.concat('.pdf');
+                    let url = '/file/rename';
+                    let data = {
+                        'accountId': this.accountId,
+                        'orgId': this.headerService.selectedOrg['orgId'],
+                        'fileId': event.data.fileId,
+                        'fileName': this.editFileObject.fileName.concat('.pdf')
                     };
                     this.petitiondocumentrepositoryService.renameFile(url, data).subscribe(
                         res => {
-                            if (res['statusCode'] == 'SUCCESS') {
+                            if (res['statusCode'] === 'SUCCESS') {
                                 this.getFilesList();
 
                             }
-                            if (res['statusDescription'] == "File Name Exists, Use a different Name") {
+                            if (res['statusDescription'] === 'File Name Exists, Use a different Name') {
                                 this.dialogService.addDialog(ConfirmComponent, {
                                     title: 'Error..!',
                                     message: 'File with same name exists, please use a different name'
@@ -252,18 +247,16 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                             }
                         }
                     );
-                }
-                else {
+                } else {
                     this.editFileObject.fileName = event.data.fileName;
                 }
             });
         }
     }
     save() {
-        if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
+        if (this.editFileObject['fileName'] === '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] === undefined) {
             this.warningMessage = true;
-        }
-        else {
+        } else {
             this.warningMessage = false;
             this.result = true;
             this.close();
@@ -273,7 +266,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         this.result = false;
         this.close();
     }
-    onFileUploadClick(file){
-        file.value=null;
+    onFileUploadClick(file) {
+        file.value = null;
     }
 }
