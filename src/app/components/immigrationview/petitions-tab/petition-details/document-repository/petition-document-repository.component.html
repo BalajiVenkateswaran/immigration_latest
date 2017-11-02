@@ -18,29 +18,22 @@
     }
 </style>
 
-<div class="container">
-
-    <div class="navbar navbar-default">
-        <div class="navbar-header">
-            <a class="navbar-brand" href>Angular2 File Upload</a>
-        </div>
-    </div>
-
+<div class="dropzone">
     <div class="row">
+        <div class="col-md-12">
 
-        <div class="col-md-3">
-
-            <h3>Select files</h3>
-
-            <div ng2FileDrop
-                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-                 (fileOver)="fileOverBase($event)"
-                 [uploader]="uploader"
-                 class="well my-drop-zone">
-                Base drop zone
+            <h3>Upload Files</h3>
+            <div class="dropboxBg">
+                <div ng2FileDrop
+                     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                     (fileOver)="fileOverBase($event)"
+                     [uploader]="uploader"
+                     class="well my-drop-zone">
+                    Drop your files here Or Browse from computer...
+                </div>
             </div>
 
-            <div ng2FileDrop
+            <!--<div ng2FileDrop
                  [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
                  (fileOver)="fileOverAnother($event)"
                  [uploader]="uploader"
@@ -52,14 +45,11 @@
             <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
 
             Single
-            <input type="file" ng2FileSelect [uploader]="uploader" />
+            <input type="file" ng2FileSelect [uploader]="uploader" />-->
         </div>
 
-        <div class="col-md-9" style="margin-bottom: 40px">
-
-            <h3>Upload queue</h3>
-            <p>Queue length: {{ uploader?.queue?.length }}</p>
-
+        <div class="col-md-12">
+            <h3>Upload queue {{ uploader?.queue?.length }}</h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -87,15 +77,15 @@
                         <td nowrap>
                             <button type="button" class="btn btn-success btn-xs"
                                     (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                                <span class="glyphicon glyphicon-upload"></span> Upload
+                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload
                             </button>
-                            <button type="button" class="btn btn-warning btn-xs"
+                            <!--<button type="button" class="btn btn-warning btn-xs"
                                     (click)="item.cancel()" [disabled]="!item.isUploading">
                                 <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                            </button>
+                            </button>-->
                             <button type="button" class="btn btn-danger btn-xs"
                                     (click)="item.remove()">
-                                <span class="glyphicon glyphicon-trash"></span> Remove
+                                <i class="fa fa-trash" aria-hidden="true"></i> Remove
                             </button>
                         </td>
                     </tr>

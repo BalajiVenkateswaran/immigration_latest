@@ -2116,3 +2116,35 @@ header {
 .example-full-width {
   width: 100%;
 }
+.dropzone {
+    width:700px;
+    margin:0px auto;
+
+    h3 {
+        color:#ccc;
+        font-weight:300;
+    }
+
+    .dropboxBg {
+        background:#fff;
+        border:solid 1px #ccc;
+        box-shadow:0px 10px 20px #ccc;
+
+        .well {
+            width:70%;
+            margin:25px auto;
+        }
+        .my-drop-zone {
+            border:dashed 2px #b0c4d3;
+            background: url("../images/cloud.jpg") no-repeat center center #f7f9ff;
+                height: 200px;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    padding: 130px 0 0 0;
+        }
+        .nv-file-over {
+        border:dashed 2px #446b88;
+    }
+    }
+}
