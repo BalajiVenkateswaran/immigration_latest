@@ -336,6 +336,8 @@ import {
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {PaginationComponent} from './components/framework/smarttable/pagination/pagination.component';
+import {PetitionDetailsNewComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-new/petition-details-new.component';
+import {PetitionDetailsNewService} from './components/immigrationview/petitions-tab/petition-details/petition-details-new/petition-details-new.service';
 
 @NgModule({
     imports: [
@@ -397,6 +399,7 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         LooseCurrencyPipe,
         ClientDetailsComponent,
         PetitionDetailsComponent,
+        PetitionDetailsNewComponent,
         ImmigrationviewQuestionnaireComponent,
         FormsComponent,
         OrganizationDocumentRepositoryComponent,
@@ -549,6 +552,7 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         passportInfoService,
         ImmigrationViewClientDetailsService,
         PetitionDetailsService,
+        PetitionDetailsNewService,
         JobdetailsService,
         loginService,
         QuestionnaireCommonService,

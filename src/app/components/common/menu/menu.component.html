@@ -8,6 +8,12 @@
                 <span>Petition Details</span>
             </a>
         </li>
+      <li>
+        <a id="petitionDetailsNew" (click)="appService.moveToPage('immigrationview-petition-details-new');highlightSBLink('Petition Details New');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petition Details New') ? 'active': '']" routerLinkActive="active">
+          <span class="ico-client-details"></span>
+          <span>Petition Details New</span>
+        </a>
+      </li>
         <li ngbDropdown class="dropdown">
             <a (click)="appService.moveToPage('immigrationview-questionnaire');highlightSBLink('Questionnaire');submenuclick('immiQstnre')" [ngClass]="[checkForCurrentSBLink('Questionnaire') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="immigrationview-questionnaires" routerLinkActive="active">
                 <span class="ico-questionnaire"></span>
