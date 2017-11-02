@@ -3,8 +3,8 @@
         <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewPetition()">ADD</button></h2>
         <div class="clearfix"></div>
         <!--<h2>Petitions</h2>-->
-       <smart-table class="immiview-clienttab-petitions" [settings]="settings" [data]="data"
-                     (onAddClick)="addNewPetition($event)" (onRowClick)="onUserRowClick($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
+       <ih-smart-table class="immiview-clienttab-petitions" [settings]="settings" [data]="data"
+                     (onAddClick)="addNewPetition($event)" (onRowClick)="onUserRowClick($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>

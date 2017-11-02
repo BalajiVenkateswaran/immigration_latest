@@ -1,11 +1,11 @@
 <div>
   <div *ngIf="quickFilters != null && quickFilters.length > 0">
-    <smart-table-filter [quickFilters]="quickFilters" [smartTable]="this" (addRecordClick)="addRecord()"></smart-table-filter>
+    <ih-smart-table-filter [quickFilters]="quickFilters" [smartTable]="this" (addRecordClick)="addRecord()"></ih-smart-table-filter>
   </div>
   <div class="clearfix"></div>
   <div class="agtblOptions">
       <ag-grid-angular id="grid" #grid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (cellClicked)="onCellClick($event)">
       </ag-grid-angular>
-      <smart-table-pagination [smartTable]="this" [paginationMetadata]="paginationMetadata" ></smart-table-pagination>
+      <ih-smart-table-pagination [smartTable]="this" [paginationMetadata]="paginationMetadata" ></ih-smart-table-pagination>
   </div>
 </div>

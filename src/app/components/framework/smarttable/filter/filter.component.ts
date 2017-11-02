@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {SmartTableFramework} from '../smarttable.component';
+import {SmartTableFrameworkComponent} from '../smarttable.component';
 import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {FilterEntry} from '../types/query-parameters';
 
@@ -8,18 +8,18 @@ export interface ConfirmModel {
   message: string;
   addMorefilters: boolean;
   showFilters: boolean;
-  smartTable: SmartTableFramework;
+  smartTable: SmartTableFrameworkComponent;
   moreFilterFields: any[];
 }
 
 @Component({
-  selector: 'smart-table-filter',
+  selector: 'ih-smart-table-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent extends DialogComponent<ConfirmModel, boolean>{
+export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
   @Input() public quickFilters: any[];
-  @Input() public smartTable: SmartTableFramework;
+  @Input() public smartTable: SmartTableFrameworkComponent;
   @Output() addRecordClick = new EventEmitter();
 
   showFilters = true;
@@ -33,11 +33,11 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean>{
    */
   moreFilterFields: any[] = [];
 
-  constructor(public dialogService: DialogService){
+  constructor(public dialogService: DialogService) {
     super(dialogService);
   }
-  onChange(event){
-    console.log("Filter Component: %o", event);
+  onChange(event) {
+    console.log('Filter Component: %o', event);
     let headerName = event.target.options[0].innerText;
     let field = event.srcElement.id;
 
@@ -47,19 +47,19 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean>{
   }
 
   moreFilters() {
-      console.log("moreFilters: %o", this.smartTable.queryParameters.filter);
+      console.log('moreFilters: %o', this.smartTable.queryParameters.filter);
 
-      //Prepare moreFilterFields information from smartTable.settings
-      if(this.moreFilterFields.length == 0){
+      // Prepare moreFilterFields information from smartTable.settings
+      if (this.moreFilterFields.length === 0) {
         let columnsettings = this.smartTable.settings['columnsettings'];
         let fieldCount = 0, rowCount = 0;
-        //Have 3 fields in one object
-        for(let column of columnsettings){
-          if(fieldCount == 3){
+        // Have 3 fields in one object
+        for (let column of columnsettings) {
+          if (fieldCount === 3) {
             fieldCount = 0;
             rowCount++;
           }
-          if(fieldCount == 0){
+          if (fieldCount === 0) {
             this.moreFilterFields[rowCount] = [];
           }
           this.moreFilterFields[rowCount][fieldCount] = {};
@@ -80,11 +80,11 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean>{
 
   }
 
-  onApplyFiltersClick(){
-    //Add filters for the columns that has values entered
-    for(let row of this.moreFilterFields){
-      for(let column of row){
-        if(column['value'] != null){
+  onApplyFiltersClick() {
+    // Add filters for the columns that has values entered
+    for (let row of this.moreFilterFields) {
+      for (let column of row) {
+        if (column['value'] != null) {
           this.smartTable.queryParameters.addFilter(column['headerName'], column['field'], this.smartTable.getFilterType(column['headerName']), column['value']);
         }
       }
@@ -93,23 +93,23 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean>{
     this.smartTable.invokeResource();
     this.close();
   }
-  onAddClick(){
+  onAddClick() {
     this.addRecordClick.emit();
   }
 
   deleteFilter(index, x) {
-    this.smartTable.queryParameters.filter.splice(index,1);
-    this.smartTable.queryParameters.setPagination(this.smartTable.paginationMetadata.pageSize,0);
+    this.smartTable.queryParameters.filter.splice(index, 1);
+    this.smartTable.queryParameters.setPagination(this.smartTable.paginationMetadata.pageSize, 0);
     this.smartTable.paginationMetadata.itemStartIndex = 1;
-    this.smartTable.paginationMetadata.pageNumber=0;
+    this.smartTable.paginationMetadata.pageNumber = 0;
     this.smartTable.invokeResource();
   }
 
-  clearAllFilters(){
+  clearAllFilters() {
     this.smartTable.queryParameters.filter = new Array<FilterEntry>();
-    this.smartTable.queryParameters.setPagination(this.smartTable.paginationMetadata.pageSize,0);
+    this.smartTable.queryParameters.setPagination(this.smartTable.paginationMetadata.pageSize, 0);
     this.smartTable.paginationMetadata.itemStartIndex = 1;
-    this.smartTable.paginationMetadata.pageNumber=0;
+    this.smartTable.paginationMetadata.pageNumber = 0;
     this.smartTable.invokeResource();
   }
 }

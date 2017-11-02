@@ -4,8 +4,8 @@
             <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h2>
             <div class="clearfix"></div>
             <!--<h2>Dependents</h2>-->
-            <smart-table class="immiview-clienttab-dependents" [settings]="settings" [data]="data"
-                         (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
+            <ih-smart-table class="immiview-clienttab-dependents" [settings]="settings" [data]="data"
+                         (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
             <div class="clearfix"></div>
         </div>
 
@@ -18,7 +18,7 @@
                 <h4 class="modal-title">{{title}}</h4>
                 <button type="button" class="close" (click)="close()">&times;</button>
             </div>
-            
+
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -50,7 +50,7 @@
                         </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>

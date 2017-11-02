@@ -10,8 +10,8 @@
             <!--<h2>
                 <span>Visas</span>
             </h2>-->
-            <smart-table class="clientview-clientdetailtab-visas" [settings]="settings" [data]="data"
-                         (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>   
+            <ih-smart-table class="clientview-clientdetailtab-visas" [settings]="settings" [data]="data"
+                         (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
                 <div class="clearfix"></div>
 </div>
     </div>
@@ -44,12 +44,12 @@
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewVisa.expiresOn"
-                                                [selDate]="expiresOn"></my-date-picker>                         
+                                                [selDate]="expiresOn"></my-date-picker>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-              
+
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>

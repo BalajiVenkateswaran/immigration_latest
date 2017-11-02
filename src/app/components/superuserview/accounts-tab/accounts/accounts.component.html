@@ -5,13 +5,13 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Accounts</h2>
-        <smart-table class="superUserViewAccounts"
+        <ih-smart-table class="superUserViewAccounts"
                    [settings]="settings"
                    [data]="data"
                    (onAddClick)="addFunction($event)"
                    [paginationData]="paginationData"
                    (onRowClick)="editRecord($event)"
-                   (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
+                   (dataWithQueryParams)="dataWithParameters($event)"></ih-smart-table>
     </div>
 </div>
 

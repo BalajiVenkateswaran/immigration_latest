@@ -12,13 +12,13 @@
                     />
                 </div>
             </div>
-            <smart-table class="immiview-clienttab-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></smart-table>
+            <ih-smart-table class="immiview-clienttab-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></ih-smart-table>
             <div *ngFor="let x of uploadArray">
             <div *ngIf="progessBarDiv" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" [attr.aria-valuenow]="progress" aria-valuemin="0"
                 aria-valuemax="100" style="min-width: 2em;" [style.width]="(progress/100)*100 + '%'">
                 {{progress}}% {{x.name}}
             </div></div>
-           
+
         </form>
         <div class="clearfix"></div>
     </div>

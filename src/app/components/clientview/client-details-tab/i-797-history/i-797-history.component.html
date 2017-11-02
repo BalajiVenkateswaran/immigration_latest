@@ -1,5 +1,5 @@
 <div class="main-content" *ngIf="getCvi797Data">
-   
+
     <div class="table-data">
         <h2>{{appService.firstName}} {{appService.lastName}}</h2>
         <ul class="breadcrumb">
@@ -8,8 +8,8 @@
         </ul>
         <div class="clearfix"></div>
         <!--<h2>I-797 History</h2>-->
-        <smart-table [settings]="settings" [data]="data"
-                     (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
+        <ih-smart-table [settings]="settings" [data]="data"
+                     (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>

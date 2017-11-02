@@ -5,14 +5,14 @@
         <div class="mainContainer">
             <h2>Clients</h2>
             <div class="table-data">
-                <smart-table class="immiviewClientsTable"
+                <ih-smart-table class="immiviewClientsTable"
                              [settings]="settings"
                              [data]="data"
                              [paginationData]="paginationData"
                              (onRowClick)="onUserRowClick($event)"
                              (dataWithQueryParams)="dataWithParameters($event)"
                              (onAddClick)="addNewCli()"
-                           ></smart-table>
+                           ></ih-smart-table>
               <div class="clearfix"></div>
             </div>
         </div>

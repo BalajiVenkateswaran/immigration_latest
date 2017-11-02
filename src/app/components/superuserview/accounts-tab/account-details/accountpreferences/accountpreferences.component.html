@@ -8,16 +8,16 @@
         <h2>
             Products
         </h2>
-        <smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)"
+        <ih-smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)"
             (onRowClick)="editProducts($event)">
-        </smart-table>
+        </ih-smart-table>
 
         <h2 style="margin-top: 50px;">
             Discounts
         </h2>
-        <smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)"
+        <ih-smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)"
             (onRowClick)="editDiscounts($event)">
-        </smart-table>
+        </ih-smart-table>
     </div>
 
 </div>

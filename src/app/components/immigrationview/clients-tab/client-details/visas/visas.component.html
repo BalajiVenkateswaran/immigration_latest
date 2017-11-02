@@ -5,8 +5,8 @@
 
         <div class="clearfix"></div>
         <!--<h2>Visas<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewVisa()">ADD</button></h2>-->
-           <smart-table class="immiview-clienttab-visas" [settings]="settings" [data]="data"
-                     (onAddClick)="addNewVisa($event)" (onRowClick)="editVisas($event)" (onDeleteClick)="deleteVisas($event)"></smart-table>
+           <ih-smart-table class="immiview-clienttab-visas" [settings]="settings" [data]="data"
+                     (onAddClick)="addNewVisa($event)" (onRowClick)="editVisas($event)" (onDeleteClick)="deleteVisas($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
@@ -35,19 +35,19 @@
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="newvisaitem.issuedOn"
                                                 [selDate]="issuedOn"></my-date-picker>
-                            
+
                             </div>
                             <div class="col-md-5">Expires On :</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 [(ngModel)]="newvisaitem.expiresOn"
                                                 [selDate]="expiresOn"></my-date-picker>
-                            
+
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-            
+
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-          
+
         </div>
     </div>
 </div>

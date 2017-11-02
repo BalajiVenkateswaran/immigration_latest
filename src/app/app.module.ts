@@ -1,6 +1,6 @@
 import {viewAddressInfo} from './models/viewAddressInfo';
 import {CustomFilterRow} from './components/framework/smarttable/CustomFilterRow';
-import {SmartTableFramework} from './components/framework/smarttable/smarttable.component';
+import {SmartTableFrameworkComponent} from './components/framework/smarttable/smarttable.component';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -355,10 +355,10 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         DragulaModule,
         MyDatePickerModule,
         BootstrapModalModule,
-        AgGridModule.withComponents([SmartTableFramework]),
+        AgGridModule.withComponents([SmartTableFrameworkComponent]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons,
+        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire, ActionIcons,
         GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton,
       InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
@@ -448,8 +448,8 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         ConfirmorgComponent,
 
 
-        //SmartTableFramework
-        SmartTableFramework, CustomFilterRow, FilterComponent, PaginationComponent,
+        //SmartTableFrameworkComponent
+        SmartTableFrameworkComponent, CustomFilterRow, FilterComponent, PaginationComponent,
         //superuserview
         AccountInvoiceComponent,
         accountDetailsPaymentsComponent,

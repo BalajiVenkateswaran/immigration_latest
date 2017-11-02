@@ -17,14 +17,14 @@
 
         <div class="clearfix"></div>
         <h2>Client</h2>
-        <smart-table class="immiview-ques-client" [settings]="settings" [data]="data"
-                     (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditQuestionnaireClick($event)" (onDeleteClick)="onDeleteClientQuestionnaireClick($event)" ></smart-table>
+        <ih-smart-table class="immiview-ques-client" [settings]="settings" [data]="data"
+                     (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditQuestionnaireClick($event)" (onDeleteClick)="onDeleteClientQuestionnaireClick($event)" ></ih-smart-table>
         <button [(disabled)]="sendQuestionnaire" type="submit" class="submitbtn" (click)="sendQuestionnaireClient()" [ngClass]="{'myclass':sendQuestionnaire,'submitbtn':!sendQuestionnaire}">Send Questionnaire to client </button>
         <div class="clearfix"></div>
 
         <h2 style="margin-top: 20px;">Immigration Officer</h2>
-         <smart-table class="immiview-ques-emp" [settings]="settings1" [data]="employerData"
-                     (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditEmpQuestionnaireClick($event)" (onDeleteClick)="onDeleteEmpQuestionniareClick($event)" ></smart-table>
+         <ih-smart-table class="immiview-ques-emp" [settings]="settings1" [data]="employerData"
+                     (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditEmpQuestionnaireClick($event)" (onDeleteClick)="onDeleteEmpQuestionniareClick($event)" ></ih-smart-table>
     </div>
 </div>
 
