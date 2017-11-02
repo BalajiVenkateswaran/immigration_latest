@@ -299,9 +299,8 @@ import {HomeComponent} from "./components/common/website/home/home.component";
 import {HeaderComponentService} from "./components/common/header/header.component.service";
 import {FilterComponent} from './components/framework/smarttable/filter/filter.component';
 
+import { FileUploadModule } from 'ng2-file-upload';
 
-
-//
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatAutocompleteModule,
@@ -341,6 +340,7 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
 
 @NgModule({
     imports: [
+        FileUploadModule,
         MatInputModule,
         MatSelectModule,
         MatDatepickerModule,
