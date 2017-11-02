@@ -11,8 +11,9 @@ import { PetitionDocumentRepositoryService } from './petition-document-repositor
 import {SortType} from '../../../../framework/smarttable/types/query-parameters';
 import {HeaderService} from '../../../../common/header/header.service';
 import {FileUtils} from '../../../../common/FileUtils';
+import { environment } from '../../../../../../environments/environment';
 
-import { FileUploader } from 'ng2-file-upload';
+import {FileItem, FileUploader} from 'ng2-file-upload';
 
 // const URL = '/api/';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -26,12 +27,12 @@ export interface ConfirmModel {
 
 }
 @Component({
-    selector: 'app-petition-details-document-repository',
+    selector: 'ih-petition-details-document-repository',
     templateUrl: './petition-document-repository.component.html',
     styleUrls: ['./petition-document-repository.component.sass']
 })
 export class PetitionDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    public uploader: FileUploader = new FileUploader({ url: URL });
+    public uploader: FileUploader ;
     public hasBaseDropZoneOver = false;
     public hasAnotherDropZoneOver = false;
     public data;
@@ -93,6 +94,20 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         }
     };
     ngOnInit() {
+        this.uploader = new FileUploader({
+          url: environment.appUrl + '/file/upload/entityId/' + this.appService.petitionId + '/entityType/PETITION/org/' + this.headerService.selectedOrg['orgId']
+        });
+
+        this.uploader.onAfterAddingFile = (fileItem) => {
+          if (!FileUtils.checkFileExtension(fileItem.file.name)) {
+            fileItem.remove();
+            this.dialogService.addDialog(ConfirmComponent, {
+              title: 'Error..!',
+              message: 'Please upload only PDF file'
+            });
+          }
+        };
+
         this.getFilesList();
     }
     onDeleteClick(event) {
@@ -155,7 +170,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 let formData: FormData = new FormData();
-                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
+                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
                     formData.append('file', file, file.name);
                     this.petitiondocumentrepositoryService.replaceFile(event.data.fileId, this.headerService.selectedOrg['orgId'], formData)
                         .subscribe(res => {
@@ -182,7 +197,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     isfileExists(file) {
       let fileExists = false;
       this.getFiles.filter(item => {
-        if (file.name == item.fileName) {
+        if (file.name === item.fileName) {
           fileExists = true;
         }
       });
@@ -198,7 +213,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     getFilesList() {
         this.petitiondocumentrepositoryService.getFile(this.appService.petitionId)
             .subscribe((res) => {
-                if (res != undefined) {
+                if (res !== undefined) {
                     let data = res['files'];
                     for (let i = 0; i < data.length; i++) {
                         data[i]['orderNo'] = i + 1;
