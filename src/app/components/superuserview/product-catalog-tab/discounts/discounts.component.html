@@ -7,7 +7,7 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Discounts</h2>
-        <smart-table class="acctabprodcatDiscounts" [settings]="settings" [data]="data" [paginationData]="paginationData" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)" (dataWithQueryParams)="dataWithParameters($event)"></smart-table>
+        <ih-smart-table class="acctabprodcatDiscounts" [settings]="settings" [data]="data" [paginationData]="paginationData" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)" (dataWithQueryParams)="dataWithParameters($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
@@ -62,10 +62,10 @@
                                     <div class="col-md-5">Type:</div>
                                     <div class="col-md-7">
                                         <select *ngIf="isEditDiscount==false" class="form-control" [disabled]='true' [(ngModel)]="discount.type">
-                                          
+
                                    <option value="DIS">DIS</option>
                                    <option value="TRAIL">TRAIL</option>
-                            
+
                                         </select>
                                         <span *ngIf="isEditDiscount==true">{{discount.type}}</span>
                                     </div>

@@ -25,15 +25,15 @@ export class PetitionDetailsComponent implements OnInit {
     isPetitionInformationSave;
     isPetitionInformationSaveStatus;
     private allPetitionTypesAndSubTypes;
-    private petitionStages;
+    public petitionStages;
     private assignedToName;
     private backendLCAInfo;
     private backendReceiptInfo;
     private beforeCancelSponsor;
     private beforeCancelPetition;
     public orgs: any = [];
-    private status: any[];
-    private receiptNumber: any[];
+    public status: any[];
+    public receiptNumber: any[];
     public delegatedOrgsList: any[];
     private startDate: string;
     private deniedDate: string;
@@ -58,7 +58,7 @@ export class PetitionDetailsComponent implements OnInit {
     private petitionDetails: any = {};
     private lcaInfo: any = {};
     private sponsorInfo: any = {};
-    private receiptInfo: any = {};
+    public receiptInfo: any = {};
     private sponsorInfoAddress: any = {};
     private petitionAdditionalDetails: any = {};
     public datePickerOptions = IhDateUtil.datePickerOptions;
@@ -69,7 +69,7 @@ export class PetitionDetailsComponent implements OnInit {
     isSponsorInfoEdit: boolean = true;
     isDelegatedOrgsEdit: boolean = true;
     isAdditionalDetailsEdit: boolean = true;
-    private finalStatus: any[] = [
+    public finalStatus: any[] = [
         { name: 'Pending', value: 'Pending' },
         { name: 'Approved', value: 'Approved' },
         { name: 'Denied', value: 'Denied' },

@@ -2,8 +2,8 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Super Users</h2>
-        <smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
-        </smart-table>
+        <ih-smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+        </ih-smart-table>
     </div>
 </div>
 <div *ngIf="addsuperuser">

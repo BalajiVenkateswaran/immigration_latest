@@ -8,7 +8,7 @@
             I-797 History <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>
         </h2>-->
 
-        <smart-table class="immiview-clienttab-i797history" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></smart-table>
+        <ih-smart-table class="immiview-clienttab-i797history" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 

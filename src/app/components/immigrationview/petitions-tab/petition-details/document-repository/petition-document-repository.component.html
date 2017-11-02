@@ -159,8 +159,8 @@
                         <input type="file" #fileInput class="upload" name="file" (click)="onFileUploadClick(fileInput)" (change)="fileUpload($event)"/>
                     </div>
                 </div>
-                <smart-table class="immiview-petition-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></smart-table>     
-              
+                <ih-smart-table class="immiview-petition-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></ih-smart-table>
+
                 </form>
                 <div class="clearfix"></div>
 </div>
@@ -179,7 +179,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">File Name:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="editFileObject.fileName" class="form-control"></div>                       
+                            <div class="col-md-7"><input type="text" [(ngModel)]="editFileObject.fileName" class="form-control"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
@@ -199,7 +199,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>-->

@@ -1,6 +1,6 @@
 import {viewAddressInfo} from './models/viewAddressInfo';
 import {CustomFilterRow} from './components/framework/smarttable/CustomFilterRow';
-import {SmartTableFramework} from './components/framework/smarttable/smarttable.component';
+import {SmartTableFrameworkComponent} from './components/framework/smarttable/smarttable.component';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -93,7 +93,6 @@ import {AgGridModule} from "ag-grid-angular/main";
 import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
 import {checklistdownloadButton} from './components/immigrationview/manage-account-tab/checklist/downloadButton';
 import {checklistuploadButton} from './components/immigrationview/manage-account-tab/checklist/uploadButton';
-import {FilterpopupComponent} from "./components/framework/smarttable/filterpopup/filterpopup.component";
 import {SmartTableService} from "./components/framework/smarttable/common/smarttable.service";
 
 //superusersview
@@ -256,7 +255,7 @@ import { SuperUserPetitionTagReportsService } from './components/superuserview/r
 import { SuperUserViewPaymentstabService } from './components/superuserview/payments-tab/payments.service';
 import { SuperuserviewProductcatalogDiscountsComponent } from './components/superuserview/product-catalog-tab/discounts/discounts.component';
 import { ProductCatalogDiscountService } from './components/superuserview/product-catalog-tab/discounts/discounts.service';
-import { StatusButton } from './components/immigrationview/clients-tab/clients/StatusButton';
+import { StatusButton } from './components/immigrationview/clients-tab/clients/statusButton';
 import {HeaderService} from './components/common/header/header.service';
 
 import {QuestionnaireCommonService} from './components/immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
@@ -356,11 +355,12 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         DragulaModule,
         MyDatePickerModule,
         BootstrapModalModule,
-        AgGridModule.withComponents([SmartTableFramework]),
+        AgGridModule.withComponents([SmartTableFrameworkComponent]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFramework, ActionColumns, SendToClientQuestionnaire, ActionIcons,
-        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, InvoiceUploadButton, FilterpopupComponent, StatusButton
+        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire, ActionIcons,
+        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton,
+      InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
     declarations: [
         webImmigrationServicesComponent,
@@ -448,8 +448,8 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         ConfirmorgComponent,
 
 
-        //SmartTableFramework
-        SmartTableFramework, CustomFilterRow, FilterpopupComponent, FilterComponent, PaginationComponent,
+        //SmartTableFrameworkComponent
+        SmartTableFrameworkComponent, CustomFilterRow, FilterComponent, PaginationComponent,
         //superuserview
         AccountInvoiceComponent,
         accountDetailsPaymentsComponent,

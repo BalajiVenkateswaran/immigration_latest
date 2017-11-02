@@ -1,5 +1,5 @@
 ﻿import { AppService } from '../../../../services/app.service';
-import { SmartTableFramework } from '../../../framework/smarttable/smarttable.component';
+import { SmartTableFrameworkComponent } from '../../../framework/smarttable/smarttable.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { profileswitchservice } from './switch.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
@@ -17,7 +17,7 @@ export class profileswitchcomponent implements OnInit,AfterViewInit {
     public settings;
     public data;
     public user: any;
-    @ViewChild(SmartTableFramework) smarttable: SmartTableFramework;
+    @ViewChild(SmartTableFrameworkComponent) smarttable: SmartTableFrameworkComponent;
     ngOnInit() {
     }
     ngAfterViewInit() {

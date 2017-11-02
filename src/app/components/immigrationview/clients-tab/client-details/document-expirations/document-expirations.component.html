@@ -4,8 +4,8 @@
         <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} <!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewDocExps()">ADD</button>--></h2>
         <div class="clearfix"></div>
         <!--<h2>Document Expirations</h2>-->
-          <smart-table [settings]="settings" [data]="data"
-                     (onAddClick)="addDocuments($event)" (onRowClick)="editDocuments($event)" (onDeleteClick)="deleteDocuments($event)"></smart-table>
+          <ih-smart-table [settings]="settings" [data]="data"
+                     (onAddClick)="addDocuments($event)" (onRowClick)="editDocuments($event)" (onDeleteClick)="deleteDocuments($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
@@ -26,20 +26,20 @@
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewDocExp.validFrom"
-                                                [selDate]="validFrom"></my-date-picker>                        
+                                                [selDate]="validFrom"></my-date-picker>
                             </div>
                             <div class="col-md-5">Valid To:</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewDocExp.validTo"
-                                                [selDate]="validTo"></my-date-picker>  
+                                                [selDate]="validTo"></my-date-picker>
                             </div>
                             <div class="col-md-5">Status:</div>
                             <div class="col-md-7"><input type="text" [(ngModel)]="addNewDocExp.status" class="form-control"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                
+
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
