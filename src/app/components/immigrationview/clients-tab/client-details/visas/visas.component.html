@@ -4,7 +4,7 @@
         <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h2>
 
         <div class="clearfix"></div>
-        <!--<h2>Visas<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewVisa()">ADD</button></h2>-->
+        <h2>Visas<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewVisa()">ADD</button></h2>
            <ih-smart-table class="immiview-clienttab-visas" [settings]="settings" [data]="data"
                      (onAddClick)="addNewVisa($event)" (onRowClick)="editVisas($event)" (onDeleteClick)="deleteVisas($event)"></ih-smart-table>
         <div class="clearfix"></div>

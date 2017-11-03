@@ -78,7 +78,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   highlightSBLink(link) {
     this.appService.currentSBLink = link;
   }
-  addFunction() {
+  addNewDependents() {
     this.dialogService.addDialog(ImmigrationViewDependentsComponent, {
       addDependnts: true,
       getDependents: false,

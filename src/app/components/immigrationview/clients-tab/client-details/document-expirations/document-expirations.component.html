@@ -1,9 +1,9 @@
 <div class="main-content" *ngIf="getDocExpirations">
 
     <div class="table-data">
-        <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} <!--<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewDocExps()">ADD</button>--></h2>
+        <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h2>
         <div class="clearfix"></div>
-        <!--<h2>Document Expirations</h2>-->
+        <h2>Document Expirations <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewDocExps()">ADD</button></h2>
           <ih-smart-table [settings]="settings" [data]="data"
                      (onAddClick)="addDocuments($event)" (onRowClick)="editDocuments($event)" (onDeleteClick)="deleteDocuments($event)"></ih-smart-table>
         <div class="clearfix"></div>

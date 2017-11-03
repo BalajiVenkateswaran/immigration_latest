@@ -3,7 +3,7 @@
         <div class="table-data">
             <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.firstName}} {{appService.lastName}}</h2>
             <div class="clearfix"></div>
-            <!--<h2>Dependents</h2>-->
+            <h2>Dependents <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewDependents()">ADD</button></h2>
             <ih-smart-table class="immiview-clienttab-dependents" [settings]="settings" [data]="data"
                          (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
             <div class="clearfix"></div>
@@ -11,7 +11,7 @@
 
 
 </div>
-<!--<div *ngIf="addDependnts">
+<div *ngIf="addDependnts">
     <div class="modal-dialog" ngDraggable>
         <div class="modal-content">
             <div class="modal-header">
@@ -53,4 +53,4 @@
 
         </div>
     </div>
-</div>-->
+</div>
