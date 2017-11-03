@@ -61,19 +61,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
           headerName: "Status",
           field: "status",
         }
-        ],
-      filter: {
-          quick: [
-              {
-                  headerName: 'Status',
-                  field: 'status',
-                  values: [
-                      { alias: 'Active', value: 'Active' },
-                      { alias: 'Inactive', value: 'Inactive' }
-                  ]
-              }
-          ]
-      }
+        ]
     };
     this.addDocumentExpairation = new FormGroup({
       documentType: new FormControl(''),

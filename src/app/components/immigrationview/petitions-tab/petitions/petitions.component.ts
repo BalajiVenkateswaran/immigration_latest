@@ -82,13 +82,6 @@ export class PetitionsComponent implements OnInit {
                             { alias: 'H1B-RFE', value: 'H1B-RFE' },
                             { alias: 'B1', value: 'B1' }
                         ]
-                    },
-                    {
-                        headerName: 'Updated On',
-                        field: 'lastUpdate',
-                        values: [
-                            { alias: '10-25-2017', value: '10-25-2017' }
-                        ]
                     }
                 ]
             },
