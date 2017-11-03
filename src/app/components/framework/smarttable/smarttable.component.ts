@@ -213,7 +213,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
         if (this.settings.hasOwnProperty('headerHeight')) {
             this.gridOptions['headerHeight'] = this.settings['headerHeight'];
         } else {
-            this.gridOptions.headerHeight = 35;
+            this.gridOptions.headerHeight = 60;
         }
         if (this.settings.hasOwnProperty('suppressMovableColumns')) {
             this.gridOptions['suppressMovableColumns'] = this.settings['suppressMovableColumns'];
@@ -242,7 +242,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
                     }
                 }
             } else {
-                this.gridOptions['headerHeight'] = 90;
+                this.gridOptions['headerHeight'] = 60;
             }
         } else {
             this.settings['columnFilter'] = false;
