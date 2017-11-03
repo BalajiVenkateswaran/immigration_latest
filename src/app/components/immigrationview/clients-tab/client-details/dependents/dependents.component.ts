@@ -61,19 +61,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
         },
 
 
-        ],
-      filter: {
-          quick: [
-              {
-                  headerName: 'Status',
-                  field: 'status',
-                  values: [
-                      { alias: 'Active', value: 'Active' },
-                      { alias: 'Inactive', value: 'Inactive' }
-                  ]
-              }
-          ]
-      }
+        ]
     }
   }
   getDepData() {

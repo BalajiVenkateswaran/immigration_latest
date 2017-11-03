@@ -99,19 +99,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
                     headerName: 'Assigned To',
                     field: 'assignedToName'
                 }
-            ],
-            filter: {
-                quick: [
-                    {
-                        headerName: 'Status',
-                        field: 'status',
-                        values: [
-                            { alias: 'Open', value: 'Open' },
-                            { alias: 'Close', value: 'Close' }
-                        ]
-                    }
-                ]
-            }
+            ]
         }
     }
 
