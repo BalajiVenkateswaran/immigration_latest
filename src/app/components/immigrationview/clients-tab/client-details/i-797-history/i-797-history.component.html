@@ -4,11 +4,8 @@
         <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h2>
 
         <div class="clearfix"></div>
-        <h2>
-            I-797 History <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewI797History()">ADD</button>
-        </h2>
-
-        <ih-smart-table class="immiview-clienttab-i797history" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
+        <h2>I-797 History</h2>
+        <ih-smart-table class="immiview-clienttab-i797history" [settings]="settings" [data]="data" (onAddClick)="addNewI797History($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 

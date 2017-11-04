@@ -60,6 +60,19 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
         headerName: 'Status',
         filterValue: 'Active'
       }],
+      filter: {
+        quick: [
+          {
+            headerName: 'Status',
+            field: 'status',
+            values: [
+              { alias: 'PreAct', value: 'PreAct' },
+              { alias: 'Active', value: 'Active' },
+              { alias: 'Inactive', value: 'Inactive' }
+            ]
+          }
+        ]
+      },
       'columnsettings': [
         {
           headerName: 'Account Name',
