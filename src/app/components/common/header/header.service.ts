@@ -1,18 +1,19 @@
 ﻿import { AppService } from '../../../services/app.service';
 import { RestService } from '../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
+import {ApplicationRoles} from '../constants/applicationroles.constants';
 
 @Injectable()
 export class HeaderService {
-  public static delegatedOrgTypeConstant : string = "Delegated";
+  public static delegatedOrgTypeConstant = 'Delegated';
   private immigrationview: string;
   private _menuSlider: boolean;
   private _organizations: any;
   private _selectedOrg: any;
-  private _user : any;
-  private _selectedRoleId : string;
+  private _user: any;
+  private _selectedRoleId: string;
 
-  //Tab, SideBar and Subtree variables
+  // Tab, SideBar and Subtree variables
   private _sideBarMenu: string;
   private _currentTab: string;
   private _isBurgerMenuVisible: boolean;
@@ -92,13 +93,13 @@ export class HeaderService {
     this._isBurgerMenuVisible = value;
   }
 
-  public isDelegatedOrg() : boolean {
+  public isDelegatedOrg(): boolean {
     return this.selectedOrg != null && this.selectedOrg.orgType == HeaderService.delegatedOrgTypeConstant;
   }
 
   public showSideBarMenu(sideBarName, tab) {
     this._currentTab = tab;
-    if (sideBarName == null || sideBarName == undefined) {
+    if (sideBarName == null || sideBarName === undefined) {
       this.appService.showMenu = false;
       this.appService.expandMenu = false;
       this._sideBarMenu = null;
@@ -126,11 +127,23 @@ export class HeaderService {
 
   logOut() {
     this.destroy();
-    //Explict clean up of user object from headerService while logout
+    // Explict clean up of user object from headerService while logout
     this._user = null;
     this._selectedRoleId = null;
 
     this.appService.destroy();
     this.appService.moveToPage('');
+  }
+
+
+  getLandingPagePath(userRole: string): string {
+    if (userRole === ApplicationRoles.IMMIGRATION_MANAGER || userRole === ApplicationRoles.IMMIGRATION_OFFICER){
+      return 'clients';
+    } else if (userRole === ApplicationRoles.CLIENT) {
+      return 'clientview-petitions';
+    } else if (userRole === ApplicationRoles.SUPER_USER) {
+      return 'superuser-accounts';
+    }
+    return '';
   }
 }

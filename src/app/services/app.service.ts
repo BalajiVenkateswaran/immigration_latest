@@ -1,19 +1,20 @@
 
-import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
-import {User} from "../models/user";
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {User} from '../models/user';
+import {ApplicationViews} from '../components/common/constants/applicationviews.constants';
 
 @Injectable()
 export class AppService {
   /**
    * New variables
    */
-  //Application section flags
-  private _showHeader : boolean = true;
-  private _headerPage : string;
-  private _showFooter: boolean = true;
-  private _showMenu: boolean = true;
-  private _expandMenu: boolean = true;
+  // Application section flags
+  private _showHeader = true;
+  private _headerPage: string;
+  private _showFooter = true;
+  private _showMenu = true;
+  private _expandMenu = true;
 
 
   /**
@@ -24,7 +25,7 @@ export class AppService {
     public docsidemenu;
     public orgnamemenu;
     public _currentPage: string;
-    public _applicationViewMode: string;
+    public _applicationViewMode: ApplicationViews;
     private _accountId: string;
     private _clientId: string;
     private _petitionId: string;
@@ -45,7 +46,7 @@ export class AppService {
     private _formId: string;
     private _formList: any[] = [];
     public _questionarydependent: any[] = [];
-    private _questionaryName:string;
+    private _questionaryName: string;
     private _currentSBLink: string;
     public addDependents: any = {};
     public newclitem: any = {};
@@ -65,7 +66,7 @@ export class AppService {
     public addUsers: any = {};
     public addAdress: any = {};
     public addClientNewDocExp: any = {};
-    public formListData:any={};
+    public formListData: any= {};
     public addNewVisa: any = {};
     public addNewI797: any = {};
     public rolemultiple: boolean;
@@ -126,7 +127,7 @@ export class AppService {
     }
 
     destroy() {
-        this._menuSlider=null;
+        this._menuSlider = null;
         this._documentSideMenu = null;
         this.docsidemenu = null;
         this.orgnamemenu = null;
@@ -159,7 +160,7 @@ export class AppService {
 
     public moveToPageWithParams(pageLink, params) {
         if (pageLink != this._currentPage) {
-            this._currentPage = "";
+            this._currentPage = '';
         }
         this._currentPage = pageLink;
         this._router.navigate([pageLink, params], { skipLocationChange: true });
@@ -167,8 +168,8 @@ export class AppService {
 
     public moveToPage(pageLink) {
 
-        if (pageLink != this._currentPage) {
-            this._currentPage = "";
+        if (pageLink !== this._currentPage) {
+            this._currentPage = '';
         }
         this._currentPage = pageLink;
         this._router.navigate([pageLink], { skipLocationChange: true });
@@ -176,31 +177,30 @@ export class AppService {
 
     public moveToQuestionnaire(questionnaireData) {
         this.QuestionnaireName = questionnaireData.questionnaireName;
-        for (var i = 0; i < this._formList.length; i++) {
-            if (questionnaireData.formId == this._formList[i].applicationFormsId) {
-                var selectedFormName = this._formList[i].formName;
-                this.formname =selectedFormName;
+        let selectedFormName;
+        for (let i = 0; i < this._formList.length; i++) {
+            if (questionnaireData.formId === this._formList[i].applicationFormsId) {
+                selectedFormName = this._formList[i].formName;
+                this.formname = selectedFormName;
             }
         }
-        if (this._applicationViewMode == "Client"){
-            var selectedFormName = questionnaireData.formName;
+        if (this._applicationViewMode === ApplicationViews.CLIENT_VIEW) {
+            selectedFormName = questionnaireData.formName;
         }
 
-        var pageName = "";
-        if (selectedFormName == "I-129") {
-            if(this._applicationViewMode == "Immigration"){
+        let pageName = '';
+        if (selectedFormName === 'I-129') {
+            if (this._applicationViewMode === ApplicationViews.IMMIGRATION_VIEW) {
                 pageName = 'questionnaire-i129';
             } else {
                pageName = 'questionnaire-i129clientView';
             }
-        }
-        else if (selectedFormName == "I-129 DC") {
-              if(this._applicationViewMode == "Immigration"){
+        } else if (selectedFormName === 'I-129 DC') {
+              if (this._applicationViewMode === ApplicationViews.IMMIGRATION_VIEW) {
                  pageName = 'questionnaire-i129dc';
               }
-        }
-        else {
-            if(this._applicationViewMode == "Immigration"){
+        } else {
+            if (this._applicationViewMode === ApplicationViews.IMMIGRATION_VIEW) {
                 pageName = 'questionnaire-i129h';
             } else {
                pageName = 'questionnaire-i129hclientView';
@@ -221,12 +221,24 @@ export class AppService {
     set dependentsname(_questionarydependent: any[]) {
         this._questionarydependent = _questionarydependent;
     }
-    get applicationViewMode(): string {
+    get applicationViewMode(): ApplicationViews {
         return this._applicationViewMode;
     }
 
-    set applicationViewMode(applicationViewMode: string) {
+    set applicationViewMode(applicationViewMode: ApplicationViews) {
         this._applicationViewMode = applicationViewMode;
+    }
+
+    public isImmigrationView(): boolean {
+      return this._applicationViewMode === ApplicationViews.IMMIGRATION_VIEW;
+    }
+
+    public isClientView(): boolean {
+      return this._applicationViewMode === ApplicationViews.CLIENT_VIEW;
+    }
+
+    public isSuperUserView(): boolean {
+      return this._applicationViewMode === ApplicationViews.SUPER_USER_VIEW;
     }
 
     get menuSlider(): boolean {
