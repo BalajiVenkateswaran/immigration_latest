@@ -54,7 +54,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             'pagination': false,
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
-            'rowHeight': 30,
+            'rowHeight': 60,
             'context': {
                 'componentParent': this
             },

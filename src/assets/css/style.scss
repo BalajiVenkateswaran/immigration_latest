@@ -2195,7 +2195,7 @@ header {
 }
     .progress {
         height: 4px !important;
-        background-color: #e5e5e6 !important;
+        background: #e5e5e6;
             margin-top: 14px;
             box-shadow:none !important;
 
@@ -2203,22 +2203,47 @@ header {
             background-color: #27ae60 !important;
         }
     }
+    .uploadeed {
+        background: #27ae60 !important;
+    }
     .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         border-top:none !important;
         border-bottom:1px solid #ddd;
         padding: 8px 0px 0px 8px !important;
     }
     .table > tbody > tr > td:last-child {
-        width: 75px;
+        width: 95px;
         }
     .table > tbody > tr > td:nth-child(2) {
-        width:70px;
+        width:90px;
         color:#ccc !important;
     }
     .table > tbody > tr > td:nth-child(3) {
         width:160px;
         }
     .table > tbody > tr > td:first-child {
-        width:calc(100% - 305px);
+        width:calc(100% - 345px);
     }
+    .fileUpload {
+                            position: relative;
+                            overflow: hidden;
+                            margin: 0px;
+                            display:inline-block;
+
+                            i {
+                                font-size:18px  !important;
+                                color:#2f323a !important
+                            }
+
+                            input.upload {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            margin: 0;
+                            padding: 0;
+                            font-size: 20px;
+                            cursor: pointer;
+                            opacity: 0;
+                        }
+                        }
 }

@@ -109,17 +109,17 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         };
 
         this.getFilesList();
-        console.log(this.getFilesList);
+        //console.log(this.getFiles);
     }
     onDeleteClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
-            message: 'Are you sure you want to delete ' + event.data.fileName + ' ?'
+            message: 'Are you sure you want to delete ' + event.fileName + ' ?'
         })
             .subscribe((isConfirmed) => {
                 // Get dialog result
                 if (isConfirmed) {
-                    this.petitiondocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
+                    this.petitiondocumentrepositoryService.deleteFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
                         this.getFilesList();
                     });
                 }
@@ -160,8 +160,8 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
 
     }
 
-    onReplaceClick(event) {
-        let fileList: FileList = event.event.target.files;
+    onReplaceFile(event, data) {
+        let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         let fileName = file.name;
         let fileExists = this.isfileExists(file);
@@ -173,7 +173,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                 let formData: FormData = new FormData();
                 if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
                     formData.append('file', file, file.name);
-                    this.petitiondocumentrepositoryService.replaceFile(event.data.fileId, this.headerService.selectedOrg['orgId'], formData)
+                    this.petitiondocumentrepositoryService.replaceFile(data.fileId, this.headerService.selectedOrg['orgId'], formData)
                         .subscribe(res => {
                             this.getFilesList();
                         });
@@ -205,8 +205,8 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
       return fileExists;
     }
     onDownloadClick(event) {
-        this.petitiondocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
-            (data => this.downloadFiles(data, event.data.fileName)),
+        this.petitiondocumentrepositoryService.downloadFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe
+            (data => this.downloadFiles(data, event.fileName)),
             error => console.log('Error Downloading....');
         () => console.log('OK');
 
@@ -220,7 +220,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                         data[i]['orderNo'] = i + 1;
                     }
                     this.getFiles = data;
-
+                    console.log(this.getFiles);
                 }
             });
     }

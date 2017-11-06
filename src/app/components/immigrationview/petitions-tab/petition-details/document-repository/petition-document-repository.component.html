@@ -50,8 +50,8 @@
         </div>
 
         <div class="col-md-12">
-            <h3>Upload queue {{ uploader?.queue?.length }}</h3>
-            <table class="table">
+            <h3 *ngIf="uploader.queue.length > 0">Upload queue {{ uploader?.queue?.length }}</h3>
+            <table class="table" *ngIf="uploader.queue.length > 0">
                 <!--<thead>
                     <tr>
                         <th width="50%">Name</th>
@@ -92,8 +92,8 @@
                     </tr>
                 </tbody>
             </table>
-
-            <div>
+            
+            <div *ngIf="uploader.queue.length > 0">
                 <div>
                     Queue progress:
                     <div class="progress" style="">
@@ -109,29 +109,61 @@
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
             </div>
+            <h3>Uploaded Files {{ getFiles.length }}</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Updated On</th>
+                        <th>Progress</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <tr *ngFor="let pdf of getFiles" (Click)="editFileName($event)">
+                        <td>{{ pdf.fileName }}</td>
+                        <td>{{ pdf.updatedDate }}</td>
+                        <td>
+                            <div class="progress uploadeed" style="margin-bottom: 0;">
+                                <!--<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>-->
+                            </div>
+                        </td>
+
+                        <!--<td class="text-center">
+                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                </td>-->
+                        <td nowrap>
+                            <button title="Upload" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                            </button>
+                            <div class="fileUpload">
+                                <div>
+                                    <i class="fa fa-files-o" aria-hidden="true"></i>
+                                </div>
+                                <input type="file" #fileInput  (change)="onReplaceFile($event, pdf)" class="upload" name="file" />
+                            </div>
+                            <!--<button title="Upload" type="button" class="btn btn-success btn-xs" (click)="item.upload()">
+                                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                            </button>-->
+                             <!--<button type="button" class="btn btn-warning btn-xs"
+                            (click)="item.cancel()" [disabled]="!item.isUploading">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                    </button>-->
+                            <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <div class="main-content"  *ngIf="getData">
