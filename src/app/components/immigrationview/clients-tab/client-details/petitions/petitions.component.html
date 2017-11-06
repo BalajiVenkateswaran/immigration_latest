@@ -2,7 +2,7 @@
     <div class="table-data">
         <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h2>
         <div class="clearfix"></div>
-        <h2>Petitions  <button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewPetition()">ADD</button></h2>
+        <h2>Petitions</h2>
        <ih-smart-table class="immiview-clienttab-petitions" [settings]="settings" [data]="data"
                      (onAddClick)="addNewPetition($event)" (onRowClick)="onUserRowClick($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
         <div class="clearfix"></div>
@@ -52,7 +52,7 @@
                             <div class="col-md-7">
                                 <div class="row">
                                     <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="petitionSave()" [disabled]="newpetitionitem.petitiontype==undefined||newpetitionitem.petitionSubType==undefined||newpetitionitem.petitionName==null||newpetitionitem.petitionName==undefined||newpetitionitem.petitionName==''">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="closePopup()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

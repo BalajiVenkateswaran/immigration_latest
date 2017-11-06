@@ -8,12 +8,12 @@
           </div>
           <div class="col-md-4 pagenoof36">Page 14 of 36</div>
           <div class="col-md-4">
-            <a *ngIf="appService.applicationViewMode == 'Client'" (click)="submit()" class="nextbtn">Submit</a>
-            <a *ngIf="appService.applicationViewMode == 'Immigration'" (click)="gotoNext()" class="nextbtn">Save</a>
+            <a *ngIf="appService.isClientView()" (click)="submit()" class="nextbtn">Submit</a>
+            <a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn">Save</a>
           </div>
         </div>
       </div>
-      <div *ngIf="appService.applicationViewMode == 'Immigration'" style="width:100%;">
+      <div *ngIf="appService.isImmigrationView()" style="width:100%;">
         <div class="col-md-12">
           <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
             <div class="row">
@@ -51,7 +51,7 @@
               </div>
             </div>
 
-            <div *ngIf="appService.applicationViewMode == 'Immigration'" class="row no-marg">
+            <div *ngIf="appService.isImmigrationView()" class="row no-marg">
               <div class="col-md-12">
                 <p class="fieldsetheading">Statement for H-1B Specialty Occupations and H-1B1 Chile and Singapore</p>
                 <p>By filing this petition, I agree to, and will abide by, the terms of the labor condition application
@@ -146,7 +146,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="appService.applicationViewMode == 'Immigration'" style="width:100%;">
+      <div *ngIf="appService.isImmigrationView()" style="width:100%;">
         <div class="col-md-12">
           <h2>Complete This Section If Filing for H-2A or H-2B Classification</h2>
         </div>
@@ -164,11 +164,11 @@
            <div class="col-md-12">
             <div class="row">
               <div class="col-md-12">Temporary need is: (select only one box)</div>
-             
+
                 <div class="col-md-3" *ngFor="let x of I129Hpage2TemporaryNeed">
                   <input type="radio" name="temporaryneed" [value]="x.value" [(ngModel)]="I129Hpage2.temporaryNeed">{{x.display}}
                 </div>
-              
+
             </div>
             </div>
              </div>

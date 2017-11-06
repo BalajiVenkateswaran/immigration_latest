@@ -119,11 +119,11 @@ $dateColumnWidth:110px;
 
 .addedfilter {
   background: #5093e1 !important;
-  padding: 3px 5px;
-  border-radius: 4px;
+  padding: 1px 7px;
+  border-radius: 30px;
   color: #fff;
   font-size: 14px;
-  margin: 0px 10px 5px 0;
+  margin: 0px 7px 5px 0;
   float: left;
 }
 .addedfilter .filtretype {
@@ -363,7 +363,7 @@ $dateColumnWidth:110px;
     }
 }*/
 
-.immiview-ques-client {
+/*.immiview-ques-client {
     .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:4% !important;
     left:0% !important;
@@ -393,9 +393,9 @@ $dateColumnWidth:110px;
         left:93% !important;
     }
 
- }
+ }*/
 
-.immiview-ques-emp {
+/*.immiview-ques-emp {
     .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:4% !important;
     left:0% !important;
@@ -416,8 +416,8 @@ $dateColumnWidth:110px;
         width:8% !important;
         left:92% !important;
     }
- }
-.immiview-formstbl {
+ }*/
+/*.immiview-formstbl {
     .ag-fresh .ag-ltr .ag-header-cell[colid~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
     width:15% !important;
     left:0% !important;
@@ -442,9 +442,9 @@ $dateColumnWidth:110px;
         width:12% !important;
         left:88% !important;
     }
- }
+ }*/
 
-.immiview-petition-docrepo, .clientViewDocRepo, .immiview-clienttab-docrepo, .immiview-orgtab-docrepo {
+/*.immiview-petition-docrepo, .clientViewDocRepo, .immiview-clienttab-docrepo, .immiview-orgtab-docrepo {
     .edit-delete {
         i {
             margin:0px 5px !important;
@@ -467,7 +467,7 @@ $dateColumnWidth:110px;
         width:10% !important;
         left:90% !important;
     }
- }
+ }*/
 /*.immiviewClientsTable {
     .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
     width:20% !important;

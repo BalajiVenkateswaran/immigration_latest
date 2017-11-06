@@ -44,7 +44,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
             'isAddButtonEnable': false,
             'pagination': false,
             'isDeleteEnable': false,
-            'rowHeight': 45,
+            'rowHeight': 60,
             'context': {
                 'componentParent': this
             },

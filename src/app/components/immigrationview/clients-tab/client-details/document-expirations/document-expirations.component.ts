@@ -80,7 +80,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
   ngOnInit() {
     this.getDocumentsExpirations();
   }
-  addNewDocExps() {
+  addNewDocExps(event) {
     this.dialogService.addDialog(ImmigrationviewDocumentExpirationsComponent, {
       addDocExpiration: true,
       getDocExpirations: false,

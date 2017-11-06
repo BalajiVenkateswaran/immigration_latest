@@ -96,7 +96,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
        this.appService.currentSBLink = link;
 
    }
-  addNewI797History() {
+  addNewI797History(event) {
        this.dialogService.addDialog(ImmigrationViewI797HistoryComponent, {
            addI797His: true,
            getI797History: false,

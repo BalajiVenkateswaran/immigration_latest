@@ -4,7 +4,7 @@
             <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h2>
 
             <div class="clearfix"></div>
-            <h2>Arrival/Departure Info<button type="button" class="iportal-btn pull-right no-marg-right" (click)="addNewArrDep()">ADD</button></h2>
+            <h2>Arrival/Departure Info</h2>
              <ih-smart-table class="immiview-clienttab-arr-dep-info" [settings]="settings" [data]="data"
                      (onAddClick)="addNewArrDep($event)" (onRowClick)="editArrivalInfo($event)" (onDeleteClick)="deleteArrivalInfo($event)"></ih-smart-table>
             <div class="clearfix"></div>

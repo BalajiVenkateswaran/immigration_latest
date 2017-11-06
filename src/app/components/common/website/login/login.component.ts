@@ -3,13 +3,15 @@ import {AppService} from '../../../../services/app.service';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {HeaderService} from '../../header/header.service';
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {FormGroup, FormControl} from "@angular/forms";
-import {loginService} from "./login.service";
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {ManageAccountUserService} from "../../../immigrationview/manage-account-tab/user/user.service";
-import {HeaderComponentService} from "../../header/header.component.service";
+import {Router} from '@angular/router';
+import {FormGroup, FormControl} from '@angular/forms';
+import {loginService} from './login.service';
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {ManageAccountUserService} from '../../../immigrationview/manage-account-tab/user/user.service';
+import {HeaderComponentService} from '../../header/header.component.service';
 import { environment } from '../../../../../environments/environment';
+import {ApplicationRoles} from '../../constants/applicationroles.constants';
+import {ApplicationViews} from '../../constants/applicationviews.constants';
 
 export interface ConfirmModel {
   title: string;
@@ -20,11 +22,11 @@ export interface ConfirmModel {
   userRoles: any;
 }
 @Component({
-  selector: 'imm-login',
+  selector: 'ih-imm-login',
   templateUrl: 'login.component.html'
 })
 export class LoginComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-
+  public static uiBuildNumber: string = environment.buildNumber; // "17.09.07";
 
   [x: string]: any;
 
@@ -41,13 +43,13 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   message: string;
   forgotPwd;
   private frgtEmail;
-  public getloginpage: boolean = true;
+  public getloginpage = true;
   public selectrole: boolean;
   public loginPopupForm: boolean;
   public userRoles: any = [];
-  public forgotpwdsubmit: boolean = true;
-  //Build number format: yy.mm.2 digit build number
-  public static uiBuildNumber : string = environment.buildNumber;//"17.09.07";
+  public forgotpwdsubmit = true;
+  // Build number format: yy.mm.2 digit build number
+
   constructor(
     private router: Router,
     private appService: AppService,
@@ -58,17 +60,17 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     private manageAccountUserService: ManageAccountUserService
   ) {
     super(dialogService);
-    console.log("Login Component Constructor");
+    console.log('Login Component Constructor');
     this.login = new FormGroup({
       emailId: new FormControl(''),
       password: new FormControl('')
     });
 
-    if (this.headerService.user) { //If user already logged in. Redirect to home page
+    if (this.headerService.user) { // If user already logged in. Redirect to home page
       console.log('Login Component: Header service user exists');
-      this.appService.moveToPage('clients');
+      this.appService.moveToPage(this.headerService.getLandingPagePath(this.headerService.user.roleName));
     }
-    this.loginservice.getIPAndLocation().subscribe(res=>{
+    this.loginservice.getIPAndLocation().subscribe(res => {
       this.locationObject = res;
       console.log(this.locationObject);
     })
@@ -103,8 +105,8 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
 
   forgetPassword(email: string) {
     this.loginservice.forgetPassword(email).subscribe((res) => {
-      console.log("ForgetPassword Response %o", res);
-      if (res['statusCode'] == 'SUCCESS') {
+      console.log('ForgetPassword Response %o', res);
+      if (res['statusCode'] === 'SUCCESS') {
         this.close();
         this.dialogService.addDialog(ConfirmComponent, {
           title: 'Information',
@@ -124,8 +126,8 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   loginSubmit(model: User, isValid: boolean) {
     if (isValid) {
       this.loginservice.login(model).subscribe((res: any) => {
-        console.log("Login User %o", res);
-        if(res.uiBuildNumber != null && LoginComponent.uiBuildNumber != res.uiBuildNumber){
+        console.log('Login User %o', res);
+        if (res.uiBuildNumber != null && LoginComponent.uiBuildNumber !== res.uiBuildNumber) {
           this.close();
           this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
@@ -135,19 +137,19 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
           });
 
         }
-        if (res.statusCode == "FAILURE") {
+        if (res.statusCode === 'FAILURE') {
           this.message = res.statusDescription;
         } else {
 
-          //Reset password
-          if (res['resetPassword'] != undefined
-            && res['resetPassword'] == true) {
+          // Reset password
+          if (res['resetPassword'] !== undefined
+            && res['resetPassword'] === true) {
             this.close();
             this.appService.moveToPage('reset-password');
           } else {
             this.close();
             this.appService.userLoginHistoryId = res['userLoginHistoryId'];
-            if (res.hasMultipleRoles == true) {
+            if (res.hasMultipleRoles === true) {
               this.appService.userroleList = res['userAccountRoleList'];
               this.dialogService.addDialog(LoginComponent, {
                 selectrole: true,
@@ -162,33 +164,30 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
               this.headerService.user = res.user;
 
             }
-            if (res.hasMultipleRoles == false) {
+            if (res.hasMultipleRoles === false) {
               this.headerService.user = res.user;
               this.headerService.selectedRoleId = res.userAccountRoleList[0].roleId;
               this.appService.rolemultiple = false;
               this.headerService.organizations = res.organizationList;
               this.headerService.user['roleName'] = res.userAccountRoleList[0].roleName;
               this.headerService.user.accountId = res.userAccountRoleList[0].accountId;
-              let moveToPage : string = '';
-              if (res.userAccountRoleList[0].roleName == "Immigration Manager"
-                || res.userAccountRoleList[0].roleName == "Immigration Officer") {
-                this.appService.applicationViewMode = "Immigration";
+              let moveToPage = '';
+              if (res.userAccountRoleList[0].roleName === ApplicationRoles.IMMIGRATION_MANAGER
+                || res.userAccountRoleList[0].roleName === ApplicationRoles.IMMIGRATION_OFFICER) {
+                this.appService.applicationViewMode = ApplicationViews.IMMIGRATION_VIEW;
                 this.headerService.selectedOrg = res.organizationList[0];
                 this.headerService.currentTab = 'clients';
-                //this.appService.moveToPage('clients');
                 moveToPage = 'clients';
               }
-              if (res.userAccountRoleList[0].roleName == "Client") {
-                this.appService.applicationViewMode = "Client";
+              if (res.userAccountRoleList[0].roleName === ApplicationRoles.CLIENT) {
+                this.appService.applicationViewMode = ApplicationViews.CLIENT_VIEW;
                 this.appService.clientId = this.headerService.user.userId;
                 this.headerService.currentTab = 'clientview-petitions';
-                //this.appService.moveToPage("clientview-petitions");
                 moveToPage = 'clientview-petitions';
               }
-              if (res.userAccountRoleList[0].roleName == "Super User") {
-                this.appService.applicationViewMode = "Superuser";
+              if (res.userAccountRoleList[0].roleName === ApplicationRoles.SUPER_USER) {
+                this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;
                 this.headerService.currentTab = 'superuser-accounts';
-                // this.appService.moveToPage("superuser-accounts");
                 moveToPage = 'superuser-accounts';
               }
               this.getUsers();
@@ -204,7 +203,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       });
 
     } else {
-      this.message = "Unable to login into system. contact admin.";
+      this.message = 'Unable to login into system. contact admin.';
     }
   }
 
@@ -214,24 +213,21 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.appService.rolemultiple = true;
     this.result = true;
     this.headerService.user['roleName'] = userdet.roleName;
-    let moveToPage : string = '';
-    if (userdet.roleName == "Client") {
-      this.appService.applicationViewMode = "Client";
+    let moveToPage = '';
+    if (userdet.roleName === 'Client') {
+      this.appService.applicationViewMode = ApplicationViews.CLIENT_VIEW;
       this.appService.clientId = this.headerService.user.userId;
       this.headerService.currentTab = 'clientview-petitions';
-      //this.appService.moveToPage("clientview-petitions");
       moveToPage = 'clientview-petitions';
     }
-    if (userdet.roleName == "Immigration Manager" || userdet.roleName == "Immigration Officer") {
-      this.appService.applicationViewMode = "Immigration";
+    if (userdet.roleName === 'Immigration Manager' || userdet.roleName === 'Immigration Officer') {
+      this.appService.applicationViewMode = ApplicationViews.IMMIGRATION_VIEW;
       this.headerService.currentTab = 'clients';
-      //this.appService.moveToPage('clients');
       moveToPage = 'clients';
     }
-    if (userdet.roleName == "Super User") {
-      this.appService.applicationViewMode = "Superuser";
+    if (userdet.roleName === ApplicationRoles.SUPER_USER) {
+      this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;
       this.headerService.currentTab = 'superuser-accounts';
-      //this.appService.moveToPage("superuser-accounts");
       moveToPage = 'superuser-accounts';
     }
 

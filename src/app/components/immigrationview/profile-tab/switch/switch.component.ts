@@ -29,7 +29,7 @@ export class profileswitchcomponent implements OnInit,AfterViewInit {
         this.settings = {
             "isAddButtonEnable": false,
             "isDeleteEnable": false,
-            'rowHeight': 40,
+            'rowHeight': 60,
             'context': {
                             'componentParent': this
                         },

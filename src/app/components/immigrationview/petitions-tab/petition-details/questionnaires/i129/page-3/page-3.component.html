@@ -11,8 +11,8 @@
                     </div>
                     <div class="col-md-4 pagenoof36">Page 3 of 36</div>
                     <div class="col-md-4">
-                        <a *ngIf="appService.applicationViewMode == 'Client'" (click)="submit()" class="nextbtn">Submit</a>
-                        <a *ngIf="appService.applicationViewMode == 'Immigration'" (click)="gotoNext()" class="nextbtn">Save & Continue</a>
+                        <a *ngIf="appService.isClientView()" (click)="submit()" class="nextbtn">Submit</a>
+                        <a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn">Save & Continue</a>
                     </div>
                 </div>
             </div>
@@ -215,7 +215,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="appService.applicationViewMode == 'Immigration'">
+            <div *ngIf="appService.isImmigrationView()">
                 <div class="col-md-12">
                     <h2>Processing Information</h2>
                 </div>

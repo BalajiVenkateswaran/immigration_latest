@@ -20,13 +20,13 @@ export interface ConfirmModel {
 
 }
 @Component({
-  selector: 'app-petitions',
+  selector: 'ih-petitions',
   templateUrl: './petitions.component.html',
   styleUrls: ['./petitions.component.sass']
 })
 export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
-    private allSubTypes = {};
+    private allSubTypes = [];
 
     private delmessage;
     public addPetition: FormGroup; // our model driven form
@@ -126,14 +126,17 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     handleChange(event) {
         console.log(event.target.value);
         for (let i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
-            if (event.target.value == this.allPetitionTypesAndSubTypes[i].petitiontype) {
+            if (event.target.value === this.allPetitionTypesAndSubTypes[i].petitiontype) {
                 this.allSubTypes = this.allPetitionTypesAndSubTypes[i].petitionSubTypes;
             }
         }
+        if (!this.allSubTypes) {
+          this.allSubTypes = [];
+        }
         this.appService.allsubtypesarray(this.allSubTypes);
 
-            let currentYear = new Date().getFullYear();
-            this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + ' ' + currentYear;
+        let currentYear = new Date().getFullYear();
+        this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + ' ' + currentYear;
     }
 
   ngOnInit() {
@@ -154,7 +157,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
           if (isConfirmed) {
               this.immigrationviewpetitionService.saveNewImmigrationViewPetition(this.appService.newpetitionitem).subscribe((res) => {
                   this.message = res['statusCode'];
-                  if (this.message == 'SUCCESS') {
+                  if (this.message === 'SUCCESS') {
                       this.getPetitionData();
                   } else {
                       let errorMessage = 'Unable to add petition';
@@ -195,14 +198,14 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       }
     }
 
-    isPetitionSubTypeExists(petitionType: string) {
-      for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
-            if (petitionTypeObj['petitiontype'] === petitionType && petitionTypeObj['petitionSubTypes'].length > 0) {
-              return true;
-            }
+  isPetitionSubTypeExists(petitionType: string) {
+    for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
+      if (petitionTypeObj['petitiontype'] === petitionType && petitionTypeObj['petitionSubTypes'].length > 0) {
+        return true;
       }
-      return false;
     }
+    return false;
+  }
 
   petitionSave() {
       this.newpetitionitem['clientId'] = this.appService.clientId;
@@ -212,15 +215,16 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       this.newpetitionitem['userId'] = this.headerService.user.userId;
       this.newpetitionitem['accountId'] = this.headerService.user.accountId;
 
-      //Set default values
-      if (this.newpetitionitem['status'] == undefined) {
+      // Set default values
+      if (this.newpetitionitem['status'] === undefined) {
           this.newpetitionitem['status'] = 'Open';
       }
-      if (this.newpetitionitem['petitionName'] == undefined || this.newpetitionitem['petitionName'] == '') {
+      if (this.newpetitionitem['petitionName'] === undefined || this.newpetitionitem['petitionName'] === '') {
           let currentYear = new Date().getFullYear();
           this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
       }
-      if ((this.isPetitionSubTypeExists(this.newpetitionitem['petitiontype']) && this.newpetitionitem['petitionSubType'] == undefined) || this.newpetitionitem['petitiontype'] == undefined || this.newpetitionitem['petitionName'] == '') {
+      if ((this.isPetitionSubTypeExists(this.newpetitionitem['petitiontype']) && this.newpetitionitem['petitionSubType'] === undefined)
+        || this.newpetitionitem['petitiontype'] === undefined || this.newpetitionitem['petitionName'] === '') {
           this.warningMessage = true;
       } else {
           this.warningMessage = false;
@@ -230,7 +234,8 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       }
 
   }
-  cancel() {
+
+  closePopup() {
       this.result = false;
       this.close();
   }
@@ -246,7 +251,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
             message: 'Are you sure you want to Delete ' + this.delmessage + ' ?'
         })
             .subscribe((isConfirmed) => {
-                //Get dialog result
+                // Get dialog result
                 if (isConfirmed) {
 
                 }

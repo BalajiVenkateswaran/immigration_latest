@@ -1,19 +1,21 @@
-<div class="filters-container" *ngIf="showFilters">
+<div class="filters-container" *ngIf="showFilters || smartTable.isAddButtonEnable">
   <div class="filters">
     <div class="styled-select">
-      <div *ngIf="quickFilters != null && quickFilters.length > 0">
-        <select *ngFor="let quickFilter of quickFilters" (change)="onChange($event)" id="{{quickFilter['field']}}">
-          <option value="{{quickFilter['field']}}">{{quickFilter['headerName']}}</option>
-          <option *ngFor="let values of quickFilter['values']" value="{{values['value']}}">{{values['alias']}}</option>
-        </select>
+      <div *ngIf="showFilters">
+        <div *ngIf="quickFilters != null && quickFilters.length > 0">
+          <select *ngFor="let quickFilter of quickFilters" (change)="onChange($event)" id="{{quickFilter['field']}}">
+            <option value="{{quickFilter['field']}}">{{quickFilter['headerName']}}</option>
+            <option *ngFor="let values of quickFilter['values']" value="{{values['value']}}">{{values['alias']}}</option>
+          </select>
+        </div>
+        <span>More Filters</span>
+        <a (click)="moreFilters()" class="addfilter"></a>
+        <div><span (click)="clearAllFilters()" style="cursor: pointer;">ClearAll</span></div>
+        <div class="addedfilter" *ngFor="let x of smartTable.queryParameters.filter let i=index">
+          <span class="filtretype">{{x.fieldHeader}} :</span><span class="filtrename">{{x.fieldValue}}</span><span class="close" (click)="deleteFilter(i,x)">&times;</span>
+        </div>
       </div>
-      <span>More Filters</span>
-      <a (click)="moreFilters()" class="addfilter"></a>
-      <div class="addedfilter" *ngFor="let x of smartTable.queryParameters.filter let i=index">
-        <span class="filtretype">{{x.fieldHeader}} :</span><span class="filtrename">{{x.fieldValue}}</span><span class="close" (click)="deleteFilter(i,x)">&times;</span>
-      </div>
-      <div><span (click)="clearAllFilters()">clearAll</span></div>
-      <button type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="onAddClick()">ADD</button>
+      <button *ngIf="smartTable.isAddButtonEnable" type="button" class="iportal-btn pull-right no-marg-right agridadd" (click)="onAddClick()">ADD</button>
     </div>
     <div class="clearfix"></div>
   </div>

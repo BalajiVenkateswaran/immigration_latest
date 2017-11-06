@@ -40,7 +40,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
       'pagination': false,
       'isDeleteEnable': false,
       'isAddButtonEnable': false,
-      'rowHeight': 30,
+      'rowHeight': 60,
       'context': {
         'componentParent': this
       },

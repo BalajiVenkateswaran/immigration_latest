@@ -102,7 +102,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.getClientviewvisa();
 
   }
-  addFunction() {
+  onAddNewVisaClick(event) {
     this.dialogService.addDialog(VisasComponent, {
       addCleintVisa: true,
       getCleintVisa: false,
@@ -111,7 +111,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
       if (isConfirmed) {
 
         this.visasService.saveClientVisas(this.appService.addNewVisa).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getClientviewvisa();
 
           }
@@ -149,7 +149,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
       if (isConfirmed) {
 
         this.visasService.saveClientVisas(this.appService.addNewVisa).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getClientviewvisa();
 
           }
@@ -168,7 +168,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
         if (isConfirmed) {
           this.visasService.deleteClientVisa(event.data['visaId']).subscribe((res) => {
             this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
+            if (this.message === 'SUCCESS') {
               this.getClientviewvisa();
 
             }
