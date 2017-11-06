@@ -1,14 +1,13 @@
 import { User } from '../../../models/user';
 import { AppService } from '../../../services/app.service';
 import { ConfirmorgComponent } from '../../framework/confirmbox/confirmorg.component';
-import {Component, OnInit, DoCheck, ViewChild, AfterViewChecked} from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewChecked} from '@angular/core';
 import {Router} from '@angular/router';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
-import {MenuComponent} from '../menu/menu.component';
 import { HeaderService } from './header.service';
 import {HeaderComponentService} from './header.component.service';
-import {ApplicationViews} from '../constants/applicationviews.constants';
+import {ApplicationRoles} from '../constants/applicationroles.constants';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -21,9 +20,8 @@ export interface ConfirmModel {
     templateUrl: './header.component.html',
 })
 export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit, AfterViewChecked {
-  public applicationViews = ApplicationViews;
+  public applicationRoles = ApplicationRoles;
   private Immigrant;
-  private immigrationManager;
   private orgNamevisible;
   private editorg;
   private tab;

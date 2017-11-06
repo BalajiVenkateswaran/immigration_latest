@@ -70,7 +70,7 @@
                           </a>
                       </li>
                       <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
-                      <li  *ngIf="immigrationManager=='Immigration Manager'">
+                      <li *ngIf="user.roleName === applicationRoles.IMMIGRATION_MANAGER" >
                           <a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');"
                              [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"
                              routerLinkActive="active">
