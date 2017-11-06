@@ -62,7 +62,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
             'pagination': false,
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
-            'rowHeight': 30,
+            'rowHeight': 60,
             'context': {
                 'componentParent': this
             },
@@ -109,6 +109,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         };
 
         this.getFilesList();
+        console.log(this.getFilesList);
     }
     onDeleteClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
