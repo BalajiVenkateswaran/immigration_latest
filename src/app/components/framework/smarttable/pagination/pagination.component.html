@@ -1,12 +1,13 @@
 <div style="margin-top:10px !important;">
   <div style="width:20%; float:left;"><span>{{paginationMetadata.itemStartIndex}} to {{paginationMetadata.endNumber}} of {{paginationMetadata.totalElements}}</span></div>
   <div class="pagination">
-    <a [class.disabled]="paginationMetadata.pageNumber===0"  (click)="paginationMetadata.pageNumber!=0 && previousPage()"><i class="rigicon" aria-hidden="true"><img src="../../../../assets/images/left arrow.png" /></i></a>
+    <a [ngClass]="{'disabled':paginationMetadata.pageNumber == 1}"  (click)="paginationMetadata.pageNumber!=1 && previousPage()"><i class="rigicon" aria-hidden="true"><img src="../../../../assets/images/left arrow.png" /></i></a>
     <a>Previous</a>
-    <a *ngFor="let pageNo of getPageNumbers()" (click)="gotoPage(pageNo)" ng-class="{selected-page: pageNo === paginationMetadata.pageNumber}">{{pageNo}}</a>
+    <a *ngFor="let pageNo of getPageNumbers()" (click)="gotoPage(pageNo)" [ngClass]="{'selected-page':+pageNo == paginationMetadata.pageNumber}"> {{pageNo}} </a>
+
     <a>Next</a>
-    <a [class.disabled]="paginationMetadata.totalPages == 0 || paginationMetadata.pageNumber===paginationMetadata.totalPages-1"
-       (click)="!(paginationMetadata.totalPages == 0 || paginationMetadata.pageNumber===paginationMetadata.totalPages-1) && nextPage()">
+    <a [ngClass]="{'disabled':paginationMetadata.totalPages === undefined || paginationMetadata.pageNumber===paginationMetadata.totalPages-1}"
+       (click)="!(paginationMetadata.totalPages === undefined || paginationMetadata.pageNumber===paginationMetadata.totalPages-1) && nextPage()">
       <img src="../../../../assets/images/Right arrow.png" />
     </a>
   </div>
