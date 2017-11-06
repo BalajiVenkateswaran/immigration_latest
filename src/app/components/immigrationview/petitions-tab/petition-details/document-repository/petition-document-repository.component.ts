@@ -13,7 +13,8 @@ import {HeaderService} from '../../../../common/header/header.service';
 import {FileUtils} from '../../../../common/FileUtils';
 import { environment } from '../../../../../../environments/environment';
 
-import {FileItem, FileUploader} from 'ng2-file-upload';
+import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
+import {DatePipe} from '@angular/common';
 
 // const URL = '/api/';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -37,7 +38,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     public hasAnotherDropZoneOver = false;
     public data;
     public settings;
-    public getFiles;
+    public getFiles = [];
     public fileName;
     private accountId;
     warningMessage: boolean;
@@ -55,43 +56,9 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     }
 
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService,
-       public dialogService: DialogService, public headerService: HeaderService) {
+       public dialogService: DialogService, public headerService: HeaderService, private datePipe: DatePipe) {
         super(dialogService);
         this.accountId = this.headerService.user.accountId;
-        this.settings = {
-            'pagination': false,
-            'isDeleteEnable': false,
-            'isAddButtonEnable': false,
-            'rowHeight': 60,
-            'context': {
-                'componentParent': this
-            },
-            'sort' : [{
-              headingName: 'updatedDate',
-              sort: SortType.DESC
-            }],
-            'columnsettings': [
-                {
-                    headerName: 'Actions',
-                    cellRendererFramework: ActionIcons,
-                    width: 80
-                },
-                {
-                    headerName: 'SL No',
-                    field: 'orderNo',
-                    width: 50
-                },
-                {
-                    headerName: 'File Name',
-                    field: 'fileName'
-                },
-                {
-                    headerName: 'Uploaded Date',
-                    field: 'updatedDate',
-                    width: 100
-                }
-            ]
-        }
     };
     ngOnInit() {
         this.uploader = new FileUploader({
@@ -105,8 +72,32 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
               title: 'Error..!',
               message: 'Please upload only PDF file'
             });
+          } else {
+            fileItem.upload();
           }
         };
+
+
+        this.uploader.onSuccessItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
+          if (response) {
+            let jsonResponse = JSON.parse(response);
+            if (jsonResponse.hasOwnProperty('statusCode')) {
+              if (jsonResponse['statusCode'] === 'SUCCESS') {
+                this.getFiles.push({
+                  fileId: jsonResponse['fileId'],
+                  fileName: item.file.name,
+                  orderNo: this.getFiles.length,
+                  updatedDate: this.datePipe.transform(new Date(), 'mm-dd-yyyy')
+                });
+                item.remove();
+              } else {
+
+              }
+            }
+          }
+        };
+
+
 
         this.getFilesList();
         //console.log(this.getFiles);

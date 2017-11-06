@@ -16,7 +16,7 @@
     html, body {
         height: 100%;
     }
-    
+
 </style>
 
 <div class="dropzone">
@@ -34,33 +34,11 @@
                 </div>
             </div>
 
-            <!--<div ng2FileDrop
-                 [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
-                 (fileOver)="fileOverAnother($event)"
-                 [uploader]="uploader"
-                 class="well my-drop-zone">
-                Another drop zone
-            </div>
-
-            Multiple
-            <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
-
-            Single
-            <input type="file" ng2FileSelect [uploader]="uploader" />-->
         </div>
 
         <div class="col-md-12">
             <h3 *ngIf="uploader.queue.length > 0">Upload queue {{ uploader?.queue?.length }}</h3>
             <table class="table" *ngIf="uploader.queue.length > 0">
-                <!--<thead>
-                    <tr>
-                        <th width="50%">Name</th>
-                        <th>Size</th>
-                        <th>Progress</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>-->
                 <tbody>
                     <tr *ngFor="let item of uploader.queue">
                         <td>{{ item?.file?.name }}</td>
@@ -70,52 +48,16 @@
                                 <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
                             </div>
                         </td>
-                        <!--<td class="text-center">
-                            <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                            <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                            <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-                        </td>-->
-                        <td nowrap>
-                            <button title="Upload" type="button" class="btn btn-success btn-xs"
-                                    (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                            </button>
-                            <!--<button type="button" class="btn btn-warning btn-xs"
-                                    (click)="item.cancel()" [disabled]="!item.isUploading">
-                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                            </button>-->
-                            <button title="Remove" type="button" class="btn btn-danger btn-xs"
-                                    (click)="item.remove()">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
-            
-            <div *ngIf="uploader.queue.length > 0">
-                <div>
-                    Queue progress:
-                    <div class="progress" style="">
-                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-                    </div>
-                </div>
-                <button title="Upload all" type="button" class="btn btn-success btn-s"
-                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                </button>
-                <button title="Remove all" type="button" class="btn btn-danger btn-s"
-                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </div>
+
             <h3>Uploaded Files {{ getFiles.length }}</h3>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Updated On</th>
-                        <th>Progress</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -124,19 +66,8 @@
                     <tr *ngFor="let pdf of getFiles" (Click)="editFileName($event)">
                         <td>{{ pdf.fileName }}</td>
                         <td>{{ pdf.updatedDate }}</td>
-                        <td>
-                            <div class="progress uploadeed" style="margin-bottom: 0;">
-                                <!--<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>-->
-                            </div>
-                        </td>
-
-                        <!--<td class="text-center">
-                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-                </td>-->
                         <td nowrap>
-                            <button title="Upload" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
+                            <button title="Download" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
                                 <i class="fa fa-download" aria-hidden="true"></i>
                             </button>
                             <div class="fileUpload">
@@ -145,13 +76,6 @@
                                 </div>
                                 <input type="file" #fileInput  (change)="onReplaceFile($event, pdf)" class="upload" name="file" />
                             </div>
-                            <!--<button title="Upload" type="button" class="btn btn-success btn-xs" (click)="item.upload()">
-                                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                            </button>-->
-                             <!--<button type="button" class="btn btn-warning btn-xs"
-                            (click)="item.cancel()" [disabled]="!item.isUploading">
-                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                    </button>-->
                             <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
@@ -160,32 +84,8 @@
                 </tbody>
             </table>
         </div>
-
     </div>
-
 </div>
-
-
-    <div class="main-content"  *ngIf="getData">
-        <div class="table-data">
-            <h2 class="clickname" style="width:60%;float:left;" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h2>
-            <h2 style="float:right;width:40%; text-align:right;padding-right: 110px;">{{appService.petitionDetails}}</h2>
-            <div class="clearfix"></div>
-            <form method="POST" enctype="multipart/form-data">
-                <div class="pull-right uplodbtn">
-                    <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
-                        <span>Upload File</span>
-                        <input type="file" #fileInput class="upload" name="file" (click)="onFileUploadClick(fileInput)" (change)="fileUpload($event)"/>
-                    </div>
-                </div>
-                <ih-smart-table class="immiview-petition-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></ih-smart-table>
-
-                </form>
-                <div class="clearfix"></div>
-</div>
-
-
-    </div>
 <div *ngIf="editFiles">
     <div class="modal-dialog" ngDraggable>
         <div class="modal-content">
