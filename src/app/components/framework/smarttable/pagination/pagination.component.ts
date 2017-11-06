@@ -14,16 +14,10 @@ export class PaginationComponent {
 
 
   public pageSelectionDisable = false;
-  // constructor(){
-  //   console.log(this.paginationMetadata.totalElements +"nncndjcnjdn")
-  // }
 
 
   nextPage() {
 
-    // if(this.paginationMetadata.totalPages === undefined){
-    //   console.log("hhhhhhhh")
-    // }else{
     this.paginationMetadata.itemStartIndex = this.paginationMetadata.endNumber + 1;
     this.paginationMetadata.pageNumber = this.paginationMetadata.pageNumber + 1;
     console.log(this.paginationMetadata.pageNumber)
@@ -35,7 +29,7 @@ export class PaginationComponent {
 
     this.smartTable.queryParameters.setPagination(this.paginationMetadata.pageSize, this.paginationMetadata.pageNumber);
     this.smartTable.invokeResource();
-    // }
+
   }
 
   previousPage() {
@@ -81,7 +75,8 @@ export class PaginationComponent {
 
   gotoPage(pageNo) {
 
-    this.paginationMetadata.pageNumber = pageNo - 1;
+   // this.paginationMetadata.pageNumber = pageNo - 1;
+    this.paginationMetadata.pageNumber = pageNo;
     this.paginationMetadata.itemStartIndex = (this.paginationMetadata.pageSize * this.paginationMetadata.pageNumber) + 1;
     if (this.paginationMetadata.totalPages - 1 === this.paginationMetadata.pageNumber) {
       this.paginationMetadata.endNumber = this.paginationMetadata.totalElements
