@@ -10,10 +10,20 @@ import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {User} from "../../../../models/user";
 import {HeaderService} from "../../../common/header/header.service";
+import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+
 
 export interface formControl {
   name: string;
   value: FormControl;
+}
+export interface ConfirmModel {
+  title: string;
+  message: string;
+  showAddCVClientpopup: boolean;
+  getCVClientData: boolean;
+  newCVClientitem: Object;
+
 }
 
 @Component({
@@ -21,10 +31,16 @@ export interface formControl {
   templateUrl: './client-details.component.html',
   styleUrls: ['./client-details.component.sass']
 })
-export class ClientDetailsComponent implements OnInit {
+export class ClientDetailsComponent extends DialogComponent<ConfirmModel, boolean>  implements OnInit {
 
   private clientdetailsList: any;
   private client: any = {};
+
+  public getCVClientData=true;
+  public settings;
+  public data;
+  public paginationData;
+
   public editUser: FormGroup; // our model driven form
   private fieldsList: clientdetails[];
   private status: any[];
@@ -52,46 +68,89 @@ export class ClientDetailsComponent implements OnInit {
   private beforeCancelPersonal;
   constructor(private ClientDetailsService: ClientDetailsService,
     private formBuilder: FormBuilder, private parserFormatter: NgbDateParserFormatter,
-    public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService) {
-
+    public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService,public dialogService: DialogService) {
+    super(dialogService);
     if (this.headerService.user) {
       this.user = this.headerService.user;
     }
+
+    this.settings = {
+      'columnsettings': [
+        {
+          headerName: 'File Number',
+          field: 'fileNumber'
+        },
+        {
+          headerName: 'Email',
+          field: 'email'
+        },
+        {
+          headerName: 'First Name',
+          field: 'firstName'
+        },
+        {
+          headerName: 'Last Name',
+          field: 'lastName'
+        },
+        {
+          headerName: 'Email Address',
+          field: 'email'
+        },
+        {
+          headerName: 'Phone Number',
+          field: 'phoneNumber'
+        }
+
+
+      ]
+    }
   }
-  ngOnInit() {
+  getClientsData(){
     this.headerService.showSideBarMenu("clientView-client", "clientview-client-details");
-    this.clientDetailsService.getClientDetails(this.user.userId)
+    this.clientDetailsService.getClientDetails(this.headerService.user.userId)
       .subscribe((res) => {
-        if (res['clientDetails']) {
-          this.clientDetails = res['clientDetails'];
-
-          console.log(this.clientDetails);
-
-          this.appService.firstName = res['clientDetails'].firstName;
-          this.appService.lastName = res['clientDetails'].lastName;
-          this.mapToClientProfile();
-          this.mapToClientPersonalInfo();
-        }
-        if (res['client']) {
-          this.client = res['client'];
-        }
-        this.isProfileEdit = true;
-        this.isPersonalInfoEdit = true;
+        this.data = res['clientDetails'];
       });
-
-    this.status = [
-      {value: 'Active', name: 'Active'},
-      {value: 'Inactive', name: 'Inactive'},
-      {value: 'Mark for Deletion', name: 'Mark for Deletion'}
-    ]
-    this.gender = [
-      {value: '0', name: 'Male'},
-      {value: '1', name: 'Female'}
-
-    ]
-    this.creationDate = this.clientDetails.creationDate;
-    this.dateOfBirth = this.clientDetails.dateOfBirth;
   }
+
+  ngOnInit(){
+    this.getClientsData();
+  }
+
+  // ngOnInit() {
+  //   this.headerService.showSideBarMenu("clientView-client", "clientview-client-details");
+  //   this.clientDetailsService.getClientDetails(this.user.userId)
+  //     .subscribe((res) => {
+  //       if (res['clientDetails']) {
+  //         this.clientDetails = res['clientDetails'];
+  //
+  //         console.log(this.clientDetails);
+  //
+  //         this.appService.firstName = res['clientDetails'].firstName;
+  //         this.appService.lastName = res['clientDetails'].lastName;
+  //         this.mapToClientProfile();
+  //         this.mapToClientPersonalInfo();
+  //       }
+  //       if (res['client']) {
+  //         this.client = res['client'];
+  //       }
+  //       this.isProfileEdit = true;
+  //       this.isPersonalInfoEdit = true;
+  //     });
+  //
+  //   this.status = [
+  //     {value: 'Active', name: 'Active'},
+  //     {value: 'Inactive', name: 'Inactive'},
+  //     {value: 'Mark for Deletion', name: 'Mark for Deletion'}
+  //   ]
+  //   this.gender = [
+  //     {value: '0', name: 'Male'},
+  //     {value: '1', name: 'Female'}
+  //
+  //   ]
+  //   this.creationDate = this.clientDetails.creationDate;
+  //   this.dateOfBirth = this.clientDetails.dateOfBirth;
+  // }
 
   onDateChanged(event: IMyDateModel) {
 

@@ -177,6 +177,7 @@ export class PetitionsComponent implements OnInit {
     dataWithParameters(queryData) {
         if (queryData) {
             this.queryParameters = queryData
+          console.log(queryData)
         }
 
         if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId'] && queryData) {

@@ -102,7 +102,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.getClientviewvisa();
 
   }
-  onAddNewVisaClick(event) {
+  addFunction(event) {
     this.dialogService.addDialog(VisasComponent, {
       addCleintVisa: true,
       getCleintVisa: false,
