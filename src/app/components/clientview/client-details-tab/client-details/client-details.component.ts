@@ -10,21 +10,28 @@ import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {User} from "../../../../models/user";
 import {HeaderService} from "../../../common/header/header.service";
+import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+
 
 export interface formControl {
   name: string;
   value: FormControl;
 }
 
+
 @Component({
   selector: 'app-client-details',
   templateUrl: './client-details.component.html',
   styleUrls: ['./client-details.component.sass']
 })
-export class ClientDetailsComponent implements OnInit {
+export class ClientDetailsComponent  implements OnInit {
 
   private clientdetailsList: any;
   private client: any = {};
+
+  public getCVClientData=true;
+
+
   public editUser: FormGroup; // our model driven form
   private fieldsList: clientdetails[];
   private status: any[];
@@ -52,46 +59,48 @@ export class ClientDetailsComponent implements OnInit {
   private beforeCancelPersonal;
   constructor(private ClientDetailsService: ClientDetailsService,
     private formBuilder: FormBuilder, private parserFormatter: NgbDateParserFormatter,
-    public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService) {
+    public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService,public dialogService: DialogService) {
 
     if (this.headerService.user) {
       this.user = this.headerService.user;
     }
+
   }
-  ngOnInit() {
+
+   ngOnInit() {
     this.headerService.showSideBarMenu("clientView-client", "clientview-client-details");
-    this.clientDetailsService.getClientDetails(this.user.userId)
+     this.clientDetailsService.getClientDetails(this.user.userId)
       .subscribe((res) => {
-        if (res['clientDetails']) {
+         if (res['clientDetails']) {
           this.clientDetails = res['clientDetails'];
 
-          console.log(this.clientDetails);
+           console.log(this.clientDetails);
 
-          this.appService.firstName = res['clientDetails'].firstName;
-          this.appService.lastName = res['clientDetails'].lastName;
-          this.mapToClientProfile();
-          this.mapToClientPersonalInfo();
-        }
-        if (res['client']) {
-          this.client = res['client'];
+           this.appService.firstName = res['clientDetails'].firstName;
+           this.appService.lastName = res['clientDetails'].lastName;
+           this.mapToClientProfile();
+           this.mapToClientPersonalInfo();
+         }
+         if (res['client']) {
+        this.client = res['client'];
         }
         this.isProfileEdit = true;
-        this.isPersonalInfoEdit = true;
-      });
+         this.isPersonalInfoEdit = true;
+       });
 
-    this.status = [
-      {value: 'Active', name: 'Active'},
-      {value: 'Inactive', name: 'Inactive'},
-      {value: 'Mark for Deletion', name: 'Mark for Deletion'}
-    ]
-    this.gender = [
-      {value: '0', name: 'Male'},
-      {value: '1', name: 'Female'}
+     this.status = [
+       {value: 'Active', name: 'Active'},
+       {value: 'Inactive', name: 'Inactive'},
+       {value: 'Mark for Deletion', name: 'Mark for Deletion'}
+     ]
+     this.gender = [
+       {value: '0', name: 'Male'},
+       {value: '1', name: 'Female'}
 
-    ]
-    this.creationDate = this.clientDetails.creationDate;
-    this.dateOfBirth = this.clientDetails.dateOfBirth;
-  }
+     ]
+     this.creationDate = this.clientDetails.creationDate;
+     this.dateOfBirth = this.clientDetails.dateOfBirth;
+   }
 
   onDateChanged(event: IMyDateModel) {
 

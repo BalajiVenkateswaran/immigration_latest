@@ -24,7 +24,6 @@ export interface ConfirmModel {
 })
 
 export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-  public paginationData: any;
   private outlet: any = {
     breadcrumbs: null,
     header: 'header',
@@ -33,6 +32,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
     menu: 'menu',
     footer: null
   };
+  public paginationData;
   public addclientviewPetition: FormGroup;
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
@@ -98,6 +98,29 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         headingName: "lastUpdate",
         sort: SortType.DESC
       }],
+
+      'filter': {
+        quick: [
+          {
+            headerName: 'Status',
+            field: 'status',
+            values: [
+              { alias: 'Open', value: 'Open' },
+              { alias: 'Close', value: 'Close' }
+            ]
+          },
+          {
+            headerName: 'Petition Type',
+            field: 'petitionType',
+            values: [
+              { alias: 'H1B', value: 'H1B' },
+              { alias: 'L1', value: 'L1' },
+              { alias: 'H1B-RFE', value: 'H1B-RFE' },
+              { alias: 'B1', value: 'B1' }
+            ]
+          }
+        ]
+      },
       'columnsettings': [
         {
           headerName: "Petition Name",
@@ -177,17 +200,24 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   }
 
   dataWithParameters(queryData) {
+    console.log(queryData)
     if (queryData) {
-      this.queryParameters = queryData
+      this.queryParameters = queryData;
+      console.log(queryData)
     }
-
     this.clientviewpetitionsService.getPetitions(this.headerService.user.userId, queryData)
       .subscribe((res) => {
-        this.clientviewpetitionList = res['petitions'];
+       // this.clientviewpetitionList = res['petitions'];
+
         this.data = res['petitions'];
         this.paginationData = res['pageMetadata'];
-      });
+          console.log(this.paginationData);
+          console.log(res)
+      }
+
+      );
   }
+
 
 
   viewAllColumns() {

@@ -20,7 +20,7 @@ export class requestclientviewcomponent implements OnInit {
       'isDeleteEnable': false,
       'pagination': false,
       'isAddButtonEnable': false,
-      'rowHeight': 45,//configuring the row height
+      'rowHeight': 60,//configuring the row height
       'columnsettings': [
         {
 

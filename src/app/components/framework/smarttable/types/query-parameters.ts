@@ -1,7 +1,7 @@
 export class Pagination {
-  //Number of records per page
+  // Number of records per page
   size: number;
-  //PageNumber
+  // PageNumber
   pageNumber: number;
 }
 
@@ -18,9 +18,9 @@ enum FilterOperator {
 export class FilterEntry {
   fieldHeader: string;
   fieldName: string;
-  operator:string= FilterOperator.toString();
+  operator: string = FilterOperator.toString();
   fieldValue: string;
-  constructor(headerName: string, fieldName: string,operator: string,fieldValue: string){
+  constructor(headerName: string, fieldName: string, operator: string, fieldValue: string) {
     this.fieldHeader = headerName;
     this.fieldName = fieldName;
     this.fieldValue = fieldValue;
@@ -36,32 +36,32 @@ export class FilterEntry {
  *
  */
 export class QueryParameters {
-  pagination : Pagination;
+  pagination: Pagination;
   sort: Map<string, SortType>;
-  filter : Array<FilterEntry>;
+  filter: Array<FilterEntry>;
 
-  public setPagination(size: number, pageNumber: number) : void{
-    if(this.pagination == null){
+  public setPagination(size: number, pageNumber: number): void {
+    if (this.pagination == null) {
       this.pagination = new Pagination();
     }
     this.pagination.size = size;
     this.pagination.pageNumber = pageNumber;
   }
 
-  public addFilter(fieldHeader: string, fieldName: string,operator: string, fieldValue: string) : void {
-    if(this.filter == null){
+  public addFilter(fieldHeader: string, fieldName: string, operator: string, fieldValue: string): void {
+    if (this.filter == null) {
       this.filter = new Array<FilterEntry>();
     }
 
-    var filterFound : boolean = false;
+    let filterFound = false;
 
-    if(fieldHeader == null){
+    if (fieldHeader == null) {
       fieldHeader = fieldName;
     }
 
-    //Check for duplicates
-    for(var i = 0; i < this.filter.length; i++){
-      if(this.filter[i].fieldName === fieldName){
+    // Check for duplicates
+    for (let i = 0; i < this.filter.length; i++) {
+      if (this.filter[i].fieldName === fieldName) {
         filterFound = true;
         this.filter[i].fieldHeader = fieldHeader;
         this.filter[i].fieldValue = fieldValue;
@@ -69,20 +69,20 @@ export class QueryParameters {
       }
     }
 
-    if(!filterFound){
-      this.filter.push(new FilterEntry(fieldHeader, fieldName,operator, fieldValue));
+    if (!filterFound) {
+      this.filter.push(new FilterEntry(fieldHeader, fieldName, operator, fieldValue));
     }
   }
 
   public addFilters(filters: Array<FilterEntry>) {
-    if(this.filter == null){
+    if (this.filter == null) {
       this.filter = new Array<FilterEntry>();
     }
     this.filter.concat(filters);
   }
 
-  public addSort(fieldName:string,sortBy:SortType){
-    if(this.sort == null){
+  public addSort(fieldName: string, sortBy: SortType) {
+    if (this.sort == null) {
       this.sort = new Map<string, SortType>();
     }
 
