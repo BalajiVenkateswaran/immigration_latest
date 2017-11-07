@@ -10,6 +10,10 @@ import { ActionIcons } from '../../framework/smarttable/cellRenderer/ActionsIcon
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as FileSaver from 'file-saver';
 import {HeaderService} from "../../common/header/header.service";
+//dropfile code
+import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
+import { environment } from '../../../../environments/environment';
+//dropfile code end
 import {FileUtils} from "../../common/FileUtils";
 export interface ConfirmModel {
     title: string;
@@ -26,6 +30,9 @@ export interface ConfirmModel {
 })
 export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     warningMessage: boolean;
+    //dropfile code
+    public uploader: FileUploader;
+    //dropfile code end
     private message: string;
     private user: any;
     private accountId;
@@ -85,6 +92,11 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
 
     files = [];
     ngOnInit() {
+        //dropdown code
+        this.uploader = new FileUploader({
+            url: environment.appUrl + '/file/upload/entityId/' + this.appService.petitionId + '/entityType/PETITION/org/' + this.headerService.selectedOrg['orgId']
+        });
+        //dropdown code end
         this.route.params.subscribe(params => {
             if (params['clientId'] == "") {
                 this.documentservice.getOrgNames(this.headerService.user.userId).subscribe((res) => {
