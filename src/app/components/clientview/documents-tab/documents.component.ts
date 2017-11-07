@@ -32,6 +32,8 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     warningMessage: boolean;
     //dropfile code
     public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
+  public hasAnotherDropZoneOver = false;
     //dropfile code end
     private message: string;
     private user: any;
@@ -89,6 +91,14 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         }
     }
 
+
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  public fileOverAnother(e: any): void {
+    this.hasAnotherDropZoneOver = e;
+  }
 
     files = [];
     ngOnInit() {

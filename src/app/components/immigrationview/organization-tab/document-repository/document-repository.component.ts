@@ -35,6 +35,8 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   public getData: boolean = true;
   public editFiles: boolean;
   public editFileObject: any = {};
+  public hasBaseDropZoneOver = false;
+  public hasAnotherDropZoneOver = false;
   constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http,
     public appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
@@ -89,6 +91,14 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
         }
       });
   }
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  public fileOverAnother(e: any): void {
+    this.hasAnotherDropZoneOver = e;
+  }
+
   highlightSBLink(link) {
     this.appService.currentSBLink = link;
   }

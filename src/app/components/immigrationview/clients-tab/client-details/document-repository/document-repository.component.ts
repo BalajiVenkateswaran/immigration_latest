@@ -30,6 +30,8 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     warningMessage: boolean;
     private message: string;
     public uploader: FileUploader;
+    public hasBaseDropZoneOver = false;
+    public hasAnotherDropZoneOver = false;
     private user: User;
     private accountId;
     public settings;
@@ -89,6 +91,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         }
 
     }
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  public fileOverAnother(e: any): void {
+    this.hasAnotherDropZoneOver = e;
+  }
     onDeleteClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
