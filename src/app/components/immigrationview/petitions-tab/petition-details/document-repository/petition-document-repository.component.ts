@@ -39,6 +39,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     public settings;
     public getFiles;
     public fileName;
+    public noOfFiles;
     private accountId;
     warningMessage: boolean;
     private message: string;
@@ -220,6 +221,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                         data[i]['orderNo'] = i + 1;
                     }
                     this.getFiles = data;
+                    this.noOfFiles = this.getFiles.length;
                     console.log(this.getFiles);
                 }
             });
