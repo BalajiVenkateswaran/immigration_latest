@@ -12,6 +12,7 @@ import { SortType } from "../../../framework/smarttable/types/query-parameters";
 import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { environment } from '../../../../../environments/environment';
 import {FileUtils} from "../../../common/FileUtils";
+import {DatePipe} from '@angular/common';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -30,7 +31,6 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   public uploader: FileUploader;
   private message: string;
   private accountId;
-  public settings;
   public getFiles;
   public getData: boolean = true;
   public editFiles: boolean;
@@ -38,44 +38,9 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   public hasBaseDropZoneOver = false;
   public hasAnotherDropZoneOver = false;
   constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http,
-    public appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
+    public appService: AppService, public dialogService: DialogService, private headerService: HeaderService, private datePipe: DatePipe) {
     super(dialogService);
     this.accountId = this.headerService.user.accountId;
-    this.settings = {
-      'pagination': false,
-      'isDeleteEnable': false,
-      'isAddButtonEnable': false,
-      'rowHeight': 60,
-      'context': {
-        'componentParent': this
-      },
-      'sort' : [{
-        headingName: "updatedDate",
-        sort: SortType.DESC
-      }],
-      'columnsettings': [
-        {
-          headerName: "Actions",
-          cellRendererFramework: ActionIcons,
-          width: 80
-        },
-        {
-          headerName: "SL No",
-          field: "orderNo",
-          width: 50
-        },
-        {
-          headerName: "File Name",
-          field: "fileName",
-        },
-        {
-
-          headerName: "Uploaded Date",
-          field: "updatedDate",
-          width: 100
-        }
-      ]
-    }
   };
   onDeleteClick(event) {
     this.dialogService.addDialog(ConfirmComponent, {
@@ -83,7 +48,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
       message: 'Are you sure you want to delete ' + event.data.fileName + ' ?'
     })
       .subscribe((isConfirmed) => {
-        //Get dialog result
+        // Get dialog result
         if (isConfirmed) {
           this.organizationdocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
             this.getFilesList();
@@ -101,38 +66,6 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
 
   highlightSBLink(link) {
     this.appService.currentSBLink = link;
-  }
-  fileUpload(event) {
-    let fileList: FileList = event.target.files;
-    let file: File = fileList[0];
-    let formData: FormData = new FormData();
-    var fileName = file.name;
-    let fileExists = this.isfileExists(file);
-    if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
-      formData.append('file', file, file.name);
-      this.organizationdocumentrepositoryService.uploadFile(this.headerService.selectedOrg['orgId'], formData)
-        .subscribe(
-        res => {
-          this.getFilesList();
-        }
-        );
-
-    }
-    else {
-      if (fileExists == true) {
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Error..!',
-          message: 'File already exists'
-        });
-      }
-      else {
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Error..!',
-          message: 'Please upload only PDF file'
-        });
-      }
-    }
-
   }
 
   onReplaceClick(event) {
@@ -184,8 +117,46 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   }
   ngOnInit() {
     this.uploader = new FileUploader({
-      url: environment.appUrl + '/file/upload/entityId/' + this.appService.petitionId + '/entityType/PETITION/org/' + this.headerService.selectedOrg['orgId']
+      url: environment.appUrl + '/file/upload/entityId/' + this.headerService.selectedOrg['orgId'] + '/entityType/ORGANIZATION/org/' + this.headerService.selectedOrg['orgId']
     });
+    // Check if the file extension as PDF, if not don't upload the file
+    this.uploader.onAfterAddingFile = (fileItem) => {
+      if (!FileUtils.checkFileExtension(fileItem.file.name)) {
+        fileItem.remove();
+        this.dialogService.addDialog(ConfirmComponent, {
+          title: 'Error..!',
+          message: 'Please upload only PDF file'
+        });
+      } else if (this.isfileExists(fileItem.file)) {
+        fileItem.remove();
+        this.dialogService.addDialog(ConfirmComponent, {
+          title: 'Error..!',
+          message: 'A file already exists with name ' + fileItem.file.name
+        });
+      } else {
+        fileItem.upload();
+      }
+    };
+
+    // On Successful upload add the file to Uploaded files list
+    this.uploader.onSuccessItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
+      if (response) {
+        let jsonResponse = JSON.parse(response);
+        if (jsonResponse.hasOwnProperty('statusCode')) {
+          if (jsonResponse['statusCode'] === 'SUCCESS') {
+            this.getFiles.push({
+              fileId: jsonResponse['fileId'],
+              fileName: item.file.name,
+              orderNo: this.getFiles.length,
+              updatedDate: this.datePipe.transform(new Date(), 'mm-dd-yyyy')
+            });
+            item.remove();
+          } else {
+
+          }
+        }
+      }
+    };
     this.getFilesList();
   }
   getFilesList() {

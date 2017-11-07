@@ -3,15 +3,16 @@ import { AppService } from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ClientDocumentRepositoryService } from "./document-repository.service";
-import { Http, Headers, RequestOptions, Response } from "@angular/http";
+import { ClientDocumentRepositoryService } from './document-repository.service';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import * as FileSaver from 'file-saver';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {SortType} from "../../../../framework/smarttable/types/query-parameters";
-import { HeaderService } from "../../../../common/header/header.service";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+import {SortType} from '../../../../framework/smarttable/types/query-parameters';
+import { HeaderService } from '../../../../common/header/header.service';
 import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { environment } from '../../../../../../environments/environment';
-import {FileUtils} from "../../../../common/FileUtils";
+import {FileUtils} from '../../../../common/FileUtils';
+import {DatePipe} from '@angular/common';
 
 export interface ConfirmModel {
     title: string;
@@ -36,60 +37,25 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     private accountId;
     public settings;
     public data;
-    public getFiles;
-    public getData: boolean = true;
+    public getFiles = [];
+    public getData = true;
     public editFiles: boolean;
     public editFileObject: any = {};
-    public editFlag: boolean = true;
+    public editFlag = true;
     public beforeEdit: any;
-    public progress: number = 0;
-    public progessBarDiv:boolean=false;
-    public uploadArray=[];
-    public circularProgess:number=0;
+    public progress = 0;
+    public progessBarDiv= false;
+    public uploadArray= [];
+    public circularProgess= 0;
     public selectedindex: number;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http,
-        public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
+        public appService: AppService, public dialogService: DialogService, public headerService: HeaderService, private datePipe: DatePipe) {
         super(dialogService);
         if (this.headerService.user) {
             this.user = this.headerService.user;
         }
-        this.circularProgess=50;
+        this.circularProgess = 50;
         this.accountId = this.user.accountId;
-        this.settings = {
-            'pagination': false,
-            'isDeleteEnable': false,
-            'isAddButtonEnable': false,
-            'rowHeight': 60,
-            'context': {
-                'componentParent': this
-            },
-            'sort' : [{
-              headingName: "updatedDate",
-              sort: SortType.DESC
-            }],
-            'columnsettings': [
-                {
-                    headerName: "Actions",
-                    cellRendererFramework: ActionIcons,
-                    width: 80
-                },
-                {
-                    headerName: "SL No",
-                    field: "orderNo",
-                    width: 50
-                },
-                {
-                    headerName: "File Name",
-                    field: "fileName",
-                },
-                {
-                    headerName: "Uploaded Date",
-                    field: "updatedDate",
-                    width: 100
-                }
-            ]
-        }
-
     }
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -104,7 +70,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             message: 'Are you sure you want to delete ' + event.data.fileName + ' ?'
         })
             .subscribe((isConfirmed) => {
-                //Get dialog result
+                // Get dialog result
                 if (isConfirmed) {
                     this.clientdocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
                         this.getFilesList();
@@ -116,61 +82,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         this.appService.currentSBLink = link;
     }
 
-    fileUpload(event) {
-
-        let fileList: FileList = event.target.files;
-        let file: File = fileList[0];
-        var fileName = file.name;
-        let fileExists = this.isfileExists(file);
-
-        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
-            this.uploadArray.push({'name':fileName});
-            let formData: FormData = new FormData();
-            formData.append('file', file, file.name);
-             let that = this;
-                    let interval = setInterval(function () {
-                        that.progress += 10;
-                        that.progessBarDiv=true;
-                        if (that.progress >= 100) {
-                            that.progress=100;
-                            clearInterval(interval);
-                            if (that.progress == 100) {
-                                that.progessBarDiv = false;
-                            }
-                        }
-                    },200)
-            this.clientdocumentrepositoryService.uploadFile(this.appService.clientId, this.headerService.selectedOrg['orgId'], formData)
-                .subscribe(
-
-                res => {
-
-                    if (res['statusCode'] == 'SUCCESS') {
-                        this.getFilesList();
-                    }
-                }
-                );
-        }
-        else {
-            if (fileExists == true) {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'File already exists'
-                });
-            }
-            else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Please upload only PDF file'
-                });
-            }
-        }
-
-
-    }
     isfileExists(file) {
-        let fileExists: boolean = false;
+        let fileExists = false;
         this.getFiles.filter(item => {
-            if (file.name == item.fileName) {
+            if (file.name === item.fileName) {
                 fileExists = true;
             }
         });
@@ -180,7 +95,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     onReplaceClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var fileName = this.getFiles[this.selectedindex].fileName;
+        let fileName = this.getFiles[this.selectedindex].fileName;
         let fileExists = this.isfileExists(file);
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
@@ -218,14 +133,52 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     onDownloadClick(event) {
         this.clientdocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
             (data => this.downloadFiles(data, event.data.fileName)),
-            error => console.log("Error Downloading....");
-        () => console.log("OK");
+            error => console.log('Error Downloading....');
+        () => console.log('OK');
 
     }
     ngOnInit() {
        this.uploader = new FileUploader({
-            url: environment.appUrl + '/file/upload/entityId/' + this.appService.petitionId + '/entityType/PETITION/org/' + this.headerService.selectedOrg['orgId']
+            url: environment.appUrl + '/file/upload/entityId/' + this.appService.clientId + '/entityType/CLIENT/org/' + this.headerService.selectedOrg['orgId']
         });
+       // Check if the file extension as PDF, if not don't upload the file
+      this.uploader.onAfterAddingFile = (fileItem) => {
+        if (!FileUtils.checkFileExtension(fileItem.file.name)) {
+          fileItem.remove();
+          this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Error..!',
+            message: 'Please upload only PDF file'
+          });
+        } else if (this.isfileExists(fileItem.file)) {
+          fileItem.remove();
+          this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Error..!',
+            message: 'A file already exists with name ' + fileItem.file.name
+          });
+        } else {
+          fileItem.upload();
+        }
+      };
+
+      // On Successful upload add the file to Uploaded files list
+      this.uploader.onSuccessItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
+        if (response) {
+          let jsonResponse = JSON.parse(response);
+          if (jsonResponse.hasOwnProperty('statusCode')) {
+            if (jsonResponse['statusCode'] === 'SUCCESS') {
+              this.getFiles.push({
+                fileId: jsonResponse['fileId'],
+                fileName: item.file.name,
+                orderNo: this.getFiles.length,
+                updatedDate: this.datePipe.transform(new Date(), 'mm-dd-yyyy')
+              });
+              item.remove();
+            } else {
+
+            }
+          }
+        }
+      };
 
         this.getFilesList();
     }
@@ -233,10 +186,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     getFilesList() {
         this.clientdocumentrepositoryService.getFile(this.appService.clientId)
             .subscribe((res) => {
-                if (res != undefined) {
-                    console.log("filesGetmethod%o", res);
+                if (res !== undefined) {
+                    console.log('filesGetmethod%o', res);
                     let data = res['files'];
-                    for (var i = 0; i < data.length; i++) {
+                    for (let i = 0; i < data.length; i++) {
                         data[i]['orderNo'] = i + 1;
                     }
                     this.getFiles = data;
@@ -247,13 +200,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     }
 
     downloadFiles(data: any, fileName) {
-        var blob = new Blob([data], {
+        let blob = new Blob([data], {
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
     }
     editFileName(event) {
-        this.selectedindex=event.rowIndex;
+        this.selectedindex = event.rowIndex;
         if (event.colDef.headerName != 'Actions') {
             this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
             this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
@@ -264,21 +217,21 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
             }).subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    var fileName = this.editFileObject.fileName.concat(".pdf");
+                    let fileName = this.editFileObject.fileName.concat('.pdf');
                     event.data.fileName = fileName;
-                    var url = "/file/rename";
-                    var data = {
-                        "accountId": this.accountId,
-                        "orgId": this.headerService.selectedOrg['orgId'],
-                        "fileId": event.data.fileId,
-                        "fileName": fileName
+                    let url = '/file/rename';
+                    let data = {
+                        'accountId': this.accountId,
+                        'orgId': this.headerService.selectedOrg['orgId'],
+                        'fileId': event.data.fileId,
+                        'fileName': fileName
                     };
                     this.clientdocumentrepositoryService.renameFile(url, data).subscribe(
                         res => {
                             if (res['statusCode'] == 'SUCCESS') {
                                 this.getFilesList();
                             }
-                            if (res['statusDescription'] == "File Name Exists, Use a different Name") {
+                            if (res['statusDescription'] == 'File Name Exists, Use a different Name') {
                                 this.dialogService.addDialog(ConfirmComponent, {
                                     title: 'Error..!',
                                     message: 'File with same name exists, please use a different name'
@@ -286,8 +239,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                             }
                         }
                     );
-                }
-                else {
+                } else {
                     this.editFileObject.fileName = event.data.fileName;
                 }
             });
@@ -296,8 +248,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     save() {
         if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
             this.warningMessage = true;
-        }
-        else {
+        } else {
             this.warningMessage = false;
             this.result = true;
             this.close();
@@ -310,7 +261,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     }
     onFileUploadClick(file) {
         file.value = null;
-        this.progress=0;
-        this.uploadArray=[];
+        this.progress = 0;
+        this.uploadArray = [];
     }
 }

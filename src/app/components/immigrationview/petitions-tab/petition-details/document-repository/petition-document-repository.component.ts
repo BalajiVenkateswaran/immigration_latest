@@ -36,8 +36,6 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     public uploader: FileUploader ;
     public hasBaseDropZoneOver = false;
     public hasAnotherDropZoneOver = false;
-    public data;
-    public settings;
     public getFiles = [];
     public fileName;
     public noOfFiles;
@@ -65,7 +63,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         this.uploader = new FileUploader({
           url: environment.appUrl + '/file/upload/entityId/' + this.appService.petitionId + '/entityType/PETITION/org/' + this.headerService.selectedOrg['orgId']
         });
-
+        // Check if the file extension as PDF, if not don't upload the file
         this.uploader.onAfterAddingFile = (fileItem) => {
           if (!FileUtils.checkFileExtension(fileItem.file.name)) {
             fileItem.remove();
@@ -73,12 +71,18 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
               title: 'Error..!',
               message: 'Please upload only PDF file'
             });
+          } else if (this.isfileExists(fileItem.file)) {
+            fileItem.remove();
+            this.dialogService.addDialog(ConfirmComponent, {
+              title: 'Error..!',
+              message: 'A file already exists with name ' + fileItem.file.name
+            });
           } else {
             fileItem.upload();
           }
         };
 
-
+      // On Successful upload add the file to Uploaded files list
         this.uploader.onSuccessItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
           if (response) {
             let jsonResponse = JSON.parse(response);
@@ -120,39 +124,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
-    fileUpload(event) {
-        let fileList: FileList = event.target.files;
-        let file: File = fileList[0];
-        let formData: FormData = new FormData();
-        let fileName = file.name;
-        let fileExists = this.isfileExists(file);
-        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
-
-            formData.append('file', file, file.name);
-            this.petitiondocumentrepositoryService.uploadFile(this.appService.petitionId, this.headerService.selectedOrg['orgId'], formData)
-                .subscribe(
-                res => {
-                    this.getFilesList();
-                }
-                );
-
-        } else {
-            if (fileExists === true) {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'File already exists'
-                });
-            } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Please upload only PDF file'
-                });
-            }
-        }
-
-    }
-
-    onReplaceFile(event, data) {
+     onReplaceFile(event, data) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         let fileName = file.name;
