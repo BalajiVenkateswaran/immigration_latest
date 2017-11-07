@@ -141,6 +141,7 @@ import { webFeaturesComponent } from './components/common/website/features/featu
 import { webGetinTouchComponent } from './components/common/website/get-in-touch/get-in-touch.component';
 import { webFaqComponent } from './components/common/website/faqs/faqs.component';
 import {PetitionDetailsNewComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-new/petition-details-new.component';
+import {PetitionDetails2ColumnComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-2column/petition-details.component';
 
 export const appRoutes: Routes = [
     {
@@ -299,8 +300,12 @@ export const appRoutes: Routes = [
         component: PetitionDetailsComponent
     },
     {
-      path: 'immigrationview-petition-details-new',
-      component: PetitionDetailsNewComponent
+        path: 'immigrationview-petition-details-new',
+        component: PetitionDetailsNewComponent
+    },
+    {
+        path: 'immigrationview-petition-details-2column',
+        component: PetitionDetails2ColumnComponent
     },
     {
         path: 'immigrationview-petition-notes',

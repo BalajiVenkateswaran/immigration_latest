@@ -339,6 +339,9 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
 import {PetitionDetailsNewComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-new/petition-details-new.component';
 import {PetitionDetailsNewService} from './components/immigrationview/petitions-tab/petition-details/petition-details-new/petition-details-new.service';
 
+import {PetitionDetails2ColumnComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-2column/petition-details.component';
+import {PetitionDetails2ColumnService} from './components/immigrationview/petitions-tab/petition-details/petition-details-2column/petition-details.service';
+
 @NgModule({
     imports: [
         FileUploadModule,
@@ -400,6 +403,7 @@ import {PetitionDetailsNewService} from './components/immigrationview/petitions-
         ClientDetailsComponent,
         PetitionDetailsComponent,
         PetitionDetailsNewComponent,
+        PetitionDetails2ColumnComponent,
         ImmigrationviewQuestionnaireComponent,
         FormsComponent,
         OrganizationDocumentRepositoryComponent,
@@ -553,6 +557,7 @@ import {PetitionDetailsNewService} from './components/immigrationview/petitions-
         ImmigrationViewClientDetailsService,
         PetitionDetailsService,
         PetitionDetailsNewService,
+        PetitionDetails2ColumnService,
         JobdetailsService,
         loginService,
         QuestionnaireCommonService,

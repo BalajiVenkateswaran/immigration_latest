@@ -7,15 +7,16 @@
         </ul>
         <div class="clearfix"></div>
         <!--<h2>Documents</h2>-->
-        <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
+        <!--<form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
             <div class="pull-right uplodbtn">
                 <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
                     <span>Upload File</span>
                     <input type="file" #fileInput class="upload" name="file" (click)="onFileUploadClick(fileInput)" (change)="fileUpload($event)" />
                 </div>
             </div>
+        </form>-->
             <ih-smart-table class="clientViewDocRepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></ih-smart-table>
-        </form>
+        
         <div class="clearfix"></div>
     </div>
 </div>

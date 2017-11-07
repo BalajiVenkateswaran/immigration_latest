@@ -2045,7 +2045,7 @@ header {
 .styled-select select:last-child {
                margin-right:10px !important;
                }
-.newFormDesign {
+.newFormDesign, .new2columnformDesign {
     background:#fff;
     border:solid 1px #ccc;
     padding:50px;
@@ -2106,6 +2106,128 @@ header {
     }
 
     
+}
+.new2columnformDesign {
+    padding:15px !important;
+    background:#fff;
+    border:solid 1px #ccc;
+    padding:50px;
+    width:100%;
+
+    .title {
+        h2 {
+            background:none !important;
+            font-size: 18px;
+                color: #232f3f !important;
+                font-weight: 300;
+                margin:0px 0 10px 0;
+                padding:0px;
+                text-transform:uppercase;
+                border:none;
+        }
+    }
+    .inputBox {
+        b {
+            font-weight:400 !important;
+        }
+        label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400 !important;
+    }
+
+        span, input, textarea, select {
+        border:solid 1px #c1bdbd;
+        color:#333;
+        background:#f6f7fa;
+        font-size:14px;
+        padding:8px 3px 5px 7px;
+        margin-bottom:25px;
+        width:100%;
+        float: left;
+        min-height: 35px;
+    }
+        input:disabled {
+            background:#e6e6e7;
+            cursor:not-allowed;
+            }
+
+        .mydp {
+                border: solid 1px #c7c5c6;
+                margin: 0 0 6px 0;
+                border-radius: 4px;
+                .selectiongroup {
+                    background:none !important;
+                        height: 30px !important;
+                    .selection {
+                                width: 100%;
+                @include border-radius(4px);
+                /*border: solid 1px;
+                border-color: rgba(255, 255, 255, 0.5);
+                background:red !important;*/
+                padding: 3px 4px 2px 5px;
+                color: #585155;
+                font-weight: 500 !important;
+                font-size: 14px !important;
+                /*background: rgba(255, 255, 255, 0.1);*/
+                height: 30px;
+                margin-bottom: 12px;
+
+                height: 34px !important;
+    line-height: 20px !important;
+    font-size: 14px !important;
+    border: none !important;
+    padding-right: 30px !important;
+    float: left !important;
+            }
+
+                    button {
+                        background:none;
+                        span {
+                            margin-bottom:0px;
+                            line-height: 24px !important;
+                            margin-top: 0px !important;
+                            padding: 6px 4px;
+                        }
+                    }
+                }
+                .selector {
+                    table.caltable {
+                        td.daycell  {
+                            div.currmonth, div.prevmonth, div.nextmonth {
+                                span {
+                                    margin-bottom:0px !important;
+                                    height:auto !important;
+                                }
+                            }
+                            div.currmonth {
+                                span {
+                                    color:#036 !important;
+                                }
+                                span.currday {
+                                    background: green;
+                                    color: #fff !important;
+                                    text-decoration: none;
+                                }
+                            }
+                        }
+                        td.selectedday {
+                            div {
+                                border:none;
+                            }
+                            div.currmonth {
+                                span {
+                                    background:#036 !important;
+                                    border-color:#036 !important;
+                                    color:#fff !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
 }
 .example-form {
   min-width: 150px;
