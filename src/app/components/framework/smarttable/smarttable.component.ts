@@ -98,15 +98,6 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         console.log('ngOnChanges %o', this.settings);
 
-        for (let propName in changes) {
-          if (changes.hasOwnProperty(propName)) {
-              console.log('PropName:%o, First Change:%o, currentValue: %o, previousValue: %o', propName, changes[propName].isFirstChange(),
-              changes[propName].currentValue, changes[propName].previousValue);
-          }
-        }
-
-
-
         if (changes['settings']) {
             console.log('Settings are changed');
             this.prepareSettings();

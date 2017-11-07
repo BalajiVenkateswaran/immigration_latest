@@ -1,4 +1,4 @@
-export class PaginationMetadata{
+export class PaginationMetadata {
   public pageSize: number;
   public totalElements: number;
   public totalPages: number;
