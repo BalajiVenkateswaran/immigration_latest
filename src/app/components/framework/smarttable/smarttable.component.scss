@@ -119,12 +119,17 @@ $dateColumnWidth:110px;
 
 .addedfilter {
   background: #5093e1 !important;
-  padding: 1px 7px;
+ padding: 0px 0px 3px 8px;
   border-radius: 30px;
   color: #fff;
   font-size: 14px;
   margin: 0px 7px 5px 0;
   float: left;
+    .close{
+    color: #fff;
+    opacity: unset;
+    font-size: 17px;
+      }
 }
 .addedfilter .filtretype {
     font-weight: 600;
