@@ -1,9 +1,9 @@
-<div class="main-content" *ngIf="getData">
+<!--<div class="main-content" *ngIf="getData">
     <div class="table-data">
         <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h2>
 
         <div class="clearfix"></div>
-        <!--<h2>Document Repository</h2>-->
+        <h2>Document Repository</h2>
         <form method="POST" enctype="multipart/form-data">
             <div class="pull-right uplodbtn">
                 <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
@@ -22,6 +22,68 @@
         </form>
         <div class="clearfix"></div>
     </div>
+</div>-->
+<div class="dropzone">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Upload Files</h3>
+      <div class="dropboxBg">
+        <div ng2FileDrop
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+             (fileOver)="fileOverBase($event)"
+             [uploader]="uploader"
+             class="well my-drop-zone">
+          <input type="file" class="custom-file-input" ng2FileSelect [uploader]="uploader" multiple /> from computer. Or Drop them Here.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <h3 *ngIf="uploader.queue.length > 0">Upload queue {{ uploader?.queue?.length }}</h3>
+      <table class="table" *ngIf="uploader.queue.length > 0">
+        <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <td>{{ item?.file?.name }}</td>
+            <td>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+            <td>
+              <div class="progress" style="margin-bottom: 0;">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Uploaded Files</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Updated On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pdf of getFiles" (Click)="editFileName($event)">
+            <td>{{ pdf.fileName }}</td>
+            <td>{{ pdf.updatedDate }}</td>
+            <td nowrap>
+              <button title="Download" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
+                <i class="fa fa-download" aria-hidden="true"></i>
+              </button>
+              <div class="fileUpload">
+                <div>
+                  <i class="fa fa-files-o" aria-hidden="true"></i>
+                </div>
+                <input type="file" #fileInput (change)="onReplaceFile($event, pdf)" class="upload" name="file" />
+              </div>
+              <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 <div *ngIf="editFiles">
     <div class="modal-dialog" ngDraggable>
