@@ -17,29 +17,20 @@ export interface formControl {
   name: string;
   value: FormControl;
 }
-export interface ConfirmModel {
-  title: string;
-  message: string;
-  showAddCVClientpopup: boolean;
-  getCVClientData: boolean;
-  newCVClientitem: Object;
 
-}
 
 @Component({
   selector: 'app-client-details',
   templateUrl: './client-details.component.html',
   styleUrls: ['./client-details.component.sass']
 })
-export class ClientDetailsComponent extends DialogComponent<ConfirmModel, boolean>  implements OnInit {
+export class ClientDetailsComponent  implements OnInit {
 
   private clientdetailsList: any;
   private client: any = {};
 
   public getCVClientData=true;
-  public settings;
-  public data;
-  public paginationData;
+
 
   public editUser: FormGroup; // our model driven form
   private fieldsList: clientdetails[];
@@ -69,88 +60,47 @@ export class ClientDetailsComponent extends DialogComponent<ConfirmModel, boolea
   constructor(private ClientDetailsService: ClientDetailsService,
     private formBuilder: FormBuilder, private parserFormatter: NgbDateParserFormatter,
     public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService,public dialogService: DialogService) {
-    super(dialogService);
+
     if (this.headerService.user) {
       this.user = this.headerService.user;
     }
 
-    this.settings = {
-      'columnsettings': [
-        {
-          headerName: 'File Number',
-          field: 'fileNumber'
-        },
-        {
-          headerName: 'Email',
-          field: 'email'
-        },
-        {
-          headerName: 'First Name',
-          field: 'firstName'
-        },
-        {
-          headerName: 'Last Name',
-          field: 'lastName'
-        },
-        {
-          headerName: 'Email Address',
-          field: 'email'
-        },
-        {
-          headerName: 'Phone Number',
-          field: 'phoneNumber'
-        }
-
-
-      ]
-    }
   }
-  getClientsData(){
+
+   ngOnInit() {
     this.headerService.showSideBarMenu("clientView-client", "clientview-client-details");
-    this.clientDetailsService.getClientDetails(this.headerService.user.userId)
+     this.clientDetailsService.getClientDetails(this.user.userId)
       .subscribe((res) => {
-        this.data = res['clientDetails'];
-      });
-  }
+         if (res['clientDetails']) {
+          this.clientDetails = res['clientDetails'];
 
-  ngOnInit(){
-    this.getClientsData();
-  }
+           console.log(this.clientDetails);
 
-  // ngOnInit() {
-  //   this.headerService.showSideBarMenu("clientView-client", "clientview-client-details");
-  //   this.clientDetailsService.getClientDetails(this.user.userId)
-  //     .subscribe((res) => {
-  //       if (res['clientDetails']) {
-  //         this.clientDetails = res['clientDetails'];
-  //
-  //         console.log(this.clientDetails);
-  //
-  //         this.appService.firstName = res['clientDetails'].firstName;
-  //         this.appService.lastName = res['clientDetails'].lastName;
-  //         this.mapToClientProfile();
-  //         this.mapToClientPersonalInfo();
-  //       }
-  //       if (res['client']) {
-  //         this.client = res['client'];
-  //       }
-  //       this.isProfileEdit = true;
-  //       this.isPersonalInfoEdit = true;
-  //     });
-  //
-  //   this.status = [
-  //     {value: 'Active', name: 'Active'},
-  //     {value: 'Inactive', name: 'Inactive'},
-  //     {value: 'Mark for Deletion', name: 'Mark for Deletion'}
-  //   ]
-  //   this.gender = [
-  //     {value: '0', name: 'Male'},
-  //     {value: '1', name: 'Female'}
-  //
-  //   ]
-  //   this.creationDate = this.clientDetails.creationDate;
-  //   this.dateOfBirth = this.clientDetails.dateOfBirth;
-  // }
+           this.appService.firstName = res['clientDetails'].firstName;
+           this.appService.lastName = res['clientDetails'].lastName;
+           this.mapToClientProfile();
+           this.mapToClientPersonalInfo();
+         }
+         if (res['client']) {
+        this.client = res['client'];
+        }
+        this.isProfileEdit = true;
+         this.isPersonalInfoEdit = true;
+       });
+
+     this.status = [
+       {value: 'Active', name: 'Active'},
+       {value: 'Inactive', name: 'Inactive'},
+       {value: 'Mark for Deletion', name: 'Mark for Deletion'}
+     ]
+     this.gender = [
+       {value: '0', name: 'Male'},
+       {value: '1', name: 'Female'}
+
+     ]
+     this.creationDate = this.clientDetails.creationDate;
+     this.dateOfBirth = this.clientDetails.dateOfBirth;
+   }
 
   onDateChanged(event: IMyDateModel) {
 
