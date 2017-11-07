@@ -8,7 +8,9 @@ import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import * as FileSaver from 'file-saver';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {SortType} from "../../../framework/smarttable/types/query-parameters";
+import { SortType } from "../../../framework/smarttable/types/query-parameters";
+import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
+import { environment } from '../../../../../environments/environment';
 import {FileUtils} from "../../../common/FileUtils";
 export interface ConfirmModel {
   title: string;
@@ -25,6 +27,7 @@ export interface ConfirmModel {
 })
 export class OrganizationDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   warningMessage: boolean;
+  public uploader: FileUploader;
   private message: string;
   private accountId;
   public settings;
@@ -170,6 +173,9 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
 
   }
   ngOnInit() {
+    this.uploader = new FileUploader({
+      url: environment.appUrl + '/file/upload/entityId/' + this.appService.petitionId + '/entityType/PETITION/org/' + this.headerService.selectedOrg['orgId']
+    });
     this.getFilesList();
   }
   getFilesList() {
