@@ -79,10 +79,10 @@
           </div>
           <div class="row sfm" *ngIf="isProfileEdit==false && phoneNumber != null && phoneNumber.errors">
             <div class="col-md-12">
-              <div class="redstar" *ngIf="phoneNumber.errors.required">
+              <div class="redstar" *ngIf="phoneNumber.errors != null && phoneNumber.errors.required">
                 * Phone Number is required
               </div>
-              <div class="redstar" *ngIf="phoneNumber.errors.pattern">
+              <div class="redstar" *ngIf="phoneNumber.errors != null && phoneNumber.errors.pattern">
                 * Invalid Phone Number
               </div>
             </div>
