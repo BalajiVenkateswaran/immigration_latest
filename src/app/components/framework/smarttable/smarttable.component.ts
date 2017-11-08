@@ -283,7 +283,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         } else {
-            this.gridOptions['rowHeight'] = 60;
+            this.gridOptions['rowHeight'] = 55;
         }
         this.gridOptions['columnDefs'] = this.settings['columnsettings'];
     }

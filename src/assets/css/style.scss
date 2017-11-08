@@ -1670,7 +1670,7 @@ float:right;
 
 .topstripNew {
     width:100%;
-    height:70px;
+    height:60px;
     background:#232f3f;
     border-bottom:solid 1px #ccc;
 }
@@ -1680,7 +1680,7 @@ float:right;
 }
 .tabsMenu {
     background:#f6f7fa;
-    height:95px;
+    height:75px;
     width:100%;
 	-webkit-box-shadow: 0 5px 3px -3px #dcdada;
 	   -moz-box-shadow: 0 5px 3px -3px #dcdada;
@@ -1689,12 +1689,12 @@ float:right;
 }
 header {
     background:none !important;
-    height:176px;
+    /*height:176px;*/
     display: block;
     .logo {
         display: block;
         float: left;
-        margin:10px 0 0 0px;
+        margin:5px 0 0 0px !important;
     }
 
     .ico-edit {
@@ -1712,13 +1712,13 @@ header {
     }
 .datails-holder-name {
     display: inline-block;
-    margin: 0px 0px 0px 30px;
-    padding: 28px 20px 0px;
+        margin: 0px 0px 0px 20px !important;
+    padding: 26px 20px 25px !important;
     border-radius: 0px;
     text-align: left;
     border-left: solid 1px #fff;
     border-right: solid 1px #fff;
-    height: 70px;
+        height: 60px;
         div {
             display: inline-block;
             color: $White;
@@ -1747,7 +1747,7 @@ header {
         }
     }
     .profile-container {
-        padding: 12px 0;
+           padding: 7px 0 !important;
         display: block;
         margin: 0;
         .profile {
@@ -1844,7 +1844,7 @@ header {
         }
     }
         ul {
-            margin:15px 0 0 0;
+                margin: 0px 0 0 0 !important;
             padding: 0px;
             display: block;
             /*display: flex;
@@ -1997,11 +1997,11 @@ header {
     float:left;
 
     h2 {
-        font-size:30px;
-        color:#333;
-        font-weight:300;
-        display:block;
-        margin:15px 0;
+           font-size: 25px;
+    color: #333;
+    font-weight: 300;
+    display: block;
+    margin: 9px 0;
     }
     .filters {
         font-size:14px;
