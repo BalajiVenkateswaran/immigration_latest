@@ -374,7 +374,7 @@ section {
         }
         .editbtn {
             float: right;
-            margin:-50px 0 0 0;
+            margin:0px 0 0 0;
             width: 80px;
             height: 30px;
             border: solid 1px #e0e0e0;
@@ -498,20 +498,21 @@ section {
             }
         }
         .addresbox {
-            //border: solid 1px #44474e;
-            @include border-radius(5px);
+            border: solid 1px #e3e3e4;
+            //@include border-radius(5px);
             /*border-color: rgba(255, 255, 255, 0.3);*/
             padding:0px 20px 15px;
             /*min-height: 459px;*/
             background:#fff;
             margin-bottom: 25px;
-            box-shadow:5px 5px 3px #ddd;
+            box-shadow:0px 0px 5px #ddd;
+            border-radius:0px !important;
 
             .row {
                 .col-md-8 {
                     span {
                         width: 100%;
-                border-radius:1px;
+                border-radius:0px;
                border: solid 1px #dfdddd;
                 padding: 3px 4px 2px 5px;
                 background:#f6f7fa;
@@ -551,15 +552,16 @@ section {
             textarea,
             select{
                 width: 100%;
-                @include border-radius(4px);
-                border: solid 1px #c7c5c6;
+                border-radius:0px;
+                border: solid 1px #dddbdc;
+                background:#f6f7fa;
                 /*border-color: rgba(255, 255, 255, 0.5);*/
                 padding: 3px 4px 2px 5px;
                 color: #585155;
                 font-weight: 500;
                 font-size: 14px;
                 /*background: rgba(255, 255, 255, 0.1);*/
-                height: 30px;
+                height: 35px;
                 margin-bottom: 12px;
                 option {
                     color: $Black;
@@ -569,6 +571,11 @@ section {
             input:read-only {
                 background: rgba(0, 0, 0, 0.1);
                 border: transparent;
+            }
+            input[disabled] {
+                border: solid 1px #c1c1c1;
+                background:#dededf;
+                cursor:not-allowed;
             }
             select.custom-select.d-inline-block{
                 width: 48% !important;
@@ -587,11 +594,10 @@ section {
                 margin: 0 0 6px 0;
                 border-radius: 4px;
                 .selectiongroup {
-                    background:none !important;
-                        height: 30px !important;
+                        height: 35px !important;
                     .selection {
                                 width: 100%;
-                @include border-radius(4px);
+                border-radius:0px;
                 /*border: solid 1px;
                 border-color: rgba(255, 255, 255, 0.5);
                 background:red !important;*/
@@ -671,10 +677,11 @@ section {
                 h2 {
             color: #232f3f !important;
             background:none;
+            border:none;
             font-size: 18px;
-            text-transform:capitalize;
+            text-transform:uppercase;
             /*border-color: rgba(255, 255, 255, 0.2);*/
-            padding: 10px 20px;
+            padding: 10px 0px;
             font-weight: 500;
             margin:0px;
             button.iportal-btn {
@@ -1238,7 +1245,7 @@ aside.left-opened.smoothness.loginScreen{display:none;}
 .tbl-head-btn {
     float: right;
 .savebtn {
-    margin:-50px 10px 0 0;
+    margin:0px 10px 0 0;
         float: left;
 }
 .savelaterbtn {
@@ -1511,7 +1518,7 @@ confirm {
             .col-md-8 {
                 span {
                         width: 100%;
-                        border-radius: 4px;
+                        border-radius:0px;
                         border: solid 1px #c7c5c6;
                         padding: 3px 4px 2px 5px;
                         color: #585155;
@@ -2155,27 +2162,24 @@ header {
             }
 
         .mydp {
-                border: solid 1px #c7c5c6;
-                margin: 0 0 6px 0;
-                border-radius: 4px;
+                border: solid 1px #dfdddd;
+                margin: 0;
+                border-radius: 0px;
                 .selectiongroup {
-                    background:none !important;
-                        height: 30px !important;
+                        height: 35px !important;
                     .selection {
                                 width: 100%;
-                @include border-radius(4px);
                 /*border: solid 1px;
-                border-color: rgba(255, 255, 255, 0.5);
-                background:red !important;*/
+                border-color: rgba(255, 255, 255, 0.5);*/
+                background:#f6f7fa !important;
                 padding: 3px 4px 2px 5px;
                 color: #585155;
                 font-weight: 500 !important;
                 font-size: 14px !important;
                 /*background: rgba(255, 255, 255, 0.1);*/
-                height: 30px;
                 margin-bottom: 12px;
 
-                height: 34px !important;
+                height: 35px !important;
     line-height: 20px !important;
     font-size: 14px !important;
     border: none !important;
