@@ -124,7 +124,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
-     onReplaceFile(event, data) {
+  onReplaceClick(event, data) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         let fileName = file.name;

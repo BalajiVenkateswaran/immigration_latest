@@ -69,7 +69,7 @@
                 <div>
                   <i class="fa fa-files-o" aria-hidden="true"></i>
                 </div>
-                <input type="file" #fileInput (change)="onReplaceFile($event, pdf)" class="upload" name="file" />
+                <input type="file" #fileInput (change)="onReplaceClick($event, pdf)" class="upload" name="file" />
               </div>
               <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
                 <i class="fa fa-trash" aria-hidden="true"></i>

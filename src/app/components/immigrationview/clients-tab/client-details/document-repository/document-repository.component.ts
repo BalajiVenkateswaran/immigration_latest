@@ -64,15 +64,15 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
   public fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-    onDeleteClick(event) {
+    onDeleteClick(data) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
-            message: 'Are you sure you want to delete ' + event.data.fileName + ' ?'
+            message: 'Are you sure you want to delete ' + data.fileName + ' ?'
         })
             .subscribe((isConfirmed) => {
                 // Get dialog result
                 if (isConfirmed) {
-                    this.clientdocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
+                    this.clientdocumentrepositoryService.deleteFile(data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
                         this.getFilesList();
                     });
                 }
@@ -92,8 +92,8 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         return fileExists;
     }
 
-    onReplaceClick(event) {
-        let fileList: FileList = event.event.target.files;
+    onReplaceClick(event, data) {
+        let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         let fileName = this.getFiles[this.selectedindex].fileName;
         let fileExists = this.isfileExists(file);
@@ -102,10 +102,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             message: 'Do you want to replace ' + fileName + ' file ?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName)  && fileExists != true) {
+                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName)  && fileExists !== true) {
                     let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
-                    this.clientdocumentrepositoryService.replaceFile(event.data.fileId, this.headerService.selectedOrg['orgId'], formData)
+                    this.clientdocumentrepositoryService.replaceFile(data.fileId, this.headerService.selectedOrg['orgId'], formData)
                         .subscribe(
                         res => {
                             this.getFilesList();

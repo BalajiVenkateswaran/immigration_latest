@@ -74,8 +74,9 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     ngOnInit() {
         // dropdown code
         this.uploader = new FileUploader({
-            url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.headerService.selectedOrg['orgId']
+            url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId
         });
+
       // Check if the file extension as PDF, if not don't upload the file
       this.uploader.onAfterAddingFile = (fileItem) => {
         if (!FileUtils.checkFileExtension(fileItem.file.name)) {
@@ -122,10 +123,20 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                     this.orgNames = res['orgs'];
                     this.appService.documentSideMenu(this.orgNames);
                     this.appService.selectedOrgClienttId = this.orgNames[0].clientId;
+                    this.documentservice.selectedOrgId = this.orgNames[0].orgId;
+                    this.uploader.setOptions({
+                      url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId
+                    });
+                    this.uploader.clearQueue();
                     this.menuComponent.highlightSBLink(this.orgNames[0].orgName);
                     this.getFilesList();
                 });
             } else {
+                this.appService.selectedOrgClienttId = params['clientId'];
+                this.uploader.setOptions({
+                  url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId
+                });
+                this.uploader.clearQueue();
                 this.getFilesList();
             }
             this.headerService.showSideBarMenu('clientview-document', 'clientview-documents');
@@ -133,15 +144,15 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         });
     }
 
-    onDeleteClick(event) {
+    onDeleteClick(data) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
-            message: 'Are you sure you want to delete ' + event.data.fileName + '?'
+            message: 'Are you sure you want to delete ' + data.fileName + '?'
         })
             .subscribe((isConfirmed) => {
                 // Get dialog result
                 if (isConfirmed) {
-                    this.documentservice.deleteFile(event.data.fileId).subscribe(res => {
+                    this.documentservice.deleteFile(data.fileId).subscribe(res => {
                         this.getFilesList();
                     });
                 }
@@ -158,8 +169,8 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     }
 
 
-    onReplaceClick(event) {
-        let fileList: FileList = event.event.target.files;
+    onReplaceClick(event, data) {
+        let fileList: FileList = event.target.files;
         let file: File = fileList[0];
         let fileName = file.name;
 
@@ -169,10 +180,10 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             message: 'Do You Want to Replace this file?'
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
+                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
                     let formData: FormData = new FormData();
                     formData.append('file', file, file.name);
-                    this.documentservice.replaceFile(event.data.fileId, formData)
+                    this.documentservice.replaceFile(data.fileId, formData)
                         .subscribe(
                         res => {
                             this.getFilesList();
@@ -195,9 +206,9 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
             }
         })
     }
-    onDownloadClick(event) {
-        this.documentservice.downloadFile(event.data.fileId).subscribe
-            (data => this.downloadFiles(data, event.data.fileName)),
+    onDownloadClick(data) {
+        this.documentservice.downloadFile(data.fileId).subscribe
+            (data1 => this.downloadFiles(data1, data.fileName)),
             error => console.log('Error Downloading....');
         () => console.log('OK');
     }

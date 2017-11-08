@@ -3,15 +3,15 @@ import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component'
 import {HeaderService} from '../../../common/header/header.service';
 import {ActionIcons} from '../../../framework/smarttable/cellRenderer/ActionsIcons';
 import {Component, OnInit} from '@angular/core';
-import {OrganizationDocumentRepositoryService} from "./document-repository.service";
-import {Http, Headers, RequestOptions, Response} from "@angular/http";
+import {OrganizationDocumentRepositoryService} from './document-repository.service';
+import {Http, Headers, RequestOptions, Response} from '@angular/http';
 import * as FileSaver from 'file-saver';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import { SortType } from "../../../framework/smarttable/types/query-parameters";
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import { SortType } from '../../../framework/smarttable/types/query-parameters';
 import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { environment } from '../../../../../environments/environment';
-import {FileUtils} from "../../../common/FileUtils";
+import {FileUtils} from '../../../common/FileUtils';
 import {DatePipe} from '@angular/common';
 export interface ConfirmModel {
   title: string;
@@ -32,7 +32,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   private message: string;
   private accountId;
   public getFiles;
-  public getData: boolean = true;
+  public getData = true;
   public editFiles: boolean;
   public editFileObject: any = {};
   public hasBaseDropZoneOver = false;
@@ -68,22 +68,22 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     this.appService.currentSBLink = link;
   }
 
-  onReplaceClick(event) {
-    let fileList: FileList = event.event.target.files;
+  onReplaceClick(event, data) {
+    let fileList: FileList = event.target.files;
     let file: File = fileList[0];
-    var fileName = file.name;
+    let fileName = file.name;
     let fileExists = this.isfileExists(file);
     this.dialogService.addDialog(ConfirmComponent, {
       title: 'Information',
-      message: 'Do you want to replace '+fileName+' file ?'
+      message: 'Do you want to replace ' + fileName + ' file ?'
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
 
         let formData: FormData = new FormData();
 
-        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists != true) {
+        if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
           formData.append('file', file, file.name);
-          this.organizationdocumentrepositoryService.replaceFile(event.data.fileId, this.headerService.selectedOrg['orgId'], formData)
+          this.organizationdocumentrepositoryService.replaceFile(data.fileId, this.headerService.selectedOrg['orgId'], formData)
             .subscribe(
             res => {
               this.getFilesList();
@@ -111,8 +111,8 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   onDownloadClick(event) {
     this.organizationdocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
       (data => this.downloadFiles(data, event.data.fileName)),
-      error => console.log("Error Downloading....");
-    () => console.log("OK");
+      error => console.log('Error Downloading....');
+    () => console.log('OK');
 
   }
   ngOnInit() {
@@ -162,9 +162,9 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   getFilesList() {
     this.organizationdocumentrepositoryService.getFile(this.headerService.selectedOrg['orgId'])
       .subscribe((res) => {
-        if (res != undefined) {
+        if (res !== undefined) {
           let data = res['files'];
-          for (var i = 0; i < data.length; i++) {
+          for (let i = 0; i < data.length; i++) {
             data[i]['orderNo'] = i + 1;
           }
           this.getFiles = data;
@@ -172,13 +172,13 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
       });
   }
   downloadFiles(data: any, fileName) {
-    var blob = new Blob([data], {
+    let blob = new Blob([data], {
       type: 'application/pdf'
     });
     FileSaver.saveAs(blob, fileName);
   }
   isfileExists(file) {
-    let fileExists : boolean = false;
+    let fileExists = false;
     this.getFiles.filter(item => {
       if (file.name == item.fileName) {
         fileExists = true;
@@ -197,15 +197,15 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
 
       }).subscribe((isConfirmed) => {
         if (isConfirmed) {
-          var FileId = event.data.fileId;
-          var fileName = this.editFileObject.fileName.concat(".pdf");
+          let FileId = event.data.fileId;
+          let fileName = this.editFileObject.fileName.concat('.pdf');
           event.data.fileName = fileName;
-          var url = "/file/rename";
-          var data = {
-            "accountId": this.accountId,
-            "orgId": this.headerService.selectedOrg['orgId'],
-            "fileId": FileId,
-            "fileName": fileName
+          let url = '/file/rename';
+          let data = {
+            'accountId': this.accountId,
+            'orgId': this.headerService.selectedOrg['orgId'],
+            'fileId': FileId,
+            'fileName': fileName
           };
           this.organizationdocumentrepositoryService.renameFile(url, data).subscribe(
             res => {
@@ -213,7 +213,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
                 this.getFilesList();
 
               }
-              if (res['statusDescription'] == "File Name Exists, Use a different Name") {
+              if (res['statusDescription'] == 'File Name Exists, Use a different Name') {
                 this.dialogService.addDialog(ConfirmComponent, {
                   title: 'Error..!',
                   message: 'File with same name exists, please use a different name'
@@ -221,8 +221,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
               }
             }
           );
-        }
-        else {
+        } else {
           this.editFileObject.fileName = event.data.fileName;
         }
       });
@@ -231,8 +230,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   save() {
     if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
       this.warningMessage = true;
-    }
-    else {
+    } else {
       this.warningMessage = false;
       this.result = true;
       this.close();
@@ -242,7 +240,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     this.result = false;
     this.close();
   }
-  onFileUploadClick(file){
-        file.value=null;
+  onFileUploadClick(file) {
+        file.value = null;
     }
 }

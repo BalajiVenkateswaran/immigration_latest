@@ -1,26 +1,3 @@
-<!--<div class="main-content"  *ngIf="getData">
-
-    <div class="table-data">
-        <h2>{{appService.firstName}} {{appService.lastName}}</h2>
-        <ul class="breadcrumb">
-            <li><a href="#">Documents</a></li>
-        </ul>
-        <div class="clearfix"></div>
-        <h2>Documents</h2>
-        <form method="POST" enctype="multipart/form-data" [formGroup]="addDocumentRepository" (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
-            <div class="pull-right uplodbtn">
-                <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
-                    <span>Upload File</span>
-                    <input type="file" #fileInput class="upload" name="file" (click)="onFileUploadClick(fileInput)" (change)="fileUpload($event)" />
-                </div>
-            </div>
-       
-        </form>
-        <ih-smart-table class="clientViewDocRepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></ih-smart-table>
-        <div class="clearfix"></div>
-    </div>
-</div>-->
-<!--dropdown code-->
 <div class="dropzone">
     <div class="row">
         <div class="col-md-12">
@@ -71,7 +48,7 @@
                                 <div>
                                     <i class="fa fa-files-o" aria-hidden="true"></i>
                                 </div>
-                                <input type="file" #fileInput (change)="onReplaceFile($event, pdf)" class="upload" name="file" />
+                                <input type="file" #fileInput (change)="onReplaceClick($event, pdf)" class="upload" name="file" />
                             </div>
                             <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
