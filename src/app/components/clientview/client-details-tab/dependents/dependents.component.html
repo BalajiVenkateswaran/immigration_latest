@@ -17,20 +17,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="cvDependentsClose" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5"><span class="redstar">*</span>First Name :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newCVdependentitem.firstName" (blur)="capitalizeName(newCVdependentitem)" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="newCVdependentitem.firstName" id="cvDependentfName"  (blur)="capitalizeName(newCVdependentitem)" class="form-control"></div>
                             <div class="col-md-5">Middle Name :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newCVdependentitem.middleName" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="newCVdependentitem.middleName"  id="cvDependentmName"class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Last Name :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newCVdependentitem.lastName" (blur)="capitalizeName(newCVdependentitem)" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="newCVdependentitem.lastName" id="cvDependentlName"(blur)="capitalizeName(newCVdependentitem)" class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Relation :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newCVdependentitem.relation" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="newCVdependentitem.relation" id="cvDependentRelation" class="form-control"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
@@ -42,8 +42,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="dependentSave()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" id="cvDependentSave"(click)="dependentSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" id="cvDependentCancel" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

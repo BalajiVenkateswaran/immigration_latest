@@ -14,7 +14,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="cvArrClose" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -23,27 +23,27 @@
                             <div class="col-md-5">Departure date :</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newArvdInfoitem.departureDate"
+                                                (dateChanged)="onDateChanged($event)" id="cvArrDepDate" [(ngModel)]="newArvdInfoitem.departureDate"
                                                 [selDate]="departureDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Departure Country :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newArvdInfoitem.departureCountry" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="newArvdInfoitem.departureCountry" id="cvArrDepCountry" class="form-control"></div>
                             <div class="col-md-5">Arrival date :</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newArvdInfoitem.arrivalDate"
+                                                (dateChanged)="onDateChanged($event)"  id="cvArrArrivalDate"[(ngModel)]="newArvdInfoitem.arrivalDate"
                                                 [selDate]="arrivalDate"></my-date-picker>
 
                             </div>
                             <div class="col-md-5">Arrival Country :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newArvdInfoitem.arrivalCountry" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="cvArrArrivalCountry" [(ngModel)]="newArvdInfoitem.arrivalCountry" class="form-control"></div>
                             <div class="col-md-5">Visa Type :</div>
                             <div class="col-md-7">
-                                <input type="text" [(ngModel)]="newArvdInfoitem.visaType" class="form-control">
+                                <input type="text" id="cvArrVisaType" [(ngModel)]="newArvdInfoitem.visaType" class="form-control">
                             </div>
                             <div class="col-md-5">I-94 :</div>
                             <div class="col-md-7">
-                              <input type="text" [(ngModel)]="newArvdInfoitem.i94" class="form-control">
+                              <input type="text" id="cvArrI94" [(ngModel)]="newArvdInfoitem.i94" class="form-control">
                             </div>
                         </div>
                         <div class="row">
@@ -56,8 +56,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="ArvdInfoSave()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" id="cvArrSave" (click)="ArvdInfoSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" id="cvArrCancel" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

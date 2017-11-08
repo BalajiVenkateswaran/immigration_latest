@@ -13,71 +13,71 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Work Address</h2>
-                            <button type="submit" (click)="addressedit('WORK')" value="Edit" class="editbtn  no-marg-right" *ngIf="workedit==true">Edit</button>
+                            <button type="submit" (click)="addressedit('WORK')" value="Edit"  id="cvaddrWorkAddrEdit" class="editbtn  no-marg-right" *ngIf="workedit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="workedit">
-                                <button type="button" (click)="cancelEdit('WORK')" class="editbtn tbl-head-btn" *ngIf="workedit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
+                                <button type="button" (click)="cancelEdit('WORK')" id="cvaddrWorkAddrCancel1" class="editbtn tbl-head-btn" *ngIf="workedit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" id="cvaddrWorkAddrSave1" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.country}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.address.country" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrCountry" [(ngModel)]="WorkaddressinfoList.address.country"/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.address.street1" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrstreet1" [(ngModel)]="WorkaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.street2}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.address.street2" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrstreet2" [(ngModel)]="WorkaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.aptType}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.address.aptType" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrApt" [(ngModel)]="WorkaddressinfoList.address.aptType" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.city}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.address.city" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrCity" [(ngModel)]="WorkaddressinfoList.address.city" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>County</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.county}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.address.county" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrCounty" [(ngModel)]="WorkaddressinfoList.address.county" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>State</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.state}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.address.state" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrState" [(ngModel)]="WorkaddressinfoList.address.state" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Zip Code</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.zipCode}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.address.zipCode" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrZipCode" [(ngModel)]="WorkaddressinfoList.address.zipCode" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Telephone</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.telephone}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.telephone" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrTelephone" [(ngModel)]="WorkaddressinfoList.telephone" /></div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-4"><label>Fax</label></div>
                         <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.fax}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" [(ngModel)]="WorkaddressinfoList.fax" /></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrFax" [(ngModel)]="WorkaddressinfoList.fax" /></div>
                     </div>
                   <div class="row">
-                    <div class="col-md-4"><label for="wa-ws">Working Since</label></div>
+                    <div class="col-md-4"><label for="cvaddrWorkingSince">Working Since</label></div>
                     <div class="col-md-8">
                       <my-date-picker *ngIf="workedit==false" [options]="myDatePickerOptions"
                                       (dateChanged)="onDateChanged($event)"
                                       [(ngModel)]="WorkaddressinfoList.residingSince"
-                                      [selDate]="workResidingSince"></my-date-picker>
+                                      [selDate]="workResidingSince" id="cvaddrWorkingSince"></my-date-picker>
                       <span *ngIf="workedit==true">{{WorkaddressinfoList.residingSince}}</span>
                     </div>
 
@@ -85,8 +85,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="workedit">
-                                <button type="button" (click)="cancelEdit('WORK')" class="editbtn tbl-head-btn bottombtns" *ngIf="workedit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
+                                <button type="button" (click)="cancelEdit('WORK')" id="cvaddrWorkAddrCancel2" class="editbtn tbl-head-btn bottombtns" *ngIf="workedit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns"  id="cvaddrWorkAddrSave2"(click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
                             </div>
                         </div>
                     </div>
@@ -97,62 +97,62 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Residence Address</h2>
-                            <button type="submit" (click)="addressedit('RESIDENCE')" value="Edit" class="editbtn  no-marg-right" *ngIf="residenceedit==true">Edit</button>
+                            <button type="submit" (click)="addressedit('RESIDENCE')" value="Edit" id="cvaddrResEdit" class="editbtn  no-marg-right" *ngIf="residenceedit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="residenceedit">
-                                <button type="button" (click)="cancelEdit('RESIDENCE')" class="editbtn tbl-head-btn" *ngIf="residenceedit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
+                                <button type="button" (click)="cancelEdit('RESIDENCE')" id="cvaddrResCancel1" class="editbtn tbl-head-btn" *ngIf="residenceedit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" id="cvaddrResSave1" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.country}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.address.country" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResCountry" [(ngModel)]="ResidenceaddressinfoList.address.country" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.address.street1" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResStreet1" [(ngModel)]="ResidenceaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.street2}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.address.street2" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResStreet2" [(ngModel)]="ResidenceaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.aptType}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.address.aptType" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResApt" [(ngModel)]="ResidenceaddressinfoList.address.aptType" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.city}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.address.city" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResCity"[(ngModel)]="ResidenceaddressinfoList.address.city" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>County</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.county}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.address.county" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResCounty" [(ngModel)]="ResidenceaddressinfoList.address.county" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>State</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.state}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.address.state" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResState" [(ngModel)]="ResidenceaddressinfoList.address.state" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Zip Code</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.zipCode}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.address.zipCode" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResZip" [(ngModel)]="ResidenceaddressinfoList.address.zipCode" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Telephone</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.telephone}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.telephone" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResTel" [(ngModel)]="ResidenceaddressinfoList.telephone" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Fax</label></div>
                         <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.fax}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" [(ngModel)]="ResidenceaddressinfoList.fax" /></div>
+                        <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResFax" [(ngModel)]="ResidenceaddressinfoList.fax" /></div>
                     </div>
                   <div class="row">
                     <div class="col-md-4"><label for="wa-rs">Residing Since</label></div>
@@ -168,14 +168,14 @@
                     <div class="row">
                         <div class="col-md-4"><label>Use same for Mailing Address</label></div>
                         <div class="col-md-8">
-                            <input type="checkbox" name="clientAddress" [(ngModel)]="checked" (change)="adressChange()"/>
+                            <input type="checkbox" name="clientAddress" [(ngModel)]="checked" (change)="adressChange()" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="residenceedit">
-                                <button type="button" (click)="cancelEdit('RESIDENCE')" class="editbtn tbl-head-btn bottombtns" *ngIf="residenceedit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
+                                <button type="button" (click)="cancelEdit('RESIDENCE')" id="cvaddrResCancel2" class="editbtn tbl-head-btn bottombtns" *ngIf="residenceedit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" id="cvaddrResSave2" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
                             </div>
                         </div>
                     </div>
@@ -188,68 +188,68 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Mailing Address</h2>
-                            <button type="submit" (click)="addressedit('MAILING')" value="Edit" class="editbtn  no-marg-right" *ngIf="mailingedit==true">Edit</button>
+                            <button type="submit" (click)="addressedit('MAILING')" value="Edit" id="cvaddrMailingEdit" class="editbtn  no-marg-right" *ngIf="mailingedit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="mailingedit">
-                                <button type="button" (click)="cancelEdit('MAILING')" class="editbtn tbl-head-btn" *ngIf="mailingedit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
+                                <button type="button" (click)="cancelEdit('MAILING')" id="cvaddrMailingCancel1" class="editbtn tbl-head-btn" *ngIf="mailingedit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" id="cvaddrMailingSave1" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.country}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.address.country" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingCountry" [(ngModel)]="MailingaddressinfoList.address.country" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.address.street1" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingStreet1" [(ngModel)]="MailingaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.street2}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.address.street2" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingStreet2" [(ngModel)]="MailingaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.aptType}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.address.aptType" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingApt" [(ngModel)]="MailingaddressinfoList.address.aptType" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.city}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.address.city" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingCity" [(ngModel)]="MailingaddressinfoList.address.city" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>County</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.county}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.address.county" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingCounty" [(ngModel)]="MailingaddressinfoList.address.county" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>State</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.state}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.address.state" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingState" [(ngModel)]="MailingaddressinfoList.address.state" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Zip Code</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.zipCode}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.address.zipCode" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingZip" [(ngModel)]="MailingaddressinfoList.address.zipCode" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Telephone</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.telephone}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.telephone" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingTel" [(ngModel)]="MailingaddressinfoList.telephone" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Fax</label></div>
                         <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.fax}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" [(ngModel)]="MailingaddressinfoList.fax" /></div>
+                        <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingFax" [(ngModel)]="MailingaddressinfoList.fax" /></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="mailingedit">
-                                <button type="button" (click)="cancelEdit('MAILING')" class="editbtn tbl-head-btn bottombtns" *ngIf="mailingedit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
+                                <button type="button" (click)="cancelEdit('MAILING')" id="cvaddrMailingCancel2" class="editbtn tbl-head-btn bottombtns" *ngIf="mailingedit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" id="cvaddrMailingSave2" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
                             </div>
                         </div>
                     </div>
@@ -260,68 +260,68 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Foreign Address</h2>
-                            <button type="submit" (click)="addressedit('FOREIGN')" value="Edit" class="editbtn  no-marg-right" *ngIf="foreignedit==true">Edit</button>
+                            <button type="submit" (click)="addressedit('FOREIGN')" value="Edit" class="editbtn  no-marg-right" id="cvaddrForiegnEdit" *ngIf="foreignedit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="foreignedit">
-                                <button type="button" (click)="cancelEdit('FOREIGN')" class="editbtn tbl-head-btn" *ngIf="foreignedit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
+                                <button type="button" (click)="cancelEdit('FOREIGN')" id="cvaddrForiegnCancel1" class="editbtn tbl-head-btn" *ngIf="foreignedit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" id="cvaddrForiegnSave1" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.country}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.address.country" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnCountry" [(ngModel)]="ForiegnaddressinfoList.address.country" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.address.street1" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnStreet1" [(ngModel)]="ForiegnaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.street2}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.address.street2" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnStreet2" [(ngModel)]="ForiegnaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.aptType}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.address.aptType" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnApt" [(ngModel)]="ForiegnaddressinfoList.address.aptType" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.city}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.address.city" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnCity" [(ngModel)]="ForiegnaddressinfoList.address.city" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>County</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.county}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.address.county" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnCounty" [(ngModel)]="ForiegnaddressinfoList.address.county" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>State</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.state}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.address.state" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnState" [(ngModel)]="ForiegnaddressinfoList.address.state" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Zip Code</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.zipCode}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.address.zipCode" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnZip" [(ngModel)]="ForiegnaddressinfoList.address.zipCode" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Telephone</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.telephone}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.telephone" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnTel" [(ngModel)]="ForiegnaddressinfoList.telephone" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Fax</label></div>
                         <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.fax}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" [(ngModel)]="ForiegnaddressinfoList.fax" /></div>
+                        <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnFax" [(ngModel)]="ForiegnaddressinfoList.fax" /></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="foreignedit">
-                                <button type="button" (click)="cancelEdit('FOREIGN')" class="editbtn tbl-head-btn bottombtns" *ngIf="foreignedit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
+                                <button type="button" (click)="cancelEdit('FOREIGN')" id="cvaddrForiegnCancel2" class="editbtn tbl-head-btn bottombtns" *ngIf="foreignedit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" id="cvaddrForiegnSave2" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
                             </div>
                         </div>
                     </div>

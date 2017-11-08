@@ -20,30 +20,30 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="cvVisaClose" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Country:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addNewVisa.country" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="cvVisaCountry" [(ngModel)]="addNewVisa.country" class="form-control"></div>
                             <div class="col-md-5">Petition Number:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addNewVisa.petitionNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text"  id="cvVisaPetitionNo" [(ngModel)]="addNewVisa.petitionNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Number:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addNewVisa.visaNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="cvVisaVisaNo" [(ngModel)]="addNewVisa.visaNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Type:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addNewVisa.visaType" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="cvVisaVisaType" [(ngModel)]="addNewVisa.visaType" class="form-control"></div>
                             <div class="col-md-5">Issued On:</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewVisa.issuedOn"
+                                                (dateChanged)="onDateChanged($event)" id="cvVisaIssued" [(ngModel)]="addNewVisa.issuedOn"
                                                 [selDate]="issuedOn"></my-date-picker>
                             </div>
                             <div class="col-md-5">Expires On:</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="addNewVisa.expiresOn"
+                                                (dateChanged)="onDateChanged($event)" id="cvVisaExpires" [(ngModel)]="addNewVisa.expiresOn"
                                                 [selDate]="expiresOn"></my-date-picker>
                             </div>
                         </div>
@@ -53,8 +53,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="clientVisaSave()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" id="cvVisaSave" (click)="clientVisaSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" id="cvVisaCancel" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

@@ -94,8 +94,8 @@ export class ClientDetailsComponent  implements OnInit {
        {value: 'Mark for Deletion', name: 'Mark for Deletion'}
      ]
      this.gender = [
-       {value: '0', name: 'Male'},
-       {value: '1', name: 'Female'}
+       {value: '0', name: 'Male',id:'male'},
+       {value: '1', name: 'Female',id:'female'}
 
      ]
      this.creationDate = this.clientDetails.creationDate;

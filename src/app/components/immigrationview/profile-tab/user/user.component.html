@@ -7,10 +7,10 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>User Info</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isUserEdit==true">Edit</button>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" id="profileUserEdit"  *ngIf="isUserEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isUserEdit">
-                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
+                                <button type="button" (click)="cancelProfileEdit()" id="profileUserCancel1" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" id="profileUserSave1" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
@@ -21,28 +21,28 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="profileUserfName">First Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" id="wa-county" [(ngModel)]="userInfo.firstName" [ngClass]="userInfo.firstName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.firstName}}</span>
+                            <input type="text" *ngIf="isUserEdit==false" id="profileUserfName" [(ngModel)]="userInfo.firstName" [ngClass]="userInfo.firstName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.firstName}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-zip">Last Name<span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="profileUserlName">Last Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" id="wa-zip" [(ngModel)]="userInfo.lastName" [ngClass]="userInfo.lastName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.lastName}}</span>
+                            <input type="text" *ngIf="isUserEdit==false" id="profileUserlName" [(ngModel)]="userInfo.lastName" [ngClass]="userInfo.lastName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.lastName}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="profileUserEmail">Email<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
                             <span>{{userInfo.emailId}}</span>
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-country">Phone Number</label></div>
+                        <div class="col-md-4"><label for="profileUserPhone">Phone Number</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" id="wa-country" [(ngModel)]="userInfo.phoneNumber" />
+                            <input type="text" *ngIf="isUserEdit==false" id="profileUserPhone" [(ngModel)]="userInfo.phoneNumber" />
                             <span *ngIf="isUserEdit==true">{{userInfo.phoneNumber}}</span>
                         </div>
                     </div>
@@ -53,10 +53,10 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Default Org</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editDefaultorg()" *ngIf="isUserorgEdit==true">Edit</button>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editDefaultorg()" id="profileUserDefaultOrgEdit" *ngIf="isUserorgEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isUserorgEdit">
-                                <button type="button" (click)="cancelDefaultorg()" class="editbtn tbl-head-btn" *ngIf="isUserorgEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveDefaultorg()" *ngIf="isUserorgEdit==false">Save</button>
+                                <button type="button" (click)="cancelDefaultorg()" id="profileUserDefaultOrgCancel"class="editbtn tbl-head-btn" *ngIf="isUserorgEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" id="profileUserDefaultOrgSave"(click)="saveDefaultorg()" *ngIf="isUserorgEdit==false">Save</button>
                             </div>
                         </div>
                     </div>

@@ -18,38 +18,38 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="cvi797Close">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Receipt Number :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newi797item.receiptNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="cvi797RecieptNo" [(ngModel)]="newi797item.receiptNumber" class="form-control"></div>
                             <div class="col-md-5">Receipt Date :</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newi797item.receiptDate"
+                                                (dateChanged)="onDateChanged($event)" id="cvi797RecieptDate" [(ngModel)]="newi797item.receiptDate"
                                                 [selDate]="receiptDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Status On I-797 :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newi797item.status" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" [(ngModel)]="newi797item.status" id="cvi797Status" class="form-control"></div>
                             <div class="col-md-5">Approved on :</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newi797item.approvedOn"
+                                                (dateChanged)="onDateChanged($event)" id="cvi797ApproveDate" [(ngModel)]="newi797item.approvedOn"
                                                 [selDate]="approvedOn"></my-date-picker>
                             </div>
                             <div class="col-md-5">Valid From :</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newi797item.validFrom"
+                                                (dateChanged)="onDateChanged($event)" id="cvi797ValidFrom" [(ngModel)]="newi797item.validFrom"
                                                 [selDate]="validFrom"></my-date-picker>
                             </div>
                             <div class="col-md-5">Valid Till:</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" [(ngModel)]="newi797item.validTill"
+                                                (dateChanged)="onDateChanged($event)" id="cvi797ValidTill" [(ngModel)]="newi797item.validTill"
                                                 [selDate]="validTill"></my-date-picker>
                             </div>
                         </div>
@@ -63,8 +63,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="i797Save()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" id="cvi797Save" (click)="i797Save()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" id="cvi797Cancel" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

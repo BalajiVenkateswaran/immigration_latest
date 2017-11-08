@@ -13,10 +13,10 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Profile</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit</button>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" *ngIf="isProfileEdit==true" id="cvClientProfileEdit">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
-                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
+                                <button type="button" (click)="cancelProfileEdit()" id="cvClientProfileCancel1" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" id="cvClientProfileSave1"(click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
                             </div>
                         </div>
 
@@ -27,40 +27,40 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-name">File Number</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-name" [readonly]="true" [(ngModel)]="clientProfile.fileNumber"
+                        <div class="col-md-4"><label for="cvClientDetails">File Number</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="cvClientDetails" [readonly]="true" [(ngModel)]="clientProfile.fileNumber"
                             /><span *ngIf="isProfileEdit==true">{{clientProfile.fileNumber}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-city">Email</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-city" [readonly]="isEdit" [(ngModel)]="clientProfile.email"
+                        <div class="col-md-4"><label for="cvClientEmail">Email</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="cvClientEmail" [readonly]="isEdit" [(ngModel)]="clientProfile.email"
                             /><span *ngIf="isProfileEdit==true">{{clientProfile.email}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-county" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''"
+                        <div class="col-md-4"><label for="cvClientFName">First Name<span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="cvClientFName" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''"
                             /><span *ngIf="isProfileEdit==true">{{clientProfile.firstName}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-state">Middle Name</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-state" [(ngModel)]="clientProfile.middleName"
+                        <div class="col-md-4"><label for="cvClientMiddleName">Middle Name</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="cvClientMiddleName" [(ngModel)]="clientProfile.middleName"
                             /><span *ngIf="isProfileEdit==true">{{clientProfile.middleName}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-zip">Last Name<span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-zip" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''"
+                        <div class="col-md-4"><label for="cvClientLName">Last Name<span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="cvClientLName" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''"
                             /><span *ngIf="isProfileEdit==true">{{clientProfile.lastName}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-country">Phone Number<span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="wa-country" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''"
+                        <div class="col-md-4"><label for="cvClientPhone">Phone Number<span class="redstar">*</span></label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isProfileEdit==false" id="cvClientPhone" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''"
                             /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
-                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isProfileEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
+                                <button type="button" (click)="cancelProfileEdit2()" class="editbtn tbl-head-btn bottombtns" *ngIf="isProfileEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientProfile2()" *ngIf="isProfileEdit==false">Save</button>
                             </div>
                         </div>
 
@@ -72,18 +72,18 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Personal Info</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editPersonalInfoForm()" *ngIf="isPersonalInfoEdit==true">Edit</button>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editPersonalInfoForm()" *ngIf="isPersonalInfoEdit==true" id="cvClientProfileInfoEdit">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
-                                <button type="button" (click)="cancelPersonalInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn"  (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+                                <button type="button" (click)="cancelPersonalInfoEdit()" id="cvClientProfileInfoCancel1" class="editbtn tbl-head-btn" *ngIf="isPersonalInfoEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn"  id="cvClientProfileInfoSave1"(click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-taxid">Gender</label></div>
+                        <div class="col-md-4"><label for="Gender">Gender</label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isPersonalInfoEdit==false" [(ngModel)]="clientPersonalInfo.gender">
-                                <option *ngFor="let genderTypes of gender">{{genderTypes.name}}</option>
+                            <select *ngIf="isPersonalInfoEdit==false" [(ngModel)]="clientPersonalInfo.gender" >
+                                <option *ngFor="let genderTypes of gender" id="{{genderTypes.id}}">{{genderTypes.name}}</option>
                             </select>
                             <span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.gender}}</span>
                         </div>
@@ -93,43 +93,43 @@
 
 
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-dob">Date Of Birth</label></div>
+                        <div class="col-md-4"><label for="cvClientdob">Date Of Birth</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isPersonalInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="clientPersonalInfo.dateOfBirth"
-                                [selDate]="dateOfBirth"></my-date-picker>
+                                [selDate]="dateOfBirth" id="cvClientdob"></my-date-picker>
                             <span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.dateOfBirth}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-ssn">U.S. Social Security Number (if any)</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-ssn" [(ngModel)]="clientPersonalInfo.ssn"
+                        <div class="col-md-4"><label for="cvClientPInfoSocialSecurityNo">U.S. Social Security Number (if any)</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientPInfoSocialSecurityNo" [(ngModel)]="clientPersonalInfo.ssn"
                             /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-aleinRegistrationNumber">Alien Registration Number</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-aleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber"
+                        <div class="col-md-4"><label for="cvClientaleinRegistrationNumber">Alien Registration Number</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientaleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber"
                             /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.aleinRegistrationNumber}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-countryOfBirth">Country of Birth</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-countryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth"
+                        <div class="col-md-4"><label for="cvClientcountryOfBirth">Country of Birth</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientcountryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth"
                             /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.countryOfBirth}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-stateOfBirth">State/Province of Birth</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-stateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth"
+                        <div class="col-md-4"><label for="cvClientstateOfBirth">State/Province of Birth</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientstateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth"
                             /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.stateOfBirth}}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-citizenship">Country of Citizenship or Nationality</label></div>
-                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="wa-citizenship" [(ngModel)]="clientPersonalInfo.citizenship"
+                        <div class="col-md-4"><label for="cvClientcitizenship">Country of Citizenship or Nationality</label></div>
+                        <div class="col-md-8"><input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientcitizenship" [(ngModel)]="clientPersonalInfo.citizenship"
                             /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.citizenship}}</span></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
-                                <button type="button" (click)="cancelPersonalInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn no-marg-right bottombtns" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+                                <button type="button" (click)="cancelPersonalInfoEdit()" id="cvClientProfileInfoCancel2" class="editbtn tbl-head-btn bottombtns" *ngIf="isPersonalInfoEdit==false">Cancel</button>
+                                <button type="submit" value="Save" id="cvClientProfileInfoSave2" class="savebtn no-marg-right bottombtns" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
