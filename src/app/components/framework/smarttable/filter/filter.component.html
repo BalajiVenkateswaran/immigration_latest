@@ -37,7 +37,7 @@
 
                           <select *ngIf="column['type'] == 'dropDown'" [(ngModel)]="column['value']" >
                             <option *ngFor="let optionData of column['data']" [value] = 'optionData.value'>
-                              {{ optionData.display }}
+                              {{ optionData.display}}
                             </option>
                           </select>
 
