@@ -142,7 +142,7 @@ section {
     }
     .rightwithmenu {
         left: 300px;
-        right: 0;
+        right: 50px;
     }
     .rightwithoutmenu {
         left: 0px;
@@ -332,7 +332,7 @@ section {
         width: 100%;
         padding:15px 0px 20px 0px;
             height: 100%;
-            overflow-y:auto;
+            /*overflow-y:auto;*/
         .submitbtn {
             float: right;
             margin: 20px 0px 0 0;
@@ -374,7 +374,7 @@ section {
         }
         .editbtn {
             float: right;
-            margin:0px 0 0 0;
+            margin:-30px 0 20px 0;
             width: 80px;
             height: 30px;
             border: solid 1px #e0e0e0;
@@ -554,7 +554,7 @@ section {
                 width: 100%;
                 border-radius:0px;
                 border: solid 1px #dddbdc;
-                background:#f6f7fa;
+                background:#f6f7fa !important;
                 /*border-color: rgba(255, 255, 255, 0.5);*/
                 padding: 3px 4px 2px 5px;
                 color: #585155;
@@ -592,7 +592,7 @@ section {
             .mydp {
                 border: solid 1px #c7c5c6;
                 margin: 0 0 6px 0;
-                border-radius: 4px;
+                border-radius: 0px;
                 .selectiongroup {
                         height: 35px !important;
                     .selection {
@@ -608,6 +608,7 @@ section {
                 /*background: rgba(255, 255, 255, 0.1);*/
                 height: 30px;
                 margin-bottom: 12px;
+                background:#f6f7fa !important;
 
                 height: 34px !important;
     line-height: 20px !important;
@@ -673,7 +674,7 @@ section {
 
 
     .table-data-forms {
-        overflow-y:auto;
+        /*overflow-y:auto;*/
                 h2 {
             color: #232f3f !important;
             background:none;
@@ -683,7 +684,8 @@ section {
             /*border-color: rgba(255, 255, 255, 0.2);*/
             padding: 10px 0px;
             font-weight: 500;
-            margin:0px;
+            margin:20px 0 0 0;
+
             button.iportal-btn {
                 margin-top: -10px !important;
             }
@@ -2166,7 +2168,7 @@ header {
                 margin: 0;
                 border-radius: 0px;
                 .selectiongroup {
-                        height: 35px !important;
+                        height: 33px !important;
                     .selection {
                                 width: 100%;
                 /*border: solid 1px;
@@ -2179,21 +2181,30 @@ header {
                 /*background: rgba(255, 255, 255, 0.1);*/
                 margin-bottom: 12px;
 
-                height: 35px !important;
-    line-height: 20px !important;
-    font-size: 14px !important;
-    border: none !important;
-    padding-right: 30px !important;
-    float: left !important;
+                height: 33px !important;
+                line-height: 20px !important;
+                font-size: 14px !important;
+                border: none !important;
+                padding-right: 30px !important;
+                float: left !important;
             }
+
 
                     button {
                         background:none;
+
+                        span.mydpicon  {
+                            margin: 0px;
+                            height: 35px;
+                            border-radius: 0px;
+                            padding: 5px 0 0 0;
+                        }
                         span {
                             margin-bottom:0px;
                             line-height: 24px !important;
                             margin-top: 0px !important;
                             padding: 6px 4px;
+                            
                         }
                     }
                 }
@@ -2230,6 +2241,9 @@ header {
                             }
                         }
                     }
+                }
+                .btnpicker {
+                    width:30px !important;
                 }
             }
     }
