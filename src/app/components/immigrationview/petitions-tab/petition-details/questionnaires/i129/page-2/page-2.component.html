@@ -24,9 +24,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <p class="fieldsetheading">1. Requested Nonimmigrant Classification (Write classification symbol):</p>
-                                        <div class="col-md-6">
+                                    <div class="col-md-12">                                        
+                                        <div class="col-md-6" style="margin-left: -15px;"><p class="fieldsetheading">1. Requested Nonimmigrant Classification (Write classification symbol):</p>
+                                        </div>                                      
+                                        <div class="col-md-6" style="margin-left: -55px;">
                                             <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.nonImmigrantClassification"
                                             />
                                             <span *ngIf="isquestionnaireEdit==true">{{page2.nonImmigrantClassification}}</span>
