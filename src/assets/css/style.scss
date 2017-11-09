@@ -2363,17 +2363,14 @@ header {
         padding: 8px 0px 0px 8px !important;
     }
     .table > tbody > tr > td:last-child {
-        width: 95px;
+        width: 110px;
         }
     .table > tbody > tr > td:nth-child(2) {
-        width:90px;
+        width:100px;
         color:#000 !important;
     }
-    .table > tbody > tr > td:nth-child(3) {
-        width:160px;
-        }
     .table > tbody > tr > td:first-child {
-        width:calc(100% - 345px);
+        width:calc(100% - 210px);
     }
     .fileUpload {
                             position: relative;
