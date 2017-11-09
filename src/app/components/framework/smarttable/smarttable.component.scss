@@ -51,9 +51,7 @@ $dateColumnWidth:110px;
 }
 
 .ag-fresh .ag-row-odd {
-  background: #fff !important;
-  cursor: pointer; 
- border: 1px solid #eae0e0;
+  background-color: #F6F7FA !important;
     border-radius: 10px;
 }
 
@@ -61,11 +59,11 @@ $dateColumnWidth:110px;
   background: #232f3f !important;
   color:#fff !important;
 }
-
+  .ag-fresh .ag-body {
+    background-color: #FFFFFF !important;}
 .ag-fresh .ag-row-even {
-  /*background: #f6f7fa !important;*/
+     background-color: #F6F7FA !important;
   cursor: pointer; 
-border: 1px solid #eae0e0;
     border-radius: 10px;
 }
 
@@ -213,7 +211,12 @@ border: 1px solid #eae0e0;
 .ag-layout-auto-height .ag-header-row {
     width:100% !important;
 }
-
+.ag-layout-auto-height .ag-row {
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+        margin-bottom: 4px !important;
+}
 .agtblOptions {
     position:relative;
     .addandcount {
