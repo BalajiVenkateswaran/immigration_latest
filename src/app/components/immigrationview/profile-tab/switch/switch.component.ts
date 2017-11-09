@@ -36,15 +36,18 @@ export class profileswitchcomponent implements OnInit,AfterViewInit {
             'columnsettings': [
                 {
                     headerName: "Role Name",
-                    field: "roleName"
+                    field: "roleName",
+                  type:'text',
                 },
                 {
                     headerName: "Account Name",
-                    field: "accountName"
+                    field: "accountName",
+                   type:'text'
                 },
                 {
                     headerName: "Switch",
-                    cellRendererFramework: switchButton
+                    cellRendererFramework: switchButton,
+                  type:'text'
                 }
             ]
         }

@@ -7,6 +7,9 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {HeaderService} from "../../../../common/header/header.service";
+import { PetitionsService } from "../../../petitions-tab/petitions/petitions.service";
+import { SortType } from "../../../../framework/smarttable/types/query-parameters";
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -41,39 +44,49 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       showClearDateBtn: false,
   };
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
-      public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
+      public appService: AppService, public dialogService: DialogService, public headerService: HeaderService,  private petitionService: PetitionsService,) {
       super(dialogService);
       this.settings = {
-
+        'sort': [{
+          headingName: "lastUpdate",
+          sort: SortType.DESC
+        }],
             'columnsettings': [
                 {
 
                     headerName: "Departure Date",
                     field: "departureDate",
+                  type:'datePicker'
                 },
                 {
 
                     headerName: "Departure Country",
-                    field: "departureCountry"
+                    field: "departureCountry",
+                  type:'text'
                 },
                 {
 
                     headerName: "Arrival Date",
-                    field: "arrivalDate"
+                    field: "arrivalDate",
+                  type:'datePicker'
                 },
                 {
                     headerName: "Arrival Country",
-                    field: "arrivalCountry"
+                    field: "arrivalCountry",
+                  type:'text'
                 },
                 {
 
                     headerName: "Visa Type",
-                    field: "visaType"
+                    field: "visaType",
+                  type:'dropDown',
+                  data: this.getPetitionTypeValues()
                 },
                 {
 
                     headerName: "I-94",
-                    field: "i94"
+                    field: "i94",
+                  type:'text'
                 },
 
             ]
@@ -169,5 +182,17 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       });
   }
 
+  getPetitionTypeValues() {
+    let x = [];
+    this.petitionService.getAllPetitionTypesAndSubTypes().subscribe(res => {
+      if (res['petitionTypes'] != undefined) {
+        let data = res['petitionTypes'];
+        for(var i=0;i<data.length;i++){
+          x.push({'display':data[i]['petitiontype'],'value':data[i]['petitiontype']});
+        }
+      }
 
+    })
+    return x;
+  }
 }

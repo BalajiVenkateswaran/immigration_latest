@@ -56,35 +56,35 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   constructor(private router: Router, private appService: AppService, private clientviewpetitionsService: ClientViewPetitionsService,
     public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
-    this.petitionTypesData = [
-      {
-        'display': 'H1B',
-        'value': 'H1B'
-      },
-      {
-        'display': 'L1',
-        'value': 'L1'
-      },
-
-      {
-        'display': 'H1B-RFE',
-        'value': 'H1B-RFE'
-      },
-
-      {
-        'display': 'B1',
-        'value': 'B1'
-      },
-
-    ];
+    // this.petitionTypesData = [
+    //   {
+    //     'display': 'H1B',
+    //     'value': 'H1B'
+    //   },
+    //   {
+    //     'display': 'L1',
+    //     'value': 'L1'
+    //   },
+    //
+    //   {
+    //     'display': 'H1B-RFE',
+    //     'value': 'H1B-RFE'
+    //   },
+    //
+    //   {
+    //     'display': 'B1',
+    //     'value': 'B1'
+    //   },
+    //
+    // ];
     this.statusTypes = [
       {
         'display': 'Open',
         'value': 'Open'
       },
       {
-        'display': 'Closed',
-        'value': 'Closed'
+        'display': 'Close',
+        'value': 'Close'
       }
     ];
     this.settings = {
@@ -124,7 +124,8 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
       'columnsettings': [
         {
           headerName: "Petition Name",
-          field: "petitionName"
+          field: "petitionName",
+          type:'text'
         },
         {
           headerName: "Petition Type",
@@ -134,7 +135,8 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "Organization",
-          field: "organization"
+          field: "organization",
+          type:'text'
         },
         {
           headerName: "Status",
@@ -144,7 +146,8 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "Stage",
-          field: "petitionStage"
+          field: "petitionStage",
+          type:'text'
         },
         {
           headerName: "Start Date",
@@ -158,7 +161,8 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         },
         {
           headerName: "Receipt Number",
-          field: "recieptNumber"
+          field: "recieptNumber",
+          type:'text'
         },
         {
           headerName: "More",

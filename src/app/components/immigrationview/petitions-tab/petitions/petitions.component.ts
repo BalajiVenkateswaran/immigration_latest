@@ -88,20 +88,24 @@ export class PetitionsComponent implements OnInit {
             'columnsettings': [
                 {
                     headerName: "Name",
-                    field: "petitionName"
+                    field: "petitionName",
+                  type:'text'
                 },
                 {
                     headerName: "File No.",
                     field: "petitionNumber",
-                    type: 'datePicker'
+                    type: 'text'
                 },
                 {
                     headerName: "First Name",
-                    field: "firstName"
+                    field: "firstName",
+                  type:'text'
                 },
                 {
                     headerName: "Last Name",
-                    field: "lastName"
+                    field: "lastName",
+                  type:'text'
+
                 },
                 {
                     headerName: "Type",
@@ -133,24 +137,28 @@ export class PetitionsComponent implements OnInit {
                 },
                 {
                     headerName: "Final Action",
-                    field: "finalStatus"
+                    field: "finalStatus",
+                  type:'text'
                 },
                 {
                     headerName: "Assigned To",
-                    field: "assignedToName"
+                    field: "assignedToName",
+                  type:'text'
                 },
                 {
                     headerName: "Stage",
-                    field: "petitionStage"
+                    field: "petitionStage",type:'text'
                 },
                 {
                     headerName: "# Days",
                     field: "daysInStage",
-                    headerTooltip: "Number of days in current stage"
+                    headerTooltip: "Number of days in current stage",
+                  type:'text'
                 },
                 {
                     headerName: "Tag",
-                    field: "tag"
+                    field: "tag",
+                  type:'text'
                 }
             ]
         }

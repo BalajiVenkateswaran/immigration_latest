@@ -37,10 +37,23 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   public editFlag: boolean = true;
   public isEditProducts: boolean = true;
   public warningMessage: boolean = false;
+  public statusTypes: any = [];
 
   constructor(public appService: AppService, public dialogService: DialogService, public productCatalogProductService: ProductCatalogProductService,
               private menuComponent: MenuComponent, public headerService: HeaderService) {
     super(dialogService);
+
+    this.statusTypes = [
+      {
+        'display': 'Active',
+        'value': 'Active'
+      },
+      {
+        'display': 'Inactive',
+        'value': 'Inactive'
+      }
+    ];
+
     this.settings = {
       'isDeleteEnable': false,
       'customPanel': true,
@@ -53,47 +66,59 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
       'columnsettings': [
         {
           headerName: "Name",
-          field: "name"
+          field: "name",
+          type:'text'
         },
         {
           headerName: "Code",
-          field: "code"
+          field: "code",
+          type:'text'
         },
         {
           headerName: "Max Users",
-          field: "maxUsers"
+          field: "maxUsers",
+          type:'text'
         },
         {
           headerName: "Max Orgs",
-          field: "maxOrgs"
+          field: "maxOrgs",
+          type:'text'
         },
         {
           headerName: "Max Clients/Month",
-          field: "maxClientsPerMonth"
+          field: "maxClientsPerMonth",
+          type:'text'
         },
         {
           headerName: "Max Petitions/Month",
-          field: "maxPetitionsPerMonth"
+          field: "maxPetitionsPerMonth",
+          type:'text'
         },
         {
           headerName: "Max S3 Storage",
-          field: "maxS3Storage"
+          field: "maxS3Storage",
+          type:'text'
         },
         {
           headerName: "Cost",
-          field: "cost"
+          field: "cost",
+          type:'text'
         },
         {
           headerName: "Type",
-          field: "productType"
+          field: "productType",
+          type:'text'
         },
         {
           headerName: "Status",
-          field: "status"
+          field: "status",
+          type:'dropDown',
+          data:this.statusTypes
         },
         {
           headerName: "Created On",
-          field: "createdOn"
+          field: "createdOn",
+          type:'datePicker'
         }
       ]
     }

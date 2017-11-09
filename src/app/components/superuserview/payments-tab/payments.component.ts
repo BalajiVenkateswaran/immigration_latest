@@ -31,10 +31,22 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
   public newclitem: any = {};
   public DefaultResponse = {"status": "Active"};
   public settings;
+  public statusTypes: any = [];
   constructor(private superuserviewPaymentstabService: SuperUserViewPaymentstabService, private appService: AppService,
     private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
     private accountDetailsCommonService: AccountDetailsCommonService, private headerService: HeaderService) {
     super(dialogService);
+    this.statusTypes = [
+      {
+        'display': 'Success',
+        'value': 'Success'
+      },
+      {
+        'display': 'Failure',
+        'value': 'Failure'
+      }
+    ];
+
     this.settings = {
       'isDeleteEnable': false,
       'isAddButtonEnable': false,
@@ -46,35 +58,44 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
       'columnsettings': [
         {
           headerName: "Payment Id",
-          field: "paymentId"
+          field: "paymentId",
+          type:'text'
         },
         {
           headerName: "Account Name",
-          field: "accountName"
+          field: "accountName",
+          type:'text'
         },
         {
           headerName: "Account Number",
-          field: "accountNumber"
+          field: "accountNumber",
+          type:'text'
         },
         {
           headerName: "Invoice Number",
-          field: "invoiceNumber"
+          field: "invoiceNumber",
+          type:'text'
         },
         {
           headerName: "Invoice Date",
-          field: "invoiceDate"
+          field: "invoiceDate",
+          type:'datePicker'
         },
         {
           headerName: "Invoice Amount",
-          field: "invoiceAmount"
+          field: "invoiceAmount",
+          type:'text'
         },
         {
           headerName: "Payment Status",
-          field: "paymentStatus"
+          field: "paymentStatus",
+          type:'dropDown',
+          data:this.statusTypes
         },
         {
           headerName: "Payment Date",
-          field: "paymentDate"
+          field: "paymentDate",
+          type:'datePicker'
         }
       ]
     }

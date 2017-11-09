@@ -32,7 +32,19 @@
                     <div class='col-sm-4' *ngFor="let column of row">
                         <div class='form-group'>
                             <label for="filter_{{column['field']}}">{{column['headerName']}}</label>
-                            <input class="form-control" id="filter_{{column['field']}}" name="filter[{{column['field']}}]" [(ngModel)]="column['value']" size="30" type="text" />
+                            <input class="form-control" *ngIf="column['type'] == 'text' " id="filter_{{column['field']}}"
+                                   name="filter[{{column['field']}}]" [(ngModel)]="column['value']" size="30" type="text" />
+
+                          <select *ngIf="column['type'] == 'dropDown'" [(ngModel)]="column['value']" >
+                            <option *ngFor="let optionData of column['data']" [value] = 'optionData.value'>
+                              {{ optionData.display }}
+                            </option>
+                          </select>
+
+                          <my-date-picker *ngIf="column['type'] == 'datePicker'"
+                                          [options]="datePickerOptions" [(ngModel)]="column['value']"
+                                          [selDate]="deniedDate"></my-date-picker>
+
                         </div>
                     </div>
                 </div>
