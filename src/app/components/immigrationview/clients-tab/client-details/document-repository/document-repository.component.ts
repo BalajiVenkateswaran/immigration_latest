@@ -131,8 +131,8 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     }
 
     onDownloadClick(event) {
-        this.clientdocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
-            (data => this.downloadFiles(data, event.data.fileName)),
+        this.clientdocumentrepositoryService.downloadFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe
+            (data => this.downloadFiles(data, event.fileName)),
             error => console.log('Error Downloading....');
         () => console.log('OK');
 

@@ -109,8 +109,8 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
 
   }
   onDownloadClick(event) {
-    this.organizationdocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
-      (data => this.downloadFiles(data, event.data.fileName)),
+    this.organizationdocumentrepositoryService.downloadFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe
+      (data => this.downloadFiles(data, event.fileName)),
       error => console.log('Error Downloading....');
     () => console.log('OK');
 
@@ -180,14 +180,14 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   isfileExists(file) {
     let fileExists = false;
     this.getFiles.filter(item => {
-      if (file.name == item.fileName) {
+      if (file.name === item.fileName) {
         fileExists = true;
       }
     });
     return fileExists;
   }
   editFileName(event) {
-    if (event.colDef.headerName != 'Actions') {
+    if (event.colDef.headerName !== 'Actions') {
       this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
       this.dialogService.addDialog(OrganizationDocumentRepositoryComponent, {
         editFiles: true,
