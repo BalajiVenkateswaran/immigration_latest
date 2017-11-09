@@ -94,7 +94,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
           } else {
             columnValue = column['value'];
           }
-          this.smartTable.queryParameters.addFilter(column['headerName'], column['field'], this.smartTable.getFilterType(column['headerName']), columnValue);
+          this.smartTable.queryParameters.addFilter(column['headerName'], column['field'], this.smartTable.getFilterType(column['field']), columnValue);
         }
       }
     }

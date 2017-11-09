@@ -1,5 +1,4 @@
 import {viewAddressInfo} from './models/viewAddressInfo';
-import {CustomFilterRow} from './components/framework/smarttable/CustomFilterRow';
 import {SmartTableFrameworkComponent} from './components/framework/smarttable/smarttable.component';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
@@ -363,7 +362,7 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
         AgGridModule.withComponents([SmartTableFrameworkComponent]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, CustomFilterRow, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire, ActionIcons,
+        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire, ActionIcons,
         GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton,
       InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
@@ -455,7 +454,7 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
         ConfirmorgComponent,
 
         // SmartTable related components
-        SmartTableFrameworkComponent, CustomFilterRow, FilterComponent, PaginationComponent,
+        SmartTableFrameworkComponent, FilterComponent, PaginationComponent,
         // superuserview
         AccountInvoiceComponent,
         accountDetailsPaymentsComponent,
