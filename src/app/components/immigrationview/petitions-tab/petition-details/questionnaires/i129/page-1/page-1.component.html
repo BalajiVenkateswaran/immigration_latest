@@ -1,3 +1,4 @@
+
 <div class="main-content">
     <div class="table-data">
         <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
@@ -75,7 +76,7 @@
                                     <span *ngIf="isquestionnaireEdit==true">{{page1.address.inCareOfName}}</span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="StreetNumberAndName">Street Number and Name</label>
                                     <input class="form-control" id="StreetNumberAndName" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.street"
@@ -83,17 +84,16 @@
                                     <span *ngIf="isquestionnaireEdit==true">{{page1.address.street}}</span>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8">
+                            <div class="col-md-2">
+                                <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-4" *ngFor="let x of aptType">
-                                            <input type="radio" [(disabled)]="isquestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType">{{x.display}}
+                                            {{x.display}}<input type="radio" [(disabled)]="isquestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Number">Number</label>
                                     <input class="form-control" id="Number" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.houseNumber"
@@ -194,15 +194,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="fein">Federal Employer Identification Number (FEIN)</label>
-                                    <input class="form-control" id="fein" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.fein" />
+                                    <span style="display:inline-flex;"><i class="material-icons">&#xE037;</i><input class="form-control" id="fein" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.fein" /></span>
                                     <span *ngIf="isquestionnaireEdit==true">{{page1.fein}}</span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="irsTaxnumber">Individual IRS Tax Number </label>
-                                    <input class="form-control" for="irsTaxnumber" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.irsTaxNumber"
-                                    />
+                                     <span style="display:inline-flex;"><i class="material-icons">&#xE037;</i><input class="form-control" for="irsTaxnumber" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.irsTaxNumber"
+                                    /></span>
                                     <span *ngIf="isquestionnaireEdit==true">{{page1.irsTaxNumber}}</span>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="usSSN">U.S. Social Security Number (if any) </label>
-                                    <input class="form-control" id="usSSN" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.ssn" />
+                                     <span style="display:inline-flex;"><i class="material-icons">&#xE037;</i><input class="form-control" id="usSSN" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.ssn" /></span>
                                     <span *ngIf="isquestionnaireEdit==true">{{page1.ssn}}</span>
                                 </div>
                             </div>

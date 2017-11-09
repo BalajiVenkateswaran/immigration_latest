@@ -28,11 +28,24 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
     public newclitem: any = {};
     public settings;
     public data;
-    constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService,
+  public statusTypes: any = [];
+
+  constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService,
        private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
        private accountDetailsCommonService: AccountDetailsCommonService, private headerService: HeaderService) {
         super(dialogService);
-        this.settings = {
+      this.statusTypes = [
+        {
+          'display': 'Success',
+          'value': 'Success'
+        },
+        {
+          'display': 'Failure',
+          'value': 'Failure'
+        }
+      ];
+
+      this.settings = {
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
             'columnFilter': true,
@@ -43,31 +56,39 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
             'columnsettings': [
                 {
                     headerName: "Invoice Number",
-                    field: "invoiceNumber"
+                    field: "invoiceNumber",
+                    type:'text'
                 },
                 {
                     headerName: "Account Name",
-                    field: "accountName"
+                    field: "accountName",
+                    type:'text'
                 },
                 {
                     headerName: "Account Number",
-                    field: "accountNumber"
+                    field: "accountNumber",
+                  type:'text'
                 },
                 {
                     headerName: "Invoice Date",
-                    field: "invoiceDate"
+                    field: "invoiceDate",
+                  type:'datePicker'
                 },
                 {
                     headerName: "Invoice Amount",
-                    field: "invoiceAmount"
+                    field: "invoiceAmount",
+                  type:'text'
                 },
                 {
                     headerName: "Payment Status",
-                    field: "paymentStatus"
+                    field: "paymentStatus",
+                  type:'dropDown',
+                  data:this.statusTypes
                 },
                 {
                     headerName: "PDF Generated",
-                    field: "pdfGenerated"
+                    field: "pdfGenerated",
+                  type:'text'
                 }
 
             ]

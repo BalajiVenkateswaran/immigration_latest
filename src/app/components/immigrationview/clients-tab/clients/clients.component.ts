@@ -53,12 +53,25 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public lastName: string;
   public firstName: string;
   private orgId: string;
+  public statusTypes: any = [];
 
   constructor(private router: Router, private clientService: ClientsService, private appService: AppService,
     public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService) {
     super(dialogService);
       console.log('Clients component constructor');
+
+    this.statusTypes = [
+      {
+        'display': 'Active',
+        'value': 'Active'
+      },
+      {
+        'display': 'Inactive',
+        'value': 'Inactive'
+      }
+    ];
+
         this.settings = {
             'columnFilter': false,
             'isDeleteEnable': false,
@@ -89,27 +102,36 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             'columnsettings': [
                 {
                     headerName: 'First Name',
-                    field: 'firstName'
+                    field: 'firstName',
+                  type:'text'
                 },
                 {
                     headerName: 'Last Name',
-                    field: 'lastName'
+                    field: 'lastName',
+                  type:'text'
                 },
                 {
                     headerName: 'Email Address',
-                    field: 'email'
+                    field: 'email',
+                  type:'text'
                 },
                 {
                     headerName: 'Phone',
-                    field: 'phone'
+                    field: 'phone',
+                  type:'text'
                 },
                 {
                     headerName: 'Status',
-                    cellRendererFramework: StatusButton
+                  field:'status',
+                    cellRendererFramework: StatusButton,
+                    type:'dropDown',
+                  data: this.statusTypes
+
                 },
                 {
                     headerName: 'Open Petitions',
-                    field: 'openPetitions'
+                    field: 'openPetitions',
+                  type:'text'
                 }
             ]
 

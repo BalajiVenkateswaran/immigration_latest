@@ -41,6 +41,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   private clientName: any;
   public addAccounts: boolean;
   public accountDetails: any = {};
+  public statusTypes: any = [];
 
 
   public DefaultResponse = {'status': 'Active'};
@@ -50,6 +51,17 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
               private accountDetailsCommonService: AccountDetailsCommonService, public reportscommonService: ReportsCommonService,
               private headerService: HeaderService) {
     super(dialogService);
+    this.statusTypes = [
+      {
+        'display': 'Active',
+        'value': 'Active'
+      },
+      {
+        'display': 'Inactive',
+        'value': 'Inactive'
+      }
+    ];
+
     this.settings = {
       'isDeleteEnable': false,
       'columnFilter': false,
@@ -76,55 +88,69 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
       'columnsettings': [
         {
           headerName: 'Account Name',
-          field: 'accountName'
+          field: 'accountName',
+          type:'text'
         },
         {
           headerName: 'Account Number',
-          field: 'accountNumber'
+          field: 'accountNumber',
+          type:'text'
         },
         {
           headerName: 'First Name',
-          field: 'firstName'
+          field: 'firstName',
+          type:'text'
         },
         {
           headerName: 'Last Name',
-          field: 'lastName'
+          field: 'lastName',
+          type:'text'
         },
         {
           headerName: 'Email',
-          field: 'email'
+          field: 'email',
+          type:'text'
         },
         {
           headerName: 'Phone',
-          field: 'phone'
+          field: 'phone',
+          type:'text'
         },
         {
           headerName: 'Status',
-          field: 'status'
+          field: 'status',
+          type:'dropDown',
+          data:this.statusTypes
         },
         {
             headerName: 'Orgs',
-            field: 'organizatinCount'
+            field: 'organizatinCount',
+          type:'text'
         },
         {
           headerName: 'Clients',
-          field: 'clientCount'
+          field: 'clientCount',
+          type:'text'
         },
         {
           headerName: 'Petitions',
-          field: 'petitionCount'
+          field: 'petitionCount',
+          type:'text'
         },
         {
           headerName: 'Created On',
-          field: 'creationOn'
+          field: 'creationOn',
+          type:'datePicker'
         },
         {
           headerName: 'Last Payment Status',
-          field: 'lastPaymentStatus'
+          field: 'lastPaymentStatus',
+          type:'text'
         },
         {
           headerName: 'Storage Type',
-          field: 'storageType'
+          field: 'storageType',
+          type:'text'
         }
       ]
     };

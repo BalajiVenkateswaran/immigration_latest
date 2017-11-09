@@ -66,6 +66,8 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
           this.moreFilterFields[rowCount][fieldCount]['field'] = column['field'];
           this.moreFilterFields[rowCount][fieldCount]['headerName'] = column['headerName'];
           this.moreFilterFields[rowCount][fieldCount]['type'] = column['type'];
+          this.moreFilterFields[rowCount][fieldCount]['data'] = column['data'];
+          console.log(this.moreFilterFields[rowCount][fieldCount]['data'])
           fieldCount++;
         }
       }
@@ -84,6 +86,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
     // Add filters for the columns that has values entered
     for (let row of this.moreFilterFields) {
       for (let column of row) {
+        console.log(column['value'])
         if (column['value'] != null) {
           this.smartTable.queryParameters.addFilter(column['headerName'], column['field'], this.smartTable.getFilterType(column['headerName']), column['value']);
         }
