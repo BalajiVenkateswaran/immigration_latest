@@ -57,13 +57,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         this.circularProgess = 50;
         this.accountId = this.user.accountId;
     }
-  public fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
+    public fileOverBase(e: any): void {
+      this.hasBaseDropZoneOver = e;
+    }
 
-  public fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-  }
+    public fileOverAnother(e: any): void {
+      this.hasAnotherDropZoneOver = e;
+    }
     onDeleteClick(data) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Confirmation',
@@ -135,8 +135,8 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             (data => this.downloadFiles(data, event.fileName)),
             error => console.log('Error Downloading....');
         () => console.log('OK');
-
     }
+
     ngOnInit() {
        this.uploader = new FileUploader({
             url: environment.appUrl + '/file/upload/entityId/' + this.appService.clientId + '/entityType/CLIENT/org/' + this.headerService.selectedOrg['orgId']

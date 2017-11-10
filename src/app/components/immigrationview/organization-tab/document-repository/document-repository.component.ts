@@ -45,12 +45,12 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   onDeleteClick(event) {
     this.dialogService.addDialog(ConfirmComponent, {
       title: 'Confirmation',
-      message: 'Are you sure you want to delete ' + event.data.fileName + ' ?'
+      message: 'Are you sure you want to delete ' + event.fileName + ' ?'
     })
       .subscribe((isConfirmed) => {
         // Get dialog result
         if (isConfirmed) {
-          this.organizationdocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
+          this.organizationdocumentrepositoryService.deleteFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
             this.getFilesList();
           });
         }
@@ -148,7 +148,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
               fileId: jsonResponse['fileId'],
               fileName: item.file.name,
               orderNo: this.getFiles.length,
-              updatedDate: this.datePipe.transform(new Date(), 'mm-dd-yyyy')
+              updatedDate: this.datePipe.transform(new Date(), 'MM-dd-yyyy')
             });
             item.remove();
           } else {
@@ -228,7 +228,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     }
   }
   save() {
-    if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
+    if (this.editFileObject['fileName'] === '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] === undefined) {
       this.warningMessage = true;
     } else {
       this.warningMessage = false;
