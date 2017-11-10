@@ -3,7 +3,6 @@
         <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <h1 style="float:right;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>-->
-        <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
@@ -21,13 +20,12 @@
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                        <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" style="margin-top: 10px;">
                                 <div class="row">
                                     <div class="col-md-12">                                        
-                                        <div class="col-md-6" style="margin-left: -15px;"><p class="fieldsetheading">1. Requested Nonimmigrant Classification (Write classification symbol):</p>
+                                        <div class="col-md-6" style="margin-left: -18px;"><p class="fieldsetheading">1. Requested Nonimmigrant Classification (Write classification symbol):</p>
                                         </div>                                      
-                                        <div class="col-md-6" style="margin-left: -55px;">
+                                        <div class="col-md-6" style="margin-left: -18px;">
                                             <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.nonImmigrantClassification"
                                             />
                                             <span *ngIf="isquestionnaireEdit==true">{{page2.nonImmigrantClassification}}</span>
@@ -52,9 +50,10 @@
                                         <p class="fieldsetheading">3. Provide the most recent petition/application receipt number for the beneficiary.
                                             If none exists, indicate "None."</p>
                                         <div class="col-md-6">
-                                            <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.recentPetitionReceiptNo" />
-                                            <span *ngIf="isquestionnaireEdit==true">{{page2.recentPetitionReceiptNo}}</span>
-                                        </div>
+                                            <span style="display:inline-flex; width: 80%;">
+                                                <i class="material-icons" style="margin-top:5px;">&#xE037;</i><input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.recentPetitionReceiptNo" /></span>
+                                                <span *ngIf="isquestionnaireEdit==true">{{page2.recentPetitionReceiptNo}}</span>
+</div>
                                     </div>
 
                                 </div>
@@ -70,16 +69,16 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p class="fieldsetheading">5. Total number of workers included in this petition. (See instructions relating
-                                            to when more than one worker can be included.)</p>
-                                        <div class="col-md-6">
-                                            <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.totalNumberOfWorkers" />
+                                        <div class="col-md-7">
+                                            <p class="fieldsetheading"> 5. Total number of workers included in this petition. (See instructions relating to when more than one worker can be included.)</p>
+                                        </div>                                       
+                                        <div class="col-md-5">
+                                        <span style="display:inline-flex; width: 80%;"><i class="material-icons" style="margin-top:5px;">&#xE037;</i> <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.totalNumberOfWorkers" /></span>
                                             <span *ngIf="isquestionnaireEdit==true">{{page2.totalNumberOfWorkers}}</span>
-                                        </div>
-                                    </div>
+                                            </div>  
+</div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -88,7 +87,6 @@
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
@@ -228,16 +226,13 @@
                                 <div class="form-group">
                                     <label for="USSSN">U.S.Social Security Number (if any)</label>
                                     <div>
-                                        <input id="USSSN" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.ssn" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.ssn}}</span>
-                                    </div>
+                                        <span style="display:inline-flex; width:70%"><i class="material-icons" style="margin-top:5px;">&#xE037;</i> <input id="USSSN" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.ssn" /></span>
+                                            <span *ngIf="isquestionnaireEdit==true">{{page2.ssn}}</span>
+</div>
                                 </div>
                             </div>
                         </div>
-
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            </div>
 </div>
