@@ -77,8 +77,10 @@ label {
         text-decoration: none;
     }
 }
-.ag-body-container{
-  height:auto !important;
+.ag-body-container {
+  /*height: auto !important;
+  overflow-y: scroll;*/
+  height: 200px !important;
 }
 .login_text {
         margin-top: 30%;
@@ -302,9 +304,9 @@ section {
     width: 100%;
     float: left;
     /*height:100%;*/
-
-    height: calc(100vh - 176px);
-    overflow-y: auto;
+    overflow:hidden !important;
+    /*height: calc(100vh - 176px);
+    overflow-y: auto;*/
     padding-bottom: 15px;
     h1 {
         /*display:none;*/
