@@ -35,7 +35,7 @@
                             <input class="form-control" *ngIf="column['type'] == 'text' " id="filter_{{column['field']}}"
                                    name="filter[{{column['field']}}]" [(ngModel)]="column['value']" size="30" type="text" />
 
-                          <select *ngIf="column['type'] == 'dropDown'" [(ngModel)]="column['value']" >
+                          <select class="form-control" *ngIf="column['type'] == 'dropDown'" [(ngModel)]="column['value']" >
                             <option *ngFor="let optionData of column['data']" [value] = 'optionData.value'>
                               {{ optionData.display}}
                             </option>
