@@ -15,40 +15,40 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="svMiscDemoClose" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Name:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="adddemoRequests.name" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svMiscDemoName" [(ngModel)]="adddemoRequests.name" class="form-control"></div>
                             <div class="col-md-5">Email:</div>
                             <div class="col-md-7">
-                                <input type="text" [(ngModel)]="adddemoRequests.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                <input type="text" id="svMiscDemoEmail" [(ngModel)]="adddemoRequests.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                                        required #emailId="ngModel" class="form-control">
                             </div>
                             <div class="col-md-5">Phone:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="adddemoRequests.phone" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svMiscDemoPhone" [(ngModel)]="adddemoRequests.phone" class="form-control"></div>
 
-                                <div class="col-md-5"><label for="wa-ws">Date:</label></div>
+                                <div class="col-md-5"><label for="svMiscDemoDate">Date:</label></div>
                                 <div class="col-md-7">
-                                    <my-date-picker [options]="myDatePickerOptions"
+                                    <my-date-picker id="svMiscDemoDate" [options]="myDatePickerOptions"
                                                     (dateChanged)="onDateChanged($event)"
                                                     [(ngModel)]="adddemoRequests.demoRequestDate"
                                                     [selDate]="demoRequestDate"></my-date-picker>
                                 </div>
 
                             <div class="col-md-5">Referral:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="adddemoRequests.referral" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svMiscDemoRef" [(ngModel)]="adddemoRequests.referral" class="form-control"></div>
                             <div class="col-md-5">Comments:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="adddemoRequests.comments" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svMiscDemoComment" [(ngModel)]="adddemoRequests.comments" class="form-control"></div>
                             <div class="col-md-5">Status:</div>
                             <div class="col-md-7">
                                 <select  [(ngModel)]="adddemoRequests.status" class="form-control">
-                                    <option value="new">New</option>
-                                    <option value="scheduled">Scheduled</option>
-                                    <option value="completes">Complete</option>
+                                    <option value="new" id="svMiscDemoStatusNew">New</option>
+                                    <option value="scheduled" id="svMiscDemoStatusSchedul">Scheduled</option>
+                                    <option value="completes" id="svMiscDemoStatuComplete">Complete</option>
                                 </select>
                             </div>
 
@@ -69,8 +69,8 @@
                             <div class="col-md-7">
                                 <div class="row">
                                     <div></div>
-                                    <div class="col-md-6"> <button type="button" class="btn btn-primary" (click)="demorequestsave(emailId.errors,roles)">Save</button></div>
-                                    <div class="col-md-6"> <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button> </div>
+                                    <div class="col-md-6"> <button type="button" id="svMiscDemoSave" class="btn btn-primary" (click)="demorequestsave(emailId.errors,roles)">Save</button></div>
+                                    <div class="col-md-6"> <button type="button" id="svMiscDemoCancel" class="btn btn-default" (click)="cancel()">Cancel</button> </div>
                                 </div>
                             </div>
                         </div>

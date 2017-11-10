@@ -26,7 +26,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="svActPrefClose" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
 
@@ -35,14 +35,14 @@
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-4">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" class="form-control" [disabled]="editprdct" [(ngModel)]="addproduct.code"></div>
+                            <div class="col-md-8"><input type="text" class="form-control" id="svActPrefCode" [disabled]="editprdct" [(ngModel)]="addproduct.code"></div>
                             <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
                             <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="addproduct.startDate" [selDate]="startDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="svActPrefStartDate" [(ngModel)]="addproduct.startDate" [selDate]="startDate"></my-date-picker>
                             </div>
                             <div class="col-md-4">End Date:<span class="redstar">*</span></div>
                             <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="addproduct.endDate" [selDate]="endDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="svActPrefEndDate" [(ngModel)]="addproduct.endDate" [selDate]="endDate"></my-date-picker>
                             </div>
                         </div>
                     </div>
@@ -57,8 +57,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="productSave()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-primary" id="svActPrefSave" (click)="productSave()">Save</button>
+                <button type="button" class="btn btn-default" id="svActPrefCancel" (click)="cancel()">Cancel</button>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="svActPrefClose1" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -76,14 +76,14 @@
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-4">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode"></div>
+                            <div class="col-md-8"><input type="text" id="svActPrefCode1" class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode"></div>
                             <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
                             <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="discounts.startDate" [selDate]="startDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="svActPrefStartDate1" [(ngModel)]="discounts.startDate" [selDate]="startDate"></my-date-picker>
                             </div>
                             <div class="col-md-4">End Date:<span class="redstar">*</span></div>
                             <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="discounts.endDate" [selDate]="endDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="svActPrefEndDate1" [(ngModel)]="discounts.endDate" [selDate]="endDate"></my-date-picker>
                             </div>
                         </div>
                     </div>
@@ -98,8 +98,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="discountSave()">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-primary" id="svActPrefSave1"(click)="discountSave()">Save</button>
+                <button type="button" class="btn btn-default"  id="svActPrefCancel1" (click)="cancel()">Cancel</button>
             </div>
         </div>
     </div>

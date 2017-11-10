@@ -44,7 +44,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     private beforeCancelProfile;
     private beforeCancelPersonal;
     public disableSendInvite: boolean;
-    
+
     constructor(public appService: AppService, public headerService: HeaderService, private clientDetailsService: ImmigrationViewClientDetailsService, private dialogService: DialogService) {
         if (this.headerService.user) {
             this.user = this.headerService.user;
@@ -148,11 +148,11 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         let targetEvent=event;
         targetEvent.preventDefault();
         this.dialogService.addDialog(ConfirmComponent,{
-            message: 'An email will be sent to'+this.appService.firstName+" "+this.appService.lastName+" "+'accept the invitation to join org'+' '+this.headerService.selectedOrg.displayName+".",
+            message: 'An email will be sent to'+this.appService.firstName+" "+this.appService.lastName+" "+'asking to accept the invitation to join'+' '+this.headerService.selectedOrg.displayName+ "."+ "   " + ' Are you sure you want to send the email invite again ?',
             title: 'Send Invite'
         }).subscribe((isConfirmed)=>{
           if(isConfirmed){
-           
+
             this.clientDetailsService.sendClientInvite(this.appService.clientId)
               .subscribe((res) => {
                 event.stopPropagation();
@@ -160,7 +160,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
               });
           }
           else{
-             
+
           }
         })
 

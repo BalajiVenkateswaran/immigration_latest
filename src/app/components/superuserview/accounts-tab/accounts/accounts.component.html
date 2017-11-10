@@ -20,27 +20,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" id="svActclose" class="close" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4"><span class="redstar">*</span> Account Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.accountName" class="form-control" [ngClass]="accountDetails.accountName == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-8"><input type="text" id="svActAccountName" [(ngModel)]="accountDetails.accountName" class="form-control" [ngClass]="accountDetails.accountName == '' ? 'redborder': ''" ></div>
                             <div class="col-md-4"><span class="redstar">*</span> First Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.firstName" class="form-control" [ngClass]="accountDetails.firstName == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-8"><input type="text" id="svActFName" [(ngModel)]="accountDetails.firstName" class="form-control" [ngClass]="accountDetails.firstName == '' ? 'redborder': ''" ></div>
                             <div class="col-md-4"><span class="redstar">*</span> Last Name:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.lastName" class="form-control" [ngClass]="accountDetails.lastName == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-8"><input type="text" id="svActLName" [(ngModel)]="accountDetails.lastName" class="form-control" [ngClass]="accountDetails.lastName == '' ? 'redborder': ''" ></div>
                             <div class="col-md-4"><span class="redstar">*</span> Email:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.email" class="form-control" [ngClass]="accountDetails.email == '' ? 'redborder': ''" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel" /></div>
+                            <div class="col-md-8"><input type="text" id="svActEmail" [(ngModel)]="accountDetails.email" class="form-control" [ngClass]="accountDetails.email == '' ? 'redborder': ''" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel" /></div>
                             <div class="col-md-4"><span class="redstar">*</span> Phone:</div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="accountDetails.phone" class="form-control" [ngClass]="accountDetails.phone == '' ? 'redborder': ''" ></div>
+                            <div class="col-md-8"><input type="text" id="svActphone" [(ngModel)]="accountDetails.phone" class="form-control" [ngClass]="accountDetails.phone == '' ? 'redborder': ''" ></div>
                             <div class="col-md-4"><span class="redstar">*</span> Storage Type::</div>
                             <div class="col-md-8">
                             <select [(ngModel)]="accountDetails.objectStore" class="form-control" [ngClass]="accountDetails.objectStore == '' ? 'redborder': ''">
-                                <option value="S3">S3</option>
-                                <option value="GD">GD</option>
+                                <option value="S3" id="svActs3">S3</option>
+                                <option value="GD" id="svActGd">GD</option>
                             </select>
                             </div>
                         </div>
@@ -65,8 +65,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="accountSave(emailId.errors)">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" id="svActSave" class="btn btn-primary" (click)="accountSave(emailId.errors)">Save</button></div>
+                                    <div class="col-md-6"><button type="button" id="svActCancel" class="btn btn-default" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

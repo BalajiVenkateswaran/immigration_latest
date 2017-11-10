@@ -11,23 +11,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="svMiscSuperClose">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5"><span class="redstar">*</span>First Name:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addsuperUsers.firstName" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svMiscSuperFName" [(ngModel)]="addsuperUsers.firstName" class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Last Name:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addsuperUsers.lastName" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svMiscSuperLName" [(ngModel)]="addsuperUsers.lastName" class="form-control"></div>
                             <div class="col-md-5"><span class="redstar">*</span>Email:</div>
                             <div class="col-md-7">
-                                <input type="text" [(ngModel)]="addsuperUsers.emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                <input type="text" id="svMiscSuperEmail" [(ngModel)]="addsuperUsers.emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                                        required #emailId="ngModel" class="form-control">
                             </div>
                             <div class="col-md-5">Phone:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addsuperUsers.phone" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svMiscSuperPhone" [(ngModel)]="addsuperUsers.phone" class="form-control"></div>
 
                         </div>
                         <div class="row">
@@ -51,8 +51,8 @@
                             <div class="col-md-7">
                                 <div class="row">
                                     <div></div>
-                                    <div class="col-md-6"> <button type="button" class="btn btn-primary" (click)="superuserSave(emailId.errors)">Save</button></div>
-                                    <div class="col-md-6"> <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button> </div>
+                                    <div class="col-md-6"> <button type="button" id="svMiscSuperSave" class="btn btn-primary" (click)="superuserSave(emailId.errors)">Save</button></div>
+                                    <div class="col-md-6"> <button type="button" id="svMiscSuperCancel" class="btn btn-default" (click)="cancel()">Cancel</button> </div>
                                 </div>
                             </div>
                         </div>

@@ -20,7 +20,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="svActManagerClose" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -28,16 +28,16 @@
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-4">First Name:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.firstName" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" id="svActManagerFName" [(ngModel)]="addUsers.firstName" class="form-control"></div>
                             <div class="col-md-4">Last Name:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.lastName" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" id="svActManagerLName" [(ngModel)]="addUsers.lastName" class="form-control"></div>
                             <div class="col-md-4">Email:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" [(ngModel)]="addUsers.emailId" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel"></div>
+                            <div class="col-md-8"><input type="text" id="svActManagerEmail" [(ngModel)]="addUsers.emailId" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel"></div>
                             <div class="col-md-4">Role:<span class="redstar">*</span></div>
                             <div class="col-md-8">
                                 <select [(ngModel)]="addUsers.role" class="form-control">
-                                    <option value="Immigration Officer">Immigration Officer</option>
-                                    <option value="Immigration Manager">Immigration Manager</option>
+                                    <option value="Immigration Officer" id="svActManagerImmOfficer">Immigration Officer</option>
+                                    <option value="Immigration Manager" id="svActManagerImmMgr">Immigration Manager</option>
                                 </select>
                             </div>
                         </div>
@@ -62,8 +62,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="accountmanagersSave(emailId.errors)">Save</button>
-                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-primary" id="svActManagerSave" (click)="accountmanagersSave(emailId.errors)">Save</button>
+                <button type="button" class="btn btn-default" id="svActManagerCancel" (click)="cancel()">Cancel</button>
             </div>
         </div>
     </div>

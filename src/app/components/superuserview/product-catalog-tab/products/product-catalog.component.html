@@ -18,7 +18,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
 
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="svprodClose">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -28,7 +28,7 @@
                                 <div class="row">
                                     <div class="col-md-5">Name:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.name"
+                                        <input type="text" *ngIf="isEditProducts==false" id="svprodName" [disabled]="true" [(ngModel)]="product.name"
                                                class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.name}}</span>
                                     </div>
@@ -36,7 +36,7 @@
                                 <div class="row">
                                     <div class="col-md-5">Code:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.code"
+                                        <input type="text" id="svprodCode" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.code"
                                                class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.code}}</span>
                                     </div>
@@ -44,21 +44,21 @@
                                 <div class="row">
                                     <div class="col-md-5">Description:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.description" class="form-control">
+                                        <input type="text" id="svprodDes" *ngIf="isEditProducts==false" [(ngModel)]="product.description" class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.description}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Max Users:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxUsers" class="form-control">
+                                        <input type="text" id="svprodMaxUser" *ngIf="isEditProducts==false" [(ngModel)]="product.maxUsers" class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.maxUsers}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Max Clients/Month:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxClientsPerMonth"
+                                        <input type="text" id="svprodMaxClients" *ngIf="isEditProducts==false" [(ngModel)]="product.maxClientsPerMonth"
                                                class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.maxClientsPerMonth}}</span>
                                     </div>
@@ -66,7 +66,7 @@
                                 <div class="row">
                                     <div class="col-md-5">Max Petitions/Month:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxPetitionsPerMonth"
+                                        <input type="text" id="svprodMaxPet" *ngIf="isEditProducts==false" [(ngModel)]="product.maxPetitionsPerMonth"
                                                class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.maxPetitionsPerMonth}}</span>
                                     </div>
@@ -74,14 +74,14 @@
                                 <div class="row">
                                     <div class="col-md-5">Max S3 Storage:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.maxS3Storage" class="form-control">
+                                        <input type="text" id="svprodMaxStorage" *ngIf="isEditProducts==false" [(ngModel)]="product.maxS3Storage" class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.maxS3Storage}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Cost:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [(ngModel)]="product.cost" class="form-control">
+                                        <input type="text" id="svprodCost" *ngIf="isEditProducts==false" [(ngModel)]="product.cost" class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.cost}}</span>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                     <div class="col-md-5">Type:</div>
                                     <div class="col-md-7">
                                         <select *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.productType" class="form-control">
-                                            <option [value]="x.value" *ngFor="let x of typeValues">{{x.name}}</option>
+                                            <option [value]="x.value" *ngFor="let x of typeValues" id="{{x.name}}">{{x.name}}</option>
                                         </select>
                                         <span *ngIf="isEditProducts==true">{{product.productType}}</span>
                                     </div>
@@ -98,8 +98,8 @@
                                     <div class="col-md-5">Status:</div>
                                     <div class="col-md-7">
                                         <select *ngIf="isEditProducts==false" [(ngModel)]="product.status" class="form-control">
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
+                                            <option value="Active" id="svprodStatusAct">Active</option>
+                                            <option value="Inactive" id="svprodStatusInAct">Inactive</option>
                                         </select>
                                         <span *ngIf="isEditProducts==true">{{product.status}}</span>
                                     </div>
@@ -107,7 +107,7 @@
                                 <div class="row">
                                     <div class="col-md-5">Created On:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.createdOn"
+                                        <input type="text" id="svprodCreatedOn" *ngIf="isEditProducts==false" [disabled]="true" [(ngModel)]="product.createdOn"
                                                class="form-control">
                                         <span *ngIf="isEditProducts==true">{{product.createdOn}}</span>
                                     </div>
@@ -124,13 +124,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
 
-                                                <button type="submit" class="btn btn-primary" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
+                                                <button type="submit" class="btn btn-primary" id="svprodEdit" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
 
 
-                                                    <button type="submit" value="Save" class="btn btn-primary" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
+                                                    <button type="submit" value="Save" class="btn btn-primary" id="svprodSave" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
 
                                             </div>
-                                            <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                            <div class="col-md-6"><button type="button" class="btn btn-default" id="svprodCancel" (click)="cancel()">Cancel</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -152,22 +152,22 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="svprodPopClose">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Name:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addProduct.name" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svprodPopName" [(ngModel)]="addProduct.name" class="form-control"></div>
                             <div class="col-md-5">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addProduct.code" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svprodPopCode" [(ngModel)]="addProduct.code" class="form-control"></div>
                             <div class="col-md-5">Cost:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addProduct.cost" class="form-control"></div>
+                            <div class="col-md-7"><input type="text"  id="svprodPopCost" [(ngModel)]="addProduct.cost" class="form-control"></div>
                             <div class="col-md-5">Type:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                                 <select [(ngModel)]="addProduct.productType" class="form-control">
-                                    <option [value]="x.value" *ngFor="let x of typeValues">{{x.name}}</option>
+                                    <option [value]="x.value" *ngFor="let x of typeValues" id="{{x.name}}">{{x.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -181,8 +181,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="saveProduct()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" id="svprodPopSave" (click)="saveProduct()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" id="svprodPopCancel" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

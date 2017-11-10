@@ -5,13 +5,13 @@
                 <span class="listofusers">Please select Account</span>
 
                 <select class="form-control" (change)="changeaccount($event.target.value)" style="max-width:250px;">
-                    <option *ngFor="let account of reportsCommonService.totalAccounts" [value]="account.accountId">{{account.accountName}}</option>
+                    <option *ngFor="let account of reportsCommonService.totalAccounts" [value]="account.accountId" id="{{account.accountName}}">{{account.accountName}}</option>
                 </select>
             </div>
             <div class="col-md-12">
                 <span class="listofusers">Select Petition Type</span>
                 <select class="form-control" [(ngModel)]="selectedsubtype" (change)="petitionsubtypechange()" style="max-width:250px;">
-                    <option *ngFor="let type of petitionstageTypes" value={{type.petitiontype}}>{{type.petitiontype}}</option>
+                    <option *ngFor="let type of petitionstageTypes" value={{type.petitiontype}} id="{{type.petitiontype}}">{{type.petitiontype}}</option>
                 </select>
             </div>
         </div>

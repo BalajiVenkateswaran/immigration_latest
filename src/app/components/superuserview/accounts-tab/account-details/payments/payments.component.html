@@ -20,7 +20,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
 
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="svActpmtsClose" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -32,7 +32,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Payment Id:</div>
                                             <div class="col-md-7">
-                                                <input type="text" [disabled]="true" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentId" class="form-control">
+                                                <input type="text" [disabled]="true" id="svActpmtsId" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentId" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.paymentId}}</span>
                                             </div>
                                         </div>
@@ -41,7 +41,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Transaction Type:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.transactionType" class="form-control">
+                                                <input type="text" *ngIf="isEditpayments==false" id="svActpmtsTranType" [(ngModel)]="payment.transactionType" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.transactionType}}</span>
                                             </div>
                                         </div>
@@ -50,7 +50,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Transaction Id:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.transactionId" class="form-control">
+                                                <input type="text" *ngIf="isEditpayments==false" id="svActpmtsTranId" [(ngModel)]="payment.transactionId" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.transactionId}}</span>
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Account Name:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountName" class="form-control" [disabled]="true">
+                                                <input type="text" *ngIf="isEditpayments==false" id="svActpmtsActName" [(ngModel)]="payment.accountName" class="form-control" [disabled]="true">
                                                 <span *ngIf="isEditpayments==true">{{payment.accountName}}</span>
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Account Number:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountNumber" class="form-control">
+                                                <input type="text" id="svActpmtsActNo" *ngIf="isEditpayments==false" [(ngModel)]="payment.accountNumber" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.accountNumber}}</span>
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Invoice Date:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceDate" class="form-control" [disabled]="true">
+                                                <input type="text" id="svActpmtsInvDate" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceDate" class="form-control" [disabled]="true">
                                                 <span *ngIf="isEditpayments==true">{{payment.invoiceDate}}</span>
                                             </div>
                                         </div>
@@ -86,7 +86,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Invoice Number:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceNumber" class="form-control">
+                                                <input type="text" id="svActpmtsInvNo" *ngIf="isEditpayments==false" [(ngModel)]="payment.invoiceNumber" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.invoiceNumber}}</span>
                                             </div>
                                         </div>
@@ -95,7 +95,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Invoice Amount:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.invoiceAmount" class="form-control">
+                                                <input type="text" id="svActpmtsInvAmt" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.invoiceAmount" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.invoiceAmount}}</span>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Bill Start Date:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billStartDate" class="form-control">
+                                                <input type="text" id="svActpmtsBillStartDate" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billStartDate" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.billStartDate}}</span>
                                             </div>
                                         </div>
@@ -113,7 +113,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Bill End Date:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billEndDate" class="form-control">
+                                                <input type="text" id="svActpmtsBillEndDate" *ngIf="isEditpayments==false" [disabled]="true" [(ngModel)]="payment.billEndDate" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.billEndDate}}</span>
                                             </div>
                                         </div>
@@ -122,7 +122,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Payment Date:</div>
                                             <div class="col-md-7">
-                                                <my-date-picker *ngIf="isEditpayments==false" [options]="myDatePickerOptions" [(ngModel)]="payment.paymentDate" [selDate]="paymentDate"></my-date-picker>
+                                                <my-date-picker *ngIf="isEditpayments==false" id="svActpmtsPmtDate" [options]="myDatePickerOptions" [(ngModel)]="payment.paymentDate" [selDate]="paymentDate"></my-date-picker>
                                                 <span *ngIf="isEditpayments==true">{{payment.paymentDate}}</span>
                                             </div>
                                         </div>
@@ -131,7 +131,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Payment Amount:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentAmount" class="form-control">
+                                                <input type="text" *ngIf="isEditpayments==false"  id="svActpmtsPmtAmt" [(ngModel)]="payment.paymentAmount" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.paymentAmount}}</span>
                                             </div>
                                         </div>
@@ -140,7 +140,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Payment Status:</div>
                                             <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditpayments==false" [(ngModel)]="payment.paymentStatus" class="form-control">
+                                                <input type="text" *ngIf="isEditpayments==false" id="svActpmtsPmtStatus" [(ngModel)]="payment.paymentStatus" class="form-control">
                                                 <span *ngIf="isEditpayments==true">{{payment.paymentStatus}}</span>
                                             </div>
                                         </div>
@@ -149,7 +149,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Comments:</div>
                                             <div class="col-md-7">
-                                                <textarea  *ngIf="isEditpayments==false" [(ngModel)]="payment.comments" class="form-control"></textarea>
+                                                <textarea  *ngIf="isEditpayments==false" id="svActpmtsComments" [(ngModel)]="payment.comments" class="form-control"></textarea>
                                                 <span style="height:100px" *ngIf="isEditpayments==true">{{payment.comments}}</span>
                                             </div>
                                         </div>
@@ -167,10 +167,10 @@
                                 <div class="col-md-7">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button type="submit" class="btn btn-primary" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
-                                            <button type="submit" value="Save" class="btn btn-primary" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
+                                            <button type="submit" class="btn btn-primary" id="svActpmtsEdit" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
+                                            <button type="submit" value="Save" class="btn btn-primary" id="svActpmtsSave1" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
                                         </div>
-                                        <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                        <div class="col-md-6"><button type="button" class="btn btn-default" id="svActpmtsCancel1" (click)="cancel()">Cancel</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -190,27 +190,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="svActpmtspopClose">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Invoice Number:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="payments.invoiceNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svActpmtspopInvNo" [(ngModel)]="payments.invoiceNumber" class="form-control"></div>
                             <div class="col-md-5">Transaction Id:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="payments.transactionId" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svActpmtspopTranId" [(ngModel)]="payments.transactionId" class="form-control"></div>
                             <div class="col-md-5">Payment Date:<span class="redstar">*</span></div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="payments.paymentDate" [selDate]="paymentDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="svActpmtspopPmtDate" [(ngModel)]="payments.paymentDate" [selDate]="paymentDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Payment Amount:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="payments.paymentAmount" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svActpmtspopPmtAmt" [(ngModel)]="payments.paymentAmount" class="form-control"></div>
                             <div class="col-md-5">Payment Status:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                                 <select [(ngModel)]="payments.paymentStatus" class="form-control">
-                                    <option value="Success">Success</option>
-                                    <option value="Failed">Failed</option>
+                                    <option value="Success" id="svActpmtspopPmtSuccess">Success</option>
+                                    <option value="Failed" id="svActpmtspopPmtFail">Failed</option>
                                 </select>
                             </div>
                         </div>
@@ -224,8 +224,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="savePayments()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" id="svActpmtspopSave" class="btn btn-primary" (click)="savePayments()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" id="svActpmtspopCancel" class="btn btn-default" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

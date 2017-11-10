@@ -16,7 +16,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="svprodDiscClose">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -26,35 +26,35 @@
                                 <div class="row">
                                     <div class="col-md-5">Name:</div>
                                     <div class="col-md-7">
-                                        <input type="text" [disabled]="true" *ngIf="isEditDiscount==false" [(ngModel)]="discount.discountName" class="form-control">
+                                        <input type="text" id="svprodDiscName" [disabled]="true" *ngIf="isEditDiscount==false" [(ngModel)]="discount.discountName" class="form-control">
                                         <span *ngIf="isEditDiscount==true">{{discount.discountName}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Code:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.discountCode" class="form-control">
+                                        <input type="text" id="svprodDiscCode" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.discountCode" class="form-control">
                                         <span *ngIf="isEditDiscount==true">{{discount.discountCode}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Description:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.description" class="form-control">
+                                        <input type="text" id="svprodDiscDesc" *ngIf="isEditDiscount==false" [(ngModel)]="discount.description" class="form-control">
                                         <span *ngIf="isEditDiscount==true">{{discount.description}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Cost:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.cost" class="form-control">
+                                        <input type="text" id="svprodDiscCost" *ngIf="isEditDiscount==false" [(ngModel)]="discount.cost" class="form-control">
                                         <span *ngIf="isEditDiscount==true">{{discount.cost}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Percentage:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditDiscount==false" [(ngModel)]="discount.percentage" class="form-control">
+                                        <input type="text" id="svprodDiscPerc" *ngIf="isEditDiscount==false" [(ngModel)]="discount.percentage" class="form-control">
                                         <span *ngIf="isEditDiscount==true">{{discount.percentage}}</span>
                                     </div>
                                 </div>
@@ -63,8 +63,8 @@
                                     <div class="col-md-7">
                                         <select *ngIf="isEditDiscount==false" class="form-control" [disabled]='true' [(ngModel)]="discount.type">
 
-                                   <option value="DIS">DIS</option>
-                                   <option value="TRAIL">TRAIL</option>
+                                   <option value="DIS" id="svprodDiscTypeDis">DIS</option>
+                                   <option value="TRAIL" id="svprodDiscTypeTrail">TRAIL</option>
 
                                         </select>
                                         <span *ngIf="isEditDiscount==true">{{discount.type}}</span>
@@ -74,8 +74,8 @@
                                     <div class="col-md-5">Status:</div>
                                     <div class="col-md-7">
                                         <select [(ngModel)]="discount.status" class="form-control" *ngIf="isEditDiscount==false">
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
+                                            <option value="Active" id="svprodDiscStatusAct">Active</option>
+                                            <option value="Inactive" id="svprodDiscStatusInAct">Inactive</option>
                                         </select>
                                         <span *ngIf="isEditDiscount==true">{{discount.status}}</span>
                                     </div>
@@ -83,7 +83,7 @@
                                 <div class="row">
                                     <div class="col-md-5">Created On:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.createdOn" class="form-control">
+                                        <input type="text" *ngIf="isEditDiscount==false" id="svprodDiscCreatedOn" [disabled]="true" [(ngModel)]="discount.createdOn" class="form-control">
                                         <span *ngIf="isEditDiscount==true">{{discount.createdOn}}</span>
                                     </div>
                                 </div>
@@ -99,13 +99,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
 
-                                                <button type="submit" class="btn btn-primary" (click)="editDiscountInfo()" *ngIf="isEditDiscount==true">Edit</button>
+                                                <button type="submit" class="btn btn-primary" id="svprodDiscEdit" (click)="editDiscountInfo()" *ngIf="isEditDiscount==true">Edit</button>
 
 
-                                                <button type="submit" value="Save" class="btn btn-primary" (click)="saveDiscountInfo()" *ngIf="isEditDiscount==false">Save</button>
+                                                <button type="submit" value="Save" class="btn btn-primary" id="svprodDiscSave" (click)="saveDiscountInfo()" *ngIf="isEditDiscount==false">Save</button>
 
                                             </div>
-                                            <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                            <div class="col-md-6"><button type="button" class="btn btn-default" id="svprodDiscCancel" (click)="cancel()">Cancel</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -125,21 +125,21 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" id="svprodDiscPopClose" (click)="close()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Name:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addDiscount.discountName" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svprodDiscPopName" [(ngModel)]="addDiscount.discountName" class="form-control"></div>
                             <div class="col-md-5">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="svprodDiscPopCode" [(ngModel)]="addDiscount.discountCode" class="form-control"></div>
                             <div class="col-md-5">Type:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                                 <select class="form-control" [(ngModel)]="addDiscount.type">
-                                   <option value="DIS">DIS</option>
-                                   <option value="TRAIL">TRAIL</option>
+                                   <option value="DIS" id="svprodDiscPopTypeDis">DIS</option>
+                                   <option value="TRAIL" id="svprodDiscPopTypeTrail">TRAIL</option>
                                </select>
 
                             </div>
@@ -156,8 +156,8 @@
                     </div>
                     <div class="col-md-7">
                         <div class="row">
-                            <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="saveDiscounts()">Save</button></div>
-                            <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                            <div class="col-md-6"><button type="button" class="btn btn-primary" id="svprodDiscPopSave" (click)="saveDiscounts()">Save</button></div>
+                            <div class="col-md-6"><button type="button" class="btn btn-default" id="svprodDiscPopCancel" (click)="cancel()">Cancel</button></div>
                         </div>
                     </div>
                 </div>

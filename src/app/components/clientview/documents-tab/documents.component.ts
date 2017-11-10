@@ -106,7 +106,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                 fileId: jsonResponse['fileId'],
                 fileName: item.file.name,
                 orderNo: this.getFiles.length,
-                updatedDate: this.datePipe.transform(new Date(), 'mm-dd-yyyy')
+                updatedDate: this.datePipe.transform(new Date(), 'MM-dd-yyyy')
               });
               item.remove();
             } else {
