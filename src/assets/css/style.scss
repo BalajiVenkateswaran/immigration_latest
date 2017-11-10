@@ -2365,14 +2365,17 @@ header {
         border-bottom:1px solid #ddd;
         padding: 8px 0px 0px 8px !important;
     }
-    .table > tbody > tr > td:last-child {
+    .table > tbody > tr > td:last-child,
+    .table > thead > tr > th:last-child {
         width: 110px;
         }
-    .table > tbody > tr > td:nth-child(2) {
+    .table > tbody > tr > td:nth-child(2),
+    .table > thead > tr > th:nth-child(2) {
         width:100px;
         color:#000 !important;
     }
-    .table > tbody > tr > td:first-child {
+    .table > tbody > tr > td:first-child,
+    .table > thead > tr > th:first-child {
         width:calc(100% - 210px);
     }
     .fileUpload {
