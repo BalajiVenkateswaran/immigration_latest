@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 
 import { ImmigrationViewPetitionInformation } from '../../../../../models/ImmigrationViewPetitionInformation';
 import { AppService } from '../../../../../services/app.service';
-import { PetitionDetailsService } from "./petition-details.service";
+import { PetitionDetailsService } from './petition-details.service';
 import { IhDateUtil } from '../../../../framework/utils/date.component';
-import {ConfirmComponent} from "../../../../framework/confirmbox/confirm.component";
-import {DialogService} from "ng2-bootstrap-modal";
-import {HeaderService} from "../../../../common/header/header.service";
+import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
+import {DialogService} from 'ng2-bootstrap-modal';
+import {HeaderService} from '../../../../common/header/header.service';
 
 
 @Component({
@@ -53,8 +53,8 @@ export class PetitionDetailsComponent implements OnInit {
     private defaultSelected: string;
     private approvalReceivedOn: string;
     private sentToGovAgencyOn: string;
-    sfmpi: boolean = false;
-    sfmRI: boolean = false;
+    sfmpi = false;
+    sfmRI = false;
     private petitionDetails: any = {};
     private lcaInfo: any = {};
     private sponsorInfo: any = {};
@@ -62,13 +62,13 @@ export class PetitionDetailsComponent implements OnInit {
     private sponsorInfoAddress: any = {};
     private petitionAdditionalDetails: any = {};
     public datePickerOptions = IhDateUtil.datePickerOptions;
-    isLCAInfoEdit: boolean = true;
-    isReceiptInfoEdit: boolean = true;
-    isReceiptInfoSave: boolean = false;
-    isReceiptInfoSaveStatus: boolean = false;
-    isSponsorInfoEdit: boolean = true;
-    isDelegatedOrgsEdit: boolean = true;
-    isAdditionalDetailsEdit: boolean = true;
+    isLCAInfoEdit = true;
+    isReceiptInfoEdit = true;
+    isReceiptInfoSave = false;
+    isReceiptInfoSaveStatus = false;
+    isSponsorInfoEdit = true;
+    isDelegatedOrgsEdit = true;
+    isAdditionalDetailsEdit = true;
     public finalStatus: any[] = [
         { name: 'Pending', value: 'Pending' },
         { name: 'Approved', value: 'Approved' },
@@ -82,7 +82,7 @@ export class PetitionDetailsComponent implements OnInit {
                 public dialogService: DialogService, public headerService: HeaderService) {
     }
     ngOnInit() {
-        this.headerService.showSideBarMenu("immigrationview-petition", "petitions");
+        this.headerService.showSideBarMenu('immigrationview-petition', 'petitions');
         this.petitionDetailsService.getPetitionDetails(this.appService.petitionId)
             .subscribe((res) => {
                 if (res['petitionInfo'] != undefined) {
@@ -146,8 +146,9 @@ export class PetitionDetailsComponent implements OnInit {
                     .subscribe((res) => {
                         this.users = res['users'];
                         this.users.filter(user => {
-                            if (user.emailId == this.petitionDetails['assignedTo'])
+                            if (user.emailId == this.petitionDetails['assignedTo']) {
                                 this.assignedToName = user.firstName + ', ' + user.lastName;
+                            }
                         });
                     });
             });
@@ -164,7 +165,7 @@ export class PetitionDetailsComponent implements OnInit {
         ];
 
         if (this.petitionDetails['markForDeletion'] == true) {
-            this.petitionDetails['status'] == "MFD";
+            this.petitionDetails['status'] == 'MFD';
         }
         this.defaultSelected = this.receiptNumber[1].name;
         this.petitionDetailsService.getAllPetitionTypesAndSubTypes()
@@ -178,18 +179,28 @@ export class PetitionDetailsComponent implements OnInit {
 
     getPetionDelOrgs() {
         this.petitionDetailsService.getDelegatedOrgs(this.headerService.user.accountId, this.appService.petitionId).subscribe((res) => {
-            if (res['orgs'] != undefined) {
+            if (res['orgs'] !== undefined) {
                 this.delegatedOrgsList = res['orgs'];
             }
         });
     }
-    sendchecklist() {
+    sendCheckList() {
         this.petitionDetailsService.sendChecklist(this.headerService.user.accountId, this.appService.petitionId).subscribe((res) => {
-
+          if (res['statusCode'] === 'SUCCESS') {
+            this.dialogService.addDialog(ConfirmComponent, {
+              title: 'Information',
+              message: 'Checklist email is sent to client'
+            });
+          } else if (res['statusCode'] === 'FAILURE') {
+            this.dialogService.addDialog(ConfirmComponent, {
+              title: 'Error..!',
+              message: res['statusDescription']
+            });
+          }
         });
     }
 
-    //is edit function for read only
+    // is edit function for read only
     onEditPetitionInfoClick() {
         this.beforeCancelPetition = (<any>Object).assign({}, this.petitionInformation);
         this.startDate = this.petitionInformation.startDate;
@@ -202,7 +213,7 @@ export class PetitionDetailsComponent implements OnInit {
         this.isPetitionInformationSave = true;
     }
 
-    //cancel button function
+    // cancel button function
     onCancelPetitionInfoClick() {
         this.sfmpi = false;
         this.petitionInformation = this.beforeCancelPetition;
@@ -225,7 +236,7 @@ export class PetitionDetailsComponent implements OnInit {
     onSavePetitionInfoClick() {
 
         this.petitionDetails['petitionId'] = this.appService.petitionId;
-        this.petitionDetails=this.petitionInformation;
+        this.petitionDetails = this.petitionInformation;
         this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
         if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
             this.petitionInformation['startDate'] = this.petitionDetails['startDate']['formatted'];
@@ -239,10 +250,10 @@ export class PetitionDetailsComponent implements OnInit {
         if (this.petitionDetails['rejectedDate'] && this.petitionDetails['rejectedDate']['formatted']) {
             this.petitionInformation['rejectedDate'] = this.petitionDetails['rejectedDate']['formatted'];
         }
-        if (this.petitionDetails['markForDeletion'] == true) {
-            this.petitionDetails['status'] == "MFD";
+        if (this.petitionDetails['markForDeletion'] === true) {
+            this.petitionDetails['status'] === 'MFD';
         }
-        if (this.petitionDetails['name'] == '' || this.petitionDetails['name'] == null || this.petitionDetails['name'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined) {
+        if (this.petitionDetails['name'] === '' || this.petitionDetails['name'] == null || this.petitionDetails['name'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined) {
             this.sfmpi = true;
         } else {
             this.sfmpi = false;
@@ -255,8 +266,9 @@ export class PetitionDetailsComponent implements OnInit {
                             .subscribe((res) => {
                                 this.users = res['users'];
                                 this.users.filter(user => {
-                                    if (user.emailId == this.petitionDetails['assignedTo'])
+                                    if (user.emailId == this.petitionDetails['assignedTo']) {
                                         this.assignedToName = user.firstName + ', ' + user.lastName;
+                                    }
                                 });
                             });
                         this.isPetitionInformationSaveStatus = true;
@@ -283,8 +295,7 @@ export class PetitionDetailsComponent implements OnInit {
         this.isReceiptInfoSave = true;
         if (this.receiptInfo.showReceiptNumberToClient == 1) {
             this.receiptInfo['showReceiptNumberToClient'] = 1;
-        }
-        else {
+        } else {
             this.receiptInfo['showReceiptNumberToClient'] = 0;
 
         }
@@ -348,8 +359,7 @@ export class PetitionDetailsComponent implements OnInit {
 
         if (this.receiptInfo.showReceiptNumberToClient != 0 && this.receiptInfo.showReceiptNumberToClient != 1) {
             this.sfmRI = true;
-        }
-        else {
+        } else {
             this.sfmRI = false;
             this.petitionDetailsService.saveReceiptInfo(this.receiptInfo, this.headerService.user.userId)
                 .subscribe((res) => {
@@ -518,14 +528,14 @@ export class PetitionDetailsComponent implements OnInit {
 
     onSaveDelegatedOrgsClick() {
         this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
-        for (var i = 0; i < this.delegatedOrgsList.length; i++) {
+        for (let i = 0; i < this.delegatedOrgsList.length; i++) {
             if (this.delegatedOrgsList[i].petitionAssigned == true) {
                 this.orgs.push(this.delegatedOrgsList[i].orgId);
             }
         }
         this.petitionDetailsService.saveDelegatedOrgs(this.orgs, this.appService.petitionId, this.headerService.user.userId)
             .subscribe((res) => {
-                if (res['statusCode'] == "SUCCESS") {
+                if (res['statusCode'] == 'SUCCESS') {
                     this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
                     this.getPetionDelOrgs();
                 }
@@ -534,8 +544,8 @@ export class PetitionDetailsComponent implements OnInit {
     }
 
 
-  onPetitionStatusChange(event){
-      if(event.target.value === 'Close'){
+  onPetitionStatusChange(event) {
+      if (event.target.value === 'Close') {
         this.dialogService.addDialog(ConfirmComponent, {
           title: 'Information',
           message: 'Closing a Petition will lead to removal of the Questionnaires (if any) in the Petition'

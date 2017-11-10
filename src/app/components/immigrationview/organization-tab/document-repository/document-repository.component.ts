@@ -45,12 +45,12 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   onDeleteClick(event) {
     this.dialogService.addDialog(ConfirmComponent, {
       title: 'Confirmation',
-      message: 'Are you sure you want to delete ' + event.data.fileName + ' ?'
+      message: 'Are you sure you want to delete ' + event.fileName + ' ?'
     })
       .subscribe((isConfirmed) => {
         // Get dialog result
         if (isConfirmed) {
-          this.organizationdocumentrepositoryService.deleteFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
+          this.organizationdocumentrepositoryService.deleteFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
             this.getFilesList();
           });
         }
@@ -109,8 +109,8 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
 
   }
   onDownloadClick(event) {
-    this.organizationdocumentrepositoryService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe
-      (data => this.downloadFiles(data, event.data.fileName)),
+    this.organizationdocumentrepositoryService.downloadFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe
+      (data => this.downloadFiles(data, event.fileName)),
       error => console.log('Error Downloading....');
     () => console.log('OK');
 
@@ -148,7 +148,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
               fileId: jsonResponse['fileId'],
               fileName: item.file.name,
               orderNo: this.getFiles.length,
-              updatedDate: this.datePipe.transform(new Date(), 'mm-dd-yyyy')
+              updatedDate: this.datePipe.transform(new Date(), 'MM-dd-yyyy')
             });
             item.remove();
           } else {
@@ -180,14 +180,14 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   isfileExists(file) {
     let fileExists = false;
     this.getFiles.filter(item => {
-      if (file.name == item.fileName) {
+      if (file.name === item.fileName) {
         fileExists = true;
       }
     });
     return fileExists;
   }
   editFileName(event) {
-    if (event.colDef.headerName != 'Actions') {
+    if (event.colDef.headerName !== 'Actions') {
       this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
       this.dialogService.addDialog(OrganizationDocumentRepositoryComponent, {
         editFiles: true,
@@ -228,7 +228,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     }
   }
   save() {
-    if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
+    if (this.editFileObject['fileName'] === '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] === undefined) {
       this.warningMessage = true;
     } else {
       this.warningMessage = false;

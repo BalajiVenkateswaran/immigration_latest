@@ -88,7 +88,13 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
       for (let column of row) {
         console.log(column['value'])
         if (column['value'] != null) {
-          this.smartTable.queryParameters.addFilter(column['headerName'], column['field'], this.smartTable.getFilterType(column['headerName']), column['value']);
+          let columnValue = null;
+          if (column['type'] === 'datePicker') {
+            columnValue = column['value']['formatted'];
+          } else {
+            columnValue = column['value'];
+          }
+          this.smartTable.queryParameters.addFilter(column['headerName'], column['field'], this.smartTable.getFilterType(column['field']), columnValue);
         }
       }
     }

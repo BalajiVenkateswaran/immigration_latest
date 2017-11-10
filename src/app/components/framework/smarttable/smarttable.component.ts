@@ -1,5 +1,4 @@
 import {Component, Input, SimpleChange, OnChanges, EventEmitter, Output} from '@angular/core';
-import { CustomFilterRow } from './CustomFilterRow';
 import { GridOptions } from 'ag-grid';
 import { ActionColumns } from './ActionColumns';
 import {QueryParameters, SortType} from './types/query-parameters';
@@ -41,7 +40,6 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
     public gridOptions;
     public paginationTemplate: boolean;
     public clickFlag = false;
-    public filterSubscription;
     public deleteSubscription;
     public deleteData;
     public isAddButtonEnable: boolean;
@@ -65,24 +63,13 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
             }
         });
 
-        this.filterSubscription = CustomFilterRow.fillValues.subscribe(res => {
-            if (res) {
-                res.forEach(filter => {
-                  filter.operator = this.getFilterType(filter.fieldName);
-                  this.queryParameters.addFilter(filter.fieldHeader, filter.fieldName, this.getFilterType(filter.fieldName), filter.fieldValue)
-                });
-                this.paginationMetadata.pageNumber = 0;
-                this.queryParameters.pagination.pageNumber = 0;
-                this.invokeResource();
-            }
-        });
-        this.smartTableService.getFilterData().subscribe(data => {
+        /*this.smartTableService.getFilterData().subscribe(data => {
             let newData = data.data
             for (let i = 0; i < newData.length; i++) {
                 this.queryParameters.addFilter(newData[i].headerName, newData[i].fieldName, this.getFilterType(newData[i].headerName), newData[i].fieldValue);
                 this.invokeResource();
             }
-        })
+        })*/
     }
     removeDuplicates(data) {
         return data.filter((obj, pos, arr) => {
@@ -225,16 +212,16 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
 
         if (this.settings.hasOwnProperty('columnFilter')) {
             this.settings['columnFilter'] = this.settings['columnFilter'];
-            if (this.settings['columnFilter'] === true) {
+            /*if (this.settings['columnFilter'] === true) {
                 this.gridOptions['headerHeight'] = 72;
                 for (let i = 0; i < this.settings['columnsettings'].length; i++) {
                     if (i > 0 || this.settings['isDeleteEnable'] === false) {
                         this.settings['columnsettings'][i]['headerComponentFramework'] = CustomFilterRow;
                     }
                 }
-            } else {
+            } else {*/
                 this.gridOptions['headerHeight'] = 60;
-            }
+            // }
         } else {
             this.settings['columnFilter'] = false;
             this.settings['headerHeight'] = 25;
@@ -244,7 +231,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
 
         if (this.settings.hasOwnProperty('defaultFilter')) {
             for (let item of this.settings['defaultFilter']) {
-                this.queryParameters.addFilter(item.headerName, item.headingName, this.getFilterType(item.headingName), item.filterValue)
+                this.queryParameters.addFilter(item.headerName, item.headingName, this.getFilterType(item.field), item.filterValue)
             }
         }
 
