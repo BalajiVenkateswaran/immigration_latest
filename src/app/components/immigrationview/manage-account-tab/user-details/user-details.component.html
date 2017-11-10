@@ -6,8 +6,8 @@
             <li><a href="#">Visas</a></li>
         </ul>
         <div class="clearfix"></div>
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
+        
+            <div class="col-md-6 col-sm-6 col-xs-12 no-pad-left">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12 no-pad-right">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
@@ -87,15 +87,13 @@
             </div>
 
 
-            <div class="row">
                 <div class="col-sm-12">
                     <h2>Login History</h2>
                 </div>
-            </div>
+
             <div class="table-data">
                 <ih-smart-table [settings]="settings" [data]="data" [paginationData]="paginationData" (dataWithQueryParams)="loginHistoryDataWithParameters($event)"></ih-smart-table>
             </div>
 
-        </div>
     </div>
 </div>
