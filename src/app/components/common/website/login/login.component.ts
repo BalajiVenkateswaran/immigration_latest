@@ -52,7 +52,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
 
   constructor(
     private router: Router,
-    private appService: AppService,
+    public appService: AppService,
     private loginservice: loginService,
     public dialogService: DialogService,
     private headerService: HeaderService,
