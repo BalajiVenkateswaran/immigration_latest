@@ -67,9 +67,15 @@ min-height:100vh;
             border-left:0px;
             float:right;
 
+
+            .newloglogo {
+                margin:75px auto 15px auto;
+                padding:0px;
+            }
             .emailicon, .pwdicon {
         border:none;
-        border-bottom:solid 1px #e3e2e2;
+        border:solid 1px #e3e2e2;
+        border-right: 0px;
         background:url("../../../../../assets/images/Mail.png") no-repeat 5px 13px #fff !important;
         margin-bottom:20px;
         padding:0;
@@ -79,7 +85,8 @@ min-height:100vh;
     }
     input[type~="email"], input[type~="password"] {
         border:none;
-        border-bottom:solid 1px #e3e2e2;
+        border:solid 1px #e3e2e2;
+        border-left: 0px;
         border-radius:0px;
         background:#fff !important;
         font-weight:500;
@@ -98,25 +105,26 @@ min-height:100vh;
 /* Change autocomplete styles in WebKit */
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
   border: none;
-  border-bottom:solid 1px #e3e2e2;
+  border:solid 1px #e3e2e2;
+        border-left: 0px;
   -webkit-text-fill-color: #a9a6a8;
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
     .newlogbtn {
-    background: #0b8dcd !important;
+    background: #0078d7 !important;
     width: 100%;
     border-radius: 5px;
     color: #fff;
-    margin:10px 0px 25px 0px !important;
+    margin:0px 0px 5px 0px !important;
     padding: 11px 0px;
     border: none;
 }
 
     .forgot_password {
             font-size: 14px;
-    color: #a9a6a8;
-    text-align: center;
+    color: #0078d7;
+    text-align: right;
     margin:0px 0 15px 0;
     }
     .note {
