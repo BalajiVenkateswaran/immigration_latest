@@ -6,13 +6,12 @@
 </head>
 <body>
     <div id='toTop' (click)="clicktogotop()"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
-        <div class="container-fluid" *ngIf="getloginpage">
+        <div class="container-fluid">
             <div class="row">
                 <div class="top-strip">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 no-pad"><img src="../../../../../assets/images/web/logo.png" class="logo img-responsive"><a (click)="appService.moveToPage('newLogin')" class="login">Login</a>
-                                <a (click)="loginPopup()" class="login">Login</a>
                             </div>
                         </div>
                     </div>
@@ -527,7 +526,7 @@
 
             </div>
         </div>
-        <div *ngIf="loginPopupForm">
+        <!--<div *ngIf="loginPopupForm">
             <div class="modal-dialog loginpopup" ngDraggable style="margin-top:5% !important;">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -612,6 +611,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 </body>
 </html>
