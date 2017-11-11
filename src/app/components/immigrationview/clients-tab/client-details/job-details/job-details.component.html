@@ -7,110 +7,110 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Current Job Info</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editJobInfoForm()" *ngIf="isjobdetailsEdit==true">Edit</button>
+                            <button type="submit" class="editbtn  no-marg-right" (click)="editJobInfoForm()" id="ivClientDtlsJDtlsEdit" *ngIf="isjobdetailsEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
-                                <button type="button" (click)="cancelJobInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                                <button type="button" (click)="cancelJobInfoEdit()" id="ivClientDtlsJDtlsCancel" class="editbtn tbl-head-btn" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="savebtn" id="ivClientDtlsJDtlsSave" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Job Title</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsTitle">Job Title</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobTitle" />
+                            <input type="text" id="ivClientDtlsJDtlsTitle" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobTitle" />
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobTitle}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Job Type</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsType">Job Type</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobType" />
+                            <input type="text" id="ivClientDtlsJDtlsType" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobType" />
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobType}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-filenumber">Job Code</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsCode">Job Code</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobCode" />
+                            <input type="text" id="ivClientDtlsJDtlsCode" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobCode" />
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobCode}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitionopeneddate">Annual Salary</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsSal">Annual Salary</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.annualSalary" />
+                            <input type="text" id="ivClientDtlsJDtlsSal" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.annualSalary" />
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.annualSalary}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitionstatus">Duties And Responsibilites</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsDuties">Duties And Responsibilites</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.dutiesAndResponsibilities" />
+                            <input type="text" id="ivClientDtlsJDtlsDuties" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.dutiesAndResponsibilities" />
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.dutiesAndResponsibilities}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitioncurrentstage">Project Name</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsProjName">Project Name</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectName" />
+                            <input type="text" id="ivClientDtlsJDtlsProjName" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectName" />
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectName}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondenieddate">Project Code</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsProjCode">Project Code</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectCode" />
+                            <input type="text" id="ivClientDtlsJDtlsProjCode" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectCode" />
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectCode}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitionwithdrawndate">No Of Hours/Week</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsNoHrs">No Of Hours/Week</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.noOfHoursPerWeek" />
+                            <input type="text" id="ivClientDtlsJDtlsNoHrs" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.noOfHoursPerWeek" />
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.noOfHoursPerWeek}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-createdby">Hire Date</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsHireDate">Hire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.hireDate" [selDate]="hireDate"></my-date-picker>
+                            <my-date-picker *ngIf="isjobdetailsEdit==false" id="ivClientDtlsJDtlsHireDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.hireDate" [selDate]="hireDate"></my-date-picker>
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.hireDate}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-lastupdatedby">International Hire Date</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsIntHireDate">International Hire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
+                            <my-date-picker id="ivClientDtlsJDtlsIntHireDate" *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.internationalHireDate}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-lastupdatedby">Rehire Date</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsReHireDate">Rehire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.rehireDate" [selDate]="rehireDate"></my-date-picker>
+                            <my-date-picker id="ivClientDtlsJDtlsReHireDate" *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.rehireDate" [selDate]="rehireDate"></my-date-picker>
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.rehireDate}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-lastupdatedby">Last Day Worked Date</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsLastWorkDate">Last Day Worked Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
+                            <my-date-picker id="ivClientDtlsJDtlsLastWorkDate" *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.lastDayWorkedDate}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-lastupdatedby">Termination Date</label></div>
+                        <div class="col-md-4"><label for="ivClientDtlsJDtlsTermDate">Termination Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
+                            <my-date-picker id="ivClientDtlsJDtlsTermDate" *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
                             <span *ngIf="isjobdetailsEdit==true">{{jobDetails.terminationDate}}</span>
                         </div>
                     </div>
-                   
+
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
-                                <button type="button" (click)="cancelJobInfoEdit()" class="editbtn tbl-head-btn bottombtns" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                                <button type="button" (click)="cancelJobInfoEdit()" id="ivClientDtlsJDtlsCancel1" class="editbtn tbl-head-btn bottombtns" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" id="ivClientDtlsJDtlsSave1" class="savebtn bottombtns" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
