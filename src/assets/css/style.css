@@ -613,7 +613,8 @@ section .rightwithoutmenu {
   /*height:100%;*/
   height: calc(100vh - 155px);
   overflow-y: auto;
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+}
   .main-content h1 {
     /*display:none;*/
     color: #5093e1;
