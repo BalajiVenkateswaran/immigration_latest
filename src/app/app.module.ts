@@ -77,6 +77,12 @@ import { requestclientviewcomponent } from './components/clientview/request-tab/
 import { HeaderComponent } from './components/common/header/header.component';
 import { LoginComponent } from './components/common/website/login/login.component';
 import { loginService } from './components/common/website/login/login.service';
+
+import {newLoginComponent} from './components/common/website/newLoginPage/newLogin.component';
+import {newLoginService} from './components/common/website/newLoginPage/newLogin.service';
+
+
+
 import { MenuComponent } from './components/common/menu/menu.component';
 import { MenuService } from './components/common/menu/menu.service';
 import { ResetPasswordComponent } from './components/common/reset-password/reset-password.component';
@@ -367,6 +373,7 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
       InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
     declarations: [
+        newLoginComponent,
         webImmigrationServicesComponent,
         webPricingComponent,
         webAboutusComponent,
@@ -559,6 +566,7 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
         PetitionDetails2ColumnService,
         JobdetailsService,
         loginService,
+        newLoginService,
         QuestionnaireCommonService,
         PetitionDocumentRepositoryService,
         ImmigrationviewDocumentExpirationsService,

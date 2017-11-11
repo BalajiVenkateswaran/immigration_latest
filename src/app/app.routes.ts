@@ -143,6 +143,9 @@ import { webFaqComponent } from './components/common/website/faqs/faqs.component
 import {PetitionDetailsNewComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-new/petition-details-new.component';
 import {PetitionDetails2ColumnComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-2column/petition-details.component';
 
+
+import {newLoginComponent} from './components/common/website/newLoginPage/newLogin.component';
+
 export const appRoutes: Routes = [
     {
         path: 'web-immigration-services',
@@ -259,6 +262,10 @@ export const appRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'newLogin',
+        component: newLoginComponent
     },
     {
         path: 'clientview-i129hPage1/:questionnaireId',

@@ -1,0 +1,129 @@
+
+body {
+    margin:0px;
+    padding:0px;
+    height:100vh;
+min-height:100vh;
+}
+
+
+.newlogin {
+    background:#aeb9cd;
+    padding:0px;
+    margin:0px;
+    height:100vh;
+min-height:100vh;
+
+        .logBox {
+            position: absolute; 
+        width: 600px; 
+        height: 400px; 
+        z-index: 15; 
+        top: 50%; 
+        left: 50%; 
+        margin: -200px 0 0 -300px; 
+        box-shadow:0px 0px 5px #4d4d4d;
+
+        .blueBox {
+            height:100%;
+            width:240px;
+            background:#0078d7;
+            color:#fff;
+            border:solid 1px #0078d7;
+            border-right:0px;
+            float:left;
+            padding:0px 20px;
+
+            h1 {
+                font-size: 18px;
+                font-weight: 700;
+                margin: 150px 0 10px 0;
+                padding: 0px;
+                line-height: 24px;
+            }
+            p {
+                font-size: 13px;
+                font-weight: 400;
+                margin: 0px;
+                padding: 0px;
+                }
+            .social {
+                text-align:right;
+                margin: 80px 0 0 0;
+                a {
+                    color:#fff;
+                    font-size:16px;
+                    margin:0px 5px;
+                    padding:0px;
+                }
+            }
+        }
+        .whiteBox {
+            height:100%;
+            width:360px;
+            background:#fff;
+            color:#000;
+            border:solid 1px #7d848f;
+            border-left:0px;
+            float:right;
+
+            .emailicon, .pwdicon {
+        border:none;
+        border-bottom:solid 1px #e3e2e2;
+        background:url("../../../../../assets/images/Mail.png") no-repeat 5px 13px #fff !important;
+        margin-bottom:20px;
+        padding:0;
+        width:32px;
+        height:34px;
+        float:left;
+    }
+    input[type~="email"], input[type~="password"] {
+        border:none;
+        border-bottom:solid 1px #e3e2e2;
+        border-radius:0px;
+        background:#fff !important;
+        font-weight:500;
+        font-size:14px;
+        margin-bottom:20px;
+        padding:8px 5px 3px 0px;
+        color:#a9a6a8;
+        width:calc(100% - 32px) !important;
+    }
+
+    .pwdicon {
+        background:url("../../../../../assets/images/Password.png") no-repeat 5px 7px #fff !important;
+    }
+
+    
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+  border: none;
+  border-bottom:solid 1px #e3e2e2;
+  -webkit-text-fill-color: #a9a6a8;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+    .newlogbtn {
+    background: #0b8dcd !important;
+    width: 100%;
+    border-radius: 5px;
+    color: #fff;
+    margin:10px 0px 25px 0px !important;
+    padding: 11px 0px;
+    border: none;
+}
+
+    .forgot_password {
+            font-size: 14px;
+    color: #a9a6a8;
+    text-align: center;
+    margin:0px 0 15px 0;
+    }
+    .note {
+        font-size:12px;
+        color:#a9a6a8;
+        text-align:center;
+    }
+        }
+        }
+    }
