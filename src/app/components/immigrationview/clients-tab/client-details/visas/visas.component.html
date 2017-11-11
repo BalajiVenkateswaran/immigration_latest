@@ -16,30 +16,30 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="ivClientDtlsVisaClose">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Country :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newvisaitem.country" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaCountry" [(ngModel)]="newvisaitem.country" class="form-control"></div>
                             <div class="col-md-5">Petition Number:</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaPNo" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Number :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newvisaitem.visaNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaNo" [(ngModel)]="newvisaitem.visaNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Type :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newvisaitem.visaType" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaType" [(ngModel)]="newvisaitem.visaType" class="form-control"></div>
                             <div class="col-md-5">Issued On :</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
+                                <my-date-picker [options]="myDatePickerOptions" id="ivClientDtlsVisaIssuedOn"
                                                 (dateChanged)="onDateChanged($event)" [(ngModel)]="newvisaitem.issuedOn"
                                                 [selDate]="issuedOn"></my-date-picker>
 
                             </div>
                             <div class="col-md-5">Expires On :</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
+                                <my-date-picker [options]="myDatePickerOptions" id="ivClientDtlsVisaExpired"
                                                 [(ngModel)]="newvisaitem.expiresOn"
                                                 [selDate]="expiresOn"></my-date-picker>
 
@@ -51,8 +51,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="visaSave()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" id="ivClientDtlsVisaSave1" (click)="visaSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" id="ivClientDtlsVisaCancel1" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

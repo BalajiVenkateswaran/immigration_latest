@@ -13,7 +13,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="ivClientDtlsPetitionsClose">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -22,23 +22,23 @@
                             <div class="col-md-5">Country:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                               <select class="form-control" (change)="handleCountryChange($event)">
-                                <option *ngFor="let countryName of countryNames" [selected]="countryName == 'United States'" [value]="countryName">{{ countryName }}</option>
+                                <option *ngFor="let countryName of countryNames" [selected]="countryName == 'United States'" [value]="countryName" id="{{countryName}}">{{ countryName }}</option>
                               </select>
                             </div>
                             <div class="col-md-5">Petition Type:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                                 <select class="form-control" [(ngModel)]="newpetitionitem.petitiontype" (change)="handleChange($event)" [ngClass]="newpetitionitem.petitiontype == '' ? 'redborder': ''">
-                                    <option *ngFor="let ptst of allPetitionTypesAndSubTypes" [value]="ptst.petitiontype">{{ ptst.petitiontype }}</option>
+                                    <option *ngFor="let ptst of allPetitionTypesAndSubTypes" [value]="ptst.petitiontype" id="{{ptst.petitiontype}}">{{ ptst.petitiontype }}</option>
                                 </select>
                             </div>
                             <div class="col-md-5">Petition Subtype:<span class="redstar">*</span></div>
                             <div class="col-md-7">
                                 <select class="form-control" [(ngModel)]="newpetitionitem.petitionSubType" [ngClass]="allSubTypes.length > 0 && newpetitionitem.petitionSubType == '' ? 'redborder': ''">
-                                    <option *ngFor="let subtype of allSubTypes" [value]="subtype.petitionSubType">{{ subtype.petitionSubType }}</option>
+                                    <option *ngFor="let subtype of allSubTypes" [value]="subtype.petitionSubType" id="{{subtype.petitionSubType}}">{{ subtype.petitionSubType }}</option>
                                 </select>
                             </div>
                             <div class="col-md-5">Petition Name:<span class="redstar">*</span></div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newpetitionitem.petitionName" [ngClass]="newpetitionitem.petitionName == '' ? 'redborder': ''"
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsPetitionsName" [(ngModel)]="newpetitionitem.petitionName" [ngClass]="newpetitionitem.petitionName == '' ? 'redborder': ''"
                                     class="form-control"></div>
                         </div>
                         <div class="row">
@@ -51,8 +51,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="petitionSave()" [disabled]="newpetitionitem.petitiontype==undefined||newpetitionitem.petitionSubType==undefined||newpetitionitem.petitionName==null||newpetitionitem.petitionName==undefined||newpetitionitem.petitionName==''">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="closePopup()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" id="ivClientDtlsPetitionSave1" (click)="petitionSave()" [disabled]="newpetitionitem.petitiontype==undefined||newpetitionitem.petitionSubType==undefined||newpetitionitem.petitionName==null||newpetitionitem.petitionName==undefined||newpetitionitem.petitionName==''">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" id="ivClientDtlsPetitionCancel1" (click)="closePopup()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

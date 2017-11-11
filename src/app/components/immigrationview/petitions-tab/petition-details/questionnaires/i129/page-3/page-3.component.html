@@ -20,15 +20,14 @@
             </div>
 
             <div class="col-md-12">
-                <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    
+                <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">                   
                         <div class="col-md-12" style="margin-top: 10px;">
                             <div class="row">
                                 <div class="col-md-4">Alien Registration Number (A-Number)</div>
                                 <div class="col-md-8">
                                   <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.alienRegistrationNumber" style="width: 100%;" />
                                         <span *ngIf="isquestionnaireEdit==true">{{page3.alienRegistrationNumber}}</span>
-</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -36,7 +35,7 @@
                                 <div class="col-md-4">Country of Birth</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.countryOfBirth" />
                                         <span *ngIf="isquestionnaireEdit==true">{{page3.countryOfBirth}}</span>
-</div>
+                              </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -75,7 +74,7 @@
                                 <div class="col-md-8">
                                     <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.i94" />
                                         <span *ngIf="isquestionnaireEdit==true">{{page3.i94}}</span>
-</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -215,26 +214,24 @@
             </div>
             <div *ngIf="appService.isImmigrationView()">
                 <div class="col-md-12">
-                    <h2>Processing Information</h2>
+                    <h2>4. Processing Information</h2>
                 </div>
                 <div class="col-md-12">
-                    <p>If a beneficiary or beneficiaries named in Part 3. is/are outside the United States, or a requested extension
+                    <p>If a beneficiary or beneficiaries named in<b> Part 3.</b>is/are outside the United States, or a requested extension
                         of stay or change of status cannot be granted, state the U.S. Consulate or inspection facility you
                         want notified if this petition is approved</p>
                     <div class="col-md-12 addresbox box-shadow clientview-ques129h">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-3">Type of Office (select only one box)</div>
+                                    <div class="col-md-3"><b>a. Type of Office</b>(select only one box):</div>
                                     <div class="col-md-3" *ngFor="let x of typeOfOffice">
-                                        <input type="radio" name="typeOfOffice" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page3.typeOfOffice">{{x.display}}
-
-                                    </div>
+                                        <input type="radio" name="typeOfOffice" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page3.typeOfOffice">{{x.display}}                      </div>
 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-4">Office Address (City)</div>
+                                    <div class="col-md-4"><b>b. Office Address (City)</b></div>
                                     <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.officeAddress"
                                         />
                                         <span *ngIf="isquestionnaireEdit==true">{{page3.officeAddress}}</span>
@@ -243,7 +240,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-4">U.S. State or Foreign Country </div>
+                                    <div class="col-md-4"><b>c. U.S. State or Foreign Country </b></div>
                                     <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.usStateOrForeignCountry"
                                         />
                                         <span *ngIf="isquestionnaireEdit==true">{{page3.usStateOrForeignCountry}}</span>
@@ -253,35 +250,28 @@
                             <div class="col-md-12">
                                 <p class="fieldsetheading">Beneficiary's Foreign Address</p>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-7">
+                              <div class="form-group">
+                                <label>Street Number and Name</label>
+                                <input class="form-control" id="StreetNumberAndName" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.street" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.street}}</span>
+                              </div>
+                            </div>                         
+                            <div class="col-md-2">
+                              <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-4">Street Number and Name</div>
-                                    <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.street"
-                                        />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.street}}</span>
-                                    </div>
+                                  <div class="col-md-4" *ngFor="let x of aptType">
+                                    {{x.display}}<input type="radio" [(disabled)]="isquestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page3.foreignAddress.aptType">
+                                  </div>
                                 </div>
-                            </div>
+                              </div>
+                            </div>                            
                             <div class="col-md-3">
-                                <div class="row">
-
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-4" *ngFor="let x of aptType">
-                                                <input type="radio" name="aptType1" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page3.foreignAddress.aptType">{{x.display}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-4">Number </div>
-                                    <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.houseNumber"
-                                        />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
-                                    </div>
-                                </div>
+                              <div class="form-group">
+                                <label for="Number">Number</label>
+                                <input class="form-control" id="Number" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.houseNumber" />
+                                <span *ngIf="isquestionnaireEdit==true">{{page1.foreignAddress.houseNumber}}</span>
+                              </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">

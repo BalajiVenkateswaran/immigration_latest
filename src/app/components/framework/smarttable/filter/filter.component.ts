@@ -71,6 +71,12 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
           this.moreFilterFields[rowCount][fieldCount]['data'] = column['data'];
           console.log(this.moreFilterFields[rowCount][fieldCount]['type'])
           fieldCount++;
+
+          if(column.headerTooltip == "Actions"){
+            console.log(this.moreFilterFields);
+            fieldCount=0;
+
+          }
         }
       }
 

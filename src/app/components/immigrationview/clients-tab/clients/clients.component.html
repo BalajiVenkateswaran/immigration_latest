@@ -23,7 +23,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" (click)="close()">&times;</button>
+                <button type="button" class="close" (click)="close()" id="ivClientClose">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -31,22 +31,22 @@
                         <div class="row">
                             <div class="col-md-5">First Name:<span class="redstar">*</span></div>
                             <div class="col-md-7">
-                                <input type="text" [(ngModel)]="newclitem.firstName" (blur)="capitialize(newclitem)" [ngClass]="newclitem.firstName == '' ? 'redborder': ''"
+                                <input type="text" [(ngModel)]="newclitem.firstName" id="ivClientFName" (blur)="capitialize(newclitem)" [ngClass]="newclitem.firstName == '' ? 'redborder': ''"
                                        class="form-control">
                             </div>
                             <div class="col-md-5">Last Name:<span class="redstar">*</span></div>
                             <div class="col-md-7">
-                                <input type="text" [(ngModel)]="newclitem.lastName" (blur)="capitialize(newclitem)" [ngClass]="newclitem.lastName == '' ? 'redborder': ''"
+                                <input type="text" [(ngModel)]="newclitem.lastName" id="ivClientLName" (blur)="capitialize(newclitem)" [ngClass]="newclitem.lastName == '' ? 'redborder': ''"
                                        class="form-control">
                             </div>
                             <div class="col-md-5">Email:<span class="redstar">*</span></div>
                             <div class="col-md-7">
-                                <input type="text" [(ngModel)]="newclitem.email" [ngClass]="newclitem.email == '' ? 'redborder': ''"
+                                <input type="text" [(ngModel)]="newclitem.email" id="ivClientEmail" [ngClass]="newclitem.email == '' ? 'redborder': ''"
                                        class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel">
                             </div>
                             <div class="col-md-5">Phone:<span class="redstar">*</span></div>
                             <div class="col-md-7">
-                                <input type="tel" [(ngModel)]="newclitem.phone" required #phone="ngModel" pattern="[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}" [ngClass]="newclitem.phone == '' ? 'redborder': ''"
+                                <input type="tel" id="ivClientPhone" [(ngModel)]="newclitem.phone" required #phone="ngModel" pattern="[\+]?[0-9]*[\-]?[(]?[0-9]{3}[)]?[-]?[0-9]{3}[-]?[0-9]{4,6}" [ngClass]="newclitem.phone == '' ? 'redborder': ''"
                                        class="form-control">
                             </div>
                         </div>
@@ -81,8 +81,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="clientSave(emailId.errors,phone.errors)">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-primary" id="ivClientSave1" (click)="clientSave(emailId.errors,phone.errors)">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="btn btn-default" id="ivClientCancel1" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>
