@@ -1322,11 +1322,43 @@ confirm {
 }
 .orgnamebox {
     .modal-content {
-        background:#32353e !important;
-        border:solid 2px #000 !important;
+        background:#232f3f !important;
+        border:0px !important;
         padding-bottom:15px;
+        border-radius:0px;
+        width: 440px !important;
+            margin: 0px auto;
         .modal-header {
             border-bottom:none !important;
+            padding:25px !important;
+
+            .searchOrg {
+                width:100%;
+                    margin: 20px 0 0 0;
+                input {
+                    background:#fff;
+                    border:none;
+                    width: calc(100% - 60px);
+                    padding: 4px 3px 2px 4px;
+                    margin: 0px;
+                    float: left;
+                    height: 40px;
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+                button {
+                    background:#0078d7;
+                    border:none !important;
+                    width: 60px;
+                    color: #fff;
+                    font-size: 16px;
+                    font-weight: 500;
+                    text-align: center;
+                    padding: 0px;
+                    margin: 0px;
+                    height: 40px;
+                }
+            }
             .close {
                     color: #e9eaec !important;
                     text-shadow: none !important;
@@ -1342,9 +1374,10 @@ confirm {
             }
         }
         .modal-body {
-            margin:0px 15px;
-            border-radius:5px;
+            margin:0px 25px !important;
+            border-radius:0px !important;
             background:#fff;
+            padding:20px !important;
             ul {
                 margin:0px;
                 padding:0px;
@@ -1355,15 +1388,20 @@ confirm {
                     color:#32353e;
                     font-size:14px;
                     font-weight:600;
-                    padding:6px 15px;
-                    margin:0 0 2px 0;
-                    border-radius:5px;
+                    padding:10px;
+                    margin:0px;
+                    border-radius:0px;
                     cursor:pointer;
                     text-transform:capitalize;
+                    border-bottom:solid 1px #e6e6e6;
+                    background:#eee !important;
 
-
+                    &:hover, &:focus {
+                        background:#e3e3e3 !important;
+                        color:#32353e !important;
+                    }
                 }
-                li:nth-child(odd) {
+                /*li:nth-child(odd) {
                     background:#d8d8da;
                     color:#32353e;
                     &:hover, &:focus {
@@ -1378,7 +1416,7 @@ confirm {
                         background:#32353e;
                         color:#fff;
                     }
-                    }
+                    }*/
 
             }
         }

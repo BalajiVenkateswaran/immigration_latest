@@ -15,6 +15,11 @@ export interface ConfirmModel {
                    <div class="modal-header">
                      <button type="button" class="close" (click)="close()" >&times;</button>
                     <p>Please select the Organization</p>
+                        <div class="searchOrg">
+                        <input type="text" />
+                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                        
                    </div>
                    <div class="modal-body">
                   <ul>
