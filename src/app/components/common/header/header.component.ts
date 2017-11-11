@@ -13,7 +13,6 @@ export interface ConfirmModel {
     message: string;
     header: boolean;
     usageSummaryPopup: boolean;
-
 }
 @Component({
     selector: 'immp-header',

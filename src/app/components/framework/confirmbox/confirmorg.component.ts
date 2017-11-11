@@ -2,7 +2,7 @@
 import { AppService } from '../../../services/app.service';
 import { HeaderService } from '../../common/header/header.service';
 import { Component } from '@angular/core';
-import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
+import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -42,7 +42,5 @@ export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> 
         this.headerService.selectedOrg = org;
         this.appService.moveToPage('clients');
         this.close();
-    }
-    ngOnInit() {
     }
 }

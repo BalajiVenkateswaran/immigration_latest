@@ -8,19 +8,6 @@
                 <span>Petition Details</span>
             </a>
         </li>
-        <li>
-            <a id="petitionDetailsNew" (click)="appService.moveToPage('immigrationview-petition-details-new');highlightSBLink('Petition Details New');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petition Details New') ? 'active': '']" routerLinkActive="active">
-                <span class="ico-client-details"></span>
-                <span>Petition Details New</span>
-            </a>
-        </li>
-
-        <li>
-            <a id="petitionDetails2Column" (click)="appService.moveToPage('immigrationview-petition-details-2column');highlightSBLink('Petition Details 2column');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petition Details 2column') ? 'active': '']" routerLinkActive="active">
-                <span class="ico-client-details"></span>
-                <span>Petition Details 2Column</span>
-            </a>
-        </li>
         <li ngbDropdown class="dropdown">
             <a (click)="appService.moveToPage('immigrationview-questionnaire');highlightSBLink('Questionnaire');submenuclick('immiQstnre')" [ngClass]="[checkForCurrentSBLink('Questionnaire') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="immigrationview-questionnaires" routerLinkActive="active">
                 <span class="ico-questionnaire"></span>
