@@ -544,20 +544,17 @@
                                         <form action="" [formGroup]="login"
                                               (ngSubmit)="onSubmitClick(login.value, login.valid)"
                                               autocomplete="off">
-                                            <!--<h2>Immigration Hub</h2>-->
                                             <div class="form-group row" [hidden]="!message">
                                                 {{message}}
                                             </div>
                                             <div class="form-group" *ngIf="forgotPwd==true">
                                                 <div class="user_id">
-                                                    <!--<label>Email</label>-->
                                                     <div class="emailicon"></div>
                                                     <input type="email" class="form-control" id="userId"
                                                            placeholder="Email Address" formControlName="emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                                                            required />
                                                 </div>
                                                 <div class="password">
-                                                    <!--<label>PASSWORD</label>-->
                                                     <div class="pwdicon"></div>
                                                     <input type="password" class="form-control"
                                                            id="inputPassword3" placeholder="Password"
@@ -572,7 +569,6 @@
                                             </div>
                                             <div class="form-group" *ngIf="forgotPwd==false">
                                                 <div class="user_id">
-                                                    <!--<label>Enter Registered Email Id</label>-->
                                                     <div class="emailicon"></div>
                                                     <input type="email" class="form-control" id="forgetPassword" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                                                            required placeholder="Email" formControlName="emailId">
