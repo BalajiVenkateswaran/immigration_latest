@@ -1,13 +1,13 @@
-<div style="margin-top:10px !important;">
+<div style="margin-top:4px !important;">
   <div style="width:20%; float:left;"><span>{{paginationMetadata.itemStartIndex}} to {{paginationMetadata.endNumber}} of {{paginationMetadata.totalElements}}</span></div>
   <div class="pagination">
-    <a [ngClass]="{'disabled':paginationMetadata.pageNumber == 1}"  (click)="paginationMetadata.pageNumber!=1 && previousPage()"><i class="rigicon" aria-hidden="true"><img src="../../../../assets/images/left arrow.png" /></i></a>
+    <a [ngClass]="{'disabled':paginationMetadata.pageNumber == 1}"  (click)="paginationMetadata.pageNumber!=1 && previousPage()"><i class="rigicon" aria-hidden="true">
+      <img src="../../../../assets/images/left arrow.png" /></i></a>
     <a *ngFor="let pageNo of getPageNumbers()" (click)="gotoPage(pageNo)" [ngClass]="pageNo === paginationMetadata.pageNumber ? 'selected-page' : ''"> {{pageNo}} </a>
     <span *ngIf="this.paginationMetadata.totalPages > 10">...</span>
     <a [ngClass]="{'disabled':paginationMetadata.totalPages === undefined || paginationMetadata.pageNumber===paginationMetadata.totalPages}"
        (click)="!(paginationMetadata.totalPages === undefined || paginationMetadata.pageNumber===paginationMetadata.totalPages) && nextPage()">
-      <img src="../../../../assets/images/Right arrow.png" />
-    </a>
+    <i class="rigicon" aria-hidden="true"><img  src="../../../../assets/images/Right arrow.png"  /></i></a>
   </div>
   <div style="width:20%; float:right; text-align:right;">
     Page Size:
