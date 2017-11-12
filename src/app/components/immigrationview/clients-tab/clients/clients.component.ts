@@ -33,7 +33,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     menu: 'menu',
     footer: null
   };
-  public queryParams: any;
+
   private message: string;
   private clientName: any;
   public addNewClient: boolean;
@@ -42,8 +42,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public newclitem: any = {};
   public warningMessage = false;
   public settings;
-  public data;
-  public paginationData;
+
 
   // More filter popup variables
   public openPetitions: string;
@@ -164,10 +163,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             if (isConfirmed) {
                 this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
                     if (res['statusCode'] === 'SUCCESS') {
-                        this.clientService.getClients(this.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
+                        this.clientService.getClients(this.clientService.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
                             (res1) => {
-                                this.data = res1['clients'];
-                                this.paginationData = res1['pageMetadata'];
+                                this.clientService.data = res1['clients'];
+                                this.clientService.paginationData = res1['pageMetadata'];
                             }
                         )
                     }
@@ -244,16 +243,5 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         this.appService.clientId = event.data.clientId;
 
     }
-    dataWithParameters(queryData) {
-      if (queryData) {
-          this.queryParams = queryData;
-      }
-      if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId'] && queryData) {
-        this.clientService.getClientsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
-          res => {
-            this.data = res['clients'];
-            this.paginationData = res['pageMetadata'];
-          })
-      }
-    }
+
 }

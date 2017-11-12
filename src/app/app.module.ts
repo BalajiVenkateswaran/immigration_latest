@@ -232,7 +232,7 @@ import { profilechangepwdservice } from './components/immigrationview/profile-ta
 import { profileloginhisservice } from './components/immigrationview/profile-tab/loginhistory/loginhistory.service';
 import { profileswitchcomponent } from './components/immigrationview/profile-tab/switch/switch.component';
 import { profileswitchservice } from './components/immigrationview/profile-tab/switch/switch.service';
-import { switchButton } from './components/immigrationview/profile-tab/switch/switchButton';
+import { SwitchButtonComponent } from './components/immigrationview/profile-tab/switch/switchButton';
 import { profiletodolistcomponent } from './components/immigrationview/profile-tab/todolist/todolist.component';
 import { profiletodolistservice } from './components/immigrationview/profile-tab/todolist/todolist.service';
 import { clientscreatedreportsservice } from './components/immigrationview/reports-tab/client/created/created.service';
@@ -363,9 +363,9 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         AgGridModule.withComponents([SmartTableFrameworkComponent]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire, ActionIcons,
-        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton,
-      InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
+        ClientsComponent, ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire,
+        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent,
+        ActionIcons, InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
     declarations: [
         newLoginComponent,
@@ -393,7 +393,7 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         i129HPage5Component,
         i129HPage6Component,
         // pdf page components imported above which is for testing only
-        CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, StatusButton,
+        CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent, InvoicedownloadButton, StatusButton,
         InvoiceUploadButton,
         AppComponent,
         HeaderComponent,

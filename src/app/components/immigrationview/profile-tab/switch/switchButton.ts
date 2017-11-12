@@ -1,11 +1,8 @@
 ﻿import { AppService } from '../../../../services/app.service';
 import { profileswitchservice } from './switch.service';
-import { Component, OnDestroy} from '@angular/core';
+import { Component} from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular/main';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
 import {ApplicationViews} from '../../../common/constants/applicationviews.constants';
 import {ApplicationRoles} from '../../../common/constants/applicationroles.constants';
 
@@ -17,7 +14,7 @@ import {ApplicationRoles} from '../../../common/constants/applicationroles.const
    `
 
 })
-export class switchButton implements ICellRendererAngularComp {
+export class SwitchButtonComponent implements ICellRendererAngularComp {
     public params: any;
  public switchdisable: boolean;
   constructor(private profileSwitchservice: profileswitchservice, public appService: AppService, public headerService: HeaderService) {
@@ -49,7 +46,6 @@ export class switchButton implements ICellRendererAngularComp {
         this.appService.rolemultiple = true;
         this.headerService.user['roleName'] = params.data.roleName;
         let moveToPage = this.headerService.getLandingPagePath(params.data.roleName);
-        params.context.componentParent.headerComponentService.onHeaderPageLoad(moveToPage);
 
         if (params.data.roleName === ApplicationRoles.CLIENT) {
             this.appService.applicationViewMode = ApplicationViews.CLIENT_VIEW;
@@ -63,6 +59,6 @@ export class switchButton implements ICellRendererAngularComp {
           this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;
         }
         this.headerService.currentTab = moveToPage;
-        this.appService.moveToPage(moveToPage);
+        params.context.componentParent.headerComponentService.onHeaderPageLoad(moveToPage);
     }
 }

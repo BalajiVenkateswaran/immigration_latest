@@ -46,7 +46,8 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   checkForCurrentTab(tab) {
     return this.headerService.currentTab === tab;
   }
-  constructor(private router: Router, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
+  constructor(private router: Router, public appService: AppService, public dialogService: DialogService,
+              public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
     super(dialogService);
   }
 

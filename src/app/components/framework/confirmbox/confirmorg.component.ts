@@ -3,6 +3,7 @@ import { AppService } from '../../../services/app.service';
 import { HeaderService } from '../../common/header/header.service';
 import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
+import {ClientsService} from '../../immigrationview/clients-tab/clients/clients.service';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -35,11 +36,12 @@ export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> 
     title: string;
     message: string;
     organizations: any = {};
-    constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService) {
+    constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService, private clientsService: ClientsService) {
         super(dialogService);
     }
     changeOrgName(org: Organizations) {
         this.headerService.selectedOrg = org;
+        this.clientsService.dataWithParameters('?size=15&page=0&filter=status:Active&sort=lastUpdate,DESC');
         this.appService.moveToPage('clients');
         this.close();
     }
