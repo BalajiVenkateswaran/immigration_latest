@@ -4,11 +4,11 @@ import { HeaderService } from '../../../common/header/header.service';
 import { profileswitchservice } from './switch.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { switchButton } from './switchButton';
+import { SwitchButtonComponent } from './switchButton';
 import {HeaderComponentService} from "../../../common/header/header.component.service";
 
 @Component({
-    selector: 'app-profileloginhistory',
+    selector: 'ih-switch',
     templateUrl: './switch.component.html',
     styleUrls: ['./switch.component.scss']
 })
@@ -46,7 +46,7 @@ export class profileswitchcomponent implements OnInit,AfterViewInit {
                 },
                 {
                     headerName: "Switch",
-                    cellRendererFramework: switchButton,
+                    cellRendererFramework: SwitchButtonComponent,
                   type:'text'
                 }
             ]

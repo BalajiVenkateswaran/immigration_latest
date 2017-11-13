@@ -42,11 +42,11 @@ export class webGetinTouchComponent extends DialogComponent<ConfirmModel, boolea
   public loginPopupForm: boolean;
   public userRoles: any = [];
   public forgotpwdsubmit: boolean = true;
-  //Build number format: yy.mm.2 digit build number
+  // Build number format: yy.mm.2 digit build number
   public static uiBuildNumber : string = "17.09.05";
   constructor(
     private router: Router,
-    private appService: AppService,
+    public appService: AppService,
     private loginservice: loginService,
     public dialogService: DialogService,
     private headerService: HeaderService,

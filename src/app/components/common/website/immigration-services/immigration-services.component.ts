@@ -47,7 +47,7 @@ export class webImmigrationServicesComponent extends DialogComponent<ConfirmMode
   public static uiBuildNumber : string = "17.09.05";
   constructor(
     private router: Router,
-    private appService: AppService,
+    public appService: AppService,
     private loginservice: loginService,
     public dialogService: DialogService,
     private headerService: HeaderService,

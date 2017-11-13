@@ -232,7 +232,7 @@ import { profilechangepwdservice } from './components/immigrationview/profile-ta
 import { profileloginhisservice } from './components/immigrationview/profile-tab/loginhistory/loginhistory.service';
 import { profileswitchcomponent } from './components/immigrationview/profile-tab/switch/switch.component';
 import { profileswitchservice } from './components/immigrationview/profile-tab/switch/switch.service';
-import { switchButton } from './components/immigrationview/profile-tab/switch/switchButton';
+import { SwitchButtonComponent } from './components/immigrationview/profile-tab/switch/switchButton';
 import { profiletodolistcomponent } from './components/immigrationview/profile-tab/todolist/todolist.component';
 import { profiletodolistservice } from './components/immigrationview/profile-tab/todolist/todolist.service';
 import { clientscreatedreportsservice } from './components/immigrationview/reports-tab/client/created/created.service';
@@ -345,11 +345,6 @@ import {
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {PaginationComponent} from './components/framework/smarttable/pagination/pagination.component';
-import {PetitionDetailsNewComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-new/petition-details-new.component';
-import {PetitionDetailsNewService} from './components/immigrationview/petitions-tab/petition-details/petition-details-new/petition-details-new.service';
-
-import {PetitionDetails2ColumnComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details-2column/petition-details.component';
-import {PetitionDetails2ColumnService} from './components/immigrationview/petitions-tab/petition-details/petition-details-2column/petition-details.service';
 
 @NgModule({
     imports: [
@@ -372,9 +367,9 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
         AgGridModule.withComponents([SmartTableFrameworkComponent]),
         NgbModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire, ActionIcons,
-        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton,
-      InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
+        ClientsComponent, ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire,
+        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent,
+        ActionIcons, InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
     declarations: [
         CategoryPipe,
@@ -403,7 +398,7 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
         i129HPage5Component,
         i129HPage6Component,
         // pdf page components imported above which is for testing only
-        CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, switchButton, InvoicedownloadButton, StatusButton,
+        CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent, InvoicedownloadButton, StatusButton,
         InvoiceUploadButton,
         AppComponent,
         HeaderComponent,
@@ -413,8 +408,6 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
         LooseCurrencyPipe,
         ClientDetailsComponent,
         PetitionDetailsComponent,
-        PetitionDetailsNewComponent,
-        PetitionDetails2ColumnComponent,
         ImmigrationviewQuestionnaireComponent,
         FormsComponent,
         OrganizationDocumentRepositoryComponent,
@@ -567,8 +560,6 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
         passportInfoService,
         ImmigrationViewClientDetailsService,
         PetitionDetailsService,
-        PetitionDetailsNewService,
-        PetitionDetails2ColumnService,
         JobdetailsService,
         loginService,
         newLoginService,
