@@ -305,6 +305,10 @@ import {FilterComponent} from './components/framework/smarttable/filter/filter.c
 
 import { FileUploadModule } from 'ng2-file-upload';
 
+
+import { CategoryPipe } from './components/framework/pipes/pipes';
+
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatAutocompleteModule,
@@ -373,6 +377,7 @@ import {PetitionDetails2ColumnService} from './components/immigrationview/petiti
       InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
     declarations: [
+        CategoryPipe,
         newLoginComponent,
         webImmigrationServicesComponent,
         webPricingComponent,
