@@ -51,7 +51,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
 
   moreFilters() {
       console.log('moreFilters: %o', this.smartTable.queryParameters.filter);
-       this.moreFilterFields=[];
+       this.moreFilterFields = [];
       // Prepare moreFilterFields information from smartTable.settings
       if (this.moreFilterFields.length === 0) {
         let columnsettings = this.smartTable.settings['columnsettings'];
@@ -75,9 +75,9 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
           console.log(this.moreFilterFields[rowCount][fieldCount]['type'])
           fieldCount++;
 
-          if(column.headerTooltip == "Actions"){
+          if (column.headerTooltip === 'Actions') {
             console.log(this.moreFilterFields);
-            fieldCount=0;
+            fieldCount = 0;
 
           }
         }
@@ -102,7 +102,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
           let columnValue = null;
           if (column['type'] === 'datePicker') {
             columnValue = column['value']['formatted'];
-            columnValue= this.datePipe.transform(columnValue, 'MM-dd-yyyy')
+            columnValue = this.datePipe.transform(columnValue, 'MM-dd-yyyy')
 
           } else {
             columnValue = column['value'];

@@ -98,29 +98,6 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         headingName: "lastUpdate",
         sort: SortType.DESC
       }],
-
-      'filter': {
-        quick: [
-          {
-            headerName: 'Status',
-            field: 'status',
-            values: [
-              { alias: 'Open', value: 'Open' },
-              { alias: 'Close', value: 'Close' }
-            ]
-          },
-          {
-            headerName: 'Petition Type',
-            field: 'petitionType',
-            values: [
-              { alias: 'H1B', value: 'H1B' },
-              { alias: 'L1', value: 'L1' },
-              { alias: 'H1B-RFE', value: 'H1B-RFE' },
-              { alias: 'B1', value: 'B1' }
-            ]
-          }
-        ]
-      },
       'columnsettings': [
         {
           headerName: "Petition Name",

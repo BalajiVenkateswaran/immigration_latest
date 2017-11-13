@@ -49,17 +49,23 @@
     </ul>
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-client'">
-        <li>
-            <a (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Client Details') ? 'active': '']" routerLinkActive="active">
+      <li>
+        <a (click)="appService.moveToPage('immigrationview-petitions');highlightSBLink('Petitions');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petitions') ? 'active': '']" routerLinkActive="active">
+          <span class="ico-history"></span>
+          <span>Petitions</span>
+        </a>
+      </li>
+      <li>
+         <a (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Client Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-client-details"></span>
                 <span>Client Details</span>
             </a>
         </li>
-        <li>
-            <a (click)="appService.moveToPage('immigrationview-petitions');highlightSBLink('Petitions');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petitions') ? 'active': '']" routerLinkActive="active">
-                <span class="ico-history"></span>
-                <span>Petitions</span>
-            </a>
+        <li ngbDropdown class="dropdown">
+          <a (click)="appService.moveToPage('immigrationview-client-document-repository');highlightSBLink('Documents');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" id="documents" data-toggle="dropdown">
+            <span class="ico-dependents"></span>
+            Documents
+          </a>
         </li>
         <li>
             <a (click)="appService.moveToPage('immigrationview-addressinfo');highlightSBLink('Address');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Address') ? 'active': '']" routerLinkActive="active">
@@ -77,12 +83,6 @@
                 <li *ngFor='let value of appService.dependents'><a (click)="appService.moveToPageWithParams('dependentDetails',value.dependentId);highlightSBLink(value.firstName)" [ngClass]="[checkForCurrentSBLink(value.firstName) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
             </ul>
 
-        </li>
-        <li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('immigrationview-client-document-repository');highlightSBLink('Documents');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" id="documents" data-toggle="dropdown">
-                <span class="ico-dependents"></span>
-                Documents
-            </a>
         </li>
         <li>
             <a (click)="appService.moveToPage('immigrationview-document-expirations');highlightSBLink('Documents Expirations');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Documents Expirations') ? 'active': '']" routerLinkActive="active">
