@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SmartTableFrameworkComponent} from '../smarttable.component';
 import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {FilterEntry} from '../types/query-parameters';
+import {DatePipe} from '@angular/common';
+
 
 export interface ConfirmModel {
   title: string;
@@ -21,6 +23,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
   @Input() public quickFilters: any[];
   @Input() public smartTable: SmartTableFrameworkComponent;
   @Output() addRecordClick = new EventEmitter();
+  public dateValue;
 
   showFilters = true;
   addMorefilters = false;
@@ -33,7 +36,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
    */
   moreFilterFields: any[] = [];
 
-  constructor(public dialogService: DialogService) {
+  constructor(public dialogService: DialogService, private datePipe: DatePipe) {
     super(dialogService);
   }
   onChange(event) {
@@ -99,6 +102,8 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
           let columnValue = null;
           if (column['type'] === 'datePicker') {
             columnValue = column['value']['formatted'];
+            columnValue= this.datePipe.transform(columnValue, 'MM-dd-yyyy')
+
           } else {
             columnValue = column['value'];
           }

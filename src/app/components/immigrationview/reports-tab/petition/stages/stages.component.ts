@@ -22,6 +22,7 @@ export class petitionstagesreportscomponent implements OnInit {
     public stages: any = [];
     public petitionstageTypes: any = [];
     public selectedsubtype: string;
+  public selectedsubtypeId: any;
     public petitionsubtypechange: any;
     constructor(public headerService: HeaderService, private petitionStagesreportsservice: petitionstagesreportsservice, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
 
@@ -30,6 +31,8 @@ export class petitionstagesreportscomponent implements OnInit {
           res => {
               console.log(res);
               this.petitionstageTypes = res['petitionTypes'];
+            this.selectedsubtype = "H1B";
+            this.selectedsubtypeId = this.petitionstageTypes[0].petitionTypeId;
 
           });
         this.petitionStagesreportsservice.getpetitonStagereports(this.headerService.user.accountId)
