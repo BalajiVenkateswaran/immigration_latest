@@ -38,6 +38,7 @@ export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> 
     title: string;
     message: string;
     organizations: any = {};
+  public searchText;
     constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService, private clientsService: ClientsService) {
         super(dialogService);
     }
