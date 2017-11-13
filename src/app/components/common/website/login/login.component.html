@@ -6,12 +6,12 @@
 </head>
 <body>
     <div id='toTop' (click)="clicktogotop()"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
-        <div class="container-fluid">
+        <div class="container-fluid" *ngIf="getloginpage">
             <div class="row">
                 <div class="top-strip">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 no-pad"><img src="../../../../../assets/images/web/logo.png" class="logo img-responsive"><a (click)="appService.moveToPage('newLogin')" class="login">Login</a>
+                            <div class="col-md-12 no-pad"><img src="../../../../../assets/images/web/logo.png" class="logo img-responsive"><a (click)="loginPopup()" class="login">Login</a>
                             </div>
                         </div>
                     </div>
@@ -526,35 +526,46 @@
 
             </div>
         </div>
-        <!--<div *ngIf="loginPopupForm">
-            <div class="modal-dialog loginpopup" ngDraggable style="margin-top:5% !important;">
+        <div *ngIf="loginPopupForm">
+            <div class="modal-dialog loginpopup" ngDraggable>
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">
-                            <img src="../../../../../assets/images/logo.png" />
-                        </h4>
-                        <button type="button" class="close" (click)="close()" style="margin-top: -50px;margin-right: 10px;">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
+                    <div class="newlogin">
+                        <div class="logBox">
+                            <div class="blueBox">
+                                <h1>Welcome to Immigration Portal</h1>
+                                <p>Linking the Clients to Immigration Officers portal...</p>
+                                <div class="social">
+                                    <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                                    <a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                                    <a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <div class="whiteBox">
+
                                 <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8"><img class="newloglogo" src="../../../../../assets/images/logo-black.png" /></div>
+                                    <div class="col-md-2"><button type="button" class="close" (click)="close()" style="opacity: 0.8;">&times;</button></div>
+                                    <div class="clear"></div>
                                     <div class="col-md-2"></div>
                                     <div class="col-md-8">
                                         <form action="" [formGroup]="login"
                                               (ngSubmit)="onSubmitClick(login.value, login.valid)"
                                               autocomplete="off">
+                                            <!--<h2>Immigration Hub</h2>-->
                                             <div class="form-group row" [hidden]="!message">
                                                 {{message}}
                                             </div>
                                             <div class="form-group" *ngIf="forgotPwd==true">
                                                 <div class="user_id">
+                                                    <!--<label>Email</label>-->
                                                     <div class="emailicon"></div>
                                                     <input type="email" class="form-control" id="userId"
                                                            placeholder="Email Address" formControlName="emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                                                            required />
                                                 </div>
                                                 <div class="password">
+                                                    <!--<label>PASSWORD</label>-->
                                                     <div class="pwdicon"></div>
                                                     <input type="password" class="form-control"
                                                            id="inputPassword3" placeholder="Password"
@@ -569,6 +580,7 @@
                                             </div>
                                             <div class="form-group" *ngIf="forgotPwd==false">
                                                 <div class="user_id">
+                                                    <!--<label>Enter Registered Email Id</label>-->
                                                     <div class="emailicon"></div>
                                                     <input type="email" class="form-control" id="forgetPassword" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                                                            required placeholder="Email" formControlName="emailId">
@@ -582,6 +594,7 @@
                                     <div class="col-md-2"></div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -607,6 +620,6 @@
                     </div>
                 </div>
             </div>
-        </div>-->
+        </div>
 </body>
 </html>
