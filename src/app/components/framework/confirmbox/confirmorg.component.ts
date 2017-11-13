@@ -4,6 +4,7 @@ import { HeaderService } from '../../common/header/header.service';
 import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 import {ClientsService} from '../../immigrationview/clients-tab/clients/clients.service';
+import { CategoryPipe } from '../pipes/pipes';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -17,16 +18,17 @@ export interface ConfirmModel {
                      <button type="button" class="close" (click)="close()" >&times;</button>
                     <p>Please select the Organization</p>
                         <div class="searchOrg">
-                        <input type="text" />
+                        <input type="text" [(ngModel)]="searchText" />
                             <button><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div>
                         
                    </div>
                    <div class="modal-body">
                   <ul>
-                    <li *ngFor='let org of headerService.organizations' (click)="changeOrgName(org)">
+                    <li *ngFor='let org of headerService.organizations | category: searchText' (click)="changeOrgName(org)">
                     {{org.displayName}}
                     </li>
+                    <li *ngIf="headerService.organizations.length == 0 || headerService.organizations.length == undefined">No Organization Found</li>
                    </ul>
                    </div>
                  </div>

@@ -220,7 +220,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
                     }
                 }
             } else {*/
-                this.gridOptions['headerHeight'] = 60;
+                this.gridOptions['headerHeight'] = 35;
             // }
         } else {
             this.settings['columnFilter'] = false;
