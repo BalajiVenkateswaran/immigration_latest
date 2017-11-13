@@ -92,8 +92,9 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                   fileId: jsonResponse['fileId'],
                   fileName: item.file.name,
                   orderNo: this.getFiles.length,
-                  updatedDate: this.datePipe.transform(new Date(), 'mm-dd-yyyy')
+                  updatedDate: this.datePipe.transform(new Date(), 'MM-dd-yyyy')
                 });
+                console.log(this.getFiles)
                 item.remove();
               } else {
 

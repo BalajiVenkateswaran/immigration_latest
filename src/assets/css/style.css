@@ -1,6 +1,8 @@
 body {
   /*font-family: 'Open Sans', sans-serif;*/
-  font-size: 14px; }
+  font-size: 14px;
+     overflow: hidden;
+}
 
 a, button {
   cursor: pointer; }
@@ -158,6 +160,17 @@ placeholder :-ms-input-placeholder {
   border: none;
   background: #04a9fc;
   color: #ffffff !important;
+  border-radius: 5px; }
+
+.iportal-btnIMclient {
+  margin: 0px 20px 0 0;
+  width: auto;
+  height: 30px;
+  padding: 6px 12px;
+  font-size: 13px;
+  border:1px solid #5093E1;
+  background: #F6F7FA;
+  color: #5093E1 !important;
   border-radius: 5px; }
 
 /*Login page css*/
