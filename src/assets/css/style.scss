@@ -1604,7 +1604,7 @@ confirm {
     margin: 10% auto;
 }
 }
-.loginpopup {
+.loginpopup, .selectRole {
     margin-top: 0% !important;
     background: none !important;
     border: none;
@@ -1612,85 +1612,7 @@ confirm {
         z-index: 15; 
         top: 50%; 
         left: calc(50% - 300px);
-         
         box-shadow:0px 0px 5px #4d4d4d;
-
-    .modal-header {
-            padding: 0px 15px !important;
-    border: none !important;
-    }
-    .modal-title {
-    /*background: #2f323a;  For browsers that do not support gradients */
-    /*background: -webkit-linear-gradient(#2f323a, #44474e);  For Safari 5.1 to 6.0 */
-    /*background: -o-linear-gradient(#2f323a, #44474e);  For Opera 11.1 to 12.0 */
-    /*background: -moz-linear-gradient(#2f323a, #44474e);  For Firefox 3.6 to 15 */
-    /*background: linear-gradient(#2f323a, #44474e);  Standard syntax (must be last) */
-    width:100%;
-    text-align:center;
-    padding:20px 0 10px 0;
-    }
-    .modal-body {
-        border-radius:0px 0px 5px 5px !important;
-        padding-top:45px !important;
-        padding-bottom:30px !important;
-    }
-
-    .emailicon, .pwdicon {
-        border:none;
-        border-bottom:solid 1px #e3e2e2;
-        background:url("../images/Mail.png") no-repeat 5px 13px #fff !important;
-        margin-bottom:20px;
-        padding:0;
-        width:32px;
-        height:34px;
-        float:left;
-    }
-    input[type~="email"], input[type~="password"] {
-        border:none;
-        border-bottom:solid 1px #e3e2e2;
-        border-radius:0px;
-        background:#fff !important;
-        font-weight:500;
-        font-size:14px;
-        margin-bottom:20px;
-        padding:8px 5px 3px 0px;
-        color:#a9a6a8;
-        width:calc(100% - 32px) !important;
-    }
-
-    .pwdicon {
-        background:url("../images/Password.png") no-repeat 5px 7px #fff !important;
-    }
-
-/* Change autocomplete styles in WebKit */
-input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
-  border: none;
-  border-bottom:solid 1px #e3e2e2;
-  -webkit-text-fill-color: #a9a6a8;
-  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-}
-
-    .newlogbtn {
-    background: #0b8dcd !important;
-    width: 100%;
-    border-radius: 5px;
-    color: #fff;
-    margin:10px 0px 25px 0px !important;
-    padding: 11px 0px;
-    border: none;
-}
-
-    .forgot_password {
-            font-size: 14px;
-    color: #a9a6a8;
-    text-align: center;
-    margin:0px 0 15px 0;
-    }
-    .note {
-        font-size:12px;
-        color:#a9a6a8;
-        text-align:center;
-    }
 }
 .ng-draggable {
   cursor: move;
@@ -2583,3 +2505,55 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
         }
         }
     }
+.modal-dialog.selectRole {
+    width:380px;
+    left:calc(50% - 190px);
+    top:calc(50% - 120px);
+
+    .modal-content{
+        background:none !important;
+        border:none !important;
+        padding:0px !important;
+
+        .whiteBox {
+                background:#fff;
+                width:380px;
+                padding:20px 20px 10px 20px;
+
+                h4.modal-title {
+                    color:#077bd7;
+                    font-size:18px;
+                    font-weight:400;
+                    margin:0px;
+                    padding:0px;
+                    margin-bottom:15px;
+                }
+                ul {
+                    margin:0px;
+                    padding:0px;
+                    
+                    li {
+                        list-style:none;
+                        margin-bottom:10px;
+                        border:solid 1px #d7d7d7;
+                        width:100%;
+                        padding:10px 5px 7px 40px;
+                        min-height:30px;
+                        font-size:16px;
+                        color:#4d4d4d;
+                        cursor:pointer;
+                        background:#efefef;
+
+                        &:hover{
+                            background:#fff;
+                        }
+
+                    }
+
+                }
+            }
+    }
+
+    
+
+}
