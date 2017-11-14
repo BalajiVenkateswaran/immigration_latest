@@ -35,7 +35,7 @@ h1,h2,h3,h4,h5,h6{
         background: #5cc34a;
 }
 @mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white, 50%)) {
-  ::-webkit-scrollbar {
+  /*::-webkit-scrollbar {
       width:  $size;
       height: $size;
   }
@@ -46,7 +46,7 @@ h1,h2,h3,h4,h5,h6{
 
   ::-webkit-scrollbar-track {
       background: $background-color;
-  }
+  }*/
 
   // For Internet Explorer
   body {

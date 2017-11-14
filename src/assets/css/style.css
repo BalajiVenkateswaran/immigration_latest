@@ -43,19 +43,7 @@ h1, h2, h3, h4, h5, h6 {
     -moz-box-shadow:2px 1px 4px rgba(0, 0, 0, 0.4);
     box-shadow:2px 1px 4px rgba(0, 0, 0, 0.4);
 }*/
-::-webkit-scrollbar {
-  width: 0.5em;
-  height: 0.5em; }
 
-::-webkit-scrollbar-thumb {
-  background: slategray; }
-
-::-webkit-scrollbar-track {
-  background: #b8c0c8; }
-
-body {
-  scrollbar-face-color: slategray;
-  scrollbar-track-color: #b8c0c8; }
 
 .no-pad {
   padding: 0px !important; }
