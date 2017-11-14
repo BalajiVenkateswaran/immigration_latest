@@ -10,7 +10,7 @@
     </div>
 </div>
 <div *ngIf="viewPopup">
-    <div class="modal-dialog" ngDraggable style="max-width:750px">
+    <div class="modal-dialog" ngDraggable style="max-width:900px !important; width:790px !important; margin: 10% auto 0px auto !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
@@ -108,16 +108,6 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="row">
-                                            <div class="col-md-5">Comments:</div>
-                                            <div class="col-md-7">
-                                                <textarea [disabled]=true [(ngModel)]="invoice.comments" class="form-control"></textarea>
-                                                <!--<span style="height:80px" *ngIf="true">{{invoice.comments}}</span>-->
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="row">
                                             <div class="col-md-5">Invoice (PDF Name):</div>
                                             <div class="col-md-7">
                                                 <input type="text" *ngIf="false" [(ngModel)]="invoice.fileName" class="form-control">
@@ -125,12 +115,28 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-offset-6">
+                                        <div class="row"></div>
+                                        </div>
+                                    <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-2">Comments:</div>
+                                            <div class="col-md-10">
+                                                <textarea [disabled]=true [(ngModel)]="invoice.comments" class="form-control" style="margin-left: 30px;width: 95%;height: 84px;"></textarea>
+                                                <!--<span style="height:80px" *ngIf="true">{{invoice.comments}}</span>-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-4">
                                                 <div clas="clearfix"></div>
                                             </div>
-                                            <div class="col-md-7"><button type="button" class="btn btn-default" (click)="cancel()">Close</button></div>
+                                            <div class="col-md-4"><button type="button" class="btn btn-default" (click)="cancel()">Close</button></div>
+                                            <div class="col-md-4">
+                                                <div clas="clearfix"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

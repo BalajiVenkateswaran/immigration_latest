@@ -135,7 +135,7 @@ section {
     }
 
     .left-opened {
-        height: calc(100vh - 191px);
+        /*height: calc(100vh - 191px);*/
         bottom: 15px;
             left: 50px;
                 width: 250px;
@@ -173,7 +173,7 @@ section {
     border-radius: 0;
     height:calc(100% - 40px);
     border: none;
-    overflow: auto;
+    /*overflow: auto;*/
     /* background-color: #2f323a; */
     /* position: absolute; */
     padding: 0px;
@@ -1680,7 +1680,7 @@ float:right;
 }
 .tabsMenu {
     background:#f6f7fa;
-    height:84px;
+    height:71px;
     width:100%;
 	-webkit-box-shadow: 0 5px 3px -3px #dcdada;
 	   -moz-box-shadow: 0 5px 3px -3px #dcdada;
@@ -1865,7 +1865,7 @@ header {
                     text-align:center;
                     font-weight: 400;
                     border-bottom:solid 3px #f6f7fa;
-                    padding-bottom:7px;
+                    /*padding-bottom:7px;*/
                     &:hover, &:focus {
                         color:#333 !important;
                         border-bottom:solid 3px #232f3f;
