@@ -96,7 +96,7 @@ import { ConfirmorgComponent } from './components/framework/confirmbox/confirmor
 
 import {AgGridModule} from 'ag-grid-angular/main';
 import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
-import {checklistdownloadButton} from './components/immigrationview/manage-account-tab/checklist/downloadButton';
+import {CheckListDownloadButtonComponent} from './components/immigrationview/manage-account-tab/checklist/downloadButton';
 import {checklistuploadButton} from './components/immigrationview/manage-account-tab/checklist/uploadButton';
 import {SmartTableService} from './components/framework/smarttable/common/smarttable.service';
 
@@ -369,7 +369,7 @@ import {InformationComponent} from './components/framework/confirmbox/informatio
         NgbModule.forRoot()],
     entryComponents: [
         ClientsComponent, ConfirmComponent, InformationComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire,
-        GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent,
+        GenerateFormButton, DownloadButton, RequestButton, CheckListDownloadButtonComponent, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent,
         ActionIcons, InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
     declarations: [
@@ -399,7 +399,7 @@ import {InformationComponent} from './components/framework/confirmbox/informatio
         i129HPage5Component,
         i129HPage6Component,
         // pdf page components imported above which is for testing only
-        CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent, InvoicedownloadButton, StatusButton,
+        CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, CheckListDownloadButtonComponent, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent, InvoicedownloadButton, StatusButton,
         InvoiceUploadButton,
         AppComponent,
         HeaderComponent,

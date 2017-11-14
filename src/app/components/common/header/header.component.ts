@@ -60,8 +60,8 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
     this.headerComponentService.onHeaderPageLoad(moveToPage);
     this.highlightTab(moveToPage);
 
-   
-    
+
+
   }
 
   editorgname() {
@@ -91,12 +91,6 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
     this.headerComponentService.getUsageSummaryDetails(this.user.accountId).subscribe(
       res => {
           this.headerComponentService.usageSummaryDetails = res;
-
-          //to test the grediant progress and this need to remove 
-          this.headerComponentService.usageSummaryDetails.usersUsed = 500;
-          this.headerComponentService.usageSummaryDetails.orgUsed = 756;
-          this.headerComponentService.usageSummaryDetails.clientsUsed = 368;
-          this.headerComponentService.usageSummaryDetails.petitionsUsed = 5500;
       }
       )
   }

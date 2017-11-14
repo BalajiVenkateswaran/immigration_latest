@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4"><label for="pi-petitionwithdrawndate">Days in Current Stage</label></div>
+                            <div class="col-md-4"><label for="pi-petitionwithdrawndate">Days in Stage</label></div>
                             <div class="col-md-8">
                                 <input type="text" *ngIf="isPetitionInformationEdit==false" [(ngModel)]="petitionInformation.daysInStage" disabled />
                                 <span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.daysInStage}}</span>
@@ -258,14 +258,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Approval Received On</label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Approval Received</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isReceiptInfoEdit==false" [options]="datePickerOptions"  [(ngModel)]="receiptInfo.sentToGovAgencyOn" [selDate]="sentToGovAgencyOn"></my-date-picker>
                             <span *ngIf="isReceiptInfoEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="pi-petitiondescription">Show Receipt Number to Client <span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="pi-petitiondescription">Show Receipt # to Client<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
                             <select *ngIf="isReceiptInfoEdit==false" [(ngModel)]="receiptInfo.showReceiptNumberToClient" [ngClass]="receiptInfo.showReceiptNumberToClient == 1 || 2 ? '': 'redborder'">
 

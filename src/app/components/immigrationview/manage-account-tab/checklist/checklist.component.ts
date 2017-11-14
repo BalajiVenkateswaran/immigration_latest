@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
 import {ManageAccountChecklistService} from './checklist.service';
 import { AppService } from '../../../../services/app.service';
-import { checklistdownloadButton } from './downloadButton';
+import { CheckListDownloadButtonComponent } from './downloadButton';
 import { checklistuploadButton } from './uploadButton';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {ManageAccountPetitionStagesService} from '../petitiontypestages/petitiontypestages.service';
@@ -53,7 +53,7 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
         },
         {
             headerName: "Download",
-            cellRendererFramework: checklistdownloadButton,
+            cellRendererFramework: CheckListDownloadButtonComponent,
         }
       ]
     }

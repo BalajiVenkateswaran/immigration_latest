@@ -1,11 +1,11 @@
 import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
-import {ManageAccountUserService} from "./user.service";
+import {ManageAccountUserService} from './user.service';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {SortType} from "../../../framework/smarttable/types/query-parameters";
-import {HeaderService} from "../../../common/header/header.service";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+import {SortType} from '../../../framework/smarttable/types/query-parameters';
+import {HeaderService} from '../../../common/header/header.service';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -25,13 +25,13 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
 
     private message: string;
     private roles: any = {
-        "Immigration Officer": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
-        "Immigration Manager": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
+        'Immigration Officer': '501f6e87-cd6e-11e6-a939-34e6d7382cac',
+        'Immigration Manager': 'a724fdd7-cd6e-11e6-a939-34e6d7382cac'
     };
-    public getUsers: boolean = true;
+    public getUsers = true;
     public addUsers: any = {};
     public adduser: boolean;
-    public warningMessage: boolean = false;
+    public warningMessage = false;
     public settings;
     public data;
     public emailId;
@@ -44,29 +44,40 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         this.settings = {
           'customPanel': true,
           'sort' : [{
-            headingName: "firstName",
+            headingName: 'firstName',
             sort: SortType.ASC
           }],
           'columnsettings': [
               {
-                  headerName: "First Name",
-                  field: "firstName"
+                  headerName: 'First Name',
+                  field: 'firstName'
               },
               {
-                  headerName: "Last Name",
-                  field: "lastName"
+                  headerName: 'Last Name',
+                  field: 'lastName'
               },
               {
-                  headerName: "Email",
-                  field: "emailId"
+                  headerName: 'Email',
+                  field: 'emailId'
               },
               {
-                  headerName: "Phone",
-                  field: "phoneNumber"
+                  headerName: 'Phone',
+                  field: 'phoneNumber'
               },
               {
-                  headerName: "Role",
-                  field: "roleName"
+                  headerName: 'Role',
+                  field: 'role',
+                  type: 'dropDown',
+                  data: [
+                    {
+                      display : 'Immigration Officer',
+                      value : 'Immigration Officer'
+                    },
+                    {
+                      display : 'Immigration Manager',
+                      value : 'Immigration Manager'
+                    }
+                  ]
               }
           ]
         }
@@ -74,18 +85,13 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     getManageUsers() {
         this.manageAccountUserService.getUsers(this.headerService.user.accountId, this.queryParams)
             .subscribe((res) => {
-                for (var user of res['users']) {
-                    user['roleName'] = user['role'];
-                }
-                this.data=res['users'];
-                this.appService.usersList=res['users'];
+                this.data = res['users'];
+                this.appService.usersList = res['users'];
                 this.paginationData = res['pageMetadata'];
             });
     }
     ngOnInit() {
-        this.headerService.showSideBarMenu("manageaccount", "manageaccount-user");
-        //this.getManageUsers();
-
+        this.headerService.showSideBarMenu('manageaccount', 'manageaccount-user');
     }
 
     addUser() {
@@ -97,11 +103,11 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             if (isConfirmed) {
 
                 this.manageAccountUserService.saveNewUser(this.appService.addUsers).subscribe((res) => {
-                    if (res['statusCode'] == 'SUCCESS') {
+                    if (res['statusCode'] === 'SUCCESS') {
                         this.getManageUsers();
                     }
-                    if(res['statusDescription']=='User already exists'){
-                        this.dialogService.addDialog(ConfirmComponent,{
+                    if (res['statusDescription'] === 'User already exists') {
+                        this.dialogService.addDialog(ConfirmComponent, {
                               title: 'Error..!',
                               message: 'User already Exists'
                         })
@@ -110,15 +116,15 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             }
         });
     }
-    manageUserSave(email,roles) {
+    manageUserSave(email, roles) {
         this.addUsers['role'] = this.roles[this.addUsers['role']];
         this.addUsers['accountId'] = this.headerService.user.accountId;
-        if ((this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || roles.value=='' || roles.value==null || roles.value==undefined)) {
+        if ((this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || roles.value == '' || roles.value == null || roles.value == undefined)) {
             this.warningMessage = true;
 
-        } else if(email!=null){
-            this.warningMessage=false;
-        }else {
+        } else if (email != null) {
+            this.warningMessage = false;
+        } else {
             this.warningMessage = false;
             this.appService.addUsers = this.addUsers;
             this.result = true;
@@ -153,18 +159,18 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
 
 
     dataWithParameters(queryData) {
-      if(queryData != undefined){
-        this.queryParams=queryData;
+      if (queryData != undefined) {
+        this.queryParams = queryData;
         this.getManageUsers();
       }
 
     }
-    capitialize(data){
-    if(this.addUsers['firstName']){
-      this.addUsers['firstName']=data['firstName'].split(' ').map(item=>{return item.charAt(0).toUpperCase()+item.slice(1)}).join(' ');
+    capitialize(data) {
+    if (this.addUsers['firstName']) {
+      this.addUsers['firstName'] = data['firstName'].split(' ').map(item => {return item.charAt(0).toUpperCase() + item.slice(1)}).join(' ');
     }
-    if(this.addUsers['lastName']){
-      this.addUsers['lastName']=data['lastName'].split(' ').map(item=>{return item.charAt(0).toUpperCase()+item.slice(1)}).join(' ');
+    if (this.addUsers['lastName']) {
+      this.addUsers['lastName'] = data['lastName'].split(' ').map(item => {return item.charAt(0).toUpperCase() + item.slice(1)}).join(' ');
     }
   }
 }
