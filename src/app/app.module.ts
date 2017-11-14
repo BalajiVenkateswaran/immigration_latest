@@ -345,6 +345,7 @@ import {
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {PaginationComponent} from './components/framework/smarttable/pagination/pagination.component';
+import {InformationComponent} from './components/framework/confirmbox/information.component';
 
 @NgModule({
     imports: [
@@ -367,7 +368,7 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
         AgGridModule.withComponents([SmartTableFrameworkComponent]),
         NgbModule.forRoot()],
     entryComponents: [
-        ClientsComponent, ConfirmComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire,
+        ClientsComponent, ConfirmComponent, InformationComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire,
         GenerateFormButton, DownloadButton, RequestButton, checklistdownloadButton, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent,
         ActionIcons, InvoicedownloadButton, InvoiceUploadButton, StatusButton, FilterComponent
     ],
@@ -456,6 +457,7 @@ import {PaginationComponent} from './components/framework/smarttable/pagination/
 
         ResetPasswordComponent,
         ConfirmComponent,
+        InformationComponent,
         ConfirmorgComponent,
 
         // SmartTable related components

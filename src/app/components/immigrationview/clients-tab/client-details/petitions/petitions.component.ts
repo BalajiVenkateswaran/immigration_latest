@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 
-import { CustomRenderComponent } from './custom-render.component';
+import {InformationComponent} from '../../../../framework/confirmbox/information.component';
 
 export interface ConfirmModel {
     title: string;
@@ -39,6 +39,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public warningMessage= false;
     public settings;
     public data;
+    public clientInviteStatus;
     public countryNames: string[] = [];
 
     highlightSBLink(link) {
@@ -106,6 +107,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     getPetitionData() {
         this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId).subscribe((res) => {
             this.data = res['petitions'];
+            this.clientInviteStatus = res['clientInviteStatus'];
         });
         this.getPetitionTypes();
     }
@@ -143,36 +145,49 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId)
         .subscribe((res) => {
             this.data = res['petitions'];
+            this.clientInviteStatus = res['clientInviteStatus'];
         });
       this.getPetitionTypes();
   }
 
   addNewPetition() {
+      if (this.clientInviteStatus !== 'Accept') {
+        let informationMessage = 'Client has not been updated the invite. Please contact the client.';
+        if (this.clientInviteStatus === 'Decline') {
+          informationMessage = 'Petitions cannot be added to this client as the invitation is declined.';
+        }
+        this.dialogService.addDialog(InformationComponent, {
+          title: 'Information',
+          message: informationMessage
+        });
+      } else {
 
-      this.dialogService.addDialog(ImmigrationViewPetitionsComponent, {
+        this.dialogService.addDialog(ImmigrationViewPetitionsComponent, {
           showAddPetitionpopup: true,
           getPetitionsData: false,
           title: 'Add Petition',
-      }).subscribe((isConfirmed) => {
+        }).subscribe((isConfirmed) => {
           if (isConfirmed) {
-              this.immigrationviewpetitionService.saveNewImmigrationViewPetition(this.appService.newpetitionitem).subscribe((res) => {
-                  this.message = res['statusCode'];
-                  if (this.message === 'SUCCESS') {
-                      this.getPetitionData();
-                  } else {
-                      let errorMessage = 'Unable to add petition';
-                      if (res['statusDescription'] != null) {
-                        errorMessage = res['statusDescription'];
-                      }
+            this.immigrationviewpetitionService.saveNewImmigrationViewPetition(this.appService.newpetitionitem).subscribe((res) => {
+              this.message = res['statusCode'];
+              if (this.message === 'SUCCESS') {
+                this.getPetitionData();
+              } else {
+                let errorMessage = 'Unable to add petition';
+                if (res['statusDescription'] != null) {
+                  errorMessage = res['statusDescription'];
+                }
 
-                      this.dialogService.addDialog(ConfirmComponent, {
-                          title: 'Error..!',
-                          message: errorMessage
-                      });
-                  }
-              });
+                this.dialogService.addDialog(ConfirmComponent, {
+                  title: 'Error..!',
+                  message: errorMessage
+                });
+              }
+            });
           }
-      });
+        });
+
+      }
   }
 
   getPetitionTypeId(petitionType: string): string {
