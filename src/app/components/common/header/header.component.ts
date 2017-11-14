@@ -26,6 +26,7 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   private tab;
   private i;
   public user: User;
+  usageSummery = false;
   public orgnames: any = {};
   public header= true;
   public usageSummaryPopup= false;
@@ -58,6 +59,9 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
     let moveToPage = this.headerService.getLandingPagePath(this.user.roleName)
     this.headerComponentService.onHeaderPageLoad(moveToPage);
     this.highlightTab(moveToPage);
+
+   
+    
   }
 
   editorgname() {
@@ -82,18 +86,23 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
       this.headerService.logOut();
   }
   onUsageSummaryClick() {
+      this.usageSummery = true;
+
     this.headerComponentService.getUsageSummaryDetails(this.user.accountId).subscribe(
       res => {
-        this.headerComponentService.usageSummaryDetails = res;
-      }
-    )
-    this.dialogService.addDialog(HeaderComponent, {
-      title: 'Account Usage Summary',
-      usageSummaryPopup: true,
-      header: false
-    });
-  }
+          this.headerComponentService.usageSummaryDetails = res;
 
+          //to test the grediant progress and this need to remove 
+          this.headerComponentService.usageSummaryDetails.usersUsed = 500;
+          this.headerComponentService.usageSummaryDetails.orgUsed = 756;
+          this.headerComponentService.usageSummaryDetails.clientsUsed = 368;
+          this.headerComponentService.usageSummaryDetails.petitionsUsed = 5500;
+      }
+      )
+  }
+  onUsageSummaryClose() {
+      this.usageSummery = false;
+  }
   onLogoClick() {
     let moveToPage = this.headerService.getLandingPagePath(this.headerService.user.roleName);
     this.appService.moveToPage(moveToPage);
