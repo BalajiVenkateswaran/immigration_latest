@@ -11,9 +11,10 @@
             <ih-smart-table class="immiview-managAcctab-orgs"
             [settings]="settings"
             [data]="data"
+            [paginationData]="paginationData"
             (onAddClick)="addNewOrganization($event)"
             (onRowClick)="onEditConfirm($event)"
-            >
+            (dataWithQueryParams)="dataWithParameters($event)">
             </ih-smart-table>
 
         <div class="clearfix"></div>

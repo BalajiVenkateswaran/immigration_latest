@@ -1,14 +1,12 @@
-import { manageaccountorganization } from '../../../../models/manageaccountorganization';
 import { User } from '../../../../models/user';
 import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
 import {Component, OnInit} from '@angular/core';
-import {ManageAccountOrganizationsService} from "./organizations.service";
-import {FormGroup, FormControl} from "@angular/forms";
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {ManageAccountOrganizationsService} from './organizations.service';
+
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 
 export interface ConfirmModel {
   title: string;
@@ -30,11 +28,13 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
   private user: User;
   private selectedOrg: any = {};
   public showAddOrgpopup: boolean;
-  public getOrgsData: boolean = true;
+  public getOrgsData = true;
   public neworgitem: any = {};
-  public warningMessage: boolean = false;
+  public warningMessage = false;
   public settings;
   public data;
+  public paginationData;
+  private queryParams;
   constructor(private manageaccountorganizationService: ManageAccountOrganizationsService,
     private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService) {
@@ -49,43 +49,40 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
         },
       'columnsettings': [
         {
-          headerName: "Org Name",
-          field: "orgName"
+          headerName: 'Org Name',
+          field: 'orgName'
         },
         {
-          headerName: "Display Name",
-          field: "displayName"
+          headerName: 'Display Name',
+          field: 'displayName'
         },
         {
-          headerName: "Type(Regular/Delegated)",
-          field: "orgType"
+          headerName: 'Type(Regular/Delegated)',
+          field: 'orgType'
         },
         {
-          headerName: "Status",
-          field: "orgStatus"
+          headerName: 'Status',
+          field: 'orgStatus',
+          type: 'dropDown',
+          data : [
+            {
+              display : 'Active',
+              value : 'Active'
+            },
+            {
+              display : 'Inactive',
+              value : 'Inactive'
+            }
+          ]
         },
         {
-          headerName: "Email",
-          field: "email"
+          headerName: 'Email',
+          field: 'email'
         }
       ]
     }
-
-
-
-  }
-  getorganizationData() {
-    this.manageaccountorganizationService.getManageAccountOrganizations(this.headerService.user.accountId).subscribe((res: any) => {
-      this.data = res['orgs'];
-    });
   }
   ngOnInit() {
-    this.manageaccountorganizationService
-      .getManageAccountOrganizations(this.headerService.user.accountId)
-      .subscribe((res: any) => {
-        console.log("PetitionsComponent|ngOnInit|res:%o", res);
-        this.data = res['orgs'];
-      });
   }
   addNewOrganization() {
     this.dialogService.addDialog(ManageAccountOrganizationsComponent, {
@@ -98,8 +95,8 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
       if (isConfirmed) {
         this.manageaccountorganizationService.saveNewOrganization(this.appService.neworgitem).subscribe((res) => {
           this.message = res['statusCode'];
-          if (this.message == 'SUCCESS') {
-            this.getorganizationData();
+          if (this.message === 'SUCCESS') {
+            this.dataWithParameters(this.queryParams);
           } else {
             this.dialogService.addDialog(ConfirmComponent, {
               title: 'Error..!',
@@ -112,14 +109,13 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     });
   }
   organizationSave(email) {
-    if (this.neworgitem['orgName'] == undefined || this.neworgitem['displayName'] == undefined || this.neworgitem['orgStatus'] == undefined || this.neworgitem['email'] == undefined || this.neworgitem['orgType'] == undefined ||
-      this.neworgitem['orgName'] == "" || this.neworgitem['displayName'] == "" || this.neworgitem['orgStatus'] == "" || this.neworgitem['email'] == "" || this.neworgitem['orgType'] == "" ||
+    if (this.neworgitem['orgName'] === undefined || this.neworgitem['displayName'] === undefined || this.neworgitem['orgStatus'] === undefined || this.neworgitem['email'] === undefined || this.neworgitem['orgType'] === undefined ||
+      this.neworgitem['orgName'] === '' || this.neworgitem['displayName'] === '' || this.neworgitem['orgStatus'] === '' || this.neworgitem['email'] === '' || this.neworgitem['orgType'] === '' ||
       this.neworgitem['orgName'] == null || this.neworgitem['displayName'] == null || this.neworgitem['orgStatus'] == null || this.neworgitem['email'] == null || this.neworgitem['orgType'] == null) {
       this.warningMessage = true;
     } else if (email != null) {
       this.warningMessage = false;
-    }
-    else {
+    } else {
       this.warningMessage = false;
       this.neworgitem['accountId'] = this.headerService.user.accountId;
       this.appService.neworgitem = this.neworgitem;
@@ -133,7 +129,24 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
   }
   onEditConfirm(event): void {
     this.menuComponent.highlightSBLink('Org Details');
-    this.appService.moveToPage("organization");
+    this.appService.moveToPage('organization');
     this.headerService.selectedOrg = event.data;
   }
+
+  public dataWithParameters(queryData: string) {
+    if (queryData) {
+      this.queryParams = queryData;
+    }
+    if (this.headerService.user && this.headerService.user.accountId && queryData) {
+
+      this.manageaccountorganizationService
+        .getManageAccountOrganizations(this.headerService.user.accountId, queryData)
+        .subscribe((res: any) => {
+          console.log('PetitionsComponent|ngOnInit|res:%o', res);
+          this.data = res['orgs'];
+          this.paginationData = res['pageMetadata'];
+        });
+    }
+  }
+
 }
