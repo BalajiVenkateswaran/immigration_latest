@@ -1680,7 +1680,7 @@ float:right;
 }
 .tabsMenu {
     background:#f6f7fa;
-    height:84px;
+    height:71px;
     width:100%;
 	-webkit-box-shadow: 0 5px 3px -3px #dcdada;
 	   -moz-box-shadow: 0 5px 3px -3px #dcdada;
@@ -1865,7 +1865,7 @@ header {
                     text-align:center;
                     font-weight: 400;
                     border-bottom:solid 3px #f6f7fa;
-                    padding-bottom:7px;
+                    /*padding-bottom:7px;*/
                     &:hover, &:focus {
                         color:#333 !important;
                         border-bottom:solid 3px #232f3f;

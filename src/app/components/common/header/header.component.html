@@ -43,13 +43,13 @@
                   <div *ngIf="appService.isBurgerMenuVisible" class="burger-menu">
                       <input type="checkbox" (click)="slideMenu()" /><label></label>
                   </div>
-                  <ul *ngIf="appService.isImmigrationView()">
+                  <ul *ngIf="appService.isImmigrationView()" id="MainMenuListItems">
                       <li *ngIf="!headerService.isDelegatedOrg()" >
                           <a (click)="appService.moveToPage('clients'); highlightTab('clients');"
                              [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
                              routerLinkActive="active">
                               <img src="../../../../assets/images/Clients.png" />
-                              <div class="clearfix"></div> Clients
+                              <div class="clearfix"></div> <span> Clients</span>
                           </a>
                       </li>
                       <li *ngIf="appService.isImmigrationView() || headerService.isDelegatedOrg()">
@@ -58,7 +58,7 @@
                              routerLinkActive="active">
                               <img src="../../../../assets/images/Pettions.png" />
 
-                              <div class="clearfix"></div> Petitions
+                              <div class="clearfix"></div> <span> Petitions</span>
                           </a>
                       </li>
                       <li *ngIf="!headerService.isDelegatedOrg()" >
@@ -66,7 +66,7 @@
                              [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"
                              routerLinkActive="active">
                               <img src="../../../../assets/images/Organization.png" />
-                              <div class="clearfix"></div> Organization
+                              <div class="clearfix"></div> <span> Organization</span>
                           </a>
                       </li>
                       <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
@@ -75,7 +75,7 @@
                              [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"
                              routerLinkActive="active">
                               <img src="../../../../assets/images/manage.png" />
-                              <div class="clearfix"></div> Manage
+                              <div class="clearfix"></div> <span> Manage</span>
                           </a>
                       </li>
                       <li *ngIf="!headerService.isDelegatedOrg()">
@@ -83,7 +83,7 @@
                              [ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']"
                              routerLinkActive="active">
                               <img src="../../../../assets/images/Reports.png" />
-                              <div class="clearfix"></div> Reports
+                              <div class="clearfix"></div> <span> Reports</span>
                           </a>
                       </li>
                       <li>
@@ -91,7 +91,7 @@
                              [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
                              routerLinkActive="active">
                               <img src="../../../../assets/images/Profile.png" />
-                              <div class="clearfix"></div> Profile
+                              <div class="clearfix"></div> <span> Profile</span>
                           </a>
                       </li>
 
