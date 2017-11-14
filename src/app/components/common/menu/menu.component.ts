@@ -4,6 +4,7 @@ import { MenuService } from "./menu.service";
 import { QuestionnaireCommonService } from '../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
 import {HeaderService} from "../header/header.service";
 import {DocumentService} from "../../clientview/documents-tab/documents.service";
+//import { NgbDropdown } from "@ng-bootstrap/ng-bootstrap/dropdown";
 
 @Component({
     selector: 'menu',
@@ -31,6 +32,7 @@ export class MenuComponent implements OnInit {
     public superuserclientreports: boolean;
     public superuserpetitins: boolean;
     public immiQstnre: boolean;
+    public isShow: boolean = true;
     constructor(private menuService: MenuService, public appService: AppService,
         public questionnaireCommonService: QuestionnaireCommonService, private headerService: HeaderService, public clientViewDocuments: DocumentService) {
         this.sideBarMenu = headerService.sideBarMenu;
@@ -103,6 +105,14 @@ export class MenuComponent implements OnInit {
         return this.appService.currentSBLink == sblink;
     }
     highlightSBLink(sblink) {
+      if(this.appService.currentSBLink){
+        if(this.appService.currentSBLink === sblink){
+            this.isShow =! this.isShow;
+            return;
+        }
+      }
         this.appService.currentSBLink = sblink;
+        this.isShow = false;
     }
+
 }

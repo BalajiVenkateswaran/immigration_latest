@@ -123,13 +123,13 @@
     </ul>
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
-        <li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('manageaccount-user');highlightSBLink('User');submenuclick('manageUser')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+        <li ngbDropdown  class="dropdown">
+            <a (click)="appService.moveToPage('manageaccount-user');highlightSBLink('User');submenuclick('manageUser')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active" class="dropdown-toggle" id="users" data-toggle="dropdown" ngbDropdownToggle >
                 <span class="ico-users"></span>
                 <span>Users</span>
                 <span class="ico-arrow"></span>
             </a>
-            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" ngDefaultControl *ngIf="appService.usersList&&manageUser" [(ngModel)]="appService.usersList">
+            <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" [hidden]="isShow" ngDefaultControl *ngIf="appService.usersList&&manageUser" [(ngModel)]="appService.usersList">
                 <li *ngFor='let value of appService.usersList'><a (click)="appService.moveToPageWithParams('user-details',value);highlightSBLink(value.userId);userDetailsClick()" [ngClass]="[checkForCurrentSBLink(value.userId) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
             </ul>
         </li>

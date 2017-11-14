@@ -54,8 +54,9 @@ export class profilechangepwdcomponent implements OnInit {
                             message: 'Password is successfully updated'
                         })
                             .subscribe((isConfirmed) => {
-                                this.appService.destroy();
-                                this.appService.moveToPage('');
+                                // this.appService.destroy();
+                                // this.appService.moveToPage('login');
+                              this.headerService.logOut();
                             });
                     } else {
                         this.dialogService.addDialog(ConfirmComponent, {
