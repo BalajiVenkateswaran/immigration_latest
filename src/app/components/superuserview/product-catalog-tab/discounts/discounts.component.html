@@ -64,7 +64,7 @@
                                         <select *ngIf="isEditDiscount==false" class="form-control" [disabled]='true' [(ngModel)]="discount.type">
 
                                    <option value="DIS" id="svprodDiscTypeDis">DIS</option>
-                                   <option value="TRAIL" id="svprodDiscTypeTrail">TRAIL</option>
+                                   <option value="TRIAL" id="svprodDiscTypeTrail">TRIAL</option>
 
                                         </select>
                                         <span *ngIf="isEditDiscount==true">{{discount.type}}</span>
@@ -139,7 +139,7 @@
                             <div class="col-md-7">
                                 <select class="form-control" [(ngModel)]="addDiscount.type">
                                    <option value="DIS" id="svprodDiscPopTypeDis">DIS</option>
-                                   <option value="TRAIL" id="svprodDiscPopTypeTrail">TRAIL</option>
+                                   <option value="TRIAL" id="svprodDiscPopTypeTrail">TRIAL</option>
                                </select>
 
                             </div>

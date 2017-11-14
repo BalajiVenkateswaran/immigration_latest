@@ -1,6 +1,6 @@
 ﻿import {markfordeletionservice} from './markfordeletion.service';
 import {Component, OnInit} from '@angular/core';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
 
 @Component({
     selector: 'mark for deletion',
@@ -11,43 +11,43 @@ export class MarkforDeletionComponent implements OnInit {
     public markForDeletionInfoList;
     public settings;
     public data;
-  constructor(public markForDeletionservice:markfordeletionservice,public headerService: HeaderService) {
+  constructor(public markForDeletionservice: markfordeletionservice, public headerService: HeaderService) {
 
-    this.settings={
-      "isAddButtonEnable":false,
-      'isDeleteEnable':false,
+    this.settings = {
+      'isAddButtonEnable': false,
+      'isDeleteEnable': false,
       'columnsettings': [
         {
-          headerName: "Name",
-          field: "entityName",
+          headerName: 'Name',
+          field: 'entityName',
         },
         {
-          headerName: "Type",
-          field: "entityType",
+          headerName: 'Type',
+          field: 'entityType',
         },
         {
-          headerName: "Organization",
-          field: "orgName",
+          headerName: 'Organization',
+          field: 'orgName',
         },
         {
-          headerName: "Client Name",
-          field: "clientName",
+          headerName: 'Client Name',
+          field: 'clientName',
         },
         {
-          headerName: "Petition Name",
-          field: "petitionName",
+          headerName: 'Petition Name',
+          field: 'petitionName',
         },
         {
-          headerName: "MFD on",
-          field: "markedForDeletionDate",
+          headerName: 'MFD on',
+          field: 'markedForDeletionDate',
         },
         {
-          headerName: "Deleted on",
-          field: "deletionDate",
+          headerName: 'Deleted on',
+          field: 'deletionDate',
         },
         {
-          headerName: "Deleted by",
-          field: "deletedByUser",
+          headerName: 'Deleted by',
+          field: 'deletedByUser',
         }
       ]
     }
@@ -55,8 +55,8 @@ export class MarkforDeletionComponent implements OnInit {
   ngOnInit() {
 
         this.markForDeletionservice.getMarkForDeletion(this.headerService.user.accountId).subscribe(
-            res=>{
-                this.data=res['markForDeletionInfoList'];
+            res => {
+                this.data = res['markForDeletionInfoList'];
             }
         )
     }
