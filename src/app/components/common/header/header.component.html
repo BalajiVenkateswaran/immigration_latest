@@ -33,6 +33,99 @@
                           </a>
                       </div>
                       <button *ngIf="appService.isImmigrationView()" type="submit" class="btn iportal-btnIMclient" style="position: absolute;right: 0px;bottom: -65px;z-index:9999;" (click)="onUsageSummaryClick()">Usage Summary</button>
+                      <!--<button *ngIf="appService.isImmigrationView()" type="submit" class="btn iportal-btnIMclient" style="position: absolute;right: 0px;bottom: -65px;z-index:9999;" (click)="usageSummery = !usageSummery">Usage Summary</button>-->
+                      <div class="usagesummery" style="" *ngIf="usageSummery">
+                          <div class="usheader">
+                              <h2>Account Usage Summery </h2>
+                              <button type="button" class="close" (click)="onUsageSummaryClose()">&times;</button>
+                              <!--<i class="fa fa-times" aria-hidden="true"></i>-->
+
+                              <div class="row">
+                                  <div class="col-md-4">Plan Name</div>
+                                  <div class="col-md-8">Plan-Premium</div>
+                                  <div class="clear"></div>
+                                  <div class="col-md-4">Plan Code</div>
+                                  <div class="col-md-8">P-200</div>
+                                  <div class="clear"></div>
+                                  <div class="col-md-4">Storage Type</div>
+                                  <div class="col-md-8">S3 <a href="" class="upgrade pull-right">Upgrade</a></div>
+                                  <div class="clear"></div>
+                              </div>
+                          </div>
+                          <div class="usbody">
+                              <div class="row headings">
+                                  <div class="col-md-5">Features</div>
+                                  <div class="col-md-7">
+                                      <div class="row ">
+                                          <div class="col-md-6">Used</div>
+                                          <div class="col-md-6 text-right">Allowed</div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row usitem">
+                                  <div class="col-md-5">Immigration Users</div>
+                                  <div class="col-md-7">
+                                      <div class="progress" style="margin-bottom: 0;">
+                                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': headerComponentService.usageSummaryDetails.usersUsed/headerComponentService.usageSummaryDetails.usersAllowed * 100 + '%'}"></div>
+                                      </div>
+                                      <div class="row ">
+                                          <span class="col-md-6">{{headerComponentService.usageSummaryDetails.usersUsed}}</span>
+                                          <span class="col-md-6 text-right">{{headerComponentService.usageSummaryDetails.usersAllowed}}</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row usitem">
+                                  <div class="col-md-5">Organizations</div>
+                                  <div class="col-md-7">
+                                      <div class="progress" style="margin-bottom: 0;">
+                                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': headerComponentService.usageSummaryDetails.orgUsed/headerComponentService.usageSummaryDetails.orgAllowed * 100 + '%'}"></div>
+                                      </div>
+                                      <div class="row ">
+                                          <span class="col-md-6">{{headerComponentService.usageSummaryDetails.orgUsed}}</span>
+                                          <span class="col-md-6 text-right">{{headerComponentService.usageSummaryDetails.orgAllowed}}</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row usitem">
+                                  <div class="col-md-5">Clients</div>
+                                  <div class="col-md-7">
+                                      <div class="progress" style="margin-bottom: 0;">
+                                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': headerComponentService.usageSummaryDetails.clientsUsed/headerComponentService.usageSummaryDetails.clientsAllowed * 100 + '%'}"></div>
+                                      </div>
+                                      <div class="row ">
+                                          <span class="col-md-6">{{headerComponentService.usageSummaryDetails.clientsUsed}}</span>
+                                          <span class="col-md-6 text-right">{{headerComponentService.usageSummaryDetails.clientsAllowed}}</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row usitem">
+                                  <div class="col-md-5">Petitions</div>
+                                  <div class="col-md-7">
+                                      <div class="progress" style="margin-bottom: 0;">
+                                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': headerComponentService.usageSummaryDetails.petitionsUsed/headerComponentService.usageSummaryDetails.petitionsAllowed * 100 + '%'}"></div>
+                                      </div>
+                                      <div class="row ">
+                                          <span class="col-md-6">{{headerComponentService.usageSummaryDetails.petitionsUsed}}</span>
+                                          <span class="col-md-6 text-right">{{headerComponentService.usageSummaryDetails.petitionsAllowed}}</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row usitem">
+                                  <div class="col-md-5">Storage</div>
+                                  <div class="col-md-7">
+                                      <div class="progress" style="margin-bottom: 0;">
+                                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': headerComponentService.usageSummaryDetails.storageUsed/headerComponentService.usageSummaryDetails.storageAllowed * 100 + '%'}"></div>
+                                      </div>
+                                      <div class="row ">
+                                          <span class="col-md-6">{{headerComponentService.usageSummaryDetails.storageUsed}}</span>
+                                          <span class="col-md-6 text-right">{{headerComponentService.usageSummaryDetails.storageAllowed}}</span>
+                                      </div>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                      <!--<button *ngIf="appService.isImmigrationView()" type="submit" class="btn iportal-btnIMclient" style="position: absolute;right: 0px;bottom: -65px;z-index:9999;" (click)="onUsageSummaryClick()">Usage Summary</button>-->
                   </div>
               </div>
           </div>
@@ -230,12 +323,12 @@
               </div>
           </div>
           </div>
-
+       
       <div class="clearfix"></div>
   </header>
   <div class="clearfix"></div>
 
-  <div *ngIf="usageSummaryPopup">
+  <!--<div *ngIf="usageSummaryPopup">
     <div class="modal-dialog" ngDraggable>
       <div class="modal-content">
         <div class="modal-header">
@@ -299,5 +392,5 @@
 
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
