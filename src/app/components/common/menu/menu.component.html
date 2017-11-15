@@ -124,7 +124,7 @@
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
         <li ngbDropdown  class="dropdown">
-            <a (click)="appService.moveToPage('manageaccount-user');highlightSBLink('User');submenuclick('manageUser')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']" routerLinkActive="active" class="dropdown-toggle" id="users" data-toggle="dropdown" ngbDropdownToggle >
+            <a (click)="appService.moveToPage('manageaccount-user');highlightSBLink('User');submenuclick('manageUser')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']"  routerLinkActive="active" class="dropdown-toggle" id="users" data-toggle="dropdown" ngbDropdownToggle >
                 <span class="ico-users"></span>
                 <span>Users</span>
                 <span class="ico-arrow"></span>

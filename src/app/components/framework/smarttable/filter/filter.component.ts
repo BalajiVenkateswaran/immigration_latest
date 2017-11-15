@@ -52,6 +52,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
   moreFilters() {
       console.log('moreFilters: %o', this.smartTable.queryParameters.filter);
        this.moreFilterFields = [];
+
       // Prepare moreFilterFields information from smartTable.settings
       if (this.moreFilterFields.length === 0) {
         let columnsettings = this.smartTable.settings['columnsettings'];
@@ -59,6 +60,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
 
         // Have 3 fields in one object
         for (let column of columnsettings) {
+
           if (fieldCount === 3) {
             fieldCount = 0;
             rowCount++;
@@ -66,14 +68,15 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
           if (fieldCount === 0) {
             this.moreFilterFields[rowCount] = [];
           }
+          if(!column.filter) {
+            this.moreFilterFields[rowCount][fieldCount] = {};
+            this.moreFilterFields[rowCount][fieldCount]['field'] = column['field'];
+            this.moreFilterFields[rowCount][fieldCount]['headerName'] = column['headerName'];
+            this.moreFilterFields[rowCount][fieldCount]['type'] = column['type'];
+            this.moreFilterFields[rowCount][fieldCount]['data'] = column['data'];
 
-          this.moreFilterFields[rowCount][fieldCount] = {};
-          this.moreFilterFields[rowCount][fieldCount]['field'] = column['field'];
-          this.moreFilterFields[rowCount][fieldCount]['headerName'] = column['headerName'];
-          this.moreFilterFields[rowCount][fieldCount]['type'] = column['type'];
-          this.moreFilterFields[rowCount][fieldCount]['data'] = column['data'];
-          console.log(this.moreFilterFields[rowCount][fieldCount]['type'])
-          fieldCount++;
+            fieldCount++;
+          }
 
           if (column.headerTooltip === 'Actions') {
             console.log(this.moreFilterFields);

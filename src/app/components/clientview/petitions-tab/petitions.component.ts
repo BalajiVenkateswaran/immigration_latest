@@ -144,7 +144,11 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         {
           headerName: "More",
           cellRendererFramework: MoreDetails,
-          type: 'none'
+          type: 'none',
+          filter:
+            {
+            showInMoreFilters:false
+          }
         }
       ]
     };

@@ -8,6 +8,8 @@ import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import { HeaderService } from './header.service';
 import {HeaderComponentService} from './header.component.service';
 import {ApplicationRoles} from '../constants/applicationroles.constants';
+import { ConfirmComponent} from "../../framework/confirmbox/confirm.component";
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -83,7 +85,15 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   }
 
   logOut() {
-      this.headerService.logOut();
+    this.dialogService.addDialog(ConfirmComponent, {
+      title: 'Confirmation',
+      message: 'Are you sure you want to Logout  '+ ' ?'
+    }).subscribe((isConfirmed) => {
+      if (isConfirmed) {
+        this.headerService.logOut();
+      }
+    });
+
   }
   onUsageSummaryClick() {
       this.usageSummery = true;
