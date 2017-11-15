@@ -1,17 +1,17 @@
 ﻿import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
-import {miscsuperusersservice} from "./miscsuperusers.service";
+import {miscsuperusersservice} from './miscsuperusers.service';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 export interface ConfirmModel {
     title: string;
     message: string;
     getsuperUsers: boolean;
     addsuperuser: boolean;
     addsuperUsers: Object;
-
 }
+
 @Component({
     selector: 'misc-superusers',
     templateUrl: './miscsuperusers.component.html',
@@ -21,8 +21,8 @@ export interface ConfirmModel {
 export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public data;
     public settings;
-    public getsuperUsers: boolean = true;
-    public addsuperuser: boolean = false;
+    public getsuperUsers = true;
+    public addsuperuser = false;
     public addsuperUsers: any = {};
     public warningMessage: any;
     ngOnInit() {
@@ -35,23 +35,23 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
             'columnsettings': [
                 {
 
-                    headerName: "First Name",
-                    field: "firstName",
+                    headerName: 'First Name',
+                    field: 'firstName',
                 },
                 {
 
-                    headerName: "Last Name",
-                    field: "lastName",
+                    headerName: 'Last Name',
+                    field: 'lastName',
 
                 },
                 {
 
-                    headerName: "Email",
-                    field: "emailId",
+                    headerName: 'Email',
+                    field: 'emailId',
                 },
                 {
-                    headerName: "Phone",
-                    field: "phone",
+                    headerName: 'Phone',
+                    field: 'phone',
 
                 }
             ]
@@ -64,8 +64,8 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
             title: 'Add New Super User',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-               
-               
+
+
             }
         });
     }

@@ -201,7 +201,7 @@ export class PetitionsComponent implements OnInit {
     getPetitionTypeValues() {
         let x = [];
         this.petitionService.getAllPetitionTypesAndSubTypes().subscribe(res => {
-            if (res['petitionTypes'] != undefined) {
+            if (res['petitionTypes'] !== undefined) {
                 let data = res['petitionTypes'];
                for (let i = 0; i < data.length; i++) {
                    x.push({'display': data[i]['petitiontype'], 'value': data[i]['petitiontype']});
