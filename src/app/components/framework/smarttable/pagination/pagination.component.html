@@ -1,4 +1,4 @@
-<div style="margin-top:4px !important;">
+<div style="margin-top:10px !important;">
   <div style="width:20%; float:left;"><span>{{paginationMetadata.itemStartIndex}} to {{paginationMetadata.endNumber}} of {{paginationMetadata.totalElements}}</span></div>
   <div class="pagination">
     <a [ngClass]="{'disabled':paginationMetadata.pageNumber == 1}"  (click)="paginationMetadata.pageNumber!=1 && previousPage()"><i class="rigicon" aria-hidden="true">

@@ -191,7 +191,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
         if (this.settings.hasOwnProperty('headerHeight')) {
             this.gridOptions['headerHeight'] = this.settings['headerHeight'];
         } else {
-            this.gridOptions.headerHeight = 60;
+            this.gridOptions.headerHeight = 35;
         }
         if (this.settings.hasOwnProperty('suppressMovableColumns')) {
             this.gridOptions['suppressMovableColumns'] = this.settings['suppressMovableColumns'];

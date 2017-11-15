@@ -77,9 +77,7 @@ label {
     }
 }
 .ag-body-container {
-  /*height: auto !important;
-  overflow-y: scroll;*/
-  height: 293px  !important;
+        overflow: hidden !important;
 }
 .login_text {
         margin-top: 30%;
