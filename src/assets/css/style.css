@@ -1643,3 +1643,6 @@ display:block;
 header .mainmenu ul li a:hover, header .mainmenu ul li a:focus,header .mainmenu ul li a.active{
      border-bottom:none !important;
 }
+.modal .pull-right.no-marg-right.agridadd.iportal-btnIMclient{
+    display:none;
+}
