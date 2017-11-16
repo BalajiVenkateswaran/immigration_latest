@@ -39,10 +39,11 @@ export class newLoginComponent extends DialogComponent<ConfirmModel, boolean> im
     menu: null,
     footer: null
   };
-  public login: FormGroup; // our model driven form
+  public login: FormGroup;// our model driven form
+  public forgotPwd: FormGroup;
   public submitted: boolean; // keep track on whether form is submitted
   message: string;
-  forgotPwd;
+  isForgotPwd;
   private frgtEmail;
   public getloginpage = true;
   public selectrole: boolean;
@@ -66,6 +67,9 @@ export class newLoginComponent extends DialogComponent<ConfirmModel, boolean> im
       emailId: new FormControl(''),
       password: new FormControl('')
     });
+    this.forgotPwd=new FormGroup({
+      emailId: new FormControl('')
+    });
 
     if (this.headerService.user) { // If user already logged in. Redirect to home page
       console.log('Login Component: Header service user exists');
@@ -78,7 +82,7 @@ export class newLoginComponent extends DialogComponent<ConfirmModel, boolean> im
 
   }
   frgtPwd(isValid) {
-    this.forgotPwd = false;
+    this.isForgotPwd = false;
   }
 
   ngOnInit(): void {
@@ -88,7 +92,7 @@ export class newLoginComponent extends DialogComponent<ConfirmModel, boolean> im
     this.appService.expandMenu = false;
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
     this.appService.currentPage = 'login';
-    this.forgotPwd = true;
+    this.isForgotPwd = true;
   }
 
   onSubmitClick(model: User, isValid: boolean) {
@@ -96,7 +100,7 @@ export class newLoginComponent extends DialogComponent<ConfirmModel, boolean> im
       this.forgotpwdsubmit = false;
     }
 
-    if (!this.forgotPwd) {
+    if (!this.isForgotPwd) {
       this.forgetPassword(model.emailId);
     } else {
       this.loginSubmit(model, isValid);
