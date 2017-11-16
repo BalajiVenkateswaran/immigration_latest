@@ -82,6 +82,7 @@ export class petitionstagsreportscomponent implements OnInit {
   public petitiontags: any = [];
   public selectedtag: any;
   public tagchange: any;
+  public orgtags:any=[];
   constructor(public headerService: HeaderService, private petitionStagsreportsservice: petitionstagsreportsservice) { }
 
   ngOnInit() {
@@ -97,39 +98,18 @@ export class petitionstagsreportscomponent implements OnInit {
 
         this.barChartData = [];
         this.orgsList = res['orgs'];
-
         console.log(this.orgsList)
         for (var item in this.orgsList) {
+          this.orgtags=[];
+          this.empty=[];
           this.orgsNames.push(item);
-          this.barChartLabels.push(item);
-          for (var i = 0; i < this.orgsList[item].length; i++) {
-            if (this.orgsList[item].length == "2") {
-              if (this.orgsList[item][i].tag == "null") {
-                this.empty.push(this.orgsList[item][i]['count']);
-              }
-              if (this.orgsList[item][i].tag == "Quota 2018") {
-                this.Quota.push(this.orgsList[item][i]['count']);
-              }
-            }
-            else {
-              if (this.orgsList[item][i].tag == "null") {
-                this.empty.push(this.orgsList[item][i]['count']);
-              }
-              else {
-                this.empty.push(0);
-              }
-              if (this.orgsList[item][i].tag == "Quota 2018") {
-                this.Quota.push(this.orgsList[item][i]['count']);
-              }
-              else {
-                this.Quota.push(0);
-              }
-            }
-
+          for(var i=0;i<this.orgsList[item].length;i++){
+          this.orgtags.push(this.orgsList[item][i]['tag']);
+            this.empty.push(this.orgsList[item][i]['count']);
           }
+          this.barChartLabels[item]=this.orgtags;
+          this.barChartData[item] = [{data: this.empty, label: ''}];
         }
-        this.barChartData.push({ data: this.empty, label: 'empty' }, { data: this.Quota, label: 'Quota 2018' });
-        console.log(this.barChartData)
       });
   }
 

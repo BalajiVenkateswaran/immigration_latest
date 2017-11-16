@@ -4,7 +4,8 @@
         <div class="clearfix"></div>
         <h2>Petitions</h2>
        <ih-smart-table class="immiview-clienttab-petitions" [settings]="settings" [data]="data"
-                     (onAddClick)="addNewPetition($event)" (onRowClick)="onUserRowClick($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
+                     (onAddClick)="addNewPetition($event)" (onRowClick)="onUserRowClick($event)" (onDeleteClick)="deleteRecord($event)"
+                       (dataWithQueryParams)="dataWithParameters($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>

@@ -10,9 +10,9 @@ export class ImmigrationViewPetitionsService {
 
     }
 
-    public getPetitions(orgId: string, clientId: string) {
-        console.log("PetitionsService|getPetitions|orgId:%o, clientId:%o", orgId, clientId);
-        return this.restService.getData("/petitions/orgId/" + orgId + "/clientId/" + clientId);
+    public getPetitions(orgId: string, clientId: string, queryParams: any) {
+        console.log("PetitionsService|getPetitions|orgId:%o, clientId:%o", orgId, clientId, queryParams);
+        return this.restService.getData("/petitions/orgId/" + orgId + "/clientId/" + clientId +queryParams);
     }
 
 
@@ -34,7 +34,7 @@ export class ImmigrationViewPetitionsService {
         return this.restService.putData("/petition", req);
     }
   public getPetitionTypes() {
-     
+
       return this.restService.getData("/petition/config/all/types/subtypes");
   }
 }

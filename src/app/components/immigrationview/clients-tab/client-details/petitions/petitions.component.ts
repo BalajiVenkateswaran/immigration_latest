@@ -9,6 +9,8 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {SortType} from "../../../../framework/smarttable/types/query-parameters";
+
 
 import {InformationComponent} from '../../../../framework/confirmbox/information.component';
 
@@ -41,6 +43,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public data;
     public clientInviteStatus;
     public countryNames: string[] = [];
+  public queryParams: any;
 
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
@@ -65,6 +68,10 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         });
          this.settings = {
             'isDeleteEnable': false,
+           'sort' : [{
+             headingName: 'Created On',
+             sort: SortType.ASC
+           }],
             'columnsettings': [
                 {
                     headerName: 'Petition Name',
@@ -104,13 +111,23 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         }
     }
 
+  dataWithParameters(queryData) {
+    if (queryData != undefined) {
+      this.queryParams = queryData;
+      this.getPetitionData();
+    }
+
+  }
+
     getPetitionData() {
-        this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId).subscribe((res) => {
+        this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId, this.queryParams).subscribe((res) => {
             this.data = res['petitions'];
             this.clientInviteStatus = res['clientInviteStatus'];
         });
         this.getPetitionTypes();
     }
+
+
 
     getPetitionTypes() {
       this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
@@ -142,12 +159,12 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     }
 
   ngOnInit() {
-      this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId)
-        .subscribe((res) => {
-            this.data = res['petitions'];
-            this.clientInviteStatus = res['clientInviteStatus'];
-        });
-      this.getPetitionTypes();
+      // this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId,this.queryParams)
+      //   .subscribe((res) => {
+      //       this.data = res['petitions'];
+      //       this.clientInviteStatus = res['clientInviteStatus'];
+      //   });
+      // this.getPetitionTypes();
   }
 
   addNewPetition() {

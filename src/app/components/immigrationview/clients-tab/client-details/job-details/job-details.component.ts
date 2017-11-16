@@ -24,7 +24,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
     private formControlValues: any = {};
     isEdit: boolean[] = [true];
     isjobdetailsEdit;
-    private jobDetails = {};
+    public jobDetails: any = {};
     private message: string;
     private hireDate:string;
     private internationalHireDate: string;
