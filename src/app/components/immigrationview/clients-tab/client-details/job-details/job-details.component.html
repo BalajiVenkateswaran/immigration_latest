@@ -45,8 +45,8 @@
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsDuties">Duties And Responsibilites</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsDuties" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.dutiesAndResponsibilities" />
-                            <span *ngIf="isjobdetailsEdit==true">{{jobDetails.dutiesAndResponsibilities}}</span>
+                            <input type="text" id="ivClientDtlsJDtlsDuties" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.dutiesAndResponsibilities"  style="cursor: default!important;"/>
+                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.dutiesAndResponsibilities}}</span>-->
                         </div>
                     </div>
                     <div class="row">

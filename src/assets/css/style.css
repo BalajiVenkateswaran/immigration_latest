@@ -804,7 +804,7 @@ section .rightwithoutmenu {
       padding: 0px 20px 15px;
       /*min-height: 459px;*/
       background: none;
-      margin-bottom: 25px; }
+      /*margin-bottom: 25px;*/ }
       .main-content .table-data .addresbox .row .col-md-8 span, .main-content .table-data-forms .addresbox .row .col-md-8 span {
         width: 100%;
         -webkit-border-radius: 4px;
