@@ -41,7 +41,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   public login: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   message: string;
-  forgotPwd;
+  isforgotPwd;
   private frgtEmail;
   public getloginpage = true;
   public selectrole: boolean;
@@ -65,6 +65,9 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       emailId: new FormControl(''),
       password: new FormControl('')
     });
+    this.forgotPwd=new FormGroup({
+      emailId: new FormControl('')
+    });
 
     if (this.headerService.user) { // If user already logged in. Redirect to home page
       console.log('Login Component: Header service user exists');
@@ -77,7 +80,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
 
   }
   frgtPwd(isValid) {
-    this.forgotPwd = false;
+    this.isforgotPwd = false;
   }
 
   ngOnInit(): void {
@@ -87,7 +90,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.appService.expandMenu = false;
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
     this.appService.currentPage = 'login';
-    this.forgotPwd = true;
+    this.isforgotPwd = true;
   }
 
   onSubmitClick(model: User, isValid: boolean) {
@@ -95,7 +98,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       this.forgotpwdsubmit = false;
     }
 
-    if (!this.forgotPwd) {
+    if (!this.isforgotPwd) {
       this.forgetPassword(model.emailId);
     } else {
       this.loginSubmit(model, isValid);
