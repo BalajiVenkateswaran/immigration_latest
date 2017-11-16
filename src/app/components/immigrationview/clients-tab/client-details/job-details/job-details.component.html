@@ -17,29 +17,29 @@
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsTitle">Job Title</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsTitle" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobTitle" />
-                            <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobTitle}}</span>
+                            <input type="text" id="ivClientDtlsJDtlsTitle" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobTitle" style="cursor: default!important;" />
+                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobTitle}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsType">Job Type</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsType" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobType" />
-                            <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobType}}</span>
+                            <input type="text" id="ivClientDtlsJDtlsType" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobType" style="cursor: default!important;" />
+                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobType}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsCode">Job Code</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsCode" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.jobCode" />
-                            <span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobCode}}</span>
+                            <input type="text" id="ivClientDtlsJDtlsCode" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobCode" style="cursor: default!important;" />
+                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobCode}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsSal">Annual Salary</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsSal" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.annualSalary" />
-                            <span *ngIf="isjobdetailsEdit==true">{{jobDetails.annualSalary}}</span>
+                            <input type="text" id="ivClientDtlsJDtlsSal"class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.annualSalary" style="cursor: default!important;" />
+                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.annualSalary}}</span>-->
                         </div>
                     </div>
                     <div class="row">
@@ -52,22 +52,22 @@
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsProjName">Project Name</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsProjName" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectName" />
-                            <span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectName}}</span>
+                            <input type="text" id="ivClientDtlsJDtlsProjName" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.projectName" style="cursor: default!important;"  />
+                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectName}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsProjCode">Project Code</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsProjCode" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectCode" />
-                            <span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectCode}}</span>
+                            <input type="text" id="ivClientDtlsJDtlsProjCode" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectCode" style="cursor: default!important;"  />
+                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectCode}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsNoHrs">No Of Hours/Week</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsNoHrs" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.noOfHoursPerWeek" />
-                            <span *ngIf="isjobdetailsEdit==true">{{jobDetails.noOfHoursPerWeek}}</span>
+                            <input type="text" id="ivClientDtlsJDtlsNoHrs" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.noOfHoursPerWeek" style="cursor: default!important;"  />
+                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.noOfHoursPerWeek}}</span>-->
                         </div>
                     </div>
                     <div class="row">
