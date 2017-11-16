@@ -73,11 +73,6 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       console.log('Login Component: Header service user exists');
       this.appService.moveToPage(this.headerService.getLandingPagePath(this.headerService.user.roleName));
     }
-    this.loginservice.getIPAndLocation().subscribe(res => {
-      this.locationObject = res;
-      console.log(this.locationObject);
-    })
-
   }
   frgtPwd(isValid) {
     this.isforgotPwd = false;
@@ -138,8 +133,10 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
           }).subscribe((isConfirmed) => {
             window.location.reload(true);
           });
-
         }
+        /*this.loginservice.getIPAndLocation().subscribe(res => {
+          this.locationObject = res;
+        });*/
         if (res.statusCode === 'FAILURE') {
           this.message = res.statusDescription;
         } else {
