@@ -1,11 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { AppService } from "../../../../../services/app.service";
+import { AppService } from '../../../../../services/app.service';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
-import { SuperuserViewAccountpreferencessService } from "./accountpreferences.service";
-import { AccountDetailsCommonService } from "../common/account-details-common.service";
+import { SuperuserViewAccountpreferencessService } from './accountpreferences.service';
+import { AccountDetailsCommonService } from '../common/account-details-common.service';
 
 export interface ConfirmModel {
     title: string;
@@ -29,14 +29,14 @@ export interface ConfirmModel {
 export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
 
-    public getacntpref: boolean = true;
+    public getacntpref = true;
     public adddAcntPref: boolean;
     public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    public warningMessage: boolean = false;
+    public warningMessage = false;
     public editdiscount: boolean;
     public adddprdctPref: any;
     public adddiscntPref: any;
@@ -51,9 +51,9 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public productInfo = [];
     public discounts: any = {};
     public discountInfo: any = [];
-    public editProductFlag: boolean = true;
+    public editProductFlag = true;
     public beforeProductEdit;
-    public editDiscountFlag: boolean = true;
+    public editDiscountFlag = true;
     public beforeDiscountEdit;
     constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService,
         private accountDetailsCommonService: AccountDetailsCommonService) {
@@ -63,44 +63,44 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             'isDeleteEnable': false,
             'columnsettings': [
                 {
-                    headerName: "Name",
-                    field: "name"
+                    headerName: 'Name',
+                    field: 'name'
                 },
                 {
-                    headerName: "Code",
-                    field: "code"
+                    headerName: 'Code',
+                    field: 'code'
                 },
                 {
-                    headerName: "Description",
-                    field: "description"
+                    headerName: 'Description',
+                    field: 'description'
                 },
                 {
-                    headerName: "Start Date",
-                    field: "startDate"
+                    headerName: 'Start Date',
+                    field: 'startDate'
                 },
                 {
-                    headerName: "End Date",
-                    field: "endDate"
+                    headerName: 'End Date',
+                    field: 'endDate'
                 },
                 {
-                    headerName: "Max Users",
-                    field: "maxUsers"
+                    headerName: 'Max Users',
+                    field: 'maxUsers'
                 },
                 {
-                    headerName: "Max Clients",
-                    field: "maxClientsPerMonth"
+                    headerName: 'Max Clients',
+                    field: 'maxClientsPerMonth'
                 },
                 {
-                    headerName: "Max Petitions",
-                    field: "maxPetitionsPerMonth"
+                    headerName: 'Max Petitions',
+                    field: 'maxPetitionsPerMonth'
                 },
                 {
-                    headerName: "Max S3 Storage",
-                    field: "maxS3Storage"
+                    headerName: 'Max S3 Storage',
+                    field: 'maxS3Storage'
                 },
                 {
-                    headerName: "Cost",
-                    field: "cost"
+                    headerName: 'Cost',
+                    field: 'cost'
                 }
             ]
         }
@@ -108,39 +108,39 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             'isDeleteEnable': false,
             'columnsettings': [
                 {
-                    headerName: "Name",
-                    field: "discountName"
+                    headerName: 'Name',
+                    field: 'discountName'
                 },
                 {
-                    headerName: "Code",
-                    field: "discountCode"
+                    headerName: 'Code',
+                    field: 'discountCode'
                 },
                 {
-                    headerName: "Description",
-                    field: "description"
+                    headerName: 'Description',
+                    field: 'description'
                 },
                 {
-                    headerName: "Start Date",
-                    field: "startDate"
+                    headerName: 'Start Date',
+                    field: 'startDate'
                 },
                 {
-                    headerName: "End Date",
-                    field: "endDate"
+                    headerName: 'End Date',
+                    field: 'endDate'
                 },
                 {
-                    headerName: "Cost",
-                    field: "cost"
+                    headerName: 'Cost',
+                    field: 'cost'
                 },
                 {
-                    headerName: "Percentage",
-                    field: "percentage"
+                    headerName: 'Percentage',
+                    field: 'percentage'
                 }
             ]
         }
     }
     getproducts() {
         this.superuserViewAccountpreferencessService.getproductsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
-            if (res['statusCode'] == "SUCCESS") {
+            if (res['statusCode'] == 'SUCCESS') {
                 this.data = res['products'];
 
             }
@@ -148,7 +148,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     }
     getdiscounts() {
         this.superuserViewAccountpreferencessService.getdiscountsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
-            if (res['statusCode'] == "SUCCESS") {
+            if (res['statusCode'] == 'SUCCESS') {
                 this.discountData = res['discounts'];
             }
         });
@@ -166,7 +166,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.superuserViewAccountpreferencessService.saveproduct(this.accountDetailsCommonService.addProducts, this.accountDetailsCommonService.accountId).subscribe((res) => {
-                    if (res['statusCode'] = "SUCCESS") {
+                    if (res['statusCode'] = 'SUCCESS') {
                         this.getproducts();
                         this.close();
                     }
@@ -195,7 +195,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
                 }
                 this.accountDetailsCommonService.addProducts[0].productId = event.data.productId;
                 this.superuserViewAccountpreferencessService.saveproduct(this.accountDetailsCommonService.addProducts, this.accountDetailsCommonService.accountId).subscribe((res) => {
-                    if (res['statusCode'] = "SUCCESS") {
+                    if (res['statusCode'] = 'SUCCESS') {
                         this.getproducts();
                         this.close();
 
@@ -213,7 +213,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.superuserViewAccountpreferencessService.savediscount(this.accountDetailsCommonService.addDiscounts, this.accountDetailsCommonService.accountId).subscribe((res) => {
-                    if (res['statusCode'] = "SUCCESS") {
+                    if (res['statusCode'] = 'SUCCESS') {
                         this.getdiscounts();
                         this.close();
                     }
@@ -239,7 +239,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             if (isConfirmed) {
                 this.accountDetailsCommonService.addDiscounts[0].discountId = event.data.discountId;
                 this.superuserViewAccountpreferencessService.savediscount(this.accountDetailsCommonService.addDiscounts, this.accountDetailsCommonService.accountId).subscribe((res) => {
-                    if (res['statusCode'] = "SUCCESS") {
+                    if (res['statusCode'] = 'SUCCESS') {
                         this.getdiscounts();
                         this.close();
                     }
@@ -253,8 +253,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         if ((this.addproduct['code'] == '' || this.addproduct['code'] == null || this.addproduct['code'] == undefined || this.addproduct['startDate'] == '' || this.addproduct['startDate'] == null || this.addproduct['startDate'] == undefined || this.addproduct['endDate'] == '' || this.addproduct['endDate'] == null || this.addproduct['endDate'] == undefined)) {
             this.warningMessage = true;
 
-        }
-        else {
+        } else {
             this.warningMessage = false;
             this.addproduct['code'] = this.addproduct['code'];
             this.addproduct['startDate'] = this.addproduct['startDate']['formatted'];

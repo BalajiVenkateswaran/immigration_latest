@@ -283,23 +283,23 @@ $dateColumnWidth:110px;
         width:7.5% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
         width:18.5% !important;
         left:7.5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
         width:18.5% !important;
         left:26% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="emailId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="emailId"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="emailId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="emailId"] {
         width:18.5% !important;
         left:44.5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="phoneNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phoneNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="phoneNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phoneNumber"] {
         width:18.5% !important;
         left:63% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="roleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="roleName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="roleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="roleName"] {
         width:19% !important;
         left:81% !important;
     }
@@ -310,32 +310,32 @@ $dateColumnWidth:110px;
     width:10% !important;
     left:0% !important;
     }*/
-    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
       width:8% !important;
       left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionNumber"] {
       width:6% !important;
       left:8% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
       width:17% !important;
       left:14% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
       width:17% !important;
       left:31% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionType"] {
       width:5% !important;
       left:48% !important;
     }*/
-    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[col-id~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
       width:$dateColumnWidth !important;
       width:7% !important;
       left:53% !important;
     }*/
-    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
       width:5% !important;
       left:-webkit-calc(53% + #{$dateColumnWidth}) !important;
       left:-moz-calc(53% + #{$dateColumnWidth}) !important;
@@ -343,35 +343,35 @@ $dateColumnWidth:110px;
       left:calc(53%+$dateColumnWidth);
       left:60% !important;
     }*/
-    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="finalStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="finalStatus"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[col-id~="finalStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="finalStatus"] {
       width:6% !important;*/
       /*left:-webkit-calc(58% + #{$dateColumnWidth}) !important;
       left:-moz-calc(58% + #{$dateColumnWidth}) !important;
       left:calc(58% + #{$dateColumnWidth}) !important;*/
       /*left:65% !important;*/
     /*}*/
-    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[col-id~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
       width:7% !important;*/
       /*left:-webkit-calc(64% + #{$dateColumnWidth}) !important;
       left:-moz-calc(64% + #{$dateColumnWidth}) !important;
       left:calc(64% + #{$dateColumnWidth}) !important;*/
       /*left:71% !important;
     }*/
-    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="petitionStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionStage"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionStage"] {
       width:12% !important;*/
       /*left:-webkit-calc(71% + #{$dateColumnWidth}) !important;
       left:-moz-calc(71% + #{$dateColumnWidth}) !important;
       left:calc(71% + #{$dateColumnWidth}) !important;*/
       /*left:78% !important;
     }*/
-    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="daysInStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="daysInStage"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[col-id~="daysInStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="daysInStage"] {
       width:5% !important;*/
       /*left:-webkit-calc(83% + #{$dateColumnWidth}) !important;
       left:-moz-calc(83% + #{$dateColumnWidth}) !important;
       left:calc(83% + #{$dateColumnWidth}) !important*//*;
         left:90% !important;
     }*/
-    /*.ag-fresh .ag-ltr .ag-header-cell[colid~="tag"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="tag"] {
+    /*.ag-fresh .ag-ltr .ag-header-cell[col-id~="tag"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="tag"] {
       width:5% !important;*/
       /*left:-webkit-calc(88% + #{$dateColumnWidth}) !important;
       left:-moz-calc(88% + #{$dateColumnWidth}) !important;
@@ -381,31 +381,31 @@ $dateColumnWidth:110px;
 }*/
 
 /*.immiview-ques-client {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:4% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
         width:15% !important;
         left:4% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="1"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="1"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="1"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="1"] {
         width:6% !important;
         left:19% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="questionnaireName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="questionnaireName"] {
         width:53% !important;
         left:25% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="clientStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientStatus"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="clientStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientStatus"] {
         width:5% !important;
         left:78% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="sentToClient"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="sentToClient"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="sentToClient"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="sentToClient"] {
         width:10% !important;
         left:83% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="clientStatusDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientStatusDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="clientStatusDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientStatusDate"] {
         width:7% !important;
         left:93% !important;
     }
@@ -413,49 +413,49 @@ $dateColumnWidth:110px;
  }*/
 
 /*.immiview-ques-emp {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:4% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="questionnaireName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="questionnaireName"] {
         width:60% !important;
         left:4% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
         width:20% !important;
         left:64% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="employerStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="employerStatus"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="employerStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="employerStatus"] {
         width:8% !important;
         left:84% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="employerStatusDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="employerStatusDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="employerStatusDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="employerStatusDate"] {
         width:8% !important;
         left:92% !important;
     }
  }*/
 /*.immiview-formstbl {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
     width:15% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="questionnaireName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="questionnaireName"] {
         width:30% !important;
         left:15% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:12% !important;
         left:45% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="fileName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="fileName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="fileName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="fileName"] {
         width:20% !important;
         left:57% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="fileCreationDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="fileCreationDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="fileCreationDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="fileCreationDate"] {
         width:11% !important;
         left:77% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="1"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="1"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="1"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="1"] {
         width:12% !important;
         left:88% !important;
     }
@@ -467,20 +467,20 @@ $dateColumnWidth:110px;
             margin:0px 5px !important;
         }
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:8% !important;
     left:0% !important;
     min-width:100px !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="orderNo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orderNo"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="orderNo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orderNo"] {
         width:5% !important;
         left:8% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="fileName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="fileName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="fileName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="fileName"] {
         width:77% !important;
         left:13% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="updatedDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="updatedDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="updatedDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="updatedDate"] {
         width:10% !important;
         left:90% !important;
     }
@@ -513,220 +513,220 @@ $dateColumnWidth:110px;
     }
  }
 /*.immiview-clienttab-dependents {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:4% !important;
     left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
     width:30% !important;
     left:4% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="middleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="middleName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="middleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="middleName"] {
     width:25% !important;
     left:34% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
     width:25% !important;
     left:59% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="relation"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="relation"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="relation"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="relation"] {
     width:16% !important;
     left:84% !important;
     }
 }*/
 /*.clientViewPetitions {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
     width:15% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionType"] {
         width:10% !important;
         left:15% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="organization"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="organization"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="organization"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="organization"] {
         width:15% !important;
         left:25% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
         width:10% !important;
         left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionStage"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionStage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionStage"] {
         width:10% !important;
         left:50% !important;
     }
-   .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
+   .ag-fresh .ag-ltr .ag-header-cell[col-id~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
         width:10% !important;
         left:60% !important;
     }
-   .ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
+   .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
         width:10% !important;
         left:70% !important;
     }
-   .ag-fresh .ag-ltr .ag-header-cell[colid~="recieptNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="recieptNumber"] {
+   .ag-fresh .ag-ltr .ag-header-cell[col-id~="recieptNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="recieptNumber"] {
         width:10% !important;
         left:80% !important;
     }
-   .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+   .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:10% !important;
         left:90% !important;
     }
  }*/
 
 /*.clientViewQuestionnnaires {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="formName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="formName"] {
     width:25% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="questionnaireName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="questionnaireName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="questionnaireName"] {
         width:25% !important;
         left:25% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="orgName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="orgName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgName"] {
         width:25% !important;
         left:50% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="clientStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientStatus"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="clientStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientStatus"] {
         width:13% !important;
         left:75% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="clientStatusDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientStatusDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="clientStatusDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientStatusDate"] {
         width:12% !important;
         left:88% !important;
     }
  }*/
 /*.clientViewRequests {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="id"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="id"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="id"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="id"] {
     width:5% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="requestType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="requestType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="requestType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="requestType"] {
         width:10% !important;
         left:5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="message"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="message"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="message"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="message"] {
         width:65% !important;
         left:15% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:20% !important;
         left:80% !important;
     }
  }*/
 .superUserViewAccounts {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="accountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="accountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountName"] {
     width:8% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="accountNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="accountNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountNumber"] {
     width:8% !important;
     left:8% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
     width:7% !important;
     left:16% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
     width:8% !important;
     left:23% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="email"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="email"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="email"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="email"] {
     width:7% !important;
     left:31% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="phone"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phone"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="phone"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phone"] {
     width:8% !important;
     left:38% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
     width:8% !important;
     left:46% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="orgCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgCount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="orgCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgCount"] {
     width:8% !important;
     left:54% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="clientCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientCount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="clientCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientCount"] {
     width:8% !important;
     left:62% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionCount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionCount"] {
     width:8% !important;
     left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="creationOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="creationOn"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="creationOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="creationOn"] {
     width:6.5% !important;
     left:78% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastPaymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastPaymentStatus"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastPaymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastPaymentStatus"] {
     width:8% !important;
     left:84.5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="storageType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="storageType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="storageType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="storageType"] {
     width:8% !important;
     left:92.5% !important;
     }
  }
 .superUserViewAccountManagers {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:10% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
         width:25% !important;
         left:10% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
         width:25% !important;
         left:35% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="emailId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="emailId"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="emailId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="emailId"] {
         width:20% !important;
         left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="roleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="roleName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="roleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="roleName"] {
         width:20% !important;
         left:80% !important;
     }
  }
 .superUserViewaccprefProducts {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="name"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="name"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="name"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="name"] {
     width:10% !important;
     left:0% !important;
 }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="code"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="code"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="code"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="code"] {
         width:10% !important;
         left:10% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="description"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="description"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="description"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="description"] {
        width:10% !important;
         left:20% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
         width:10% !important;
         left:30% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="endDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="endDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="endDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="endDate"] {
       width:10% !important;
         left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxUsers"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxUsers"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxUsers"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxUsers"] {
        width:10% !important;
         left:50% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxClientsPerMonth"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxClientsPerMonth"] {
         width:10% !important;
         left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxPetitionsPerMonth"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxPetitionsPerMonth"] {
         width:10% !important;
         left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxS3Storage"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxS3Storage"] {
         width:10% !important;
         left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
         width:10% !important;
         left:90% !important;
     }
@@ -734,31 +734,31 @@ $dateColumnWidth:110px;
 
 
 .superUserViewaccprefDiscounts {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="discountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="discountName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="discountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="discountName"] {
         width:25% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="discountCode"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="discountCode"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="discountCode"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="discountCode"] {
         width:10% !important;
         left:25% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="description"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="description"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="description"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="description"] {
        width:25% !important;
         left:35% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
         width:10% !important;
         left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="endDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="endDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="endDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="endDate"] {
       width:10% !important;
         left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
         width:10% !important;
         left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="percentage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="percentage"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="percentage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="percentage"] {
         width:10% !important;
         left:90% !important;
     }
@@ -766,35 +766,35 @@ $dateColumnWidth:110px;
 
 
 .superUserViewaccPayments {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentId"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentId"] {
         width:25% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
         width:10% !important;
         left:25% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
        width:10% !important;
         left:35% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
         width:10% !important;
         left:45% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="transactionId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="transactionId"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="transactionId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="transactionId"] {
       width:10% !important;
         left:55% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentDate"] {
         width:10% !important;
         left:65% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentAmount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentAmount"] {
         width:10% !important;
         left:75% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentStatus"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentStatus"] {
         width:15% !important;
         left:85% !important;
     }
@@ -802,74 +802,74 @@ $dateColumnWidth:110px;
  }
 
 .superUserViewaccInvoices {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
         width:25% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
         width:15% !important;
         left:25% !important;
     }
 
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
         width:15% !important;
         left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentRecieved"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentRecieved"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentRecieved"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentRecieved"] {
       width:10% !important;
         left:55% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:25% !important;
         left:65% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="1"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="1"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="1"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="1"] {
         width:10% !important;
         left:90% !important;
     }
  }
 .acctabprodcatProducts {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="name"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="name"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="name"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="name"] {
         width:12% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="code"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="code"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="code"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="code"] {
         width:8% !important;
         left:12% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxUsers"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxUsers"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxUsers"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxUsers"] {
         width:8% !important;
         left:20% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxOrgs"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxOrgs"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxOrgs"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxOrgs"] {
         width:8% !important;
         left:28% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxClientsPerMonth"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxClientsPerMonth"] {
       width:10% !important;
         left:36% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxPetitionsPerMonth"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxPetitionsPerMonth"] {
         width:10% !important;
         left:46% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxS3Storage"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxS3Storage"] {
         width:10% !important;
         left:56% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
         width:8% !important;
         left:66% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="productType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="productType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="productType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="productType"] {
         width:8% !important;
         left:74% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
         width:8% !important;
         left:82% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
         width:10% !important;
         left:90% !important;
     }
@@ -877,354 +877,354 @@ $dateColumnWidth:110px;
 
 
 .superuserViewPaymentstab {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentId"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentId"] {
         width:25% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="accountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="accountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountName"] {
         width:15% !important;
         left:25% !important;
     }
 
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="accountNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="accountNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountNumber"] {
         width:10% !important;
         left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
       width:10% !important;
         left:50% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
         width:10% !important;
         left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
         width:10% !important;
         left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentStatus"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentStatus"] {
         width:10% !important;
         left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentDate"] {
         width:10% !important;
         left:90% !important;
     }
  }
 /*.immiview-clienttab-petitions {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
         width:20% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionType"] {
         width:10% !important;
         left:20% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionSubType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionSubType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionSubType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionSubType"] {
         width:10% !important;
         left:30% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
         width:10% !important;
         left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="stage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="stage"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="stage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="stage"] {
         width:20% !important;
         left:50% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="createdOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="createdOn"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="createdOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="createdOn"] {
         width:10% !important;
         left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
         width:10% !important;
         left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
         width:10% !important;
         left:90% !important;
     }
 }*/
 .immiview-clienttab-docexp {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:5% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="documentType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="documentType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="documentType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="documentType"] {
         width:65% !important;
         left:5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="validFrom"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validFrom"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="validFrom"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validFrom"] {
         width:10% !important;
         left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="validTo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validTo"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="validTo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validTo"] {
         width:10% !important;
         left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
         width:10% !important;
         left:90% !important;
     }
 }
 /*.immiview-clienttab-arr-dep-info, .clientview-clientdetailtab-arr-dep-info {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:5% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="departureDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="departureDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="departureDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="departureDate"] {
         width:10% !important;
         left:5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="departureCountry"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="departureCountry"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="departureCountry"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="departureCountry"] {
         width:28% !important;
         left:15% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="arrivalDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="arrivalDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="arrivalDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="arrivalDate"] {
         width:10% !important;
         left:43% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="arrivalCountry"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="arrivalCountry"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="arrivalCountry"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="arrivalCountry"] {
         width:27% !important;
         left:53% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="visaType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="visaType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="visaType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="visaType"] {
         width:10% !important;
         left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="i94"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="i94"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="i94"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="i94"] {
         width:10% !important;
         left:90% !important;
     }
 }*/
 /*.immiview-clienttab-visas, .clientview-clientdetailtab-visas {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:5% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="country"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="country"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="country"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="country"] {
         width:40% !important;
         left:5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="petitionNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionNumber"] {
         width:15% !important;
         left:45% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="visaNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="visaNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="visaNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="visaNumber"] {
         width:10% !important;
         left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="visaType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="visaType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="visaType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="visaType"] {
         width:10% !important;
         left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="issuedOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="issuedOn"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="issuedOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="issuedOn"] {
         width:10% !important;
         left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="expiresOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="expiresOn"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="expiresOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="expiresOn"] {
         width:10% !important;
         left:90% !important;
     }
 }*/
 /*.immiview-clienttab-i797history {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:5% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="receiptNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="receiptNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="receiptNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="receiptNumber"] {
         width:20% !important;
         left:5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
         width:15% !important;
         left:25% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="receiptDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="receiptDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="receiptDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="receiptDate"] {
         width:15% !important;
         left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="approvedOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="approvedOn"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="approvedOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="approvedOn"] {
         width:15% !important;
         left:55% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="validFrom"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validFrom"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="validFrom"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validFrom"] {
         width:15% !important;
         left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="validTill"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validTill"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="validTill"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validTill"] {
         width:15% !important;
         left:85% !important;
     }
 }*/
 
 /*.immiview-managAcctab-orgs {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="orgName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="orgName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgName"] {
     width:40% !important;
     left:0% !important;
-}.ag-fresh .ag-ltr .ag-header-cell[colid~="displayName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="displayName"] {
+}.ag-fresh .ag-ltr .ag-header-cell[col-id~="displayName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="displayName"] {
     width:10% !important;
     left:40% !important;
-}.ag-fresh .ag-ltr .ag-header-cell[colid~="orgType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgType"] {
+}.ag-fresh .ag-ltr .ag-header-cell[col-id~="orgType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgType"] {
     width:10% !important;
     left:50% !important;
-}.ag-fresh .ag-ltr .ag-header-cell[colid~="orgStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgStatus"] {
+}.ag-fresh .ag-ltr .ag-header-cell[col-id~="orgStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgStatus"] {
     width:10% !important;
     left:60% !important;
-}.ag-fresh .ag-ltr .ag-header-cell[colid~="email"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="email"] {
+}.ag-fresh .ag-ltr .ag-header-cell[col-id~="email"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="email"] {
     width:30% !important;
     left:70% !important;
 }
     }*/
 
 /*.immiview-managAcctab-shippingaddress {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:12% !important;
     left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="slNo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="slNo"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="slNo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="slNo"] {
     width:30% !important;
     left:12% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="addressName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="addressName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="addressName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="addressName"] {
     width:29% !important;
     left:42% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="address"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="address"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="address"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="address"] {
     width:25% !important;
     left:75% !important;
     }
 
 }*/
 .immiview-managAcctab-accprefproducts {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="name"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="name"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="name"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="name"] {
     width:10% !important;
     left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="code"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="code"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="code"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="code"] {
     width:10% !important;
     left:10% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="description"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="description"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="description"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="description"] {
     width:10% !important;
     left:20% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
     width:10% !important;
     left:30% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="endDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="endDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="endDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="endDate"] {
     width:10% !important;
     left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxUsers"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxUsers"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxUsers"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxUsers"] {
     width:10% !important;
     left:50% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxClientsPerMonth"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxClientsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxClientsPerMonth"] {
     width:10% !important;
     left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxPetitionsPerMonth"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxPetitionsPerMonth"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxPetitionsPerMonth"] {
     width:10% !important;
     left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxS3Storage"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="maxS3Storage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="maxS3Storage"] {
     width:10% !important;
     left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
     width:10% !important;
     left:90% !important;
     }
 }
 .immiview-managAcctab-accprefdiscounts {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="discountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="discountName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="discountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="discountName"] {
     width:25% !important;
     left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="discountCode"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="discountCode"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="discountCode"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="discountCode"] {
     width:10% !important;
     left:25% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="description"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="description"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="description"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="description"] {
     width:25% !important;
     left:35% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="startDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="startDate"] {
     width:10% !important;
     left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="endDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="endDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="endDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="endDate"] {
     width:10% !important;
     left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="cost"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="cost"] {
     width:10% !important;
     left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="percentage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="percentage"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="percentage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="percentage"] {
     width:10% !important;
     left:90% !important;
     }
 
 }
 /*.immiview-managAcctab-invoices {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
     width:20% !important;
     left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
     width:10% !important;
     left:20% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
     width:10% !important;
     left:30% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentReceived"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentReceived"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentReceived"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentReceived"] {
     width:10% !important;
     left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="pdfUploaded"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="pdfUploaded"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="pdfUploaded"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="pdfUploaded"] {
     width:40% !important;
     left:50% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:10% !important;
     left:90% !important;
     }
 }*/
  /*.immiview-managAcctab-payments {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentId"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentId"] {
     width:30% !important;
     left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceNumber"] {
     width:10% !important;
     left:30% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
     width:10% !important;
     left:40% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
     width:10% !important;
     left:50% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="transactionId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="transactionId"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="transactionId"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="transactionId"] {
     width:10% !important;
     left:60% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentDate"] {
     width:10% !important;
     left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentAmount"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentAmount"] {
     width:10% !important;
     left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="paymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentStatus"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentStatus"] {
     width:10% !important;
     left:90% !important;
     }
@@ -1267,78 +1267,78 @@ $dateColumnWidth:110px;
 
 }*/
  /*.clientview-clientdetailtab-dependents {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:5% !important;
     left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
     width:25% !important;
     left:5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="middleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="middleName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="middleName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="middleName"] {
     width:25% !important;
     left:30% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
     width:25% !important;
     left:55% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="relation"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="relation"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="relation"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="relation"] {
     width:20% !important;
     left:80% !important;
     }
 
 }*/
  /*.clientview-clientdetailtab-docexp {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:10% !important;
     left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="documentType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="documentType"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="documentType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="documentType"] {
     width:60% !important;
     left:10% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="validFrom"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validFrom"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="validFrom"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validFrom"] {
     width:10% !important;
     left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="validTo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validTo"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="validTo"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validTo"] {
     width:10% !important;
     left:80% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
     width:10% !important;
     left:90% !important;
     }
 
 }*/
  .clientview-clientdetailtab-i797history {
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:5% !important;
         left:0% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="receiptNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="receiptNumber"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="receiptNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="receiptNumber"] {
         width:20% !important;
         left:5% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="receiptDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="receiptDate"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="receiptDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="receiptDate"] {
         width:15% !important;
         left:25% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
         width:15% !important;
         left:40% !important;
     }
 
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="approvedOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="approvedOn"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="approvedOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="approvedOn"] {
         width:15% !important;
         left:55% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="validFrom"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validFrom"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="validFrom"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validFrom"] {
         width:15% !important;
         left:70% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[colid~="validTill"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validTill"] {
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="validTill"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="validTill"] {
         width:15% !important;
         left:85% !important;
     }

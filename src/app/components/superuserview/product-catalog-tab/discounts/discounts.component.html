@@ -26,36 +26,31 @@
                                 <div class="row">
                                     <div class="col-md-5">Name:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscName" [disabled]="true" *ngIf="isEditDiscount==false" [(ngModel)]="discount.discountName" class="form-control">
-                                        <span *ngIf="isEditDiscount==true">{{discount.discountName}}</span>
+                                        <input type="text" id="svprodDiscName" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Code:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscCode" *ngIf="isEditDiscount==false" [disabled]="true" [(ngModel)]="discount.discountCode" class="form-control">
-                                        <span *ngIf="isEditDiscount==true">{{discount.discountCode}}</span>
+                                        <input type="text" id="svprodDiscCode" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountCode" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Description:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscDesc" *ngIf="isEditDiscount==false" [(ngModel)]="discount.description" class="form-control">
-                                        <span *ngIf="isEditDiscount==true">{{discount.description}}</span>
+                                        <input type="text" id="svprodDiscDesc" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountDesc" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Cost:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscCost" *ngIf="isEditDiscount==false" [(ngModel)]="discount.cost" class="form-control">
-                                        <span *ngIf="isEditDiscount==true">{{discount.cost}}</span>
+                                        <input type="text" id="svprodDiscCost" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.cost" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Percentage:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscPerc" *ngIf="isEditDiscount==false" [(ngModel)]="discount.percentage" class="form-control">
-                                        <span *ngIf="isEditDiscount==true">{{discount.percentage}}</span>
+                                        <input type="text" id="svprodDiscPerc" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.percentage" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -83,8 +78,7 @@
                                 <div class="row">
                                     <div class="col-md-5">Created On:</div>
                                     <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditDiscount==false" id="svprodDiscCreatedOn" [disabled]="true" [(ngModel)]="discount.createdOn" class="form-control">
-                                        <span *ngIf="isEditDiscount==true">{{discount.createdOn}}</span>
+                                        <input type="text" class="disabled"  [disabled]="true" id="svprodDiscCreatedOn" [(ngModel)]="discount.createdOn" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
