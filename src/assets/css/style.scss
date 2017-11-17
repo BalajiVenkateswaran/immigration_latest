@@ -1900,11 +1900,11 @@ header {
                         width:50px;
                         height:50px;
                         margin:0px auto;
-                        background:url(../images/Petitions.png) no-repeat center center;
+                        background:url(../images/Pettions.png) no-repeat center center;
                         display:block;
                         border-radius:5px;
                         margin-bottom: 8px;
-                        background-size: 50%;
+                        /*background-size: 50%;*/
                     }
                     span.maintab-Clients {
                         background:url(../images/Clients.png) no-repeat center center;
@@ -1945,8 +1945,8 @@ header {
                     }
 
                     span.maintab-clientdetails {
-                        background:url(../images/ClientDetails.png) no-repeat center center #4b89dc;
-                            background-size:110%;
+                        background:url(../images/Clients.png) no-repeat center center;
+                            /*background-size:110%;*/
                     }
                     span.maintab-clientdocuments {
                         background:url(../images/Documents.png) no-repeat center center #ba79cb;
