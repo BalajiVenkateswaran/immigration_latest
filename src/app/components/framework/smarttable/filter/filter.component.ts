@@ -27,7 +27,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
   public dateValue;
 
   showFilters = true;
- // addMorefilters = false;
+ addMorefilters = false;
   /**
    * Parent array has array of objects: (Each object represents an row)
    *  - Each object is an array:
