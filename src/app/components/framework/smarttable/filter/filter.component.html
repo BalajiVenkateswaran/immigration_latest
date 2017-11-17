@@ -1,7 +1,7 @@
-<div class="filters-container" *ngIf="showFilters || smartTable.isAddButtonEnable">
+<div class="filters-container" *ngIf="showFilters || smartTable.isAddButtonEnable || smartTable.isMorefilters">
   <div class="filters">
     <div class="styled-select">
-      <div *ngIf="showFilters">
+      <div *ngIf="showFilters && smartTable.isMorefilters">
         <span>Filters: </span>
         <div *ngIf="quickFilters != null && quickFilters.length > 0">
           <select *ngFor="let quickFilter of quickFilters" (change)="onChange($event)" id="{{quickFilter['field']}}">

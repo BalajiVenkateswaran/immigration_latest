@@ -48,7 +48,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
     public queryParameters: QueryParameters;
     public quickFilters: any[] = [];
     private defaultPageSize = 15;
-public isMorefilters :boolean;
+    public isMorefilters :boolean;
 
 
   constructor(public dialogService: DialogService, public smartTableService: SmartTableService) {

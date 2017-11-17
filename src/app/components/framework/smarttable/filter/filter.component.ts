@@ -27,7 +27,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
   public dateValue;
 
   showFilters = true;
- addMorefilters = false;
+  addMorefilters = false;
   /**
    * Parent array has array of objects: (Each object represents an row)
    *  - Each object is an array:
@@ -71,7 +71,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
           if (fieldCount === 0) {
             this.moreFilterFields[rowCount] = [];
           }
-          if(!column.filter) {
+          if (!column.filter) {
             this.moreFilterFields[rowCount][fieldCount] = {};
             this.moreFilterFields[rowCount][fieldCount]['field'] = column['field'];
             this.moreFilterFields[rowCount][fieldCount]['headerName'] = column['headerName'];

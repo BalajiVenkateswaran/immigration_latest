@@ -170,13 +170,17 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                                 this.clientService.paginationData = res1['pageMetadata'];
                             }
                         )
+                    } else {
+                      let message = res['statusDescription'];
+                      if (res['statusDescription'] === 'Duplicate client') {
+                        message = 'User already Exists';
+                      }
+                      this.dialogService.addDialog(ConfirmComponent, {
+                        title: 'Error..!',
+                        message: message
+                      })
                     }
-                    if (res['statusDescription'] === 'Duplicate client') {
-                        this.dialogService.addDialog(ConfirmComponent, {
-                            title: 'Error..!',
-                            message: 'User already Exists'
-                        })
-                    }
+
                 });
             }
         });
@@ -239,8 +243,8 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             });
     }
     onUserRowClick(event): void {
-        this.menuComponent.highlightSBLink('Client Details');
-        this.appService.moveToPage('immigrationview-client-details');
+        this.menuComponent.highlightSBLink('Petitions');
+        this.appService.moveToPage('immigrationview-petitions');
         this.appService.clientId = event.data.clientId;
 
     }

@@ -101,7 +101,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
           } else {
             this.dialogService.addDialog(ConfirmComponent, {
               title: 'Error..!',
-              message: 'Unable to Add organization.'
+              message: res['statusDescription']
             });
           }
 

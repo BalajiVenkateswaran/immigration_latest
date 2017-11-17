@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from "../../../../../services/app.service";
+import {AppService} from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {AccountManagersService} from './accountmanagers.service';
-import {AccountDetailsCommonService} from "../common/account-details-common.service";
-import {HeaderService} from "../../../../common/header/header.service";
+import {AccountDetailsCommonService} from '../common/account-details-common.service';
+import {HeaderService} from '../../../../common/header/header.service';
 
 export interface ConfirmModel {
   title: string;
@@ -23,14 +23,14 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
   public settings;
   public data;
   public addUsers: any = {};
-  public addPopups: boolean = false;
-  public viewUsers: boolean = true;
+  public addPopups = false;
+  public viewUsers = true;
   public beforeEdit: any;
-  public editFlag: boolean = true;
-  public warningMessage: boolean = false;
+  public editFlag = true;
+  public warningMessage = false;
   private roles: any = {
-    "Immigration Officer": "501f6e87-cd6e-11e6-a939-34e6d7382cac",
-    "Immigration Manager": "a724fdd7-cd6e-11e6-a939-34e6d7382cac"
+    'Immigration Officer': '501f6e87-cd6e-11e6-a939-34e6d7382cac',
+    'Immigration Manager': 'a724fdd7-cd6e-11e6-a939-34e6d7382cac'
   };
   constructor(public appService: AppService, public managersAccountService: AccountManagersService, public dialogService: DialogService,
     private accountDetailsCommonService: AccountDetailsCommonService, public headerService: HeaderService) {
@@ -38,20 +38,20 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     this.settings = {
       'columnsettings': [
         {
-          headerName: "First Name",
-          field: "firstName"
+          headerName: 'First Name',
+          field: 'firstName'
         },
         {
-          headerName: "Last Name",
-          field: "lastName"
+          headerName: 'Last Name',
+          field: 'lastName'
         },
         {
-          headerName: "Email",
-          field: "emailId"
+          headerName: 'Email',
+          field: 'emailId'
         },
         {
-          headerName: "Role",
-          field: "roleName"
+          headerName: 'Role',
+          field: 'roleName'
         }
       ]
     }
@@ -62,7 +62,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
   getAccountsManagers() {
     this.managersAccountService.getUsers(this.accountDetailsCommonService.accountId)
       .subscribe((res) => {
-        for (var user of res['users']) {
+        for (let user of res['users']) {
           user['roleName'] = user['role'];
         }
         this.data = res['users'];
@@ -88,11 +88,9 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     this.addUsers['accountId'] = this.accountDetailsCommonService.accountId;
     if (this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || this.addUsers['role'] == '' || this.addUsers['role'] == null || this.addUsers['role'] == undefined) {
       this.warningMessage = true;
-    }
-    else if (email != null) {
+    } else if (email != null) {
       this.warningMessage = false;
-    }
-    else {
+    } else {
       this.appService.addUsers = this.addUsers;
       this.result = true;
       this.close();
@@ -119,8 +117,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
             this.getAccountsManagers();
           }
         });
-      }
-      else {
+      } else {
         this.editFlag = false;
       }
     });

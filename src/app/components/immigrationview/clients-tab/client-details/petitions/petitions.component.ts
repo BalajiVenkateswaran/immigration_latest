@@ -9,7 +9,7 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
-import {SortType} from "../../../../framework/smarttable/types/query-parameters";
+import {SortType} from '../../../../framework/smarttable/types/query-parameters';
 
 
 import {InformationComponent} from '../../../../framework/confirmbox/information.component';
@@ -18,6 +18,9 @@ export interface ConfirmModel {
     title: string;
     message: string;
     showAddPetitionpopup: boolean;
+    countryNames: string[];
+    allPetitionTypesAndSubTypes: any[];
+    allSubTypes: any[];
     getPetitionsData: boolean;
 
 }
@@ -68,7 +71,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         });
          this.settings = {
             'isDeleteEnable': false,
-            'isMorefilters':false,
+            'isMorefilters': false,
            'sort' : [{
              headingName: 'Created On',
              sort: SortType.ASC
@@ -113,10 +116,10 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     }
 
   dataWithParameters(queryData) {
-    if (queryData != undefined) {
+    if (queryData !== undefined) {
       this.queryParams = queryData;
-      this.getPetitionData();
     }
+    this.getPetitionData();
 
   }
 
@@ -125,7 +128,9 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
             this.data = res['petitions'];
             this.clientInviteStatus = res['clientInviteStatus'];
         });
-        this.getPetitionTypes();
+        if (!this.allPetitionTypesAndSubTypes) {
+          this.getPetitionTypes();
+        }
     }
 
 
@@ -160,12 +165,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     }
 
   ngOnInit() {
-      // this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId,this.queryParams)
-      //   .subscribe((res) => {
-      //       this.data = res['petitions'];
-      //       this.clientInviteStatus = res['clientInviteStatus'];
-      //   });
-      // this.getPetitionTypes();
+    this.headerService.showSideBarMenu('immigrationview-client', 'clients');
   }
 
   addNewPetition() {
@@ -183,6 +183,9 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         this.dialogService.addDialog(ImmigrationViewPetitionsComponent, {
           showAddPetitionpopup: true,
           getPetitionsData: false,
+          countryNames: this.countryNames,
+          allPetitionTypesAndSubTypes: this.allPetitionTypesAndSubTypes,
+          allSubTypes: this.allSubTypes,
           title: 'Add Petition',
         }).subscribe((isConfirmed) => {
           if (isConfirmed) {
@@ -219,7 +222,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
   getPetitionSubTypeId(petitionType: string, petitionSubType: string): string {
       for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
         if (petitionTypeObj['petitiontype'] === petitionType) {
-          if (petitionTypeObj['petitionSubTypes'].length == 0) {
+          if (petitionTypeObj['petitionSubTypes'].length === 0) {
             return;
           }
           for (let petitionSubTypeObj of petitionTypeObj['petitionSubTypes']) {
