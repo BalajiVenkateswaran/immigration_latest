@@ -68,6 +68,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         });
          this.settings = {
             'isDeleteEnable': false,
+            'isMorefilters':false,
            'sort' : [{
              headingName: 'Created On',
              sort: SortType.ASC

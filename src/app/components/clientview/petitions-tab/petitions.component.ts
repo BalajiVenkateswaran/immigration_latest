@@ -92,6 +92,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
       "isAddButtonEnable": false,
       "columnFilter": false,
       'isAddFilterButtonEnable': true,
+      'isMorefilters':true,
       "isDeleteEnable": false,
       'customPanel': true,
       'sort': [{

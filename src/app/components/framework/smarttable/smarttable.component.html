@@ -1,5 +1,5 @@
 <div>
-  <ih-smart-table-filter [quickFilters]="quickFilters" [smartTable]="this" (addRecordClick)="addRecord()"></ih-smart-table-filter>
+  <ih-smart-table-filter *ngIf="isMorefilters" [quickFilters]="quickFilters" [smartTable]="this" (addRecordClick)="addRecord()"></ih-smart-table-filter>
   <div class="clearfix"></div>
   <div class="agtblOptions">
       <ag-grid-angular id="grid" #grid style="width: 100%;" class="ag-fresh" [gridOptions]="gridOptions" (cellClicked)="onCellClick($event)">

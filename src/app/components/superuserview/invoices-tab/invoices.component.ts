@@ -49,6 +49,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
             'columnFilter': true,
+        'isMorefilters':true,
             'sort': [{
                 headingName: "invoiceDate",
                 sort: SortType.DESC

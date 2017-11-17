@@ -48,8 +48,10 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
     public queryParameters: QueryParameters;
     public quickFilters: any[] = [];
     private defaultPageSize = 15;
+public isMorefilters :boolean;
 
-    constructor(public dialogService: DialogService, public smartTableService: SmartTableService) {
+
+  constructor(public dialogService: DialogService, public smartTableService: SmartTableService) {
         super(dialogService);
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
@@ -171,7 +173,10 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
             this.gridOptions.pagination = true;
             this.queryParameters.setPagination(this.defaultPageSize, 0);
         }
-
+    if (this.settings.hasOwnProperty('isMorefilters')) {
+      this.isMorefilters = this.settings['isMorefilters'];
+      console.log(this.isMorefilters)
+    }
         if (this.settings.hasOwnProperty('customPanel')) {
             this.gridOptions.suppressPaginationPanel = true;
             this.paginationTemplate = true;

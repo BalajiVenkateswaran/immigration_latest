@@ -44,6 +44,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     }
     this.settings = {
         'isDeleteEnable': false,
+      'isMorefilters':true,
         'context': {
             'componentParent': this
         },

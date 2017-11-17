@@ -51,6 +51,7 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
       'isDeleteEnable': false,
       'isAddButtonEnable': false,
       'columnFilter': true,
+      'isMorefilters':true,
       'sort': [{
         headingName: "paymentDate",
         sort: SortType.DESC

@@ -50,7 +50,9 @@ export class PetitionsComponent implements OnInit {
             'isDeleteEnable': false,
             'customPanel': true,
             'isAddFilterButtonEnable': true,
-            'defaultFilter': [{
+          'isMorefilters':true,
+
+          'defaultFilter': [{
                 headingName: 'status',
                 headerName: 'Status',
                 filterValue: 'Open'

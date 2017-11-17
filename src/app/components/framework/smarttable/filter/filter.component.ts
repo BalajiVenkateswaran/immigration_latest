@@ -23,10 +23,11 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
   @Input() public quickFilters: any[];
   @Input() public smartTable: SmartTableFrameworkComponent;
   @Output() addRecordClick = new EventEmitter();
+
   public dateValue;
 
   showFilters = true;
-  addMorefilters = false;
+ // addMorefilters = false;
   /**
    * Parent array has array of objects: (Each object represents an row)
    *  - Each object is an array:
@@ -38,6 +39,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
 
   constructor(public dialogService: DialogService, private datePipe: DatePipe) {
     super(dialogService);
+
   }
   onChange(event) {
     console.log('Filter Component: %o', event);
@@ -48,6 +50,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
     this.smartTable.invokeResource();
     event.target.value = event.target.options[0].value;
   }
+
 
   moreFilters() {
       console.log('moreFilters: %o', this.smartTable.queryParameters.filter);

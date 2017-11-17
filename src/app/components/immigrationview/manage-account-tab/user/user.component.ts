@@ -43,6 +43,8 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         super(dialogService);
         this.settings = {
           'customPanel': true,
+          'isMorefilters':true,
+
           'sort' : [{
             headingName: 'firstName',
             sort: SortType.ASC
