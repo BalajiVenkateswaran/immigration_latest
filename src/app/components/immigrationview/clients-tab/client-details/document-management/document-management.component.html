@@ -3,7 +3,7 @@
 <style>
     .myclass {
       float: right;
-      margin: 0 0 15px 0;
+      margin: 0 7px 15px 0 !important;
       border: none;
       background:darkgray;
       color: #d4d4d4 !important;
@@ -11,7 +11,10 @@
       padding: 6px 15px;
 
     }
-
+  .removedclass {
+    margin-right: 6px !important;
+    margin-left: 0px !important;
+  }
 </style>
     </head>
 <body>
@@ -63,11 +66,11 @@
                         </form>
                     </div>
                     <div class="col-md-4 right-form">
-                        <div class="row">
+                        <div class="row removedclass">
                             <div class="col-md-1"></div>
-                            <button type="submit" class="saveorder" [(disabled)]="!isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'saveorder':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
+                            <button type="submit" class="btn iportal-btnIMclient" [(disabled)]="!isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'saveorder':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
                             <div class="col-md-1"></div>
-                            <button type="submit" class="saveorder" [(disabled)]="!isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'saveorder':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
+                            <button type="submit" class="btn iportal-btnIMclient" [(disabled)]="!isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'saveorder':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
                         </div>
 
                         <div class="row">

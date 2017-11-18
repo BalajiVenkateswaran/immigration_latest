@@ -1229,7 +1229,7 @@ ul.edit-delete,
           overflow-y: auto; }
   .petition-docs .right-form {
     margin: 15px 0 0 0;
-    padding: 0px 0 0 0; }
+    padding: 0px 3px 0 0 !important;}
     .petition-docs .right-form.petition-type-stages .updown {
       float: left;
       margin: 0px !important; }
