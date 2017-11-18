@@ -42,6 +42,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   public addAccounts: boolean;
   public accountDetails: any = {};
   public statusTypes: any = [];
+  public storageTypes:any=[];
 
 
   public DefaultResponse = {'status': 'Active'};
@@ -59,6 +60,20 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
       {
         'display': 'Inactive',
         'value': 'Inactive'
+      },
+      {
+        'display': 'Pre-Act',
+        'value': 'Pre-Act'
+      }
+    ];
+    this.storageTypes = [
+      {
+        'display': 'S3',
+        'value': 'S3'
+      },
+      {
+        'display': 'GD',
+        'value': 'GD'
       }
     ];
 
@@ -79,7 +94,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
             headerName: 'Status',
             field: 'status',
             values: [
-              { alias: 'PreAct', value: 'PreAct' },
+              { alias: 'Pre-Act', value: 'PreAct' },
               { alias: 'Active', value: 'Active' },
               { alias: 'Inactive', value: 'Inactive' }
             ]
@@ -151,7 +166,8 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
         {
           headerName: 'Storage Type',
           field: 'storageType',
-          type:'text'
+          type:'dropDown',
+          data:this.storageTypes
         }
       ]
     };

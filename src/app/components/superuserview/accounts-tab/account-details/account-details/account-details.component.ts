@@ -117,6 +117,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
       || this.accountDetails['phone'] == '' || this.accountDetails['phone'] == null || this.accountDetails['phone'] == undefined
       || this.accountDetails['storageType'] == '' || this.accountDetails['storageType'] == null || this.accountDetails['storageType'] == undefined
       || this.accountDetails['markForDeletion'] == null || this.accountDetails['markForDeletion'] == undefined
+      // || this.accountDetails['notes'] == '' || this.accountDetails['notes'] == null || this.accountDetails['notes'] == undefined
       || this.accountDetails['status'] == '' || this.accountDetails['status'] == null || this.accountDetails['status'] == undefined) {
       this.errormsg = true;
     } else {
@@ -126,6 +127,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
       this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
         .subscribe((res) => {
           this.isEditstorage = true;
+          console.log(this.accountDetails)
           this.getAcountDetails();
           if (res['statusCode'] != 'SUCCESS') {
             this.dialogService.addDialog(ConfirmComponent, {
