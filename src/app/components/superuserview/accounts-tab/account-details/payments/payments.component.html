@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="table-data-forms" *ngIf="viewAccountPopup">
-    <div class="modal-dialog" ngDraggable style="margin-top:5% !important;max-width:900px">
+    <div class="modal-dialog" ngDraggable style="max-width:900px !important; width:790px !important; margin: 8% auto 0px auto !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-md-12 addresbox box-shadow">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="row">
                                             <div class="col-md-5">Payment Id:</div>
                                             <div class="col-md-7">
@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="row">
                                             <div class="col-md-5">Invoice Amount:</div>
                                             <div class="col-md-7">
@@ -145,15 +145,28 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                  <div class="col-md-offset-6">
+                                    <div class="row"></div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="row">
+                                      <div class="col-md-2">Comments:</div>
+                                      <div class="col-md-10">
+                                        <textarea  [(ngModel)]="payment.comments" id="svActpmtsComments"  class="form-control" style="margin-left: 30px;width: 95%;height: 84px;"></textarea>
+                                        <!--<span style="height:80px" *ngIf="true">{{invoice.comments}}</span>-->
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                    <!--<div class="col-md-6">
                                         <div class="row">
                                             <div class="col-md-5">Comments:</div>
                                             <div class="col-md-7">
-                                                <textarea  *ngIf="isEditpayments==false" id="svActpmtsComments" [(ngModel)]="payment.comments" class="form-control"></textarea>
+                                                <textarea  *ngIf="isEditpayments==false" [(ngModel)]="payment.comments" class="form-control"></textarea>
                                                 <span style="height:100px" *ngIf="isEditpayments==true">{{payment.comments}}</span>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-md-5">
                                         <div class="row">
                                         <div class="row sfm" *ngIf="warningMessage">

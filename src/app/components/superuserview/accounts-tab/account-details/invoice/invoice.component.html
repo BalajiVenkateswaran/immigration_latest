@@ -1,4 +1,4 @@
-﻿<div class="main-content" *ngIf="getInvoice">
+<div class="main-content" *ngIf="getInvoice">
     <ul class="breadcrumb">
         <li><a href="#">Account Invoice</a></li>
     </ul>
@@ -15,7 +15,7 @@
 
 </div>
 <div *ngIf="viewPopup">
-    <div class="modal-dialog" ngDraggable style="margin-top:5% !important;max-width:700px">
+    <div class="modal-dialog" ngDraggable style="max-width: 900px !important;width: 790px !important;margin: 10% auto 0px auto !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="row">
                                             <div class="col-md-5">Invoice Amount:</div>
                                             <div class="col-md-7">
@@ -101,34 +101,34 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-5">Comments:</div>
-                                            <div class="col-md-7">
-                                                <textarea *ngIf="isEditInvoice==false" id="svActinvComments" [(ngModel)]="invoice.comments" class="form-control"></textarea>
-                                                <span style="height:100px" *ngIf="isEditInvoice==true">{{invoice.comments}}</span>
-                                            </div>
-                                        </div>
+                                  <div class="col-md-6">
+                                    <div class="row">
+                                      <div class="col-md-5">Invoice (PDF Name):</div>
+                                      <div class="col-md-7">
+                                        <input type="text" *ngIf="isEditInvoice==false" id="svActinvInVPdfName" [(ngModel)]="invoice.pdfName" class="form-control">
+                                        <span *ngIf="isEditInvoice==true">{{invoice.pdfName}}</span>
+                                      </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-5">Invoice (PDF Name):</div>
-                                            <div class="col-md-7">
-                                                <input type="text" *ngIf="isEditInvoice==false" id="svActinvInVPdfName" [(ngModel)]="invoice.pdfName" class="form-control">
-                                                <span *ngIf="isEditInvoice==true">{{invoice.pdfName}}</span>
-                                            </div>
-                                        </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="row">
+                                      <div class="col-md-5">Upload:</div>
+                                      <div class="col-md-7">
+                                        <button type="button" class="btn btn-primary" id="svActinvUpload" (click)="uploadInvoice(invoice)">Upload</button>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="row">
+                                      <div class="col-md-2">Comments:</div>
+                                      <div class="col-md-10">
+                                        <textarea [(ngModel)]="invoice.comments" class="form-control" style="margin-left: 30px;width: 95%;height: 84px;"></textarea>
+                                        <!--<span style="height:80px" *ngIf="true">{{invoice.comments}}</span>-->
+                                      </div>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-5">Upload:</div>
-                                            <div class="col-md-7">
-                                                <button type="button" class="btn btn-primary" id="svActinvUpload" (click)="uploadInvoice(invoice)">Upload</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                  </div>                                   
 
                                     <div class="col-md-6">
                                         <div class="row">
@@ -139,7 +139,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" style="margin-top: 6px!important;">
                                         <div class="row">
                                             <div class="col-md-5">Downdload:</div>
                                             <div class="col-md-7">
@@ -150,20 +150,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="row">
-
-                                        </div>
+                                  <div class="col-md-12" style="margin-top: 7px;">
+                                    <div class="row">
+                                      <div class="col-md-4">
+                                        <div clas="clearfix"></div>
+                                      </div>
+                                      <div class="col-md-4"><button type="button" class="btn btn-default" id="svActinvCancel" (click)="cancel()">Close</button></div>
+                                      <div class="col-md-4">
+                                        <div clas="clearfix"></div>
+                                      </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-6" style="margin-left:140px;margin-top:12px">
-                                                <button type="button" class="btn btn-default" id="svActinvCancel" style="width:164px" (click)="cancel()">Close</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
+                                  </div>
                                 </div>
                             </div>
                         </div>
