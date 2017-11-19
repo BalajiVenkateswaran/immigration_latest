@@ -1,74 +1,74 @@
 <div class="main-content">
     <div class="clearfix"></div>
     <div class="table-data-forms">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="col-md-12 addresbox box-shadow">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h2>User Info</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" id="profileUserEdit"  *ngIf="isUserEdit==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isUserEdit">
-                                <button type="button" (click)="cancelProfileEdit()" id="profileUserCancel1" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" id="profileUserSave1" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" *ngIf="warningMessage">
-                        <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4"><label for="profileUserfName">First Name<span class="redstar">*</span></label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" id="profileUserfName" [(ngModel)]="userInfo.firstName" [ngClass]="userInfo.firstName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.firstName}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="profileUserlName">Last Name<span class="redstar">*</span></label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" id="profileUserlName" [(ngModel)]="userInfo.lastName" [ngClass]="userInfo.lastName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.lastName}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="profileUserEmail">Email<span class="redstar">*</span></label></div>
-                        <div class="col-md-8">
-                            <span>{{userInfo.emailId}}</span>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="profileUserPhone">Phone Number</label></div>
-                        <div class="col-md-8">
-                            <input type="text" *ngIf="isUserEdit==false" id="profileUserPhone" [(ngModel)]="userInfo.phoneNumber" />
-                            <span *ngIf="isUserEdit==true">{{userInfo.phoneNumber}}</span>
-                        </div>
-                    </div>
+      <div class="col-md-12 addresbox box-shadow" style="padding:12px 12px 12px 7px !important">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-12 addresbox box-shadow">
+            <div class="row">
+              <div class="col-sm-12">
+                <h2>User Info</h2>
+                <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" id="profileUserEdit" *ngIf="isUserEdit==true">Edit</button>
+                <div class="tbl-head-btn" [hidden]="isUserEdit">
+                  <button type="button" (click)="cancelProfileEdit()" id="profileUserCancel1" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="savebtn" id="profileUserSave1" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
                 </div>
+              </div>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-12" *ngIf="showdefaultorg">
-                <div class="col-md-12 addresbox box-shadow">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h2>Default Org</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editDefaultorg()" id="profileUserDefaultOrgEdit" *ngIf="isUserorgEdit==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isUserorgEdit">
-                                <button type="button" (click)="cancelDefaultorg()" id="profileUserDefaultOrgCancel"class="editbtn tbl-head-btn" *ngIf="isUserorgEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" id="profileUserDefaultOrgSave"(click)="saveDefaultorg()" *ngIf="isUserorgEdit==false">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" *ngFor="let org of headerService.organizations">
-                        <div class="col-md-4"><label for="pi-petitiondescription">{{org.orgName}}</label></div>
-                        <div class="col-md-8">
-                            <input type="radio" name="defaultorg" [disabled]="orgdisable" [checked]="org.orgId==defaultorg" [value]="org.orgId" (change)="selDefaultOrg(org)" />
-                        </div>
-                    </div>
-                </div>
+            <div class="row" *ngIf="warningMessage">
+              <div class="col-md-12">
+                <span class="redstar">* Fields are Mandatory.</span>
+              </div>
             </div>
-            <!--<span>Version: {{uiBuildNumber}}</span>-->
+
+            <div class="row">
+              <div class="col-md-4"><label for="profileUserfName">First Name<span class="redstar">*</span></label></div>
+              <div class="col-md-8">
+                <input type="text" *ngIf="isUserEdit==false" id="profileUserfName" [(ngModel)]="userInfo.firstName" [ngClass]="userInfo.firstName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.firstName}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><label for="profileUserlName">Last Name<span class="redstar">*</span></label></div>
+              <div class="col-md-8">
+                <input type="text" *ngIf="isUserEdit==false" id="profileUserlName" [(ngModel)]="userInfo.lastName" [ngClass]="userInfo.lastName == '' ? 'redborder': ''" /><span *ngIf="isUserEdit==true">{{userInfo.lastName}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><label for="profileUserEmail">Email<span class="redstar">*</span></label></div>
+              <div class="col-md-8">
+                <span>{{userInfo.emailId}}</span>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-4"><label for="profileUserPhone">Phone Number</label></div>
+              <div class="col-md-8">
+                <input type="text" *ngIf="isUserEdit==false" id="profileUserPhone" [(ngModel)]="userInfo.phoneNumber" />
+                <span *ngIf="isUserEdit==true">{{userInfo.phoneNumber}}</span>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="col-md-6 col-sm-6 col-xs-12" *ngIf="showdefaultorg">
+          <div class="col-md-12 addresbox box-shadow">
+            <div class="row">
+              <div class="col-sm-12">
+                <h2>Default Org</h2>
+                <button type="submit" class="editbtn  no-marg-right" (click)="editDefaultorg()" id="profileUserDefaultOrgEdit" *ngIf="isUserorgEdit==true">Edit</button>
+                <div class="tbl-head-btn" [hidden]="isUserorgEdit">
+                  <button type="button" (click)="cancelDefaultorg()" id="profileUserDefaultOrgCancel" class="editbtn tbl-head-btn" *ngIf="isUserorgEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="savebtn" id="profileUserDefaultOrgSave" (click)="saveDefaultorg()" *ngIf="isUserorgEdit==false">Save</button>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngFor="let org of headerService.organizations">
+              <div class="col-md-4"><label for="pi-petitiondescription">{{org.orgName}}</label></div>
+              <div class="col-md-8">
+                <input type="radio" name="defaultorg" [disabled]="orgdisable" [checked]="org.orgId==defaultorg" [value]="org.orgId" (change)="selDefaultOrg(org)" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<span>Version: {{uiBuildNumber}}</span>-->
+      </div>
     </div>
 </div>
