@@ -143,7 +143,7 @@
                              [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
                              routerLinkActive="active" style="height:20px;width:43px;">
                               <img src="../../../../assets/images/Clients.png" />
-                              <div class="clearfix"></div> <span style="border-bottom:3px solid #232f3f"> Clients</span>
+                              <div class="clearfix"></div> <span> Clients</span>
                           </a>
                       </li>
                       <li *ngIf="appService.isImmigrationView() || headerService.isDelegatedOrg()">
@@ -152,7 +152,7 @@
                              routerLinkActive="active" style="height:20px;width:56px;">
                               <img src="../../../../assets/images/Pettions.png" />
 
-                              <div class="clearfix"></div> <span style="border-bottom:3px solid #232f3f"> Petitions</span>
+                              <div class="clearfix"></div> <span> Petitions</span>
                           </a>
                       </li>
                       <li *ngIf="!headerService.isDelegatedOrg()" >
@@ -160,7 +160,7 @@
                              [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"
                              routerLinkActive="active" style="width: 80px;height: 20px;">
                               <img src="../../../../assets/images/Organization.png" />
-                              <div class="clearfix"></div> <span style="border-bottom:3px solid #232f3f"> Organization</span>
+                              <div class="clearfix"></div> <span> Organization</span>
                           </a>
                       </li>
                       <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
@@ -169,7 +169,7 @@
                              [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"
                              routerLinkActive="active" style="height:20px;width:51px;">
                               <img src="../../../../assets/images/manage.png" />
-                              <div class="clearfix"></div> <span style="border-bottom:3px solid #232f3f"> Manage</span>
+                              <div class="clearfix"></div> <span> Manage</span>
                           </a>
                       </li>
                       <li *ngIf="!headerService.isDelegatedOrg()">
@@ -177,7 +177,7 @@
                              [ngClass]="[checkForCurrentTab('immiview-petitionreports') ? 'active' : '']"
                              routerLinkActive="active" style="height:20px;width:49px;">
                               <img src="../../../../assets/images/Reports.png" />
-                              <div class="clearfix"></div> <span style="border-bottom:3px solid #232f3f"> Reports</span>
+                              <div class="clearfix"></div> <span> Reports</span>
                           </a>
                       </li>
                       <li>
@@ -185,7 +185,7 @@
                              [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
                              routerLinkActive="active" style="height:20px;width:40px;">
                               <img src="../../../../assets/images/Profile.png" />
-                              <div class="clearfix"></div> <span style="border-bottom:3px solid #232f3f"> Profile</span>
+                              <div class="clearfix"></div> <span> Profile</span>
                           </a>
                       </li>
 
@@ -196,7 +196,7 @@
                              [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-Petitions"></span>
-                              <div class="clearfix"></div>Petitions
+                              <div class="clearfix"></div><span>Petitions</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -205,7 +205,7 @@
                              [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-clientdetails"></span>
-                              <div class="clearfix"></div><span ></span> Client Details
+                              <div class="clearfix"></div><span >Client Details</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -214,7 +214,7 @@
                              [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-clientdocuments"></span>
-                              <div class="clearfix"></div> Documents
+                              <div class="clearfix"></div> <span>Documents</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -223,7 +223,7 @@
                              [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-clientQuestionnaire"></span>
-                              <div class="clearfix"></div> Questionnaire
+                              <div class="clearfix"></div> <span>Questionnaire</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -232,7 +232,7 @@
                              [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-clientrquests"></span>
-                              <div class="clearfix"></div> Requests
+                              <div class="clearfix"></div> <span>Requests</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -241,18 +241,10 @@
                              [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
                              routerLinkActive="active">
                               <span class="maintab-Profile"></span>
-                              <div class="clearfix"></div>Profile
+                              <div class="clearfix"></div><span>Profile</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
-                      <!--<li>
-                          <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');" [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']" routerLinkActive="active">
-                              <span class="maintab-Reports"></span>
-                              <div class="clearfix"></div>
-                              Profile
-                              <div class="arrow-up"></div>
-                          </a>
-                      </li>-->
 
                   </ul>
                   <ul *ngIf="appService.isSuperUserView()">

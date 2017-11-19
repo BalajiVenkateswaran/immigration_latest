@@ -461,8 +461,8 @@ section .left-opened, section .rightwithmenu {
   position: absolute;
   top: 155px;
   bottom: 0px;
-  height: calc(100vh - 171px); 
-  
+  height: calc(100vh - 171px);
+
 }
 section .left-opened {
   left: 0px;
@@ -1631,14 +1631,15 @@ tr.i129htblRow:nth-child(even) {
                 padding: 3px 1px 0px 10px;
             }
 /*Client-Tab Styles ends*/
-#MainMenuListItems li a span{ 
-    display:none;   
+#MainMenuListItems li a span{
+    display:block;
 }
-#MainMenuListItems li a:hover span{ 
-    display:block;   
+#MainMenuListItems li a:hover span{
+    display:block;
 }
 #MainMenuListItems li a.active span {
-display:block;
+  display:block;
+  border-bottom:3px solid #232f3f;
 }
 header .mainmenu ul li a:hover, header .mainmenu ul li a:focus,header .mainmenu ul li a.active{
      border-bottom:none !important;
