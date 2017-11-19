@@ -7,10 +7,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>User Info</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="editProfileForm()" id="profileUserEdit" *ngIf="isUserEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editProfileForm()" id="profileUserEdit" *ngIf="isUserEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isUserEdit">
-                  <button type="button" (click)="cancelProfileEdit()" id="profileUserCancel1" class="editbtn tbl-head-btn" *ngIf="isUserEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" id="profileUserSave1" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
+                  <button type="button" (click)="cancelProfileEdit()" id="profileUserCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isUserEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="profileUserSave1" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -53,10 +53,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Default Org</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="editDefaultorg()" id="profileUserDefaultOrgEdit" *ngIf="isUserorgEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editDefaultorg()" id="profileUserDefaultOrgEdit" *ngIf="isUserorgEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isUserorgEdit">
-                  <button type="button" (click)="cancelDefaultorg()" id="profileUserDefaultOrgCancel" class="editbtn tbl-head-btn" *ngIf="isUserorgEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" id="profileUserDefaultOrgSave" (click)="saveDefaultorg()" *ngIf="isUserorgEdit==false">Save</button>
+                  <button type="button" (click)="cancelDefaultorg()" id="profileUserDefaultOrgCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isUserorgEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="profileUserDefaultOrgSave" (click)="saveDefaultorg()" *ngIf="isUserorgEdit==false">Save</button>
                 </div>
               </div>
             </div>

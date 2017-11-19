@@ -9,10 +9,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Work Address</h2>
-                <button type="submit" (click)="addressedit('WORK')" value="Edit" class="editbtn  no-marg-right" id="ivClientAdrInfEdit" *ngIf="workedit==true">Edit</button>
+                <button type="submit" (click)="addressedit('WORK')" value="Edit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" id="ivClientAdrInfEdit" *ngIf="workedit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="workedit">
-                  <button type="button" (click)="cancelEdit('WORK')" id="ivClientAdrInfCancel1" class="editbtn tbl-head-btn" *ngIf="workedit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" id="ivClientAdrInfSave1" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
+                  <button type="button" (click)="cancelEdit('WORK')" id="ivClientAdrInfCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="workedit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="ivClientAdrInfSave1" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
                 </div>
 
 
@@ -83,8 +83,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="workedit">
-                  <button type="button" (click)="cancelEdit('WORK')" id="ivClientAdrInfCancel2" class="editbtn tbl-head-btn bottombtns" *ngIf="workedit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" id="ivClientAdrInfSave2" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
+                  <button type="button" (click)="cancelEdit('WORK')" id="ivClientAdrInfCancel2"class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px; margin-top: 0px!important;" *ngIf="workedit==false">Cancel</button>
+                  <button type="submit" value="Save"class="editbtn tbl-head-btn iportal-btnIMclient" style="    margin-top: 0px!important;"  id="ivClientAdrInfSave2" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
                 </div>
 
 
@@ -97,10 +97,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Residence Address</h2>
-                <button type="submit" (click)="addressedit('RESIDENCE')" value="Edit" class="editbtn  no-marg-right" *ngIf="residenceedit==true" id="ivClientAdrInfEdit2">Edit</button>
+                <button type="submit" (click)="addressedit('RESIDENCE')" value="Edit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" *ngIf="residenceedit==true" id="ivClientAdrInfEdit2">Edit</button>
                 <div class="tbl-head-btn" [hidden]="residenceedit">
-                  <button type="button" (click)="cancelEdit('RESIDENCE')" id="ivClientAdrInfCancel3" class="editbtn tbl-head-btn" *ngIf="residenceedit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" id="ivClientAdrInfSave3" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
+                  <button type="button" (click)="cancelEdit('RESIDENCE')" id="ivClientAdrInfCancel3"class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="residenceedit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="ivClientAdrInfSave3" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
                 </div>
 
               </div>
@@ -175,8 +175,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="residenceedit">
-                  <button type="button" (click)="cancelEdit('RESIDENCE')" class="editbtn tbl-head-btn bottombtns" id="ivClientAdrInfResCancel" *ngIf="residenceedit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" (click)="saveClientAdress('RESIDENCE')" id="ivClientAdrInfResSave" *ngIf="residenceedit==false">Save</button>
+                  <button type="button" (click)="cancelEdit('RESIDENCE')" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" id="ivClientAdrInfResCancel" *ngIf="residenceedit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="    margin-top: 0px!important;" (click)="saveClientAdress('RESIDENCE')" id="ivClientAdrInfResSave" *ngIf="residenceedit==false">Save</button>
                 </div>
 
               </div>
@@ -188,10 +188,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Mailing Address</h2>
-                <button type="submit" (click)="addressedit('MAILING')" value="Edit" id="ivClientAdrInfMailEdit" class="editbtn  no-marg-right" *ngIf="mailingedit==true">Edit</button>
+                <button type="submit" (click)="addressedit('MAILING')" value="Edit" id="ivClientAdrInfMailEdit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" *ngIf="mailingedit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="mailingedit">
-                  <button type="button" (click)="cancelEdit('MAILING')" id="ivClientAdrInfMailCancel" class="editbtn tbl-head-btn" *ngIf="mailingedit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" id="ivClientAdrInfMailSave" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
+                  <button type="button" (click)="cancelEdit('MAILING')" id="ivClientAdrInfMailCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="mailingedit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="ivClientAdrInfMailSave" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -248,8 +248,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="mailingedit">
-                  <button type="button" (click)="cancelEdit('MAILING')" id="ivClientAdrInfMailCancel1" class="editbtn tbl-head-btn bottombtns" *ngIf="mailingedit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" id="ivClientAdrInfMailSave1" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
+                  <button type="button" (click)="cancelEdit('MAILING')" id="ivClientAdrInfMailCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;"  *ngIf="mailingedit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;" id="ivClientAdrInfMailSave1" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -260,10 +260,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Foreign Address</h2>
-                <button type="submit" (click)="addressedit('FOREIGN')" value="Edit" id="ivClientAdrInfForEdit" class="editbtn  no-marg-right" *ngIf="foreignedit==true">Edit</button>
+                <button type="submit" (click)="addressedit('FOREIGN')" value="Edit" id="ivClientAdrInfForEdit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" *ngIf="foreignedit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="foreignedit">
-                  <button type="button" (click)="cancelEdit('FOREIGN')" id="ivClientAdrInfForCancel" class="editbtn tbl-head-btn" *ngIf="foreignedit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" id="ivClientAdrInfForSave" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
+                  <button type="button" (click)="cancelEdit('FOREIGN')" id="ivClientAdrInfForCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="foreignedit==false">Cancel</button>
+                  <button type="submit" value="Save"class="editbtn tbl-head-btn iportal-btnIMclient" id="ivClientAdrInfForSave" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -320,8 +320,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="foreignedit">
-                  <button type="button" (click)="cancelEdit('FOREIGN')" id="ivClientAdrInfForCancel1" class="editbtn tbl-head-btn bottombtns" *ngIf="foreignedit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" id="ivClientAdrInfForSave1" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
+                  <button type="button" (click)="cancelEdit('FOREIGN')" id="ivClientAdrInfForCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="foreignedit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;" id="ivClientAdrInfForSave1" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
                 </div>
               </div>
             </div>

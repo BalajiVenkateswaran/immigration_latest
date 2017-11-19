@@ -7,10 +7,10 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Current Job Info</h2>
-                            <button type="submit" class="editbtn  no-marg-right" (click)="editJobInfoForm()" id="ivClientDtlsJDtlsEdit" *ngIf="isjobdetailsEdit==true">Edit</button>
+                            <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editJobInfoForm()" id="ivClientDtlsJDtlsEdit" *ngIf="isjobdetailsEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
-                                <button type="button" (click)="cancelJobInfoEdit()" id="ivClientDtlsJDtlsCancel" class="editbtn tbl-head-btn" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="savebtn" id="ivClientDtlsJDtlsSave" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                                <button type="button" (click)="cancelJobInfoEdit()" id="ivClientDtlsJDtlsCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="ivClientDtlsJDtlsSave" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
@@ -109,8 +109,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
-                                <button type="button" (click)="cancelJobInfoEdit()" id="ivClientDtlsJDtlsCancel1" class="editbtn tbl-head-btn bottombtns" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" id="ivClientDtlsJDtlsSave1" class="savebtn bottombtns" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                                <button type="button" (click)="cancelJobInfoEdit()" id="ivClientDtlsJDtlsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 4px!important;" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                                <button type="submit" value="Save" id="ivClientDtlsJDtlsSave1" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
                             </div>
                         </div>
                     </div>

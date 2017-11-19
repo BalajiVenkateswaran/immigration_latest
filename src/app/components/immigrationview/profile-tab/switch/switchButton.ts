@@ -1,4 +1,4 @@
-﻿import { AppService } from '../../../../services/app.service';
+import { AppService } from '../../../../services/app.service';
 import { profileswitchservice } from './switch.service';
 import { Component} from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular/main';
@@ -9,7 +9,7 @@ import {ApplicationRoles} from '../../../common/constants/applicationroles.const
 @Component({
     template: `
     <div>
-     <button class="iportal-btn" id="{{this.getId()}}" [ngClass]="{'myclass':switchdisable,'iportal-btn':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
+     <button class="iportal-btnIMclient" id="{{this.getId()}}" [ngClass]="{'myclass':switchdisable,'iportal-btnIMclient':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
     </div>
    `
 

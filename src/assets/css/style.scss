@@ -1262,19 +1262,23 @@ display:block;
 aside.left-opened.smoothness.loginScreen{display:none;}
 
 .tbl-head-btn {
+  float: right;
+  height: 36px!important;
+
+  .savebtn {
+    margin: -30px 10px 20px 0;
+    float: left;
+  }
+
+  .savelaterbtn {
+    float: left;
+    width: auto !important;
+  }
+
+  .saveinformbtn {
     float: right;
-.savebtn {
-    margin:-30px 10px 20px 0;
-        float: left;
-}
-.savelaterbtn {
-        float: left;
-        width:auto !important;
-}
-.saveinformbtn {
-        float: right;
-        width:auto !important;
-}
+    width: auto !important;
+  }
 }
 
 

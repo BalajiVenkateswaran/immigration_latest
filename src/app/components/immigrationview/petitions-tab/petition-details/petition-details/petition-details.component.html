@@ -13,10 +13,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Petition Information</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="onEditPetitionInfoClick()" *ngIf="isPetitionInformationEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditPetitionInfoClick()" *ngIf="isPetitionInformationEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isPetitionInformationEdit">
-                  <button type="button" (click)="onCancelPetitionInfoClick()" class="editbtn tbl-head-btn" *ngIf="isPetitionInformationEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save</button>
+                  <button type="button" (click)="onCancelPetitionInfoClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPetitionInformationEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -182,8 +182,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="isPetitionInformationEdit">
-                  <button type="button" (click)="onCancelPetitionInfoClick()" class="editbtn tbl-head-btn bottombtns" *ngIf="isPetitionInformationEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save</button>
+                  <button type="button" (click)="onCancelPetitionInfoClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-top: 4px!important;margin-left: 4px;" *ngIf="isPetitionInformationEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;" (click)="onSavePetitionInfoClick()" *ngIf="isPetitionInformationEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -196,10 +196,10 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>Receipt Information</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="onEditReceiptInfoClick()" *ngIf="isReceiptInfoEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditReceiptInfoClick()" *ngIf="isReceiptInfoEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isReceiptInfoEdit">
-                  <button type="button" (click)="onCancelReceiptInfoClick()" class="editbtn tbl-head-btn" *ngIf="isReceiptInfoEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" (click)="onSaveReceiptInfoClick()" *ngIf="isReceiptInfoEdit==false">Save</button>
+                  <button type="button" (click)="onCancelReceiptInfoClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isReceiptInfoEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" (click)="onSaveReceiptInfoClick()" *ngIf="isReceiptInfoEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -287,8 +287,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="tbl-head-btn" [hidden]="isReceiptInfoEdit">
-                  <button type="button" (click)="onCancelReceiptInfoClick()" class="editbtn tbl-head-btn bottombtns" *ngIf="isReceiptInfoEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" (click)="onSaveReceiptInfoClick()" *ngIf="isReceiptInfoEdit==false">Save</button>
+                  <button type="button" (click)="onCancelReceiptInfoClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-top: 4px!important;margin-left: 4px;" *ngIf="isReceiptInfoEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;" (click)="onSaveReceiptInfoClick()" *ngIf="isReceiptInfoEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -300,10 +300,10 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>Additional Details</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="onEditAdditionalDetailsClick()" *ngIf="isAdditionalDetailsEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditAdditionalDetailsClick()" *ngIf="isAdditionalDetailsEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isAdditionalDetailsEdit">
-                  <button type="button" (click)="onCancelAdditionalDetailsClick()" class="editbtn tbl-head-btn" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" (click)="onSaveAdditionalDetailsClick()" *ngIf="isAdditionalDetailsEdit==false">Save</button>
+                  <button type="button" (click)="onCancelAdditionalDetailsClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" (click)="onSaveAdditionalDetailsClick()" *ngIf="isAdditionalDetailsEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -339,8 +339,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="tbl-head-btn" [hidden]="isAdditionalDetailsEdit">
-                  <button type="button" (click)="onCancelAdditionalDetailsClick()" class="editbtn tbl-head-btn bottombtns" *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" (click)="onSaveAdditionalDetailsClick()" *ngIf="isAdditionalDetailsEdit==false">Save</button>
+                  <button type="button" (click)="onCancelAdditionalDetailsClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 4px!important;"   *ngIf="isAdditionalDetailsEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;" (click)="onSaveAdditionalDetailsClick()" *ngIf="isAdditionalDetailsEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -352,10 +352,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Sponsor Information On Form</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="onEditSponsorInfoClick()" *ngIf="isSponsorInfoEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditSponsorInfoClick()" *ngIf="isSponsorInfoEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
-                  <button type="button" (click)="cancelSponsorInfoEdit()" class="editbtn tbl-head-btn" *ngIf="isSponsorInfoEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" (click)="onSaveSponsorInfoClick()" *ngIf="isSponsorInfoEdit==false">Save</button>
+                  <button type="button" (click)="cancelSponsorInfoEdit()"  class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isSponsorInfoEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" (click)="onSaveSponsorInfoClick()" *ngIf="isSponsorInfoEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -489,8 +489,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
-                  <button type="button" (click)="onCancelSponsorInfoClick()" class="editbtn tbl-head-btn bottombtns" *ngIf="isSponsorInfoEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" (click)="onSaveSponsorInfoClick()" *ngIf="isSponsorInfoEdit==false">Save</button>
+                  <button type="button" (click)="onCancelSponsorInfoClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 4px!important;" *ngIf="isSponsorInfoEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;" (click)="onSaveSponsorInfoClick()" *ngIf="isSponsorInfoEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -501,10 +501,10 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>LCA Information</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="onEditLCAInfoClick()" *ngIf="isLCAInfoEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditLCAInfoClick()" *ngIf="isLCAInfoEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isLCAInfoEdit">
-                  <button type="button" (click)="onCancelLCAInfoClick()" class="editbtn tbl-head-btn" *ngIf="isLCAInfoEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" (click)="onSaveLCAInfoClick()" *ngIf="isLCAInfoEdit==false">Save</button>
+                  <button type="button" (click)="onCancelLCAInfoClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isLCAInfoEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" (click)="onSaveLCAInfoClick()" *ngIf="isLCAInfoEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -574,8 +574,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="tbl-head-btn" [hidden]="isLCAInfoEdit">
-                  <button type="button" (click)="onCancelLCAInfoClick()" class="editbtn tbl-head-btn bottombtns" *ngIf="isLCAInfoEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn bottombtns" (click)="onSaveLCAInfoClick()" *ngIf="isLCAInfoEdit==false">Save</button>
+                  <button type="button" (click)="onCancelLCAInfoClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-top: 4px!important;margin-left: 4px;" *ngIf="isLCAInfoEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;" (click)="onSaveLCAInfoClick()" *ngIf="isLCAInfoEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -587,10 +587,10 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>Delegated Orgs</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="onEditDelegatedOrgsClick()" *ngIf="isDelegatedOrgsEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditDelegatedOrgsClick()" *ngIf="isDelegatedOrgsEdit==true">Edit</button>
                 <div class="tbl-head-btn">
-                  <button type="button" (click)="onCancelDelegatedOrgsClick()" class="editbtn tbl-head-btn" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" (click)="onSaveDelegatedOrgsClick()" *ngIf="isDelegatedOrgsEdit==false">Save</button>
+                  <button type="button" (click)="onCancelDelegatedOrgsClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isDelegatedOrgsEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"(click)="onSaveDelegatedOrgsClick()" *ngIf="isDelegatedOrgsEdit==false">Save</button>
                 </div>
               </div>
             </div>

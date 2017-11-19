@@ -10,10 +10,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Passport</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="editForm()" id="ivClientDtlsPInfoEdit" *ngIf="isEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editForm()" id="ivClientDtlsPInfoEdit" *ngIf="isEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isEdit">
-                  <button type="button" (click)="cancelEdit()" id="ivClientDtlsPInfoCancel" class="editbtn tbl-head-btn" *ngIf="isEdit==false">Cancel</button>
-                  <button type="submit" value="Save" id="ivClientDtlsPInfoSave" class="savebtn" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
+                  <button type="button" (click)="cancelEdit()" id="ivClientDtlsPInfoCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isEdit==false">Cancel</button>
+                  <button type="submit" value="Save" id="ivClientDtlsPInfoSave" class="editbtn tbl-head-btn iportal-btnIMclient" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
                 </div>
               </div>
 
@@ -112,8 +112,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="isEdit">
-                  <button type="button" (click)="cancelEdit()" id="ivClientDtlsPInfoCancel1" class="editbtn tbl-head-btn bottombtns" *ngIf="isEdit==false">Cancel</button>
-                  <button type="submit" value="Save" id="ivClientDtlsPInfoSave1" class="savebtn bottombtns" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
+                  <button type="button" (click)="cancelEdit()" id="ivClientDtlsPInfoCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 4px!important;"*ngIf="isEdit==false">Cancel</button>
+                  <button type="submit" value="Save" id="ivClientDtlsPInfoSave1" class="editbtn tbl-head-btn iportal-btnIMclient" style="    margin-top: 4px!important;" (click)="saveClientPassport()" *ngIf="isEdit==false">Save</button>
                 </div>
               </div>
 
