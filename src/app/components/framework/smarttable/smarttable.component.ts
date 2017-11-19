@@ -272,6 +272,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
             this.isAddButtonEnable = true;
         }
         this.gridOptions.domLayout = 'autoHeight';
+        this.gridOptions.rowBuffer = 100;
         if (this.settings.hasOwnProperty('rowHeight')) {
             this.gridOptions['rowHeight'] = this.settings['rowHeight'];
         } else {
