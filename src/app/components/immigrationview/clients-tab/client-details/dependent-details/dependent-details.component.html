@@ -10,10 +10,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Profile</h2>
-                <button type="submit" class="editbtn  no-marg-right" id="ivClientDtlsDepDtlsEdit" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;"  id="ivClientDtlsDepDtlsEdit" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isProfileEdit">
-                  <button type="button" (click)="cancelProfileEdit()" id="ivClientDtlsDepDtlsCancel1" class="editbtn tbl-head-btn" *ngIf="isProfileEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="savebtn" id="ivClientDtlsDepDtlsSave1" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
+                  <button type="button" (click)="cancelProfileEdit()" id="ivClientDtlsDepDtlsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isProfileEdit==false">Cancel</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  id="ivClientDtlsDepDtlsSave1" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
                 </div>
               </div>
 
@@ -67,10 +67,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2>Personal Info</h2>
-                <button type="submit" class="editbtn  no-marg-right" (click)="editPersonalInfoForm()" id="ivClientDtlsDepDtlsPInfoEdit" *ngIf="isPersonalInfoEdit==true">Edit</button>
+                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editPersonalInfoForm()" id="ivClientDtlsDepDtlsPInfoEdit" *ngIf="isPersonalInfoEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
-                  <button type="button" (click)="cancelPersonalInfoEdit()" id="ivClientDtlsDepDtlsPInfoCancel" class="editbtn tbl-head-btn" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                  <button type="submit" value="Save" id="ivClientDtlsDepDtlsPInfoSave" class="savebtn no-marg-right" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+                  <button type="button" (click)="cancelPersonalInfoEdit()" id="ivClientDtlsDepDtlsPInfoCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
+                  <button type="submit" value="Save" id="ivClientDtlsDepDtlsPInfoSave" class="editbtn tbl-head-btn iportal-btnIMclient"  (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                 </div>
               </div>
 

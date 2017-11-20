@@ -13,13 +13,16 @@
         <div class="addedfilter" *ngFor="let x of smartTable.queryParameters.filter let i=index">
           <span class="filtretype">{{x.fieldHeader}} :</span><span class="filtrename">{{x.fieldValue}}</span><span class="close" (click)="deleteFilter(i,x)">&times;</span>
         </div>
-        <div><span (click)="clearAllFilters()" style="cursor: pointer;">clear all</span></div>
+          <div>
+              <!--<span (click)="clearAllFilters()" style="cursor: pointer;">clear all</span>-->
+              <button type="button" class="iportal-btnIMclient" style="cursor: pointer;" (click)="clearAllFilters()">clear all</button>
+          </div>  
+        </div>
       </div>
       <button *ngIf="smartTable.isAddButtonEnable" type="button" class="pull-right no-marg-right agridadd iportal-btnIMclient" (click)="onAddClick()">ADD</button>
     </div>
     <div class="clearfix"></div>
   </div>
-</div>
 <div *ngIf="addMorefilters">
     <div class="modal-dialog" ngDraggable>
         <div class="modal-content">
