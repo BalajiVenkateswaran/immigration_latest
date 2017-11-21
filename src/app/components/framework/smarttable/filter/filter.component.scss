@@ -5,7 +5,7 @@
   float:left;
   .filters {
     font-size:14px;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
     span {
       float:left;
       margin:5px 12px 0 0;
@@ -18,10 +18,20 @@
       background: url(../../../../../assets/images/add-circular-outlined-button.png) no-repeat 0 0;
       float:left;
     }
-
+    .immiview-clienttab-petitions{
+        .filters-container {
+            .filters-container[_ngcontent-c1]   .filters[_ngcontent-c1]   .styled-select[_ngcontent-c1]{
+                display:none !important;
+            }
+        }
+    }
+    .addbtnnsmart{
+        margin-top: -42px !important;
+        margin-right: 9px !important;
+    }
     .styled-select {
-      height: 29px;
-      overflow: hidden;
+      /*height: 29px;
+      overflow: hidden;*/
       /*width: 240px;*/
 
       select {

@@ -152,14 +152,18 @@ placeholder :-ms-input-placeholder {
 .iportal-btnIMclient {
   margin: 0px 20px 0 0;
   width: auto;
-  height: 29px;
+  height: 30px;
   padding: 6px 12px;
   font-size: 13px;
   border:1px solid #5093E1;
   background: #F6F7FA;
   color: #5093E1 !important;
   border-radius: 5px; }
-
+.headerinsections{
+    height: 40px!important;
+    padding: 10px 0px 0px 10px !important;
+    background-color: #EFEFEF !important;
+}
 /*Login page css*/
 .login-bg {
   background: url("../images/Login_bg.jpg") no-repeat;
@@ -686,7 +690,7 @@ section .rightwithoutmenu {
       color: #5093e1 !important;
       font-size: 18px;
       text-transform: uppercase;
-      border-bottom: solid 1px #edeff5;
+      /*border-bottom: solid 1px #edeff5;*/
       /*border-color: rgba(255, 255, 255, 0.2);*/
       padding: 0px 0 12px 0px;
       font-weight: 500;
