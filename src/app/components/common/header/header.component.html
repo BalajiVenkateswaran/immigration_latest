@@ -36,7 +36,7 @@
                       <!--<button *ngIf="appService.isImmigrationView()" type="submit" class="btn iportal-btnIMclient" style="position: absolute;right: 0px;bottom: -65px;z-index:9999;" (click)="usageSummery = !usageSummery">Usage Summary</button>-->
                       <div class="usagesummery" style="" *ngIf="usageSummery">
                           <div class="usheader">
-                              <h2>Account Usage Summery </h2>
+                              <h2>Account Usage Summary </h2>
                               <button type="button" class="close" (click)="onUsageSummaryClose()">&times;</button>
                               <!--<i class="fa fa-times" aria-hidden="true"></i>-->
 
@@ -50,7 +50,7 @@
                                 <div class="col-md-4">Storage Type</div>
                                 <div class="col-md-8">{{headerComponentService.usageSummaryDetails.storageType}}</div>
                                 <!--<div class="col-md-8">S3 <a href="" class="upgrade pull-right">Upgrade</a></div>-->
-                                  <div class="clear"></div>
+                                <div class="clear"></div>
                               </div>
                           </div>
                           <div class="usbody">

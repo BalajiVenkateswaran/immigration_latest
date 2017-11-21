@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div *ngIf="viewPopup" ngDraggable>
+<div *ngIf="viewPopup">
     <div class="modal-dialog"  style="margin-top:7% !important;">
         <div class="modal-content">
             <div class="modal-header">
@@ -93,6 +93,15 @@
                                         </select>
                                         <span *ngIf="isEditProducts==true">{{product.productType}}</span>
                                     </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-5">Validation Type:</div>
+                                  <div class="col-md-7">
+                                    <select *ngIf="isEditProducts==false" [(ngModel)]="product.validationType" class="form-control">
+                                      <option [value]="x.value" *ngFor="let x of validationTypeValues" id="{{x.name}}">{{x.name}}</option>
+                                    </select>
+                                    <span *ngIf="isEditProducts==true">{{product.validationType}}</span>
+                                  </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Status:</div>

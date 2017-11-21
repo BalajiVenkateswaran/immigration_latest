@@ -2,9 +2,9 @@ import { AppService } from '../../../../services/app.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { ProductCatalogProductService } from './product-catalog.service';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
 
 export interface ConfirmModel {
   title: string;
@@ -17,7 +17,7 @@ export interface ConfirmModel {
 
 }
 @Component({
-  selector: 'app-superuserview-productcatalog',
+  selector: 'ih-superuserview-productcatalog',
   templateUrl: './product-catalog.component.html',
   styleUrls: ['./product-catalog.component.sass']
 })
@@ -33,11 +33,12 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   public viewPopup: boolean;
   public product: any = {};
   public addProduct: any = {};
-  public getData: boolean = true;
-  public editFlag: boolean = true;
-  public isEditProducts: boolean = true;
-  public warningMessage: boolean = false;
+  public getData = true;
+  public editFlag = true;
+  public isEditProducts = true;
+  public warningMessage = false;
   public statusTypes: any = [];
+  public validationTypeValues: any = [];
 
   constructor(public appService: AppService, public dialogService: DialogService, public productCatalogProductService: ProductCatalogProductService,
               private menuComponent: MenuComponent, public headerService: HeaderService) {
@@ -58,97 +59,108 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
       'isDeleteEnable': false,
       'customPanel': true,
       'defaultFilter': [{
-        headingName: "status",
-        headerName: "Status",
-        filterValue: "Active"
+        headingName: 'status',
+        headerName: 'Status',
+        filterValue: 'Active'
       }
       ],
       'columnsettings': [
         {
-          headerName: "Name",
-          field: "name",
-          type:'text'
+          headerName: 'Name',
+          field: 'name',
+          type: 'text'
         },
         {
-          headerName: "Code",
-          field: "code",
-          type:'text'
+          headerName: 'Code',
+          field: 'code',
+          type: 'text'
         },
         {
-          headerName: "Max Users",
-          field: "maxUsers",
-          type:'text'
+          headerName: 'Max Users',
+          field: 'maxUsers',
+          type: 'text'
         },
         {
-          headerName: "Max Orgs",
-          field: "maxOrgs",
-          type:'text'
+          headerName: 'Max Orgs',
+          field: 'maxOrgs',
+          type: 'text'
         },
         {
-          headerName: "Max Clients/Month",
-          field: "maxClientsPerMonth",
-          type:'text'
+          headerName: 'Max Clients/Month',
+          field: 'maxClientsPerMonth',
+          type: 'text'
         },
         {
-          headerName: "Max Petitions/Month",
-          field: "maxPetitionsPerMonth",
-          type:'text'
+          headerName: 'Max Petitions/Month',
+          field: 'maxPetitionsPerMonth',
+          type: 'text'
         },
         {
-          headerName: "Max S3 Storage",
-          field: "maxS3Storage",
-          type:'text'
+          headerName: 'Max S3 Storage',
+          field: 'maxS3Storage',
+          type: 'text'
         },
         {
-          headerName: "Cost",
-          field: "cost",
-          type:'text'
+          headerName: 'Cost',
+          field: 'cost',
+          type: 'text'
         },
         {
-          headerName: "Type",
-          field: "productType",
-          type:'text'
+          headerName: 'Type',
+          field: 'productType',
+          type: 'text'
         },
         {
-          headerName: "Status",
-          field: "status",
-          type:'dropDown',
-          data:this.statusTypes
+          headerName: 'Status',
+          field: 'status',
+          type: 'dropDown',
+          data: this.statusTypes
         },
         {
-          headerName: "Created On",
-          field: "createdOn",
-          type:'datePicker'
+          headerName: 'Created On',
+          field: 'createdOn',
+          type: 'datePicker'
         }
       ]
     }
     this.typeValues = [
       {
-        "value": "Plan",
-        "name": "Plan"
+        'value': 'Plan',
+        'name': 'Plan'
       },
       {
-        "value": "UserAdOn",
-        "name": "User Add On"
+        'value': 'UserAdOn',
+        'name': 'User Add On'
       },
       {
-        "value": "ClientAddOn",
-        "name": "Client Add On"
+        'value': 'ClientAddOn',
+        'name': 'Client Add On'
       },
       {
-        "value": "PetitionAddOn",
-        "name": "Petition Add On"
+        'value': 'PetitionAddOn',
+        'name': 'Petition Add On'
       },
       {
-        "value": "StorageAddOn",
-        "name": "Storage Add On"
+        'value': 'StorageAddOn',
+        'name': 'Storage Add On'
       }
-    ]
+    ];
+
+    this.validationTypeValues = [
+      {
+        name: 'Monthly',
+        value: 'Monthly'
+      },
+      {
+        name: 'Total',
+        value: 'Total'
+      }];
+
     this.reloadData();
   }
   ngOnInit() {
     this.menuComponent.highlightSBLink('Products');
-    this.headerService.showSideBarMenu("superuserview-product", "ProductCatalog");
+    this.headerService.showSideBarMenu('superuserview-product', 'ProductCatalog');
 
   }
   /*reloadData() {
@@ -176,13 +188,12 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.productCatalogProductService.editProducts(this.appService.addUsers).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.reloadData();
 
           }
         });
-      }
-      else {
+      } else {
 
         this.editFlag = false;
       }
@@ -201,22 +212,22 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.productCatalogProductService.saveProductDetails(this.appService.addUsers).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.reloadData();
             this.addProduct = {};
           }
         });
-      }
-      else {
+      } else {
         this.addProduct = {};
       }
     });
   }
   saveProduct() {
-    if (this.addProduct['name'] == '' || this.addProduct['name'] == null || this.addProduct['name'] == undefined || this.addProduct['code'] == '' || this.addProduct['code'] == null || this.addProduct['code'] == undefined || this.addProduct['cost'] == '' || this.addProduct['cost'] == null || this.addProduct['cost'] == undefined) {
+    if (this.addProduct['name'] === '' || this.addProduct['name'] == null || this.addProduct['name'] === undefined
+      || this.addProduct['code'] === '' || this.addProduct['code'] == null || this.addProduct['code'] === undefined
+      || this.addProduct['cost'] === '' || this.addProduct['cost'] == null || this.addProduct['cost'] === undefined) {
       this.warningMessage = true;
-    }
-    else {
+    } else {
       this.warningMessage = false;
       this.appService.addUsers = this.addProduct;
       this.result = true;
@@ -244,8 +255,8 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     this.close();
   }
   dataWithParameters(queryData) {
-    if(queryData){
-      this.queryParameters=queryData;
+    if (queryData) {
+      this.queryParameters = queryData;
     }
     this.productCatalogProductService.getProductDetailsWithQueryparams(queryData).subscribe(
       res => {
@@ -254,19 +265,19 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
         this.paginationData = res['pageMetadata'];
       })
   }
-  reloadData(){
-    if(this.queryParameters != undefined){
+  reloadData() {
+    if (this.queryParameters !== undefined) {
       this.productCatalogProductService.getProductDetailsWithQueryparams(this.queryParameters).subscribe(
-        res=>{
+        res => {
           this.data = res['products'];
           this.paginationData = res['pageMetadata'];
         }
       )
     }
 
-    if(this.queryParameters == null || this.queryParameters == undefined){
+    if (this.queryParameters == null || this.queryParameters === undefined) {
        this.productCatalogProductService.getProductDetails().subscribe(
-        res=>{
+        res => {
           this.data = res['products'];
         }
       )

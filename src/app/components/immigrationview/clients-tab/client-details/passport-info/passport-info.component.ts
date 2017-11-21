@@ -1,9 +1,9 @@
 import { AppService } from '../../../../../services/app.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {passportInfoService} from "./passport-info.service";
+import {passportInfoService} from './passport-info.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
 
 @Component({
     selector: 'app-passport-info',
@@ -16,11 +16,11 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
     isEdit;
     countryofbirth;
     private saveEditUser: any;
-    public cancelUserEdit: boolean = false;
+    public cancelUserEdit = false;
     private isuanceDate: string;
     private expirationDate: string;
     private dateOfBirth: string;
-    public warningMessage:boolean=false;
+    public warningMessage= false;
     constructor(public appService: AppService, private passportinfoservice: passportInfoService, public headerService: HeaderService) {
     }
 
@@ -33,13 +33,13 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
     ngOnInit() {
         this.passportinfoservice.getFile(this.appService.clientId)
             .subscribe((res) => {
-                console.log("filesGetmethod%o", res);
+                console.log('filesGetmethod%o', res);
                 this.passport = res['passport'];
                 console.log(this.passport);
-                if(this.passport == undefined){
+                if (this.passport == undefined) {
                   this.passport = {};
                 }
-                this.isEdit=true
+                this.isEdit = true
             });
     }
 
@@ -89,14 +89,13 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
         if (this.passport['dateOfBirth'] && this.passport['dateOfBirth']['formatted']) {
             this.passport['dateOfBirth'] = this.passport['dateOfBirth']['formatted'];
         }
-        if (this.passport['isuanceDate'] == "" || this.passport['passportNumber'] == "" || this.passport['issuingCountry'] == "" || this.passport['expirationDate'] == "" || this.passport['dateOfBirth'] == "" ||
+        if (this.passport['isuanceDate'] == '' || this.passport['passportNumber'] == '' || this.passport['issuingCountry'] == '' || this.passport['expirationDate'] == '' || this.passport['dateOfBirth'] == '' ||
             this.passport['isuanceDate'] == undefined || this.passport['passportNumber'] == undefined || this.passport['issuingCountry'] == undefined || this.passport['expirationDate'] == undefined || this.passport['dateOfBirth'] == undefined ||
             this.passport['isuanceDate'] == null || this.passport['passportNumber'] == null || this.passport['issuingCountry'] == null || this.passport['expirationDate'] == null || this.passport['dateOfBirth'] == null
-            || this.passport['countryOfBirth'] == "" || this.passport['countryOfBirth'] == undefined || this.passport['countryOfBirth'] == null) {
-            this.warningMessage=true;
-        }
-        else{
-            this.warningMessage=false;
+            || this.passport['countryOfBirth'] == '' || this.passport['countryOfBirth'] == undefined || this.passport['countryOfBirth'] == null) {
+            this.warningMessage = true;
+        } else {
+            this.warningMessage = false;
              this.passport['clientId'] = this.appService.clientId;
             this.passportinfoservice.savePassport(this.passport, this.headerService.user.userId)
             .subscribe((res) => {

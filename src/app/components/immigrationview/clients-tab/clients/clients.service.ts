@@ -34,13 +34,6 @@ export class ClientsService {
       return this.restService.postData('/client', clientData);
   }
 
-  public updateClient(clientData: client, updatedBy: string) {
-    let req = {
-      client : clientData,
-      updatedBy: updatedBy
-    };
-      return this.restService.postData('/clients/immigration', req);
-  }
   public removeclient(clientId: string, immigrationOfficerId: string) {
       return this.restService.deleteData('/client/' + clientId + '/immigrationOfficerId/' + immigrationOfficerId);
   }
