@@ -488,28 +488,32 @@ $dateColumnWidth:110px;
 .immiviewClientsTable {
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
       width: 10% !important;
-    left: 0% !important;
-}
+      left: 0% !important;
+    }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
-          width: 10% !important;
-    left: 17% !important;
+      width: 10% !important;
+      left: 17% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="email"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="email"] {
-           width: 25%!important;
-    left: 30% !important;
+      width: 25%!important;
+      left: 30% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="phone"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phone"] {
-        width:10% !important;
-       left: 55% !important;
+      width:10% !important;
+      left: 55% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
-        width:10% !important;
-            left: 70% !important;
+      width:7% !important;
+      left: 65% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
+      width:10% !important;
+      left: 72% !important;
     }
    .ag-fresh .ag-ltr .ag-header-cell[col-id~="openPetitions"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="openPetitions"] {
-                width: 10% !important;
-    left: 82% !important;
-        text-align: center;
+      width: 10% !important;
+      left: 82% !important;
+      text-align: center;
     }
  }
 /*.immiview-clienttab-dependents {

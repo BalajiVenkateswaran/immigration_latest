@@ -128,6 +128,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                   data: this.statusTypes
 
                 },
+              {
+                headerName: 'Last Update',
+                field: 'lastUpdate'
+              },
                 {
                     headerName: 'Open Petitions',
                     field: 'openPetitions',
