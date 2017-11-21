@@ -8,6 +8,7 @@ import {RouterModule, Router} from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DragulaModule} from 'ng2-dragula/ng2-dragula';
 import {ChartsModule} from 'ng2-charts';
+import { NgIdleModule } from '@ng-idle/core';
 import Chart from 'chart.js';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 import {ActionColumns} from './components/framework/smarttable/ActionColumns';
@@ -366,7 +367,8 @@ import {InformationComponent} from './components/framework/confirmbox/informatio
         MyDatePickerModule,
         BootstrapModalModule,
         AgGridModule.withComponents([SmartTableFrameworkComponent]),
-        NgbModule.forRoot()],
+        NgbModule.forRoot(),
+      NgIdleModule.forRoot()],
     entryComponents: [
         ClientsComponent, ConfirmComponent, InformationComponent, ConfirmorgComponent, CustomRenderComponent, SmartTableFrameworkComponent, ActionColumns, SendToClientQuestionnaire,
         GenerateFormButton, DownloadButton, RequestButton, CheckListDownloadButtonComponent, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent,

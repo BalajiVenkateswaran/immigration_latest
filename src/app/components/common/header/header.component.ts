@@ -9,6 +9,8 @@ import { HeaderService } from './header.service';
 import {HeaderComponentService} from './header.component.service';
 import {ApplicationRoles} from '../constants/applicationroles.constants';
 import { ConfirmComponent} from "../../framework/confirmbox/confirm.component";
+import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
+
 
 export interface ConfirmModel {
     title: string;
@@ -50,8 +52,21 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
     return this.headerService.currentTab === tab;
   }
   constructor(private router: Router, public appService: AppService, public dialogService: DialogService,
-              public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
+              public headerService: HeaderService, public headerComponentService: HeaderComponentService,private idle: Idle) {
     super(dialogService);
+    //code for no activity for 20 mins
+
+    idle.setIdle(5);
+    idle.setTimeout(1200);
+    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+
+    idle.onTimeout.subscribe(() => {
+      console.log('Timeout');
+      this.headerService.logOut();
+    });
+    idle.watch();
+
+    //code for no activity for 20 mins ends
   }
 
   ngOnInit() {

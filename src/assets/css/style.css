@@ -152,14 +152,18 @@ placeholder :-ms-input-placeholder {
 .iportal-btnIMclient {
   margin: 0px 20px 0 0;
   width: auto;
-  height: 29px;
+  height: 30px;
   padding: 6px 12px;
   font-size: 13px;
   border:1px solid #5093E1;
   background: #F6F7FA;
   color: #5093E1 !important;
   border-radius: 5px; }
-
+.headerinsections{
+    height: 40px!important;
+    padding: 10px 0px 0px 10px !important;
+    background-color: #EFEFEF !important;
+}
 /*Login page css*/
 .login-bg {
   background: url("../images/Login_bg.jpg") no-repeat;
@@ -686,7 +690,7 @@ section .rightwithoutmenu {
       color: #5093e1 !important;
       font-size: 18px;
       text-transform: uppercase;
-      border-bottom: solid 1px #edeff5;
+      /*border-bottom: solid 1px #edeff5;*/
       /*border-color: rgba(255, 255, 255, 0.2);*/
       padding: 0px 0 12px 0px;
       font-weight: 500;
@@ -1159,6 +1163,19 @@ ul.edit-delete,
       cursor: -webkit-grab;
       border: solid 1px #e0e0e0 !important;
       list-style: none; }
+    .gu-transit{
+        box-shadow: 20px 20px 10px grey !important;
+        border:2px solid #C1C1C1 !important;
+         /*display:block !important;
+          color:black !important;*/
+    }
+    .gu-mirror{
+          box-shadow: 20px 20px 10px grey !important;
+        border:2px solid #C1C1C1 !important;
+        display:block !important;
+        color:black !important;    
+        background-color:#04A9FC !important;         
+    }
     .petition-docs .left-form.petition-type-stages-left ul.petition-type-stages li:nth-child(odd), .petition-docs .left-form.petition-type-stages-left #petitionstage:nth-child(odd) {
       background: #f6f9fd; }
     .petition-docs .left-form.petition-type-stages-left ul.petition-type-stages li:nth-child(even), .petition-docs .left-form.petition-type-stages-left #petitionstage:nth-child(even) {

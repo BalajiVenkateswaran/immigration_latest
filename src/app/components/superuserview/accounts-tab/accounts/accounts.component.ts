@@ -8,6 +8,8 @@ import {MenuComponent} from '../../../common/menu/menu.component';
 import {AccountDetailsCommonService} from '../account-details/common/account-details-common.service';
 import {ReportsCommonService} from '../../reports-tab/common/reports-common.service';
 import {HeaderService} from '../../../common/header/header.service';
+import {SortType} from '../../../framework/smarttable/types/query-parameters';
+
 
 export interface ConfirmModel {
   title: string;
@@ -101,6 +103,10 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
           }
         ]
       },
+      'sort': [{
+        headingName: 'creationOn',
+        sort: SortType.DESC
+      }],
       'columnsettings': [
         {
           headerName: 'Account Name',
