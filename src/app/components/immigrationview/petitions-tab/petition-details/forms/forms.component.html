@@ -3,6 +3,8 @@
             <h2 class="clickname" style="width:60%;float:left;" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h2>
             <h2 style="float:right;width:40%; text-align:right;">{{appService.petitionDetails}}</h2>
             <div class="clearfix"></div>
+            <h2 class="headerinsections" style="margin-top: 0px !important;margin-bottom: 7px!important;">Forms</h2>
+            <div class="clearfix"></div>
             <div class="row sfm" *ngIf="errorMessage">
                 <div class="col-md-12">
                     <span class="redstar">PDF is not Generated please fill the form in Questionnaire</span>
