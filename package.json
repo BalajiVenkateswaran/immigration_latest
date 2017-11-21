@@ -27,6 +27,8 @@
     "@angular/platform-server": "^4.4.6",
     "@angular/router": "^4.4.6",
     "@ng-bootstrap/ng-bootstrap": "1.0.0-alpha.20",
+    "@ng-idle/core": "^2.0.0-beta.12",
+    "@ng-idle/keepalive": "^2.0.0-beta.12",
     "@types/file-saver": "0.0.0",
     "ag-grid": "^13.3.1",
     "ag-grid-angular": "^13.3.0",
