@@ -3,7 +3,7 @@
     <div class="table-data">
         <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h2>
         <div class="clearfix"></div>
-        <h2 class="headerinsections" style="margin-top: 0px !important;margin-bottom: 7px!important;">Visas</h2>
+        <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Visas</h2>
         <ih-smart-table class="immiview-clienttab-visas" [settings]="settings" [data]="data"
                    (onAddClick)="addNewVisa($event)" (onRowClick)="editVisas($event)" (onDeleteClick)="deleteVisas($event)"></ih-smart-table>
         <div class="clearfix"></div>
