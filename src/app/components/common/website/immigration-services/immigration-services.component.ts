@@ -43,7 +43,7 @@ export class webImmigrationServicesComponent extends DialogComponent<ConfirmMode
   public loginPopupForm: boolean;
   public userRoles: any = [];
   public forgotpwdsubmit: boolean = true;
-  //Build number format: yy.mm.2 digit build number
+  // Build number format: yy.mm.2 digit build number
   public static uiBuildNumber : string = "17.09.05";
   constructor(
     private router: Router,

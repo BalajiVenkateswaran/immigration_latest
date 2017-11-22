@@ -2,6 +2,7 @@
 import { RestService } from '../../../services/rest.service';
 import {Injectable} from '@angular/core';
 import {ApplicationRoles} from '../constants/applicationroles.constants';
+import {User} from '../../../models/user';
 
 @Injectable()
 export class HeaderService {
@@ -10,7 +11,7 @@ export class HeaderService {
   private _menuSlider: boolean;
   private _organizations: any;
   private _selectedOrg: any;
-  private _user: any;
+  private _user: User;
   private _selectedRoleId: string;
 
   // Tab, SideBar and Subtree variables
@@ -53,11 +54,11 @@ export class HeaderService {
     this._selectedOrg = selectedOrg;
   }
 
-  get user(): any {
+  get user(): User {
     return this._user;
   }
 
-  set user(value: any) {
+  set user(value: User) {
     this._user = value;
   }
 

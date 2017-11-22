@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {ClientDetailsService} from "./client-details.service";
-import {clientdetails} from "../../../../models/clientdetails";
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import {AppService} from "../../../../services/app.service";
-import {ImmigrationViewClientProfile} from "../../../../models/immigrationviewclientprofile";
-import {ImmigrationViewClientPersonalInfo} from "../../../../models/ImmigrationViewClientPersonalInfo";
+import {ClientDetailsService} from './client-details.service';
+import {clientdetails} from '../../../../models/clientdetails';
+import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
+import {ImmigrationViewClientProfile} from '../../../../models/immigrationviewclientprofile';
+import {ImmigrationViewClientPersonalInfo} from '../../../../models/ImmigrationViewClientPersonalInfo';
 
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {User} from "../../../../models/user";
-import {HeaderService} from "../../../common/header/header.service";
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {User} from '../../../../models/user';
+import {HeaderService} from '../../../common/header/header.service';
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 
 
 export interface formControl {
@@ -29,7 +29,7 @@ export class ClientDetailsComponent  implements OnInit {
   private clientdetailsList: any;
   private client: any = {};
 
-  public getCVClientData=true;
+  public getCVClientData= true;
 
 
   public editUser: FormGroup; // our model driven form
@@ -42,7 +42,7 @@ export class ClientDetailsComponent  implements OnInit {
   isProfileEdit;
   isPersonalInfoEdit;
   clientDetails: any = {};
-  public warningMessage: boolean = false;
+  public warningMessage = false;
   private clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
 
   private clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
@@ -57,9 +57,8 @@ export class ClientDetailsComponent  implements OnInit {
   private user: User;
   private beforeCancelProfile;
   private beforeCancelPersonal;
-  constructor(private ClientDetailsService: ClientDetailsService,
-    private formBuilder: FormBuilder, private parserFormatter: NgbDateParserFormatter,
-    public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService,public dialogService: DialogService) {
+  constructor(private formBuilder: FormBuilder, private parserFormatter: NgbDateParserFormatter,
+    public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService, public dialogService: DialogService) {
 
     if (this.headerService.user) {
       this.user = this.headerService.user;
@@ -68,7 +67,7 @@ export class ClientDetailsComponent  implements OnInit {
   }
 
    ngOnInit() {
-    this.headerService.showSideBarMenu("clientView-client", "clientview-client-details");
+    this.headerService.showSideBarMenu('clientView-client', 'clientview-client-details');
      this.clientDetailsService.getClientDetails(this.user.userId)
       .subscribe((res) => {
          if (res['clientDetails']) {
@@ -94,8 +93,8 @@ export class ClientDetailsComponent  implements OnInit {
        {value: 'Mark for Deletion', name: 'Mark for Deletion'}
      ]
      this.gender = [
-       {value: '0', name: 'Male',id:'male'},
-       {value: '1', name: 'Female',id:'female'}
+       {value: '0', name: 'Male', id: 'male'},
+       {value: '1', name: 'Female', id: 'female'}
 
      ]
      this.creationDate = this.clientDetails.creationDate;
@@ -141,12 +140,13 @@ export class ClientDetailsComponent  implements OnInit {
     if (this.clientProfile['creationDate'] && this.clientProfile['creationDate']['formatted']) {
       this.clientDetails['creationDate'] = this.clientDetails['creationDate']['formatted'];
     }
-    if (this.clientDetails['lastName'] == '' || this.clientDetails['lastName'] == null || this.clientDetails['lastName'] == undefined || this.clientDetails['phoneNumber'] == '' || this.clientDetails['phoneNumber'] == null || this.clientDetails['phoneNumber'] == undefined || this.clientDetails['firstName'] == '' || this.clientDetails['firstName'] == null || this.clientDetails['firstName'] == undefined) {
+    if (this.clientDetails['lastName'] === '' || this.clientDetails['lastName'] == null || this.clientDetails['lastName'] === undefined || this.clientDetails['phoneNumber'] === ''
+      || this.clientDetails['phoneNumber'] == null || this.clientDetails['phoneNumber'] === undefined || this.clientDetails['firstName'] === '' || this.clientDetails['firstName'] == null
+      || this.clientDetails['firstName'] === undefined) {
       this.warningMessage = true;
-    }
-    else {
+    } else {
       this.warningMessage = false;
-      this.clientDetailsService.saveClientDetails(this.clientDetails, this.client)
+      this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.headerService.user.userId)
         .subscribe((res) => {
           this.isProfileEdit = true;
           if (res['clientDetails']) {
@@ -158,13 +158,13 @@ export class ClientDetailsComponent  implements OnInit {
 
   }
 
-  //Save Client Details
+  // Save Client Details
   saveClientPersonalInfo() {
     this.mapFromClientPersonalInfo();
     if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
       this.clientDetails['dateOfBirth'] = this.clientDetails['dateOfBirth']['formatted'];
     }
-    this.clientDetailsService.saveClientDetails(this.clientDetails, this.client)
+    this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.headerService.user.userId)
       .subscribe((res) => {
         this.isPersonalInfoEdit = true;
         if (res['clientDetails']) {

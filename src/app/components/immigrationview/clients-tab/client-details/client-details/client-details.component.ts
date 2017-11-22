@@ -10,6 +10,7 @@ import { ImmigrationViewClientDetailsService } from './client-details.service';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { DialogService } from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
+import {ImmigrationClientCommonService} from '../common/immigration-client.service';
 
 @Component({
     selector: 'app-client-details',
@@ -26,7 +27,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     phoneNumber: FormControl;
     ssn: FormControl;
     public phoneRegex;
-    //Profile section variables
+    // Profile section variables
     isProfileEdit;
     isPersonalInfoEdit;
     private status: any[];
@@ -45,7 +46,8 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     private beforeCancelPersonal;
     public disableSendInvite: boolean;
 
-    constructor(public appService: AppService, public headerService: HeaderService, private clientDetailsService: ImmigrationViewClientDetailsService, private dialogService: DialogService) {
+    constructor(public appService: AppService, public headerService: HeaderService, private clientDetailsService: ImmigrationViewClientDetailsService,
+                private dialogService: DialogService, private immigrationClientCommonService: ImmigrationClientCommonService) {
         if (this.headerService.user) {
             this.user = this.headerService.user;
         }
@@ -94,7 +96,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                     this.clientProfile.markForDeletion = this.client['markForDeletion'];
                 }
 
-                if (res['enableSendInvite'] != undefined) {
+                if (res['enableSendInvite'] !== undefined) {
                     this.disableSendInvite = !res['enableSendInvite'];
                 }
 
@@ -107,7 +109,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         this.appService.currentSBLink = link;
     }
 
-    //is edit function for read only
+    // is edit function for read only
     editProfileForm() {
         this.beforeCancelProfile = (<any>Object).assign({}, this.clientProfile);
         this.isProfileEdit = !this.isProfileEdit;
@@ -118,7 +120,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     }
 
 
-    //cancel button function
+    // cancel button function
     cancelProfileEdit() {
         this.clientProfile = this.beforeCancelProfile;
         this.isProfileEdit = !this.isProfileEdit;
@@ -127,14 +129,14 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         }
     }
 
-    //is edit function for read only
+    // is edit function for read only
     editPersonalInfoForm() {
         this.beforeCancelPersonal = (<any>Object).assign({}, this.clientPersonalInfo);
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
         this.dateOfBirth = this.clientDetails['dateOfBirth'];
     }
 
-    //cancel button function
+    // cancel button function
     cancelPersonalInfoEdit() {
         this.clientPersonalInfo = this.beforeCancelPersonal;
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
@@ -143,12 +145,14 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         }
 
     }
-    //send Invite Button function
+    // send Invite Button function
     sendInvite(event) {
         let targetEvent = event;
         targetEvent.preventDefault();
         this.dialogService.addDialog(ConfirmComponent, {
-            message: 'An email will be sent to' + this.appService.firstName + ' ' + this.appService.lastName + ' ' + 'asking to accept the invitation to join' + ' ' + this.headerService.selectedOrg.displayName + '.' + '   ' + ' Are you sure you want to send the email invite again ?',
+            message: 'An email will be sent to' + this.appService.firstName + ' ' + this.appService.lastName
+            + ' ' + 'asking to accept the invitation to join' + ' ' + this.headerService.selectedOrg.displayName
+            + '.' + '   ' + ' Are you sure you want to send the email invite again ?',
             title: 'Send Invite'
         }).subscribe((isConfirmed) => {
           if (isConfirmed) {
@@ -167,16 +171,17 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     onDateChanged(event: IMyDateModel) {
     }
 
-    //Save Client Details
+    // Save Client Details
     saveClientProfile() {
         this.mapFromClientProfile();
-        if (this.clientDetails['fileNumber'] == '' || this.client['clientStatus'] == '' || this.clientProfile['email'] == '' || this.clientProfile['firstName'] == '' || this.clientProfile['lastName'] == '' || this.clientProfile['phoneNumber'] == '') {
+        if (this.clientDetails['fileNumber'] === '' || this.client['clientStatus'] === '' || this.clientProfile['email'] === '' || this.clientProfile['firstName'] === ''
+          || this.clientProfile['lastName'] === '' || this.clientProfile['phoneNumber'] === '') {
             this.warningMessage = true;
         } else if (this.phoneNumber.errors != null) {
             this.warningMessage = false;
         } else {
             this.warningMessage = false;
-            this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.user.userId)
+            this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.user.userId, this.headerService.user.accountId)
                 .subscribe((res) => {
                     this.isProfileEdit = true;
                     if (res['clientDetails']) {
@@ -192,7 +197,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                         this.clientProfile.createdByUserOn = this.client['createdByUserOn'];
                         this.clientProfile.markForDeletion = this.client['markForDeletion'];
                     }
-                    if (res['statusCode'] == 'FAILURE') {
+                    if (res['statusCode'] === 'FAILURE') {
                         this.dialogService.addDialog(ConfirmComponent, {
                             title: 'Error..!',
                             message: 'Client has Active Petitions Associated..'
@@ -203,7 +208,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
     }
 
-    //Save Client Details
+    // Save Client Details
     saveClientPersonalInfo() {
 
 
@@ -214,7 +219,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
             if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
                 this.clientDetails['dateOfBirth'] = this.clientDetails['dateOfBirth']['formatted'];
             }
-            this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.user.userId)
+            this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.user.userId, this.headerService.user.accountId)
                 .subscribe((res) => {
 
                     this.isPersonalInfoEdit = true;

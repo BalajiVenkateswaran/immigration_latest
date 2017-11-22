@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
    appUrl: 'https://services.dev-theimmigrationhub.com/immigrationPortal',
-  //appUrl: 'http://localhost:8080/immigrationPortal',
-  buildNumber: '17.11.01'
+  //  appUrl: 'http://ec2-54-86-42-239.compute-1.amazonaws.com:8080/immigrationPortal',
+  // appUrl: 'http://localhost:8080/immigrationPortal',
+  buildNumber: '17.11.22'
 };

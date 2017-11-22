@@ -8,17 +8,17 @@ export class ImmigrationViewClientDetailsService {
     }
 
     public getClientDetails(clientId: string) {
-        return this.restService.getData('/client/details/' + clientId);
+        return this.restService.getData('/immigration/client/' + clientId + '/details');
     }
 
-     public saveClientDetails(clientDetails: any, client: any, updatedBy: string) {
-            let req = {
-              'clientDetails' : clientDetails,
-              'client' : client,
-              'updatedBy' : updatedBy
-            };
+     public saveClientDetails(clientDetails: any, client: any, updatedBy: string, accountId: string) {
+        let req = {
+          'clientDetails' : clientDetails,
+          'client' : client,
+          'updatedBy' : updatedBy
+        };
 
-            return this.restService.postData('/client/details', req);
+        return this.restService.postData('/immigration/account/' + accountId + '/client/' + client['clientId'] + '/details', req);
      }
 
      public sendClientInvite(clientId: string) {

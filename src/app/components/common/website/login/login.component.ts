@@ -65,7 +65,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
       emailId: new FormControl(''),
       password: new FormControl('')
     });
-    this.forgotPwd=new FormGroup({
+    this.forgotPwd = new FormGroup({
       emailId: new FormControl('')
     });
 
