@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {PassportInfoService} from "./passport-info.service";
-import {passportinfo} from "../../../../models/passportinfo";
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import {AppService} from "../../../../services/app.service";
+import {ClientViewPassportInfoService} from './passport-info.service';
+import {passportinfo} from '../../../../models/passportinfo';
+import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
 
 export interface formControl {
     name: string;
@@ -16,7 +16,7 @@ export interface formControl {
     templateUrl: './passport-info.component.html',
     styleUrls: ['./passport-info.component.sass']
 })
-export class PassportInfoComponent implements OnInit {
+export class ClientViewPassportInfoComponent implements OnInit {
 
     private passportinfoList: any;
     public editUser: FormGroup; // our model driven form
@@ -31,7 +31,7 @@ export class PassportInfoComponent implements OnInit {
     private dateOfBirth: string;
     countryofbirth;
 
-    constructor(private PassportInfoService: PassportInfoService,
+    constructor(private passportInfoService: ClientViewPassportInfoService,
         private formBuilder: FormBuilder, public appService: AppService, public headerService: HeaderService) {
     }
     private myDatePickerOptions: IMyOptions = {
@@ -42,58 +42,23 @@ export class PassportInfoComponent implements OnInit {
     private beforeCancelPassport;
     ngOnInit() {
 
-        this.PassportInfoService.getFile(this.headerService.user.userId)
+        this.passportInfoService.getClientPassportDetails(this.headerService.user.userId)
             .subscribe((res) => {
-                console.log("filesGetmethod%o", res);
+                console.log('filesGetmethod%o', res);
                 this.passportDetailsFileList = res['passport'];
-                if (this.passportDetailsFileList == undefined) {
+                if (this.passportDetailsFileList === undefined) {
                     this.passportDetailsFileList = {};
                 }
                 this.isPassportInfoEdit = true
             });
     }
-    editUserSubmit(model: passportinfo, isValid: boolean, index: number, sectionName: string) {
-        console.log('formdata|account: %o|isValid:%o', model, isValid);
-        if (isValid) {
-            let sectionIndex = -1;
-            let dataIndex = 0;
-            this.passportinfoList.map((forms) => {
-                if (forms.name === sectionName) {
-                    forms.data[0].data.map((val) => {
-                        this.passportinfoList[index].data[0].data[dataIndex].value = model[val.name];
-                        dataIndex += 1;
-                    });
-                    dataIndex = 0;
-                }
-                sectionIndex += 1;
-            });
-            //model is key value pair and this.passportinfoList holds the data in the form it got from server
-            //console.log('form data: %o | data in the receieved form: %o', model, this.passportinfoList);
-            // service is not available
-
-            this.PassportInfoService.saveEditUser(this.passportinfoList).subscribe((status) => {
-                this.message = status[0]
-                this.isEdit[index] = !this.isEdit[index];
-            });
-        } else {
-            this.message = "Filled etails are not correct! please correct...";
-        }
-
-    }
 
     onDateChanged(event: IMyDateModel) {
-
-
     }
     editForm(event, i) {
-
         this.isEdit[i] = !this.isEdit[i];
-
-
     }
     cancelEdit(event, i) {
-
-
         this.isEdit[i] = !this.isEdit[i];
         this.ngOnInit();
     }
@@ -134,8 +99,8 @@ export class PassportInfoComponent implements OnInit {
         if (this.passportDetailsFileList['dateOfBirth'] && this.passportDetailsFileList['dateOfBirth']['formatted']) {
             this.passportDetailsFileList['dateOfBirth'] = this.passportDetailsFileList['dateOfBirth']['formatted'];
         }
-        this.passportDetailsFileList['clientId'] =  this.headerService.user.userId;
-        this.PassportInfoService.savePassportDetails(this.passportDetailsFileList)
+        this.passportDetailsFileList['userId'] =  this.headerService.user.userId;
+        this.passportInfoService.savePassportDetails(this.passportDetailsFileList, this.headerService.user.userId)
             .subscribe((res) => {
                 console.log(res);
                 this.isPassportInfoEdit = true;

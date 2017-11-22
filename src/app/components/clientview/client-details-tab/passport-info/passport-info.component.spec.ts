@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PassportInfoComponent } from './passport-info.component';
+import { ClientViewPassportInfoComponent } from './passport-info.component';
 
-describe('PassportInfoComponent', () => {
-  let component: PassportInfoComponent;
-  let fixture: ComponentFixture<PassportInfoComponent>;
+describe('ClientViewPassportInfoComponent', () => {
+  let component: ClientViewPassportInfoComponent;
+  let fixture: ComponentFixture<ClientViewPassportInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PassportInfoComponent ]
+      declarations: [ ClientViewPassportInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PassportInfoComponent);
+    fixture = TestBed.createComponent(ClientViewPassportInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

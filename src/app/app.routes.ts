@@ -20,7 +20,7 @@ import { DependentsComponent } from './components/clientview/client-details-tab/
 import { DocumentExpirationsComponent } from './components/clientview/client-details-tab/document-expirations/document-expirations.component';
 import { I797HistoryComponent } from './components/clientview/client-details-tab/i-797-history/i-797-history.component';
 import { JobDetailsComponent } from './components/clientview/client-details-tab/job-details/job-details.component';
-import { PassportInfoComponent } from './components/clientview/client-details-tab/passport-info/passport-info.component';
+import { ClientViewPassportInfoComponent } from './components/clientview/client-details-tab/passport-info/passport-info.component';
 import { VisasComponent } from './components/clientview/client-details-tab/visas/visas.component';
 import { DocumentsComponent } from './components/clientview/documents-tab/documents.component';
 import {ManageAccountUserComponent} from './components/immigrationview/manage-account-tab/user/user.component';
@@ -362,7 +362,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'clientview-passport-info',
-        component: PassportInfoComponent
+        component: ClientViewPassportInfoComponent
     },
     {
         path: 'clientview-job-details',

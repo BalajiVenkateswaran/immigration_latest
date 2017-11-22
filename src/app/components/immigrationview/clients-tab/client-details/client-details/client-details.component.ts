@@ -5,11 +5,11 @@ import { AppService } from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { Component, OnInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
-import { ImmigrationViewClientDetailsService } from "./client-details.service";
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ImmigrationViewClientDetailsService } from './client-details.service';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
-import { DialogService } from "ng2-bootstrap-modal";
-import {HeaderService} from "../../../../common/header/header.service";
+import { DialogService } from 'ng2-bootstrap-modal';
+import {HeaderService} from '../../../../common/header/header.service';
 
 @Component({
     selector: 'app-client-details',
@@ -34,7 +34,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     private user: User;
     private dateOfBirth: string;
     private creationDate: string;
-    public warningMessage: boolean = false;
+    public warningMessage = false;
     public user1;
     private myDatePickerOptions: IMyOptions = {
         // other options...
@@ -57,7 +57,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.headerService.showSideBarMenu("immigrationview-client", "clients");
+        this.headerService.showSideBarMenu('immigrationview-client', 'clients');
         this.appService.dependents = [];
         this.status = [
             { value: 'Active', name: 'Active' },
@@ -145,21 +145,20 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     }
     //send Invite Button function
     sendInvite(event) {
-        let targetEvent=event;
+        let targetEvent = event;
         targetEvent.preventDefault();
-        this.dialogService.addDialog(ConfirmComponent,{
-            message: 'An email will be sent to'+this.appService.firstName+" "+this.appService.lastName+" "+'asking to accept the invitation to join'+' '+this.headerService.selectedOrg.displayName+ "."+ "   " + ' Are you sure you want to send the email invite again ?',
+        this.dialogService.addDialog(ConfirmComponent, {
+            message: 'An email will be sent to' + this.appService.firstName + ' ' + this.appService.lastName + ' ' + 'asking to accept the invitation to join' + ' ' + this.headerService.selectedOrg.displayName + '.' + '   ' + ' Are you sure you want to send the email invite again ?',
             title: 'Send Invite'
-        }).subscribe((isConfirmed)=>{
-          if(isConfirmed){
+        }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
 
             this.clientDetailsService.sendClientInvite(this.appService.clientId)
               .subscribe((res) => {
                 event.stopPropagation();
                 targetEvent.preventDefault();
               });
-          }
-          else{
+          } else {
 
           }
         })
@@ -173,11 +172,9 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
         this.mapFromClientProfile();
         if (this.clientDetails['fileNumber'] == '' || this.client['clientStatus'] == '' || this.clientProfile['email'] == '' || this.clientProfile['firstName'] == '' || this.clientProfile['lastName'] == '' || this.clientProfile['phoneNumber'] == '') {
             this.warningMessage = true;
-        }
-        else if (this.phoneNumber.errors != null) {
+        } else if (this.phoneNumber.errors != null) {
             this.warningMessage = false;
-        }
-        else {
+        } else {
             this.warningMessage = false;
             this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.user.userId)
                 .subscribe((res) => {
@@ -195,7 +192,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                         this.clientProfile.createdByUserOn = this.client['createdByUserOn'];
                         this.clientProfile.markForDeletion = this.client['markForDeletion'];
                     }
-                    if (res['statusCode'] == "FAILURE") {
+                    if (res['statusCode'] == 'FAILURE') {
                         this.dialogService.addDialog(ConfirmComponent, {
                             title: 'Error..!',
                             message: 'Client has Active Petitions Associated..'
@@ -212,8 +209,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
         if (this.ssn.errors != null) {
             this.warningMessage = false;
-        }
-        else {
+        } else {
             this.mapFromClientPersonalInfo();
             if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
                 this.clientDetails['dateOfBirth'] = this.clientDetails['dateOfBirth']['formatted'];

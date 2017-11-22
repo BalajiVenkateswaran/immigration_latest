@@ -8,6 +8,7 @@ import { ClientsService } from './clients.service';
 import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import {SortType} from '../../../framework/smarttable/types/query-parameters';
 import {Router} from '@angular/router';
+import {ImmigrationClientCommonService} from '../client-details/common/immigration-client.service';
 
 
 export interface ConfirmModel {
@@ -56,7 +57,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
   constructor(private router: Router, private clientService: ClientsService, private appService: AppService,
     public dialogService: DialogService, private menuComponent: MenuComponent,
-    private headerService: HeaderService) {
+    private headerService: HeaderService, private immigrationClientCommonService: ImmigrationClientCommonService) {
     super(dialogService);
       console.log('Clients component constructor');
 
@@ -76,7 +77,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             'isDeleteEnable': false,
             'customPanel': true,
             'isAddFilterButtonEnable': true,
-          'isMorefilters':true,
+          'isMorefilters': true,
             'defaultFilter': [{
                 headingName: 'status',
                 headerName: 'Status',
@@ -103,39 +104,38 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                 {
                     headerName: 'First Name',
                     field: 'firstName',
-                  type:'text'
+                    type: 'text'
                 },
                 {
                     headerName: 'Last Name',
                     field: 'lastName',
-                  type:'text'
+                    type: 'text'
                 },
                 {
                     headerName: 'Email Address',
                     field: 'email',
-                  type:'text'
+                    type: 'text'
                 },
                 {
                     headerName: 'Phone',
                     field: 'phone',
-                  type:'text'
+                    type: 'text'
                 },
                 {
                     headerName: 'Status',
-                  field:'status',
+                    field: 'status',
                     cellRendererFramework: StatusButton,
-                    type:'dropDown',
-                  data: this.statusTypes
-
+                    type: 'dropDown',
+                    data: this.statusTypes
                 },
-              {
-                headerName: 'Last Update',
-                field: 'lastUpdate'
-              },
+                {
+                  headerName: 'Last Update',
+                  field: 'lastUpdate'
+                },
                 {
                     headerName: 'Open Petitions',
                     field: 'openPetitions',
-                  type:'text'
+                    type: 'text'
                 }
             ]
 
@@ -249,8 +249,9 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     onUserRowClick(event): void {
         this.menuComponent.highlightSBLink('Petitions');
         this.appService.moveToPage('immigrationview-petitions');
+        this.immigrationClientCommonService.clientId = event.data.clientId;
+        this.immigrationClientCommonService.userId = event.data.userId;
         this.appService.clientId = event.data.clientId;
-
     }
 
 }

@@ -48,8 +48,8 @@ import { I797HistoryComponent } from './components/clientview/client-details-tab
 import { I797HistoryService } from './components/clientview/client-details-tab/i-797-history/i-797-history.service';
 import { JobDetailsComponent } from './components/clientview/client-details-tab/job-details/job-details.component';
 import { JobDetailsService } from './components/clientview/client-details-tab/job-details/job-details.service';
-import { PassportInfoComponent } from './components/clientview/client-details-tab/passport-info/passport-info.component';
-import { PassportInfoService } from './components/clientview/client-details-tab/passport-info/passport-info.service';
+import { ClientViewPassportInfoComponent } from './components/clientview/client-details-tab/passport-info/passport-info.component';
+import { ClientViewPassportInfoService } from './components/clientview/client-details-tab/passport-info/passport-info.service';
 import { VisasComponent } from './components/clientview/client-details-tab/visas/visas.component';
 import { VisasService } from './components/clientview/client-details-tab/visas/visas.service';
 import {ManageAccountUserComponent} from './components/immigrationview/manage-account-tab/user/user.component';
@@ -152,7 +152,7 @@ import { ImmigrationViewI797HistoryService } from './components/immigrationview/
 import { ImmigrationViewJobDetailsComponent } from './components/immigrationview/clients-tab/client-details/job-details/job-details.component';
 import { JobdetailsService } from './components/immigrationview/clients-tab/client-details/job-details/job-details.service';
 import { ImmigrationViewPassportInfoComponent } from './components/immigrationview/clients-tab/client-details/passport-info/passport-info.component';
-import { passportInfoService } from './components/immigrationview/clients-tab/client-details/passport-info/passport-info.service';
+import { PassportInfoService } from './components/immigrationview/clients-tab/client-details/passport-info/passport-info.service';
 import { CustomRenderComponent } from './components/immigrationview/clients-tab/client-details/petitions/custom-render.component';
 import { ImmigrationViewPetitionsComponent } from './components/immigrationview/clients-tab/client-details/petitions/petitions.component';
 import { ImmigrationViewPetitionsService } from './components/immigrationview/clients-tab/client-details/petitions/petitions.service';
@@ -347,6 +347,7 @@ import {
 import {CdkTableModule} from '@angular/cdk/table';
 import {PaginationComponent} from './components/framework/smarttable/pagination/pagination.component';
 import {InformationComponent} from './components/framework/confirmbox/information.component';
+import {ImmigrationClientCommonService} from './components/immigrationview/clients-tab/client-details/common/immigration-client.service';
 
 @NgModule({
     imports: [
@@ -418,7 +419,7 @@ import {InformationComponent} from './components/framework/confirmbox/informatio
         AddressinfoComponent,
         DependentDetailsComponent,
         ImmigrationviewDocumentExpirationsComponent,
-        PassportInfoComponent,
+        ClientViewPassportInfoComponent,
         JobDetailsComponent,
         ArrivalDespartureInfoComponent,
         VisasComponent,
@@ -561,8 +562,9 @@ import {InformationComponent} from './components/framework/confirmbox/informatio
         AddressInfoService,
         PassportInfoService,
         DocumentManagementService,
-        passportInfoService,
+        ClientViewPassportInfoService,
         ImmigrationViewClientDetailsService,
+        ImmigrationClientCommonService,
         PetitionDetailsService,
         JobdetailsService,
         loginService,

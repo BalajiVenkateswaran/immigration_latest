@@ -1,5 +1,5 @@
 ﻿import { RestService } from '../../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ImmigrationViewClientDetailsService {
@@ -8,23 +8,23 @@ export class ImmigrationViewClientDetailsService {
     }
 
     public getClientDetails(clientId: string) {
-        return this.restService.getData("/client/details/" + clientId);
+        return this.restService.getData('/client/details/' + clientId);
     }
 
      public saveClientDetails(clientDetails: any, client: any, updatedBy: string) {
-            var req = {
-              "clientDetails" : clientDetails,
-              "client" : client,
-              "updatedBy" : updatedBy
+            let req = {
+              'clientDetails' : clientDetails,
+              'client' : client,
+              'updatedBy' : updatedBy
             };
 
-            return this.restService.postData("/client/details", req);
+            return this.restService.postData('/client/details', req);
      }
 
-     public sendClientInvite(clientId: string){
-        return this.restService.getData("/client/sendinvite/"+clientId);
+     public sendClientInvite(clientId: string) {
+        return this.restService.getData('/client/sendinvite/' + clientId);
      }
      public getClientInvites(userId: string) {
-      return this.restService.getData("/client/invite/" + userId);
+      return this.restService.getData('/client/invite/' + userId);
   }
 }
