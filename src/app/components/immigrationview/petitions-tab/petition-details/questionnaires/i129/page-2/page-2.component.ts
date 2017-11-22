@@ -20,7 +20,9 @@ export class i129Page2Component implements OnInit {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
-        editableDateField: false
+        editableDateField: false,
+        openSelectorTopOfInput: true,
+        showSelectorArrow:false
     };
     public gender;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,

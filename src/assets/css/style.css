@@ -262,7 +262,9 @@ label {
     font-weight: 400;
     color: #333333;
     text-align: justify; }
-
+  .imgg{
+          margin-bottom: 6px!important;
+  }
 /*Dashboard page css*/
 header {
   background-color: #2f323a;
@@ -434,7 +436,9 @@ header {
             display: block;
             border-radius: 5px;
             margin-bottom: 8px;
-            background-size: 50%; }
+            background-size: 50%;
+            border-bottom: 3px solid black;
+          }
           header .mainmenu ul li a span.maintab-Clients {
             background: url(../images/Clients.png) no-repeat center center #f66955;
             background-size: 65%; }
@@ -462,6 +466,9 @@ header {
           color: #c2c2c2 !important; }
       header .mainmenu ul li:last-child {
         border: none; }
+      section{
+          height:auto !important;
+      }
 
 section .left-opened, section .rightwithmenu {
   position: absolute;
@@ -934,6 +941,12 @@ section .rightwithoutmenu {
       border: none;
       padding-left: 0px;
       padding-right: 0px; }
+    .mydp .selectorarrow {
+    background: #FAFAFA;
+    margin-top: 0px;
+    padding: 0;
+    position: relative;
+}
   /*.main-content .table-data-forms {
     overflow-y: auto; }*/
     .main-content .table-data-forms h2 {
@@ -1665,4 +1678,7 @@ header .mainmenu ul li a:hover, header .mainmenu ul li a:focus,header .mainmenu 
 }
 .modal .pull-right.no-marg-right.agridadd.iportal-btnIMclient{
     display:none;
+}
+.smoothness.rightwithmenu{
+    height:auto !important;
 }

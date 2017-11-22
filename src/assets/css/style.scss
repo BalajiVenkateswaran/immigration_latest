@@ -1820,6 +1820,7 @@ header {
     width: 100%;
     position: relative;
     float: left;
+    margin-top: -3px;
 
     .burger-menu {
       position: absolute;
@@ -1867,7 +1868,7 @@ header {
     }
 
     ul {
-      margin: 0px 0 0 0 !important;
+      margin: 9px 0 0 0 !important;
       padding: 0px;
       display: block;
       /*display: flex;
@@ -1906,7 +1907,7 @@ header {
 
           img {
             margin: 0px auto;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             height: 36px;
             width: auto;
           }
@@ -1930,7 +1931,8 @@ header {
             margin: 0px auto;
             background: url(../images/Pettions.png) no-repeat center center;
             display: block;
-            border-radius: 5px;
+            border-radius: 5px;            
+            border-bottom: 3px solid black;
             /*margin-bottom: 8px;*/
             /*background-size: 50%;*/
           }

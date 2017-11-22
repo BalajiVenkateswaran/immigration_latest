@@ -194,13 +194,14 @@
                       </li>
 
                   </ul>
-                  <ul *ngIf="appService.isClientView()">
+                  <ul *ngIf="appService.isClientView()" id="MainMenuListItems">
                       <li>
                           <a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');"
                              [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']"
                              routerLinkActive="active">
-                              <span class="maintab-Petitions"></span>
-                              <div class="clearfix"></div><span>Petitions</span>
+                              <!--<span class="maintab-Petitions"></span>-->
+                              <img class="imgg" src="../../../../assets/images/Pettions.png" />
+                              <span>Petitions</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -208,8 +209,9 @@
                           <a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');"
                              [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']"
                              routerLinkActive="active">
-                              <span class="maintab-clientdetails"></span>
-                              <div class="clearfix"></div><span >Client Details</span>
+                              <!--<span class="maintab-clientdetails"></span>-->
+                              <img class="imgg" src="../../../../assets/images/Clients.png" />
+                              <span >Client Details</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -217,8 +219,9 @@
                           <a (click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');"
                              [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']"
                              routerLinkActive="active">
-                              <span class="maintab-clientdocuments"></span>
-                              <div class="clearfix"></div> <span>Documents</span>
+                              <!--<span class="maintab-clientdocuments"></span>-->
+                              <img class="imgg" src="../../../../assets/images/Documents.png" /> 
+                              <span>Documents</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -226,8 +229,9 @@
                           <a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');"
                              [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']"
                              routerLinkActive="active">
-                              <span class="maintab-clientQuestionnaire"></span>
-                              <div class="clearfix"></div> <span>Questionnaire</span>
+                              <!--<span class="maintab-clientQuestionnaire"></span>-->
+                              <img class="imgg" src="../../../../assets/images/Questionnaires.png" />
+                               <span>Questionnaire</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -235,8 +239,8 @@
                           <a (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');"
                              [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']"
                              routerLinkActive="active">
-                              <span class="maintab-clientrquests"></span>
-                              <div class="clearfix"></div> <span>Requests</span>
+                              <img class="imgg" src="../../../../assets/images/Requests.png" />
+                               <span>Requests</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -244,8 +248,9 @@
                           <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
                              [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
                              routerLinkActive="active">
-                              <span class="maintab-Profile"></span>
-                              <div class="clearfix"></div><span>Profile</span>
+                              <!--<span class="maintab-Profile"></span>-->
+                              <img class="imgg" src="../../../../assets/images/Profile.png" />
+                              <span>Profile</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>
@@ -320,10 +325,7 @@
               </div>
           </div>
           </div>
-
-      <div class="clearfix"></div>
   </header>
-  <div class="clearfix"></div>
 
   <!--<div *ngIf="usageSummaryPopup">
     <div class="modal-dialog" ngDraggable>
