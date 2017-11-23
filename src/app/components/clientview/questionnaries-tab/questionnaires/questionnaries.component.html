@@ -3,6 +3,8 @@
     <div class="table-data">
         <h2>{{appService.firstName}} {{appService.lastName}}</h2>
         <div class="clearfix"></div>
+        <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Questionnnaires</h2>
+        <div class="clearfix"></div>
         <!--<h2>Questionnnaires</h2>-->
         <ih-smart-table class="clientViewQuestionnnaires" [settings]="settings" [data]="questionnaireCommonService.questionnaireList"
                     (onRowClick)="editRecord($event)"></ih-smart-table>
