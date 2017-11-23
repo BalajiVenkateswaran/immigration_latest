@@ -108,8 +108,8 @@
                                     <div class="row">
                                       <div class="col-md-5">Invoice (PDF Name):</div>
                                       <div class="col-md-7">
-                                        <input type="text" *ngIf="isEditInvoice==false" id="svActinvInVPdfName" [(ngModel)]="invoice.pdfName" class="form-control">
-                                        <span *ngIf="isEditInvoice==true">{{invoice.pdfName}}</span>
+                                        <input type="text" *ngIf="isEditInvoice==false" id="svActinvInVPdfName" [(ngModel)]="invoice.fileName" class="form-control">
+                                        <span *ngIf="isEditInvoice==true">{{invoice.fileName}}</span>
                                       </div>
                                     </div>
                                   </div>
@@ -117,7 +117,11 @@
                                     <div class="row">
                                       <div class="col-md-5">Upload:</div>
                                       <div class="col-md-7">
-                                        <button type="button" class="btn btn-primary" id="svActinvUpload" (click)="onUploadClick(invoice)">Upload</button>
+                                        <!--<button type="button" class="btn btn-primary" id="svActinvUpload" (click)="onUploadClick(invoice)">Upload</button>-->
+                                        <div class="fileUpload btn btn-primary">
+                                          <span>Upload</span>
+                                          <input type="file" class="upload" name="file" (change)="popupInvoiceFileUploadClick($event, invoice)" />
+                                        </div>
                                       </div>
 
                                     </div>

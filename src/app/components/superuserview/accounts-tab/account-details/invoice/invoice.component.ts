@@ -1,11 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import {AccountInvoiceService} from './invoice.service';
 import * as FileSaver from 'file-saver';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {AccountDetailsCommonService} from "../common/account-details-common.service";
+import {AccountDetailsCommonService} from '../common/account-details-common.service';
 import { InvoicedownloadButton } from './invoicedownloadbutton';
 import {InvoiceUploadButton} from './invoiceuploadbutton';
 
@@ -14,21 +14,22 @@ export interface ConfirmModel {
     message: string;
     getInvoice: boolean;
     addInvoice: boolean;
-    viewPopup:boolean;
+    viewPopup: boolean;
     invoice: Object;
 }
 
 @Component({
-    selector: 'account-invoice',
-    templateUrl: './invoice.component.html'
+    selector: 'ih-account-invoice',
+    templateUrl: './invoice.component.html',
+    styleUrls: ['./invoice.component.scss']
 })
 export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    public getInvoice: boolean = true;
+    public getInvoice = true;
     public addInvoice: boolean;
-    public accountInvoice: boolean = false;
+    public accountInvoice = false;
     public AccountInvoices: any;
     public viewRowDetails: any = {};
-    public isEditInvoice:boolean=true;
+    public isEditInvoice= true;
     public invoice: any;
     public viewPopup: boolean;
     public settings;
@@ -45,33 +46,33 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         this.settings = {
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
-            'rowHeight':45,
-            'context':{
-                'componentParent':this
+            'rowHeight': 45,
+            'context': {
+                'componentParent': this
             },
             'columnsettings': [
                 {
-                    headerName: "Invoice Number",
-                    field: "invoiceNumber",
+                    headerName: 'Invoice Number',
+                    field: 'invoiceNumber',
                 },
                 {
-                    headerName: "Invoice Date",
-                    field: "invoiceDate",
+                    headerName: 'Invoice Date',
+                    field: 'invoiceDate',
                 },
                 {
-                    headerName: "Invoice Amount",
-                    field: "invoiceAmount",
+                    headerName: 'Invoice Amount',
+                    field: 'invoiceAmount',
                 },
                 {
-                    headerName: "Payment Received",
-                    field: "paymentRecieved",
+                    headerName: 'Payment Received',
+                    field: 'paymentRecieved',
                 },
                 {
-                    headerName: "PDF Uploaded",
+                    headerName: 'PDF Uploaded',
                     cellRendererFramework: InvoiceUploadButton
                 },
                 {
-                    headerName: "Download Button",
+                    headerName: 'Download Button',
                     cellRendererFramework: InvoicedownloadButton
                 }
             ]
@@ -81,7 +82,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
       console.log(this.accountDetailsCommonService.accountId)
         this.accountInvoiceService.getAccountInvoice(this.accountDetailsCommonService.accountId)
             .subscribe((res) => {
-                console.log("getinoices%o", res);
+                console.log('getinoices%o', res);
                 if (res['invoices']) {
                     this.data = res['invoices'];
                     this.AccountInvoices = res['invoices'];
@@ -90,64 +91,69 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
             });
     }
     editRecord(event) {
-        if(event.colDef.headerName!='PDF Uploaded' && event.colDef.headerName!='Download Button')
+        if (event.colDef.headerName != 'PDF Uploaded' && event.colDef.headerName != 'Download Button') {
         this.dialogService.addDialog(AccountInvoiceComponent, {
             title: 'View Invoice Details',
             viewPopup: true,
             getInvoice: false,
-            addInvoice:false,
-            invoice:event.data
+            addInvoice: false,
+            invoice: event.data
         })
+        }
     }
-    cancel(){
+    cancel() {
          this.close();
     }
-    onDownloadClick(event){
+    onDownloadClick(event) {
        this.accountInvoiceService.downloadFile(event.data.invoiceId).subscribe
             (data => this.downloadFiles(data, event.data.fileName)),
-            error => console.log("Error Downloading....");
-        () => console.log("OK");
+            error => console.log('Error Downloading....');
+        () => console.log('OK');
     }
 
-  downloadInvoice(event){
+  downloadInvoice(event) {
     this.accountInvoiceService.downloadFile(event.invoiceId).subscribe
     (data => this.downloadFiles(data, event.fileName)),
-      error => console.log("Error Downloading....");
-    () => console.log("OK");
+      error => console.log('Error Downloading....');
+    () => console.log('OK');
   }
 
     downloadFiles(data: any, fileName) {
-        var blob = new Blob([data], {
+        let blob = new Blob([data], {
             type: 'application/pdf'
         });
         FileSaver.saveAs(blob, fileName);
     }
-    onUploadClick(event){
+  popupInvoiceFileUploadClick(event: any, data: any) {
+   this.onUploadClick( {'event': event, 'data': data});
+  }
+    onUploadClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        let x = file.name;
         let fileExists = this.isfileExists(file);
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf" && fileExists != true) {
+        let y = x.split('.');
+        if (fileList.length > 0 && y[1] === 'pdf' && fileExists !== true) {
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
 
             this.accountInvoiceService.uploadFile(event.data.invoiceId, formData)
                 .subscribe(
                 res => {
-                   console.log(res);
+                   if (res['statusCode'] === 'SUCCESS') {
+                     event.data.fileId = res['fileId'];
+                     event.data.fileName = file.name;
+                   }
                 }
                 );
 
-        }
-        else {
-            if (fileExists == true) {
+        } else {
+            if (fileExists === true) {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
                     message: 'Filename is already exists.'
                 });
-            }
-            else {
+            } else {
                 this.dialogService.addDialog(ConfirmComponent, {
                     title: 'Error..!',
                     message: 'Please Upload Only Pdf files'
@@ -156,9 +162,9 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         }
     }
      isfileExists(file) {
-        let upload: boolean = false;
+        let upload = false;
         this.AccountInvoices.filter(item => {
-            if (file.name == item.fileName) {
+            if (file.name === item.fileName) {
                 upload = true;
                 return false;
             }
