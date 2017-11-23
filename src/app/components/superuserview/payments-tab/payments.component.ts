@@ -123,6 +123,7 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
   }
 
   editRecord(event): void {
+    console.log(event)
     this.menuComponent.highlightSBLink('Payments');
     this.appService.moveToPage("accountdetails-payments");
     this.accountDetailsCommonService.accountId = event.data.accountId;

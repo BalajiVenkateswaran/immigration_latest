@@ -123,6 +123,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
       this.appService.moveToPage("accountdetails-invoice");
       this.accountDetailsCommonService.accountId = event.data.accountId;
 
+
     }
     dataWithParameters(queryParams) {
         if (queryParams) {

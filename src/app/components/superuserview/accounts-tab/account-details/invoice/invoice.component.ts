@@ -78,6 +78,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         };
     }
     ngOnInit() {
+      console.log(this.accountDetailsCommonService.accountId)
         this.accountInvoiceService.getAccountInvoice(this.accountDetailsCommonService.accountId)
             .subscribe((res) => {
                 console.log("getinoices%o", res);
@@ -107,6 +108,14 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
             error => console.log("Error Downloading....");
         () => console.log("OK");
     }
+
+  downloadInvoice(event){
+    this.accountInvoiceService.downloadFile(event.invoiceId).subscribe
+    (data => this.downloadFiles(data, event.fileName)),
+      error => console.log("Error Downloading....");
+    () => console.log("OK");
+  }
+
     downloadFiles(data: any, fileName) {
         var blob = new Blob([data], {
             type: 'application/pdf'

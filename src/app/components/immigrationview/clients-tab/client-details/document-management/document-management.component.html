@@ -43,7 +43,7 @@
                                         <h3>Organization Docs</h3> <div class="clearfix"></div>
                                         <div class="scrollpurpus">
                                             <div class="chkbox" *ngFor="let x of orgdocList">
-                                                <input #orgcheckBox [checked]="checkIfDocSelected(x)" type="checkbox" (change)="onDocSelection(x, orgcheckBox)" name="{{x.fileName}}" id="{{x.fileId}}" /><label class="docName" for="{{x.fileId}}">{{x.fileName}}</label>
+                                                <input #orgcheckBox [checked]="checkIfDocSelected(x)" type="checkbox" (change)="onDocSelection(x, orgcheckBox)" name="{{x.fileName}}" id="{{x.fileId}}" /> <label class="docName" for="{{x.fileId}}">{{x.fileName}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -75,15 +75,18 @@
                     <div class="col-md-4 right-form">
                         <div class="row removedclass">
                             <div class="col-md-1"></div>
-                            <button type="submit" class="btn iportal-btnIMclient" [(disabled)]="!isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'saveorder':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
-                            <div class="col-md-1"></div>
-                            <button type="submit" class="btn iportal-btnIMclient" [(disabled)]="!isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'saveorder':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
+                            <button type="submit" class="btn iportal-btnIMclient"*ngIf="isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'saveorder':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
+                          <button _ngcontent-c7="" class="iportal-btnIMclient pull-left no-marg-right" *ngIf="isSaveOrderVisible" style="margin-top: 5px!important;" type="button" (click)="cancelOrder()">Cancel</button>
+
+                          <div class="col-md-1"></div>
+                            <button type="submit" class="btn iportal-btnIMclient" *ngIf="isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'saveorder':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
+
                         </div>
 
                         <div class="row">
                             <div class="col-md-1"></div>
                             <div class="col-md-8 selecteditemlist" [dragula]="dragbox" [dragulaModel]="selectedDocList">
-                                <div class="selecteditems" style="white-space: nowrap;overflow:hidden !important;text-overflow: ellipsis;" *ngFor="let y of selectedDocList">{{y.fileName}}</div>
+                                <div class="selecteditems" style="white-space: nowrap;overflow:hidden !important;text-overflow: ellipsis;" *ngFor="let y of selectedDocList; let i = index"> {{i+1}} {{y.fileName}}</div>
                             </div>
                         </div>
                     </div>

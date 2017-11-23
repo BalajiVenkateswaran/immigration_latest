@@ -234,7 +234,7 @@ export class PetitionDetailsComponent implements OnInit {
 
     //Save Client Details
     onSavePetitionInfoClick() {
-
+console.log("hiii")
         this.petitionDetails['petitionId'] = this.appService.petitionId;
         this.petitionDetails = this.petitionInformation;
         this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
@@ -262,6 +262,8 @@ export class PetitionDetailsComponent implements OnInit {
                     if (res['petitionInfo'] != undefined) {
                         this.isPetitionInformationSave = false;
                         this.petitionDetails = res['petitionInfo'];
+                        console.log(res);
+                      console.log(this.petitionDetails );
                         this.petitionDetailsService.getUsersForAccount(this.headerService.user.accountId)
                             .subscribe((res) => {
                                 this.users = res['users'];

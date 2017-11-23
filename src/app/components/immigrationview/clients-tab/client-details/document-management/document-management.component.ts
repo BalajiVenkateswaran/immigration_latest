@@ -26,7 +26,7 @@ export class DocumentManagementComponent implements OnInit {
     private formControlValues: any = {};
     isEdit: boolean[] = [true];
     isSaveOrderVisible :  boolean = false;
-    isMergeOrderVisible :  boolean = false;
+    isMergeOrderVisible :  boolean = true;
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
@@ -42,34 +42,37 @@ export class DocumentManagementComponent implements OnInit {
 
     }
     ngOnInit() {
-        var index = 0;
-        this.documentManagementService
-          .getDocOrder(this.appService.petitionId)
-          .subscribe((res: any) => {
-              this.selectedDocList = res.petitionDocs;
-              this.isMergeOrderVisible = this.selectedDocList != null && this.selectedDocList.length > 0;
-              this.documentManagementService
-                  .getOrgdocs(this.headerService.selectedOrg['orgId'])
-                  .subscribe((res: any) => {
-                      this.orgdocList = res.files;
-                  });
-              this.documentManagementService
-                  .getClientdocs(this.appService.clientId)
-                  .subscribe((res: any) => {
-                      this.clientdocList = res.files;
-                  });
-              this.documentManagementService
-                  .getPetitiondocs(this.appService.petitionId)
-                  .subscribe((res: any) => {
-                      this.petitiondocList = res.files;
-                  });
-          });
+       this.getDocuments();
+    }
+
+    getDocuments(){
+      var index = 0;
+      this.documentManagementService
+        .getDocOrder(this.appService.petitionId)
+        .subscribe((res: any) => {
+          this.selectedDocList = res.petitionDocs;
+          this.isMergeOrderVisible = this.selectedDocList != null && this.selectedDocList.length > 0;
+          this.documentManagementService
+            .getOrgdocs(this.headerService.selectedOrg['orgId'])
+            .subscribe((res: any) => {
+              this.orgdocList = res.files;
+            });
+          this.documentManagementService
+            .getClientdocs(this.appService.clientId)
+            .subscribe((res: any) => {
+              this.clientdocList = res.files;
+            });
+          this.documentManagementService
+            .getPetitiondocs(this.appService.petitionId)
+            .subscribe((res: any) => {
+              this.petitiondocList = res.files;
+            });
+        });
 
 
 
 
     }
-
     addDocToSelectedList(file: any){
       var docOrder = {
         fileId: file.fileId,
@@ -140,6 +143,12 @@ export class DocumentManagementComponent implements OnInit {
         this.documentManagementService.mergeFile(this.appService.petitionId).subscribe(
             res => { console.log(res); }
         );
+    }
+
+    cancelOrder(){
+      this.isSaveOrderVisible = false;
+      this.isMergeOrderVisible = true;
+      this.getDocuments();
     }
 
 }
