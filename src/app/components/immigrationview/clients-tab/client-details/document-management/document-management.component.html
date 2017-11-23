@@ -15,6 +15,12 @@
     margin-right: 6px !important;
     margin-left: 0px !important;
   }
+  .docName{
+      width: 230px;
+      white-space: nowrap;
+      overflow:hidden !important;
+      text-overflow: ellipsis;
+  }
 </style>
     </head>
 <body>
@@ -37,7 +43,7 @@
                                         <h3>Organization Docs</h3> <div class="clearfix"></div>
                                         <div class="scrollpurpus">
                                             <div class="chkbox" *ngFor="let x of orgdocList">
-                                                <input #orgcheckBox [checked]="checkIfDocSelected(x)" type="checkbox" (change)="onDocSelection(x, orgcheckBox)" name="{{x.fileName}}" id="{{x.fileId}}" /><label for="{{x.fileId}}">{{x.fileName}}</label>
+                                                <input #orgcheckBox [checked]="checkIfDocSelected(x)" type="checkbox" (change)="onDocSelection(x, orgcheckBox)" name="{{x.fileName}}" id="{{x.fileId}}" /><label class="docName" for="{{x.fileId}}">{{x.fileName}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +83,7 @@
                         <div class="row">
                             <div class="col-md-1"></div>
                             <div class="col-md-8 selecteditemlist" [dragula]="dragbox" [dragulaModel]="selectedDocList">
-                                <div class="selecteditems" *ngFor="let y of selectedDocList">{{y.fileName}}</div>
+                                <div class="selecteditems" style="white-space: nowrap;overflow:hidden !important;text-overflow: ellipsis;" *ngFor="let y of selectedDocList">{{y.fileName}}</div>
                             </div>
                         </div>
                     </div>
