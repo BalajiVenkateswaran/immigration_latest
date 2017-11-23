@@ -4,12 +4,11 @@
             <h2 class="headerinsections" style="font-weight: 500!important;color: #4EA0F9 !important;border-bottom: none;margin-top: 0px !important;margin-bottom: 7px!important;">Petition Document Selection</h2>
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="clearfix">&nbsp;</div>
-                        <h5><strong>Petition Type</strong></h5>
+                    <div class="col-md-3">                        
                         <div class="left-form petition-type-stages-left">
                             <form class="scroll-form">
-                                <div class="row" style="margin:0px; padding:0px 15px;">
+                                <h5 style="color:#283343!important;padding: 8px!important;"><strong>Petition Type</strong></h5>                        
+                                <div class="row" style="margin:0px; padding:0px 15px;margin-bottom: -57px !important;overflow: hidden !important;">
                                     <ul class="col-md-12 right-form petition-type-stages" >
                                         <li *ngFor="let petitionType of petitionTypes;let i = index" (click)="onClickOfPetitionType(petitionType,i)" [ngClass]="{'slecteditemcolor': petitionType.petitionTypeId == selectedPetitionType.petitionTypeId,'selecteditems':petitionType.petitionTypeId != selectedPetitionType.petitionTypeId}">{{petitionType.petitiontype}}</li>
                                     </ul>
@@ -17,12 +16,12 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 ">
-                        <div class="clearfix">&nbsp;</div>
-                        <h5><strong>Stages</strong></h5>
+                    <div class="col-md-3 ">                      
                         <div class="left-form petition-type-stages-left">
                             <form>
-                                <div class="row" style="margin:0px; padding:0px 15px;" >
+                                <h5 style="color:#283343!important;padding: 8px!important;"><strong>Stages</strong></h5>
+                                <button *ngIf="addDeleteBtn" type="button" class="iportal-btnIMclient pull-right" style="margin-top: -40px!important;margin-right: 7px !important" (click)="addPetitionStages()">Add</button>
+                                <div class="row" style="margin:0px; padding:0px 15px;overflow: hidden !important;" >
                                     <ul class="col-md-12 right-form petition-type-stages" [dragula]="dragbox" [dragulaModel]="petitionStages">
                                         <li *ngFor="let stage of petitionStages;let i = index" id="petitionstage" (click)="setClickedRowstages(stage,i)">
                                             <div *ngIf="!stage.edit">
@@ -42,14 +41,12 @@
                                         </li>
                                         <input *ngIf="addStages" type="text" class="selecteditems" [value]="addPetionStagesName" (input)="addPetionStagesName=$event.target.value" autofocus/>
                                     </ul>
-                                </div>
+                                    <button *ngIf="saveorder" type="button" class="iportal-btnIMclient pull-right no-marg-right" style="margin-top: 5px!important;margin-bottom: 5px;" (click)="saveOrder()">Save Order</button>
+                                    <button *ngIf="cancelBtn" type="button" class="iportal-btnIMclient pull-left no-marg-right" style="margin-top: 5px!important; margin-bottom: 5px;" (click)="cancelPetitionStages()">Cancel</button>
+                                    <button *ngIf="saveBtn" type="button" class="iportal-btnIMclient pull-right no-marg-right" style="margin-top: 5px!important; margin-bottom: 5px;" (click)="savePetitionStages(petitionStages)">Save</button>
+                                </div>                            
 
                             </form>
-                            <button *ngIf="saveorder" type="button" class="iportal-btnIMclient pull-right no-marg-right" style="margin-top: 5px!important;" (click)="saveOrder()">Save Order</button>
-                            <button *ngIf="addDeleteBtn" type="button" class="iportal-btnIMclient pull-right no-marg-right"style="margin-top: 5px!important;" (click)="addPetitionStages()">Add</button>
-                            <button *ngIf="cancelBtn" type="button" class="iportal-btnIMclient pull-left no-marg-right" style="margin-top: 5px!important;" (click)="cancelPetitionStages()">Cancel</button>
-                            <button *ngIf="saveBtn" type="button" class="iportal-btnIMclient pull-right no-marg-right" style="margin-top: 5px!important;" (click)="savePetitionStages(petitionStages)">Save</button>
-</div>
                     </div>
 
                     <div class="col-md-6 right-form petition-type-stages">

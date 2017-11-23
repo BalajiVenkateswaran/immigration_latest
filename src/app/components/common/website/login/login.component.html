@@ -3,6 +3,17 @@
 <head>
     <title>The Immigration Hub</title>
 
+    <style>
+        .inputfield input{
+        background-color: black !important;
+        }
+        .ReqHeader{
+            color: #CACACA;
+            margin-bottom: 40px;
+            margin-top: 45px;
+            margin-left: 16px;
+        }
+    </style>
 </head>
 <body>
     <div id='toTop' (click)="clicktogotop()"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
@@ -454,28 +465,58 @@
             <div class="row">
                 <div class="col-md-6 img50"></div>
                 <div class="col-md-6 color50">
-                    <div class="row">
-                        <div class="col-md-2"></div>
+                        <!--<div class="col-md-2"></div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="">
-                                <span class="form-title">
+                            <div class="">-->
+                                <!--<span class="form-title" style="color: #CACACA;">
                                     I would Like to Discuss
                                 </span>
-                                <div class="clear"></div>
-                                <div class="row">
-                                    <div class="col-md-6"><input type="text" placeholder="Name" name=""></div>
-                                    <div class="col-md-6"><input type="text" placeholder="Mobile" name=""></div>
-                                    <div class="col-md-12"><input type="text" placeholder="Organization" name=""></div>
-                                    <div class="col-md-12"><input type="text" placeholder="Email" name=""></div>
-                                    <div class="col-md-12"><button type="submit">Submit a Request</button></div>
+                                <div class="clear"></div>-->
+                                <!--<div class="row">    
+    
+                                    <div class="col-md-6">
+                                        <input style="background-color: #000000 !important;color: #7F7F7F !important;" type="text" placeholder="Name" >
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input style="background-color: #000000 !important;color: #7F7F7F !important;"type="text" placeholder="Mobile">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input style="background-color: #000000 !important;color: #7F7F7F !important;" type="text" placeholder="Organization" >
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input style="background-color: #000000 !important;color: #7F7F7F !important;" type="text" placeholder="Email" >
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit">Submit a Request</button>
+                                    </div>
+                                </div>-->
+                                <div class="col-md-12 inputfield">
+                                    <h3 class="ReqHeader">I would Like to Discuss</h3>
+
+                                    <div class="form-group col-md-6">
+                                        <input placeholder="Name" class="form-control" id="" value="">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <input placeholder="Mobile Number" class="form-control" id="" value="">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <input placeholder="Organisation"   class="form-control" id="" value="">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <input type="email" placeholder="Email Address" class="form-control" id="" value="">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <button type="button" class="btn btn-primary btn-lg btn-block">Submit a Request</button>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
-                        <div class="col-md-4"></div>
                     </div>
 
-                </div>
-            </div>
+                <!--</div>
+            </div>-->
 
             <div class="row">
                 <div class="footer-links">
