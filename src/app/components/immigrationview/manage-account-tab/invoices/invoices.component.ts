@@ -24,6 +24,7 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
   public invoice: any;
   public settings;
   public data;
+  public paginationData;
   private user: User;
   constructor(private headerService: HeaderService, public dialogService: DialogService, private manageAccountInvoiceService: ManageAccountInvoiceService) {
     super(dialogService);
@@ -69,6 +70,7 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
         console.log("getinoices%o", res);
         if (res['invoices']) {
           this.data = res['invoices'];
+          this.paginationData = res['pageMetadata'];
         }
 
 

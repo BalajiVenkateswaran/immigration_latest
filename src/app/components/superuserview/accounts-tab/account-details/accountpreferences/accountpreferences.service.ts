@@ -27,4 +27,8 @@ export class SuperuserViewAccountpreferencessService {
     }
     return this.restService.postData('/superuser/account/discounts', req);
   }
+
+  public getProductDetails() {
+    return this.restService.getData('/superuser/products');
+  }
 }

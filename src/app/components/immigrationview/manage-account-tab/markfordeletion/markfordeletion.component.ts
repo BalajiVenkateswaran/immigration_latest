@@ -11,6 +11,7 @@ export class MarkforDeletionComponent implements OnInit {
     public markForDeletionInfoList;
     public settings;
     public data;
+  public paginationData: any;
   constructor(public markForDeletionservice: markfordeletionservice, public headerService: HeaderService) {
 
     this.settings = {
@@ -57,6 +58,7 @@ export class MarkforDeletionComponent implements OnInit {
         this.markForDeletionservice.getMarkForDeletion(this.headerService.user.accountId).subscribe(
             res => {
                 this.data = res['markForDeletionInfoList'];
+              this.paginationData = res['pageMetadata'];
             }
         )
     }

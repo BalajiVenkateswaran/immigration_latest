@@ -28,6 +28,8 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
   public beforeEdit: any;
   public editFlag = true;
   public warningMessage = false;
+  public paginationData;
+
   private roles: any = {
     'Immigration Officer': '501f6e87-cd6e-11e6-a939-34e6d7382cac',
     'Immigration Manager': 'a724fdd7-cd6e-11e6-a939-34e6d7382cac'
@@ -66,6 +68,8 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
           user['roleName'] = user['role'];
         }
         this.data = res['users'];
+        this.paginationData = res['pageMetadata'];
+
       });
   }
   addFunction(event) {

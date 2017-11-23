@@ -35,7 +35,12 @@
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-4">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" class="form-control" id="svActPrefCode" [disabled]="editprdct" [(ngModel)]="addproduct.code"></div>
+                            <div class="col-md-8">
+                              <select class="form-control" [(ngModel)]="addproduct.code">
+                                <option *ngFor="let c of allProducts"  [value]="c.code" id="{{c.code}}">{{ c.code }}</option>
+                              </select>
+                              <!--<input type="text" class="form-control" id="svActPrefCode" [disabled]="editprdct" [(ngModel)]="addproduct.code">-->
+                            </div>
                             <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
                             <div class="col-md-8">
                                 <my-date-picker [options]="myDatePickerOptions" id="svActPrefStartDate" [(ngModel)]="addproduct.startDate" [selDate]="startDate"></my-date-picker>

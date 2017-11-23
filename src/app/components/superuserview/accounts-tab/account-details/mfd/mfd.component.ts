@@ -10,6 +10,7 @@ import {AccountDetailsCommonService} from "../common/account-details-common.serv
 export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
   public settings;
   public data;
+  public paginationData;
   constructor(public accountDetailsMFDService: SuperUserViewMFDService, private accountDetailsCommonService: AccountDetailsCommonService) {
     this.settings = {
       'isDeleteEnable': false,
@@ -56,6 +57,7 @@ export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
   ngOnInit() {
     this.accountDetailsMFDService.getMarkForDeletion(this.accountDetailsCommonService.accountId).subscribe(res => {
       this.data = res['markForDeletionInfoList'];
+      this.paginationData = res['pageMetadata'];
     })
   }
 

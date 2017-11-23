@@ -55,6 +55,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public beforeProductEdit;
     public editDiscountFlag = true;
     public beforeDiscountEdit;
+    public allProducts;
     constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService,
         private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
@@ -156,6 +157,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     ngOnInit() {
         this.getproducts();
         this.getdiscounts();
+        this.getAllProducts();
     }
     addProducts(value) {
         this.dialogService.addDialog(AccountPreferencesComponent, {
@@ -284,6 +286,15 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     cancel() {
         this.result = false;
         this.close();
+    }
+
+    getAllProducts(){
+      this.superuserViewAccountpreferencessService.getProductDetails().subscribe(
+        res => {
+          this.allProducts = res['products'].filter(item => item.status === 'Active');
+          console.log(this.allProducts)
+        }
+      )
     }
 
 }

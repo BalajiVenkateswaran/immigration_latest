@@ -13,6 +13,7 @@ import {SortType} from '../../../../framework/smarttable/types/query-parameters'
 
 
 import {InformationComponent} from '../../../../framework/confirmbox/information.component';
+import {ImmigrationViewClientDetailsService} from "../client-details/client-details.service";
 
 export interface ConfirmModel {
     title: string;
@@ -47,12 +48,16 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public clientInviteStatus;
     public countryNames: string[] = [];
   public queryParams: any;
+  clientDetails: any = {};
+  public user1;
 
-    highlightSBLink(link) {
+
+  highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
     constructor(private immigrationviewpetitionService: ImmigrationViewPetitionsService, public appService: AppService,
-        private menuService: MenuService, private router: Router, public dialogService: DialogService, private headerService: HeaderService) {
+        private menuService: MenuService, private router: Router, public dialogService: DialogService, private headerService: HeaderService,
+                private clientDetailsService: ImmigrationViewClientDetailsService) {
         super(dialogService);
         this.addPetition = new FormGroup({
             petitionName: new FormControl(''),
@@ -127,12 +132,24 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId, this.queryParams).subscribe((res) => {
             this.data = res['petitions'];
             this.clientInviteStatus = res['clientInviteStatus'];
+          //  console.log(this.appService.clientId);
+          this.getClientDetails();
+            console.log(res)
         });
         if (!this.allPetitionTypesAndSubTypes) {
           this.getPetitionTypes();
         }
     }
 
+  getClientDetails() {
+    this.clientDetailsService.getClientDetails(this.appService.clientId)
+      .subscribe((res) => {
+        this.clientDetails = res['clientDetails'];
+        this.appService.clientfirstName = res['clientDetails']['firstName'];
+        this.appService.clientlastName = res['clientDetails']['lastName'];
+        //console.log(res)
+      });
+      }
 
 
     getPetitionTypes() {
@@ -166,6 +183,8 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
 
   ngOnInit() {
     this.headerService.showSideBarMenu('immigrationview-client', 'clients');
+
+
   }
 
   addNewPetition() {

@@ -5,7 +5,11 @@
   <div class="clearfix"></div>
   <div class="table-data">
     <h2>Invoices</h2>
-              <ih-smart-table [settings]="settings" [data]="data" (onRowClick)="moveToInvoiceTab($event)" (dataWithQueryParams)="dataWithParameters($event)"></ih-smart-table>
+              <ih-smart-table [settings]="settings" [data]="data"
+                              (onRowClick)="moveToInvoiceTab($event)"
+                              (dataWithQueryParams)="dataWithParameters($event)"
+                              [paginationData]="paginationData">
+              </ih-smart-table>
 </div>
 </div>
 

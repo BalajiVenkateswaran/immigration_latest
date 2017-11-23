@@ -28,6 +28,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
     public newclitem: any = {};
     public settings;
     public data;
+    public paginationData;
   public statusTypes: any = [];
 
   constructor(private superuserviewInvoicestabService: SuperUserViewInvoicestabService, private appService: AppService,
@@ -128,6 +129,8 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
             this.superuserviewInvoicestabService.getInvoicesWithQueryParams(queryParams).subscribe(res=>{
                  this.invoicesList = res.invoices;
                  this.data = this.invoicesList;
+              this.paginationData = res['pageMetadata'];
+
             })
         }
 
