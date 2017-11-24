@@ -1,15 +1,15 @@
 ﻿import { User } from '../../../../models/user';
 import { RestService } from '../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class Demorequestdetailsservice {
     constructor(private restService: RestService) {
     }
     public getDemoRequests() {
-        return this.restService.getData("/superuser/misc/demo");
+        return this.restService.getData('/superuser/misc/demo');
     }
-    public savedemoRequest(Data: User) {
-        return this.restService.putData("/superuser/misc/demo", Data);
+    public savedemoRequest(data: any) {
+        return this.restService.putData('/superuser/misc/demo', data);
     }
 }

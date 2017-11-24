@@ -472,8 +472,8 @@
                                     I would Like to Discuss
                                 </span>
                                 <div class="clear"></div>-->
-                                <!--<div class="row">    
-    
+                                <!--<div class="row">
+
                                     <div class="col-md-6">
                                         <input style="background-color: #000000 !important;color: #7F7F7F !important;" type="text" placeholder="Name" >
                                     </div>
@@ -494,22 +494,22 @@
                                     <h3 class="ReqHeader">I would Like to Discuss</h3>
 
                                     <div class="form-group col-md-6">
-                                        <input placeholder="Name" class="form-control" id="" value="">
+                                        <input placeholder="Name" class="form-control" [(ngModel)]="submitRequest.name" id="srName"/>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <input placeholder="Mobile Number" class="form-control" id="" value="">
+                                        <input placeholder="Mobile Number" class="form-control" [(ngModel)]="submitRequest.phone" id="srPhone"/>
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <input placeholder="Organisation"   class="form-control" id="" value="">
+                                        <input placeholder="Organization"   class="form-control" id="srOrganization" [(ngModel)]="submitRequest.organization"/>
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <input type="email" placeholder="Email Address" class="form-control" id="" value="">
+                                        <input type="email" placeholder="Email Address" class="form-control" id="srEmail" [(ngModel)]="submitRequest.email"/>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <button type="button" class="btn btn-primary btn-lg btn-block">Submit a Request</button>
+                                        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="submitRequestClick()">Submit a Request</button>
                                     </div>
                                 </div>
                         </div>
@@ -526,7 +526,7 @@
                                 <h1>Immigration Hub</h1>
                                 <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
                                 <a href="#" class="phone" style="margin: 0px;"><img src="../../../../../assets/images/web/phone-call@2x.png">+1 732-666-2556</a><br>
-                                2501 Rainer Rd,<br>  
+                                2501 Rainer Rd,<br>
                                 Chester Springs, PA-19425
                             </div>
                             <div class="col-md-4">

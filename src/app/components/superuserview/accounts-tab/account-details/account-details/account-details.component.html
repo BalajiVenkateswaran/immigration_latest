@@ -89,7 +89,8 @@
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsMdel">Mark for Deletion <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.markForDeletion" [disabled]="MFDdisable" [ngClass]="accountDetails.markForDeletion == undefined ? 'redborder': ''" class="form-control">
+                          <!--[disabled]="MFDdisable"-->
+                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.markForDeletion"  [ngClass]="accountDetails.markForDeletion == undefined ? 'redborder': ''" class="form-control">
                                 <option [value]="true" [selected] = "accountDetails.markForDeletion == true">YES</option>
                                 <option [value]="false" [selected] = "accountDetails.markForDeletion == false">NO</option>
                             </select>

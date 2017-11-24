@@ -12,6 +12,8 @@ import {HeaderComponentService} from '../../header/header.component.service';
 import { environment } from '../../../../../environments/environment';
 import {ApplicationRoles} from '../../constants/applicationroles.constants';
 import {ApplicationViews} from '../../constants/applicationviews.constants';
+import {Demorequestdetailsservice} from '../../../superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
+import {InformationComponent} from '../../../framework/confirmbox/information.component';
 
 export interface ConfirmModel {
   title: string;
@@ -48,6 +50,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   public loginPopupForm: boolean;
   public userRoles: any = [];
   public forgotpwdsubmit = true;
+  public submitRequest = {};
   // Build number format: yy.mm.2 digit build number
 
   constructor(
@@ -57,7 +60,8 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     public dialogService: DialogService,
     private headerService: HeaderService,
     private headerComponentService: HeaderComponentService,
-    private manageAccountUserService: ManageAccountUserService
+    private manageAccountUserService: ManageAccountUserService,
+    private demoRequestDetailsService: Demorequestdetailsservice
   ) {
     super(dialogService);
     console.log('Login Component Constructor');
@@ -276,5 +280,22 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
 
   clicktogotop() {
       window.scrollTo(1000, 500);
+  }
+
+
+  submitRequestClick() {
+    this.demoRequestDetailsService.savedemoRequest(this.submitRequest).subscribe((res) => {
+      if (res['statusCode'] === 'SUCCESS') {
+        this.dialogService.addDialog(InformationComponent, {
+          title: 'Information',
+          message: 'Request is submitted successfully'
+        });
+      } else {
+        this.dialogService.addDialog(InformationComponent, {
+          title: 'Error',
+          message: res['statusDescription']
+        });
+      }
+    });
   }
 }
