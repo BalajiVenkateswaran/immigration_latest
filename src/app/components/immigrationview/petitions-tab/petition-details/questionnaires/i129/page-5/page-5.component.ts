@@ -24,6 +24,7 @@ export class i129Page5Component implements OnInit {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
+        showSelectorArrow: false
     };
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
 

@@ -1308,7 +1308,7 @@ ul.edit-delete,
       border-color: rgba(0, 0, 0, 0.3);
       cursor: text; }
     .petition-docs .right-form .saveorder {
-      float: right;
+      /*float: right;*/
       margin: 0 0 15px 0;
       border: none;
       background: #04a9fc;
