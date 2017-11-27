@@ -75,11 +75,11 @@
                     <div class="col-md-4 right-form">
                         <div class="row removedclass">
                             <div class="col-md-1"></div>
-                            <button type="submit" class="btn iportal-btnIMclient"*ngIf="isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'saveorder':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
-                          <button _ngcontent-c7="" class="iportal-btnIMclient pull-left no-marg-right" *ngIf="isSaveOrderVisible" style="margin-top: 5px!important;" type="button" (click)="cancelOrder()">Cancel</button>
+                            <button type="submit" class="btn btn-primary" style="background: #34a853 !important;" *ngIf="isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'saveorder':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
+                          <button _ngcontent-c7="" class="btn btn-default pull-left no-marg-right" *ngIf="isSaveOrderVisible" style="margin-top: 0px!important;    background: #ea4335 !important;    background: #ea4335 !important;background: #ea4335 !important;color: #fff!important;" type="button" (click)="cancelOrder()">Cancel</button>
 
                           <div class="col-md-1"></div>
-                            <button type="submit" class="btn iportal-btnIMclient" *ngIf="isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'saveorder':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
+                            <button type="submit" class="btn iportal-btnIMclient" style="margin-left: -44px!important;" *ngIf="isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'saveorder':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
 
                         </div>
 

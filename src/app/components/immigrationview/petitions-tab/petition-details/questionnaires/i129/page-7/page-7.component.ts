@@ -20,6 +20,8 @@ export class i129Page7Component implements OnInit {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
+        openSelectorTopOfInput: true,
+        showSelectorArrow: false
     };
     public aptType;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
