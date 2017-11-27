@@ -97,7 +97,7 @@ import {i129dcPage3Component} from './components/immigrationview/petitions-tab/p
 
 import { PetitionsComponent } from './components/immigrationview/petitions-tab/petitions/petitions.component';
 import { profilechangepwdcomponent } from './components/immigrationview/profile-tab/changepassword/changepassword.component';
-import { profileswitchcomponent } from './components/immigrationview/profile-tab/switch/switch.component';
+import { ProfileSwitchComponent } from './components/immigrationview/profile-tab/switch/switch.component';
 import { profiletodolistcomponent } from './components/immigrationview/profile-tab/todolist/todolist.component';
 import { petitionstagesreportscomponent } from './components/immigrationview/reports-tab/petition/stages/stages.component';
 import { petitionstagsreportscomponent } from './components/immigrationview/reports-tab/petition/tags/tags.component';
@@ -125,7 +125,7 @@ import {SuperUserClientStatusReportsComponent} from './components/superuserview/
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
 
-import {demorequestdetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
+import {DemoRequestDetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
 import {miscsuperusersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
 import { Page1Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-1/page-1.component';
 import { Page4Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-4/page-4.component';
@@ -548,7 +548,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'immiview-profileswitch',
-        component: profileswitchcomponent
+        component: ProfileSwitchComponent
     },
     {
         path: 'immiview-profilechangepwd',
@@ -632,7 +632,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'superuser-misc',
-        component: demorequestdetailsComponent
+        component: DemoRequestDetailsComponent
     },
     {
         path: 'superuser-miscsuperusers',

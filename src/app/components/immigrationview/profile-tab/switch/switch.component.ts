@@ -1,11 +1,11 @@
 ﻿import { AppService } from '../../../../services/app.service';
 import { SmartTableFrameworkComponent } from '../../../framework/smarttable/smarttable.component';
 import { HeaderService } from '../../../common/header/header.service';
-import { profileswitchservice } from './switch.service';
+import { ProfileSwitchService } from './switch.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SwitchButtonComponent } from './switchButton';
-import {HeaderComponentService} from "../../../common/header/header.component.service";
+import {HeaderComponentService} from '../../../common/header/header.component.service';
 
 @Component({
     selector: 'ih-switch',
@@ -13,7 +13,7 @@ import {HeaderComponentService} from "../../../common/header/header.component.se
     styleUrls: ['./switch.component.scss']
 })
 
-export class profileswitchcomponent implements OnInit,AfterViewInit {
+export class ProfileSwitchComponent implements OnInit, AfterViewInit {
     public settings;
     public data;
     public user: any;
@@ -24,30 +24,30 @@ export class profileswitchcomponent implements OnInit,AfterViewInit {
         this.data = this.appService.userroleList;
         this.user = this.headerService.user;
     }
-    constructor(public appService: AppService, private profileSwitchservice: profileswitchservice, public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
+    constructor(public appService: AppService, private profileSwitchservice: ProfileSwitchService, public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
 
         this.settings = {
-            "isAddButtonEnable": false,
-            "isDeleteEnable": false,
+            'isAddButtonEnable': false,
+            'isDeleteEnable': false,
             'rowHeight': 60,
             'context': {
                             'componentParent': this
                         },
             'columnsettings': [
                 {
-                    headerName: "Role Name",
-                    field: "roleName",
-                  type:'text',
+                    headerName: 'Role Name',
+                    field: 'roleName',
+                  type: 'text',
                 },
                 {
-                    headerName: "Account Name",
-                    field: "accountName",
-                   type:'text'
+                    headerName: 'Account Name',
+                    field: 'accountName',
+                   type: 'text'
                 },
                 {
-                    headerName: "Switch",
+                    headerName: 'Switch',
                     cellRendererFramework: SwitchButtonComponent,
-                  type:'text'
+                  type: 'text'
                 }
             ]
         }

@@ -1,9 +1,8 @@
 ﻿import { RestService } from '../../../../services/rest.service';
-import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
+import {Injectable} from '@angular/core';
 
 @Injectable()
-export class profileswitchservice {
+export class ProfileSwitchService {
     constructor(private restService: RestService) {
     }
 

@@ -1,11 +1,11 @@
 ﻿import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
-import {Demorequestdetailsservice} from "./demorequestdetails.service";
+import {Demorequestdetailsservice} from './demorequestdetails.service';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
 
 export interface ConfirmModel {
     title: string;
@@ -16,17 +16,17 @@ export interface ConfirmModel {
     demoRequestDate: string;
 }
 @Component({
-    selector: 'misc-demorequest',
+    selector: 'ih-misc-demorequest',
     templateUrl: './demorequestdetails.component.html',
 
 })
 
 
-export class demorequestdetailsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public data;
     public settings;
-    public getdemorequests: boolean = true;
-    public adddemorequest: boolean = false;
+    public getdemorequests = true;
+    public adddemorequest = false;
     public adddemoRequests: any = {};
     public demoRequestDate: any;
     private myDatePickerOptions: IMyOptions = {
@@ -41,49 +41,43 @@ export class demorequestdetailsComponent extends DialogComponent<ConfirmModel, b
     this.settings = {
       'columnsettings': [
         {
-
-          headerName: "Name",
-          field: "name",
+          headerName: 'Name',
+          field: 'name'
         },
         {
-
-          headerName: "Email",
-          field: "email",
-
+          headerName: 'Email',
+          field: 'email'
         },
         {
-
-          headerName: "Phone",
-          field: "phone",
+          headerName: 'Phone',
+          field: 'phone'
         },
         {
-          headerName: "Date",
-          field: "demoRequestDate",
-
+          headerName: 'Organization',
+          field: 'organization'
         },
         {
-
-          headerName: "Referral",
-          field: "referral",
-
+          headerName: 'Date',
+          field: 'demoRequestDate'
         },
         {
-
-          headerName: "Comments",
-          field: "comments",
-
+          headerName: 'Referral',
+          field: 'referral'
         },
         {
-
-          headerName: "Status",
-          field: "status",
-
+          headerName: 'Comments',
+          field: 'comments'
         },
+        {
+          headerName: 'Status',
+          field: 'status'
+        }
       ]
     }
   }
+
   ngOnInit() {
-        this.headerService.showSideBarMenu("superuser-misc", "superuser-misc");
+        this.headerService.showSideBarMenu('superuser-misc', 'superuser-misc');
         this.getDemoRequests();
     }
   getDemoRequests() {
@@ -93,7 +87,7 @@ export class demorequestdetailsComponent extends DialogComponent<ConfirmModel, b
             });
     }
     addFunction() {
-        this.dialogService.addDialog(demorequestdetailsComponent, {
+        this.dialogService.addDialog(DemoRequestDetailsComponent, {
             adddemorequest: true,
             getdemorequests: false,
             title: 'Add New Demo Request',
@@ -106,7 +100,7 @@ export class demorequestdetailsComponent extends DialogComponent<ConfirmModel, b
         });
     }
     editRecord(event) {
-        this.dialogService.addDialog(demorequestdetailsComponent, {
+        this.dialogService.addDialog(DemoRequestDetailsComponent, {
             adddemorequest: true,
             getdemorequests: false,
             title: 'Edit Demo Request',

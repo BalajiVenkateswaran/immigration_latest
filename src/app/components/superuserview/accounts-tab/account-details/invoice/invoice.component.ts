@@ -172,4 +172,12 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         })
         return upload;
     }
+
+    saveInvoiceDetails() {
+      this.accountInvoiceService.saveInvoiceDetails(this.invoice).subscribe(
+        res => {
+          if (res['statusCode'] === 'SUCCESS') {}
+        }
+      );
+    }
 }

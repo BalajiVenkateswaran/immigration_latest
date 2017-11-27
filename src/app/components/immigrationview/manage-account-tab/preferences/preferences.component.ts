@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ManageAccountpreferencessService} from './preferences.service';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
 
 
 @Component({
@@ -10,107 +10,91 @@ import {HeaderService} from "../../../common/header/header.service";
 })
 export class ManageAccountPreferencesComponent implements OnInit {
 
-    public products:any=[];
-    public discounts:any=[];
+    public products: any= [];
+    public discounts: any= [];
     public settings;
     public data;
     public settings1;
     public data1;
-    constructor(private headerService: HeaderService,private manageAccountpreferencessService:ManageAccountpreferencessService) {
-        this.settings= {
-            "isAddButtonEnable": false,
-            "isDeleteEnable": false,
+    constructor(private headerService: HeaderService, private manageAccountpreferencessService: ManageAccountpreferencessService) {
+        this.settings = {
+            'isAddButtonEnable': false,
+            'isDeleteEnable': false,
             'columnsettings': [
                 {
-
-                    headerName: "Name",
-                    field: "name",
+                    headerName: 'Name',
+                    field: 'name',
                 },
                 {
-
-                    headerName: "Code",
-                    field: "code",
+                    headerName: 'Code',
+                    field: 'code',
                 },
                 {
-
-                    headerName: "Description",
-                    field: "description"
+                    headerName: 'Description',
+                    field: 'description'
                 },
                 {
-                    headerName: "Start Date",
-                    field: "startDate"
+                    headerName: 'Start Date',
+                    field: 'startDate'
                 },
                 {
-
-                    headerName: "End Date",
-                    field: "endDate"
+                    headerName: 'End Date',
+                    field: 'endDate'
                 },
                 {
-
-                    headerName: "Max Users",
-                    field: "maxUsers"
+                    headerName: 'Max Users',
+                    field: 'maxUsers'
                 },
                 {
-
-                    headerName: "Max Clients/Month",
-                    field: "maxClientsPerMonth"
+                    headerName: 'Max Clients/Month',
+                    field: 'maxClientsPerMonth'
                 },
                 {
-                    headerName: "Max Petitions/Month",
-                    field: "maxPetitionsPerMonth"
+                    headerName: 'Max Petitions/Month',
+                    field: 'maxPetitionsPerMonth'
                 },
                 {
-
-                    headerName: "Max S3 Storage",
-                    field: "maxS3Storage"
+                    headerName: 'Max S3 Storage',
+                    field: 'maxS3Storage'
                 },
                 {
-
-                    headerName: "Cost",
-                    field: "cost"
-                },
-
+                    headerName: 'Cost',
+                    field: 'cost'
+                }
             ]
         }
         this.settings1 = {
-            "isAddButtonEnable": false,
-            "isDeleteEnable": false,
+            'isAddButtonEnable': false,
+            'isDeleteEnable': false,
             'columnsettings': [
                 {
-
-                    headerName: "Name",
-                    field: "discountName",
+                    headerName: 'Name',
+                    field: 'discountName',
                 },
                 {
-
-                    headerName: "Code",
-                    field: "discountCode",
+                    headerName: 'Code',
+                    field: 'discountCode',
                 },
                 {
-
-                    headerName: "Description",
-                    field: "description"
+                    headerName: 'Description',
+                    field: 'description'
                 },
                 {
-                    headerName: "Start Date",
-                    field: "startDate"
+                    headerName: 'Start Date',
+                    field: 'startDate'
                 },
                 {
-
-                    headerName: "End Date",
-                    field: "endDate"
+                    headerName: 'End Date',
+                    field: 'endDate'
                 },
                 {
-
-                    headerName: "Cost",
-                    field: "cost"
+                    headerName: 'Cost',
+                    field: 'cost'
                 },
                 {
-
-                    headerName: "Percentage",
-                    field: "percentage"
+                    headerName: 'Percentage',
+                    field: 'percentage'
                 }
-
             ]
         }
     }
@@ -121,14 +105,14 @@ export class ManageAccountPreferencesComponent implements OnInit {
     }
     getproducts() {
         this.manageAccountpreferencessService.getproductsAccount(this.headerService.user.accountId).subscribe((res) => {
-            if (res['statusCode'] == "SUCCESS") {
+            if (res['statusCode'] === 'SUCCESS') {
                 this.data = res['products'];
             }
         });
     }
     getdiscounts() {
         this.manageAccountpreferencessService.getdiscountsAccount(this.headerService.user.accountId).subscribe((res) => {
-            if (res['statusCode'] == "SUCCESS") {
+            if (res['statusCode'] === 'SUCCESS') {
                 this.data1 = res['discounts'];
 
             }

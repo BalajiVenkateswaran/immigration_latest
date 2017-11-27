@@ -155,11 +155,12 @@ export class AppService {
         this._questionaryName = null;
         this._currentSBLink = null;
         this.orgClientId = null;
+        this.userroleList = null;
     }
 
 
     public moveToPageWithParams(pageLink, params) {
-        if (pageLink != this._currentPage) {
+        if (pageLink !== this._currentPage) {
             this._currentPage = '';
         }
         this._currentPage = pageLink;

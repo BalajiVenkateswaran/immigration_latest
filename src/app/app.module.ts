@@ -231,8 +231,8 @@ import {i129HPage6Component} from './components/immigrationview/petitions-tab/pe
 
 import { profilechangepwdservice } from './components/immigrationview/profile-tab/changepassword/changepassword.service';
 import { profileloginhisservice } from './components/immigrationview/profile-tab/loginhistory/loginhistory.service';
-import { profileswitchcomponent } from './components/immigrationview/profile-tab/switch/switch.component';
-import { profileswitchservice } from './components/immigrationview/profile-tab/switch/switch.service';
+import { ProfileSwitchComponent } from './components/immigrationview/profile-tab/switch/switch.component';
+import { ProfileSwitchService } from './components/immigrationview/profile-tab/switch/switch.service';
 import { SwitchButtonComponent } from './components/immigrationview/profile-tab/switch/switchButton';
 import { profiletodolistcomponent } from './components/immigrationview/profile-tab/todolist/todolist.component';
 import { profiletodolistservice } from './components/immigrationview/profile-tab/todolist/todolist.service';
@@ -273,7 +273,7 @@ import {SuperUserViewInvoicestabComponent} from './components/superuserview/invo
 import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
 
 // superuser misc tab
-import {demorequestdetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
+import {DemoRequestDetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
 import {Demorequestdetailsservice} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
 import {miscsuperusersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
 import {miscsuperusersservice} from './components/superuserview/misc-tab/superusers/miscsuperusers.service';
@@ -508,12 +508,12 @@ import {ImmigrationClientCommonService} from './components/immigrationview/clien
         // profile
         profileusercomponent,
         profileloginhiscomponent,
-        profileswitchcomponent,
+        ProfileSwitchComponent,
         profilechangepwdcomponent,
         profiletodolistcomponent,
         SuperuserviewAccountdetailsMfdComponent,
         ManageaccountChecklistComponent,
-        demorequestdetailsComponent,
+        DemoRequestDetailsComponent,
         miscsuperusersComponent,
         Page1Component,
         Page2Component,
@@ -617,7 +617,7 @@ import {ImmigrationClientCommonService} from './components/immigrationview/clien
         // profile
         profileuserservice,
         profileloginhisservice,
-        profileswitchservice,
+        ProfileSwitchService,
         profilechangepwdservice,
         profiletodolistservice,
         // superuserreports
