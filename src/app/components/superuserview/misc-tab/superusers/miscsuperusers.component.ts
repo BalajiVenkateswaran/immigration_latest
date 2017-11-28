@@ -44,7 +44,7 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
                 },
                 {
                     headerName: 'Email',
-                    field: 'emailId'
+                    field: 'email'
                 },
                 {
                     headerName: 'Phone',
@@ -90,7 +90,7 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
     if (queryData) {
       this.queryParameters = queryData
     }
-    this.miscSuperusersservice.getSuperUsers().subscribe((res) => {
+    this.miscSuperusersservice.getSuperUsers(queryData).subscribe((res) => {
       if (res['statusCode'] === 'SUCCESS') {
         this.data = res['superUsers'];
       }

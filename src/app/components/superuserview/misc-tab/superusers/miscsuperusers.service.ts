@@ -11,7 +11,7 @@ export class MiscSuperUsersService {
     }
 
 
-  public getSuperUsers() {
-      return this.restService.getData('/superuser/users');
+  public getSuperUsers(queryData: string) {
+      return this.restService.getData('/superuser/users'+ queryData);
   }
 }
