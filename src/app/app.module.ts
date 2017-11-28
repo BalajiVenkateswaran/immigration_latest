@@ -276,7 +276,7 @@ import {SuperUserViewPaymentstabComponent} from './components/superuserview/paym
 import {DemoRequestDetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
 import {Demorequestdetailsservice} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
 import {miscsuperusersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
-import {miscsuperusersservice} from './components/superuserview/misc-tab/superusers/miscsuperusers.service';
+import {MiscSuperUsersService} from './components/superuserview/misc-tab/superusers/miscsuperusers.service';
 import { Page1Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-1/page-1.component';
 import { Page2Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-2/page-2.component';
 import { Page3Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-3/page-3.component';
@@ -631,7 +631,7 @@ import {ImmigrationClientCommonService} from './components/immigrationview/clien
         SuperUserClientsCreatedReportsService,
         SuperUserTotalPetitionsReportsService,
         SuperUsersOpenPetitionService,
-        miscsuperusersservice,
+        MiscSuperUsersService,
         Demorequestdetailsservice,
         SmartTableService
     ],

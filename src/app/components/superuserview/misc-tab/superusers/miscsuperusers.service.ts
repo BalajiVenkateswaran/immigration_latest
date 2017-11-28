@@ -3,10 +3,15 @@ import { RestService } from '../../../../services/rest.service';
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class miscsuperusersservice {
+export class MiscSuperUsersService {
     constructor(private restService: RestService) {
     }
     public saveNewsuperUser(userData: User) {
         return this.restService.postData('/superuser', userData);
     }
+
+
+  public getSuperUsers() {
+      return this.restService.getData('/superuser/users');
+  }
 }

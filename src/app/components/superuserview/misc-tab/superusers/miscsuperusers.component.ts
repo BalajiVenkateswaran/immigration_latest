@@ -1,7 +1,7 @@
 ﻿import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
-import {miscsuperusersservice} from './miscsuperusers.service';
+import {MiscSuperUsersService} from './miscsuperusers.service';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 export interface ConfirmModel {
@@ -28,7 +28,7 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
     public warningMessage: any;
     ngOnInit() {
     }
-    constructor(private miscSuperusersservice: miscsuperusersservice,
+    constructor(private miscSuperusersservice: MiscSuperUsersService,
         private appService: AppService, public dialogService: DialogService) {
         super(dialogService);
 
@@ -90,8 +90,10 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
     if (queryData) {
       this.queryParameters = queryData
     }
-    this.miscSuperusersservice.saveNewsuperUser(this.addsuperUsers).subscribe((res) => {
-      console.log(res);
+    this.miscSuperusersservice.getSuperUsers().subscribe((res) => {
+      if (res['statusCode'] === 'SUCCESS') {
+        this.data = res['superUsers'];
+      }
     });
   }
 }
