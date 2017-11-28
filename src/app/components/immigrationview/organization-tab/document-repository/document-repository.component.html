@@ -7,46 +7,13 @@
     box-shadow: 0px 0px 5px #ddd!important;
 }
 </style>
-<!--<div class="main-content" *ngIf="getData">
-
-    <div class="table-data">
-        <h2>{{headerService.user.lastName}} {{headerService.user.firstName}}</h2>
-
-        <div class="clearfix"></div>
-        <h2>Document Repository</h2>
-        <form method="POST" enctype="multipart/form-data"  (ngSubmit)="addDocumentRepositorySubmit(addDocumentRepository.value, addDocumentRepository.valid)">
-            <div class="pull-right uplodbtn">
-                <div class="fileUpload btn btn-primary iportal-btn pull-right no-marg-right agridadd">
-                    <span>Upload File</span>
-                    <input type="file" #fileInput class="upload" name="file" (click)="onFileUploadClick(fileInput)" (change)="fileUpload($event)" />
-                </div>
-            </div>
-            <ih-smart-table class="immiview-orgtab-docrepo" [settings]="settings" [data]="getFiles" (onRowClick)="editFileName($event)"></ih-smart-table>
-        </form>
-        <div class="clearfix"></div>
-    </div>
-
-
-</div>-->
 <div class="dropzone">
   <div class="row">
     <div class="col-md-12">
         <h2 class="headerinsections" style="font-size: 18px!important;color: #4EA0F9 !important;margin-top: 0px;">Document</h2>
         <div class="col-md-6 well-lg">
-            <h3 *ngIf="uploader.queue.length > 0">Upload queue {{ uploader?.queue?.length }}</h3>
-            <table class="table" *ngIf="uploader.queue.length > 0">
-                <tbody>
-                    <tr *ngFor="let item of uploader.queue">
-                        <td>{{ item?.file?.name }}</td>
-                        <td>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                        <td>
-                            <div class="progress" style="margin-bottom: 0;">
-                                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+          <!-- Div for files that are uploaded-->
+          <div>
             <h4 style="color:#232F3F!important;margin-top: 0px!important;">Uploaded Files</h4>
             <table class="table">
                 <thead>
@@ -69,7 +36,7 @@
                             </div>
                             <button title="Download" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
                                 <i class="fa fa-download" aria-hidden="true"></i>
-                            </button>                           
+                            </button>
                             <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
@@ -77,6 +44,7 @@
                     </tr>
                 </tbody>
             </table>
+          </div>
         </div>
         <div class="col-md-6">
             <div class="dropboxBg">
@@ -88,6 +56,23 @@
                     <input type="file" class="custom-file-input" ng2FileSelect [uploader]="uploader" multiple /> from computer. Or Drop them Here.
                 </div>
             </div>
+          <!-- Div for files that are uploading-->
+          <div *ngIf="uploader.queue.length > 0">
+            <h3>Upload queue {{ uploader?.queue?.length }}</h3>
+            <table class="table">
+              <tbody>
+              <tr *ngFor="let item of uploader.queue">
+                <td>{{ item?.file?.name }}</td>
+                <td>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                <td>
+                  <div class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         </div>
   </div>
