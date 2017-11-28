@@ -7,6 +7,7 @@ import {Component, OnInit} from '@angular/core';
 import {ManageAccountOrganizationsService} from './organizations.service';
 
 import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {InformationComponent} from '../../../framework/confirmbox/information.component';
 
 export interface ConfirmModel {
   title: string;
@@ -18,7 +19,7 @@ export interface ConfirmModel {
 }
 
 @Component({
-  selector: 'app-manageaccount-organizations',
+  selector: 'ih-manageaccount-organizations',
   templateUrl: './organizations.component.html',
   styleUrls: ['./organizations.component.sass']
 })
@@ -44,7 +45,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
     }
     this.settings = {
         'isDeleteEnable': false,
-      'isMorefilters':true,
+        'isMorefilters': true,
         'context': {
             'componentParent': this
         },
@@ -99,8 +100,8 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
           if (this.message === 'SUCCESS') {
             this.dataWithParameters(this.queryParams);
           } else {
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error..!',
+            this.dialogService.addDialog(InformationComponent, {
+              title: 'Error',
               message: res['statusDescription']
             });
           }

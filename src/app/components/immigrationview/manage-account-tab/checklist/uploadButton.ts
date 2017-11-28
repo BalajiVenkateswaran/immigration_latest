@@ -3,23 +3,19 @@ import {ICellRendererAngularComp} from 'ag-grid-angular/main';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs';
 import {Subscription} from 'rxjs/Subscription';
-import {AppService} from "../../../../services/app.service";
+import {AppService} from '../../../../services/app.service';
 import {ManageAccountChecklistService} from './checklist.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {HeaderService} from "../../../common/header/header.service";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+import {HeaderService} from '../../../common/header/header.service';
+import {InformationComponent} from '../../../framework/confirmbox/information.component';
 
 
 @Component({
-    template: `
-
-                    <div class="fileUpload btn btn-primary iportal-btn no-marg-right agridadd">
+    template: `<div class="fileUpload btn btn-primary iportal-btn no-marg-right agridadd">
                         <i class="fa fa-upload" aria-hidden="true"></i>
                         <input type="file" #fileInput class="upload" name="file" (change)="fileUpload($event)"/>
-                    </div>
-                
-   
-   `,
+                    </div>`,
 
 })
 export class checklistuploadButton implements ICellRendererAngularComp {
@@ -36,16 +32,15 @@ export class checklistuploadButton implements ICellRendererAngularComp {
     }
 
     fileUpload(event) {
-        var asdf=this.params;
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
-        var x = file.name;
+        let x = file.name;
      //   let fileExists = this.isfileExists(file);
-        var y = x.split(".");
-        if (fileList.length > 0 && y[1] == "pdf") {
+        let y = x.split('.');
+        if (fileList.length > 0 && y[1] === 'pdf') {
             let formData: FormData = new FormData();
             formData.append('file', file, file.name);
-            this.manageAccountChecklistService.uploadFile(this.headerService.user.accountId,this.params.data.petitionTypeId,formData)
+            this.manageAccountChecklistService.uploadFile(this.headerService.user.accountId, this.params.data.petitionTypeId, formData)
                 .subscribe(
                 res => {
                     console.log(res);
@@ -53,33 +48,11 @@ export class checklistuploadButton implements ICellRendererAngularComp {
                 }
                 );
 
-        }
-        //else {
-        //    if (fileExists == true) {
-        //        this.dialogService.addDialog(ConfirmComponent, {
-        //            title: 'Error..!',
-        //            message: 'Filename is already exists.'
-        //        });
-        //    }
-            else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
+        } else {
+                this.dialogService.addDialog(InformationComponent, {
+                    title: 'Error',
                     message: 'Please Upload Only Pdf files'
                 });
-            //}
         }
     }
-    //isfileExists(file) {
-
-    //    let upload: boolean = false;
-    //    this.data.filter(item => {
-    //        if (file.name == item.fileName) {
-    //            upload = true;
-    //            return false;
-    //        }
-    //        return true;
-    //    })
-    //    return upload;
-    //}
-
 }
