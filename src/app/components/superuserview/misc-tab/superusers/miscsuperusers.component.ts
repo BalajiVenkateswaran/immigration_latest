@@ -23,6 +23,7 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
     public settings;
     public getsuperUsers = true;
     public addsuperuser = false;
+    public queryParameters;
     public addsuperUsers: any = {};
     public warningMessage: any;
     ngOnInit() {
@@ -34,25 +35,20 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
         this.settings = {
             'columnsettings': [
                 {
-
                     headerName: 'First Name',
-                    field: 'firstName',
+                    field: 'firstName'
                 },
                 {
-
                     headerName: 'Last Name',
-                    field: 'lastName',
-
+                    field: 'lastName'
                 },
                 {
-
                     headerName: 'Email',
-                    field: 'emailId',
+                    field: 'emailId'
                 },
                 {
                     headerName: 'Phone',
-                    field: 'phone',
-
+                    field: 'phone'
                 }
             ]
         }
@@ -70,7 +66,9 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
         });
     }
     superuserSave(email) {
-        if ((this.addsuperUsers['firstName'] == '' || this.addsuperUsers['firstName'] == null || this.addsuperUsers['firstName'] == undefined || this.addsuperUsers['lastName'] == '' || this.addsuperUsers['lastName'] == null || this.addsuperUsers['lastName'] == undefined || this.addsuperUsers['emailId'] == '' || this.addsuperUsers['emailId'] == null || this.addsuperUsers['emailId'] == undefined)) {
+        if ((this.addsuperUsers['firstName'] === '' || this.addsuperUsers['firstName'] == null || this.addsuperUsers['firstName'] === undefined
+            || this.addsuperUsers['lastName'] === '' || this.addsuperUsers['lastName'] == null || this.addsuperUsers['lastName'] === undefined
+            || this.addsuperUsers['emailId'] === '' || this.addsuperUsers['emailId'] == null || this.addsuperUsers['emailId'] === undefined)) {
             this.warningMessage = true;
 
         } else if (email != null) {
@@ -87,5 +85,14 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
     cancel() {
             this.close();
     }
+
+  dataWithParameters(queryData) {
+    if (queryData) {
+      this.queryParameters = queryData
+    }
+    this.miscSuperusersservice.saveNewsuperUser(this.addsuperUsers).subscribe((res) => {
+      console.log(res);
+    });
+  }
 }
 

@@ -199,7 +199,7 @@ color: #d3d3d3;
 	color: #2298e7;
 	}
 	.video-strip {
-		background: url(../../assets/images/web/BG-video-trends.jpg) no-repeat center top;
+		background: url(../../assets/images/web/wb-main-video.jpg) no-repeat center top;
 		width: 100%;
 		height: 385px;
 		margin: 80px 0px;
@@ -709,7 +709,7 @@ h4 {
 	font-size: 40px;
 	font-weight: 300;
 	color: #fff;
-	width: 65%;	
+	width: 65%;
 }
 .pricingoptions {
 	margin-top: -110px;
@@ -936,7 +936,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after{
   border-bottom: 13px solid transparent;
   border-top: 13px solid transparent;
   border-left: 10px solid #5A55A3;
-  display: none; 
+  display: none;
 }
 
 div.bhoechie-tab-content{
@@ -969,7 +969,7 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     border-top: none !important;
 }
 .panel-heading {
-    padding:0px; 
+    padding:0px;
     }
 .panel-title a {
 	padding: 10px 15px;
@@ -1089,7 +1089,7 @@ a, a:hover {
 	font-size: 16px;
 	font-weight: 300;
 }
-.cform input, .cform textarea { 
+.cform input, .cform textarea {
 	background: none;
 	border: solid 1px #fff;
 	padding: 2px 3px 2px 4px;
@@ -1185,9 +1185,9 @@ a, a:hover {
         display:none;
     }
 .immiservicetab {
-    
+
     width:100%;
-    
+
 }
 .immiservicetab a {
     width:100% !important;
@@ -1260,7 +1260,7 @@ a, a:hover {
     .sidcnt {
         text-align:center;
     }
-        
+
     .sidcnt h1 {
         margin: 20px 0px 10px 0;
                 font-size: 30px;

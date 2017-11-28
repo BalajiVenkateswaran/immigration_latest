@@ -111,7 +111,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
         {
           headerName: 'Account Name',
           field: 'accountName',
-          type:'text'
+          type: 'text'
         },
         {
           headerName: 'Account Number',

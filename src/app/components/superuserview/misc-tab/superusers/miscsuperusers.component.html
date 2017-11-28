@@ -2,7 +2,10 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2>Super Users</h2>
-        <ih-smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+        <ih-smart-table [settings]="settings" [data]="data"
+                        [paginationData]="paginationData"
+                        (dataWithQueryParams)="dataWithParameters($event)"
+                        (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
         </ih-smart-table>
     </div>
 </div>
