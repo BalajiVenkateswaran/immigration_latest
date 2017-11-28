@@ -11,7 +11,7 @@
                 <h2>Notes </h2>
                 <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditNotesClick()" *ngIf="isNotesEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isNotesEdit">
-                  <button type="button" (click)="cancelNotesEdit()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isNotesEdit==false">Cancel</button>
+                  <button type="button" (click)="onCancelNotesClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isNotesEdit==false">Cancel</button>
                   <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" (click)="onSaveNotesClick()" *ngIf="isNotesEdit==false">Save</button>
                 </div>
               </div>
@@ -25,7 +25,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="tbl-head-btn" [hidden]="isNotesEdit">
-                  <button type="button" (click)="cancelNotesEdit()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 4px!important;" *ngIf="isNotesEdit==false">Cancel</button>
+                  <button type="button" (click)="onCancelNotesClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 4px!important;" *ngIf="isNotesEdit==false">Cancel</button>
                   <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;" (click)="onSaveNotesClick()" *ngIf="isNotesEdit==false">Save</button>
                 </div>
               </div>

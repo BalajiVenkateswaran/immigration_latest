@@ -24,6 +24,7 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
     public getsuperUsers = true;
     public addsuperuser = false;
     public queryParameters;
+    public paginationData;
     public addsuperUsers: any = {};
     public warningMessage: any;
     ngOnInit() {
@@ -93,6 +94,7 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
     this.miscSuperusersservice.getSuperUsers(queryData).subscribe((res) => {
       if (res['statusCode'] === 'SUCCESS') {
         this.data = res['superUsers'];
+        this.paginationData = res['pageMetadata'];
       }
     });
   }

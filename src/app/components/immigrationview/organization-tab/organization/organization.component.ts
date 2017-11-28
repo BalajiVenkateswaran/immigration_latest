@@ -2,10 +2,11 @@ import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { Component, OnInit } from '@angular/core';
-import {OrganizationService} from "./organization.service";
-import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+import {OrganizationService} from './organization.service';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {IhDateUtil} from '../../../framework/utils/date.component';
-import { DialogService } from "ng2-bootstrap-modal";
+import { DialogService } from 'ng2-bootstrap-modal';
+import {InformationComponent} from '../../../framework/confirmbox/information.component';
 
 
 @Component({
@@ -15,21 +16,21 @@ import { DialogService } from "ng2-bootstrap-modal";
 })
 export class OrganizationComponent implements OnInit {
 
-    public warningMessage: boolean = false;
+    public warningMessage = false;
     isProfileEdit;
-    isAdminEdit: boolean = true;
-    isSigninEdit: boolean = true;
+    isAdminEdit = true;
+    isSigninEdit = true;
     private signinDetails: any = {};
     private adminstrativeDetails: any = {};
     private signinAddress: any = {};
     private adminstrativeAddress: any = {};
     private isPersonProfileEdit;
     private orgDetails: any = {};
-    private openDate:string;
+    private openDate: string;
     private beforeCancelOrg;
     private beforeCancelAdmin;
     private beforeCancelSignin;
-    public datePikcerOptions=IhDateUtil.datePickerOptions;
+    public datePikcerOptions= IhDateUtil.datePickerOptions;
     email: FormControl;
     public emailRegex;
     private status = [
@@ -40,27 +41,26 @@ export class OrganizationComponent implements OnInit {
     constructor(private appService: AppService, private  organizationService: OrganizationService,
         private dialogService: DialogService, private headerService: HeaderService) {
             this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            this.email = new FormControl('', [Validators.required,Validators.pattern(this.emailRegex)]);
+            this.email = new FormControl('', [Validators.required, Validators.pattern(this.emailRegex)]);
     }
 
     ngOnInit() {
-      this.headerService.showSideBarMenu("organization", "organization");
+      this.headerService.showSideBarMenu('organization', 'organization');
 
       this.organizationService.getOrganizationDetails(this.headerService.selectedOrg['orgId'])
         .subscribe((res) => {
             if (res['organizationDetails']) {
                 this.orgDetails = res['organizationDetails'];
-                if (this.orgDetails['markForDeletion'] == true) {
-                    this.orgDetails['status'] = "Mark for Deletion";
+                if (this.orgDetails['markForDeletion'] === true) {
+                    this.orgDetails['status'] = 'Mark for Deletion';
                 }
                 console.log(this.orgDetails);
             }
-            for (var i = 0; i < res['contactDetails'].length; i++) {
-                if (res['contactDetails'][i].contactType == "SIGNING") {
+            for (let i = 0; i < res['contactDetails'].length; i++) {
+                if (res['contactDetails'][i].contactType === 'SIGNING') {
                     this.signinDetails = res['contactDetails'][i];
                     this.signinAddress = this.signinDetails.address;
-                }
-                else {
+                } else {
                     this.adminstrativeDetails = res['contactDetails'][i];
                     this.adminstrativeAddress = this.adminstrativeDetails.address;
                 }
@@ -81,17 +81,16 @@ export class OrganizationComponent implements OnInit {
         }
         this.orgDetails['orgId'] = this.headerService.selectedOrg['orgId'];
 
-        if (this.orgDetails['markForDeletion'] == "true") {
-            this.orgDetails['status'] = "Mark for Deletion";
+        if (this.orgDetails['markForDeletion'] === 'true') {
+            this.orgDetails['status'] = 'Mark for Deletion';
         }
-        if (this.orgDetails['fileNumber'] == '' || this.orgDetails['fileNumber'] == null || this.orgDetails['fileNumber'] == undefined
-            || this.orgDetails['orgName'] == '' || this.orgDetails['orgName'] == null || this.orgDetails['orgName'] == undefined
-            || this.orgDetails['nameOnForms'] == '' || this.orgDetails['nameOnForms'] == null || this.orgDetails['nameOnForms'] == undefined
-            || this.orgDetails['status'] == '' || this.orgDetails['status'] == null || this.orgDetails['status'] == undefined
-            || this.orgDetails['email'] == '' || this.orgDetails['email'] == null || this.orgDetails['email'] == undefined) {
+        if (this.orgDetails['fileNumber'] === '' || this.orgDetails['fileNumber'] == null || this.orgDetails['fileNumber'] === undefined
+            || this.orgDetails['orgName'] === '' || this.orgDetails['orgName'] == null || this.orgDetails['orgName'] === undefined
+            || this.orgDetails['nameOnForms'] === '' || this.orgDetails['nameOnForms'] == null || this.orgDetails['nameOnForms'] === undefined
+            || this.orgDetails['status'] === '' || this.orgDetails['status'] == null || this.orgDetails['status'] === undefined
+            || this.orgDetails['email'] === '' || this.orgDetails['email'] == null || this.orgDetails['email'] === undefined) {
             this.warningMessage = true;
-        }
-         else if(this.email.errors!=null){
+        } else if (this.email.errors != null) {
             this.warningMessage = true;
         } else {
             this.warningMessage = false;
@@ -102,10 +101,10 @@ export class OrganizationComponent implements OnInit {
                         this.orgDetails = res['organizationDetails'];
                     }
 
-                    if (res['statusCode'] == "FAILURE") {
-                        this.dialogService.addDialog(ConfirmComponent, {
-                            title: 'Error..!',
-                            message: 'Organization has Active Clients Associated..'
+                    if (res['statusCode'] === 'FAILURE') {
+                        this.dialogService.addDialog(InformationComponent, {
+                            title: 'Error',
+                            message: 'Organization cannot be deleted as there are clients for this organization'
                         });
 
                         this.organizationService.getOrganizationDetails(this.headerService.selectedOrg['orgId'])
@@ -113,7 +112,7 @@ export class OrganizationComponent implements OnInit {
                                 if (res['organizationDetails']) {
                                     this.orgDetails = res['organizationDetails'];
                                     if (this.orgDetails['markForDeletion'] == true) {
-                                        this.orgDetails['status'] = "Mark for Deletion";
+                                        this.orgDetails['status'] = 'Mark for Deletion';
                                     }
                                     console.log(this.orgDetails);
                                 }
@@ -129,7 +128,7 @@ export class OrganizationComponent implements OnInit {
         this.beforeCancelOrg = (<any>Object).assign({}, this.orgDetails);
         this.isProfileEdit = !this.isProfileEdit;
         this.openDate = this.orgDetails.openDate;
-        this.orgDetails.markForDeletion= this.orgDetails['markForDeletion'];
+        this.orgDetails.markForDeletion = this.orgDetails['markForDeletion'];
    }
 
     cancelProfileEdit() {
@@ -143,12 +142,10 @@ export class OrganizationComponent implements OnInit {
 
     }
 
-    editPersonProfileForm()
-    {
+    editPersonProfileForm() {
         this.isPersonProfileEdit = !this.isPersonProfileEdit;
     }
-    cancelPersonProfileEdit()
-    {
+    cancelPersonProfileEdit() {
         this.isPersonProfileEdit = !this.isPersonProfileEdit;
     }
 
@@ -168,8 +165,8 @@ export class OrganizationComponent implements OnInit {
     //Save Client Details
     saveSignInformation() {
         this.signinDetails.orgId = this.headerService.selectedOrg['orgId'];
-        this.signinDetails.contactType = "SIGNING";
-        this.signinAddress.aptType = "APT";
+        this.signinDetails.contactType = 'SIGNING';
+        this.signinAddress.aptType = 'APT';
         this.organizationService.saveSigningDetails(this.signinDetails, this.signinAddress)
             .subscribe((res) => {
                 this.isSigninEdit = true;
@@ -181,7 +178,7 @@ export class OrganizationComponent implements OnInit {
 
     }
 
-    //Adminstrative Form
+    // Adminstrative Form
     editAdminDetails() {
         this.beforeCancelAdmin = (<any>Object).assign({}, this.adminstrativeDetails);
         this.isAdminEdit = !this.isAdminEdit;
@@ -191,11 +188,11 @@ export class OrganizationComponent implements OnInit {
         this.isAdminEdit = !this.isAdminEdit;
     }
 
-    //Save Client Details
+    // Save Client Details
     saveAdminInformation() {
         this.adminstrativeDetails.orgId = this.headerService.selectedOrg['orgId'];
-        this.adminstrativeDetails.contactType = "ADMINISTRATION";
-        this.adminstrativeDetails.aptType = "APT";
+        this.adminstrativeDetails.contactType = 'ADMINISTRATION';
+        this.adminstrativeDetails.aptType = 'APT';
         this.organizationService.saveAdminstrativeDetails(this.adminstrativeDetails, this.adminstrativeAddress)
             .subscribe((res) => {
                 this.isAdminEdit = true;
