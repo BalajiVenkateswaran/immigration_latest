@@ -13,78 +13,80 @@
         border: dotted 3px green;
     }
 
-    html, body {
-        height: 100%;
+    
+    .dropzone{
+            width: unset !important;
     }
+    .well-lg {
+    padding: 24px;
+    border-radius: 3px;
+    background-color: #FFFFFF!important;
+    border: solid 1px #e3e3e4!important;
+    box-shadow: 0px 0px 5px #ddd!important;
+}
 
 </style>
+<div class="col-md-12">
+    <h2 class="headerinsections" style="font-size: 18px!important;color: #4EA0F9 !important;">Document</h2>
+    <div class="dropzone">
+            <div class="col-md-6 well-lg">
+                <h3 *ngIf="uploader.queue.length > 0">Upload queue {{ uploader?.queue?.length }}</h3>
+                <table class="table" *ngIf="uploader.queue.length > 0">
+                    <tbody>
+                        <tr *ngFor="let item of uploader.queue">
+                            <td>{{ item?.file?.name }}</td>
+                            <td>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                            <td>
+                                <div class="progress" style="margin-bottom: 0;">
+                                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <h4 style="color:#232F3F!important;margin-top: 0px!important;">Uploaded Files {{ getFiles.length }}</h4>
+                    <table class="table">
+                        <thead>
+                            <!--<tr>
+                    <th>Name</th>
+                    <th>Updated On</th>
+                    <th>Actions</th>
+                </tr>-->
+                        </thead>
 
-<div class="dropzone">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="clearfix"></div>
-            <h2 class="headerinsections" style="font-size: 18px!important;color: #4EA0F9 !important;">Document</h2>
-            <h3>Upload Files</h3>
-            <div class="dropboxBg">
-                <div ng2FileDrop
-                     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-                     (fileOver)="fileOverBase($event)"
-                     [uploader]="uploader"
-                     class="well my-drop-zone">
-                    <input type="file" class="custom-file-input" ng2FileSelect [uploader]="uploader" multiple /> from computer. Or Drop them Here.
+                        <tbody>
+                            <tr *ngFor="let pdf of getFiles" (Click)="editFileName($event)">
+                                <td>{{ pdf.fileName }}</td>
+                                <td>{{ pdf.updatedDate }}</td>
+                                <td nowrap>
+                                    <div class="fileUpload">
+                                        <div>
+                                            <i class="fa fa-files-o" aria-hidden="true"></i>
+                                        </div>
+                                        <input type="file" #fileInput (change)="onReplaceClick($event, pdf)" class="upload" name="file" />
+                                    </div>
+                                    <button title="Download" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                    </button>                                    
+                                    <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            <div class="col-md-6">
+                <div class="dropboxBg">
+                    <div ng2FileDrop
+                         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                         (fileOver)="fileOverBase($event)"
+                         [uploader]="uploader"
+                         class="well my-drop-zone">
+                        <input type="file" class="custom-file-input" ng2FileSelect [uploader]="uploader" multiple /> from computer. Or Drop them Here.
+                    </div>
                 </div>
             </div>
-
-        </div>
-
-        <div class="col-md-12">
-            <h3 *ngIf="uploader.queue.length > 0">Upload queue {{ uploader?.queue?.length }}</h3>
-            <table class="table" *ngIf="uploader.queue.length > 0">
-                <tbody>
-                    <tr *ngFor="let item of uploader.queue">
-                        <td>{{ item?.file?.name }}</td>
-                        <td>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                        <td>
-                            <div class="progress" style="margin-bottom: 0;">
-                                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3>Uploaded Files {{ getFiles.length }}</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Updated On</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let pdf of getFiles" (Click)="editFileName($event)">
-                        <td>{{ pdf.fileName }}</td>
-                        <td>{{ pdf.updatedDate }}</td>
-                        <td nowrap>
-                            <button title="Download" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
-                                <i class="fa fa-download" aria-hidden="true"></i>
-                            </button>
-                            <div class="fileUpload">
-                                <div>
-                                    <i class="fa fa-files-o" aria-hidden="true"></i>
-                                </div>
-                                <input type="file" #fileInput  (change)="onReplaceClick($event, pdf)" class="upload" name="file" />
-                            </div>
-                            <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
 </div>
 <div *ngIf="editFiles">

@@ -2298,7 +2298,7 @@ header {
     .dropboxBg {
         background:#fff;
         border:solid 1px #ccc;
-        box-shadow:0px 10px 20px #ccc;
+        box-shadow:0px 5px 20px #ddd!important;
 
         .well {
             width:70%;
@@ -2306,12 +2306,12 @@ header {
         }
         .my-drop-zone {
             border:dashed 2px #b0c4d3;
-            background: url("../images/cloud.jpg") no-repeat center center #f7f9ff;
+            background: url("../images/cloud.jpg") no-repeat center #f7f9ff;
                 height: 200px;
     font-size: 18px;
     font-weight: 400;
     text-align: left;
-    padding: 130px 0 0 60px;
+    padding:125px 0 0 36px;
 
     .custom-file-input {
   color: #3dadf8 !important;
@@ -2378,7 +2378,7 @@ header {
     }
     .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         border-top:none !important;
-        border-bottom:1px solid #ddd;
+        /*border-bottom:1px solid #ddd;*/
         padding: 8px 0px 0px 8px !important;
     }
     .table > tbody > tr > td:last-child,
