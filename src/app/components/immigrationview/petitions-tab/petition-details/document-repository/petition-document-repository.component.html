@@ -1,19 +1,15 @@
 
-
 <style>
     .my-drop-zone {
         border: dotted 3px lightgray;
     }
-
     .nv-file-over {
         border: dotted 3px red;
     }
     /* Default class applied to drop zones on over */
     .another-file-over-class {
         border: dotted 3px green;
-    }
-
-    
+    }    
     .dropzone{
             width: unset !important;
     }
@@ -24,34 +20,19 @@
     border: solid 1px #e3e3e4!important;
     box-shadow: 0px 0px 5px #ddd!important;
 }
-
 </style>
 <div class="col-md-12">
     <h2 class="headerinsections" style="font-size: 18px!important;color: #4EA0F9 !important;margin-top: 0px;">Document</h2>
     <div class="dropzone">
-            <div class="col-md-6 well-lg">
-                <h3 *ngIf="uploader.queue.length > 0">Upload queue {{ uploader?.queue?.length }}</h3>
-                <table class="table" *ngIf="uploader.queue.length > 0">
-                    <tbody>
-                        <tr *ngFor="let item of uploader.queue">
-                            <td>{{ item?.file?.name }}</td>
-                            <td>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                            <td>
-                                <div class="progress" style="margin-bottom: 0;">
-                                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                    <h4 style="color:#232F3F!important;margin-top: 0px!important;">Uploaded Files {{ getFiles.length }}</h4>
+            <div class="col-md-6 well-lg">              
+                    <!--<h4 style="color:#232F3F!important;margin-top: 0px!important;">Uploaded Files {{ getFiles.length }}</h4>-->
                     <table class="table">
                         <thead>
-                            <!--<tr>
+                            <tr>
                     <th>Name</th>
                     <th>Updated On</th>
                     <th>Actions</th>
-                </tr>-->
+                </tr>
                         </thead>
 
                         <tbody>
@@ -86,6 +67,20 @@
                         <input type="file" class="custom-file-input" ng2FileSelect [uploader]="uploader" multiple /> from computer. Or Drop them Here.
                     </div>
                 </div>
+                <h3 *ngIf="uploader.queue.length > 0">Upload queue {{ uploader?.queue?.length }}</h3>
+                <table class="table" *ngIf="uploader.queue.length > 0">
+                    <tbody>
+                        <tr *ngFor="let item of uploader.queue">
+                            <td>{{ item?.file?.name }}</td>
+                            <td>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                            <td>
+                                <div class="progress" style="margin-bottom: 0;">
+                                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
     </div>
 </div>
