@@ -1,9 +1,7 @@
 ﻿import { AppService } from '../../../../services/app.service';
-import { SmartTableFrameworkComponent } from '../../../framework/smarttable/smarttable.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { ProfileSwitchService } from './switch.service';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit} from '@angular/core';
 import { SwitchButtonComponent } from './switchButton';
 import {HeaderComponentService} from '../../../common/header/header.component.service';
 
@@ -13,15 +11,11 @@ import {HeaderComponentService} from '../../../common/header/header.component.se
     styleUrls: ['./switch.component.scss']
 })
 
-export class ProfileSwitchComponent implements OnInit, AfterViewInit {
+export class ProfileSwitchComponent implements OnInit {
     public settings;
     public data;
     public user: any;
-    @ViewChild(SmartTableFrameworkComponent) smarttable: SmartTableFrameworkComponent;
     ngOnInit() {
-    }
-    ngAfterViewInit() {
-        this.user = this.headerService.user;
     }
     constructor(public appService: AppService, private profileSwitchservice: ProfileSwitchService, public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
 
@@ -51,4 +45,8 @@ export class ProfileSwitchComponent implements OnInit, AfterViewInit {
             ]
         }
     }
+  dataWithParameters(queryData) {
+    this.data = this.appService.userroleList;
+    this.user = this.headerService.user;
+  }
 }

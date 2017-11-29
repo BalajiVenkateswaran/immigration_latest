@@ -39,7 +39,7 @@ export class SwitchButtonComponent implements ICellRendererAngularComp {
     }
 
     onSwitchClick(params) {
-        this.appService.destroy();
+        this.appService.destroy(false);
         this.headerService.user = params.context.componentParent.user;
         this.headerService.user.accountId = params.data.accountId;
         this.headerService.selectedRoleId = params.data.roleId;

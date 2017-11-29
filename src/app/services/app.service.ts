@@ -126,7 +126,7 @@ export class AppService {
         return this._subtypes;
     }
 
-    destroy() {
+    destroy(isLogout: boolean) {
         this._menuSlider = null;
         this._documentSideMenu = null;
         this.docsidemenu = null;
@@ -155,7 +155,9 @@ export class AppService {
         this._questionaryName = null;
         this._currentSBLink = null;
         this.orgClientId = null;
-        this.userroleList = null;
+        if (isLogout) {
+          this.userroleList = null;
+        }
     }
 
 

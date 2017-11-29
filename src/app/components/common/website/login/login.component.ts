@@ -271,7 +271,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     });
   }
   multiRolepopupClose() {
-    this.appService.destroy();
+    this.appService.destroy(true);
     this.close();
     this.appService.moveToPage('login');
 

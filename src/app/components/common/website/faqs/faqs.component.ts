@@ -36,14 +36,8 @@ export class webFaqComponent extends DialogComponent<ConfirmModel, boolean> impl
   public submitted: boolean; // keep track on whether form is submitted
   message: string;
   forgotPwd;
-  private frgtEmail;
-  public getloginpage: boolean = true;
   public selectrole: boolean;
-  public loginPopupForm: boolean;
-  public userRoles: any = [];
-  public forgotpwdsubmit: boolean = true;
-  // Build number format: yy.mm.2 digit build number
-  public static uiBuildNumber : string = "17.09.05";
+
   constructor(
     private router: Router,
     public appService: AppService,
@@ -66,24 +60,5 @@ export class webFaqComponent extends DialogComponent<ConfirmModel, boolean> impl
   */
   getRoleName(user) {
     return user.accountName == null ? user.roleName : user.roleName + ' in ' + user.accountName;
-  }
-  loginPopup() {
-    this.dialogService.addDialog(webFaqComponent, {
-      selectrole: false,
-      getloginpage: false,
-      loginPopupForm: true,
-      title: 'Login',
-
-    }).subscribe((isConfirmed) => {
-      if (isConfirmed) {
-        this.close();
-      }
-    });
-  }
-  multiRolepopupClose() {
-    this.appService.destroy();
-    this.close();
-    this.appService.moveToPage('login');
-
   }
 }

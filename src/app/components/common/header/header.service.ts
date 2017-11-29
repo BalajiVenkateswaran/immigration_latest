@@ -132,7 +132,7 @@ export class HeaderService {
     this._user = null;
     this._selectedRoleId = null;
 
-    this.appService.destroy();
+    this.appService.destroy(true);
     this.appService.moveToPage('');
   }
 

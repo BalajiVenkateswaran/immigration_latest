@@ -272,7 +272,7 @@ export class newLoginComponent extends DialogComponent<ConfirmModel, boolean> im
     });
   }
   multiRolepopupClose() {
-    this.appService.destroy();
+    this.appService.destroy(true);
     this.close();
     this.appService.moveToPage('login');
 
