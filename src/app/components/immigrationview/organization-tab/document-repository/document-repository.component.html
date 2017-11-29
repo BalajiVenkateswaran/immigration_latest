@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let pdf of getFiles; let fileNo = index" (Click)="editFileName($event)">
-                        <td>{{ (fileNo+1) + '. ' + pdf.fileName }}</td>
+                        <td style="text-overflow: ellipsis !important;max-width: 150px !important;overflow: hidden;"title="{{ (fileNo+1) + '. ' + pdf.fileName }}">{{ (fileNo+1) + '. ' + pdf.fileName }}</td>
                         <td>{{ pdf.updatedDate }}</td>
                         <td nowrap>
                             <div class="fileUpload">
