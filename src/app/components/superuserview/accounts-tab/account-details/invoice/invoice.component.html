@@ -18,7 +18,7 @@
 
 </div>
 <div *ngIf="viewPopup">
-    <div class="modal-dialog" ngDraggable style="max-width: 900px !important;width: 790px !important;margin: 10% auto 0px auto !important;">
+    <div class="modal-dialog" style="max-width: 900px !important;width: 790px !important;margin: 10% auto 0px auto !important;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{title}}</h4>
@@ -54,8 +54,8 @@
                                         <div class="row">
                                             <div class="col-md-5">Invoice Amount:</div>
                                             <div class="col-md-7">
-                                                <input type="text" id="svActinvInvAmt" *ngIf="isEditInvoice==false" [(ngModel)]="invoice.invoiceAmount" class="form-control">
-                                                <span *ngIf="isEditInvoice==true">{{invoice.invoiceAmount}}</span>
+                                                <input type="text" id="svActinvInvAmt" [(ngModel)]="invoice.invoiceAmount" class="form-control">
+                                                <!--<span *ngIf="isEditInvoice==true">{{invoice.invoiceAmount}}</span>-->
                                             </div>
                                         </div>
                                     </div>

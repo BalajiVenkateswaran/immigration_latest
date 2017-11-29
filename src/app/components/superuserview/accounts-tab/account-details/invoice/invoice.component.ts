@@ -180,4 +180,13 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         }
       );
     }
+
+
+    emailInvoice(invoice: any) {
+      this.accountInvoiceService.sendInvoiceEmail(invoice['invoiceId']).subscribe(
+        res => {
+          if (res['statusCode'] === 'SUCCESS') {}
+        }
+      );
+    }
 }

@@ -21,4 +21,9 @@ export class AccountInvoiceService {
   public saveInvoiceDetails(invoice: any) {
     return this.restService.postData('/superuser/invoice/details', invoice);
   }
+  public sendInvoiceEmail(invoiceId: string) {
+    return this.restService.postData('/superuser/invoice/' + invoiceId + '/email', {});
+  }
+
+
 }
