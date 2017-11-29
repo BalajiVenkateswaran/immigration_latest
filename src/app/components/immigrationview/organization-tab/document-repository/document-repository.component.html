@@ -14,18 +14,18 @@
         <div class="col-md-6 well-lg">
           <!-- Div for files that are uploaded-->
           <div>
-            <h4 style="color:#232F3F!important;margin-top: 0px!important;">Uploaded Files</h4>
+            <!--<h4 style="color:#232F3F!important;margin-top: 0px!important;">Uploaded Files</h4>-->
             <table class="table">
                 <thead>
-                    <!--<tr>
-                        <th>Name</th>
-                        <th>Updated On</th>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Uploaded On</th>
                         <th>Actions</th>
-                    </tr>-->
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let pdf of getFiles" (Click)="editFileName($event)">
-                        <td>{{ pdf.fileName }}</td>
+                    <tr *ngFor="let pdf of getFiles; let fileNo = index" (Click)="editFileName($event)">
+                        <td>{{ (fileNo+1) + '. ' + pdf.fileName }}</td>
                         <td>{{ pdf.updatedDate }}</td>
                         <td nowrap>
                             <div class="fileUpload">

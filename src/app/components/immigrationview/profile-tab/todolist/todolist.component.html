@@ -24,7 +24,7 @@
                             <ul class="todolistItems">
                                 <li *ngFor="let todo of todos; let i=index">
                                     <input type="checkbox" id="{{ todo.todoText }}" [checked]="todo.completed" [(ngModel)]="todo.completed" (change)="changed(todo)" />
-                                    <label for="{{ todo.todoText }}">{{ todo.todoText }}</label>
+                                    <label for="{{ todo.todoText }}">{{(i+1) + '. ' + todo.todoText }}</label>
                                     <a (click)="deleteTodo(i,todo)" class="delete-icon pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                 </li>
                             </ul>

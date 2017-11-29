@@ -6,6 +6,7 @@ import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {AccountManagersService} from './accountmanagers.service';
 import {AccountDetailsCommonService} from '../common/account-details-common.service';
 import {HeaderService} from '../../../../common/header/header.service';
+import {InformationComponent} from '../../../../framework/confirmbox/information.component';
 
 export interface ConfirmModel {
   title: string;
@@ -16,7 +17,7 @@ export interface ConfirmModel {
 
 }
 @Component({
-  selector: 'managers-account',
+  selector: 'ih-managers-account',
   templateUrl: './accountmanagers.component.html'
 })
 export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> implements OnInit {
@@ -80,8 +81,13 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.managersAccountService.saveNewUser(this.appService.addUsers).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getAccountsManagers();
+          } else {
+            this.dialogService.addDialog(InformationComponent, {
+              title: 'Error',
+              message: res['statusDescription']
+            });
           }
         });
       }
@@ -90,7 +96,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
   accountmanagersSave(email) {
     this.addUsers['role'] = this.roles[this.addUsers['role']];
     this.addUsers['accountId'] = this.accountDetailsCommonService.accountId;
-    if (this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || this.addUsers['role'] == '' || this.addUsers['role'] == null || this.addUsers['role'] == undefined) {
+    if (this.addUsers['firstName'] === '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || this.addUsers['role'] == '' || this.addUsers['role'] == null || this.addUsers['role'] == undefined) {
       this.warningMessage = true;
     } else if (email != null) {
       this.warningMessage = false;
@@ -117,8 +123,13 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.managersAccountService.updateUser(this.appService.addUsers).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getAccountsManagers();
+          } else {
+            this.dialogService.addDialog(InformationComponent, {
+              title: 'Error',
+              message: res['statusDescription']
+            });
           }
         });
       } else {
@@ -136,8 +147,13 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
         if (isConfirmed) {
           this.managersAccountService.deleteUser(event.data['userId'], this.accountDetailsCommonService.accountId, this.headerService.user.userId).subscribe((res) => {
 
-            if (res['statusCode'] == 'SUCCESS') {
+            if (res['statusCode'] === 'SUCCESS') {
               this.getAccountsManagers();
+            } else {
+              this.dialogService.addDialog(InformationComponent, {
+                title: 'Error',
+                message: res['statusDescription']
+              });
             }
           });
         }

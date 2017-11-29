@@ -21,7 +21,6 @@ export class ProfileSwitchComponent implements OnInit, AfterViewInit {
     ngOnInit() {
     }
     ngAfterViewInit() {
-        this.data = this.appService.userroleList;
         this.user = this.headerService.user;
     }
     constructor(public appService: AppService, private profileSwitchservice: ProfileSwitchService, public headerService: HeaderService, public headerComponentService: HeaderComponentService) {
