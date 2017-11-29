@@ -133,8 +133,9 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                   field: 'lastUpdate'
                 },
                 {
-                    headerName: 'Open Petitions',
+                    headerName: 'Petitions',
                     field: 'openPetitions',
+                    headerTooltip: 'Open/Total Petitions',
                     type: 'text'
                 }
             ]
