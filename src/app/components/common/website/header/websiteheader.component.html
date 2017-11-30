@@ -28,12 +28,12 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navitems">
-                            <li><a (click)="appService.moveToPage('login')" class="active">Home</a></li>
-                            <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
-                            <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
-                            <li><a (click)="appService.moveToPage('web-aboutus')">About Us</a></li>
-                            <li><a (click)="appService.moveToPage('website/other/features')">Features</a></li>
-                            <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
+                            <li><a (click)="appService.moveToPage('login')" [ngClass]="[appService.currentPage === 'login' ? 'active': '']">Home</a></li>
+                            <li><a (click)="appService.moveToPage('website/other/immigration-services')" [ngClass]="[appService.currentPage === 'website/other/immigration-services' ? 'active': '']">Immigration Services</a></li>
+                            <li><a (click)="appService.moveToPage('website/other/pricing')" [ngClass]="[appService.currentPage === 'website/other/pricing' ? 'active': '']">Pricing</a></li>
+                            <li><a (click)="appService.moveToPage('website/other/aboutus')" [ngClass]="[appService.currentPage === 'website/other/aboutus' ? 'active': '']">About Us</a></li>
+                            <li><a (click)="appService.moveToPage('website/other/features')" [ngClass]="[appService.currentPage === 'website/other/features' ? 'active': '']">Features</a></li>
+                            <li><a (click)="appService.moveToPage('website/other/getintouch')" [ngClass]="[appService.currentPage === 'website/other/getintouch' ? 'active': '']">Get In Touch</a></li>
                             <li><a href="#" class="req-demo">Request Demo</a></li>
                         </ul>
                     </div>

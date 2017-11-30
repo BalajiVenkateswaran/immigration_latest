@@ -9,53 +9,14 @@
         <i class="fa fa-angle-up" aria-hidden="true"></i>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="top-strip">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 no-pad"><img src="../../../../../assets/images/web/logo.png" class="logo img-responsive"><a (click)="appService.moveToPage('newLogin')" class="login">Login</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="contact">
-                    <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
-                    <a href="#" class="phone"><img src="../../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a>
-                    <nav class="navbar navbar-inverse navbar-static-top main-nav" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navitems">
-                                <li><a (click)="appService.moveToPage('login')">Home</a></li>
-                                <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
-                                <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
-                                <li><a (click)="appService.moveToPage('web-aboutus')" class="active">About Us</a></li>
-                                <li><a (click)="appService.moveToPage('website/other/features')">Features</a></li>
-                                <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
-                                <li><a href="#" class="req-demo">Request Demo</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <ih-website-header></ih-website-header>
         <div class="row">
             <div class="blueHeader">About Us</div>
         </div>
         <div class="container no-pad">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="../../../../../assets/images/web/about-1.jpg" class="img-responsive">
+                    <img src="../../../../../../assets/images/web/about-1.jpg" class="img-responsive">
                 </div>
                 <div class="col-md-6">
                     <p>Immigration Hub has developed with the mission of linking IT with Immigration. We are aiming to give time-saving, innovative and reliable solutions to clients.  We are committed to providing the very best, intelligent and cost-effective immigration process to improve your scale, reduce your workload faster than ever with the market leading software Immigration Hub.</p>
@@ -142,19 +103,19 @@
             </div>-->
         </div>
         <!--<div class="row">
-            <a (click)="appService.moveToPage('web-faqs')" class="faq-immi-services">
+            <a (click)="appService.moveToPage('website/other/faqs')" class="faq-immi-services">
                 <div class="faq-black-patch">Immigration Services</div>
             </a>
-            <a (click)="appService.moveToPage('web-faqs')" class="faq-h1b1">
+            <a (click)="appService.moveToPage('website/other/faqs')" class="faq-h1b1">
                 <div class="faq-black-patch">H1 and B1</div>
             </a>
-            <a (click)="appService.moveToPage('web-faqs')" class="faq-19forms">
+            <a (click)="appService.moveToPage('website/other/faqs')" class="faq-19forms">
                 <div class="faq-black-patch">19 Forms</div>
             </a>
-            <a (click)="appService.moveToPage('web-faqs')" class="faq-b1b2">
+            <a (click)="appService.moveToPage('website/other/faqs')" class="faq-b1b2">
                 <div class="faq-black-patch">B1 and B2 Services</div>
             </a>
-            <a (click)="appService.moveToPage('web-faqs')" class="faq-visacomps">
+            <a (click)="appService.moveToPage('website/other/faqs')" class="faq-visacomps">
                 <div class="faq-black-patch">Visa Complaints</div>
             </a>
         </div>-->
@@ -167,8 +128,8 @@
                     <div class="row">
                         <div class="col-md-5">
                             <h1>Immigration Hub</h1>
-                            <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
-                            <a href="#" class="phone" style="margin: 0px;"><img src="../../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a><br>
+                            <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
+                            <a href="#" class="phone" style="margin: 0px;"><img src="../../../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a><br>
                             610 Overlook Circle Suite 323<br>
                             Kalamazoo, MI 49009
                         </div>
@@ -176,14 +137,14 @@
                             <h4>Explore</h4>
                             <ul class="flinks">
                                 <li><a (click)="appService.moveToPage('login')" class="active">Home</a></li>
-                                <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
-                                <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
-                                <li><a (click)="appService.moveToPage('web-aboutus')">About Us</a></li>
+                                <li><a (click)="appService.moveToPage('website/other/immigration-services')">Immigration Services</a></li>
+                                <li><a (click)="appService.moveToPage('website/other/pricing')">Pricing</a></li>
+                                <li><a (click)="appService.moveToPage('website/other/aboutus')">About Us</a></li>
                             </ul>
                             <ul class="flinks">
                                 <li><a (click)="appService.moveToPage('website/other/features')">Features</a></li>
-                                <li><a (click)="appService.moveToPage('web-faqs')">FAQs</a></li>
-                                <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
+                                <li><a (click)="appService.moveToPage('website/other/faqs')">FAQs</a></li>
+                                <li><a (click)="appService.moveToPage('website/other/getintouch')">Get In Touch</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3">

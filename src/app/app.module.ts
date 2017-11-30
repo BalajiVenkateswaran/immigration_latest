@@ -276,20 +276,7 @@ import { Page3Component } from './components/immigrationview/petitions-tab/petit
 import { Page4Component } from './components/immigrationview/petitions-tab/petition-details/questionnaires/L1/page-4/page-4.component';
 
 // Website components Here
-import { webImmigrationServicesComponent } from './components/common/website/immigration-services/immigration-services.component';
-import { webImmigrationServicesService } from './components/common/website/immigration-services/immigration-services.service';
 
-import { webPricingComponent } from './components/common/website/pricing/pricing.component';
-import { webPricingService } from './components/common/website/pricing/pricing.component.service';
-
-import { webAboutusComponent } from './components/common/website/aboutus/aboutus.component';
-import { webAboutusService } from './components/common/website/aboutus/aboutus.service';
-
-import { webGetinTouchComponent } from './components/common/website/get-in-touch/get-in-touch.component';
-import { webGetinTouchService } from './components/common/website/get-in-touch/get-in-touch.service';
-
-import { webFaqComponent } from './components/common/website/faqs/faqs.component';
-import { webFaqService } from './components/common/website/faqs/faqs.service';
 import {HomeComponent} from './components/common/website/home/home.component';
 import {HeaderComponentService} from './components/common/header/header.component.service';
 import {FilterComponent} from './components/framework/smarttable/filter/filter.component';
@@ -367,11 +354,6 @@ import {ImmigrationClientCommonService} from './components/immigrationview/clien
     ],
     declarations: [
         CategoryPipe,
-        webImmigrationServicesComponent,
-        webPricingComponent,
-        webAboutusComponent,
-        webGetinTouchComponent,
-        webFaqComponent,
         i129Page1Component,
         i129Page2Component,
         i129Page3Component,
@@ -511,8 +493,6 @@ import {ImmigrationClientCommonService} from './components/immigrationview/clien
     providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
         DatePipe,
-        webImmigrationServicesService,
-        webPricingService,
         HeaderService,
         HeaderComponentService,
         CurrencyPipe,

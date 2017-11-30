@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-        <div class="container-fluid" *ngIf="getloginpage">
+        <div class="container-fluid">
             <ih-website-header></ih-website-header>
             <div class="row">
                 <div id="myCarousel" class="carousel slide">
@@ -222,37 +222,37 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('web-faqs')">
+                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('website/other/faqs')">
                         <img src="../../../../assets/images/web/database@2x.png" class="featurimgs">
                         <h3>Docs Storage</h3>
                         <p>No storage restrictions....upload all you want to store. A strong well-thought out document management...</p>
                         <a>Read More</a>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('web-faqs')">
+                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('website/other/faqs')">
                         <img src="../../../../assets/images/web/chat@2x.png" class="featurimgs">
                         <h3>Client Web Portal</h3>
                         <p>Stop relying on phone and email to communicate with clients. IH client web portal allows your clients...</p>
                         <a>Read More</a>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('web-faqs')">
+                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('website/other/faqs')">
                         <img src="../../../../assets/images/web/phone@2x.png" class="featurimgs">
                         <h3>Online Forms  Questionnaries</h3>
                         <p>IH has smart questionnaires to make client intake faster and easier. Questionnaires are available for many processes...</p>
                         <a>Read More</a>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('web-faqs')">
+                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('website/other/faqs')">
                         <img src="../../../../assets/images/web/Group-26@2x.png" class="featurimgs">
                         <h3>Instant Notifications</h3>
                         <p>Give your clients flexible and a rich experience with your alerts and notifications. Get engage your clients with regular...</p>
                         <a>Read More</a>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('web-faqs')">
+                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('website/other/faqs')">
                         <img src="../../../../assets/images/web/Group-27@2x.png" class="featurimgs">
                         <h3>Easy Understand Reports</h3>
                         <p>IH allows you to produce reports in real time and enables you to analyze and act. Stay organized and easily access...</p>
                         <a>Read More</a>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('web-faqs')">
+                    <div class="col-md-4 col-sm-6 col-xs-12 ourfeatures" (click)="appService.moveToPage('website/other/faqs')">
                         <img src="../../../../assets/images/web/cloud@2x.png" class="featurimgs">
                         <h3>Saas Application</h3>
                         <p>Get a high level of personalization by using SaaS application. The multi-tenant architecture enables you...</p>
@@ -373,14 +373,14 @@
                                 <h4>Explore</h4>
                                 <ul class="flinks">
                                     <li><a (click)="appService.moveToPage('login')" class="active">Home</a></li>
-                                    <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
-                                    <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
-                                    <li><a (click)="appService.moveToPage('web-aboutus')">About Us</a></li>
+                                    <li><a (click)="appService.moveToPage('website/other/immigration-services')">Immigration Services</a></li>
+                                    <li><a (click)="appService.moveToPage('website/other/pricing')">Pricing</a></li>
+                                    <li><a (click)="appService.moveToPage('website/other/features')">About Us</a></li>
                                 </ul>
                                 <ul class="flinks">
                                     <li><a (click)="appService.moveToPage('website/other/features')">Features</a></li>
-                                    <li><a (click)="appService.moveToPage('web-faqs')">FAQs</a></li>
-                                    <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
+                                    <li><a (click)="appService.moveToPage('website/other/faqs')">FAQs</a></li>
+                                    <li><a (click)="appService.moveToPage('website/other/getintouch')">Get In Touch</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-3">
@@ -406,99 +406,6 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
-        <div *ngIf="loginPopupForm">
-            <div class="modal-dialog loginpopup">
-                <div class="modal-content">
-                    <div class="newlogin">
-                        <div class="logBox">
-                            <div class="blueBox">
-                                <h1>Welcome to Immigration Portal</h1>
-                                <p>Linking the Clients to Immigration Officers portal...</p>
-                                <div class="social">
-                                    <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-                                    <a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-                                    <a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <div class="whiteBox">
-
-                                <div class="row">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-8"><img class="newloglogo" src="../../../../../assets/images/logo-black.png" /></div>
-                                    <div class="col-md-2"><button type="button" class="close" (click)="close()" style="opacity: 0.8; margin-right:10px;margin-top:10px;">&times;</button></div>
-                                    <div class="clear"></div>
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-8">
-                                        <form action="" [formGroup]="login"
-                                              (ngSubmit)="onSubmitClick(login.value, login.valid)"
-                                              autocomplete="off">
-                                            <!--<h2>Immigration Hub</h2>-->
-                                            <div class="form-group row" [hidden]="!message">
-                                                {{message}}
-                                            </div>
-                                            <div class="form-group" *ngIf="isforgotPwd==true">
-                                                <div class="user_id">
-                                                    <!--<label>Email</label>-->
-                                                    <div class="emailicon"></div>
-                                                    <input type="email" class="form-control" id="userId"
-                                                           placeholder="Email Address" formControlName="emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                                                           required />
-                                                </div>
-                                                <div class="password">
-                                                    <!--<label>PASSWORD</label>-->
-                                                    <div class="pwdicon"></div>
-                                                    <input type="password" class="form-control"
-                                                           id="inputPassword3" placeholder="Password"
-                                                           formControlName="password" required />
-                                                </div>
-                                                <div class="sign_in">
-                                                    <button type="submit" class="btn newlogbtn" [disabled]="!login.valid">Sign in</button>
-                                                </div>
-                                                <div class="forgot_password">
-                                                    <a (click)="frgtPwd(login)">Forgot Password?</a>
-                                                </div>
-                                            </div>
-                                        </form>
-                                      <form [formGroup]="forgotPwd"
-                                            (ngSubmit)="onSubmitClick(forgotPwd.value, forgotPwd.valid)"
-                                            autocomplete="off">
-                                            <div class="form-group" *ngIf="isforgotPwd==false">
-                                                <div class="user_id">
-                                                    <!--<label>Enter Registered Email Id</label>-->
-                                                    <div class="emailicon"></div>
-                                                    <input type="email" class="form-control" id="forgetPassword" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                                                           required placeholder="Email" formControlName="emailId">
-                                                </div>
-                                                <div class="sign_in">
-                                                    <button type="submit" class="btn newlogbtn" [disabled]="!forgotPwd.valid">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-md-2"></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="selectrole">
-            <div class="modal-dialog selectRole">
-                <div class="modal-content">
-                    <div class="whiteBox">
-                        <h4 class="modal-title">{{title}}</h4>
-                        <div class="clear"></div>
-                        <ul>
-                            <li *ngFor="let user of userRoles" (click)="selectedRole(user)">
-                                {{getRoleName(user)}}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
 </body>
