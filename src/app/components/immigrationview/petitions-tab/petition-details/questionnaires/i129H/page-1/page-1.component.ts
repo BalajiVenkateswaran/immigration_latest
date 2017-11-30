@@ -31,6 +31,9 @@ export class i129HPage1Component implements OnInit {
     // other options...
     dateFormat: 'mm-dd-yyyy',
     showClearDateBtn: false,
+    showSelectorArrow: false,
+    alignSelectorRight: true,
+    //openSelectorTopOfInput:true,
   };
 
   constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
