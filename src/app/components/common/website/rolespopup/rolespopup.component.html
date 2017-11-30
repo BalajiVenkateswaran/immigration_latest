@@ -1,0 +1,13 @@
+<div class="modal-dialog selectRole">
+  <div class="modal-content">
+    <div class="whiteBox">
+      <h4 class="modal-title">{{title}}</h4>
+      <div class="clear"></div>
+      <ul>
+        <li *ngFor="let user of userRoles" (click)="selectedRole(user)">
+          {{getRoleName(user)}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

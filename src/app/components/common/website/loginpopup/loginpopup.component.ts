@@ -4,16 +4,16 @@ import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component'
 import {HeaderService} from '../../header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormGroup, FormControl} from '@angular/forms';
-import {loginService} from './login.service';
-import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {FormControl, FormGroup} from '@angular/forms';
+import {LoginPopupService} from './loginpopup.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {ManageAccountUserService} from '../../../immigrationview/manage-account-tab/user/user.service';
 import {HeaderComponentService} from '../../header/header.component.service';
-import { environment } from '../../../../../environments/environment';
+import {environment} from '../../../../../environments/environment';
 import {ApplicationRoles} from '../../constants/applicationroles.constants';
 import {ApplicationViews} from '../../constants/applicationviews.constants';
 import {Demorequestdetailsservice} from '../../../superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
-import {InformationComponent} from '../../../framework/confirmbox/information.component';
+import {RolesPopupComponent} from '../rolespopup/rolespopup.component';
 
 export interface ConfirmModel {
   title: string;
@@ -24,39 +24,27 @@ export interface ConfirmModel {
   userRoles: any;
 }
 @Component({
-  selector: 'ih-imm-login',
-  templateUrl: 'login.component.html'
+  selector: 'ih-login-popup',
+  templateUrl: 'loginpopup.component.html',
+  providers: [LoginPopupService]
 })
-export class LoginComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-  public static uiBuildNumber: string = environment.buildNumber; // "17.09.07";
-
-  [x: string]: any;
-
-  private outlet: any = {
-    breadcrumbs: null,
-    header: null,
-    message: null,
-    carousel: null,
-    menu: null,
-    footer: null
-  };
+export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+  public static uiBuildNumber: string = environment.buildNumber;
   public login: FormGroup; // our model driven form
-  public submitted: boolean; // keep track on whether form is submitted
+  public forgotPwd: FormGroup;
   message: string;
   isforgotPwd;
-  private frgtEmail;
   public getloginpage = true;
   public selectrole: boolean;
   public loginPopupForm: boolean;
   public userRoles: any = [];
   public forgotpwdsubmit = true;
   public submitRequest = {};
-  // Build number format: yy.mm.2 digit build number
 
   constructor(
     private router: Router,
     public appService: AppService,
-    private loginservice: loginService,
+    private loginPopupService: LoginPopupService,
     public dialogService: DialogService,
     private headerService: HeaderService,
     private headerComponentService: HeaderComponentService,
@@ -83,12 +71,6 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   }
 
   ngOnInit(): void {
-    this.appService.showMenu = false;
-    this.appService.showHeader = false;
-    this.appService.showFooter = false;
-    this.appService.expandMenu = false;
-    this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
-    this.appService.currentPage = 'login';
     this.isforgotPwd = true;
   }
 
@@ -106,7 +88,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
   }
 
   forgetPassword(email: string) {
-    this.loginservice.forgetPassword(email).subscribe((res) => {
+    this.loginPopupService.forgetPassword(email).subscribe((res) => {
       console.log('ForgetPassword Response %o', res);
       if (res['statusCode'] === 'SUCCESS') {
         this.close();
@@ -127,9 +109,9 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
 
   loginSubmit(model: User, isValid: boolean) {
     if (isValid) {
-      this.loginservice.login(model).subscribe((res: any) => {
+      this.loginPopupService.login(model).subscribe((res: any) => {
         console.log('Login User %o', res);
-        if (res.uiBuildNumber != null && LoginComponent.uiBuildNumber !== res.uiBuildNumber) {
+        if (res.uiBuildNumber != null &&  LoginPopupComponent.uiBuildNumber !== res.uiBuildNumber) {
           this.close();
           this.dialogService.addDialog(ConfirmComponent, {
             title: 'Information',
@@ -138,7 +120,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
             window.location.reload(true);
           });
         }
-        /*this.loginservice.getIPAndLocation().subscribe(res => {
+        /*this.loginPopupService.getIPAndLocation().subscribe(res => {
           this.locationObject = res;
         });*/
         if (res.statusCode === 'FAILURE') {
@@ -155,7 +137,7 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
             this.appService.userLoginHistoryId = res['userLoginHistoryId'];
             if (res.hasMultipleRoles === true) {
               this.appService.userroleList = res['userAccountRoleList'];
-              this.dialogService.addDialog(LoginComponent, {
+              this.dialogService.addDialog(RolesPopupComponent, {
                 selectrole: true,
                 getloginpage: false,
                 title: 'Please Select User Role',
@@ -211,54 +193,15 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     }
   }
 
-  selectedRole(userdet) {
-    this.headerService.user.accountId = userdet.accountId;
-    this.headerService.selectedRoleId = userdet.roleId;
-    this.appService.rolemultiple = true;
-    this.result = true;
-    this.headerService.user['roleName'] = userdet.roleName;
-    let moveToPage = '';
-    if (userdet.roleName === 'Client') {
-      this.appService.applicationViewMode = ApplicationViews.CLIENT_VIEW;
-      this.appService.clientId = this.headerService.user.userId;
-      this.headerService.currentTab = 'clientview-petitions';
-      moveToPage = 'clientview-petitions';
-    }
-    if (userdet.roleName === 'Immigration Manager' || userdet.roleName === 'Immigration Officer') {
-      this.appService.applicationViewMode = ApplicationViews.IMMIGRATION_VIEW;
-      this.headerService.currentTab = 'clients';
-      moveToPage = 'clients';
-    }
-    if (userdet.roleName === ApplicationRoles.SUPER_USER) {
-      this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;
-      this.headerService.currentTab = 'superuser-accounts';
-      moveToPage = 'superuser-accounts';
-    }
-
-    this.appService.showHeader = true;
-    this.appService.showFooter = false;
-    this.appService.showMenu = false;
-
-    this.headerComponentService.onHeaderPageLoad(moveToPage);
-
-    this.loginservice.updateLoginHistory(this.appService.userLoginHistoryId, userdet.roleId).subscribe((res: any) => { });
-    this.getUsers();
-    this.close();
-  }
   getUsers() {
     this.manageAccountUserService.getUsers(this.headerService.user.accountId, '')
       .subscribe((res) => {
         this.appService.usersList = res['users'];
       });
   }
-  /**
-   *
-   */
-  getRoleName(user) {
-    return user.accountName == null ? user.roleName : user.roleName + ' in ' + user.accountName;
-  }
+
   loginPopup() {
-    this.dialogService.addDialog(LoginComponent, {
+    this.dialogService.addDialog(LoginPopupComponent, {
       selectrole: false,
       getloginpage: false,
       loginPopupForm: true,
@@ -275,27 +218,5 @@ export class LoginComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.close();
     this.appService.moveToPage('login');
 
-  }
-
-
-  clicktogotop() {
-      window.scrollTo(1000, 500);
-  }
-
-
-  submitRequestClick() {
-    this.demoRequestDetailsService.savedemoRequest(this.submitRequest).subscribe((res) => {
-      if (res['statusCode'] === 'SUCCESS') {
-        this.dialogService.addDialog(InformationComponent, {
-          title: 'Information',
-          message: 'Request is submitted successfully'
-        });
-      } else {
-        this.dialogService.addDialog(InformationComponent, {
-          title: 'Error',
-          message: res['statusDescription']
-        });
-      }
-    });
   }
 }

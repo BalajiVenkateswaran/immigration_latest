@@ -2,54 +2,15 @@
 <html>
 <head>
     <title>The Immigration Hub</title>
-    
+
 </head>
 <body>
     <div id='toTop'>
         <i class="fa fa-angle-up" aria-hidden="true"></i>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="top-strip">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 no-pad"><img src="../../../../../assets/images/web/logo.png" class="logo img-responsive"><a (click)="appService.moveToPage('newLogin')" class="login">Login</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="contact">
-                    <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
-                    <a href="#" class="phone"><img src="../../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a>
-                    <nav class="navbar navbar-inverse navbar-static-top main-nav" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navitems">
-                                <li><a (click)="appService.moveToPage('login')">Home</a></li>
-                                <li><a (click)="appService.moveToPage('web-immigration-services')">Immigration Services</a></li>
-                                <li><a (click)="appService.moveToPage('web-pricing')">Pricing</a></li>
-                                <li><a (click)="appService.moveToPage('web-aboutus')">About Us</a></li>
-                                <li><a (click)="appService.moveToPage('web-features')" class="active">Features</a></li>
-                                <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
-                                <li><a href="#" class="req-demo">Request Demo</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <div class="row">
+      <ih-website-header></ih-website-header>
+      <div class="row">
             <div class="blueHeader">Features</div>
 
             <div class="container contentpage">
@@ -141,8 +102,8 @@
                     <div class="row">
                         <div class="col-md-5">
                             <h1>Immigration Hub</h1>
-                            <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
-                            <a href="#" class="phone" style="margin: 0px;"><img src="../../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a><br>
+                            <a href="mailto:info@immigrationhub.com" class="email"><img src="../../../../../../assets/images/web/mail@2x.png"> Info@immigrationhub.com</a>
+                            <a href="#" class="phone" style="margin: 0px;"><img src="../../../../../../assets/images/web/phone-call@2x.png"> +1-203-444-0170</a><br>
                             610 Overlook Circle Suite 323<br>
                             Kalamazoo, MI 49009
                         </div>
@@ -155,7 +116,7 @@
                                 <li><a (click)="appService.moveToPage('web-aboutus')">About Us</a></li>
                             </ul>
                             <ul class="flinks">
-                                <li><a (click)="appService.moveToPage('web-features')">Features</a></li>
+                                <li><a (click)="appService.moveToPage('website/other/features')">Features</a></li>
                                 <li><a (click)="appService.moveToPage('web-faqs')">FAQs</a></li>
                                 <li><a (click)="appService.moveToPage('web-getintouch')">Get In Touch</a></li>
                             </ul>

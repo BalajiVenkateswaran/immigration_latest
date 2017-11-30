@@ -76,13 +76,6 @@ import { ClientQuestionnaireService } from './components/clientview/questionnari
 import {RequestButton} from './components/clientview/request-tab/RequestButton';
 import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
 import { HeaderComponent } from './components/common/header/header.component';
-import { LoginComponent } from './components/common/website/login/login.component';
-import { loginService } from './components/common/website/login/login.service';
-
-import {newLoginComponent} from './components/common/website/newLoginPage/newLogin.component';
-import {newLoginService} from './components/common/website/newLoginPage/newLogin.service';
-
-
 
 import { MenuComponent } from './components/common/menu/menu.component';
 import { MenuService } from './components/common/menu/menu.service';
@@ -292,9 +285,6 @@ import { webPricingService } from './components/common/website/pricing/pricing.c
 import { webAboutusComponent } from './components/common/website/aboutus/aboutus.component';
 import { webAboutusService } from './components/common/website/aboutus/aboutus.service';
 
-import { webFeaturesComponent } from './components/common/website/features/features.component';
-import { webFeaturesService } from './components/common/website/features/features.service';
-
 import { webGetinTouchComponent } from './components/common/website/get-in-touch/get-in-touch.component';
 import { webGetinTouchService } from './components/common/website/get-in-touch/get-in-touch.service';
 
@@ -377,11 +367,9 @@ import {ImmigrationClientCommonService} from './components/immigrationview/clien
     ],
     declarations: [
         CategoryPipe,
-        newLoginComponent,
         webImmigrationServicesComponent,
         webPricingComponent,
         webAboutusComponent,
-        webFeaturesComponent,
         webGetinTouchComponent,
         webFaqComponent,
         i129Page1Component,
@@ -451,7 +439,6 @@ import {ImmigrationClientCommonService} from './components/immigrationview/clien
         ImmigrationViewI797HistoryComponent,
         ImmigrationViewPetitionsComponent,
 
-        LoginComponent,
         petitionsclientviewComponent,
         requestclientviewcomponent,
         clientviewQuestionnaireComponent,
@@ -567,8 +554,6 @@ import {ImmigrationClientCommonService} from './components/immigrationview/clien
         ImmigrationClientCommonService,
         PetitionDetailsService,
         JobdetailsService,
-        loginService,
-        newLoginService,
         QuestionnaireCommonService,
         PetitionDocumentRepositoryService,
         ImmigrationviewDocumentExpirationsService,

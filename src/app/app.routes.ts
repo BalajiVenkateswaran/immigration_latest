@@ -26,7 +26,6 @@ import { DocumentsComponent } from './components/clientview/documents-tab/docume
 import {ManageAccountUserComponent} from './components/immigrationview/manage-account-tab/user/user.component';
 import {ManageAccountOrganizationsComponent} from './components/immigrationview/manage-account-tab/organizations/organizations.component';
 import {ImmigrationViewClientDetailsComponent} from './components/immigrationview/clients-tab/client-details/client-details/client-details.component';
-import {LoginComponent} from './components/common/website/login/login.component';
 import {petitionsclientviewComponent} from './components/clientview/petitions-tab/petitions.component';
 import { clientviewQuestionnaireComponent } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.component';
 import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
@@ -137,12 +136,9 @@ import { Page2Component } from './components/immigrationview/petitions-tab/petit
 import { webImmigrationServicesComponent } from './components/common/website/immigration-services/immigration-services.component';
 import { webPricingComponent } from './components/common/website/pricing/pricing.component';
 import { webAboutusComponent } from './components/common/website/aboutus/aboutus.component';
-import { webFeaturesComponent } from './components/common/website/features/features.component';
 import { webGetinTouchComponent } from './components/common/website/get-in-touch/get-in-touch.component';
 import { webFaqComponent } from './components/common/website/faqs/faqs.component';
 
-
-import {newLoginComponent} from './components/common/website/newLoginPage/newLogin.component';
 
 export const appRoutes: Routes = [
     {
@@ -156,10 +152,6 @@ export const appRoutes: Routes = [
     {
         path: 'web-aboutus',
         component: webAboutusComponent,
-    },
-    {
-        path: 'web-features',
-        component: webFeaturesComponent,
     },
     {
         path: 'web-getintouch',
@@ -256,14 +248,6 @@ export const appRoutes: Routes = [
     {
         path: 'page4l1',
         component: Page4Component
-    },
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
-        path: 'newLogin',
-        component: newLoginComponent
     },
     {
         path: 'clientview-i129hPage1/:questionnaireId',
@@ -627,20 +611,29 @@ export const appRoutes: Routes = [
         component: SuperUserMonthlyReportsComponent
     },
     {
+      path: 'superuser-misc',
+      component: DemoRequestDetailsComponent
+    },
+    {
+      path: 'superuser-miscsuperusers',
+      component: miscsuperusersComponent
+    },
+
+  /**
+   * Custom module routes
+   */
+
+  {
         path: '',
-        component: LoginComponent
+        loadChildren: 'app/components/common/website/website.module#WebsiteModule'
     },
     {
-        path: 'superuser-misc',
-        component: DemoRequestDetailsComponent
-    },
-    {
-        path: 'superuser-miscsuperusers',
-        component: miscsuperusersComponent
+        path: 'website/other',
+        loadChildren: 'app/components/common/website/other/websiteother.module#WebsiteOtherModule'
     },
     {
         path: '**',
-        component: LoginComponent
+        loadChildren: 'app/components/common/website/website.module#WebsiteModule'
     }
 
 ];

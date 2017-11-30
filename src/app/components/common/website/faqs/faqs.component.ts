@@ -1,14 +1,10 @@
-import {User} from '../../../../models/user';
 import {AppService} from '../../../../services/app.service';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {HeaderService} from '../../header/header.service';
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {FormGroup, FormControl} from "@angular/forms";
-import {loginService} from "../login/login.service";
-import {webFaqService} from "./faqs.service";
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {ManageAccountUserService} from "../../../immigrationview/manage-account-tab/user/user.service";
+import {Router} from '@angular/router';
+import {FormGroup} from '@angular/forms';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {ManageAccountUserService} from '../../../immigrationview/manage-account-tab/user/user.service';
 
 export interface ConfirmModel {
   title: string;
@@ -41,7 +37,6 @@ export class webFaqComponent extends DialogComponent<ConfirmModel, boolean> impl
   constructor(
     private router: Router,
     public appService: AppService,
-    private loginservice: loginService,
     public dialogService: DialogService,
     private headerService: HeaderService,
     private manageAccountUserService: ManageAccountUserService
