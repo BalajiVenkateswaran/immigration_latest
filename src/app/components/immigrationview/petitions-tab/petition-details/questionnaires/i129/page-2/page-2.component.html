@@ -15,17 +15,17 @@
                 </div>
             </div>
             <div *ngIf="appService.isImmigrationView()">
-                <div class="col-md-12">
-                    <h2> 2. Information About This Petition <span>(See instructions for fee information)</span></h2>
+                <div class="col-md-12" style="border: 2px solid;background-color: #E0E0E0;margin-top: 5px;margin-bottom: 5px;">
+                    <h2 style="margin-top: 7px!important;"> 2. Information About This Petition <span>(See instructions for fee information)</span></h2>
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
                             <div class="col-md-12" style="margin-top: 10px;">
                                 <div class="row">
                                     <div class="col-md-12">                                        
-                                        <div class="col-md-6" style="margin-left: -18px;"><p class="fieldsetheading">1. Requested Nonimmigrant Classification (Write classification symbol):</p>
+                                        <div class="col-md-7" style="margin-left: -18px;"><p class="fieldsetheading">1. Requested Nonimmigrant Classification (Write classification symbol):</p>
                                         </div>                                      
-                                        <div class="col-md-6" style="margin-left: -18px;">
+                                        <div class="col-md-5" style="margin-left: -35px;">
                                             <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.nonImmigrantClassification"
                                             />
                                             <span *ngIf="isquestionnaireEdit==true">{{page2.nonImmigrantClassification}}</span>
@@ -81,8 +81,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <h2>3. Beneficiary Information <span>(Information about the beneficiary/beneficiaries you are filing for.  Complete the blocks below.  Use the Attachment-1 sheet to name each beneficiary included in this petition.)</span></h2>
+            <div class="col-md-12" style="border: 2px solid;background-color: #E0E0E0;margin-top: 5px;margin-bottom: 5px;">
+                <h2 style="margin-top: 7px!important;">3.&nbsp;Beneficiary Information <span>(Information about the beneficiary/beneficiaries you are filing for.  Complete the blocks below.  Use the Attachment-1 sheet to name each beneficiary included in this petition.)</span></h2>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
@@ -90,7 +90,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p class="fieldsetheading">1. If an Entertainment Group, Provide the Group Name</p>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.groupName" />
                                         <span *ngIf="isquestionnaireEdit==true">{{page2.groupName}}</span>
                                     </div>

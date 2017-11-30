@@ -16,17 +16,15 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <h2>Processing Information</h2>
+                <h2>4. Processing Information</h2>
 
             </div>
         </div>
         <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
-                        <div class="col-md-12">
+                <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">           
+                        <div class="col-md-12" style="margin-top: 20px !important;">
                             <div class="row">
-                                <div class="col-md-4">Are you filing any other petitions with this one? </div>
+                                <div class="col-md-4"><b>3.</b> Are you filing any other petitions with this one? </div>
                                 <!-- <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> Yes If yes, how many?</div>
@@ -45,10 +43,10 @@
                                 <!--  <div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> No</div>-->
                             </div>
                             <div class="row">
-                                <div class="col-md-12" style="padding-bottom:10px;">Are you filing any applications for replacement/initial I-94, Arrival-Departure Records with
+                                <div class="col-md-12" style="padding-bottom:10px;"><b>4.</b> Are you filing any applications for replacement/initial I-94, Arrival-Departure Records with
                                     this petition? Note that if the beneficiary was issued an electronic Form I-94 by CBP
                                     when he/she was admitted to the United States at an air or sea port, he/ she may be able
-                                    to obtain the Form I-94 from the CBP Website at www.cbp.gov/i94 instead of filing an
+                                    to obtain the Form I-94 from the CBP Website at <a href="#">www.cbp.gov/i94</a>&nbsp; instead of filing an
                                     application for a replacement/initial I-94</div>
                                 <!--<div class="col-md-4"></div>
                                 <div class="col-md-6">
@@ -58,7 +56,6 @@
                                     </div>
 
                                 </div>-->
-                                <div class="col-md-4"></div>
                                     <div class="col-md-1" *ngFor="let x of questions">
                                         <input type="radio" name="anyArrivalOrDepartureRecords" [value]="x.value" [(ngModel)]="page4.anyArrivalOrDepartureRecords"
                                                [(disabled)]="isquestionnaireEdit">{{x.display}}
@@ -70,7 +67,7 @@
                                     <!--<div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyArrivalOrDepartureRecords"> No</div>-->
                                 </div>
                             <div class="row">
-                                <div class="col-md-4">Are you filing any applications for dependents with this petition?</div>
+                                <div class="col-md-4"><b>5. </b> Are you filing any applications for dependents with this petition?</div>
                                 <!-- <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyDependents"> Yes If yes, how many?</div>
@@ -87,15 +84,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">Is any beneficiary in this petition in removal proceedings?</div>
+                                <div class="col-md-4"><b>6. </b> Is any beneficiary in this petition in removal proceedings?</div>
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="anyRemovalProceedings" [value]="x.value" [(ngModel)]="page4.anyRemovalProceedings" [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
-                                <div class="col-md-6">If yes, proceed to Part 9. and type or print your explanation.</div>
+                                <div class="col-md-6">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-4">Have you ever filed an immigrant petition for any beneficiary in this petition?</div>
+                                <div class="col-md-4"><b>7. </b> Have you ever filed an immigrant petition for any beneficiary in this petition?</div>
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="anyImmigrantPetitionFiled" [value]="x.value" [(ngModel)]="page4.anyImmigrantPetitionFiled" [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
@@ -105,66 +102,66 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">Did you indicate you were filing a new petition in Part 2.?</div>
+                                <div class="col-md-4"><b>8. </b> Did you indicate you were filing a new petition in <b>Part 2.</b>?</div>
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="isNewPetitionInPart2" [value]="x.value" [(ngModel)]="page4.isNewPetitionInPart2" [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
-                                <div class="col-md-6">If yes, proceed to Part 9. and type or print your explanation.</div>
+                                <div class="col-md-6">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
                             <div class="row" style="padding-left:50px;">
                                 <div class="col-md-12">
-                                    Has any beneficiary in this petition ever been given the classification you are now requesting within the last seven years?
+                                    <b>a. </b> Has any beneficiary in this petition ever been given the classification you are now requesting within the last seven years?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="isPetitionRequestinLastSevenYears" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page4.isPetitionRequestinLastSevenYears"
                                         [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
-                                <div class="col-md-7">If yes, proceed to Part 9. and type or print your explanation.</div>
+                                <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
                             <div class="row" style="padding-left:50px;">
                                 <div class="col-md-12">
-                                    Has any beneficiary in this petition ever been denied the classification you are now requesting within the last seven years?
+                                    <b>b. </b> Has any beneficiary in this petition ever been denied the classification you are now requesting within the last seven years?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="isPetitionRequestDeniedinLastSevenYears" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page4.isPetitionRequestDeniedinLastSevenYears"
                                         [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
-                                <div class="col-md-7">If yes, proceed to Part 9. and type or print your explanation.</div>
+                                <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    Have you ever previously filed a nonimmigrant petition for this beneficiary?
+                                    <b>9. </b> Have you ever previously filed a nonimmigrant petition for this beneficiary?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="isPreviouslyFiledNonimigrantPetition" [value]="x.value" [(ngModel)]="page4.isPreviouslyFiledNonimigrantPetition"
                                         [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
-                                <div class="col-md-7">If yes, proceed to Part 9. and type or print your explanation.</div>
+                                <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    If you are filing for an entertainment group, has any beneficiary in this petition not been with the group for at least one
+                                    <b>10. </b> If you are filing for an entertainment group, has any beneficiary in this petition not been with the group for at least one
                                     year?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="isPetittionNotinLastOneYear" [value]="x.value" [(ngModel)]="page4.isPetittionNotinLastOneYear"
                                         [(disabled)]="isquestionnaireEdit" [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
-                                <div class="col-md-7">If yes, proceed to Part 9. and type or print your explanation.</div>
+                                <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
 
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    Has any beneficiary in this petition ever been a J-1 exchange visitor or J-2 dependent of a J-1 exchange visitor?
+                                   <b>11.a. </b> Has any beneficiary in this petition ever been a J-1 exchange visitor or J-2 dependent of a J-1 exchange visitor?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
                                     <input type="radio" name="isPetitionJ1ExcahngeVisitor" [value]="x.value" [(ngModel)]="page4.isPetitionJ1ExcahngeVisitor" [(disabled)]="isquestionnaireEdit">{{x.display}}
                                 </div>
-                                <div class="col-md-7">If yes, proceed to Part 9. and type or print your explanation.</div>
+                                <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12" style="padding-bottom:10px;">
-                                    If you checked yes in Item Number 11.a., provide the dates the beneficiary maintained status as a J-1 exchange visitor or
+                                 <b>11.b. </b> If you checked yes in <b>Item Number 11.a.</b>, provide the dates the beneficiary maintained status as a J-1 exchange visitor or
                                     J-2 dependent. Also, provide evidence of this status by attaching a copy of either a
                                     DS-2019, Certificate of Eligibility for Exchange Visitor (J-1) Status, a Form IAP-66,
                                     or a copy of the passport that includes the J visa stamp.
@@ -177,34 +174,28 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        <div class="col-md-12">
+            <h2>5. Basic Information About the Proposed Employment and Employer</h2>
         </div>
-        <div class="col-md-12 no-pad">
-            <h2>Basic Information About the Proposed Employment and Employer</h2>
-        </div>
-        <div class="col-md-12 no-pad">
-            <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                <div class="row">
-                    <div class="col-md-12" style="padding-bottom:10px;">Attach the Form I-129 supplement relevant to the classification of the worker(s) you are requesting.</div>
+        <div class="col-md-12">
+            <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">              
+                    <div class="col-md-12" style="padding-bottom:10px;margin-top: 10px;">Attach the Form I-129 supplement relevant to the classification of the worker(s) you are requesting.</div>
                     <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-4">Job Title</div>
+                            <div class="col-md-4"><b>1.</b>Job Title</div>
                             <div class="col-md-6">
                                 <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page4.jobTitle" />
                                 <span *ngIf="isquestionnaireEdit==true">{{page4.jobTitle}}</span>
                             </div>
-                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-4">LCA or ETA Case Number</div>
+                            <div class="col-md-4"><b>2.</b>LCA or ETA Case Number</div>
                             <div class="col-md-6">
                                 <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page4.lcaNumber" />
                                 <span *ngIf="isquestionnaireEdit==true">{{page4.lcaNumber}}</span>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

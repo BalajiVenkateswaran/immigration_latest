@@ -182,14 +182,14 @@
                             <p class="fieldsetheading">5. Other Information</p>
                         </div>
                         <div class="col-md-12">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="fein">Federal Employer Identification Number (FEIN)</label>
                                     <input class="form-control" id="fein" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.fein" />
                                     <span *ngIf="isquestionnaireEdit==true">{{page1.fein}}</span>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="irsTaxnumber">Individual IRS Tax Number </label>
                                      <input class="form-control" for="irsTaxnumber" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.irsTaxNumber"/>
