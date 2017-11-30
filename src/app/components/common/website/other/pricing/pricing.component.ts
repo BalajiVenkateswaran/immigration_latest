@@ -18,12 +18,11 @@ export class WebsitePricingComponent implements OnInit {
   };
   constructor(
     private router: Router,
-    private appService: AppService
+    public appService: AppService
   ) {
   }
   ngOnInit(): void {
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
-    this.appService.currentPage = 'login';
   }
 
 

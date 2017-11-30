@@ -331,22 +331,22 @@
                                     <h3 class="ReqHeader">I would Like to Discuss</h3>
 
                                     <div class="form-group col-md-6">
-                                        <input placeholder="Name" class="form-control" [(ngModel)]="submitRequest.name" id="srName"/>
+                                        <input placeholder="Name" class="form-control" [(ngModel)]="submitRequest['name']" id="srName"/>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <input placeholder="Mobile Number" class="form-control" [(ngModel)]="submitRequest.phone" id="srPhone"/>
+                                        <input placeholder="Mobile Number" class="form-control" [(ngModel)]="submitRequest['phone']" id="srPhone"/>
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <input placeholder="Organization"   class="form-control" id="srOrganization" [(ngModel)]="submitRequest.organization"/>
+                                        <input placeholder="Organization"   class="form-control" id="srOrganization" [(ngModel)]="submitRequest['organization']"/>
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <input type="email" placeholder="Email Address" class="form-control" id="srEmail" [(ngModel)]="submitRequest.email"/>
+                                        <input type="email" placeholder="Email Address" class="form-control" id="srEmail" [(ngModel)]="submitRequest['email']"/>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <textarea class="form-control" placeholder="comment" style="background-color: black !important;" id="comment"></textarea>
+                                        <textarea class="form-control" placeholder="comment" style="background-color: black !important;" id="comment" [(ngModel)]="submitRequest['comments']"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <button type="button" class="btn btn-primary btn-lg btn-block" (click)="submitRequestClick()">Submit a Request</button>

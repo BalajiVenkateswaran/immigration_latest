@@ -24,6 +24,8 @@ export interface ConfirmModel {
   providers: [RolesPopupService]
 })
 export class RolesPopupComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+  title: string;
+  message: string;
   public getloginpage = true;
   public selectrole: boolean;
   public loginPopupForm: boolean;
