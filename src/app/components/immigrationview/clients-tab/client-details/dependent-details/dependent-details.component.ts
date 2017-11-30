@@ -17,7 +17,8 @@ export interface formControl {
 @Component({
   selector: 'app-dependentDetails',
   templateUrl: './dependent-details.component.html',
-  styleUrls: ['./dependent-details.component.sass']
+  styleUrls: ['./dependent-details.component.sass'],
+  providers: [DependentDetailsService]
 })
 export class DependentDetailsComponent implements OnInit {
     private dependent: any = {} ;

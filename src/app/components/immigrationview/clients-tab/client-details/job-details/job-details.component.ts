@@ -2,10 +2,10 @@ import { jobdetails } from '../../../../../models/jobdetails';
 import { AppService } from '../../../../../services/app.service';
 import { UiFieldService } from '../../../../../services/uifield.service';
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import {JobdetailsService} from "./job-details.service";
+import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import {JobdetailsService} from './job-details.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
 export interface formControl {
     name: string;
     value: FormControl;
@@ -14,19 +14,20 @@ export interface formControl {
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
-  styleUrls: ['./job-details.component.sass']
+  styleUrls: ['./job-details.component.sass'],
+  providers: [JobdetailsService]
 })
 export class ImmigrationViewJobDetailsComponent implements OnInit {
 
     jobdetailsList: any;
-    private entityId : string;
+    private entityId: string;
     public editUser: FormGroup; // our model driven form
     private formControlValues: any = {};
     isEdit: boolean[] = [true];
     isjobdetailsEdit;
     public jobDetails: any = {};
     private message: string;
-    private hireDate:string;
+    private hireDate: string;
     private internationalHireDate: string;
     private rehireDate: string;
     private lastDayWorkedDate: string;
@@ -42,7 +43,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
         showClearDateBtn: false,
     };
     ngOnInit() {
-        var index = 0;
+        let index = 0;
         this.jobdetails.getFile(this.appService.clientId)
             .subscribe((res) => {
                 if (res['jobDetails']) {
@@ -79,13 +80,13 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
 
             this.uiFieldService.saveEditUser(this.jobdetailsList, this.entityId).subscribe((response) => {
                 this.message = response['statusCode']
-                if(this.message === "SUCCESS"){
+                if (this.message === 'SUCCESS') {
                   this.jobdetailsList = response['uiFieldGroups'];
                 }
                 this.isEdit[index] = !this.isEdit[index];
             });
         } else {
-            this.message = "Filled etails are not correct! please correct...";
+            this.message = 'Filled etails are not correct! please correct...';
         }
 
     }
@@ -97,7 +98,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
 
         this.hireDate = this.jobDetails['hireDate'];
         this.internationalHireDate = this.jobDetails['internationalHireDate'];
-        this.rehireDate= this.jobDetails['rehireDate'];
+        this.rehireDate = this.jobDetails['rehireDate'];
         this.lastDayWorkedDate = this.jobDetails['lastDayWorkedDate'];
         this.terminationDate = this.jobDetails['rehireDate'];
 
@@ -149,7 +150,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
             this.jobDetails['terminationDate'] = this.jobDetails['terminationDate']['formatted'];
         }
         this.jobDetails['clientId'] = this.appService.clientId;
-        this.jobdetails.saveJobDetails(this.jobDetails,this.headerService.user.userId)
+        this.jobdetails.saveJobDetails(this.jobDetails, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isjobdetailsEdit = true;
                 if (res['jobDetails']) {

@@ -1,12 +1,13 @@
 import { AppService } from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { Component, OnInit } from '@angular/core';
-import {ImmigrationViewI797HistoryService} from "./i-797-history.service";
-import {FormGroup, FormControl} from "@angular/forms";
+import {ImmigrationViewI797HistoryService} from './i-797-history.service';
+import {FormGroup, FormControl} from '@angular/forms';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
+import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -21,7 +22,9 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-i-797-history',
   templateUrl: './i-797-history.component.html',
-  styleUrls: ['./i-797-history.component.sass']
+  styleUrls: ['./i-797-history.component.sass'],
+  providers: [ImmigrationViewI797HistoryService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationViewI797HistoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public settings;
@@ -30,7 +33,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
     public addI797History: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-    public getI797History: boolean = true;
+    public getI797History = true;
     public addI797His: boolean;
     public addNewI797: any = {};
     private myDatePickerOptions: IMyOptions = {
@@ -38,41 +41,41 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    public editi797Flag: boolean = true;
+    public editi797Flag = true;
     public beforei797Edit: any;
     constructor(private immigrationViewI797HistoryService: ImmigrationViewI797HistoryService, public appService: AppService, public dialogService: DialogService,
                 public headerService: HeaderService) {
         super(dialogService);
-        this.settings={
+        this.settings = {
             'columnsettings': [
                 {
 
-                    headerName: "Receipt Number",
-                    field: "receiptNumber",
+                    headerName: 'Receipt Number',
+                    field: 'receiptNumber',
                 },
                 {
 
-                    headerName: "Status",
-                    field: "status",
+                    headerName: 'Status',
+                    field: 'status',
                 },
                 {
 
-                    headerName: "Receipt Date",
-                    field: "receiptDate"
+                    headerName: 'Receipt Date',
+                    field: 'receiptDate'
                 },
                 {
-                    headerName: "Approved on",
-                    field: "approvedOn"
-                },
-                {
-
-                    headerName: "Valid From",
-                    field: "validFrom"
+                    headerName: 'Approved on',
+                    field: 'approvedOn'
                 },
                 {
 
-                    headerName: "Valid Till",
-                    field: "validTill"
+                    headerName: 'Valid From',
+                    field: 'validFrom'
+                },
+                {
+
+                    headerName: 'Valid Till',
+                    field: 'validTill'
                 },
 
             ]
@@ -84,7 +87,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
     get1797history() {
         this.immigrationViewI797HistoryService.getI797Details(this.appService.clientId)
             .subscribe((res) => {
-                this.data=res['i797HistoryList'];
+                this.data = res['i797HistoryList'];
 
             });
 
@@ -168,7 +171,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
        this.delmessage = immViewi797.data.receiptNumber
        this.dialogService.addDialog(ConfirmComponent, {
            title: 'Confirmation',
-           message: 'Are you sure you want to Delete ' +this.delmessage+'?'
+           message: 'Are you sure you want to Delete ' + this.delmessage + '?'
        })
            .subscribe((isConfirmed) => {
                //Get dialog result

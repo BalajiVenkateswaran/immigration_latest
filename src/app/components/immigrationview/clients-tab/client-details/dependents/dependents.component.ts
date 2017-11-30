@@ -3,11 +3,12 @@ import { User } from '../../../../../models/user';
 import { AppService } from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
-import {ImmigrationViewDependentService} from "./dependents.service";
-import {FormGroup, FormControl} from "@angular/forms";
+import {ImmigrationViewDependentService} from './dependents.service';
+import {FormGroup, FormControl} from '@angular/forms';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {HeaderService} from "../../../../common/header/header.service";
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {HeaderService} from '../../../../common/header/header.service';
+import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -18,7 +19,9 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-dependents',
   templateUrl: './dependents.component.html',
-  styleUrls: ['./dependents.component.sass']
+  styleUrls: ['./dependents.component.sass'],
+  providers: [ImmigrationViewDependentService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
@@ -29,35 +32,35 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   private deleteDependents: any;
   private dependent: any;
   public addDependents: any = {};
-  public getDependents: boolean = true;
+  public getDependents = true;
   public addedData: any = {};
   public addDependnts: any;
-  public warningMessage: boolean = false;
+  public warningMessage = false;
   public settings;
   public data;
-  constructor(private ImmigrationViewDependentService: ImmigrationViewDependentService, public appService: AppService, public dialogService: DialogService,
+  constructor(private immigrationViewDependentService: ImmigrationViewDependentService, public appService: AppService, public dialogService: DialogService,
               public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
         {
 
-          headerName: "First Name",
-          field: "firstName",
+          headerName: 'First Name',
+          field: 'firstName',
         },
         {
 
-          headerName: "Middle Name",
-          field: "middleName",
+          headerName: 'Middle Name',
+          field: 'middleName',
         },
         {
 
-          headerName: "Last Name",
-          field: "lastName"
+          headerName: 'Last Name',
+          field: 'lastName'
         },
         {
-          headerName: "Relation",
-          field: "relation"
+          headerName: 'Relation',
+          field: 'relation'
         },
 
 
@@ -65,7 +68,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     }
   }
   getDepData() {
-    this.ImmigrationViewDependentService.getDependentSummery(this.appService.clientId)
+    this.immigrationViewDependentService.getDependentSummery(this.appService.clientId)
       .subscribe((res) => {
         this.data = res['dependents'];
 
@@ -86,7 +89,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.addDependents = this.appService.addDependents;
-        this.ImmigrationViewDependentService.saveDependentsSummary(this.addDependents,this.headerService.user.userId).subscribe((res) => {
+        this.immigrationViewDependentService.saveDependentsSummary(this.addDependents, this.headerService.user.userId).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getDepData();
           }
@@ -96,10 +99,10 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   }
 
   dependentSave() {
-    let isDuplicateExists:boolean;
-    this.data.map(item=>{
-       if(item.firstName.toUpperCase()==this.addDependents['firstName'].toUpperCase() && item.lastName.toUpperCase()==this.addDependents['lastName'].toUpperCase() && item.relation.toUpperCase()==this.addDependents['relation'].toUpperCase() && (item.middleName==this.addDependents.middleName || item.middleName==undefined || item.middleName=='')){
-        isDuplicateExists=true;
+    let isDuplicateExists: boolean;
+    this.data.map(item => {
+       if (item.firstName.toUpperCase() == this.addDependents['firstName'].toUpperCase() && item.lastName.toUpperCase() == this.addDependents['lastName'].toUpperCase() && item.relation.toUpperCase() == this.addDependents['relation'].toUpperCase() && (item.middleName == this.addDependents.middleName || item.middleName == undefined || item.middleName == '')) {
+        isDuplicateExists = true;
         return true;
       }
       return false;
@@ -107,13 +110,12 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     this.addDependents['clientId'] = this.appService.clientId;
     if (this.addDependents['firstName'] == '' || this.addDependents['firstName'] == null || this.addDependents['firstName'] == undefined || this.addDependents['lastName'] == '' || this.addDependents['lastName'] == null || this.addDependents['lastName'] == undefined || this.addDependents['relation'] == '' || this.addDependents['relation'] == null || this.addDependents['relation'] == undefined) {
       this.warningMessage = true;
-    }else if(isDuplicateExists){
-      this.dialogService.addDialog(ConfirmComponent,{
-        title:'Error..!',
-        message:'Dependent Already exists'
+    } else if (isDuplicateExists) {
+      this.dialogService.addDialog(ConfirmComponent, {
+        title: 'Error..!',
+        message: 'Dependent Already exists'
       })
-    }
-    else {
+    } else {
       this.warningMessage = false;
       this.appService.addDependents = this.addDependents;
       this.result = true;
@@ -127,7 +129,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   }
 
   editRecord(event): void {
-    this.appService.moveToPageWithParams('dependentDetails', event.data.dependentId);
+    this.appService.moveToPageWithParams('immigrationview/client/detail/dependentDetails', event.data.dependentId);
     this.appService.currentSBLink = event.data.firstName;
   }
 
@@ -139,7 +141,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     })
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.ImmigrationViewDependentService.removeDependentsSummary(dependents.data['dependentId']).subscribe((res) => {
+          this.immigrationViewDependentService.removeDependentsSummary(dependents.data['dependentId']).subscribe((res) => {
             this.message = res['statusCode'];
             if (this.message == 'SUCCESS') {
               this.getDepData();

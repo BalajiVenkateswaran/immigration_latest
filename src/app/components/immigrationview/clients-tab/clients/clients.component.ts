@@ -250,7 +250,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     }
     onUserRowClick(event): void {
         this.menuComponent.highlightSBLink('Petitions');
-        this.appService.moveToPage('immigrationview-petitions');
+        this.appService.moveToPage('immigrationview/client/detail/petitions');
         this.immigrationClientCommonService.clientId = event.data.clientId;
         this.immigrationClientCommonService.userId = event.data.userId;
         this.appService.clientId = event.data.clientId;

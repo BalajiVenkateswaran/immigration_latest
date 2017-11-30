@@ -13,7 +13,8 @@ import {SortType} from '../../../../framework/smarttable/types/query-parameters'
 
 
 import {InformationComponent} from '../../../../framework/confirmbox/information.component';
-import {ImmigrationViewClientDetailsService} from "../client-details/client-details.service";
+import {ImmigrationViewClientDetailsService} from '../client-details/client-details.service';
+import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 
 export interface ConfirmModel {
     title: string;
@@ -29,7 +30,8 @@ export interface ConfirmModel {
   selector: 'ih-petitions',
   templateUrl: './petitions.component.html',
   styleUrls: ['./petitions.component.sass'],
-  providers: [ImmigrationViewClientDetailsService]
+  providers: [ImmigrationViewClientDetailsService, ImmigrationViewPetitionsService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 

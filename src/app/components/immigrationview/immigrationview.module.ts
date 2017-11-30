@@ -12,6 +12,17 @@ import {AppSharedModule} from '../../shared/app.shared.module';
 import {ImmigrationViewAddressinfoComponent} from './clients-tab/client-details/address/addressinfo.component';
 import {ImmigrationViewArrivalDepartureInfoComponent} from './clients-tab/client-details/arrival-departure-info/arrival-departure-info.component';
 import {ImmigrationViewClientDetailsComponent} from './clients-tab/client-details/client-details/client-details.component';
+import {DependentDetailsComponent} from './clients-tab/client-details/dependent-details/dependent-details.component';
+import {ImmigrationViewDependentsComponent} from './clients-tab/client-details/dependents/dependents.component';
+import {ImmigrationviewDocumentExpirationsComponent} from './clients-tab/client-details/document-expirations/document-expirations.component';
+import {DocumentManagementComponent} from './clients-tab/client-details/document-management/document-management.component';
+import {ClientDocumentRepositoryComponent} from './clients-tab/client-details/document-repository/document-repository.component';
+import {ImmigrationViewI797HistoryComponent} from './clients-tab/client-details/i-797-history/i-797-history.component';
+import {ImmigrationViewPassportInfoComponent} from './clients-tab/client-details/passport-info/passport-info.component';
+import {ImmigrationViewPetitionsComponent} from './clients-tab/client-details/petitions/petitions.component';
+import {ImmigrationViewVisasComponent} from './clients-tab/client-details/visas/visas.component';
+import {ImmigrationViewJobDetailsComponent} from './clients-tab/client-details/job-details/job-details.component';
+import {DragulaModule} from 'ng2-dragula';
 
 @NgModule({
   imports: [
@@ -25,7 +36,7 @@ import {ImmigrationViewClientDetailsComponent} from './clients-tab/client-detail
 
     AppSharedModule,
     /*Immigration view routes*/
-    immigrationViewRoute
+    immigrationViewRoute,
   ],
   declarations: [
     /*Immigration view components*/
@@ -35,7 +46,16 @@ import {ImmigrationViewClientDetailsComponent} from './clients-tab/client-detail
     ImmigrationViewAddressinfoComponent,
     ImmigrationViewArrivalDepartureInfoComponent,
     ImmigrationViewClientDetailsComponent,
-
+    DependentDetailsComponent,
+    ImmigrationViewDependentsComponent,
+    ImmigrationviewDocumentExpirationsComponent,
+    DocumentManagementComponent,
+    ClientDocumentRepositoryComponent,
+    ImmigrationViewI797HistoryComponent,
+    ImmigrationViewPassportInfoComponent,
+    ImmigrationViewPetitionsComponent,
+    ImmigrationViewVisasComponent,
+    ImmigrationViewJobDetailsComponent
   ]
 })
 export class ImmigrationViewModule {}

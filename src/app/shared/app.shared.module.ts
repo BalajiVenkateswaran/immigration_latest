@@ -7,6 +7,8 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {MyDatePickerModule} from 'mydatepicker';
+import {DragulaModule} from 'ng2-dragula';
+import {FileUploadModule} from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -19,14 +21,20 @@ import {MyDatePickerModule} from 'mydatepicker';
 
     /*Smart table modules*/
     MyDatePickerModule,
-    AgGridModule.withComponents([SmartTableFrameworkComponent])
+    AgGridModule.withComponents([SmartTableFrameworkComponent]),
+
+    /*Immigration view modules*/
+    DragulaModule,
+    FileUploadModule,
   ],
   exports: [
     // SmartTable related components
     SmartTableFrameworkComponent,
     FilterComponent,
     PaginationComponent,
-    MyDatePickerModule
+    MyDatePickerModule,
+    DragulaModule,
+    FileUploadModule,
   ],
   entryComponents: [
     FilterComponent,

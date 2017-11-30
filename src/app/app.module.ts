@@ -4,7 +4,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {APP_BASE_HREF, CurrencyPipe, DatePipe} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {DragulaModule} from 'ng2-dragula/ng2-dragula';
 import {ChartsModule} from 'ng2-charts';
 import {NgIdleModule} from '@ng-idle/core';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
@@ -22,11 +21,7 @@ import {AppService} from './services/app.service';
 import {PetitionDetailsComponent} from './components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.component';
 import {FormsComponent} from './components/immigrationview/petitions-tab/petition-details/forms/forms.component';
 import {OrganizationDocumentRepositoryComponent} from './components/immigrationview/organization-tab/document-repository/document-repository.component';
-import {DocumentManagementComponent} from './components/immigrationview/clients-tab/client-details/document-management/document-management.component';
 import {PetitionDocumentRepositoryComponent} from './components/immigrationview/petitions-tab/petition-details/document-repository/petition-document-repository.component';
-import {ClientDocumentRepositoryComponent} from './components/immigrationview/clients-tab/client-details/document-repository/document-repository.component';
-
-import {DependentDetailsComponent} from './components/immigrationview/clients-tab/client-details/dependent-details/dependent-details.component';
 
 import {PetitionsComponent} from './components/immigrationview/petitions-tab/petitions/petitions.component';
 import {AddressinfoComponent} from './components/clientview/client-details-tab/addressinfo/addressinfo.component';
@@ -57,7 +52,6 @@ import {FormsService} from './components/immigrationview/petitions-tab/petition-
 import {DocumentsComponent} from './components/clientview/documents-tab/documents.component';
 import {UiFieldService} from './services/uifield.service';
 import {OrganizationService} from './components/immigrationview/organization-tab/organization/organization.service';
-import {DependentDetailsService} from './components/immigrationview/clients-tab/client-details/dependent-details/dependent-details.service';
 import {PetitionDetailsService} from './components/immigrationview/petitions-tab/petition-details/petition-details/petition-details.service';
 import {QuestionnaireService} from './components/immigrationview/petitions-tab/petition-details/questionnaire/questionnaire.service';
 import {PetitionDocumentRepositoryService} from './components/immigrationview/petitions-tab/petition-details/document-repository/petition-document-repository.service';
@@ -119,23 +113,6 @@ import {usertotalpetitionservice} from './components/immigrationview/reports-tab
 import {useropenpetitioncomponent} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.component';
 import {usersopenpetitionservice} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.service';
 
-import {ImmigrationViewDependentsComponent} from './components/immigrationview/clients-tab/client-details/dependents/dependents.component';
-import {ImmigrationViewDependentService} from './components/immigrationview/clients-tab/client-details/dependents/dependents.service';
-import {ImmigrationviewDocumentExpirationsComponent} from './components/immigrationview/clients-tab/client-details/document-expirations/document-expirations.component';
-import {ImmigrationviewDocumentExpirationsService} from './components/immigrationview/clients-tab/client-details/document-expirations/document-expirations.service';
-import {DocumentManagementService} from './components/immigrationview/clients-tab/client-details/document-management/document-management.service';
-import {ClientDocumentRepositoryService} from './components/immigrationview/clients-tab/client-details/document-repository/document-repository.service';
-import {ImmigrationViewI797HistoryComponent} from './components/immigrationview/clients-tab/client-details/i-797-history/i-797-history.component';
-import {ImmigrationViewI797HistoryService} from './components/immigrationview/clients-tab/client-details/i-797-history/i-797-history.service';
-import {ImmigrationViewJobDetailsComponent} from './components/immigrationview/clients-tab/client-details/job-details/job-details.component';
-import {JobdetailsService} from './components/immigrationview/clients-tab/client-details/job-details/job-details.service';
-import {ImmigrationViewPassportInfoComponent} from './components/immigrationview/clients-tab/client-details/passport-info/passport-info.component';
-import {PassportInfoService} from './components/immigrationview/clients-tab/client-details/passport-info/passport-info.service';
-import {CustomRenderComponent} from './components/immigrationview/clients-tab/client-details/petitions/custom-render.component';
-import {ImmigrationViewPetitionsComponent} from './components/immigrationview/clients-tab/client-details/petitions/petitions.component';
-import {ImmigrationViewPetitionsService} from './components/immigrationview/clients-tab/client-details/petitions/petitions.service';
-import {ImmigrationViewVisasComponent} from './components/immigrationview/clients-tab/client-details/visas/visas.component';
-import {ImmigrationViewVisasService} from './components/immigrationview/clients-tab/client-details/visas/visas.service';
 import {petitionfinalactioncomponent} from './components/immigrationview/reports-tab/petition/final-action/final-action.component';
 
 import {DownloadInvoiceButton} from './components/immigrationview/manage-account-tab/invoices/DownloadInvoiceButton';
@@ -276,7 +253,6 @@ import {AppSharedModule} from './shared/app.shared.module';
 
 @NgModule({
     imports: [
-        FileUploadModule,
         MatInputModule,
         MatSelectModule,
         MatDatepickerModule,
@@ -289,12 +265,11 @@ import {AppSharedModule} from './shared/app.shared.module';
         ReactiveFormsModule,
         HttpModule,
         routing,
-        DragulaModule,
         AppSharedModule,
         NgbModule.forRoot(),
       NgIdleModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, InformationComponent, ConfirmorgComponent, CustomRenderComponent, ActionColumns, SendToClientQuestionnaire,
+        ConfirmComponent, InformationComponent, ConfirmorgComponent, ActionColumns, SendToClientQuestionnaire,
         GenerateFormButton, DownloadButton, RequestButton, CheckListDownloadButtonComponent, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent,
         ActionIcons, InvoicedownloadButton, InvoiceUploadButton, FilterComponent
     ],
@@ -318,7 +293,7 @@ import {AppSharedModule} from './shared/app.shared.module';
         i129HPage5Component,
         i129HPage6Component,
         // pdf page components imported above which is for testing only
-        CustomRenderComponent, ActionIcons, GenerateFormButton, DownloadButton, RequestButton, CheckListDownloadButtonComponent, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent, InvoicedownloadButton,
+        ActionIcons, GenerateFormButton, DownloadButton, RequestButton, CheckListDownloadButtonComponent, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent, InvoicedownloadButton,
         InvoiceUploadButton,
         AppComponent,
         HeaderComponent,
@@ -331,10 +306,7 @@ import {AppSharedModule} from './shared/app.shared.module';
         ImmigrationviewQuestionnaireComponent,
         FormsComponent,
         OrganizationDocumentRepositoryComponent,
-        DocumentManagementComponent,
         AddressinfoComponent,
-        DependentDetailsComponent,
-        ImmigrationviewDocumentExpirationsComponent,
         ClientViewPassportInfoComponent,
         JobDetailsComponent,
         ArrivalDespartureInfoComponent,
@@ -353,16 +325,8 @@ import {AppSharedModule} from './shared/app.shared.module';
         DependentsComponent,
         DocumentExpirationsComponent,
         PetitionDocumentRepositoryComponent,
-        ClientDocumentRepositoryComponent,
-        ImmigrationViewDependentsComponent,
         ActionColumns,
         SendToClientQuestionnaire,
-        ImmigrationViewPassportInfoComponent,
-        ImmigrationViewJobDetailsComponent,
-        ImmigrationViewVisasComponent,
-        ImmigrationViewI797HistoryComponent,
-        ImmigrationViewPetitionsComponent,
-
         petitionsclientviewComponent,
         requestclientviewcomponent,
         clientviewQuestionnaireComponent,
@@ -446,11 +410,7 @@ import {AppSharedModule} from './shared/app.shared.module';
         ManageAccountUserService,
         ManageAccountOrganizationsService,
         QuestionnaireService,
-        ImmigrationViewDependentService,
         OrganizationDocumentRepositoryService,
-        ImmigrationViewVisasService,
-        ImmigrationViewI797HistoryService,
-        ImmigrationViewPetitionsService,
         FormsService,
         DependentService,
         DocumentExpirationsService,
@@ -460,20 +420,14 @@ import {AppSharedModule} from './shared/app.shared.module';
         JobDetailsService,
         UiFieldService,
         OrganizationService,
-        DependentDetailsService,
-        ClientDocumentRepositoryService,
         DocumentService,
         ClientDetailsService,
         AddressInfoService,
-        PassportInfoService,
-        DocumentManagementService,
         ClientViewPassportInfoService,
         ImmigrationClientCommonService,
         PetitionDetailsService,
-        JobdetailsService,
         QuestionnaireCommonService,
         PetitionDocumentRepositoryService,
-        ImmigrationviewDocumentExpirationsService,
         ClientViewPetitionsService,
         ManageAccountShippingAddressService,
         ManageAccountPetitionStagesService,

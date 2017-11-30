@@ -1,12 +1,13 @@
 import { AppService } from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
-import {ImmigrationViewVisasService} from "./visas.service";
-import {FormGroup, FormControl} from "@angular/forms";
+import {ImmigrationViewVisasService} from './visas.service';
+import {FormGroup, FormControl} from '@angular/forms';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
+import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 
 
 export interface ConfirmModel {
@@ -21,9 +22,11 @@ export interface ConfirmModel {
 
 
 @Component({
-  selector: 'app-visas',
+  selector: 'ih-visas',
   templateUrl: './visas.component.html',
-  styleUrls: ['./visas.component.sass']
+  styleUrls: ['./visas.component.sass'],
+  providers: [ImmigrationViewVisasService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   private delmessage;
@@ -31,9 +34,9 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
   public showAddVisapopup: boolean;
-  public getVisasData: boolean = true;
+  public getVisasData = true;
   public newvisaitem: any = {};
-  public editvisaFlag: boolean = true;
+  public editvisaFlag = true;
   public beforevisaEdit: any;
   public expiresOn;
   public issuedOn;
@@ -57,32 +60,32 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       'columnsettings': [
         {
 
-          headerName: "Country",
-          field: "country",
+          headerName: 'Country',
+          field: 'country',
         },
         {
 
-          headerName: "Petition Number",
-          field: "petitionNumber"
+          headerName: 'Petition Number',
+          field: 'petitionNumber'
         },
         {
 
-          headerName: "Visa Number",
-          field: "visaNumber"
+          headerName: 'Visa Number',
+          field: 'visaNumber'
         },
         {
-          headerName: "Visa Type",
-          field: "visaType"
-        },
-        {
-
-          headerName: "Issued On",
-          field: "issuedOn"
+          headerName: 'Visa Type',
+          field: 'visaType'
         },
         {
 
-          headerName: "Expires On",
-          field: "expiresOn"
+          headerName: 'Issued On',
+          field: 'issuedOn'
+        },
+        {
+
+          headerName: 'Expires On',
+          field: 'expiresOn'
         },
 
       ]
@@ -112,7 +115,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       title: 'Add Visa',
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem,this.headerService.user.userId).subscribe((res) => {
+        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.headerService.user.userId).subscribe((res) => {
           this.message = res['statusCode'];
           if (this.message == 'SUCCESS') {
             this.getVisaaData();

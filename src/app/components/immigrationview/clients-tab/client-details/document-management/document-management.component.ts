@@ -1,18 +1,19 @@
-import { dragula } from '../../../../../models/dragula';
-import { AppService } from '../../../../../services/app.service';
-import { HeaderService } from '../../../../common/header/header.service';
+import {dragula} from '../../../../../models/dragula';
+import {AppService} from '../../../../../services/app.service';
+import {HeaderService} from '../../../../common/header/header.service';
 import {Component, OnInit} from '@angular/core';
-import {DocumentManagementService} from "./document-management.service";
-import {FormGroup, FormControl} from "@angular/forms";
-import {Http} from "@angular/http";
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import {ConfirmComponent} from "../../../../framework/confirmbox/confirm.component";
-import {DialogService} from "ng2-bootstrap-modal";
+import {DocumentManagementService} from './document-management.service';
+import {FormGroup} from '@angular/forms';
+import {Http} from '@angular/http';
+import {DragulaService} from 'ng2-dragula/ng2-dragula';
+import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
+import {DialogService} from 'ng2-bootstrap-modal';
 
 @Component({
     selector: 'app-document-management',
     templateUrl: './document-management.component.html',
-    styleUrls: ['./document-management.component.sass']
+    styleUrls: ['./document-management.component.sass'],
+    providers: [DocumentManagementService]
 })
 export class DocumentManagementComponent implements OnInit {
     dragbox;
@@ -25,8 +26,8 @@ export class DocumentManagementComponent implements OnInit {
     private message: string;
     private formControlValues: any = {};
     isEdit: boolean[] = [true];
-    isSaveOrderVisible :  boolean = false;
-    isMergeOrderVisible :  boolean = true;
+    isSaveOrderVisible = false;
+    isMergeOrderVisible = true;
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
@@ -45,8 +46,8 @@ export class DocumentManagementComponent implements OnInit {
        this.getDocuments();
     }
 
-    getDocuments(){
-      var index = 0;
+    getDocuments() {
+      let index = 0;
       this.documentManagementService
         .getDocOrder(this.appService.petitionId)
         .subscribe((res: any) => {
@@ -73,8 +74,8 @@ export class DocumentManagementComponent implements OnInit {
 
 
     }
-    addDocToSelectedList(file: any){
-      var docOrder = {
+    addDocToSelectedList(file: any) {
+      let docOrder = {
         fileId: file.fileId,
         fileName: file.fileName
       };
@@ -82,13 +83,13 @@ export class DocumentManagementComponent implements OnInit {
     }
 
     onDocSelection(x, checkBox) {
-        console.log("onDocSelection %o %o", x, checkBox);
+        console.log('onDocSelection %o %o', x, checkBox);
         this.isSaveOrderVisible = true;
         this.isMergeOrderVisible = false;
         if (checkBox.checked) {
             this.addDocToSelectedList(x);
         } else {
-            for (var obj of this.selectedDocList) {
+            for (let obj of this.selectedDocList) {
                 if (obj['fileId'] == x['fileId']) {
                     this.selectedDocList.splice(this.selectedDocList.indexOf(obj), 1);
                     break;
@@ -101,8 +102,8 @@ export class DocumentManagementComponent implements OnInit {
         }
     }
 
-    checkIfDocSelected(x: any) : boolean {
-      for (var obj of this.selectedDocList) {
+    checkIfDocSelected(x: any): boolean {
+      for (let obj of this.selectedDocList) {
           if (obj['fileId'] == x['fileId']) {
               return true;
           }
@@ -112,25 +113,25 @@ export class DocumentManagementComponent implements OnInit {
 
 
     //Save Document order
-    saveOrder(){
-      var fileOrderList = [];
-      for (var obj of this.selectedDocList) {
-        var fileOrder = {
+    saveOrder() {
+      let fileOrderList = [];
+      for (let obj of this.selectedDocList) {
+        let fileOrder = {
           fileId : obj['fileId'],
           orderNo : this.selectedDocList.indexOf(obj)
         };
         fileOrderList.push(fileOrder);
       }
 
-      var req = {
+      let req = {
         petitionDocs : fileOrderList,
         petitionId : this.appService.petitionId
       };
-      console.log("saveOrder!!!!!!!!!%o", req);
+      console.log('saveOrder!!!!!!!!!%o', req);
       this.documentManagementService
         .saveDocOrder(req)
         .subscribe((res: any) => {
-            console.log("SaveDocOrder response:%o", res);
+            console.log('SaveDocOrder response:%o', res);
             this.isSaveOrderVisible = false;
             this.isMergeOrderVisible = true || this.selectedDocList.length > 0;
         });
@@ -145,7 +146,7 @@ export class DocumentManagementComponent implements OnInit {
         );
     }
 
-    cancelOrder(){
+    cancelOrder() {
       this.isSaveOrderVisible = false;
       this.isMergeOrderVisible = true;
       this.getDocuments();

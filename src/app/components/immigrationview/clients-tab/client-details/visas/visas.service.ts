@@ -1,6 +1,6 @@
 import { visa } from '../../../../../models/visa';
 import { RestService } from '../../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ImmigrationViewVisasService {
@@ -9,16 +9,16 @@ export class ImmigrationViewVisasService {
 
     }
     public getClientVisas(clientId: string) {
-        return this.restService.getData("/client/visa/" + clientId);
+        return this.restService.getData('/client/visa/' + clientId);
     }
     public saveClientVisas(visaData: visa, userId: string) {
-        var req = {
-            "visa": visaData,
-            "updatedByUser": userId
+        let req = {
+            'visa': visaData,
+            'updatedByUser': userId
         };
-        return this.restService.postData("/client/visa", req);
+        return this.restService.postData('/client/visa', req);
     }
     public deleteClientVisa(visaId: string) {
-        return this.restService.deleteData("/client/visa/" + visaId);
+        return this.restService.deleteData('/client/visa/' + visaId);
     }
 }

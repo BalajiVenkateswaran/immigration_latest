@@ -1,6 +1,6 @@
 import { dependent } from '../../../../../models/dependent';
 import { RestService } from '../../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ImmigrationViewDependentService {
@@ -11,24 +11,24 @@ export class ImmigrationViewDependentService {
 
         console.log(clientId);
 
-        return this.restService.getData("/client/dependentSummary/" + clientId);
+        return this.restService.getData('/client/dependentSummary/' + clientId);
     }
 
     public saveDependentsSummary(dependentData: dependent, userId: string) {
         console.log(dependentData);
 
-        var data = {
-            "dependentsSummary": dependentData,
-            "updatedByUser": userId
+        let data = {
+            'dependentsSummary': dependentData,
+            'updatedByUser': userId
         }
-        return this.restService.postData("/client/dependentSummary", data);
+        return this.restService.postData('/client/dependentSummary', data);
     }
 
     public editDependent(dependentData: dependent) {
-        return this.restService.putData("/client/dependentSummary", dependentData);
+        return this.restService.putData('/client/dependentSummary', dependentData);
     }
     public removeDependentsSummary(dependentId: string) {
-        return this.restService.deleteData("/client/dependentSummary/" + dependentId);
+        return this.restService.deleteData('/client/dependentSummary/' + dependentId);
     }
 
 

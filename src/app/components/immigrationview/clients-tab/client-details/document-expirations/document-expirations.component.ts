@@ -8,6 +8,7 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {HeaderService} from "../../../../common/header/header.service";
+import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -20,7 +21,9 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-document-expirations',
   templateUrl: './document-expirations.component.html',
-  styleUrls: ['./document-expirations.component.sass']
+  styleUrls: ['./document-expirations.component.sass'],
+  providers: [ImmigrationviewDocumentExpirationsService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   private documentExpirationList: documentExpiration[];

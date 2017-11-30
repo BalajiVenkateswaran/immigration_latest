@@ -9,7 +9,8 @@ import {ImmigrationClientCommonService} from '../common/immigration-client.servi
 @Component({
     selector: 'app-passport-info',
     templateUrl: './passport-info.component.html',
-    styleUrls: ['./passport-info.component.sass']
+    styleUrls: ['./passport-info.component.sass'],
+  providers: [PassportInfoService]
 })
 export class ImmigrationViewPassportInfoComponent implements OnInit {
 

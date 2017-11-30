@@ -25,7 +25,8 @@ export interface ConfirmModel {
 @Component({
     selector: 'app-document-repository',
     templateUrl: './document-repository.component.html',
-    styleUrls: ['./document-repository.component.sass']
+    styleUrls: ['./document-repository.component.sass'],
+  providers: [ClientDocumentRepositoryService]
 })
 export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     warningMessage: boolean;
