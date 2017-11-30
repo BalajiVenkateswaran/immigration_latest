@@ -32,7 +32,7 @@
                               <i class="fa fa-power-off" aria-hidden="true"></i>
                           </a>
                       </div>
-                      
+
                       <!--<button *ngIf="appService.isImmigrationView()" type="submit" class="btn iportal-btnIMclient" style="position: absolute;right: 0px;bottom: -65px;z-index:9999;" (click)="usageSummery = !usageSummery">Usage Summary</button>-->
                       <div class="usagesummery" style="" *ngIf="usageSummery">
                           <div class="usheader">
@@ -139,7 +139,7 @@
                   </div>
                   <ul *ngIf="appService.isImmigrationView()" id="MainMenuListItems">
                       <li *ngIf="!headerService.isDelegatedOrg()" >
-                          <a (click)="appService.moveToPage('clients'); highlightTab('clients');"
+                          <a (click)="appService.moveToPage('immigrationview/tab/clients'); highlightTab('clients');"
                              [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
                              routerLinkActive="active" style="height:20px;width:43px;">
                               <img src="../../../../assets/images/Clients.png" />
@@ -189,7 +189,7 @@
                           </a>
                       </li>
                       <li>
-                          <button *ngIf="appService.isImmigrationView()" type="submit" class="btn iportal-btnIMclient" 
+                          <button *ngIf="appService.isImmigrationView()" type="submit" class="btn iportal-btnIMclient"
                           style="position: absolute;right: 0px;bottom: 0px;" (click)="onUsageSummaryClick()">Usage Summary</button>
                       </li>
 
@@ -220,7 +220,7 @@
                              [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']"
                              routerLinkActive="active">
                               <!--<span class="maintab-clientdocuments"></span>-->
-                              <img class="imgg" src="../../../../assets/images/Documents.png" /> 
+                              <img class="imgg" src="../../../../assets/images/Documents.png" />
                               <span>Documents</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>

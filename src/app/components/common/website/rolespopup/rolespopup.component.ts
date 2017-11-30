@@ -61,8 +61,8 @@ export class RolesPopupComponent extends DialogComponent<ConfirmModel, boolean> 
     }
     if (userdet.roleName === 'Immigration Manager' || userdet.roleName === 'Immigration Officer') {
       this.appService.applicationViewMode = ApplicationViews.IMMIGRATION_VIEW;
-      this.headerService.currentTab = 'clients';
-      moveToPage = 'clients';
+      this.headerService.currentTab = 'immigrationview/tab/clients';
+      moveToPage = 'immigrationview/tab/clients';
     }
     if (userdet.roleName === ApplicationRoles.SUPER_USER) {
       this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;

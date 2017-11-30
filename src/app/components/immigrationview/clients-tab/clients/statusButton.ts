@@ -9,7 +9,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular/main';
     </div>
    `
 })
-export class StatusButton implements ICellRendererAngularComp {
+export class StatusButtonComponent implements ICellRendererAngularComp {
     public params: any;
     constructor() {
     }

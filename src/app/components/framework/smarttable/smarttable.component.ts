@@ -5,6 +5,8 @@ import {QueryParameters, SortType} from './types/query-parameters';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 import { SmartTableService } from './common/smarttable.service'
 import {PaginationMetadata} from './types/pagination-metadata';
+import {PaginationComponent} from './pagination/pagination.component';
+import {FilterComponent} from './filter/filter.component';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -12,7 +14,8 @@ export interface ConfirmModel {
 
 @Component({
     selector: 'ih-smart-table',
-    templateUrl: './smarttable.component.html'
+    templateUrl: './smarttable.component.html',
+    entryComponents: [PaginationComponent]
 })
 export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, boolean> implements OnChanges {
     public paginationMetadata: PaginationMetadata = new PaginationMetadata();

@@ -12,7 +12,6 @@ import {ClientDocumentRepositoryComponent} from './components/immigrationview/cl
 
 import {DependentDetailsComponent} from './components/immigrationview/clients-tab/client-details/dependent-details/dependent-details.component';
 import {OrganizationComponent} from './components/immigrationview/organization-tab/organization/organization.component';
-import {ClientsComponent} from './components/immigrationview/clients-tab/clients/clients.component';
 import { AddressinfoComponent } from './components/clientview/client-details-tab/addressinfo/addressinfo.component';
 import { ArrivalDespartureInfoComponent } from './components/clientview/client-details-tab/arrival-departure-info/arrival-desparture-info.component';
 import { ClientDetailsComponent } from './components/clientview/client-details-tab/client-details/client-details.component';
@@ -245,10 +244,6 @@ export const appRoutes: Routes = [
     {
         path: 'petitions',
         component: PetitionsComponent
-    },
-    {
-        path: 'clients',
-        component: ClientsComponent
     },
     {
         path: 'organization',
@@ -598,17 +593,21 @@ export const appRoutes: Routes = [
    */
 
   {
-        path: '',
-        loadChildren: 'app/components/common/website/website.module#WebsiteModule'
-    },
-    {
-        path: 'website/other',
-        loadChildren: 'app/components/common/website/other/websiteother.module#WebsiteOtherModule'
-    },
-    {
-        path: '**',
-        loadChildren: 'app/components/common/website/website.module#WebsiteModule'
-    }
+      path: '',
+      loadChildren: 'app/components/common/website/website.module#WebsiteModule'
+  },
+  {
+      path: 'website/other',
+      loadChildren: 'app/components/common/website/other/websiteother.module#WebsiteOtherModule'
+  },
+  {
+      path: 'immigrationview',
+      loadChildren: 'app/components/immigrationview/immigrationview.module#ImmigrationViewModule'
+  },
+  {
+      path: '**',
+      loadChildren: 'app/components/common/website/website.module#WebsiteModule'
+  }
 
 ];
 

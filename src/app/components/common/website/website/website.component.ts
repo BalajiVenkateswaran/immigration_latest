@@ -183,8 +183,8 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
                 || res.userAccountRoleList[0].roleName === ApplicationRoles.IMMIGRATION_OFFICER) {
                 this.appService.applicationViewMode = ApplicationViews.IMMIGRATION_VIEW;
                 this.headerService.selectedOrg = res.organizationList[0];
-                this.headerService.currentTab = 'clients';
-                moveToPage = 'clients';
+                this.headerService.currentTab = 'immigrationview/tab/clients';
+                moveToPage = 'immigrationview/tab/clients';
               }
               if (res.userAccountRoleList[0].roleName === ApplicationRoles.CLIENT) {
                 this.appService.applicationViewMode = ApplicationViews.CLIENT_VIEW;
@@ -229,8 +229,8 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
     }
     if (userdet.roleName === 'Immigration Manager' || userdet.roleName === 'Immigration Officer') {
       this.appService.applicationViewMode = ApplicationViews.IMMIGRATION_VIEW;
-      this.headerService.currentTab = 'clients';
-      moveToPage = 'clients';
+      this.headerService.currentTab = 'immigrationview/tab/clients';
+      moveToPage = 'immigrationview/tab/clients';
     }
     if (userdet.roleName === ApplicationRoles.SUPER_USER) {
       this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;

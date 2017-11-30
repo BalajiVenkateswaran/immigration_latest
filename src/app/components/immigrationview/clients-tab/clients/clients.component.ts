@@ -2,14 +2,14 @@ import { AppService } from '../../../../services/app.service';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
-import { StatusButton } from './statusButton';
+import {StatusButtonComponent} from './statusButton';
 import { Component, OnInit } from '@angular/core';
 import { ClientsService } from './clients.service';
 import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import {SortType} from '../../../framework/smarttable/types/query-parameters';
 import {Router} from '@angular/router';
 import {ImmigrationClientCommonService} from '../client-details/common/immigration-client.service';
-
+import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
 export interface ConfirmModel {
   title: string;
@@ -19,11 +19,12 @@ export interface ConfirmModel {
   getClientsData: boolean;
 }
 
-
 @Component({
-  selector: 'app-clients',
+  selector: 'ih-immigrationview-clients',
   templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.sass']
+  styleUrls: ['./clients.component.sass'],
+  providers: [ClientsService],
+  entryComponents: [SmartTableFrameworkComponent, StatusButtonComponent]
 })
 export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   private outlet: any = {
@@ -124,7 +125,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                 {
                     headerName: 'Status',
                     field: 'status',
-                    cellRendererFramework: StatusButton,
+                    cellRendererFramework: StatusButtonComponent,
                     type: 'dropDown',
                     data: this.statusTypes
                 },

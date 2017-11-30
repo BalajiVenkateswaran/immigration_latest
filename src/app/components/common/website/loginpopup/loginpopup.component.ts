@@ -162,8 +162,8 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
                 || res.userAccountRoleList[0].roleName === ApplicationRoles.IMMIGRATION_OFFICER) {
                 this.appService.applicationViewMode = ApplicationViews.IMMIGRATION_VIEW;
                 this.headerService.selectedOrg = res.organizationList[0];
-                this.headerService.currentTab = 'clients';
-                moveToPage = 'clients';
+                this.headerService.currentTab = 'immigrationview/tab/clients';
+                moveToPage = 'immigrationview/tab/clients';
               }
               if (res.userAccountRoleList[0].roleName === ApplicationRoles.CLIENT) {
                 this.appService.applicationViewMode = ApplicationViews.CLIENT_VIEW;
