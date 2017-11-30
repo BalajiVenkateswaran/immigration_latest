@@ -24,7 +24,7 @@ import { VisasComponent } from './components/clientview/client-details-tab/visas
 import { DocumentsComponent } from './components/clientview/documents-tab/documents.component';
 import {ManageAccountUserComponent} from './components/immigrationview/manage-account-tab/user/user.component';
 import {ManageAccountOrganizationsComponent} from './components/immigrationview/manage-account-tab/organizations/organizations.component';
-import {ImmigrationViewClientDetailsComponent} from './components/immigrationview/clients-tab/client-details/client-details/client-details.component';
+
 import {petitionsclientviewComponent} from './components/clientview/petitions-tab/petitions.component';
 import { clientviewQuestionnaireComponent } from './components/clientview/questionnaries-tab/questionnaires/questionnaries.component';
 import { requestclientviewcomponent } from './components/clientview/request-tab/request.component';
@@ -44,7 +44,6 @@ import {AccountPreferencesComponent} from './components/superuserview/accounts-t
 // immigrationview reports
 import {petitionsstatusreportscomponent} from './components/immigrationview/reports-tab/petition/status/status.component';
 import {clientscreatedreportscomponent} from './components/immigrationview/reports-tab/client/created/created.component';
-import { ImmigrationViewAddressinfoComponent } from './components/immigrationview/clients-tab/client-details/address/addressinfo.component';
 import { ImmigrationViewArrivalDepartureInfoComponent } from './components/immigrationview/clients-tab/client-details/arrival-departure-info/arrival-departure-info.component';
 import { ImmigrationViewDependentsComponent } from './components/immigrationview/clients-tab/client-details/dependents/dependents.component';
 import { ImmigrationviewDocumentExpirationsComponent } from './components/immigrationview/clients-tab/client-details/document-expirations/document-expirations.component';
@@ -369,15 +368,6 @@ export const appRoutes: Routes = [
         path: 'clientview-petitions',
         component: petitionsclientviewComponent
     },
-
-    {
-        path: 'immigrationview-client-details',
-        component: ImmigrationViewClientDetailsComponent
-    },
-    {
-        path: 'immigrationview-addressinfo',
-        component: ImmigrationViewAddressinfoComponent
-    },
     {
         path: 'immigrationview-dependents',
         component: ImmigrationViewDependentsComponent
@@ -389,10 +379,6 @@ export const appRoutes: Routes = [
     {
         path: 'immigrationview-job-details',
         component: ImmigrationViewJobDetailsComponent
-    },
-    {
-        path: 'immigrationview-arrival-departure-info',
-        component: ImmigrationViewArrivalDepartureInfoComponent
     },
     {
         path: 'immigrationview-visas',

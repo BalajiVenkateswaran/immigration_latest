@@ -9,6 +9,9 @@ import {SmartTableFrameworkComponent} from '../framework/smarttable/smarttable.c
 import {FilterComponent} from '../framework/smarttable/filter/filter.component';
 import {PaginationComponent} from '../framework/smarttable/pagination/pagination.component';
 import {AppSharedModule} from '../../shared/app.shared.module';
+import {ImmigrationViewAddressinfoComponent} from './clients-tab/client-details/address/addressinfo.component';
+import {ImmigrationViewArrivalDepartureInfoComponent} from './clients-tab/client-details/arrival-departure-info/arrival-departure-info.component';
+import {ImmigrationViewClientDetailsComponent} from './clients-tab/client-details/client-details/client-details.component';
 
 @NgModule({
   imports: [
@@ -28,6 +31,11 @@ import {AppSharedModule} from '../../shared/app.shared.module';
     /*Immigration view components*/
     StatusButtonComponent,
     ClientsComponent,
+    /*Client detail components*/
+    ImmigrationViewAddressinfoComponent,
+    ImmigrationViewArrivalDepartureInfoComponent,
+    ImmigrationViewClientDetailsComponent,
+
   ]
 })
 export class ImmigrationViewModule {}

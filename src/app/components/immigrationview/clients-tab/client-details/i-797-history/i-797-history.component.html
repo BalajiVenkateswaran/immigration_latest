@@ -1,7 +1,7 @@
 <div class="main-content" *ngIf="getI797History">
 
     <div class="table-data">
-        <h2 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h2>
+        <h2 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h2>
         <div class="clearfix"></div>
         <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">I-797 History</h2>
         <ih-smart-table class="immiview-clienttab-i797history" [settings]="settings" [data]="data" (onAddClick)="addNewI797History($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>

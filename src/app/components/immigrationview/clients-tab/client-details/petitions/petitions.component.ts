@@ -28,7 +28,8 @@ export interface ConfirmModel {
 @Component({
   selector: 'ih-petitions',
   templateUrl: './petitions.component.html',
-  styleUrls: ['./petitions.component.sass']
+  styleUrls: ['./petitions.component.sass'],
+  providers: [ImmigrationViewClientDetailsService]
 })
 export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 

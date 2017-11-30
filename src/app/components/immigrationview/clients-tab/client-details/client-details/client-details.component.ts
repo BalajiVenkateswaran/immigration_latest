@@ -1,21 +1,21 @@
-import { ImmigrationViewClientPersonalInfo } from '../../../../../models/ImmigrationViewClientPersonalInfo';
-import { ImmigrationViewClientProfile } from '../../../../../models/immigrationviewclientprofile';
-import { User } from '../../../../../models/user';
-import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { Component, OnInit } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { ImmigrationViewClientDetailsService } from './client-details.service';
-import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
-import { DialogService } from 'ng2-bootstrap-modal';
+import {ImmigrationViewClientPersonalInfo} from '../../../../../models/ImmigrationViewClientPersonalInfo';
+import {ImmigrationViewClientProfile} from '../../../../../models/immigrationviewclientprofile';
+import {User} from '../../../../../models/user';
+import {AppService} from '../../../../../services/app.service';
+import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
+import {ImmigrationViewClientDetailsService} from './client-details.service';
+import {IMyDateModel, IMyOptions} from 'mydatepicker';
+import {DialogService} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
 import {ImmigrationClientCommonService} from '../common/immigration-client.service';
 
 @Component({
-    selector: 'app-client-details',
+    selector: 'ih-client-details',
     templateUrl: './client-details.component.html',
-    styleUrls: ['./client-details.component.scss']
+    styleUrls: ['./client-details.component.scss'],
+    providers: [ImmigrationViewClientDetailsService]
 })
 export class ImmigrationViewClientDetailsComponent implements OnInit {
     ssnRegex: RegExp;

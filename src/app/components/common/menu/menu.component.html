@@ -56,7 +56,7 @@
         </a>
       </li>
       <li>
-         <a (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Client Details') ? 'active': '']" routerLinkActive="active">
+         <a (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Client Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-client-details"></span>
                 <span>Client Details</span>
             </a>
@@ -68,7 +68,7 @@
           </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview-addressinfo');highlightSBLink('Address');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Address') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/client/detail/addressinfo');highlightSBLink('Address');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Address') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-address"></span>
                 <span>Address</span>
             </a>
@@ -103,7 +103,7 @@
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview-arrival-departure-info');highlightSBLink('Arrival Desparture Inf');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Arrival Desparture Inf') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/client/detail/arrival-departure-info');highlightSBLink('Arrival Desparture Inf');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Arrival Desparture Inf') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-arrival-desparture-info"></span>
                 <span>Arrival Departure Info</span>
             </a>

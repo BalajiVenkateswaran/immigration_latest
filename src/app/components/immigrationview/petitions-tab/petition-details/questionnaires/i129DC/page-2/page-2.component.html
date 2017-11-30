@@ -1,7 +1,7 @@
 
 <div class="main-content">
     <div class="table-data">
-        <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview-client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
+        <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <h1 style="float:right;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>-->
         <div class="row">
@@ -87,9 +87,9 @@
                         </div>
                         <div class="col-md-6" *ngFor="let x of petitionType">
                             <input type="radio" name="petitionType" [value]="x.value" [(ngModel)]="page2.petitionType"> {{x.display}}
-                            
+
                         </div>
-                       
+
                         <div class="col-md-12">
                             <p class="fieldsetheading">If you answered Item Number 1.b. "CAP H-1B U.S. Master's Degree or Higher," provide the following information regarding the master's or higher degree the beneficiary has earned from a U.S. institution as defined in 20 U.S.C. 1001(a):</p>
                         </div>
@@ -137,9 +137,9 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4" *ngFor="let x of aptType">
-                                           <input type="radio" name="aptType" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.aptType">{{x.display}} 
+                                           <input type="radio" name="aptType" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.aptType">{{x.display}}
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>

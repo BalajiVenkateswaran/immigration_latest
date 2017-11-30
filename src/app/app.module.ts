@@ -50,7 +50,6 @@ import {VisasService} from './components/clientview/client-details-tab/visas/vis
 import {ManageAccountUserComponent} from './components/immigrationview/manage-account-tab/user/user.component';
 import {ManageAccountOrganizationsComponent} from './components/immigrationview/manage-account-tab/organizations/organizations.component';
 
-import {ImmigrationViewClientDetailsComponent} from './components/immigrationview/clients-tab/client-details/client-details/client-details.component';
 import {PetitionsService} from './components/immigrationview/petitions-tab/petitions/petitions.service';
 import {ClientRequestService} from './components/clientview/request-tab/request.service';
 import {OrganizationDocumentRepositoryService} from './components/immigrationview/organization-tab/document-repository/document-repository.service';
@@ -120,11 +119,6 @@ import {usertotalpetitionservice} from './components/immigrationview/reports-tab
 import {useropenpetitioncomponent} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.component';
 import {usersopenpetitionservice} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.service';
 
-import {ImmigrationViewAddressinfoComponent} from './components/immigrationview/clients-tab/client-details/address/addressinfo.component';
-import {Addressinfoservice} from './components/immigrationview/clients-tab/client-details/address/addressinfo.service';
-import {ImmigrationViewArrivalDepartureInfoComponent} from './components/immigrationview/clients-tab/client-details/arrival-departure-info/arrival-departure-info.component';
-import {ImmigrationViewArrivalDepartureInfoService} from './components/immigrationview/clients-tab/client-details/arrival-departure-info/arrival-departure-info.service';
-import {ImmigrationViewClientDetailsService} from './components/immigrationview/clients-tab/client-details/client-details/client-details.service';
 import {ImmigrationViewDependentsComponent} from './components/immigrationview/clients-tab/client-details/dependents/dependents.component';
 import {ImmigrationViewDependentService} from './components/immigrationview/clients-tab/client-details/dependents/dependents.service';
 import {ImmigrationviewDocumentExpirationsComponent} from './components/immigrationview/clients-tab/client-details/document-expirations/document-expirations.component';
@@ -271,8 +265,7 @@ import {CategoryPipe} from './components/framework/pipes/pipes';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDatepickerModule, MatInputModule, MatNativeDateModule, MatSelectModule,} from '@angular/material';
-import {PaginationComponent} from './components/framework/smarttable/pagination/pagination.component';
+import {MatDatepickerModule, MatInputModule, MatNativeDateModule, MatSelectModule} from '@angular/material';
 import {InformationComponent} from './components/framework/confirmbox/information.component';
 import {ImmigrationClientCommonService} from './components/immigrationview/clients-tab/client-details/common/immigration-client.service';
 import {AppSharedModule} from './shared/app.shared.module';
@@ -361,14 +354,11 @@ import {AppSharedModule} from './shared/app.shared.module';
         DocumentExpirationsComponent,
         PetitionDocumentRepositoryComponent,
         ClientDocumentRepositoryComponent,
-        ImmigrationViewClientDetailsComponent,
-        ImmigrationViewAddressinfoComponent,
         ImmigrationViewDependentsComponent,
         ActionColumns,
         SendToClientQuestionnaire,
         ImmigrationViewPassportInfoComponent,
         ImmigrationViewJobDetailsComponent,
-        ImmigrationViewArrivalDepartureInfoComponent,
         ImmigrationViewVisasComponent,
         ImmigrationViewI797HistoryComponent,
         ImmigrationViewPetitionsComponent,
@@ -458,11 +448,9 @@ import {AppSharedModule} from './shared/app.shared.module';
         QuestionnaireService,
         ImmigrationViewDependentService,
         OrganizationDocumentRepositoryService,
-        Addressinfoservice,
         ImmigrationViewVisasService,
         ImmigrationViewI797HistoryService,
         ImmigrationViewPetitionsService,
-        ImmigrationViewArrivalDepartureInfoService,
         FormsService,
         DependentService,
         DocumentExpirationsService,
@@ -480,7 +468,6 @@ import {AppSharedModule} from './shared/app.shared.module';
         PassportInfoService,
         DocumentManagementService,
         ClientViewPassportInfoService,
-        ImmigrationViewClientDetailsService,
         ImmigrationClientCommonService,
         PetitionDetailsService,
         JobdetailsService,

@@ -1,39 +1,40 @@
-import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { Component, OnInit } from '@angular/core';
-import { ImmigrationViewArrivalDepartureInfoService } from './arrival-departure-info.service';
-
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../../common/header/header.service";
-import { PetitionsService } from "../../../petitions-tab/petitions/petitions.service";
-import { SortType } from "../../../../framework/smarttable/types/query-parameters";
+import {AppService} from '../../../../../services/app.service';
+import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
+import {Component, OnInit} from '@angular/core';
+import {ImmigrationViewArrivalDepartureInfoService} from './arrival-departure-info.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {IMyDateModel, IMyOptions} from 'mydatepicker';
+import {HeaderService} from '../../../../common/header/header.service';
+import {PetitionsService} from '../../../petitions-tab/petitions/petitions.service';
+import {SortType} from '../../../../framework/smarttable/types/query-parameters';
+import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 
 export interface ConfirmModel {
     title: string;
     message: string;
     arrDepInfo: boolean;
     addArrDep: boolean;
-    addArrDeparture:Object;
-    arrivalDate:string;
-    departureDate:string;
+    addArrDeparture: Object;
+    arrivalDate: string;
+    departureDate: string;
 }
 @Component({
-  selector: 'app-arrival-departure-info',
+  selector: 'ih-arrival-departure-info',
   templateUrl: './arrival-departure-info.component.html',
-  styleUrls: ['./arrival-departure-info.component.sass']
+  styleUrls: ['./arrival-departure-info.component.sass'],
+  providers: [ImmigrationViewArrivalDepartureInfoService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   private delmessage;
   private arrivalDepartureInfo: any[];
   private arrivalDepartureInfoScreenData: any;
   private message: string;
-  public arrDepInfo: boolean = true;
+  public arrDepInfo = true;
   public addArrDeparture: any = {};
   public addArrDep: boolean;
   public beforeEdit: any;
-  public editFlag: boolean = true;
+  public editFlag = true;
   public rowClicked: boolean ;
   public data;
   public settings;
@@ -44,49 +45,49 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       showClearDateBtn: false,
   };
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
-      public appService: AppService, public dialogService: DialogService, public headerService: HeaderService,  private petitionService: PetitionsService,) {
+      public appService: AppService, public dialogService: DialogService, public headerService: HeaderService,  private petitionService: PetitionsService, ) {
       super(dialogService);
       this.settings = {
         'sort': [{
-          headingName: "lastUpdate",
+          headingName: 'lastUpdate',
           sort: SortType.DESC
         }],
             'columnsettings': [
                 {
 
-                    headerName: "Departure Date",
-                    field: "departureDate",
-                  type:'datePicker'
+                    headerName: 'Departure Date',
+                    field: 'departureDate',
+                  type: 'datePicker'
                 },
                 {
 
-                    headerName: "Departure Country",
-                    field: "departureCountry",
-                  type:'text'
+                    headerName: 'Departure Country',
+                    field: 'departureCountry',
+                  type: 'text'
                 },
                 {
 
-                    headerName: "Arrival Date",
-                    field: "arrivalDate",
-                  type:'datePicker'
+                    headerName: 'Arrival Date',
+                    field: 'arrivalDate',
+                  type: 'datePicker'
                 },
                 {
-                    headerName: "Arrival Country",
-                    field: "arrivalCountry",
-                  type:'text'
+                    headerName: 'Arrival Country',
+                    field: 'arrivalCountry',
+                  type: 'text'
                 },
                 {
 
-                    headerName: "Visa Type",
-                    field: "visaType",
-                  type:'dropDown',
+                    headerName: 'Visa Type',
+                    field: 'visaType',
+                  type: 'dropDown',
                   data: this.getPetitionTypeValues()
                 },
                 {
 
-                    headerName: "I-94",
-                    field: "i94",
-                  type:'text'
+                    headerName: 'I-94',
+                    field: 'i94',
+                  type: 'text'
                 },
 
             ]
@@ -95,7 +96,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   getArrivalDepartueInfo() {
       this.arrivalDepartureInfoService.getArrivalDepartureInfo(this.appService.clientId)
           .subscribe((res) => {
-              this.data=res['arrivalDepartures'];
+              this.data = res['arrivalDepartures'];
 
           });
   }
@@ -114,8 +115,8 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       }).subscribe((isConfirmed) => {
           if (isConfirmed) {
 
-              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture,this.headerService.user.userId).subscribe((res) => {
-                  if (res['statusCode'] == 'SUCCESS') {
+              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture, this.headerService.user.userId).subscribe((res) => {
+                  if (res['statusCode'] === 'SUCCESS') {
                       this.getArrivalDepartueInfo();
                   }
               });
@@ -125,10 +126,10 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   arrDepSave() {
       this.addArrDeparture['clientId'] = this.appService.clientId;
 
-      if(this.addArrDeparture['departureDate'] && this.addArrDeparture['departureDate']['formatted']){
+      if (this.addArrDeparture['departureDate'] && this.addArrDeparture['departureDate']['formatted']) {
            this.addArrDeparture['departureDate'] = this.addArrDeparture['departureDate']['formatted'];
       }
-      if(this.addArrDeparture['arrivalDate'] && this.addArrDeparture['arrivalDate']['formatted']){
+      if (this.addArrDeparture['arrivalDate'] && this.addArrDeparture['arrivalDate']['formatted']) {
         this.addArrDeparture['arrivalDate'] = this.addArrDeparture['arrivalDate']['formatted'];
       }
       this.appService.addArrDeparture = this.addArrDeparture;
@@ -143,12 +144,12 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       this.delmessage = arrivalDeprtInfo.data.i94;
       this.dialogService.addDialog(ConfirmComponent, {
           title: 'Confirmation',
-          message: 'Are you sure you want to Delete ' + this.delmessage+'?'
+          message: 'Are you sure you want to Delete ' + this.delmessage + '?'
       })
           .subscribe((isConfirmed) => {
               if (isConfirmed) {
                   this.arrivalDepartureInfoService.removeClientArrivalDeparture(arrivalDeprtInfo.data['arrivalDepartureInfoId']).subscribe((res) => {
-                      if (res['statusCode'] == 'SUCCESS') {
+                      if (res['statusCode'] === 'SUCCESS') {
                           this.getArrivalDepartueInfo();
                       }
                   });
@@ -165,18 +166,17 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
           arrDepInfo: false,
           title: 'Edit Arrival Departure Info',
           addArrDeparture: this.editFlag ? this.beforeEdit : this.addArrDeparture,
-          arrivalDate:arrivalDeptInfo.data.arrivalDate,
-          departureDate:arrivalDeptInfo.data.departureDate,
+          arrivalDate: arrivalDeptInfo.data.arrivalDate,
+          departureDate: arrivalDeptInfo.data.departureDate,
 
      }).subscribe((isConfirmed) => {
          if (isConfirmed) {
-              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture,this.headerService.user.userId).subscribe((res) => {
-                  if (res['statusCode'] == 'SUCCESS') {
+              this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.addArrDeparture, this.headerService.user.userId).subscribe((res) => {
+                  if (res['statusCode'] === 'SUCCESS') {
                       this.getArrivalDepartueInfo();
                   }
               });
-          }
-          else {
+          } else {
               this.editFlag = false;
           }
       });
@@ -187,8 +187,8 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
     this.petitionService.getAllPetitionTypesAndSubTypes().subscribe(res => {
       if (res['petitionTypes'] != undefined) {
         let data = res['petitionTypes'];
-        for(var i=0;i<data.length;i++){
-          x.push({'display':data[i]['petitiontype'],'value':data[i]['petitiontype']});
+        for (let i = 0; i < data.length; i++) {
+          x.push({'display': data[i]['petitiontype'], 'value': data[i]['petitiontype']});
         }
       }
 
