@@ -41,12 +41,10 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
           field: 'slNo',
         },
         {
-
           headerName: 'Petition Type',
           field: 'petitionType',
         },
         {
-
           headerName: 'Doc Name',
           field: 'fileName',
         },
@@ -59,29 +57,24 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
             cellRendererFramework: CheckListDownloadButtonComponent,
         }
       ]
-    }
+    };
 
   }
 
   ngOnInit() {
-      this.data = [];
-      this.getchecklist();
-    this.manageAccountPetitionStagesService.getPetitionTypes().subscribe(
-        res => {
+      this.manageAccountPetitionStagesService.getPetitionTypes().subscribe(
+      res => {
             this.petitionTypes = res['petitionTypes'];
-        });
-
-
-  }
-  getchecklist() {
-      this.manageAccountCheckListService.getChecklist(this.headerService.user.accountId).subscribe(res => {
-          this.data = res['accountCheckList'];
-          for (let i = 0; i < this.data.length; i++) {
-              this.data[i]['slNo'] = i + 1;
-          }
-      });
+          });
   }
 
-
+  public dataWithParameters(queryData: string) {
+    this.manageAccountCheckListService.getChecklist(this.headerService.user.accountId).subscribe(res => {
+      this.data = res['accountCheckList'];
+      for (let i = 0; i < this.data.length; i++) {
+        this.data[i]['slNo'] = i + 1;
+      }
+    });
+  }
 
 }

@@ -6,4 +6,9 @@ export class PaginationMetadata {
   public itemStartIndex = 1;
   public endNumber: number;
 
+  public isPaginationEmpty(): boolean {
+    return this.pageSize === undefined && this.totalElements === undefined && this.totalPages === undefined
+      && this.pageNumber === 1 && this.itemStartIndex === 1 && this.endNumber === undefined;
+  }
+
 }
