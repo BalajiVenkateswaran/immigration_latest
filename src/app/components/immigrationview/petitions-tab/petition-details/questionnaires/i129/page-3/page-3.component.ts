@@ -6,7 +6,8 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 
 @Component({
     selector: 'app-page-3.component',
-    templateUrl: './page-3.component.html'
+    templateUrl: './page-3.component.html',
+     styleUrls: ['./page-3.component.scss'],
 })
 export class I129Page3Component implements OnInit {
     beforecancelquestionnaire: any;

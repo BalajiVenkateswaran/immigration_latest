@@ -3,7 +3,6 @@
         <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <h1 style="float:right;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>-->
-        <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
@@ -15,26 +14,27 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <h2> Additional Information About Your Petition For Nonimmigrant Worker </h2>
+            <div class="col-md-12 Questionnaireheader">
+                <h2>9.&nbsp;Additional Information About Your Petition For Nonimmigrant Worker </h2>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-top: 20px !important;">
                             <p>If you require more space to provide any additional information within this petition, use the space below.  If you require more space than what is provided to complete this petition, you may make a copy of Part 9. to complete and file with this petition.  In order to assist us in reviewing your response, you must identify the Page Number, Part Number and Item Number corresponding to the additional information.</p>
                         </div>
                         <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">A-Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page8.anumber"/>
-                                 <span *ngIf="isquestionnaireEdit==true">{{page8.anumber}}</span>
+                            <div class="col-md-6" style="margin-left: -30px !important;">
+                                <div class="col-md-4"><b>1.</b>A-Number</div>
+                                <div class="col-md-8">
+                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page8.anumber" />
+                                    <span *ngIf="isquestionnaireEdit==true">{{page8.anumber}}</span>
                                 </div>
                             </div>
+                            <div class="col-md-6"></div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-4">Page Number</div>
+                                <div class="col-md-4"><b>2.</b>Page Number</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page8.pageNumber1"/>
                                  <span *ngIf="isquestionnaireEdit==true">{{page8.pageNumber1}}</span>
                                 </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-4">Page Number</div>
+                                <div class="col-md-4"><b>3.</b>Page Number</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page8.pageNumber2"/>
                                  <span *ngIf="isquestionnaireEdit==true">{{page8.pageNumber2}}</span>
                                 </div>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-4">Page Number</div>
+                                <div class="col-md-4"><b>4.</b>Page Number</div>
                                 <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page8.pageNumber3"/>
                                  <span *ngIf="isquestionnaireEdit==true">{{page8.pageNumber3}}</span>
                                 </div>
@@ -113,9 +113,7 @@
                         <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page8.additionalInformation3"></textarea>
 
                         </div>
-                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
