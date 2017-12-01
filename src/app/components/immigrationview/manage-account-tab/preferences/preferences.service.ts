@@ -1,29 +1,29 @@
 import {RestService} from '../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ManageAccountpreferencessService {
   constructor(private restService: RestService) {
   }
   public getproductsAccount(accountid: string) {
-    return this.restService.getData("/immigration/account/" + accountid + "/products");
+    return this.restService.getData('/immigration/account/' + accountid + '/products');
   }
   public getdiscountsAccount(accountid: string) {
-    return this.restService.getData("/immigration/account/" + accountid + "/discounts");
+    return this.restService.getData('/immigration/account/' + accountid + '/discounts');
   }
   public saveproduct(addproduct: any, accountid: string) {
 
-    var req = {
-      "accountId": accountid,
-      "products": addproduct
+    let req = {
+      'accountId': accountid,
+      'products': addproduct
     }
-    return this.restService.postData("/immigration/accounts/products", req);
+    return this.restService.postData('/immigration/accounts/products', req);
   }
   public savediscount(adddiscount: any, accountid: string) {
-    var req = {
-      "accountId": accountid,
-      "discounts": [adddiscount]
+    let req = {
+      'accountId': accountid,
+      'discounts': [adddiscount]
     }
-    return this.restService.postData("/immigration/accounts/discounts", req);
+    return this.restService.postData('/immigration/accounts/discounts', req);
   }
 }

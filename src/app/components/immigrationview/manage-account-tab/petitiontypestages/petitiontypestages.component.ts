@@ -5,13 +5,14 @@ import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import {ManageAccountPetitionStagesService} from './petitiontypestages.service';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService } from "ng2-bootstrap-modal";
-import {ImmigrationViewPetitionsService} from "../../clients-tab/client-details/petitions/petitions.service";
-import {HeaderService} from "../../../common/header/header.service";
+import { DialogService } from 'ng2-bootstrap-modal';
+import {ImmigrationViewPetitionsService} from '../../clients-tab/client-details/petitions/petitions.service';
+import {HeaderService} from '../../../common/header/header.service';
 @Component({
     selector: 'app-manageaccount-petitiontypestages',
     templateUrl: './petitiontypestages.component.html',
-    styleUrls: ['./petitiontypestages.component.sass']
+    styleUrls: ['./petitiontypestages.component.sass'],
+  providers: [ManageAccountPetitionStagesService, ImmigrationViewPetitionsService]
 })
 export class ManageAccountPetitionTypeStagesComponent implements OnInit {
 
@@ -26,17 +27,17 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
     private selectedIdxstage: any;
     addPetitionStages: Function;
     addDeleteBtn: boolean;
-    cancelBtn: boolean = false;
-    saveBtn: boolean = false;
+    cancelBtn = false;
+    saveBtn = false;
     cancelPetitionStages: Function;
     savePetitionStages: Function;
     saveOrder: Function;
-    updateStages:Function;
+    updateStages: Function;
     private petitiontypeid: any;
     addStages: boolean;
-    saveorder: boolean = false;
+    saveorder = false;
     private editCancel: Function;
-    private editStages: boolean = false;
+    private editStages = false;
     private stageId: string;
     private edittrue: boolean[] = [];
     private selectedPetitionType: any = {};
@@ -60,7 +61,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
             this.saveBtn = true;
             this.addStages = true;
             this.typeadd = addpetition;
-            this.addPetionStagesName = "";
+            this.addPetionStagesName = '';
 
         }
         this.cancelPetitionStages = function () {
@@ -69,32 +70,32 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
             this.cancelBtn = false;
             this.saveBtn = false;
             this.saveorder = false;
-            this.typeadd = "";
+            this.typeadd = '';
         }
         this.savePetitionStages = function (petitionstage) {
             this.addDeleteBtn = true;
             this.cancelBtn = false;
             this.saveBtn = false;
             this.addStages = false;
-            var petitionname = this.addPetionStagesName;
-            var petitionstages = { "accountId": this.headerService.user.accountId, "petitionStageName": petitionname, "petitionTypeId": petitionstage[0].petitionTypeId };
+            let petitionname = this.addPetionStagesName;
+            let petitionstages = { 'accountId': this.headerService.user.accountId, 'petitionStageName': petitionname, 'petitionTypeId': petitionstage[0].petitionTypeId };
             this.manageAccountPetitionStagesService.addPetitionStage(petitionstages).subscribe((res) => {
-                if (res.statusCode == "SUCCESS") {
+                if (res.statusCode == 'SUCCESS') {
                     this.getpetitionstages();
                 }
             });
         }
-        this.editCancel=function(stage){
+        this.editCancel = function(stage) {
             stage['edit'] = false;
         }
         this.updateStages = function (stage, i) {
             stage['edit'] = false;
-            if (this.updatename != undefined){
+            if (this.updatename != undefined) {
                 stage.name = this.updatename;
             }
-            var updatedname = { "accountId": this.headerService.user.accountId, "petitionStages": [stage], "petitionTypeId": stage.petitionTypeId};
+            let updatedname = { 'accountId': this.headerService.user.accountId, 'petitionStages': [stage], 'petitionTypeId': stage.petitionTypeId};
             this.manageAccountPetitionStagesService.updatePetitionStage(updatedname).subscribe((res) => {
-                if (res.statusCode == "SUCCESS") {
+                if (res.statusCode == 'SUCCESS') {
 
                 }
             });
@@ -102,11 +103,11 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
 
         this.saveOrder = function () {
 
-            for (var stageIndex in this.petitionStages) {
-              var stage = this.petitionStages[stageIndex];
+            for (let stageIndex in this.petitionStages) {
+              let stage = this.petitionStages[stageIndex];
               stage['orderNo'] = stageIndex;
             }
-            var req = {
+            let req = {
                 petitionStages: this.petitionStages,
                 accountId: this.headerService.user.accountId,
                 petitionTypeId: this.selectedPetitionType['petitionTypeId']
@@ -115,7 +116,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
             this.manageAccountPetitionStagesService
                 .saveStageOrder(req)
                 .subscribe((res: any) => {
-                    if (res.statusCode == "SUCCESS") {
+                    if (res.statusCode == 'SUCCESS') {
                         this.saveorder = false;
                         this.cancelBtn = false;
                         this.addDeleteBtn = true;
@@ -144,8 +145,8 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
 
     ngOnInit() {
         this.addDeleteBtn = true;
-        this.selectedIdx = "none";
-        this.selectedIdxstage = "none";
+        this.selectedIdx = 'none';
+        this.selectedIdxstage = 'none';
 
         this.immigrationViewPetitionsService.getPetitionTypes().subscribe(
           res => {
@@ -156,7 +157,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
         );
     }
 
-    onClickOfPetitionType(petitionType,index) {
+    onClickOfPetitionType(petitionType, index) {
         this.selectedIdx = index;
         this.selectedPetitionType = petitionType;
         this.manageAccountPetitionStagesService.getPetitionStages(petitionType['petitionTypeId'], this.headerService.user.accountId).subscribe(
@@ -177,13 +178,13 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
                 if (isConfirmed) {
                     this.manageAccountPetitionStagesService.deletePetitionStage(stage['stageId']).subscribe(
                       res => {
-                          if(res['statusCode'] === 'FAILURE'){
+                          if (res['statusCode'] === 'FAILURE') {
                               this.dialogService.addDialog(ConfirmComponent, {
                                  title: 'Information',
                                  message: res['statusDescription']
                               });
                           }
-                          if(res['statusCode'] === 'SUCCESS'){
+                          if (res['statusCode'] === 'SUCCESS') {
                               this.petitionStages.splice(index, 1);
                           }
                       });
@@ -233,7 +234,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
         this.manageAccountPetitionStagesService.getPetitionStages(this.selectedPetitionType['petitionTypeId'], this.headerService.user.accountId).subscribe(
             res => {
                 this.petitionStages = res['petitionStageList'];
-                for (var stage of this.petitionStages){
+                for (let stage of this.petitionStages) {
                     stage['edit'] = false;
                 }
             }

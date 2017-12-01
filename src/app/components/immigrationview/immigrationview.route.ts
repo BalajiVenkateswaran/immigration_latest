@@ -40,6 +40,18 @@ import {I129LPage1Component} from './petitions-tab/petition-details/questionnair
 import {I129LPage2Component} from './petitions-tab/petition-details/questionnaires/L1/page-2/page-2.component';
 import {I129LPage3Component} from './petitions-tab/petition-details/questionnaires/L1/page-3/page-3.component';
 import {I129LPage4Component} from './petitions-tab/petition-details/questionnaires/L1/page-4/page-4.component';
+import {OrganizationDocumentRepositoryComponent} from './organization-tab/document-repository/document-repository.component';
+import {OrganizationComponent} from './organization-tab/organization/organization.component';
+import {ManageaccountChecklistComponent} from './manage-account-tab/checklist/checklist.component';
+import {ManageAccountInvoicesComponent} from './manage-account-tab/invoices/invoices.component';
+import {MarkforDeletionComponent} from './manage-account-tab/markfordeletion/markfordeletion.component';
+import {ManageAccountOrganizationsComponent} from './manage-account-tab/organizations/organizations.component';
+import {ManageAccountPaymentsComponent} from './manage-account-tab/payments/payments.component';
+import {ManageAccountPetitionTypeStagesComponent} from './manage-account-tab/petitiontypestages/petitiontypestages.component';
+import {ManageAccountPreferencesComponent} from './manage-account-tab/preferences/preferences.component';
+import {ManageAccountShippingAddressComponent} from './manage-account-tab/shippingaddress/shippingaddress.component';
+import {ManageAccountUserComponent} from './manage-account-tab/user/user.component';
+import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-details/user-details.component';
 
 const IMMIGRATION_VIEW_CLIENT_ROUTER: Routes = [
   {
@@ -212,9 +224,68 @@ const IMMIGRATION_VIEW_QUESTIONNAIRE_ROUTER: Routes = [
   {
     path: 'questionnaire/i129l/page/4',
     component: I129LPage4Component
+  }
+];
+
+const IMMIGRATION_VIEW_ORGANIZATION_ROUTER: Routes = [
+  {
+    path: 'organization/document-repository',
+    component: OrganizationDocumentRepositoryComponent
   },
+  {
+    path: 'organization/details',
+    component: OrganizationComponent
+  },
+];
+
+const IMMIGRATION_VIEW_MANAGE_ACCOUNT_ROUTER: Routes = [
+  {
+    path: 'manageaccount/checklist',
+    component: ManageaccountChecklistComponent
+  },
+  {
+    path: 'manageaccount/invoices',
+    component: ManageAccountInvoicesComponent
+  },
+  {
+    path: 'manageaccount/markfordeletion',
+    component: MarkforDeletionComponent
+  },
+  {
+    path: 'manageaccount/organizations',
+    component: ManageAccountOrganizationsComponent
+  },
+  {
+    path: 'manageaccount/payments',
+    component: ManageAccountPaymentsComponent
+  },
+  {
+    path: 'manageaccount/petitiontypestages',
+    component: ManageAccountPetitionTypeStagesComponent
+  },
+  {
+    path: 'manageaccount/preferences',
+    component: ManageAccountPreferencesComponent
+  },
+  {
+    path: 'manageaccount/shippingaddress',
+    component: ManageAccountShippingAddressComponent
+  },
+  {
+    path: 'manageaccount/user',
+    component: ManageAccountUserComponent
+  },
+  {
+    path: 'manageaccount/user-details',
+    component: ManageaccountUserDetailsComponent
+  },
+
+
+
 ];
 
 export const immigrationViewClientRoute = RouterModule.forChild(IMMIGRATION_VIEW_CLIENT_ROUTER);
 export const immigrationViewPetitionRoute = RouterModule.forChild(IMMIGRATION_VIEW_PETITION_ROUTER);
 export const immigrationViewQuestionnaireRoute = RouterModule.forChild(IMMIGRATION_VIEW_QUESTIONNAIRE_ROUTER);
+export const immigrationViewOrganizationRoute = RouterModule.forChild(IMMIGRATION_VIEW_ORGANIZATION_ROUTER);
+export const immigrationViewManageAccountRoute = RouterModule.forChild(IMMIGRATION_VIEW_MANAGE_ACCOUNT_ROUTER);

@@ -1,8 +1,8 @@
 import {AppService} from '../../../../services/app.service';
 import {Component, OnInit} from '@angular/core';
-import {ManageAccountShippingAddressService} from "./shippingaddress.service";
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {HeaderService} from "../../../common/header/header.service";
+import {ManageAccountShippingAddressService} from './shippingaddress.service';
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {HeaderService} from '../../../common/header/header.service';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -13,16 +13,17 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-manageaccount-shippingaddress',
   templateUrl: './shippingaddress.component.html',
-  styleUrls: ['./shippingaddress.component.sass']
+  styleUrls: ['./shippingaddress.component.sass'],
+  providers: [ManageAccountShippingAddressService]
 })
 export class ManageAccountShippingAddressComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
   private message: string;
   private data;
-  public getShipping: boolean = true;
+  public getShipping = true;
   public addAdress: any = {};
   public addShippingAdress: boolean;
-  public editshippingFlag: boolean = true;
+  public editshippingFlag = true;
   public beforeshippingEdit: any;
   public settings;
   constructor(private manageAccountShippingAddressService: ManageAccountShippingAddressService, private appService: AppService,
@@ -33,21 +34,21 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
       'columnsettings': [
         {
 
-          headerName: "SL.NO",
-          field: "slNo",
+          headerName: 'SL.NO',
+          field: 'slNo',
 
         },
         {
 
-          headerName: "Address Name",
-          field: "addressName",
+          headerName: 'Address Name',
+          field: 'addressName',
 
 
         },
         {
 
-          headerName: "Address",
-          field: "address",
+          headerName: 'Address',
+          field: 'address',
         }
 
       ]
@@ -61,7 +62,7 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
     this.manageAccountShippingAddressService.getShipmentAddress(this.headerService.user.accountId)
       .subscribe((res) => {
 
-        for (var i = 0; i < res.length; i++) {
+        for (let i = 0; i < res.length; i++) {
           res[i]['slNo'] = i + 1;
         }
 

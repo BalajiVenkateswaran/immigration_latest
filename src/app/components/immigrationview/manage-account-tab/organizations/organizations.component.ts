@@ -8,6 +8,7 @@ import {ManageAccountOrganizationsService} from './organizations.service';
 
 import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {InformationComponent} from '../../../framework/confirmbox/information.component';
+import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
 export interface ConfirmModel {
   title: string;
@@ -21,7 +22,9 @@ export interface ConfirmModel {
 @Component({
   selector: 'ih-manageaccount-organizations',
   templateUrl: './organizations.component.html',
-  styleUrls: ['./organizations.component.sass']
+  styleUrls: ['./organizations.component.sass'],
+  providers: [ManageAccountOrganizationsService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class ManageAccountOrganizationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public delmessage;
@@ -131,7 +134,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
   }
   onEditConfirm(event): void {
     this.menuComponent.highlightSBLink('Org Details');
-    this.appService.moveToPage('organization');
+    this.appService.moveToPage('immigrationview/organization/details');
     this.headerService.selectedOrg = event.data;
   }
 

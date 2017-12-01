@@ -18,7 +18,7 @@ import {InformationComponent} from '../../../framework/confirmbox/information.co
                     </div>`,
 
 })
-export class checklistuploadButton implements ICellRendererAngularComp {
+export class CheckListUploadButtonComponent implements ICellRendererAngularComp {
     public params: any;
 
     agInit(params: any): void {

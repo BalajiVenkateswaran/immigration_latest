@@ -124,59 +124,59 @@
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
         <li ngbDropdown  class="dropdown">
-            <a (click)="appService.moveToPage('manageaccount-user');highlightSBLink('User');submenuclick('manageUser')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']"  routerLinkActive="active" class="dropdown-toggle" id="users" data-toggle="dropdown" ngbDropdownToggle >
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/user');highlightSBLink('User');submenuclick('manageUser')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']"  routerLinkActive="active" class="dropdown-toggle" id="users" data-toggle="dropdown" ngbDropdownToggle >
                 <span class="ico-users"></span>
                 <span>Users</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" aria-labelledby="users" name="users" [hidden]="isShow" ngDefaultControl *ngIf="appService.usersList&&manageUser" [(ngModel)]="appService.usersList">
-                <li *ngFor='let value of appService.usersList'><a (click)="appService.moveToPageWithParams('user-details',value);highlightSBLink(value.userId);userDetailsClick()" [ngClass]="[checkForCurrentSBLink(value.userId) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
+                <li *ngFor='let value of appService.usersList'><a (click)="appService.moveToPageWithParams('immigrationview/manageaccount/user-details',value);highlightSBLink(value.userId);userDetailsClick()" [ngClass]="[checkForCurrentSBLink(value.userId) ? 'active': '']" routerLinkActive="active">{{value.firstName}}</a></li>
             </ul>
         </li>
         <li>
-            <a (click)="appService.moveToPage('manageaccount-organizations');highlightSBLink('Organizations');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Organizations') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/organizations');highlightSBLink('Organizations');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Organizations') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Organizations</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('manageaccount-petitiontypestages');highlightSBLink('Petition Type Stages');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petition Type Stages') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/petitiontypestages');highlightSBLink('Petition Type Stages');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petition Type Stages') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Petition Type Stages</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('manageaccount-checklist');highlightSBLink('checklist');submenuclick('')" [ngClass]="[checkForCurrentSBLink('checklist') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/checklist');highlightSBLink('checklist');submenuclick('')" [ngClass]="[checkForCurrentSBLink('checklist') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Checklist</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('manageaccount-shippingaddress');highlightSBLink('Shipping Address');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Shipping Address') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/shippingaddress');highlightSBLink('Shipping Address');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Shipping Address') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Shipping Address</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('manageaccount-preferences');highlightSBLink('Account Preferences');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Preferences') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/preferences');highlightSBLink('Account Preferences');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Preferences') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Account Preferences</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('manageaccount-invoices');highlightSBLink('Invoices');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/invoices');highlightSBLink('Invoices');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Invoices</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('manageaccount-payments');highlightSBLink('Payments');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Payments') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/payments');highlightSBLink('Payments');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Payments') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Payments</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('manageaccount-markfordeletion');highlightSBLink('markfordeletion');submenuclick('')" [ngClass]="[checkForCurrentSBLink('markfordeletion') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/markfordeletion');highlightSBLink('markfordeletion');submenuclick('')" [ngClass]="[checkForCurrentSBLink('markfordeletion') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Mark For Deletion</span>
             </a>
@@ -222,7 +222,7 @@
                     </a>
                 </li>
                 <!--<li>
-                    <a (click)="appService.moveToPage('manageaccount-invoices');highlightSBLink('Invoices')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('manageaccount/invoices');highlightSBLink('Invoices')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Timeline</span>
                     </a>
@@ -306,13 +306,13 @@
     </ul>
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='organization'">
         <li>
-            <a (click)="appService.moveToPage('organization');highlightSBLink('Org Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Org Details') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/organization/details');highlightSBLink('Org Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Org Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Org Details</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview-organization-document-repository');highlightSBLink('Documents');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/organization/document-repository');highlightSBLink('Documents');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Documents</span>
             </a>

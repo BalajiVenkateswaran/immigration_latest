@@ -1,15 +1,14 @@
-﻿import { AppService } from '../../../../../services/app.service';
-import { petitionstagesreportsservice } from './stages.service';
+﻿import {petitionstagesreportsservice} from './stages.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
 import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/petitiontypestages/petitiontypestages.service';
 
 
 @Component({
     selector: 'app-petitionsages-report',
     templateUrl: './stages.component.html',
-    styleUrls: ['./stages.component.sass']
+    styleUrls: ['./stages.component.sass'],
+  providers: [ManageAccountPetitionStagesService]
 })
 
 export class petitionstagesreportscomponent implements OnInit {

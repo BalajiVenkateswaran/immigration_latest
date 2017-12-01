@@ -3,9 +3,6 @@ import {ModuleWithProviders} from '@angular/core';
 import {HeaderComponent} from './components/common/header/header.component';
 import {MenuComponent} from './components/common/menu/menu.component';
 import {FooterComponent} from './components/common/footer/footer.component';
-import {OrganizationDocumentRepositoryComponent} from './components/immigrationview/organization-tab/document-repository/document-repository.component';
-
-import {OrganizationComponent} from './components/immigrationview/organization-tab/organization/organization.component';
 import {AddressinfoComponent} from './components/clientview/client-details-tab/addressinfo/addressinfo.component';
 import {ArrivalDespartureInfoComponent} from './components/clientview/client-details-tab/arrival-departure-info/arrival-desparture-info.component';
 import {ClientDetailsComponent} from './components/clientview/client-details-tab/client-details/client-details.component';
@@ -16,8 +13,6 @@ import {JobDetailsComponent} from './components/clientview/client-details-tab/jo
 import {ClientViewPassportInfoComponent} from './components/clientview/client-details-tab/passport-info/passport-info.component';
 import {VisasComponent} from './components/clientview/client-details-tab/visas/visas.component';
 import {DocumentsComponent} from './components/clientview/documents-tab/documents.component';
-import {ManageAccountUserComponent} from './components/immigrationview/manage-account-tab/user/user.component';
-import {ManageAccountOrganizationsComponent} from './components/immigrationview/manage-account-tab/organizations/organizations.component';
 
 import {petitionsclientviewComponent} from './components/clientview/petitions-tab/petitions.component';
 import {clientviewQuestionnaireComponent} from './components/clientview/questionnaries-tab/questionnaires/questionnaries.component';
@@ -42,12 +37,6 @@ import {petitionfinalactioncomponent} from './components/immigrationview/reports
 // profile
 import {profileusercomponent} from './components/immigrationview/profile-tab/user/user.component';
 import {profileloginhiscomponent} from './components/immigrationview/profile-tab/loginhistory/loginhistory.component';
-import {ManageaccountChecklistComponent} from './components/immigrationview/manage-account-tab/checklist/checklist.component';
-import {MarkforDeletionComponent} from './components/immigrationview/manage-account-tab/markfordeletion/markfordeletion.component';
-import {ManageAccountPaymentsComponent} from './components/immigrationview/manage-account-tab/payments/payments.component';
-import {ManageAccountPetitionTypeStagesComponent} from './components/immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.component';
-import {ManageAccountPreferencesComponent} from './components/immigrationview/manage-account-tab/preferences/preferences.component';
-import {ManageAccountShippingAddressComponent} from './components/immigrationview/manage-account-tab/shippingaddress/shippingaddress.component';
 import {ManageaccountUserDetailsComponent} from './components/immigrationview/manage-account-tab/user-details/user-details.component';
 // superuser reports
 import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
@@ -76,9 +65,6 @@ import {superuserstatspetitionReportsComponent} from './components/superuserview
 import {SuperUserMonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
 
 import {I129HPage1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
-
-
-import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
 import {SuperuserviewProductcatalogDiscountsComponent} from './components/superuserview/product-catalog-tab/discounts/discounts.component';
 import {SuperUserClientStatusReportsComponent} from './components/superuserview/reports-tab/clients/status/status.component';
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
@@ -115,21 +101,12 @@ export const appRoutes: Routes = [
         outlet: 'footer'
     },
     {
-        path: 'organization',
-        component: OrganizationComponent
-    },
-    {
         path: 'clientview-client-details',
         component: ClientDetailsComponent
     },
     {
         path: 'clientview-Questionnaries',
         component: clientviewQuestionnaireComponent
-    },
-
-    {
-        path: 'immigrationview-organization-document-repository',
-        component: OrganizationDocumentRepositoryComponent
     },
 
     {
@@ -170,38 +147,6 @@ export const appRoutes: Routes = [
         component: I797HistoryComponent
     },
     {
-        path: 'manageaccount-user',
-        component: ManageAccountUserComponent
-    },
-    {
-        path: 'manageaccount-organizations',
-        component: ManageAccountOrganizationsComponent
-    },
-    {
-        path: 'manageaccount-petitiontypestages',
-        component: ManageAccountPetitionTypeStagesComponent
-    },
-    {
-        path: 'manageaccount-checklist',
-        component: ManageaccountChecklistComponent
-    },
-    {
-        path: 'manageaccount-shippingaddress',
-        component: ManageAccountShippingAddressComponent
-    },
-    {
-        path: 'manageaccount-preferences',
-        component: ManageAccountPreferencesComponent
-    },
-    {
-        path: 'manageaccount-invoices',
-        component: ManageAccountInvoicesComponent
-    },
-    {
-        path: 'manageaccount-payments',
-        component: ManageAccountPaymentsComponent
-    },
-    {
         path: 'clientview-petitions',
         component: petitionsclientviewComponent
     },
@@ -214,10 +159,6 @@ export const appRoutes: Routes = [
     {
         path: 'reset-password',
         component: ResetPasswordComponent
-    },
-    {
-        path: 'user-details',
-        component: ManageaccountUserDetailsComponent
     },
     // superuserview
     {
@@ -255,10 +196,6 @@ export const appRoutes: Routes = [
     {
         path: 'superuserview-preference',
         component: AccountPreferencesComponent
-    },
-    {
-        path: 'manageaccount-markfordeletion',
-        component: MarkforDeletionComponent
     },
     {
         path: 'superuserview-productcatalog-discounts',

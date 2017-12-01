@@ -1,18 +1,21 @@
-﻿import {markfordeletionservice} from './markfordeletion.service';
+﻿import {MarkForDeletionService} from './markfordeletion.service';
 import {Component, OnInit} from '@angular/core';
 import {HeaderService} from '../../../common/header/header.service';
+import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
 @Component({
     selector: 'mark for deletion',
     templateUrl: './markfordeletion.component.html',
-    styleUrls: ['./markfordeletion.component.sass']
+    styleUrls: ['./markfordeletion.component.sass'],
+  providers: [MarkForDeletionService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class MarkforDeletionComponent implements OnInit {
     public markForDeletionInfoList;
     public settings;
     public data;
   public paginationData: any;
-  constructor(public markForDeletionservice: markfordeletionservice, public headerService: HeaderService) {
+  constructor(public markForDeletionservice: MarkForDeletionService, public headerService: HeaderService) {
 
     this.settings = {
       'isAddButtonEnable': false,

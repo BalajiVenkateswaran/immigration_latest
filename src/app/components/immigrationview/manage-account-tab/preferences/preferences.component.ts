@@ -1,12 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ManageAccountpreferencessService} from './preferences.service';
 import {HeaderService} from '../../../common/header/header.service';
+import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
 
 @Component({
     selector: 'app-manageaccount-preferences',
     templateUrl: './preferences.component.html',
-    styleUrls: ['./preferences.component.sass']
+    styleUrls: ['./preferences.component.sass'],
+  providers: [ManageAccountpreferencessService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 export class ManageAccountPreferencesComponent implements OnInit {
 

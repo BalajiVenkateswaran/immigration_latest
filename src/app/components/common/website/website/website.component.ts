@@ -26,7 +26,7 @@ export interface ConfirmModel {
 @Component({
   selector: 'ih-website',
   templateUrl: 'website.component.html',
-  providers: [WebsiteService]
+  providers: [WebsiteService, ManageAccountUserService]
 })
 export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public static uiBuildNumber: string = environment.buildNumber; // "17.09.07";

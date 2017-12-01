@@ -8,7 +8,8 @@ import {HeaderService} from "../../../../common/header/header.service";
 @Component({
     selector: 'app-petitiontypes-report',
     templateUrl: './type.component.html',
-    styleUrls: ['./type.component.sass']
+    styleUrls: ['./type.component.sass'],
+  providers: [ManageAccountPetitionStagesService]
 })
 
 export class petitionstypesreportscomponent implements OnInit {

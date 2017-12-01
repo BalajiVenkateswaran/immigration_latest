@@ -1,10 +1,11 @@
 import {User} from '../../../../models/user';
 import {Component, OnInit} from '@angular/core';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
-import {ManageAccountInvoiceService} from "./invoices.service";
-import {DownloadInvoiceButton} from './DownloadInvoiceButton'
+import {ManageAccountInvoiceService} from './invoices.service';
+import {DownloadInvoiceButtonComponent} from './DownloadInvoiceButton'
 import * as FileSaver from 'file-saver';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
+import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
 export interface ConfirmModel {
   title: string;
@@ -16,10 +17,12 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-manageaccount-invoices',
   templateUrl: './invoices.component.html',
-  styleUrls: ['./invoices.component.sass']
+  styleUrls: ['./invoices.component.sass'],
+  providers: [ManageAccountInvoiceService],
+  entryComponents: [SmartTableFrameworkComponent, DownloadInvoiceButtonComponent]
 })
 export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-  public getInvoice: boolean = true;
+  public getInvoice = true;
   public viewPopup: boolean;
   public invoice: any;
   public settings;
@@ -37,28 +40,28 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
       },
       'columnsettings': [
         {
-          headerName: "Invoice Number",
-          field: "invoiceNumber",
+          headerName: 'Invoice Number',
+          field: 'invoiceNumber',
         },
         {
-          headerName: "Invoice Date",
-          field: "invoiceDate",
+          headerName: 'Invoice Date',
+          field: 'invoiceDate',
         },
         {
-          headerName: "Invoice Amount",
-          field: "invoiceAmount"
+          headerName: 'Invoice Amount',
+          field: 'invoiceAmount'
         },
         {
-          headerName: "Payment Received",
-          field: "paymentReceived"
+          headerName: 'Payment Received',
+          field: 'paymentReceived'
         },
         {
-          headerName: "PDF Uploaded",
-          field: "pdfUploaded"
+          headerName: 'PDF Uploaded',
+          field: 'pdfUploaded'
         },
         {
-          headerName: "Download Button",
-          cellRendererFramework: DownloadInvoiceButton
+          headerName: 'Download Button',
+          cellRendererFramework: DownloadInvoiceButtonComponent
         }
       ]
     }
@@ -67,7 +70,7 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
   ngOnInit() {
     this.manageAccountInvoiceService.getAccountInvoice(this.headerService.user.accountId)
       .subscribe((res) => {
-        console.log("getinoices%o", res);
+        console.log('getinoices%o', res);
         if (res['invoices']) {
           this.data = res['invoices'];
           this.paginationData = res['pageMetadata'];
@@ -90,15 +93,15 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
   onDownloadClick(event) {
     this.manageAccountInvoiceService.downloadFile(event.data.invoiceId).subscribe
       (data => this.downloadFiles(data, event.data.fileName)),
-      error => console.log("Error Downloading....");
-    () => console.log("OK");
+      error => console.log('Error Downloading....');
+    () => console.log('OK');
 
   }
   cancel() {
     this.close();
   }
   downloadFiles(data: any, fileName) {
-    var blob = new Blob([data], {
+    let blob = new Blob([data], {
       type: 'application/pdf'
     });
     FileSaver.saveAs(blob, fileName);

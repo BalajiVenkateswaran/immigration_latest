@@ -12,7 +12,8 @@ import {InformationComponent} from '../../../framework/confirmbox/information.co
 @Component({
     selector: 'app-organization',
     templateUrl: './organization.component.html',
-    styleUrls: ['./organization.component.sass']
+    styleUrls: ['./organization.component.sass'],
+  providers: [OrganizationService]
 })
 export class OrganizationComponent implements OnInit {
 

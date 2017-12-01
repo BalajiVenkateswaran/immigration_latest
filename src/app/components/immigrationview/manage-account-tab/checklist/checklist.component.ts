@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import {ManageAccountChecklistService} from './checklist.service';
 import { AppService } from '../../../../services/app.service';
 import { CheckListDownloadButtonComponent } from './downloadButton';
-import { checklistuploadButton } from './uploadButton';
+import { CheckListUploadButtonComponent } from './uploadButton';
 import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {ManageAccountPetitionStagesService} from '../petitiontypestages/petitiontypestages.service';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
+import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
 export interface ConfirmModel {
   title: string;
@@ -15,7 +16,9 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-manageaccount-checklist',
   templateUrl: './checklist.component.html',
-  styleUrls: ['./checklist.component.scss']
+  styleUrls: ['./checklist.component.scss'],
+  providers: [ManageAccountChecklistService, ManageAccountPetitionStagesService],
+  entryComponents: [SmartTableFrameworkComponent, CheckListDownloadButtonComponent, CheckListUploadButtonComponent]
 })
 export class ManageaccountChecklistComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public settings;
@@ -34,25 +37,25 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
         },
       'columnsettings': [
         {
-          headerName: "Sl.No",
-          field: "slNo",
+          headerName: 'Sl.No',
+          field: 'slNo',
         },
         {
 
-          headerName: "Petition Type",
-          field: "petitionType",
+          headerName: 'Petition Type',
+          field: 'petitionType',
         },
         {
 
-          headerName: "Doc Name",
-          field: "fileName",
+          headerName: 'Doc Name',
+          field: 'fileName',
         },
         {
-            headerName: "Upload",
-            cellRendererFramework: checklistuploadButton,
+            headerName: 'Upload',
+            cellRendererFramework: CheckListUploadButtonComponent,
         },
         {
-            headerName: "Download",
+            headerName: 'Download',
             cellRendererFramework: CheckListDownloadButtonComponent,
         }
       ]
@@ -73,7 +76,7 @@ export class ManageaccountChecklistComponent extends DialogComponent<ConfirmMode
   getchecklist() {
       this.manageAccountCheckListService.getChecklist(this.headerService.user.accountId).subscribe(res => {
           this.data = res['accountCheckList'];
-          for (var i = 0; i < this.data.length; i++) {
+          for (let i = 0; i < this.data.length; i++) {
               this.data[i]['slNo'] = i + 1;
           }
       });

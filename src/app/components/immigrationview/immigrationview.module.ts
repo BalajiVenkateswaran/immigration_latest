@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {ClientsComponent} from './clients-tab/clients/clients.component';
-import {immigrationViewClientRoute, immigrationViewPetitionRoute, immigrationViewQuestionnaireRoute} from './immigrationview.route';
+import {immigrationViewClientRoute, immigrationViewManageAccountRoute, immigrationViewOrganizationRoute, immigrationViewPetitionRoute, immigrationViewQuestionnaireRoute} from './immigrationview.route';
 import {StatusButtonComponent} from './clients-tab/clients/statusButton';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -49,6 +49,21 @@ import {I129LPage4Component} from './petitions-tab/petition-details/questionnair
 import {DownloadButton} from './petitions-tab/petition-details/forms/DownloadButton';
 import {GenerateFormButton} from './petitions-tab/petition-details/forms/GenerateFormButton';
 import {SendToClientQuestionnaire} from './petitions-tab/petition-details/questionnaire/SendToClientQuestionnaire';
+import {OrganizationDocumentRepositoryComponent} from './organization-tab/document-repository/document-repository.component';
+import {OrganizationComponent} from './organization-tab/organization/organization.component';
+import {ManageaccountChecklistComponent} from './manage-account-tab/checklist/checklist.component';
+import {CheckListDownloadButtonComponent} from './manage-account-tab/checklist/downloadButton';
+import {CheckListUploadButtonComponent} from './manage-account-tab/checklist/uploadButton';
+import {ManageAccountInvoicesComponent} from './manage-account-tab/invoices/invoices.component';
+import {MarkforDeletionComponent} from './manage-account-tab/markfordeletion/markfordeletion.component';
+import {DownloadInvoiceButtonComponent} from './manage-account-tab/invoices/DownloadInvoiceButton';
+import {ManageAccountOrganizationsComponent} from './manage-account-tab/organizations/organizations.component';
+import {ManageAccountPaymentsComponent} from './manage-account-tab/payments/payments.component';
+import {ManageAccountPetitionTypeStagesComponent} from './manage-account-tab/petitiontypestages/petitiontypestages.component';
+import {ManageAccountPreferencesComponent} from './manage-account-tab/preferences/preferences.component';
+import {ManageAccountShippingAddressComponent} from './manage-account-tab/shippingaddress/shippingaddress.component';
+import {ManageAccountUserComponent} from './manage-account-tab/user/user.component';
+import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-details/user-details.component';
 
 @NgModule({
   imports: [
@@ -63,7 +78,9 @@ import {SendToClientQuestionnaire} from './petitions-tab/petition-details/questi
     /*Immigration view routes*/
     immigrationViewClientRoute,
     immigrationViewPetitionRoute,
-    immigrationViewQuestionnaireRoute
+    immigrationViewQuestionnaireRoute,
+    immigrationViewOrganizationRoute,
+    immigrationViewManageAccountRoute
   ],
   declarations: [
     /*Immigration view components*/
@@ -115,6 +132,24 @@ import {SendToClientQuestionnaire} from './petitions-tab/petition-details/questi
     I129LPage2Component,
     I129LPage3Component,
     I129LPage4Component,
+
+    /*Organization details*/
+    OrganizationDocumentRepositoryComponent,
+    OrganizationComponent,
+
+
+    /*manage account*/
+    ManageaccountChecklistComponent, CheckListDownloadButtonComponent, CheckListUploadButtonComponent,
+    ManageAccountInvoicesComponent, DownloadInvoiceButtonComponent,
+    MarkforDeletionComponent,
+    ManageAccountOrganizationsComponent,
+    ManageAccountPaymentsComponent,
+    ManageAccountPetitionTypeStagesComponent,
+    ManageAccountPreferencesComponent,
+    ManageAccountShippingAddressComponent,
+    ManageAccountUserComponent,
+    ManageaccountUserDetailsComponent,
+
   ]
 })
 export class ImmigrationViewModule {}

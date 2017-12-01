@@ -9,7 +9,8 @@ import {ManageAccountPetitionStagesService} from '../../../../immigrationview/ma
 @Component({
     selector: 'app-petitiontypes-types',
     templateUrl: './petitiontypesH1B.component.html',
-    styleUrls: ['./petitiontypesH1B.component.sass']
+    styleUrls: ['./petitiontypesH1B.component.sass'],
+  providers: [ManageAccountPetitionStagesService]
 })
 
 export class SuperUserH1BReportsComponent implements OnInit {

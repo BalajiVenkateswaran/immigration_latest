@@ -26,7 +26,7 @@ export interface ConfirmModel {
 @Component({
   selector: 'ih-login-popup',
   templateUrl: 'loginpopup.component.html',
-  providers: [LoginPopupService]
+  providers: [LoginPopupService, ManageAccountUserService]
 })
 export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public static uiBuildNumber: string = environment.buildNumber;

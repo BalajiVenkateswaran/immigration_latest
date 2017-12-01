@@ -1,5 +1,5 @@
 import { RestService } from '../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ManageAccountPaymentsService {
@@ -8,7 +8,7 @@ export class ManageAccountPaymentsService {
 
     }
     public getPaymentDetails(accountId: string) {
-        return this.restService.getData("/immigration/account/" + accountId+"/payments");
+        return this.restService.getData('/immigration/account/' + accountId + '/payments');
     }
-   
+
 }

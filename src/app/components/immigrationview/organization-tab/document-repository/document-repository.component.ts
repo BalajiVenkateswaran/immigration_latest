@@ -1,18 +1,16 @@
 import {AppService} from '../../../../services/app.service';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {HeaderService} from '../../../common/header/header.service';
-import {ActionIcons} from '../../../framework/smarttable/cellRenderer/ActionsIcons';
 import {Component, OnInit} from '@angular/core';
 import {OrganizationDocumentRepositoryService} from './document-repository.service';
-import {Http, Headers, RequestOptions, Response} from '@angular/http';
+import {Http} from '@angular/http';
 import * as FileSaver from 'file-saver';
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
-import { SortType } from '../../../framework/smarttable/types/query-parameters';
-import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
-import { environment } from '../../../../../environments/environment';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
+import {environment} from '../../../../../environments/environment';
 import {FileUtils} from '../../../common/FileUtils';
 import {DatePipe} from '@angular/common';
+
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -24,7 +22,8 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-document-repository',
   templateUrl: './document-repository.component.html',
-  styleUrls: ['./document-repository.component.sass']
+  styleUrls: ['./document-repository.component.sass'],
+  providers: [OrganizationDocumentRepositoryService]
 })
 export class OrganizationDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   warningMessage: boolean;

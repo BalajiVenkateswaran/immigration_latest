@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 `,
 
 })
-export class DownloadInvoiceButton implements ICellRendererAngularComp {
+export class DownloadInvoiceButtonComponent implements ICellRendererAngularComp {
     public params: any;
     public static onButtonClick = new Subject<any>();
     agInit(params: any): void {

@@ -156,7 +156,7 @@
                           </a>
                       </li>
                       <li *ngIf="!headerService.isDelegatedOrg()" >
-                          <a (click)="appService.moveToPage('organization'); highlightTab('organization');highlightSBLink('Org Details');"
+                          <a (click)="appService.moveToPage('immigrationview/organization/details'); highlightTab('organization');highlightSBLink('Org Details');"
                              [ngClass]="[checkForCurrentTab('organization') ? 'active' : '']"
                              routerLinkActive="active" style="width: 80px;height: 20px;">
                               <img src="../../../../assets/images/Organization.png" />
@@ -165,7 +165,7 @@
                       </li>
                       <!--<li><a (click)="appService.moveToPage('reports'); highlightTab('reports'); "     [ngClass]="[checkForCurrentTab('reports') ? 'active' : '']"   routerLinkActive="active">Reports</a></li>-->
                       <li *ngIf="user.roleName === applicationRoles.IMMIGRATION_MANAGER" >
-                          <a (click)="appService.moveToPage('manageaccount-user');highlightTab('manageaccount-user');highlightSBLink('User');"
+                          <a (click)="appService.moveToPage('immigrationview/manageaccount/user');highlightTab('manageaccount-user');highlightSBLink('User');"
                              [ngClass]="[checkForCurrentTab('manageaccount-user') ? 'active': '']"
                              routerLinkActive="active" style="height:20px;width:51px;">
                               <img src="../../../../assets/images/manage.png" />

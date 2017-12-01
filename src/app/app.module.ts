@@ -7,7 +7,6 @@ import {ChartsModule} from 'ng2-charts';
 import {NgIdleModule} from '@ng-idle/core';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 import {ActionColumns} from './components/framework/smarttable/ActionColumns';
-import {SendToClientQuestionnaire} from './components/immigrationview/petitions-tab/petition-details/questionnaire/SendToClientQuestionnaire';
 
 import {AppComponent} from './components/app/app.component';
 import {RestService} from './services/rest.service';
@@ -17,7 +16,6 @@ import {SearchPipe} from './pipes/search-pipe';
 import {LooseCurrencyPipe} from './pipes/loose.currency.pipe';
 import {HttpModule} from '@angular/http';
 import {AppService} from './services/app.service';
-import {OrganizationDocumentRepositoryComponent} from './components/immigrationview/organization-tab/document-repository/document-repository.component';
 
 import {AddressinfoComponent} from './components/clientview/client-details-tab/addressinfo/addressinfo.component';
 import {AddressInfoService} from './components/clientview/client-details-tab/addressinfo/addressinfo.service';
@@ -37,14 +35,10 @@ import {ClientViewPassportInfoComponent} from './components/clientview/client-de
 import {ClientViewPassportInfoService} from './components/clientview/client-details-tab/passport-info/passport-info.service';
 import {VisasComponent} from './components/clientview/client-details-tab/visas/visas.component';
 import {VisasService} from './components/clientview/client-details-tab/visas/visas.service';
-import {ManageAccountUserComponent} from './components/immigrationview/manage-account-tab/user/user.component';
-import {ManageAccountOrganizationsComponent} from './components/immigrationview/manage-account-tab/organizations/organizations.component';
 
 import {ClientRequestService} from './components/clientview/request-tab/request.service';
-import {OrganizationDocumentRepositoryService} from './components/immigrationview/organization-tab/document-repository/document-repository.service';
 import {DocumentsComponent} from './components/clientview/documents-tab/documents.component';
 import {UiFieldService} from './services/uifield.service';
-import {OrganizationService} from './components/immigrationview/organization-tab/organization/organization.service';
 import {DocumentService} from './components/clientview/documents-tab/documents.service';
 import {MoreDetails} from './components/clientview/petitions-tab/MoreDetails';
 import {petitionsclientviewComponent} from './components/clientview/petitions-tab/petitions.component';
@@ -58,13 +52,10 @@ import {HeaderComponent} from './components/common/header/header.component';
 import {MenuComponent} from './components/common/menu/menu.component';
 import {MenuService} from './components/common/menu/menu.service';
 import {ResetPasswordComponent} from './components/common/reset-password/reset-password.component';
-import {ResetPasswordService} from './components/common/reset-password/reset-password.service';
 import {InvoicedownloadButton} from './components/superuserview/accounts-tab/account-details/invoice/invoicedownloadbutton';
 import {ConfirmComponent} from './components/framework/confirmbox/confirm.component';
 import {ConfirmorgComponent} from './components/framework/confirmbox/confirmorg.component';
 import {ProductCatalogProductService} from './components/superuserview/product-catalog-tab/products/product-catalog.service';
-import {CheckListDownloadButtonComponent} from './components/immigrationview/manage-account-tab/checklist/downloadButton';
-import {checklistuploadButton} from './components/immigrationview/manage-account-tab/checklist/uploadButton';
 import {SmartTableService} from './components/framework/smarttable/common/smarttable.service';
 import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';
 import {SuperUserviewAccountService} from './components/superuserview/accounts-tab/accounts/accounts.service';
@@ -76,7 +67,6 @@ import {SuperuserviewProductcatalogComponent} from './components/superuserview/p
 import {AccountsManagers} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.component';
 import {AccountManagersService} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.service';
 import {SuperuserviewAccountdetailsMfdComponent} from './components/superuserview/accounts-tab/account-details/mfd/mfd.component';
-import {ManageAccountInvoiceService} from './components/immigrationview/manage-account-tab/invoices/invoices.service';
 import {SuperUserViewInvoicestabService} from './components/superuserview/invoices-tab/invoices.service';
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
 import {ReportsCommonService} from './components/superuserview/reports-tab/common/reports-common.service';
@@ -96,26 +86,11 @@ import {useropenpetitioncomponent} from './components/immigrationview/reports-ta
 import {usersopenpetitionservice} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.service';
 
 import {petitionfinalactioncomponent} from './components/immigrationview/reports-tab/petition/final-action/final-action.component';
-
-import {DownloadInvoiceButton} from './components/immigrationview/manage-account-tab/invoices/DownloadInvoiceButton';
 // immiviewprofiletab
 import {profileusercomponent} from './components/immigrationview/profile-tab/user/user.component';
 import {profileuserservice} from './components/immigrationview/profile-tab/user/user.service';
 import {profileloginhiscomponent} from './components/immigrationview/profile-tab/loginhistory/loginhistory.component';
 import {profilechangepwdcomponent} from './components/immigrationview/profile-tab/changepassword/changepassword.component';
-import {ManageaccountChecklistComponent} from './components/immigrationview/manage-account-tab/checklist/checklist.component';
-import {ManageAccountChecklistService} from './components/immigrationview/manage-account-tab/checklist/checklist.service';
-import {MarkforDeletionComponent} from './components/immigrationview/manage-account-tab/markfordeletion/markfordeletion.component';
-import {markfordeletionservice} from './components/immigrationview/manage-account-tab/markfordeletion/markfordeletion.service';
-import {ManageAccountOrganizationsService} from './components/immigrationview/manage-account-tab/organizations/organizations.service';
-import {ManageAccountPaymentsComponent} from './components/immigrationview/manage-account-tab/payments/payments.component';
-import {ManageAccountPaymentsService} from './components/immigrationview/manage-account-tab/payments/payments.service';
-import {ManageAccountPetitionTypeStagesComponent} from './components/immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.component';
-import {ManageAccountPetitionStagesService} from './components/immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.service';
-import {ManageAccountPreferencesComponent} from './components/immigrationview/manage-account-tab/preferences/preferences.component';
-import {ManageAccountpreferencessService} from './components/immigrationview/manage-account-tab/preferences/preferences.service';
-import {ManageAccountShippingAddressComponent} from './components/immigrationview/manage-account-tab/shippingaddress/shippingaddress.component';
-import {ManageAccountShippingAddressService} from './components/immigrationview/manage-account-tab/shippingaddress/shippingaddress.service';
 import {ManageaccountUserDetailsComponent} from './components/immigrationview/manage-account-tab/user-details/user-details.component';
 import {ManageAccountUserDetailsService} from './components/immigrationview/manage-account-tab/user-details/user-details.service';
 import {ManageAccountUserService} from './components/immigrationview/manage-account-tab/user/user.service';
@@ -155,7 +130,6 @@ import {petitionstagsreportscomponent} from './components/immigrationview/report
 import {petitionstagsreportsservice} from './components/immigrationview/reports-tab/petition/tags/tags.service';
 import {petitionstypesreportscomponent} from './components/immigrationview/reports-tab/petition/type/type.component';
 import {petitionstypesreportsservice} from './components/immigrationview/reports-tab/petition/type/type.service';
-import {OrganizationComponent} from './components/immigrationview/organization-tab/organization/organization.component';
 import {AngularDraggableModule} from 'angular2-draggable';
 import {AccountDetailsPaymentsService} from './components/superuserview/accounts-tab/account-details/payments/payments.service';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.service';
@@ -176,7 +150,6 @@ import {ProductCatalogDiscountService} from './components/superuserview/product-
 import {HeaderService} from './components/common/header/header.service';
 
 import {QuestionnaireCommonService} from './components/immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
-import {ManageAccountInvoicesComponent} from './components/immigrationview/manage-account-tab/invoices/invoices.component';
 import {petitionfinalactionservice} from './components/immigrationview/reports-tab/petition/final-action/final-action.service';
 import {SuperUserClientStatusReportsComponent} from './components/superuserview/reports-tab/clients/status/status.component';
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
@@ -223,14 +196,14 @@ import {AppSharedModule} from './shared/app.shared.module';
       NgIdleModule.forRoot()],
     entryComponents: [
         ConfirmComponent, InformationComponent, ConfirmorgComponent, ActionColumns,
-         RequestButton, CheckListDownloadButtonComponent, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent,
+         RequestButton, MoreDetails, SwitchButtonComponent,
         ActionIcons, InvoicedownloadButton, InvoiceUploadButton, FilterComponent
     ],
     declarations: [
         CategoryPipe,
 
         // pdf page components imported above which is for testing only
-        ActionIcons,  RequestButton, CheckListDownloadButtonComponent, checklistuploadButton, MoreDetails, DownloadInvoiceButton, SwitchButtonComponent, InvoicedownloadButton,
+        ActionIcons,  RequestButton, MoreDetails, SwitchButtonComponent, InvoicedownloadButton,
         InvoiceUploadButton,
         AppComponent,
         HeaderComponent,
@@ -239,7 +212,6 @@ import {AppSharedModule} from './shared/app.shared.module';
         SearchPipe,
         LooseCurrencyPipe,
         ClientDetailsComponent,
-        OrganizationDocumentRepositoryComponent,
         AddressinfoComponent,
         ClientViewPassportInfoComponent,
         JobDetailsComponent,
@@ -247,14 +219,6 @@ import {AppSharedModule} from './shared/app.shared.module';
         VisasComponent,
         I797HistoryComponent,
         DocumentsComponent,
-        OrganizationComponent,
-        ManageAccountUserComponent,
-        ManageAccountOrganizationsComponent,
-        ManageAccountPetitionTypeStagesComponent,
-        ManageAccountShippingAddressComponent,
-        ManageAccountPreferencesComponent,
-        ManageAccountInvoicesComponent,
-        ManageAccountPaymentsComponent,
         DependentsComponent,
         DocumentExpirationsComponent,
         ActionColumns,
@@ -278,7 +242,7 @@ import {AppSharedModule} from './shared/app.shared.module';
         SuperUserViewInvoicestabComponent,
         SuperUserViewPaymentstabComponent,
 
-        MarkforDeletionComponent,
+
         AccountPreferencesComponent,
         // superuserreports
         statsaccountscomponent,
@@ -288,7 +252,6 @@ import {AppSharedModule} from './shared/app.shared.module';
         SuperUserPetitionStageReportsComponent,
         SuperUserPetitionTagReportsComponent,
         SuperuserviewProductcatalogDiscountsComponent,
-        ManageaccountUserDetailsComponent,
         superuserpetfinalactionreportscomponent,
         SuperUserClientStatusReportsComponent,
         SuperUserClientsCreatedReportsComponent,
@@ -316,7 +279,6 @@ import {AppSharedModule} from './shared/app.shared.module';
         profilechangepwdcomponent,
         profiletodolistcomponent,
         SuperuserviewAccountdetailsMfdComponent,
-        ManageaccountChecklistComponent,
         DemoRequestDetailsComponent,
         miscsuperusersComponent,
 
@@ -334,9 +296,7 @@ import {AppSharedModule} from './shared/app.shared.module';
 
         ClientRequestService,
         appRoutingProviders,
-        ManageAccountUserService,
-        ManageAccountOrganizationsService,
-        OrganizationDocumentRepositoryService,
+
         DependentService,
         DocumentExpirationsService,
         ArrivalDespartureInfoService,
@@ -344,7 +304,6 @@ import {AppSharedModule} from './shared/app.shared.module';
         I797HistoryService,
         JobDetailsService,
         UiFieldService,
-        OrganizationService,
         DocumentService,
         ClientDetailsService,
         AddressInfoService,
@@ -352,28 +311,21 @@ import {AppSharedModule} from './shared/app.shared.module';
         ImmigrationClientCommonService,
         QuestionnaireCommonService,
         ClientViewPetitionsService,
-        ManageAccountShippingAddressService,
-        ManageAccountPetitionStagesService,
-        ResetPasswordService,
         ClientQuestionnaireService,
         MenuComponent,
-        ManageAccountInvoiceService,
-        ManageAccountpreferencessService,
         ProductCatalogProductService,
-        ManageAccountPaymentsService,
-        ManageAccountChecklistService,
+
         // superuserview
         SuperUserviewAccountService,
         SuperuserViewAccountDetailsService,
         AccountInvoiceService,
         AccountManagersService,
         SuperUserViewMFDService,
-        markfordeletionservice,
         SuperUserViewPaymentstabService,
         AccountDetailsPaymentsService,
         ProductCatalogDiscountService,
         SuperUserViewInvoicestabService,
-        ManageAccountUserDetailsService,
+
         ReportsCommonService,
         SuperuserViewAccountpreferencessService,
         AccountDetailsCommonService,

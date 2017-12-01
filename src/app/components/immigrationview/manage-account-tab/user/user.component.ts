@@ -17,9 +17,9 @@ export interface ConfirmModel {
 @Component({
     selector: 'app-manageaccount-user',
     templateUrl: './user.component.html',
-    styleUrls: ['./user.component.scss']
+    styleUrls: ['./user.component.scss'],
+  providers: [ManageAccountUserService]
 })
-
 
 export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
@@ -121,7 +121,10 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     manageUserSave(email, roles) {
         this.addUsers['role'] = this.roles[this.addUsers['role']];
         this.addUsers['accountId'] = this.headerService.user.accountId;
-        if ((this.addUsers['firstName'] == '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || roles.value == '' || roles.value == null || roles.value == undefined)) {
+        if ((this.addUsers['firstName'] === '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] === undefined ||
+            this.addUsers['lastName'] === '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] === undefined ||
+            this.addUsers['emailId'] === '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] === undefined ||
+            roles.value === '' || roles.value == null || roles.value === undefined)) {
             this.warningMessage = true;
 
         } else if (email != null) {
@@ -139,7 +142,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         this.close();
     }
     editRecord(event): void {
-        this.appService.moveToPageWithParams('user-details', event.data);
+        this.appService.moveToPageWithParams('immigrationview/manageaccount/user-details', event.data);
         this.appService.currentSBLink = event.data.userId;
     }
 
@@ -151,7 +154,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
                     this.manageAccountUserService.deleteUser(event.data['userId'], this.headerService.user.accountId, this.headerService.user.userId).subscribe((res) => {
-                        if (res['statusCode'] == 'SUCCESS') {
+                        if (res['statusCode'] === 'SUCCESS') {
                             this.getManageUsers();
                         }
                     });
@@ -161,7 +164,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
 
 
     dataWithParameters(queryData) {
-      if (queryData != undefined) {
+      if (queryData !== undefined) {
         this.queryParams = queryData;
         this.getManageUsers();
       }

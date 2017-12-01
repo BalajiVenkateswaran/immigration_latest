@@ -21,7 +21,7 @@ export interface ConfirmModel {
 @Component({
   selector: 'ih-roles-popup',
   templateUrl: 'rolespopup.component.html',
-  providers: [RolesPopupService]
+  providers: [RolesPopupService, ManageAccountUserService]
 })
 export class RolesPopupComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   title: string;
