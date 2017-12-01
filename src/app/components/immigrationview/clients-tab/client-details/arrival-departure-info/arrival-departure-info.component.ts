@@ -22,7 +22,7 @@ export interface ConfirmModel {
   selector: 'ih-arrival-departure-info',
   templateUrl: './arrival-departure-info.component.html',
   styleUrls: ['./arrival-departure-info.component.sass'],
-  providers: [ImmigrationViewArrivalDepartureInfoService],
+  providers: [ImmigrationViewArrivalDepartureInfoService, PetitionsService],
   entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
@@ -45,7 +45,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       showClearDateBtn: false,
   };
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
-      public appService: AppService, public dialogService: DialogService, public headerService: HeaderService,  private petitionService: PetitionsService, ) {
+      public appService: AppService, public dialogService: DialogService, public headerService: HeaderService,  private petitionService: PetitionsService) {
       super(dialogService);
       this.settings = {
         'sort': [{
@@ -185,7 +185,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   getPetitionTypeValues() {
     let x = [];
     this.petitionService.getAllPetitionTypesAndSubTypes().subscribe(res => {
-      if (res['petitionTypes'] != undefined) {
+      if (res['petitionTypes'] !== undefined) {
         let data = res['petitionTypes'];
         for (let i = 0; i < data.length; i++) {
           x.push({'display': data[i]['petitiontype'], 'value': data[i]['petitiontype']});

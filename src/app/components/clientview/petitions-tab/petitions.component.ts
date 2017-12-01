@@ -233,9 +233,9 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   getPetitionTypeValues() {
     let x = [];
     this.clientviewpetitionsService.getAllPetitionTypesAndSubTypes().subscribe(res => {
-      if (res['petitionTypes'] != undefined) {
+      if (res['petitionTypes'] !== undefined) {
         let data = res['petitionTypes'];
-        for (var i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
           x.push({ 'display': data[i]['petitiontype'], 'value': data[i]['petitiontype'] });
         }
       }
