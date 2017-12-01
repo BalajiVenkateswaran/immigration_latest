@@ -3,13 +3,13 @@
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-petition'">
 
         <li>
-            <a id="testone" (click)="appService.moveToPage('immigrationview-petition-details');highlightSBLink('Petition Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petition Details') ? 'active': '']" routerLinkActive="active">
+            <a id="testone" (click)="appService.moveToPage('immigrationview/petition/details/petition-details');highlightSBLink('Petition Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petition Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-client-details"></span>
                 <span>Petition Details</span>
             </a>
         </li>
         <li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('immigrationview-questionnaire');highlightSBLink('Questionnaire');submenuclick('immiQstnre')" [ngClass]="[checkForCurrentSBLink('Questionnaire') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="immigrationview-questionnaires" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/petition/details/questionnaire');highlightSBLink('Questionnaire');submenuclick('immiQstnre')" [ngClass]="[checkForCurrentSBLink('Questionnaire') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="immigrationview-questionnaires" routerLinkActive="active">
                 <span class="ico-questionnaire"></span>
                 <span>Questionnaire</span>
                 <span class="ico-arrow"></span>
@@ -20,20 +20,20 @@
         </li>
 
         <li>
-            <a (click)="appService.moveToPage('immigrationview-forms');highlightSBLink('Forms');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Forms') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/petition/details/forms');highlightSBLink('Forms');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Forms') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-questionnaire"></span>
                 <span>Forms</span>
             </a>
         </li>
         <li ngbDropdown class="dropdown">
-            <a ngbDropdownToggle (click)="appService.moveToPage('immigrationview-petition-document-repository');submenuclick('immipetitiondoc');highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" class="dropdown-toggle" id="petition-documents" data-toggle="dropdown">
+            <a ngbDropdownToggle (click)="appService.moveToPage('immigrationview/petition/details/document-repository');submenuclick('immipetitiondoc');highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" class="dropdown-toggle" id="petition-documents" data-toggle="dropdown">
                 <span class="ico-dependents"></span>
                 <span>Documents</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" *ngIf="immipetitiondoc" aria-labelledby="petition-documents">
                 <li>
-                    <a (click)="appService.moveToPage('immigrationview-petition-document-repository');highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" routerLinkActive="active">Doc Repository</a>
+                    <a (click)="appService.moveToPage('immigrationview/petition/details/document-repository');highlightSBLink('Documents')" [ngClass]="[checkForCurrentSBLink('Documents') ? 'active': '']" routerLinkActive="active">Doc Repository</a>
                 </li>
                 <li>
                     <a (click)="appService.moveToPage('immigrationview/client/detail/document-management');highlightSBLink('Doc Management')" [ngClass]="[checkForCurrentSBLink('Doc Management') ? 'active': '']" routerLinkActive="active">Doc Management</a>
@@ -41,7 +41,7 @@
             </ul>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview-petition-notes');highlightSBLink('Notes');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Notes') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/petition/details/notes');highlightSBLink('Notes');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Notes') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-questionnaire"></span>
                 <span>Notes</span>
             </a>

@@ -320,7 +320,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       console.log('petitions:::::%o', event.data);
       this.appService.petitionId = event.data.petitionId;
       this.appService.clientId = event.data.clientId;
-      this.appService.moveToPage('immigrationview-petition-details');
+      this.appService.moveToPage('immigrationview/petition/details/petition-details');
       this.appService.currentSBLink = 'Petition Details';
   }
 }

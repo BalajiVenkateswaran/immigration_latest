@@ -13,8 +13,35 @@ import {ImmigrationViewJobDetailsComponent} from './clients-tab/client-details/j
 import {ImmigrationViewPassportInfoComponent} from './clients-tab/client-details/passport-info/passport-info.component';
 import {ImmigrationViewPetitionsComponent} from './clients-tab/client-details/petitions/petitions.component';
 import {ImmigrationViewVisasComponent} from './clients-tab/client-details/visas/visas.component';
+import {PetitionsComponent} from './petitions-tab/petitions/petitions.component';
+import {PetitionDocumentRepositoryComponent} from './petitions-tab/petition-details/document-repository/petition-document-repository.component';
+import {FormsComponent} from './petitions-tab/petition-details/forms/forms.component';
+import {NotesComponent} from './petitions-tab/petition-details/notes/notes.component';
+import {PetitionDetailsComponent} from './petitions-tab/petition-details/petition-details/petition-details.component';
+import {ImmigrationviewQuestionnaireComponent} from './petitions-tab/petition-details/questionnaire/questionnaire.component';
+import {I129Page1Component} from './petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
+import {I129Page2Component} from './petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
+import {I129Page3Component} from './petitions-tab/petition-details/questionnaires/i129/page-3/page-3.component';
+import {I129Page4Component} from './petitions-tab/petition-details/questionnaires/i129/page-4/page-4.component';
+import {I129Page5Component} from './petitions-tab/petition-details/questionnaires/i129/page-5/page-5.component';
+import {I129Page6Component} from './petitions-tab/petition-details/questionnaires/i129/page-6/page-6.component';
+import {I129Page7Component} from './petitions-tab/petition-details/questionnaires/i129/page-7/page-7.component';
+import {I129Page8Component} from './petitions-tab/petition-details/questionnaires/i129/page-8/page-8.component';
+import {I129dcPage1Component} from './petitions-tab/petition-details/questionnaires/i129DC/page-1/page-1.component';
+import {I129dcPage2Component} from './petitions-tab/petition-details/questionnaires/i129DC/page-2/page-2.component';
+import {I129dcPage3Component} from './petitions-tab/petition-details/questionnaires/i129DC/page-3/page-3.component';
+import {I129HPage1Component} from './petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
+import {I129HPage2Component} from './petitions-tab/petition-details/questionnaires/i129H/page-2/page-2.component';
+import {I129HPage3Component} from './petitions-tab/petition-details/questionnaires/i129H/page-3/page-3.component';
+import {I129HPage4Component} from './petitions-tab/petition-details/questionnaires/i129H/page-4/page-4.component';
+import {I129HPage5Component} from './petitions-tab/petition-details/questionnaires/i129H/page-5/page-5.component';
+import {I129HPage6Component} from './petitions-tab/petition-details/questionnaires/i129H/page-6/page-6.component';
+import {I129LPage1Component} from './petitions-tab/petition-details/questionnaires/L1/page-1/page-1.component';
+import {I129LPage2Component} from './petitions-tab/petition-details/questionnaires/L1/page-2/page-2.component';
+import {I129LPage3Component} from './petitions-tab/petition-details/questionnaires/L1/page-3/page-3.component';
+import {I129LPage4Component} from './petitions-tab/petition-details/questionnaires/L1/page-4/page-4.component';
 
-const IMMIGRATION_VIEW_ROUTER: Routes = [
+const IMMIGRATION_VIEW_CLIENT_ROUTER: Routes = [
   {
     path: 'tab/clients',
     component: ClientsComponent
@@ -70,8 +97,124 @@ const IMMIGRATION_VIEW_ROUTER: Routes = [
   {
     path: 'client/detail/visas',
     component: ImmigrationViewVisasComponent
+  }
+];
+
+const IMMIGRATION_VIEW_PETITION_ROUTER: Routes = [
+  {
+    path: 'tab/petitions',
+    component: PetitionsComponent
   },
+  {
+    path: 'petition/details/document-repository',
+    component: PetitionDocumentRepositoryComponent
+  },
+  {
+    path: 'petition/details/forms',
+    component: FormsComponent
+  },
+  {
+    path: 'petition/details/notes',
+    component: NotesComponent
+  },
+  {
+    path: 'petition/details/petition-details',
+    component: PetitionDetailsComponent
+  },
+  {
+    path: 'petition/details/questionnaire',
+    component: ImmigrationviewQuestionnaireComponent
+  }
 
 ];
 
-export const immigrationViewRoute = RouterModule.forChild(IMMIGRATION_VIEW_ROUTER);
+const IMMIGRATION_VIEW_QUESTIONNAIRE_ROUTER: Routes = [
+  {
+    path: 'questionnaire/i129/page/1/:questionnaireId',
+    component: I129Page1Component
+  },
+  {
+    path: 'questionnaire/i129/page/2',
+    component: I129Page2Component
+  },
+  {
+    path: 'questionnaire/i129/page/3',
+    component: I129Page3Component
+  },
+  {
+    path: 'questionnaire/i129/page/4',
+    component: I129Page4Component
+  },
+  {
+    path: 'questionnaire/i129/page/5',
+    component: I129Page5Component
+  },
+  {
+    path: 'questionnaire/i129/page/6',
+    component: I129Page6Component
+  },
+  {
+    path: 'questionnaire/i129/page/7',
+    component: I129Page7Component
+  },
+  {
+    path: 'questionnaire/i129/page/8',
+    component: I129Page8Component
+  },
+  {
+    path: 'questionnaire/i129dc/page/1/:questionnaireId',
+    component: I129dcPage1Component
+  },
+  {
+    path: 'questionnaire/i129dc/page/2',
+    component: I129dcPage2Component
+  },
+  {
+    path: 'questionnaire/i129dc/page/3',
+    component: I129dcPage3Component
+  },
+  {
+    path: 'questionnaire/i129h/page/1/:questionnaireId',
+    component: I129HPage1Component
+  },
+  {
+    path: 'questionnaire/i129h/page/2',
+    component: I129HPage2Component
+  },
+  {
+    path: 'questionnaire/i129h/page/3',
+    component: I129HPage3Component
+  },
+  {
+    path: 'questionnaire/i129h/page/4',
+    component: I129HPage4Component
+  },
+  {
+    path: 'questionnaire/i129h/page/5',
+    component: I129HPage5Component
+  },
+  {
+    path: 'questionnaire/i129h/page/6',
+    component: I129HPage6Component
+  },
+  {
+    path: 'questionnaire/i129l/page/1/:questionnaireId',
+    component: I129LPage1Component
+  },
+  {
+    path: 'questionnaire/i129l/page/2',
+    component: I129LPage2Component
+  },
+  {
+    path: 'questionnaire/i129l/page/3',
+    component: I129LPage3Component
+  },
+  {
+    path: 'questionnaire/i129l/page/4',
+    component: I129LPage4Component
+  },
+];
+
+export const immigrationViewClientRoute = RouterModule.forChild(IMMIGRATION_VIEW_CLIENT_ROUTER);
+export const immigrationViewPetitionRoute = RouterModule.forChild(IMMIGRATION_VIEW_PETITION_ROUTER);
+export const immigrationViewQuestionnaireRoute = RouterModule.forChild(IMMIGRATION_VIEW_QUESTIONNAIRE_ROUTER);

@@ -147,7 +147,7 @@
                           </a>
                       </li>
                       <li *ngIf="appService.isImmigrationView() || headerService.isDelegatedOrg()">
-                          <a (click)="appService.moveToPage('petitions'); highlightTab('petitions');"
+                          <a (click)="appService.moveToPage('immigrationview/tab/petitions'); highlightTab('petitions');"
                              [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']"
                              routerLinkActive="active" style="height:20px;width:56px;">
                               <img src="../../../../assets/images/Pettions.png" />

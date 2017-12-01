@@ -9,6 +9,8 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {MyDatePickerModule} from 'mydatepicker';
 import {DragulaModule} from 'ng2-dragula';
 import {FileUploadModule} from 'ng2-file-upload';
+import {I129HPage1Component} from '../components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
+import {I129Page2Component} from '../components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
 
 @NgModule({
   imports: [
@@ -35,6 +37,12 @@ import {FileUploadModule} from 'ng2-file-upload';
     MyDatePickerModule,
     DragulaModule,
     FileUploadModule,
+
+
+
+    /*Temporary Components*/
+    I129Page2Component,
+    I129HPage1Component,
   ],
   entryComponents: [
     FilterComponent,
@@ -46,6 +54,11 @@ import {FileUploadModule} from 'ng2-file-upload';
     FilterComponent,
     PaginationComponent,
     SmartTableFrameworkComponent,
+
+
+    /*Temporary Components*/
+    I129Page2Component,
+    I129HPage1Component,
 
   ]
 })

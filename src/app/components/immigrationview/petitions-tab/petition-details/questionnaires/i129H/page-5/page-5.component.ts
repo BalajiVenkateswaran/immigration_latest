@@ -5,10 +5,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'app-page-5.component',
-    templateUrl: './page-5.component.html',
-    styleUrls: ['./page-5.component.scss']
+    templateUrl: './page-5.component.html'
 })
-export class i129HPage5Component implements OnInit {
+export class I129HPage5Component implements OnInit {
     public I129Hpage5: any = {};
     public employerDateOfSignature: string;
     public petitionerDateOfSignature: string;
@@ -28,9 +27,9 @@ export class i129HPage5Component implements OnInit {
 
     }
     gotoNext() {
-        this.appService.moveToPage('i129hPage6');
+        this.appService.moveToPage('immigrationview/questionnaire/i129h/page/6');
     }
     gotoPrev() {
-        this.appService.moveToPage('i129hPage4');
+        this.appService.moveToPage('immigrationview/questionnaire/i129h/page/4');
     }
 }

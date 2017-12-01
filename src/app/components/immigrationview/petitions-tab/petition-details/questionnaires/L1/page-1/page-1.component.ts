@@ -1,32 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import { AppService } from "../../../../../../../services/app.service";
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {Component, OnInit} from '@angular/core';
+import {IMyOptions} from 'mydatepicker';
+import {AppService} from '../../../../../../../services/app.service';
+import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
   selector: 'app-page-1',
-  templateUrl: './page-1.component.html',
-  styleUrls: ['./page-1.component.scss']
+  templateUrl: './page-1.component.html'
 })
-export class Page1Component implements OnInit {
+export class I129LPage1Component implements OnInit {
   public questions: any = [];
-  public isPetition:any =[];
+  public isPetition: any = [];
   public states: any[] = [];
-  public classificationSought:any =[];
+  public classificationSought: any = [];
   public aptType;
   public I129Hpage1: any = {};
-  public fromDate1:string;
-  public fromDate2:string;
-  public fromDate3:string;
-  public fromDate4:string;
-  public fromDate5:string;
+  public fromDate1: string;
+  public fromDate2: string;
+  public fromDate3: string;
+  public fromDate4: string;
+  public fromDate5: string;
   public fromDate6: string;
   public fromDate7: string;
-  public toDate1:string;
-  public toDate2:string;
-  public toDate3:string;
-  public toDate4:string;
-  public toDate5:string;
+  public toDate1: string;
+  public toDate2: string;
+  public toDate3: string;
+  public toDate4: string;
+  public toDate5: string;
   public toDate6: string;
   public toDate7: string;
   public page22: any = {};
@@ -36,58 +35,58 @@ export class Page1Component implements OnInit {
         showClearDateBtn: false,
         editableDateField: false
     };
-  constructor(public questionnaireService: QuestionnaireCommonService,public appService: AppService) {
+  constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
     this.questions = [
       {
-        "id": "0",
-        "display": "Yes",
-        "value": "Y"
+        'id': '0',
+        'display': 'Yes',
+        'value': 'Y'
       },
       {
-        "id": "1",
-        "display": "No",
-        "value": "N"
+        'id': '1',
+        'display': 'No',
+        'value': 'N'
       },
     ];
     this.isPetition = [
       {
-        "id": "0",
-        "display": "An individual petition",
-        "value": "INDIVIDUAL_PETITION"
+        'id': '0',
+        'display': 'An individual petition',
+        'value': 'INDIVIDUAL_PETITION'
       },
       {
-        "id": "1",
-        "display": "A blanket petition",
-        "value": "BLANKET_PETITION"
+        'id': '1',
+        'display': 'A blanket petition',
+        'value': 'BLANKET_PETITION'
       },
     ];
     this.classificationSought = [
       {
-        "id": "0",
-        "display": "L-1A manager or executive",
-        "value": "L1A_MANAGER"
+        'id': '0',
+        'display': 'L-1A manager or executive',
+        'value': 'L1A_MANAGER'
       },
       {
-        "id": "1",
-        "display": "L-1B specialized knowledge",
-        "value": "L1B_SPECIALIZED_KNOWLEDGE"
+        'id': '1',
+        'display': 'L-1B specialized knowledge',
+        'value': 'L1B_SPECIALIZED_KNOWLEDGE'
       },
     ];
     this.aptType = [
             {
-                "id": "0",
-                "display": "Apt.",
-                "value": "APT"
+                'id': '0',
+                'display': 'Apt.',
+                'value': 'APT'
             },
             {
-                "id": "1",
-                "display": "Stc.",
-                "value": "STE"
+                'id': '1',
+                'display': 'Stc.',
+                'value': 'STE'
             },
             {
-                "id": "2",
-                "display": "Flr.",
-                "value": "FLR"
+                'id': '2',
+                'display': 'Flr.',
+                'value': 'FLR'
             }
 
         ];
@@ -268,13 +267,13 @@ export class Page1Component implements OnInit {
       if (this.page22.toDate7) {
           this.page22.toDate7 = this.page22.toDate7['formatted'];
       }
-      this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],  this.page22.pageNumber,this.page22).subscribe(res => {
+      this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],  this.page22.pageNumber, this.page22).subscribe(res => {
           console.log(res);
       });
       }
       gotoNext() {
       this.savequestionnaireInformation();
-      this.appService.moveToPage('page2l1');
-      this.appService.currentSBLink = "page2l1";
+      this.appService.moveToPage('immigrationview/questionnaire/i129l/page/2');
+      this.appService.currentSBLink = 'page2l1';
   }
 }

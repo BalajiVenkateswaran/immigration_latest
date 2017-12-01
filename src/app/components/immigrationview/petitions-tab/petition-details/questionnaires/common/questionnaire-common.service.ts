@@ -1,24 +1,24 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import { RestService } from '../../../../../../services/rest.service';
 import {AppService} from '../../../../../../services/app.service'
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Injectable()
 export class QuestionnaireCommonService {
 
-  private _questionnaireList : any[];
-  private _selectedQuestionnaire : any;
+  private _questionnaireList: any[];
+  private _selectedQuestionnaire: any;
 
-  set questionnaireList(questionnaireList: any[]){
+  set questionnaireList(questionnaireList: any[]) {
     this._questionnaireList = questionnaireList;
   }
-  get questionnaireList(){
+  get questionnaireList() {
     return this._questionnaireList;
   }
-  set selectedQuestionnaire(selectedQuestionnaire: any){
+  set selectedQuestionnaire(selectedQuestionnaire: any) {
     this._selectedQuestionnaire = selectedQuestionnaire;
   }
-  get selectedQuestionnaire(){
+  get selectedQuestionnaire() {
       return this._selectedQuestionnaire;
   }
 
@@ -27,29 +27,26 @@ export class QuestionnaireCommonService {
 
   public moveToQuestionnaire(questionnaire: any) {
       this.selectedQuestionnaire = questionnaire;
-      var pageName = "";
-      if (this.selectedQuestionnaire['formName'] == "I-129") {
-          if (this.appService.applicationViewMode == "Immigration") {
-              pageName = 'i129Page1';
+      let pageName = '';
+      if (this.selectedQuestionnaire['formName'] === 'I-129') {
+          if (this.appService.applicationViewMode === 'Immigration') {
+              pageName = 'immigrationview/questionnaire/i129/page/1';
           } else {
               pageName = 'clientview-i129Page2';
           }
-      }
-      else if (this.selectedQuestionnaire['formName'] == "I-129 DC") {
-          if (this.appService.applicationViewMode == "Immigration") {
-              pageName = 'i129dcPage1';
+      } else if (this.selectedQuestionnaire['formName'] === 'I-129 DC') {
+          if (this.appService.applicationViewMode === 'Immigration') {
+              pageName = 'immigrationview/questionnaire/i129dc/page/1';
           }
-      }
-      else if (this.selectedQuestionnaire['formName'] == "I-129 H") {
-          if (this.appService.applicationViewMode == "Immigration") {
-              pageName = 'i129hPage1';
+      } else if (this.selectedQuestionnaire['formName'] === 'I-129 H') {
+          if (this.appService.applicationViewMode === 'Immigration') {
+              pageName = 'immigrationview/questionnaire/i129h/page/1';
           } else {
               pageName = 'clientview-i129hPage1';
           }
-      }
-      else {
-          if (this.appService.applicationViewMode == "Immigration") {
-              pageName = 'page1l1';
+      } else {
+          if (this.appService.applicationViewMode === 'Immigration') {
+              pageName = 'immigrationview/questionnaire/i129l/page/1';
           }
       }
 
@@ -58,15 +55,15 @@ export class QuestionnaireCommonService {
 
 
 
-  public getQuestionnaireData(questionnaireId,pageNo){
-      return this.restService.getData("/immigration/questionnaire/"+questionnaireId+"/page/"+pageNo);
+  public getQuestionnaireData(questionnaireId, pageNo) {
+      return this.restService.getData('/immigration/questionnaire/' + questionnaireId + '/page/' + pageNo);
   }
 
-  public saveQuestionnaireData(questionnaireId: string, pageNo: number, data: any){
-     return this.restService.postData("/immigration/questionnaire/"+questionnaireId+"/page/"+pageNo,data);
+  public saveQuestionnaireData(questionnaireId: string, pageNo: number, data: any) {
+     return this.restService.postData('/immigration/questionnaire/' + questionnaireId + '/page/' + pageNo, data);
   }
 
-  public submitQuestionnaireData(questionnaireId: string, pageNo: number, data: any, isSubmit: boolean){
-    return this.restService.postData("/client/questionnaire/"+questionnaireId+"/page/"+pageNo+"/submit/"+isSubmit,data);
+  public submitQuestionnaireData(questionnaireId: string, pageNo: number, data: any, isSubmit: boolean) {
+    return this.restService.postData('/client/questionnaire/' + questionnaireId + '/page/' + pageNo + '/submit/' + isSubmit, data);
   }
 }

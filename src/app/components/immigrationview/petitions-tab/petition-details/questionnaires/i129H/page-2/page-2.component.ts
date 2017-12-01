@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from "../../../../../../../services/app.service";
+import {AppService} from '../../../../../../../services/app.service';
 import {IMyOptions} from 'mydatepicker';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
   selector: 'app-page-2.component',
-  templateUrl: './page-2.component.html',
-  styleUrls: ['./page-2.component.scss']
+  templateUrl: './page-2.component.html'
 })
-export class i129HPage2Component implements OnInit {
+export class I129HPage2Component implements OnInit {
   I129Hpage2Employment: any [];
   I129Hpage2TemporaryNeed: any [];
   public I129Hpage2: any = {};
@@ -28,41 +27,41 @@ export class i129HPage2Component implements OnInit {
     this.I129Hpage2 = {};
     this.I129Hpage2Employment = [
       {
-        "id": "0",
-        "display": "Seasonal",
-        "value": "SEASONAL"
+        'id': '0',
+        'display': 'Seasonal',
+        'value': 'SEASONAL'
       },
       {
-        "id": "1",
-        "display": "Peak load",
-        "value": "PEAK_LOAD"
+        'id': '1',
+        'display': 'Peak load',
+        'value': 'PEAK_LOAD'
       },
       {
-        "id": "1",
-        "display": "Intermittent",
-        "value": "INTERMITTENT"
+        'id': '1',
+        'display': 'Intermittent',
+        'value': 'INTERMITTENT'
       },
       {
-        "id": "1",
-        "display": "One-time occurrence",
-        "value": "ONE_IIME_OCCURANCE"
+        'id': '1',
+        'display': 'One-time occurrence',
+        'value': 'ONE_IIME_OCCURANCE'
       },
     ];
     this.I129Hpage2TemporaryNeed = [
       {
-        "id": "0",
-        "display": "Unpredictable",
-        "value": "UNPREDICTABLE"
+        'id': '0',
+        'display': 'Unpredictable',
+        'value': 'UNPREDICTABLE'
       },
       {
-        "id": "1",
-        "display": "Periodic",
-        "value": "PERIODIC"
+        'id': '1',
+        'display': 'Periodic',
+        'value': 'PERIODIC'
       },
       {
-        "id": "2",
-        "display": "Recurrent annually",
-        "value": "RECURRENT_ANNUALLY"
+        'id': '2',
+        'display': 'Recurrent annually',
+        'value': 'RECURRENT_ANNUALLY'
       },
     ];
     this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 14).subscribe(res => {
@@ -81,9 +80,9 @@ export class i129HPage2Component implements OnInit {
 
   gotoPrev() {
     this.savequestionnaireInformation();
-    this.appService.moveToPage('i129hPage1/' + this.questionnaireService.selectedQuestionnaire['questionnaireId']);
+    this.appService.moveToPage('immigrationview/questionnaire/i129h/page/1/' + this.questionnaireService.selectedQuestionnaire['questionnaireId']);
   }
-  submit(){
+  submit() {
     this.I129Hpage2.pageNumber = 14;
     this.mapDatesToSave();
     this.questionnaireService.submitQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 14, this.I129Hpage2, true).subscribe(res => {
@@ -91,7 +90,7 @@ export class i129HPage2Component implements OnInit {
     });
   }
 
-  mapDatesToSave(){
+  mapDatesToSave() {
     if (this.I129Hpage2['petitionerDateOfSignature'] != null) {
       this.I129Hpage2['petitionerDateOfSignature'] = this.I129Hpage2['petitionerDateOfSignature']['formatted'];
     }

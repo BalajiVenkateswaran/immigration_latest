@@ -6,11 +6,14 @@ import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
 import { PetitionsService } from './petitions.service';
 import { SortType } from '../../../framework/smarttable/types/query-parameters';
+import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
 @Component({
-    selector: 'app-petitions',
+    selector: 'ih-immigrationview-petitions',
     templateUrl: './petitions.component.html',
-    styleUrls: ['./petitions.component.sass']
+    styleUrls: ['./petitions.component.sass'],
+    providers: [PetitionsService],
+    entryComponents: [SmartTableFrameworkComponent]
 })
 export class PetitionsComponent implements OnInit {
     private outlet: any = {
@@ -43,7 +46,6 @@ export class PetitionsComponent implements OnInit {
                 'value': 'Close'
             }
         ];
-        //console.log(this.petitionTypesData);
         this.settings = {
             'isAddButtonEnable': false,
             'columnFilter': false,
@@ -198,7 +200,7 @@ export class PetitionsComponent implements OnInit {
         this.appService.clientfirstName = event.data.firstName;
         this.appService.clientlastName = event.data.lastName;
         this.appService.petitionType = event.data.petitionType;
-        this.appService.moveToPage('immigrationview-petition-details');
+        this.appService.moveToPage('immigrationview/petition/details/petition-details');
     }
     getPetitionTypeValues() {
         let x = [];

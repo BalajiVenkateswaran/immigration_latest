@@ -6,10 +6,9 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 
 @Component({
     selector: 'app-page-5.component',
-    templateUrl: './page-5.component.html',
-    styleUrls: ['./page-5.component.scss']
+    templateUrl: './page-5.component.html'
 })
-export class i129Page5Component implements OnInit {
+export class I129Page5Component implements OnInit {
     beforecancelquestionnaire: any;
     isquestionnaireEdit: boolean = false;
     public page5: any = {
@@ -171,10 +170,10 @@ export class i129Page5Component implements OnInit {
     }
     gotoNext() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129Page6');
+        this.appService.moveToPage('immigrationview/questionnaire/i129/page/6');
     }
     gotoPrev() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129Page4');
+        this.appService.moveToPage('immigrationview/questionnaire/i129/page/4');
     }
 }

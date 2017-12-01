@@ -1,23 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import {Component, OnInit} from '@angular/core';
+import {Http} from '@angular/http';
 import * as FileSaver from 'file-saver';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 
-import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
-import { PetitionDocumentRepositoryService } from './petition-document-repository.service';
-import {SortType} from '../../../../framework/smarttable/types/query-parameters';
+import {AppService} from '../../../../../services/app.service';
+import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
+import {PetitionDocumentRepositoryService} from './petition-document-repository.service';
 import {HeaderService} from '../../../../common/header/header.service';
 import {FileUtils} from '../../../../common/FileUtils';
-import { environment } from '../../../../../../environments/environment';
+import {environment} from '../../../../../../environments/environment';
 
 import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {DatePipe} from '@angular/common';
-
-// const URL = '/api/';
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 export interface ConfirmModel {
     title: string;
@@ -30,7 +24,8 @@ export interface ConfirmModel {
 @Component({
     selector: 'ih-petition-details-document-repository',
     templateUrl: './petition-document-repository.component.html',
-    styleUrls: ['./petition-document-repository.component.sass']
+    styleUrls: ['./petition-document-repository.component.sass'],
+    providers: [PetitionDocumentRepositoryService]
 })
 export class PetitionDocumentRepositoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public uploader: FileUploader ;
@@ -103,10 +98,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
           }
         };
 
-
-
         this.getFilesList();
-        //console.log(this.getFiles);
     }
     onDeleteClick(event) {
         this.dialogService.addDialog(ConfirmComponent, {

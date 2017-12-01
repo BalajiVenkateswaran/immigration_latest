@@ -31,7 +31,6 @@ export class DownloadButton implements ICellRendererAngularComp {
     }
     onDonwloadClicked(){
         this.params.context.componentParent.onGenerateFormDownloadClick({ 'data': this.params.data});
-        
     }
 
 

@@ -6,10 +6,9 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 
 @Component({
     selector: 'app-page-2.component',
-    templateUrl: './page-2.component.html',
-    styleUrls: ['./page-2.component.scss']
+    templateUrl: './page-2.component.html'
 })
-export class i129dcPage2Component implements OnInit {
+export class I129dcPage2Component implements OnInit {
     public questions;
     public aptType;
     public petitionType;
@@ -103,10 +102,10 @@ export class i129dcPage2Component implements OnInit {
 
     gotoNext() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129dcPage3');
+        this.appService.moveToPage('immigrationview/questionnaire/i129dc/page/3');
     }
     gotoPrev() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129dcPage1/'+this.questionnaireService.selectedQuestionnaire['questionnaireId']);
+        this.appService.moveToPage('immigrationview/questionnaire/i129dc/page/1/'+this.questionnaireService.selectedQuestionnaire['questionnaireId']);
     }
 }

@@ -8,6 +8,7 @@ import { FormsService } from './forms.service';
 import { GenerateFormButton } from './GenerateFormButton';
 import { DownloadButton } from './DownloadButton';
 import {HeaderService} from '../../../../common/header/header.service';
+import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -20,7 +21,9 @@ export interface ConfirmModel {
 @Component({
     selector: 'app-petition-details-forms',
     templateUrl: './forms.component.html',
-    styleUrls: ['./forms.component.scss']
+    styleUrls: ['./forms.component.scss'],
+    providers: [FormsService],
+  entryComponents: [SmartTableFrameworkComponent, DownloadButton, GenerateFormButton]
 })
 export class FormsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public data;

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from "../../../../../../../services/app.service";
+import { AppService } from '../../../../../../../services/app.service';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 @Component({
   selector: 'app-page-4',
-  templateUrl: './page-4.component.html',
-  styleUrls: ['./page-4.component.scss']
+  templateUrl: './page-4.component.html'
 })
-export class Page4Component implements OnInit {
+export class I129LPage4Component implements OnInit {
     public page25: any = {};
 
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) { }
@@ -28,8 +27,8 @@ export class Page4Component implements OnInit {
 
   gotoPrev() {
       this.savequestionnaireInformation();
-      this.appService.moveToPage('page3l1');
-      this.appService.currentSBLink = "page3l1";
+      this.appService.moveToPage('immigrationview/questionnaire/i129l/page/3');
+      this.appService.currentSBLink = 'page3l1';
 
   }
     gotoNext() {

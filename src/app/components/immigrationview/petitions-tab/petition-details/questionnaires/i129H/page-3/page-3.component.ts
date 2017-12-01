@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {AppService} from "../../../../../../../services/app.service";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AppService} from '../../../../../../../services/app.service';
+import {IMyOptions} from 'mydatepicker';
 
 @Component({
     selector: 'app-page-3.component',
-    templateUrl: './page-3.component.html',
-    styleUrls: ['./page-3.component.scss']
+    templateUrl: './page-3.component.html'
 })
-export class i129HPage3Component implements OnInit {
+export class I129HPage3Component implements OnInit {
     public I129Hpage3: any = {};
     public I129Hpage3questions: any = [];
     public dateOfBirth: string;
@@ -23,21 +21,21 @@ export class i129HPage3Component implements OnInit {
     ngOnInit() {
         this.I129Hpage3questions = [
             {
-                "id": "0",
-                "display": "Yes",
-                "value": "Y"
+                'id': '0',
+                'display': 'Yes',
+                'value': 'Y'
             },
             {
-                "id": "1",
-                "display": "No",
-                "value": "N"
+                'id': '1',
+                'display': 'No',
+                'value': 'N'
             },
         ];
     }
     gotoNext() {
-        this.appService.moveToPage('i129hPage4');
+        this.appService.moveToPage('immigrationview/questionnaire/i129h/page/4');
     }
     gotoPrev() {
-        this.appService.moveToPage('i129hPage3');
+        this.appService.moveToPage('immigrationview/questionnaire/i129h/page/3');
     }
 }

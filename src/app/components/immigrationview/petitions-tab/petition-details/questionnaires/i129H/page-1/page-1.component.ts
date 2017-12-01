@@ -6,10 +6,9 @@ import {QuestionnaireCommonService} from '../../../questionnaires/common/questio
 
 @Component({
   selector: 'app-page-1.component',
-  templateUrl: './page-1.component.html',
-  styleUrls: ['./page-1.component.scss']
+  templateUrl: './page-1.component.html'
 })
-export class i129HPage1Component implements OnInit {
+export class I129HPage1Component implements OnInit {
   public I129Hpage1: any = {};
   public I129Hpage1questions: any = [];
   public I129Hpage1Sought: any = [];
@@ -165,7 +164,7 @@ export class i129HPage1Component implements OnInit {
 
   gotoNext() {
     this.savequestionnaireInformation();
-    this.appService.moveToPage('i129hPage2');
+    this.appService.moveToPage('immigrationview/questionnaire/i129h/page/2');
   }
 
   gotoPrev() {

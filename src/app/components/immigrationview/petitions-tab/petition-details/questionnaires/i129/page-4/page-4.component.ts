@@ -5,10 +5,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 @Component({
     selector: 'app-page-4.component',
-    templateUrl: './page-4.component.html',
-    styleUrls: ['./page-4.component.scss']
+    templateUrl: './page-4.component.html'
 })
-export class i129Page4Component implements OnInit {
+export class I129Page4Component implements OnInit {
     beforecancelquestionnaire: any;
     isquestionnaireEdit: boolean = false;
     public page4: any = {};
@@ -53,10 +52,10 @@ export class i129Page4Component implements OnInit {
     }
     gotoNext() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129Page5');
+        this.appService.moveToPage('immigrationview/questionnaire/i129/page/5');
     }
     gotoPrev() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129Page3');
+        this.appService.moveToPage('immigrationview/questionnaire/i129/page/3');
     }
 }

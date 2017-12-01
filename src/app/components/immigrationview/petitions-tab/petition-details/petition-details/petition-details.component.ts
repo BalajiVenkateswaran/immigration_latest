@@ -15,7 +15,8 @@ import {HeaderService} from '../../../../common/header/header.service';
 @Component({
     selector: 'app-petition-details',
     templateUrl: './petition-details.component.html',
-    styleUrls: ['./petition-details.component.sass']
+    styleUrls: ['./petition-details.component.sass'],
+  providers: [PetitionDetailsService]
 })
 export class PetitionDetailsComponent implements OnInit {
     isNotesEdit;

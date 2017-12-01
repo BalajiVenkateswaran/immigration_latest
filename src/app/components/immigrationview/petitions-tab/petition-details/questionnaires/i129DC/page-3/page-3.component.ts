@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {AppService} from "../../../../../../../services/app.service";
+import {AppService} from '../../../../../../../services/app.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 
 @Component({
     selector: 'app-page-3.component',
-    templateUrl: './page-3.component.html',
-    styleUrls: ['./page-3.component.scss']
+    templateUrl: './page-3.component.html'
 })
-export class i129dcPage3Component implements OnInit {
-    public page3:any={
-        "capExemptReason":{
+export class I129dcPage3Component implements OnInit {
+    public page3: any= {
+        'capExemptReason': {
 
         }
     };
-  
+
     public questions;
     public toggles = [
         { value: 'Y'},
@@ -24,21 +23,21 @@ export class i129dcPage3Component implements OnInit {
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
           this.questions = [
             {
-                "id": "0",
-                "display": "Yes",
-                "value":"Y"
+                'id': '0',
+                'display': 'Yes',
+                'value': 'Y'
             },
             {
-                "id": "1",
-                "display": "No",
-                "value": "N"
+                'id': '1',
+                'display': 'No',
+                'value': 'N'
             },
         ];
     }
 
     ngOnInit() {
         this.page3 = {
-                         "capExemptReason":{
+                         'capExemptReason': {
                          }
                      };
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 21).subscribe(res => {
@@ -63,7 +62,7 @@ export class i129dcPage3Component implements OnInit {
 
     gotoPrev() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129dcPage2');
+        this.appService.moveToPage('immigrationview/questionnaire/i129dc/page/2');
     }
 
     gotoNext() {

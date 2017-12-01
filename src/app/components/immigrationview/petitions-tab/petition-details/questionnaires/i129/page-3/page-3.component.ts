@@ -6,10 +6,9 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 
 @Component({
     selector: 'app-page-3.component',
-    templateUrl: './page-3.component.html',
-    styleUrls: ['./page-3.component.scss']
+    templateUrl: './page-3.component.html'
 })
-export class i129Page3Component implements OnInit {
+export class I129Page3Component implements OnInit {
     beforecancelquestionnaire: any;
     isquestionnaireEdit: boolean = false;
     public aptType;
@@ -205,13 +204,13 @@ export class i129Page3Component implements OnInit {
           this.page3).subscribe(res => {
           //Call ngOnInit for client view page
           if(isNextPage) {
-            if (this.appService.applicationViewMode == 'Client') {
+            if (this.appService.applicationViewMode === 'Client') {
               this.ngOnInit();
             } else {
-              this.appService.moveToPage('i129Page4');
+              this.appService.moveToPage('immigrationview/questionnaire/i129/page/4');
             }
           } else {
-            this.appService.moveToPage('i129Page2');
+            this.appService.moveToPage('immigrationview/questionnaire/i129/page/2');
           }
         })
     }

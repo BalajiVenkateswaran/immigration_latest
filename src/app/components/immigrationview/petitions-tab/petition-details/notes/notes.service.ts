@@ -1,5 +1,5 @@
 import { RestService } from '../../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class NotesService {
@@ -8,16 +8,16 @@ export class NotesService {
     }
 
     public getPetitionDetails(petitionId: string) {
-        return this.restService.getData("/petition/details/" + petitionId);
+        return this.restService.getData('/petition/details/' + petitionId);
     }
 
     public savePetitionDetails(petitionDetails: any, userId: string) {
-        var req = {
-            "petitionInfo": petitionDetails,
-            "userId": userId
+        let req = {
+            'petitionInfo': petitionDetails,
+            'userId': userId
         };
 
-        return this.restService.postData("/petition/petitionInfo", req);
+        return this.restService.postData('/petition/petitionInfo', req);
     }
 
 }

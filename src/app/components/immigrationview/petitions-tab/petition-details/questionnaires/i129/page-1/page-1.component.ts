@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from "../../../../../../../services/app.service";
+import { AppService } from '../../../../../../../services/app.service';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 @Component({
     selector: 'app-page-1.component',
-    templateUrl: './page-1.component.html',
-    styleUrls: ['./page-1.component.scss']
+    templateUrl: './page-1.component.html'
 })
-export class i129Page1Component implements OnInit {
+export class I129Page1Component implements OnInit {
     beforecancelquestionnaire: any;
-    public isquestionnaireEdit: boolean = false;
+    public isquestionnaireEdit = false;
     public page1: any = {
         'address': {},
         'contact': {}
@@ -21,19 +20,19 @@ export class i129Page1Component implements OnInit {
      private route: ActivatedRoute, private router: Router) {
         this.aptType = [
             {
-                "id": "0",
-                "display": "Apt.",
-                "value": "APT"
+                'id': '0',
+                'display': 'Apt.',
+                'value': 'APT'
             },
             {
-                "id": "1",
-                "display": "Stc.",
-                "value": "STE"
+                'id': '1',
+                'display': 'Stc.',
+                'value': 'STE'
             },
             {
-                "id": "2",
-                "display": "Flr.",
-                "value": "FLR"
+                'id': '2',
+                'display': 'Flr.',
+                'value': 'FLR'
             }
 
         ];
@@ -117,7 +116,6 @@ export class i129Page1Component implements OnInit {
     }
 
     ngOnInit() {
-        //this.isquestionnaireEdit = true;
         this.page1 = {
                 'address': {},
                 'contact': {}
@@ -130,14 +128,14 @@ export class i129Page1Component implements OnInit {
                            'contact': {}
                          };
             this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 1).subscribe(res => {
-                if (res['formPage'] != undefined) {
+                if (res['formPage'] !== undefined) {
 
                     this.page1 = res['formPage'];
 
-                    if (res['formPage']['address'] != undefined) {
+                    if (res['formPage']['address'] !== undefined) {
                         this.page1.address = res['formPage']['address'];
                     }
-                    if (res['formPage']['contact'] != undefined) {
+                    if (res['formPage']['contact'] !== undefined) {
                         this.page1.contact = res['formPage']['contact'];
                     }
                 }
@@ -161,7 +159,7 @@ export class i129Page1Component implements OnInit {
     }
     gotoNext() {
         this.savequestionnaireInformation();
-        this.appService.moveToPage('i129Page2');
+        this.appService.moveToPage('immigrationview/questionnaire/i129/page/2');
     }
 
 

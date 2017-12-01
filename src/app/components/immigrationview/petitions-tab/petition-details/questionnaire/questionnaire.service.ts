@@ -1,5 +1,5 @@
 import { RestService } from '../../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class QuestionnaireService {
@@ -7,23 +7,23 @@ export class QuestionnaireService {
     }
 
     public getQuestionnaireForms(petitionId: string) {
-        return this.restService.getData("/questionnaire/forms/petitionType/" + petitionId);
+        return this.restService.getData('/questionnaire/forms/petitionType/' + petitionId);
     }
     public getQuestionnaires(petitionId: string) {
-        return this.restService.getData("/questionnaires/petition/" + petitionId + "?page=1&size=10");
+        return this.restService.getData('/questionnaires/petition/' + petitionId + '?page=1&size=10');
     }
     public saveNewQuestionnaireClient(questionnaireData: any) {
-        var req = {
+        let req = {
           questionnaire : questionnaireData
         };
-        return this.restService.postData("/questionnaire", req);
+        return this.restService.postData('/questionnaire', req);
     }
 
     public sentQuestionnaireEmailToClient(req: any) {
-        return this.restService.postData("/questionnaire/sendQuestionnaireToClient", req);
+        return this.restService.postData('/questionnaire/sendQuestionnaireToClient', req);
     }
 
     public deleteQuestionnaire(questionnaireId) {
-        return this.restService.deleteData("/questionnaire/" + questionnaireId);
+        return this.restService.deleteData('/questionnaire/' + questionnaireId);
     }
 }

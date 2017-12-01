@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {AppService} from "../../../../../../../services/app.service";
+import {AppService} from '../../../../../../../services/app.service';
 
 @Component({
     selector: 'app-page-4.component',
-    templateUrl: './page-4.component.html',
-    styleUrls: ['./page-4.component.scss']
+    templateUrl: './page-4.component.html'
 })
-export class i129HPage4Component implements OnInit {
+export class I129HPage4Component implements OnInit {
     public I129Hpage4: any = {};
 
     constructor(public appService: AppService) {
@@ -16,9 +15,9 @@ export class i129HPage4Component implements OnInit {
 
     }
     gotoNext() {
-        this.appService.moveToPage('i129hPage5');
+        this.appService.moveToPage('immigrationview/questionnaire/i129h/page/5');
     }
     gotoPrev() {
-        this.appService.moveToPage('i129hPage3');
+        this.appService.moveToPage('immigrationview/questionnaire/i129h/page/3');
     }
 }

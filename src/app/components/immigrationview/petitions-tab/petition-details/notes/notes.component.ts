@@ -8,7 +8,8 @@ import {HeaderService} from "../../../../common/header/header.service";
 
 @Component({
     selector: 'app-petition-details-notes',
-    templateUrl: './notes.component.html'
+    templateUrl: './notes.component.html',
+    providers: [NotesService]
 })
 export class NotesComponent implements OnInit {
     isNotesEdit;

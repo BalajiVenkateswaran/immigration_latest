@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Page2Component } from './page-2.component';
+import { I129LPage2Component } from './page-2.component';
 
-describe('Page2Component', () => {
-  let component: Page2Component;
-  let fixture: ComponentFixture<Page2Component>;
+describe('I129LPage2Component', () => {
+  let component: I129LPage2Component;
+  let fixture: ComponentFixture<I129LPage2Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Page2Component ]
+      declarations: [ I129LPage2Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Page2Component);
+    fixture = TestBed.createComponent(I129LPage2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
