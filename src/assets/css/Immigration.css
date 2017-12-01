@@ -43,6 +43,14 @@ a.login:hover {
     position: relative;
     width:100%;
 }
+@media screen and (max-width: 500px) {
+  .contact {
+    height: 70px;
+    padding-top: 8px;
+    position: relative;
+    width: 100%;
+  }
+}
 .contact .email,
 .contact .phone {
     font-size: 14px;
