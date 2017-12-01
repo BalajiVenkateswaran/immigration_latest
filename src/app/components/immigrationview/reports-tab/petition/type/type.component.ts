@@ -1,5 +1,5 @@
 ﻿import { AppService } from '../../../../../services/app.service';
-import { petitionstypesreportsservice } from './type.service';
+import { PetitionTypeReportService } from './type.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/petitiontypestages/petitiontypestages.service';
@@ -9,10 +9,10 @@ import {HeaderService} from "../../../../common/header/header.service";
     selector: 'app-petitiontypes-report',
     templateUrl: './type.component.html',
     styleUrls: ['./type.component.sass'],
-  providers: [ManageAccountPetitionStagesService]
+  providers: [ManageAccountPetitionStagesService, PetitionTypeReportService]
 })
 
-export class petitionstypesreportscomponent implements OnInit {
+export class PetitionTypeReportComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -23,7 +23,7 @@ export class petitionstypesreportscomponent implements OnInit {
     public selectedsubtype: any;
     public selectedsubtypeId: any;
     public petitionstageTypes: any = [];
-  constructor(public headerService: HeaderService, private petitionsTypesreportsservice: petitionstypesreportsservice,
+  constructor(public headerService: HeaderService, private petitionsTypesreportsservice: PetitionTypeReportService,
               private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
   ngOnInit() {
         this.immigrationViewPetitionsService.getPetitionTypes().subscribe(

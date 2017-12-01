@@ -1,24 +1,23 @@
-﻿import { AppService } from '../../../../../services/app.service';
-import { petitionsstatusreportsservice } from './status.service';
+﻿import {AppService} from '../../../../../services/app.service';
+import {PetitionsStatusReportsService} from './status.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HeaderService} from "../../../../common/header/header.service";
-
+import {HeaderService} from '../../../../common/header/header.service';
 
 
 @Component({
     selector: 'app-petitionstatus-report',
     templateUrl: './status.component.html',
-    styleUrls: ['./status.component.sass']
+    styleUrls: ['./status.component.sass'],
+  providers: [PetitionsStatusReportsService]
 })
 
-export class petitionsstatusreportscomponent implements OnInit {
+export class PetitionsStatusReportsComponent implements OnInit {
 
     public orgsList: any = {};
     public orgsNames: any = [];
     public open: any = [];
     public closed: any = [];
-  constructor(public appService: AppService, private petitionsStatusreportsservice: petitionsstatusreportsservice, public headerService: HeaderService) { }
+  constructor(public appService: AppService, private petitionsStatusreportsservice: PetitionsStatusReportsService, public headerService: HeaderService) { }
   ngOnInit() {
         this.headerService.showSideBarMenu("immiview-reports", "immiview-petitionreports");
 

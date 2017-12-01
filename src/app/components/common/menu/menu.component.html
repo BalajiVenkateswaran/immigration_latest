@@ -185,38 +185,38 @@
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immiview-reports'">
         <li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('immiview-petitionreports');highlightSBLink('immiview-petitionreports');submenuclick('immipetitionreports')" [ngClass]="[checkForCurrentSBLink('immiview-petitionreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appService.moveToPage('immigrationview/reports/petition/status');highlightSBLink('immiview-petitionreports');submenuclick('immipetitionreports')" [ngClass]="[checkForCurrentSBLink('immiview-petitionreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Petitions</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" *ngIf="immipetitionreports" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
-                    <a (click)="appService.moveToPage('immiview-petitionreports');highlightSBLink('immiview-petitionreports')" [ngClass]="[checkForCurrentSBLink('immiview-petitionreports') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/petition/status');highlightSBLink('immiview-petitionreports')" [ngClass]="[checkForCurrentSBLink('immiview-petitionreports') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Status</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('immiview-petiontypes');highlightSBLink('immiview-petiontypes')" [ngClass]="[checkForCurrentSBLink('immiview-petiontypes') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/petition/type');highlightSBLink('immiview-petiontypes')" [ngClass]="[checkForCurrentSBLink('immiview-petiontypes') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Types</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('immiview-petionstagereports');highlightSBLink('immiview-petionstagereports')" [ngClass]="[checkForCurrentSBLink('immiview-petionstagereports') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/petition/stage');highlightSBLink('immiview-petionstagereports')" [ngClass]="[checkForCurrentSBLink('immiview-petionstagereports') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Stage</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('petiton-finalaction');highlightSBLink('petiton-finalaction')" [ngClass]="[checkForCurrentSBLink('petiton-finalaction') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/petition/finalaction');highlightSBLink('petiton-finalaction')" [ngClass]="[checkForCurrentSBLink('petiton-finalaction') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Final Action</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('immiview-petiontagreports');highlightSBLink('immiview-petiontagreports')" [ngClass]="[checkForCurrentSBLink('immiview-petiontagreports') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/petition/tag');highlightSBLink('immiview-petiontagreports')" [ngClass]="[checkForCurrentSBLink('immiview-petiontagreports') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Tag</span>
                     </a>
@@ -230,20 +230,20 @@
             </ul>
         </li>
         <li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('immiview-clientstatusreports');highlightSBLink('immiview-clientstatusreports');submenuclick('immicilentreports')" [ngClass]="[checkForCurrentSBLink('immiview-clientstatusreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appService.moveToPage('immigrationview/reports/client/status');highlightSBLink('immiview-clientstatusreports');submenuclick('immicilentreports')" [ngClass]="[checkForCurrentSBLink('immiview-clientstatusreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Clients</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" *ngIf="immicilentreports" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
-                    <a (click)="appService.moveToPage('immiview-clientstatusreports');highlightSBLink('immiview-clientstatusreports')" [ngClass]="[checkForCurrentSBLink('immiview-clientstatusreports') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/client/status');highlightSBLink('immiview-clientstatusreports')" [ngClass]="[checkForCurrentSBLink('immiview-clientstatusreports') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Status</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('immiview-clientscreated');highlightSBLink('immiview-clientscreated')" [ngClass]="[checkForCurrentSBLink('immiview-clientscreated') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/client/created');highlightSBLink('immiview-clientscreated')" [ngClass]="[checkForCurrentSBLink('immiview-clientscreated') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Created</span>
                     </a>
@@ -251,20 +251,20 @@
             </ul>
         </li>
         <!--<li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('user-totalpetitions');highlightSBLink('user-totalpetitions');userpetiitonsclick()" [ngClass]="[checkForCurrentSBLink('user-totalpetitions') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appService.moveToPage('immigrationview/reports/user/totalpetitions');highlightSBLink('user-totalpetitions');userpetiitonsclick()" [ngClass]="[checkForCurrentSBLink('user-totalpetitions') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Users</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" *ngIf="immiuserreports" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
-                    <a (click)="appService.moveToPage('user-totalpetitions');highlightSBLink('user-totalpetitions')" [ngClass]="[checkForCurrentSBLink('user-totalpetitions') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/user/totalpetitions');highlightSBLink('user-totalpetitions')" [ngClass]="[checkForCurrentSBLink('user-totalpetitions') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Total Petitions</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('user-openpetitions');highlightSBLink('user-openpetitions')" [ngClass]="[checkForCurrentSBLink('user-openpetitions') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('immigrationview/reports/user/openpetitions');highlightSBLink('user-openpetitions')" [ngClass]="[checkForCurrentSBLink('user-openpetitions') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Open petitions</span>
                     </a>
@@ -280,25 +280,25 @@
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immiview-profilechangepwd');highlightSBLink('immiview-profilechangepwd');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profilechangepwd') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/profile/changepassword');highlightSBLink('immiview-profilechangepwd');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profilechangepwd') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Change Password</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immiview-profileTodo');highlightSBLink('immiview-profileTodo');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileTodo') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/profile/todo');highlightSBLink('immiview-profileTodo');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileTodo') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>TODO List</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immiview-profileswitch');highlightSBLink('immiview-profileswitch');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileswitch') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/profile/switch');highlightSBLink('immiview-profileswitch');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileswitch') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Switch</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immiview-profileloginhis');highlightSBLink('immiview-profileloginhis');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileloginhis') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/profile/loginhistory');highlightSBLink('immiview-profileloginhis');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileloginhis') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Login History</span>
             </a>

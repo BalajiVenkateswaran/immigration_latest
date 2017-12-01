@@ -1,4 +1,4 @@
-﻿import {usersopenpetitionservice} from './open-petitions.service';
+﻿import {UsersOpenPetitionService} from './open-petitions.service';
 import {Component, OnInit} from '@angular/core';
 import {HeaderService} from "../../../../common/header/header.service";
 import {AppService} from "../../../../../services/app.service";
@@ -6,9 +6,10 @@ import {AppService} from "../../../../../services/app.service";
 @Component({
     selector: 'app-useropenpetitons',
     templateUrl: './open-petitions.component.html',
-    styleUrls: ['./open-petitions.component.sass']
+    styleUrls: ['./open-petitions.component.sass'],
+  providers: [UsersOpenPetitionService]
 })
-export class useropenpetitioncomponent implements OnInit {
+export class UserOpenPetitionComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -17,7 +18,7 @@ export class useropenpetitioncomponent implements OnInit {
     public count: any = [];
     public username: any = [];
     public fullMonth: any = [];
-    constructor(public headerService: HeaderService, public appService: AppService, private usersOpenpetitionservice: usersopenpetitionservice) { }
+    constructor(public headerService: HeaderService, public appService: AppService, private usersOpenpetitionservice: UsersOpenPetitionService) { }
 
     ngOnInit() {
         this.usersOpenpetitionservice.getuseropenpetitions(this.headerService.user.accountId)

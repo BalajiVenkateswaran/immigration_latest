@@ -1,19 +1,18 @@
-﻿import { AppService } from '../../../../../services/app.service';
-import { petitionfinalactionservice } from './final-action.service';
+﻿import {PetitionFinalActionService} from './final-action.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
 
 @Component({
     selector: 'app-petitionfinalaction',
     templateUrl: './final-action.component.html',
-    styleUrls: ['./final-action.component.sass']
+    styleUrls: ['./final-action.component.sass'],
+  providers: [PetitionFinalActionService]
 })
 
-export class petitionfinalactioncomponent implements OnInit {
+export class PetitionFinalActionComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
-    public pieChartType: string = 'pie';
+    public pieChartType = 'pie';
     public orgsList: any = [];
     public orgsNames: any = [];
     public count: any = [];
@@ -23,14 +22,14 @@ export class petitionfinalactioncomponent implements OnInit {
             .subscribe((res) => {
                 console.log(res);
                 this.orgsList = res['orgs'];
-                for (var item in this.orgsList) {
+                for (let item in this.orgsList) {
                     this.count = [];
                     this.status = [];
                     this.orgsNames.push(item);
-                    for (var i = 0; i < this.orgsList[item].length; i++) {
+                    for (let i = 0; i < this.orgsList[item].length; i++) {
                         this.count.push(this.orgsList[item][i]['count']);
                         if (this.orgsList[item][i]['status'] == null) {
-                            this.orgsList[item][i]['status'] = "empty";
+                            this.orgsList[item][i]['status'] = 'empty';
                         }
                         this.status.push(this.orgsList[item][i]['status'])
                     }
@@ -40,7 +39,7 @@ export class petitionfinalactioncomponent implements OnInit {
             });
     }
 
-    constructor(public headerService: HeaderService, private petitionFinalactionservice: petitionfinalactionservice) { }
+    constructor(public headerService: HeaderService, private petitionFinalactionservice: PetitionFinalActionService) { }
     public chartClicked(e: any): void {
         console.log(e);
     }

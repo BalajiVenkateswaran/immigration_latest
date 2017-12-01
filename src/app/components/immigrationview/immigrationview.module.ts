@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {ClientsComponent} from './clients-tab/clients/clients.component';
-import {immigrationViewClientRoute, immigrationViewManageAccountRoute, immigrationViewOrganizationRoute, immigrationViewPetitionRoute, immigrationViewQuestionnaireRoute} from './immigrationview.route';
+import {
+  immigrationViewClientRoute, immigrationViewManageAccountRoute, immigrationViewOrganizationRoute, immigrationViewPetitionRoute, immigrationViewProfileRoute, immigrationViewQuestionnaireRoute,
+  immigrationViewReportsRoute
+} from './immigrationview.route';
 import {StatusButtonComponent} from './clients-tab/clients/statusButton';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -64,6 +67,21 @@ import {ManageAccountPreferencesComponent} from './manage-account-tab/preference
 import {ManageAccountShippingAddressComponent} from './manage-account-tab/shippingaddress/shippingaddress.component';
 import {ManageAccountUserComponent} from './manage-account-tab/user/user.component';
 import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-details/user-details.component';
+import {ProfileChangePwdComponent} from './profile-tab/changepassword/changepassword.component';
+import {ProfileLoginHisComponent} from './profile-tab/loginhistory/loginhistory.component';
+import {ProfileSwitchComponent} from './profile-tab/switch/switch.component';
+import {ProfileTodoListComponent} from './profile-tab/todolist/todolist.component';
+import {ProfileUserComponent} from './profile-tab/user/user.component';
+import {SwitchButtonComponent} from './profile-tab/switch/switchButton';
+import {ClientsCreatedReportsComponent} from './reports-tab/client/created/created.component';
+import {ClientStatusReportsComponent} from './reports-tab/client/status/status.component';
+import {PetitionFinalActionComponent} from './reports-tab/petition/final-action/final-action.component';
+import {PetitionStagesReportsComponent} from './reports-tab/petition/stages/stages.component';
+import {PetitionsStatusReportsComponent} from './reports-tab/petition/status/status.component';
+import {PetitionsTagsReportsComponent} from './reports-tab/petition/tags/tags.component';
+import {PetitionTypeReportComponent} from './reports-tab/petition/type/type.component';
+import {UserOpenPetitionComponent} from './reports-tab/user/open-petitions/open-petitions.component';
+import {UserTotalPetitionsComponent} from './reports-tab/user/total-petitions/total-petitions.component';
 
 @NgModule({
   imports: [
@@ -80,7 +98,9 @@ import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-detai
     immigrationViewPetitionRoute,
     immigrationViewQuestionnaireRoute,
     immigrationViewOrganizationRoute,
-    immigrationViewManageAccountRoute
+    immigrationViewManageAccountRoute,
+    immigrationViewProfileRoute,
+    immigrationViewReportsRoute
   ],
   declarations: [
     /*Immigration view components*/
@@ -112,7 +132,7 @@ import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-detai
 
     /*Questionnaire pages*/
     I129Page1Component,
-    //I129Page2Component,
+    // I129Page2Component,
     I129Page3Component,
     I129Page4Component,
     I129Page5Component,
@@ -122,7 +142,7 @@ import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-detai
     I129dcPage1Component,
     I129dcPage2Component,
     I129dcPage3Component,
-    //I129HPage1Component,
+    // I129HPage1Component,
     I129HPage2Component,
     I129HPage3Component,
     I129HPage4Component,
@@ -150,6 +170,31 @@ import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-detai
     ManageAccountUserComponent,
     ManageaccountUserDetailsComponent,
 
+
+    /*Profile tab*/
+    ProfileChangePwdComponent,
+    ProfileLoginHisComponent,
+    ProfileSwitchComponent, SwitchButtonComponent,
+    ProfileTodoListComponent,
+    ProfileUserComponent,
+
+    /*reports - START*/
+    /*client*/
+    ClientsCreatedReportsComponent,
+    ClientStatusReportsComponent,
+
+    /*petition*/
+    PetitionFinalActionComponent,
+    PetitionStagesReportsComponent,
+    PetitionsStatusReportsComponent,
+    PetitionsTagsReportsComponent,
+    PetitionTypeReportComponent,
+
+    /*user*/
+    UserOpenPetitionComponent,
+    UserTotalPetitionsComponent,
+
+    /*reports - END*/
   ]
 })
 export class ImmigrationViewModule {}

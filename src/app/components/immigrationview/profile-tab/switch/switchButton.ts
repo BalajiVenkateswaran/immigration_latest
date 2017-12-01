@@ -1,7 +1,6 @@
-import { AppService } from '../../../../services/app.service';
-import { ProfileSwitchService } from './switch.service';
-import { Component} from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular/main';
+import {AppService} from '../../../../services/app.service';
+import {Component} from '@angular/core';
+import {ICellRendererAngularComp} from 'ag-grid-angular/main';
 import {HeaderService} from '../../../common/header/header.service';
 import {ApplicationViews} from '../../../common/constants/applicationviews.constants';
 import {ApplicationRoles} from '../../../common/constants/applicationroles.constants';
@@ -17,7 +16,7 @@ import {ApplicationRoles} from '../../../common/constants/applicationroles.const
 export class SwitchButtonComponent implements ICellRendererAngularComp {
     public params: any;
  public switchdisable: boolean;
-  constructor(private profileSwitchservice: ProfileSwitchService, public appService: AppService, public headerService: HeaderService) {
+  constructor(public appService: AppService, public headerService: HeaderService) {
   }
   agInit(params: any): void {
         this.params = params;

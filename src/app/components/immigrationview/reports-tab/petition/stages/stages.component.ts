@@ -1,4 +1,4 @@
-﻿import {petitionstagesreportsservice} from './stages.service';
+﻿import {PetitionStagesReportsService} from './stages.service';
 import {Component, OnInit} from '@angular/core';
 import {HeaderService} from '../../../../common/header/header.service';
 import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/petitiontypestages/petitiontypestages.service';
@@ -8,10 +8,10 @@ import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/pe
     selector: 'app-petitionsages-report',
     templateUrl: './stages.component.html',
     styleUrls: ['./stages.component.sass'],
-  providers: [ManageAccountPetitionStagesService]
+  providers: [ManageAccountPetitionStagesService, PetitionStagesReportsService]
 })
 
-export class petitionstagesreportscomponent implements OnInit {
+export class PetitionStagesReportsComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';
@@ -23,7 +23,7 @@ export class petitionstagesreportscomponent implements OnInit {
     public selectedsubtype: string;
   public selectedsubtypeId: any;
     public petitionsubtypechange: any;
-    constructor(public headerService: HeaderService, private petitionStagesreportsservice: petitionstagesreportsservice, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
+    constructor(public headerService: HeaderService, private petitionStagesreportsservice: PetitionStagesReportsService, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
 
   ngOnInit() {
       this.immigrationViewPetitionsService.getPetitionTypes().subscribe(

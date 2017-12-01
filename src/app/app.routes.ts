@@ -29,14 +29,14 @@ import {accountDetailsPaymentsComponent} from './components/superuserview/accoun
 import {SuperuserviewAccountdetailsMfdComponent} from './components/superuserview/accounts-tab/account-details/mfd/mfd.component';
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
 // immigrationview reports
-import {petitionsstatusreportscomponent} from './components/immigrationview/reports-tab/petition/status/status.component';
-import {clientscreatedreportscomponent} from './components/immigrationview/reports-tab/client/created/created.component';
-import {usertotalpetitionscomponent} from './components/immigrationview/reports-tab/user/total-petitions/total-petitions.component';
-import {useropenpetitioncomponent} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.component';
-import {petitionfinalactioncomponent} from './components/immigrationview/reports-tab/petition/final-action/final-action.component';
+import {PetitionsStatusReportsComponent} from './components/immigrationview/reports-tab/petition/status/status.component';
+import {ClientsCreatedReportsComponent} from './components/immigrationview/reports-tab/client/created/created.component';
+import {UserTotalPetitionsComponent} from './components/immigrationview/reports-tab/user/total-petitions/total-petitions.component';
+import {UserOpenPetitionComponent} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.component';
+import {PetitionFinalActionComponent} from './components/immigrationview/reports-tab/petition/final-action/final-action.component';
 // profile
-import {profileusercomponent} from './components/immigrationview/profile-tab/user/user.component';
-import {profileloginhiscomponent} from './components/immigrationview/profile-tab/loginhistory/loginhistory.component';
+import {ProfileUserComponent} from './components/immigrationview/profile-tab/user/user.component';
+import {ProfileLoginHisComponent} from './components/immigrationview/profile-tab/loginhistory/loginhistory.component';
 import {ManageaccountUserDetailsComponent} from './components/immigrationview/manage-account-tab/user-details/user-details.component';
 // superuser reports
 import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
@@ -50,13 +50,13 @@ import {superuserstatsotgsReportsComponent} from './components/superuserview/rep
 import {I129Page2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
 
 
-import {profilechangepwdcomponent} from './components/immigrationview/profile-tab/changepassword/changepassword.component';
+import {ProfileChangePwdComponent} from './components/immigrationview/profile-tab/changepassword/changepassword.component';
 import {ProfileSwitchComponent} from './components/immigrationview/profile-tab/switch/switch.component';
-import {profiletodolistcomponent} from './components/immigrationview/profile-tab/todolist/todolist.component';
-import {petitionstagesreportscomponent} from './components/immigrationview/reports-tab/petition/stages/stages.component';
-import {petitionstagsreportscomponent} from './components/immigrationview/reports-tab/petition/tags/tags.component';
-import {petitionstypesreportscomponent} from './components/immigrationview/reports-tab/petition/type/type.component';
-import {clientstatusreportscomponent} from './components/immigrationview/reports-tab/client/status/status.component';
+import {ProfileTodoListComponent} from './components/immigrationview/profile-tab/todolist/todolist.component';
+import {PetitionStagesReportsComponent} from './components/immigrationview/reports-tab/petition/stages/stages.component';
+import {PetitionsTagsReportsComponent} from './components/immigrationview/reports-tab/petition/tags/tags.component';
+import {PetitionTypeReportComponent} from './components/immigrationview/reports-tab/petition/type/type.component';
+import {ClientStatusReportsComponent} from './components/immigrationview/reports-tab/client/status/status.component';
 import {SuperUserPetitionStageReportsComponent} from './components/superuserview/reports-tab/petitions/stage/stage.component';
 import {SuperUserH1BReportsComponent} from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
 import {SuperUserPetitionTagReportsComponent} from './components/superuserview/reports-tab/petitions/tag/tag.component';
@@ -204,62 +204,6 @@ export const appRoutes: Routes = [
     {
         path: 'accountdetails-mfd',
         component: SuperuserviewAccountdetailsMfdComponent,
-    },
-    {
-        path: 'immiview-petitionreports',
-        component: petitionsstatusreportscomponent
-    },
-    {
-        path: 'immiview-clientscreated',
-        component: clientscreatedreportscomponent
-    },
-    {
-        path: 'immiview-petiontypes',
-        component: petitionstypesreportscomponent
-    },
-    {
-        path: 'immiview-petionstagereports',
-        component: petitionstagesreportscomponent
-    },
-    {
-        path: 'immiview-petiontagreports',
-        component: petitionstagsreportscomponent
-    },
-    {
-        path: 'immiview-clientstatusreports',
-        component: clientstatusreportscomponent
-    },
-    {
-        path: 'immiview-profileuser',
-        component: profileusercomponent
-    },
-    {
-        path: 'immiview-profileloginhis',
-        component: profileloginhiscomponent
-    },
-    {
-        path: 'immiview-profileswitch',
-        component: ProfileSwitchComponent
-    },
-    {
-        path: 'immiview-profilechangepwd',
-        component: profilechangepwdcomponent
-    },
-    {
-        path: 'immiview-profileTodo',
-        component: profiletodolistcomponent
-    },
-    {
-        path: 'user-totalpetitions',
-        component: usertotalpetitionscomponent
-    },
-    {
-        path: 'user-openpetitions',
-        component: useropenpetitioncomponent
-    },
-    {
-        path: 'petiton-finalaction',
-        component: petitionfinalactioncomponent
     },
     {
         path: 'superuser-statsaccounts',

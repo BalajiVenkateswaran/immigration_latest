@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {APP_BASE_HREF, CurrencyPipe, DatePipe} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ChartsModule} from 'ng2-charts';
 import {NgIdleModule} from '@ng-idle/core';
 import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
 import {ActionColumns} from './components/framework/smarttable/ActionColumns';
@@ -75,25 +74,8 @@ import {ReportsCommonService} from './components/superuserview/reports-tab/commo
 import {profileCommonService} from './components/immigrationview/profile-tab/common/immigration-profile.service';
 import {InvoiceUploadButton} from './components/superuserview/accounts-tab/account-details/invoice/invoiceuploadbutton';
 // immigrationview reports tab
-import {petitionsstatusreportscomponent} from './components/immigrationview/reports-tab/petition/status/status.component';
-import {petitionsstatusreportsservice} from './components/immigrationview/reports-tab/petition/status/status.service';
 import {ActionIcons} from './components/framework/smarttable/cellRenderer/ActionsIcons';
-import {clientscreatedreportscomponent} from './components/immigrationview/reports-tab/client/created/created.component';
-import {usertotalpetitionscomponent} from './components/immigrationview/reports-tab/user/total-petitions/total-petitions.component';
-import {usertotalpetitionservice} from './components/immigrationview/reports-tab/user/total-petitions/total-petitions.service';
-
-import {useropenpetitioncomponent} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.component';
-import {usersopenpetitionservice} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.service';
-
-import {petitionfinalactioncomponent} from './components/immigrationview/reports-tab/petition/final-action/final-action.component';
 // immiviewprofiletab
-import {profileusercomponent} from './components/immigrationview/profile-tab/user/user.component';
-import {profileuserservice} from './components/immigrationview/profile-tab/user/user.service';
-import {profileloginhiscomponent} from './components/immigrationview/profile-tab/loginhistory/loginhistory.component';
-import {profilechangepwdcomponent} from './components/immigrationview/profile-tab/changepassword/changepassword.component';
-import {ManageaccountUserDetailsComponent} from './components/immigrationview/manage-account-tab/user-details/user-details.component';
-import {ManageAccountUserDetailsService} from './components/immigrationview/manage-account-tab/user-details/user-details.service';
-import {ManageAccountUserService} from './components/immigrationview/manage-account-tab/user/user.service';
 // superuser reports tab
 import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
 import {statsaccountsservice} from './components/superuserview/reports-tab/stats/accounts/accounts.service';
@@ -116,28 +98,12 @@ import {superuserstatspetitionReportsComponent} from './components/superuserview
 import {SuperUserstatpetitonReportsService} from './components/superuserview/reports-tab/stats/petitions/petitions.service';
 import {SuperUserMonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
 import {SuperUsermonthlyReportsService} from './components/superuserview/reports-tab/payments/monthly/monthly.service';
-import {profilechangepwdservice} from './components/immigrationview/profile-tab/changepassword/changepassword.service';
-import {profileloginhisservice} from './components/immigrationview/profile-tab/loginhistory/loginhistory.service';
-import {ProfileSwitchComponent} from './components/immigrationview/profile-tab/switch/switch.component';
-import {ProfileSwitchService} from './components/immigrationview/profile-tab/switch/switch.service';
-import {SwitchButtonComponent} from './components/immigrationview/profile-tab/switch/switchButton';
-import {profiletodolistcomponent} from './components/immigrationview/profile-tab/todolist/todolist.component';
-import {profiletodolistservice} from './components/immigrationview/profile-tab/todolist/todolist.service';
-import {clientscreatedreportsservice} from './components/immigrationview/reports-tab/client/created/created.service';
-import {petitionstagesreportscomponent} from './components/immigrationview/reports-tab/petition/stages/stages.component';
-import {petitionstagesreportsservice} from './components/immigrationview/reports-tab/petition/stages/stages.service';
-import {petitionstagsreportscomponent} from './components/immigrationview/reports-tab/petition/tags/tags.component';
-import {petitionstagsreportsservice} from './components/immigrationview/reports-tab/petition/tags/tags.service';
-import {petitionstypesreportscomponent} from './components/immigrationview/reports-tab/petition/type/type.component';
-import {petitionstypesreportsservice} from './components/immigrationview/reports-tab/petition/type/type.service';
 import {AngularDraggableModule} from 'angular2-draggable';
 import {AccountDetailsPaymentsService} from './components/superuserview/accounts-tab/account-details/payments/payments.service';
 import {SuperuserViewAccountpreferencessService} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.service';
 import {AccountDetailsCommonService} from './components/superuserview/accounts-tab/account-details/common/account-details-common.service';
 import {SuperUserViewMFDService} from './components/superuserview/accounts-tab/account-details/mfd/mfd.service';
 import {accountDetailsPaymentsComponent} from './components/superuserview/accounts-tab/account-details/payments/payments.component';
-import {clientstatusreportscomponent} from './components/immigrationview/reports-tab/client/status/status.component';
-import {clientstatusreportsservice} from './components/immigrationview/reports-tab/client/status/status.service';
 import {SuperUserPetitionStagesReportsService} from './components/superuserview/reports-tab/petitions/stage/stage.service';
 import {SuperUserPetitionsStatusReportsService} from './components/superuserview/reports-tab/petitions/status/status.service';
 import {SuperUserH1BReportsComponent} from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
@@ -150,7 +116,6 @@ import {ProductCatalogDiscountService} from './components/superuserview/product-
 import {HeaderService} from './components/common/header/header.service';
 
 import {QuestionnaireCommonService} from './components/immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
-import {petitionfinalactionservice} from './components/immigrationview/reports-tab/petition/final-action/final-action.service';
 import {SuperUserClientStatusReportsComponent} from './components/superuserview/reports-tab/clients/status/status.component';
 import {SuperUserViewInvoicestabComponent} from './components/superuserview/invoices-tab/invoices.component';
 import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
@@ -171,11 +136,7 @@ import {MatDatepickerModule, MatInputModule, MatNativeDateModule, MatSelectModul
 import {InformationComponent} from './components/framework/confirmbox/information.component';
 import {ImmigrationClientCommonService} from './components/immigrationview/clients-tab/client-details/common/immigration-client.service';
 import {AppSharedModule} from './shared/app.shared.module';
-// PDF Pages for testing only
 
-// superusersview
-
-// Website components Here
 
 @NgModule({
     imports: [
@@ -186,7 +147,7 @@ import {AppSharedModule} from './shared/app.shared.module';
         BrowserAnimationsModule,
         BrowserModule,
         AngularDraggableModule,
-        ChartsModule,
+
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
@@ -196,14 +157,14 @@ import {AppSharedModule} from './shared/app.shared.module';
       NgIdleModule.forRoot()],
     entryComponents: [
         ConfirmComponent, InformationComponent, ConfirmorgComponent, ActionColumns,
-         RequestButton, MoreDetails, SwitchButtonComponent,
+         RequestButton, MoreDetails,
         ActionIcons, InvoicedownloadButton, InvoiceUploadButton, FilterComponent
     ],
     declarations: [
         CategoryPipe,
 
         // pdf page components imported above which is for testing only
-        ActionIcons,  RequestButton, MoreDetails, SwitchButtonComponent, InvoicedownloadButton,
+        ActionIcons,  RequestButton, MoreDetails, InvoicedownloadButton,
         InvoiceUploadButton,
         AppComponent,
         HeaderComponent,
@@ -262,22 +223,10 @@ import {AppSharedModule} from './shared/app.shared.module';
         superuserstatspetitionReportsComponent,
         SuperUserMonthlyReportsComponent,
         // reports
-        petitionsstatusreportscomponent,
-        clientscreatedreportscomponent,
-        petitionstypesreportscomponent,
-        petitionstagesreportscomponent,
-        petitionstagsreportscomponent,
-        clientstatusreportscomponent,
-        usertotalpetitionscomponent,
-        useropenpetitioncomponent,
-        petitionfinalactioncomponent,
+
 
         // profile
-        profileusercomponent,
-        profileloginhiscomponent,
-        ProfileSwitchComponent,
-        profilechangepwdcomponent,
-        profiletodolistcomponent,
+
         SuperuserviewAccountdetailsMfdComponent,
         DemoRequestDetailsComponent,
         miscsuperusersComponent,
@@ -331,25 +280,10 @@ import {AppSharedModule} from './shared/app.shared.module';
         AccountDetailsCommonService,
         profileCommonService,
         // reports
-        petitionsstatusreportsservice,
-        clientscreatedreportsservice,
-        petitionstypesreportsservice,
-        petitionstagesreportsservice,
-        clientstatusreportsservice,
-        petitionstagsreportsservice,
-        usertotalpetitionservice,
-        usersopenpetitionservice,
-        petitionfinalactionservice,
         SuperUserstatorgsReportsService,
         SuperUserstatclientsReportsService,
         SuperUserstatpetitonReportsService,
         SuperUsermonthlyReportsService,
-        // profile
-        profileuserservice,
-        profileloginhisservice,
-        ProfileSwitchService,
-        profilechangepwdservice,
-        profiletodolistservice,
         // superuserreports
         statsaccountsservice,
         SuperUserPetitionsStatusReportsService,

@@ -1,32 +1,33 @@
 ﻿import {AppService} from '../../../../services/app.service';
 import { HeaderService } from '../../../common/header/header.service';
-import {profileuserservice} from './user.service';
+import {ProfileUserService} from './user.service';
 import {Component, OnInit} from '@angular/core';
 
 
 @Component({
   selector: 'app-profileuser',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.sass']
+  styleUrls: ['./user.component.sass'],
+  providers: [ProfileUserService]
 })
 
-export class profileusercomponent implements OnInit {
+export class ProfileUserComponent implements OnInit {
   public userInfo: any = {};
   public defaultorg: any;
-  public isUserEdit: boolean = true;
+  public isUserEdit = true;
   public warningMessage: boolean;
   public beforeCancelUserInfo: any = {};
-  public isUserorgEdit: boolean = true;
+  public isUserorgEdit = true;
   public orgdisable: boolean;
   public beforeCancelorgid: any;
   public selectedorg: any = {};
-  public showdefaultorg: boolean = true;
-  constructor(public appService: AppService, private profileUserservice: profileuserservice, public headerService: HeaderService) {}
+  public showdefaultorg = true;
+  constructor(public appService: AppService, private profileUserservice: ProfileUserService, public headerService: HeaderService) {}
   ngOnInit() {
-    if (this.headerService.organizations == undefined) {
+    if (this.headerService.organizations === undefined) {
       this.showdefaultorg = false;
     }
-    this.headerService.showSideBarMenu("immiview-profuser", "immiview-profileuser");
+    this.headerService.showSideBarMenu('immiview-profuser', 'immiview-profileuser');
     this.profileUserservice.getUserInfo(this.headerService.user.userId)
       .subscribe((res) => {
         console.log(res);
@@ -37,8 +38,8 @@ export class profileusercomponent implements OnInit {
     this.profileUserservice.getDefaultOrg(this.headerService.user.accountId, this.headerService.user.userId)
       .subscribe((res) => {
         console.log(res);
-        if (res['statusCode'] == "SUCCESS") {
-          if(res['userDefaultOrg'] != null && res['userDefaultOrg'] != undefined){
+        if (res['statusCode'] == 'SUCCESS') {
+          if (res['userDefaultOrg'] != null && res['userDefaultOrg'] != undefined) {
             this.defaultorg = res['userDefaultOrg']['orgId'];
           }
         }
@@ -60,8 +61,8 @@ export class profileusercomponent implements OnInit {
     this.selectedorg = selorg;
   }
   saveDefaultorg() {
-    var data = {"accountId": this.selectedorg.accountId, "creationDate": this.selectedorg.creationDate, "lastUpdate": this.selectedorg.lastUpdate,
-      "orgId": this.selectedorg.orgId, "userId": this.headerService.user.userId};
+    let data = {'accountId': this.selectedorg.accountId, 'creationDate': this.selectedorg.creationDate, 'lastUpdate': this.selectedorg.lastUpdate,
+      'orgId': this.selectedorg.orgId, 'userId': this.headerService.user.userId};
     this.profileUserservice.setDefaultOrg(data)
       .subscribe((res) => {
         console.log(res);
@@ -84,15 +85,14 @@ export class profileusercomponent implements OnInit {
       || this.userInfo['lastName'] == '' || this.userInfo['lastName'] == null || this.userInfo['lastName'] == undefined
       || this.userInfo['emailId'] == '' || this.userInfo['emailId'] == null || this.userInfo['emailId'] == undefined) {
       this.warningMessage = true;
-    }
-    else {
+    } else {
       this.warningMessage = false;
       this.isUserEdit = true;
       this.userInfo['accountId'] = this.headerService.user.userId;
       this.userInfo['role'] = this.headerService.user.roleName;
       this.userInfo['userId'] = this.headerService.user.userId;
       this.profileUserservice.updateUser(this.userInfo).subscribe((res) => {
-        if (res['statusCode'] == "SUCCESS") {
+        if (res['statusCode'] == 'SUCCESS') {
           console.log(res);
         }
       });

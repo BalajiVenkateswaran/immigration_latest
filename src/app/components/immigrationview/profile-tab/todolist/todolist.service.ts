@@ -1,21 +1,20 @@
-﻿import { RestService } from '../../../../services/rest.service';
-import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
+﻿import {RestService} from '../../../../services/rest.service';
+import {Injectable} from '@angular/core';
 
 @Injectable()
-export class profiletodolistservice {
+export class ProfileTodoListService {
 
     constructor(private restService: RestService) {
 
     }
     public addTodo(data: any) {
-        var req = {"userTodoList":data}
-        return this.restService.postData("/profile/user/todoList/", req);
+        let req = {'userTodoList': data}
+        return this.restService.postData('/profile/user/todoList/', req);
     }
     public getTodos(userid: string) {
-        return this.restService.getData("/profile/user/todoList/" + userid);
+        return this.restService.getData('/profile/user/todoList/' + userid);
     }
     public deleteTodos(todoid: string) {
-        return this.restService.deleteData("/profile/user/todoList/" + todoid);
+        return this.restService.deleteData('/profile/user/todoList/' + todoid);
     }
 }

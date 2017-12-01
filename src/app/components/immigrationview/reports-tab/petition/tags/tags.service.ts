@@ -1,18 +1,17 @@
-﻿import { RestService } from '../../../../../services/rest.service';
-import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
+﻿import {RestService} from '../../../../../services/rest.service';
+import {Injectable} from '@angular/core';
 
 @Injectable()
-export class petitionstagsreportsservice {
+export class PetitionsTagsReportsService {
 
     constructor(private restService: RestService) {
 
     }
     public getpetitonTagsreports(accountId: string) {
-        console.log("petiontypereportsreports|getstatus|", accountId);
-        return this.restService.getData("/immigration/account/" + accountId + "/petition/tag");
+        console.log('petiontypereportsreports|getstatus|', accountId);
+        return this.restService.getData('/immigration/account/' + accountId + '/petition/tag');
     }
     public getpetitonstags(accountId: string) {
-        return this.restService.getData("/immigration/getTags/" + accountId );
+        return this.restService.getData('/immigration/getTags/' + accountId );
     }
 }

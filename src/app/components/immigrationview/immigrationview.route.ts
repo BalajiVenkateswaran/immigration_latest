@@ -52,6 +52,20 @@ import {ManageAccountPreferencesComponent} from './manage-account-tab/preference
 import {ManageAccountShippingAddressComponent} from './manage-account-tab/shippingaddress/shippingaddress.component';
 import {ManageAccountUserComponent} from './manage-account-tab/user/user.component';
 import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-details/user-details.component';
+import {ProfileChangePwdComponent} from './profile-tab/changepassword/changepassword.component';
+import {ProfileLoginHisComponent} from './profile-tab/loginhistory/loginhistory.component';
+import {ProfileSwitchComponent} from './profile-tab/switch/switch.component';
+import {ProfileTodoListComponent} from './profile-tab/todolist/todolist.component';
+import {ProfileUserComponent} from './profile-tab/user/user.component';
+import {ClientsCreatedReportsComponent} from './reports-tab/client/created/created.component';
+import {ClientStatusReportsComponent} from './reports-tab/client/status/status.component';
+import {PetitionFinalActionComponent} from './reports-tab/petition/final-action/final-action.component';
+import {PetitionStagesReportsComponent} from './reports-tab/petition/stages/stages.component';
+import {PetitionsStatusReportsComponent} from './reports-tab/petition/status/status.component';
+import {PetitionsTagsReportsComponent} from './reports-tab/petition/tags/tags.component';
+import {PetitionTypeReportComponent} from './reports-tab/petition/type/type.component';
+import {UserOpenPetitionComponent} from './reports-tab/user/open-petitions/open-petitions.component';
+import {UserTotalPetitionsComponent} from './reports-tab/user/total-petitions/total-petitions.component';
 
 const IMMIGRATION_VIEW_CLIENT_ROUTER: Routes = [
   {
@@ -278,14 +292,81 @@ const IMMIGRATION_VIEW_MANAGE_ACCOUNT_ROUTER: Routes = [
   {
     path: 'manageaccount/user-details',
     component: ManageaccountUserDetailsComponent
+  }
+];
+
+const IMMIGRATION_VIEW_PROFILE_ROUTER: Routes = [
+  {
+    path: 'profile/changepassword',
+    component: ProfileChangePwdComponent
+  },
+  {
+    path: 'profile/loginhistory',
+    component: ProfileLoginHisComponent
+  },
+  {
+    path: 'profile/switch',
+    component: ProfileSwitchComponent
+  },
+  {
+    path: 'profile/todo',
+    component: ProfileTodoListComponent
+  },
+  {
+    path: 'profile/user',
+    component: ProfileUserComponent
+  },
+];
+
+const IMMIGRATION_VIEW_REPORTS_ROUTER: Routes = [
+  /*client*/
+  {
+    path: 'reports/client/created',
+    component: ClientsCreatedReportsComponent
+  },
+  {
+    path: 'reports/client/status',
+    component: ClientStatusReportsComponent
   },
 
+  /*petition*/
+  {
+    path: 'reports/petition/finalaction',
+    component: PetitionFinalActionComponent
+  },
+  {
+    path: 'reports/petition/stage',
+    component: PetitionStagesReportsComponent
+  },
+  {
+    path: 'reports/petition/status',
+    component: PetitionsStatusReportsComponent
+  },
+  {
+    path: 'reports/petition/tag',
+    component: PetitionsTagsReportsComponent
+  },
+  {
+    path: 'reports/petition/type',
+    component: PetitionTypeReportComponent
+  },
 
-
+  /*user*/
+  {
+    path: 'reports/user/openpetitions',
+    component: UserOpenPetitionComponent
+  },
+  {
+    path: 'reports/user/totalpetitions',
+    component: UserTotalPetitionsComponent
+  },
 ];
+
 
 export const immigrationViewClientRoute = RouterModule.forChild(IMMIGRATION_VIEW_CLIENT_ROUTER);
 export const immigrationViewPetitionRoute = RouterModule.forChild(IMMIGRATION_VIEW_PETITION_ROUTER);
 export const immigrationViewQuestionnaireRoute = RouterModule.forChild(IMMIGRATION_VIEW_QUESTIONNAIRE_ROUTER);
 export const immigrationViewOrganizationRoute = RouterModule.forChild(IMMIGRATION_VIEW_ORGANIZATION_ROUTER);
 export const immigrationViewManageAccountRoute = RouterModule.forChild(IMMIGRATION_VIEW_MANAGE_ACCOUNT_ROUTER);
+export const immigrationViewProfileRoute = RouterModule.forChild(IMMIGRATION_VIEW_PROFILE_ROUTER);
+export const immigrationViewReportsRoute = RouterModule.forChild(IMMIGRATION_VIEW_REPORTS_ROUTER);

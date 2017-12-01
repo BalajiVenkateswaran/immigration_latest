@@ -1,50 +1,47 @@
 ﻿import {AppService} from '../../../../../services/app.service';
-import {clientstatusreportsservice} from './status.service';
+import {ClientStatusReportsService} from './status.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
 
 
 @Component({
   selector: 'app-petitiontags-report',
   templateUrl: './status.component.html',
-  styleUrls: ['./status.component.sass']
+  styleUrls: ['./status.component.sass'],
+  providers: [ClientStatusReportsService]
 })
 
-export class clientstatusreportscomponent implements OnInit {
+export class ClientStatusReportsComponent implements OnInit {
     public orgsList: any = {};
     public orgsNames: any = [];
     public open: any = [];
     public closed: any = [];
-  constructor(public appService: AppService, private clientStatusreportsservice: clientstatusreportsservice, public headerService: HeaderService) {}
+  constructor(public appService: AppService, private clientStatusreportsservice: ClientStatusReportsService, public headerService: HeaderService) {}
   ngOnInit() {
     this.clientStatusreportsservice.getclientstatusreports(this.headerService.user.accountId)
       .subscribe((res) => {
         console.log(res);
         this.barChartData = [];
         this.orgsList = res['orgs'];
-        for (var item in this.orgsList) {
+        for (let item in this.orgsList) {
             this.barChartLabels.push(item);
-            for (var i = 0; i < this.orgsList[item].length; i++) {
-                if (this.orgsList[item].length == "2") {
-                    if (this.orgsList[item][i].status == "Active") {
+            for (let i = 0; i < this.orgsList[item].length; i++) {
+                if (this.orgsList[item].length == '2') {
+                    if (this.orgsList[item][i].status == 'Active') {
                         this.open.push(this.orgsList[item][i]['count']);
                     }
-                    if (this.orgsList[item][i].status == "Inactive") {
+                    if (this.orgsList[item][i].status == 'Inactive') {
                         this.closed.push(this.orgsList[item][i]['count']);
                     }
-                }
-                else {
-                    if (this.orgsList[item][i].status == "Active") {
+                } else {
+                    if (this.orgsList[item][i].status == 'Active') {
                         this.open.push(this.orgsList[item][i]['count']);
-                    }
-                    else {
+                    } else {
                         this.open.push(0);
                     }
-                    if (this.orgsList[item][i].status == "Inactive") {
+                    if (this.orgsList[item][i].status == 'Inactive') {
                         this.closed.push(this.orgsList[item][i]['count']);
-                    }
-                    else {
+                    } else {
                         this.closed.push(0);
                     }
                 }
@@ -68,7 +65,7 @@ export class clientstatusreportscomponent implements OnInit {
       }
   };
   public barChartLabels = [];
-  public barChartLegend: boolean = true;
+  public barChartLegend = true;
   public chartClicked(e: any): void {
     console.log(e);
   }

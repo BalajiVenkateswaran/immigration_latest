@@ -1,57 +1,58 @@
-﻿import {AppService} from '../../../../services/app.service';
-import {profileloginhisservice} from './loginhistory.service';
+﻿import {ProfileLoginHisService} from './loginhistory.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HeaderService} from "../../../common/header/header.service";
-import {SortType} from "../../../framework/smarttable/types/query-parameters";
+import {HeaderService} from '../../../common/header/header.service';
+import {SortType} from '../../../framework/smarttable/types/query-parameters';
+import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
 @Component({
   selector: 'app-profileloginhistory',
   templateUrl: './loginhistory.component.html',
-  styleUrls: ['./loginhistory.component.sass']
+  styleUrls: ['./loginhistory.component.sass'],
+  providers: [ProfileLoginHisService],
+  entryComponents: [SmartTableFrameworkComponent]
 })
 
-export class profileloginhiscomponent implements OnInit {
+export class ProfileLoginHisComponent implements OnInit {
   public loginHistory: any = {};
   public userInfo: any = {};
   public settings;
   public data;
   public paginationData;
   public queryParameters;
-  constructor(public headerService: HeaderService, private profileLoginhisservice: profileloginhisservice) {
+  constructor(public headerService: HeaderService, private profileLoginhisservice: ProfileLoginHisService) {
 
     this.settings = {
-      "isAddButtonEnable": false,
-      "isDeleteEnable": false,
+      'isAddButtonEnable': false,
+      'isDeleteEnable': false,
       'customPanel': true,
       'sort' : [{
-        headingName: "loginDate",
+        headingName: 'loginDate',
         sort: SortType.DESC
       }],
       'columnsettings': [
         {
-          headerName: "Date",
-          field: "loginDate"
+          headerName: 'Date',
+          field: 'loginDate'
         },
         {
-          headerName: "Time",
-          field: "loginTime"
+          headerName: 'Time',
+          field: 'loginTime'
         },
         {
-          headerName: "IP Address",
-          field: "ipAddress"
+          headerName: 'IP Address',
+          field: 'ipAddress'
         },
         {
-          headerName: "Location",
-          field: "location"
+          headerName: 'Location',
+          field: 'location'
         },
         {
-          headerName: "Role",
-          field: "role"
+          headerName: 'Role',
+          field: 'role'
         },
         {
-          headerName: "Account",
-          field: "accountName"
+          headerName: 'Account',
+          field: 'accountName'
         }
       ]
     };
@@ -63,8 +64,8 @@ export class profileloginhiscomponent implements OnInit {
 
 
   dataWithParameters(queryData) {
-    if(queryData){
-      this.queryParameters=queryData
+    if (queryData) {
+      this.queryParameters = queryData
     }
 
     if (this.headerService.user && this.headerService.user.userId && queryData) {
@@ -73,8 +74,8 @@ export class profileloginhiscomponent implements OnInit {
           console.log(res);
           if (res['userLoginHistory']) {
             this.data = res['userLoginHistory'];
-            for (var i = 0; i < this.data.length; i++) {
-              this.data[i]['accountName'] = this.headerService.user.firstName.concat(" " + this.headerService.user.lastName);
+            for (let i = 0; i < this.data.length; i++) {
+              this.data[i]['accountName'] = this.headerService.user.firstName.concat(' ' + this.headerService.user.lastName);
             }
           }
           this.paginationData = res['pageMetadata'];

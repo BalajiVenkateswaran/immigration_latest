@@ -1,14 +1,13 @@
-﻿import { RestService } from '../../../../services/rest.service';
-import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
+﻿import {RestService} from '../../../../services/rest.service';
+import {Injectable} from '@angular/core';
 
 @Injectable()
-export class profilechangepwdservice {
+export class ProfileChangePwdService {
 
     constructor(private restService: RestService) {
 
     }
     public updatePassword(req: any) {
-        return this.restService.postData("/user/updatePassword", req);
+        return this.restService.postData('/user/updatePassword', req);
     }
 }
