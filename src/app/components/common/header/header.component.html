@@ -139,16 +139,16 @@
                   </div>
                   <ul *ngIf="appService.isImmigrationView()" id="MainMenuListItems">
                       <li *ngIf="!headerService.isDelegatedOrg()" >
-                          <a (click)="appService.moveToPage('immigrationview/tab/clients'); highlightTab('clients');"
-                             [ngClass]="[checkForCurrentTab('clients') ? 'active': '']"
+                          <a (click)="appService.moveToPage(getImmigrationViewClientsTabPath()); highlightTab(getImmigrationViewClientsTabPath());"
+                             [ngClass]="[checkForCurrentTab(getImmigrationViewClientsTabPath()) ? 'active': '']"
                              routerLinkActive="active" style="height:20px;width:43px;">
                               <img src="../../../../assets/images/Clients.png" />
                               <div class="clearfix"></div> <span> Clients</span>
                           </a>
                       </li>
                       <li *ngIf="appService.isImmigrationView() || headerService.isDelegatedOrg()">
-                          <a (click)="appService.moveToPage('immigrationview/tab/petitions'); highlightTab('petitions');"
-                             [ngClass]="[checkForCurrentTab('petitions') ? 'active': '']"
+                          <a (click)="appService.moveToPage('immigrationview/tab/petitions'); highlightTab('immigrationview/tab/petitions');"
+                             [ngClass]="[checkForCurrentTab('immigrationview/tab/petitions') ? 'active': '']"
                              routerLinkActive="active" style="height:20px;width:56px;">
                               <img src="../../../../assets/images/Pettions.png" />
 
@@ -245,7 +245,7 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
+                          <a (click)="appService.moveToPage('immigrationview/profile/user'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
                              [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
                              routerLinkActive="active">
                               <!--<span class="maintab-Profile"></span>-->
@@ -312,7 +312,7 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('immiview-profileuser'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
+                          <a (click)="appService.moveToPage('immigrationview/profile/user'); highlightTab('immiview-profileuser');highlightSBLink('immiview-profileuser');"
                              [ngClass]="[checkForCurrentTab('immiview-profileuser') ? 'active' : '']"
                              routerLinkActive="active">
                               <span class="maintab-Profile"></span>

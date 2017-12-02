@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientsService } from './clients.service';
 import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import {SortType} from '../../../framework/smarttable/types/query-parameters';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ImmigrationClientCommonService} from '../client-details/common/immigration-client.service';
 import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
@@ -43,7 +43,9 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public newclitem: any = {};
   public warningMessage = false;
   public settings;
-
+  public queryParams: any;
+  public data;
+  public paginationData;
 
   // More filter popup variables
   public openPetitions: string;
@@ -55,7 +57,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   private orgId: string;
   public statusTypes: any = [];
 
-  constructor(private router: Router, private clientService: ClientsService, private appService: AppService,
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private clientService: ClientsService, private appService: AppService,
     public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService, private immigrationClientCommonService: ImmigrationClientCommonService) {
     super(dialogService);
@@ -147,6 +149,13 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     ngOnInit() {
       this.headerService.showSideBarMenu(null, 'clients');
       this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
+
+      this.activatedRoute.params.subscribe(params => {
+        this.paginationData = undefined;
+        this.data = undefined;
+        this.dataWithParameters('?size=15&page=0&filter=status:Active&sort=lastUpdate,DESC');
+      });
+
     }
     filteradd() {
         console.log('Filter Add');
@@ -169,10 +178,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             if (isConfirmed) {
                 this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
                     if (res['statusCode'] === 'SUCCESS') {
-                        this.clientService.getClients(this.clientService.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
+                        this.clientService.getClients(this.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
                             (res1) => {
-                                this.clientService.data = res1['clients'];
-                                this.clientService.paginationData = res1['pageMetadata'];
+                                this.data = res1['clients'];
+                                this.paginationData = res1['pageMetadata'];
                             }
                         )
                     } else {
@@ -254,5 +263,19 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         this.immigrationClientCommonService.userId = event.data.userId;
         this.appService.clientId = event.data.clientId;
     }
+
+
+  public dataWithParameters(queryData: string) {
+    if (queryData) {
+      this.queryParams = queryData;
+    }
+    if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId'] && queryData) {
+      this.clientService.getClientsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
+        res => {
+          this.data = res['clients'];
+          this.paginationData = res['pageMetadata'];
+        })
+    }
+  }
 
 }

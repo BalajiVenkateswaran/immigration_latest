@@ -138,7 +138,7 @@ export class HeaderService {
 
 
   getLandingPagePath(userRole: string): string {
-    if (userRole === ApplicationRoles.IMMIGRATION_MANAGER || userRole === ApplicationRoles.IMMIGRATION_OFFICER){
+    if (userRole === ApplicationRoles.IMMIGRATION_MANAGER || userRole === ApplicationRoles.IMMIGRATION_OFFICER) {
       return 'immigrationview/tab/clients';
     } else if (userRole === ApplicationRoles.CLIENT) {
       return 'clientview-petitions';

@@ -29,15 +29,7 @@ import {accountDetailsPaymentsComponent} from './components/superuserview/accoun
 import {SuperuserviewAccountdetailsMfdComponent} from './components/superuserview/accounts-tab/account-details/mfd/mfd.component';
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
 // immigrationview reports
-import {PetitionsStatusReportsComponent} from './components/immigrationview/reports-tab/petition/status/status.component';
-import {ClientsCreatedReportsComponent} from './components/immigrationview/reports-tab/client/created/created.component';
-import {UserTotalPetitionsComponent} from './components/immigrationview/reports-tab/user/total-petitions/total-petitions.component';
-import {UserOpenPetitionComponent} from './components/immigrationview/reports-tab/user/open-petitions/open-petitions.component';
-import {PetitionFinalActionComponent} from './components/immigrationview/reports-tab/petition/final-action/final-action.component';
 // profile
-import {ProfileUserComponent} from './components/immigrationview/profile-tab/user/user.component';
-import {ProfileLoginHisComponent} from './components/immigrationview/profile-tab/loginhistory/loginhistory.component';
-import {ManageaccountUserDetailsComponent} from './components/immigrationview/manage-account-tab/user-details/user-details.component';
 // superuser reports
 import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
 import {SuperUserPetitionsStatusReportsComponent} from './components/superuserview/reports-tab/petitions/status/status.component';
@@ -48,15 +40,6 @@ import {SuperUserOpenPetitionComponent} from './components/superuserview/reports
 import {superuserstatsotgsReportsComponent} from './components/superuserview/reports-tab/stats/orgs/orgs.component';
 // PDF Pages I-129
 import {I129Page2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
-
-
-import {ProfileChangePwdComponent} from './components/immigrationview/profile-tab/changepassword/changepassword.component';
-import {ProfileSwitchComponent} from './components/immigrationview/profile-tab/switch/switch.component';
-import {ProfileTodoListComponent} from './components/immigrationview/profile-tab/todolist/todolist.component';
-import {PetitionStagesReportsComponent} from './components/immigrationview/reports-tab/petition/stages/stages.component';
-import {PetitionsTagsReportsComponent} from './components/immigrationview/reports-tab/petition/tags/tags.component';
-import {PetitionTypeReportComponent} from './components/immigrationview/reports-tab/petition/type/type.component';
-import {ClientStatusReportsComponent} from './components/immigrationview/reports-tab/client/status/status.component';
 import {SuperUserPetitionStageReportsComponent} from './components/superuserview/reports-tab/petitions/stage/stage.component';
 import {SuperUserH1BReportsComponent} from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
 import {SuperUserPetitionTagReportsComponent} from './components/superuserview/reports-tab/petitions/tag/tag.component';

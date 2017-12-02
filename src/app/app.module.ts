@@ -75,7 +75,6 @@ import {profileCommonService} from './components/immigrationview/profile-tab/com
 import {InvoiceUploadButton} from './components/superuserview/accounts-tab/account-details/invoice/invoiceuploadbutton';
 // immigrationview reports tab
 import {ActionIcons} from './components/framework/smarttable/cellRenderer/ActionsIcons';
-// immiviewprofiletab
 // superuser reports tab
 import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
 import {statsaccountsservice} from './components/superuserview/reports-tab/stats/accounts/accounts.service';
@@ -127,10 +126,7 @@ import {MiscSuperUsersService} from './components/superuserview/misc-tab/superus
 import {HomeComponent} from './components/common/website/home/home.component';
 import {HeaderComponentService} from './components/common/header/header.component.service';
 import {FilterComponent} from './components/framework/smarttable/filter/filter.component';
-
 import {CategoryPipe} from './components/framework/pipes/pipes';
-
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatInputModule, MatNativeDateModule, MatSelectModule} from '@angular/material';
 import {InformationComponent} from './components/framework/confirmbox/information.component';
