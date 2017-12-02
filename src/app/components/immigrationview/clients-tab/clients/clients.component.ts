@@ -1,13 +1,13 @@
-import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
-import { HeaderService } from '../../../common/header/header.service';
-import { MenuComponent } from '../../../common/menu/menu.component';
+import {AppService} from '../../../../services/app.service';
+import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
+import {HeaderService} from '../../../common/header/header.service';
+import {MenuComponent} from '../../../common/menu/menu.component';
 import {StatusButtonComponent} from './statusButton';
-import { Component, OnInit } from '@angular/core';
-import { ClientsService } from './clients.service';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+import {Component, OnInit} from '@angular/core';
+import {ClientsService} from './clients.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {SortType} from '../../../framework/smarttable/types/query-parameters';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {ImmigrationClientCommonService} from '../client-details/common/immigration-client.service';
 import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
 
@@ -54,7 +54,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   private orgId: string;
   public statusTypes: any = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private clientService: ClientsService, private appService: AppService,
+  constructor(private router: Router, private clientService: ClientsService, private appService: AppService,
     public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService, private immigrationClientCommonService: ImmigrationClientCommonService) {
     super(dialogService);
@@ -142,7 +142,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   }
 
     ngOnInit() {
-      this.headerService.showSideBarMenu(null, 'clients');
+      this.headerService.showSideBarMenu(null, 'immigrationview/tab/clients');
       this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
     filteradd() {
