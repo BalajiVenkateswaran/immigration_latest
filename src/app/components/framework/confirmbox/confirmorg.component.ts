@@ -32,8 +32,7 @@ export interface ConfirmModel {
                    </ul>
                    </div>
                  </div>
-                </div>`,
-  providers: [ClientsService]
+                </div>`
 })
 export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
     title: string;

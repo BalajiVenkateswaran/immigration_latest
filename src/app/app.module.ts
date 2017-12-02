@@ -136,6 +136,7 @@ import {MatDatepickerModule, MatInputModule, MatNativeDateModule, MatSelectModul
 import {InformationComponent} from './components/framework/confirmbox/information.component';
 import {ImmigrationClientCommonService} from './components/immigrationview/clients-tab/client-details/common/immigration-client.service';
 import {AppSharedModule} from './shared/app.shared.module';
+import {ClientsService} from './components/immigrationview/clients-tab/clients/clients.service';
 
 
 @NgModule({
@@ -237,6 +238,7 @@ import {AppSharedModule} from './shared/app.shared.module';
         { provide: APP_BASE_HREF, useValue: '/' },
         DatePipe,
         HeaderService,
+        ClientsService,
         HeaderComponentService,
         CurrencyPipe,
         RestService,
