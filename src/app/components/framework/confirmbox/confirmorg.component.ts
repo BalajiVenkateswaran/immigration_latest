@@ -39,12 +39,13 @@ export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> 
     message: string;
     organizations: any = {};
   public searchText;
-    constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService) {
+    constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService, private clientsService: ClientsService) {
         super(dialogService);
     }
     changeOrgName(org: Organizations) {
         this.headerService.selectedOrg = org;
-        this.appService.moveToPage('immigrationview/tab/clients/' + this.headerService.selectedOrg['orgId']);
+        this.clientsService.dataWithParameters('?size=15&page=0&filter=status:Active&sort=lastUpdate,DESC');
+        this.appService.moveToPage('immigrationview/tab/clients');
         this.close();
     }
 }

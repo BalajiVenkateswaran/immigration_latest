@@ -7,10 +7,10 @@
             <div class="table-data">
                 <ih-smart-table class="immiviewClientsTable"
                              [settings]="settings"
-                             [data]="data"
-                             [paginationData]="paginationData"
+                             [data]="clientService.data"
+                             [paginationData]="clientService.paginationData"
                              (onRowClick)="onUserRowClick($event)"
-                             (dataWithQueryParams)="dataWithParameters($event)"
+                             (dataWithQueryParams)="clientService.dataWithParameters($event)"
                              (onAddClick)="addNewCli()"></ih-smart-table>
               <div class="clearfix"></div>
             </div>

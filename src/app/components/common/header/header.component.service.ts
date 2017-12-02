@@ -41,7 +41,7 @@ export class HeaderComponentService {
         } else {
           this.headerService.selectedOrg = {'displayName' : ''};
         }
-        this.appService.moveToPage(moveToPage + this.headerService.selectedOrg['orgId']);
+        this.appService.moveToPage(moveToPage);
       });
     } else {
       this.appService.moveToPage(moveToPage);

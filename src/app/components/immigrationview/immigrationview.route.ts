@@ -69,7 +69,7 @@ import {UserTotalPetitionsComponent} from './reports-tab/user/total-petitions/to
 
 const IMMIGRATION_VIEW_CLIENT_ROUTER: Routes = [
   {
-    path: 'tab/clients/:orgId',
+    path: 'tab/clients',
     component: ClientsComponent
   },
   {

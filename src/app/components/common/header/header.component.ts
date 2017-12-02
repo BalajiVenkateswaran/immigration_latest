@@ -129,7 +129,6 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   }
 
   public getImmigrationViewClientsTabPath() {
-    return this.headerService.selectedOrg !== null && this.headerService.selectedOrg['orgId'] != null ?
-      'immigrationview/tab/clients/' + this.headerService.selectedOrg['orgId'] : 'immigrationview/tab/clients/';
+    return 'immigrationview/tab/clients';
   }
 }

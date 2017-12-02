@@ -43,9 +43,6 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public newclitem: any = {};
   public warningMessage = false;
   public settings;
-  public queryParams: any;
-  public data;
-  public paginationData;
 
   // More filter popup variables
   public openPetitions: string;
@@ -74,88 +71,79 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       }
     ];
 
-        this.settings = {
-            'columnFilter': false,
-            'isDeleteEnable': false,
-            'customPanel': true,
-            'isAddFilterButtonEnable': true,
-          'isMorefilters': true,
-            'defaultFilter': [{
-                headingName: 'status',
-                headerName: 'Status',
-                filterValue: 'Active'
-            }
-            ],
-            filter: {
-                quick: [
-                    {
-                        headerName: 'Status',
-                        field: 'status',
-                        values: [
-                            { alias: 'Active', value: 'Active' },
-                            { alias: 'Inactive', value: 'Inactive' }
-                        ]
-                    }
-                ]
-            },
-            'sort': [{
-                headingName: 'lastUpdate',
-                sort: SortType.DESC
-            }],
-            'columnsettings': [
-                {
-                    headerName: 'First Name',
-                    field: 'firstName',
-                    type: 'text'
-                },
-                {
-                    headerName: 'Last Name',
-                    field: 'lastName',
-                    type: 'text'
-                },
-                {
-                    headerName: 'Email Address',
-                    field: 'email',
-                    type: 'text'
-                },
-                {
-                    headerName: 'Phone',
-                    field: 'phone',
-                    type: 'text'
-                },
+  this.settings = {
+        'columnFilter': false,
+        'isDeleteEnable': false,
+        'customPanel': true,
+        'isAddFilterButtonEnable': true,
+        'isMorefilters': true,
+        'defaultFilter': [{
+            headingName: 'status',
+            headerName: 'Status',
+            filterValue: 'Active'
+        }
+        ],
+        filter: {
+            quick: [
                 {
                     headerName: 'Status',
                     field: 'status',
-                    cellRendererFramework: StatusButtonComponent,
-                    type: 'dropDown',
-                    data: this.statusTypes
-                },
-                {
-                  headerName: 'Last Update',
-                  field: 'lastUpdate'
-                },
-                {
-                    headerName: 'Petitions',
-                    field: 'openPetitions',
-                    headerTooltip: 'Open/Total Petitions',
-                    type: 'text'
+                    values: [
+                        { alias: 'Active', value: 'Active' },
+                        { alias: 'Inactive', value: 'Inactive' }
+                    ]
                 }
             ]
-
-        }
-    }
-
+        },
+        'sort': [{
+            headingName: 'lastUpdate',
+            sort: SortType.DESC
+        }],
+        'columnsettings': [
+            {
+                headerName: 'First Name',
+                field: 'firstName',
+                type: 'text'
+            },
+            {
+                headerName: 'Last Name',
+                field: 'lastName',
+                type: 'text'
+            },
+            {
+                headerName: 'Email Address',
+                field: 'email',
+                type: 'text'
+            },
+            {
+                headerName: 'Phone',
+                field: 'phone',
+                type: 'text'
+            },
+            {
+                headerName: 'Status',
+                field: 'status',
+                cellRendererFramework: StatusButtonComponent,
+                type: 'dropDown',
+                data: this.statusTypes
+            },
+            {
+              headerName: 'Last Update',
+              field: 'lastUpdate'
+            },
+            {
+                headerName: 'Petitions',
+                field: 'openPetitions',
+                headerTooltip: 'Open/Total Petitions',
+                type: 'text'
+            }
+        ]
+      };
+  }
 
     ngOnInit() {
       this.headerService.showSideBarMenu(null, 'clients');
       this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
-
-      this.activatedRoute.params.subscribe(params => {
-        this.paginationData = undefined;
-        this.data = undefined;
-        this.dataWithParameters('?size=15&page=0&filter=status:Active&sort=lastUpdate,DESC');
-      });
-
     }
     filteradd() {
         console.log('Filter Add');
@@ -178,10 +166,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             if (isConfirmed) {
                 this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
                     if (res['statusCode'] === 'SUCCESS') {
-                        this.clientService.getClients(this.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
+                        this.clientService.getClients(this.clientService.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
                             (res1) => {
-                                this.data = res1['clients'];
-                                this.paginationData = res1['pageMetadata'];
+                                this.clientService.data = res1['clients'];
+                                this.clientService.paginationData = res1['pageMetadata'];
                             }
                         )
                     } else {
@@ -228,15 +216,12 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             this.result = true;
             this.close();
         }
-
-
     }
+
     cancel() {
         this.result = false;
         this.close();
     }
-
-
 
     onDeleteConfirm(clients) {
         this.clientName = clients.data.firstName;
@@ -263,19 +248,4 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         this.immigrationClientCommonService.userId = event.data.userId;
         this.appService.clientId = event.data.clientId;
     }
-
-
-  public dataWithParameters(queryData: string) {
-    if (queryData) {
-      this.queryParams = queryData;
-    }
-    if (this.headerService.selectedOrg && this.headerService.selectedOrg['orgId'] && queryData) {
-      this.clientService.getClientsWithQueryParams(this.headerService.selectedOrg['orgId'], queryData).subscribe(
-        res => {
-          this.data = res['clients'];
-          this.paginationData = res['pageMetadata'];
-        })
-    }
-  }
-
 }
