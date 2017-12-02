@@ -44,7 +44,7 @@ export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> 
     }
     changeOrgName(org: Organizations) {
         this.headerService.selectedOrg = org;
-        this.appService.moveToPage('immigrationview/tab/clients');
+        this.appService.moveToPage('immigrationview/tab/clients/' + this.headerService.selectedOrg['orgId']);
         this.close();
     }
 }
