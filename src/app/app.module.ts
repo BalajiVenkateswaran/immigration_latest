@@ -234,7 +234,6 @@ import {ClientsService} from './components/immigrationview/clients-tab/clients/c
         { provide: APP_BASE_HREF, useValue: '/' },
         DatePipe,
         HeaderService,
-        ClientsService,
         HeaderComponentService,
         CurrencyPipe,
         RestService,
@@ -295,7 +294,8 @@ import {ClientsService} from './components/immigrationview/clients-tab/clients/c
         SuperUsersOpenPetitionService,
         MiscSuperUsersService,
         Demorequestdetailsservice,
-        SmartTableService
+        SmartTableService,
+        ClientsService
     ],
     bootstrap: [AppComponent]
 })
