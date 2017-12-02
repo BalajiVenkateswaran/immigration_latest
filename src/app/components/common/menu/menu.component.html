@@ -274,7 +274,7 @@
     </ul>
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immiview-profuser'">
         <li>
-            <a (click)="appService.moveToPage('immiview-profileuser');highlightSBLink('immiview-profileuser');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileuser') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/profile/user');highlightSBLink('immiview-profileuser');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileuser') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>User</span>
             </a>

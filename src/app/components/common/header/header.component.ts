@@ -52,7 +52,7 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
     return this.headerService.currentTab === tab;
   }
   constructor(private router: Router, public appService: AppService, public dialogService: DialogService,
-              public headerService: HeaderService, public headerComponentService: HeaderComponentService,private idle: Idle) {
+              public headerService: HeaderService, public headerComponentService: HeaderComponentService, private idle: Idle) {
     super(dialogService);
     //code for no activity for 20 mins
 
@@ -126,5 +126,10 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
     let moveToPage = this.headerService.getLandingPagePath(this.headerService.user.roleName);
     this.appService.moveToPage(moveToPage);
     this.highlightTab(moveToPage);
+  }
+
+  public getImmigrationViewClientsTabPath() {
+    return this.headerService.selectedOrg !== null && this.headerService.selectedOrg['orgId'] != null ?
+      'immigrationview/tab/clients/' + this.headerService.selectedOrg['orgId'] : 'immigrationview/tab/clients/';
   }
 }

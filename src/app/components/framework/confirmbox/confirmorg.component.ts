@@ -1,10 +1,10 @@
-﻿import { Organizations } from '../../../models/organization';
-import { AppService } from '../../../services/app.service';
-import { HeaderService } from '../../common/header/header.service';
-import { Component } from '@angular/core';
-import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
+﻿import {Organizations} from '../../../models/organization';
+import {AppService} from '../../../services/app.service';
+import {HeaderService} from '../../common/header/header.service';
+import {Component} from '@angular/core';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {ClientsService} from '../../immigrationview/clients-tab/clients/clients.service';
-import { CategoryPipe } from '../pipes/pipes';
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -32,21 +32,19 @@ export interface ConfirmModel {
                    </ul>
                    </div>
                  </div>
-                </div>`,
-  providers: [ClientsService]
+                </div>`
 })
 export class ConfirmorgComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
     title: string;
     message: string;
     organizations: any = {};
   public searchText;
-    constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService, private clientsService: ClientsService) {
+    constructor(dialogService: DialogService, public headerService: HeaderService, public appService: AppService) {
         super(dialogService);
     }
     changeOrgName(org: Organizations) {
         this.headerService.selectedOrg = org;
-        this.clientsService.dataWithParameters('?size=15&page=0&filter=status:Active&sort=lastUpdate,DESC');
-        this.appService.moveToPage('immigrationview/tab/clients');
+        this.appService.moveToPage('immigrationview/tab/clients/' + this.headerService.selectedOrg['orgId']);
         this.close();
     }
 }

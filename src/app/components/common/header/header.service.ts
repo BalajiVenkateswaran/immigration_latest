@@ -138,8 +138,8 @@ export class HeaderService {
 
 
   getLandingPagePath(userRole: string): string {
-    if (userRole === ApplicationRoles.IMMIGRATION_MANAGER || userRole === ApplicationRoles.IMMIGRATION_OFFICER){
-      return 'immigrationview/tab/clients';
+    if (userRole === ApplicationRoles.IMMIGRATION_MANAGER || userRole === ApplicationRoles.IMMIGRATION_OFFICER) {
+      return 'immigrationview/tab/clients/';
     } else if (userRole === ApplicationRoles.CLIENT) {
       return 'clientview-petitions';
     } else if (userRole === ApplicationRoles.SUPER_USER) {
