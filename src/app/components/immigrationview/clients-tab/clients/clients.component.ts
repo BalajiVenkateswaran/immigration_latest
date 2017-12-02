@@ -23,6 +23,7 @@ export interface ConfirmModel {
   selector: 'ih-immigrationview-clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.sass'],
+  providers: [ClientsService],
   entryComponents: [SmartTableFrameworkComponent, StatusButtonComponent]
 })
 export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {

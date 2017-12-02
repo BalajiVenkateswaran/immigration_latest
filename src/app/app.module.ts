@@ -295,7 +295,7 @@ import {ClientsService} from './components/immigrationview/clients-tab/clients/c
         MiscSuperUsersService,
         Demorequestdetailsservice,
         SmartTableService,
-        ClientsService
+
     ],
     bootstrap: [AppComponent]
 })
