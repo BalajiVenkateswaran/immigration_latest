@@ -12,7 +12,6 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {I129HPage1Component} from '../components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
 import {I129Page2Component} from '../components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
 import {ChartsModule} from 'ng2-charts';
-import {ClientsService} from '../components/immigrationview/clients-tab/clients/clients.service';
 
 @NgModule({
   imports: [
