@@ -51,7 +51,7 @@
                                         <h3>Petition Docs</h3> <div class="clearfix"></div>
                                         <div class="scrollpurpus">
                                             <div class="chkbox" *ngFor="let y of petitiondocList; let yindex = index;">
-                                                <input #petitioncheckBox [checked]="checkIfDocSelected(y)" type="checkbox" (change)="onDocSelection(y, petitioncheckBox)" name="{{y.fileName}}" id="{{y.fileId}}" /><label for="{{y.fileId}}">{{(yindex + 1) + '. ' + y.fileName}}</label>
+                                                <input #petitioncheckBox [checked]="checkIfDocSelected(y)" type="checkbox" (change)="onDocSelection(y, petitioncheckBox)" name="{{y.fileName}}" id="{{y.fileId}}" /><label  class="docName" for="{{y.fileId}}">{{(yindex + 1) + '. ' + y.fileName}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                         <div class="clearfix"></div>
                                         <div class="scrollpurpus">
                                             <div class="chkbox" *ngFor="let z of clientdocList; let zindex = index">
-                                                <input #clientcheckBox [checked]="checkIfDocSelected(z)" type="checkbox" (change)="onDocSelection(z, clientcheckBox)" name="{{z.fileName}}" id="{{z.fileId}}" /><label for="{{z.fileId}}">{{(zindex + 1) + '. ' + z.fileName}}</label>
+                                                <input #clientcheckBox [checked]="checkIfDocSelected(z)" type="checkbox" (change)="onDocSelection(z, clientcheckBox)" name="{{z.fileName}}" id="{{z.fileId}}" /><label class="docName" for="{{z.fileId}}">{{(zindex + 1) + '. ' + z.fileName}}</label>
                                             </div>
                                         </div>
                                     </div>
