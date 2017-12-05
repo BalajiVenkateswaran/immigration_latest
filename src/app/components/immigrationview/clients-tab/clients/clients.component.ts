@@ -58,7 +58,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
     public dialogService: DialogService, private menuComponent: MenuComponent,
     private headerService: HeaderService, private immigrationClientCommonService: ImmigrationClientCommonService) {
     super(dialogService);
-      console.log('Clients component constructor');
+    console.log('Clients component constructor');
 
     this.statusTypes = [
       {
@@ -71,74 +71,74 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       }
     ];
 
-  this.settings = {
-        'columnFilter': false,
-        'isDeleteEnable': false,
-        'customPanel': true,
-        'isAddFilterButtonEnable': true,
-        'isMorefilters': true,
-        'defaultFilter': [{
-            headingName: 'status',
-            headerName: 'Status',
-            filterValue: 'Active'
-        }
-        ],
-        filter: {
-            quick: [
-                {
-                    headerName: 'Status',
-                    field: 'status',
-                    values: [
-                        { alias: 'Active', value: 'Active' },
-                        { alias: 'Inactive', value: 'Inactive' }
-                    ]
-                }
-            ]
-        },
-        'sort': [{
-            headingName: 'lastUpdate',
-            sort: SortType.DESC
-        }],
-        'columnsettings': [
-            {
-                headerName: 'First Name',
-                field: 'firstName',
-                type: 'text'
-            },
-            {
-                headerName: 'Last Name',
-                field: 'lastName',
-                type: 'text'
-            },
-            {
-                headerName: 'Email Address',
-                field: 'email',
-                type: 'text'
-            },
-            {
-                headerName: 'Phone',
-                field: 'phone',
-                type: 'text'
-            },
-            {
-                headerName: 'Status',
-                field: 'status',
-                cellRendererFramework: StatusButtonComponent,
-                type: 'dropDown',
-                data: this.statusTypes
-            },
-            {
-              headerName: 'Last Update',
-              field: 'lastUpdate'
-            },
-            {
-                headerName: 'Petitions',
-                field: 'openPetitions',
-                headerTooltip: 'Open/Total Petitions',
-                type: 'text'
-            }
-        ]
-      };
+    this.settings = {
+      'columnFilter': false,
+      'isDeleteEnable': false,
+      'customPanel': true,
+      'isAddFilterButtonEnable': true,
+      'isMorefilters': true,
+      'defaultFilter': [{
+          headingName: 'status',
+          headerName: 'Status',
+          filterValue: 'Active'
+      }
+      ],
+      filter: {
+          quick: [
+              {
+                  headerName: 'Status',
+                  field: 'status',
+                  values: [
+                      { alias: 'Active', value: 'Active' },
+                      { alias: 'Inactive', value: 'Inactive' }
+                  ]
+              }
+          ]
+      },
+      'sort': [{
+          headingName: 'lastUpdate',
+          sort: SortType.DESC
+      }],
+      'columnsettings': [
+          {
+              headerName: 'First Name',
+              field: 'firstName',
+              type: 'text'
+          },
+          {
+              headerName: 'Last Name',
+              field: 'lastName',
+              type: 'text'
+          },
+          {
+              headerName: 'Email Address',
+              field: 'email',
+              type: 'text'
+          },
+          {
+              headerName: 'Phone',
+              field: 'phone',
+              type: 'text'
+          },
+          {
+              headerName: 'Status',
+              field: 'status',
+              cellRendererFramework: StatusButtonComponent,
+              type: 'dropDown',
+              data: this.statusTypes
+          },
+          {
+            headerName: 'Last Update',
+            field: 'lastUpdate'
+          },
+          {
+              headerName: 'Petitions',
+              field: 'openPetitions',
+              headerTooltip: 'Open/Total Petitions',
+              type: 'text'
+          }
+      ]
+    };
   }
 
     ngOnInit() {
