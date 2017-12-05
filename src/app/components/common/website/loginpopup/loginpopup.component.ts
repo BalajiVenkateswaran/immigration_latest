@@ -96,7 +96,7 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
           title: 'Information',
           message: 'Password reset information is sent to ' + email
         }).subscribe((isConfirmed) => {
-          this.appService.moveToPage('login');
+          this.appService.moveToPage('');
         });
       } else {
         this.dialogService.addDialog(ConfirmComponent, {
@@ -216,7 +216,7 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
   multiRolepopupClose() {
     this.appService.destroy(true);
     this.close();
-    this.appService.moveToPage('login');
+    this.appService.moveToPage('');
 
   }
 }

@@ -5,6 +5,10 @@ const WEBSITE_ROUTER: Routes = [
   {
     path: '',
     component: WebsiteComponent
+  },
+  {
+    path: 'login',
+    component: WebsiteComponent
   }
 ]
 

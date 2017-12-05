@@ -53,13 +53,13 @@ export class RolesPopupComponent extends DialogComponent<ConfirmModel, boolean> 
     this.result = true;
     this.headerService.user['roleName'] = userdet.roleName;
     let moveToPage = '';
-    if (userdet.roleName === 'Client') {
+    if (userdet.roleName === ApplicationRoles.CLIENT) {
       this.appService.applicationViewMode = ApplicationViews.CLIENT_VIEW;
       this.appService.clientId = this.headerService.user.userId;
       this.headerService.currentTab = 'clientview-petitions';
       moveToPage = 'clientview-petitions';
     }
-    if (userdet.roleName === 'Immigration Manager' || userdet.roleName === 'Immigration Officer') {
+    if (userdet.roleName === ApplicationRoles.IMMIGRATION_MANAGER || userdet.roleName === ApplicationRoles.IMMIGRATION_OFFICER) {
       this.appService.applicationViewMode = ApplicationViews.IMMIGRATION_VIEW;
       this.headerService.currentTab = 'immigrationview/tab/clients';
       moveToPage = 'immigrationview/tab/clients';
@@ -94,9 +94,4 @@ export class RolesPopupComponent extends DialogComponent<ConfirmModel, boolean> 
     return user.accountName == null ? user.roleName : user.roleName + ' in ' + user.accountName;
   }
 
-  multiRolepopupClose() {
-    this.appService.destroy(true);
-    this.close();
-    this.appService.moveToPage('login');
-  }
 }
