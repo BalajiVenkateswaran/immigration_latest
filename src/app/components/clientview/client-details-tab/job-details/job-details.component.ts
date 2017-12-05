@@ -23,14 +23,14 @@ export class JobDetailsComponent implements OnInit {
     private formControlValues: any = {};
     private message: string;
     isjobdetailsEdit;
-    private jobinDetail: any = {};
+    public jobinDetail: any = {};
     private hireDate: string;
     private internationalHireDate: string;
-    private rehireDate: string;
+    public rehireDate: string;
     private lastDayWorkedDate: string;
-    private terminationDate: string;
+    public terminationDate: string;
     private beforeCancelJobDetails;
-    private myDatePickerOptions: IMyOptions = {
+    public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
