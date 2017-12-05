@@ -3,7 +3,6 @@
     <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
     <h1 style="float:right;">{{appService.petitionDetails}}</h1>
     <div class="clearfix"></div>-->
-    <div class="row">
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-4">
@@ -18,9 +17,9 @@
       <div class="col-md-12">
         <div class="col-md-12 addresbox box-shadow clientview-ques129h">
           <div *ngIf="appService.isImmigrationView()">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: 2%;">
               <div class="row">
-                <div class="col-md-4">Name of the Petitioner</div>
+                <div class="col-md-4"><b>1.</b>Name of the Petitioner</div>
                 <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.petitonerName"/></div>
               </div>
             </div>
@@ -31,7 +30,7 @@
           </div>
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-4">Name of the Beneficiary</div>
+              <div class="col-md-4"><b>2.a.</b>Name of the Beneficiary</div>
               <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.beneficiaryName"/></div>
             </div>
           </div>
@@ -41,13 +40,13 @@
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-md-4">Provide the total number of beneficiaries</div>
+                <div class="col-md-4"><b>2.b.</b>Provide the total number of beneficiaries</div>
                 <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.totalNumberOfBeneficiaries"/></div>
               </div>
             </div>
           </div>
           <div class="col-md-12">
-            <p>List each beneficiary's prior periods of stay in H or L classification in the United States for the last
+            <p><b>3.</b>List each beneficiary's prior periods of stay in H or L classification in the United States for the last
               six years (beneficiaries requesting H-2A or H-2B classification need only list the last three years). Be
               sure to only list those periods in which each beneficiary was actually in the United States in an H or L
               classification. Do not include periods in which the beneficiary was in a dependent status, for example,
@@ -164,7 +163,7 @@
           </div>
           <div *ngIf="appService.isImmigrationView()">
             <div class="col-md-12">
-              <p class="fieldsetheading">Classification sought (select only one box)</p>
+              <p class="fieldsetheading"><b>4.</b>Classification sought (select only one box)</p>
             </div>
             <div class="col-md-12">
               <div class="row" *ngFor="let x of I129Hpage1Sought">
@@ -173,7 +172,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-8">Are you filing this petition on behalf of a beneficiary subject to the Guam-CNMI
+                <div class="col-md-8"><b>5.</b>Are you filing this petition on behalf of a beneficiary subject to the Guam-CNMI
                   cap
                   exemption under Public Law 110-229?
                 </div>
@@ -188,7 +187,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-8">Are you requesting a change of employer and was the beneficiary previously subject
+                <div class="col-md-8"><b>6.</b>Are you requesting a change of employer and was the beneficiary previously subject
                   to the Guam-CNMI cap exemption under Public Law 110-229?
                 </div>
                 <div class="col-md-4">
@@ -202,7 +201,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-8">Does any beneficiary in this petition have ownership interest in the petitioning
+                <div class="col-md-8"><b>7.a.</b>Does any beneficiary in this petition have ownership interest in the petitioning
                   organization?
                 </div>
                 <div class="col-md-4">
@@ -222,6 +221,5 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>

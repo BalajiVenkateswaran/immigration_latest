@@ -1,6 +1,5 @@
 <div class="main-content">
   <div class="table-data">
-    <div class="row">
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-4">
@@ -16,40 +15,41 @@
       <div *ngIf="appService.isImmigrationView()" style="width:100%;">
         <div class="col-md-12">
           <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-            <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-12" style="margin-top: 1%;">
                 <div class="row">
-                  <div class="col-md-12">Explanation</div>
+                  <div class="col-md-12"><b>7.b.</b>Explanation</div>
                   <div class="col-md-12"><textarea style="height:120px" [(ngModel)]="I129Hpage2.explanation"></textarea>
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
-        <div class="col-md-12">
-          <h2>Complete This Section If Filing for H-1B Classification</h2>
+        <div class="col-md-12 Questionnaireheader">
+          <h2><b>Section 1.</b>Complete This Section If Filing for H-1B Classification</h2>
         </div>
       </div>
       <div class="col-md-12">
         <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-          <div class="row">
-            <div class="col-md-12">
+          
+            <div class="col-md-12" style="margin-top: 1%;">
               <div class="row">
-                <div class="col-md-12">Describe the proposed duties</div>
+                <div class="col-md-12"><b>1.</b>Describe the proposed duties</div>
                 <div class="col-md-12"><textarea style="height:120px"
                                                  [(ngModel)]="I129Hpage2.proposedDutiess"></textarea></div>
               </div>
             </div>
             <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-12">Describe the beneficiary's present occupation and summary of prior work
-                  experience.
+                <div class="row">
+                    <div class="col-md-12">
+                        <b>2.</b>Describe the beneficiary's present occupation and summary of prior work
+                        experience.
+                    </div>
+                    <div class="col-md-12">
+                        <textarea style="height:120px"
+                                  [(ngModel)]="I129Hpage2.summaryOfWorkExp"></textarea>
+                    </div>
                 </div>
-                <div class="col-md-12"><textarea style="height:120px"
-                                                 [(ngModel)]="I129Hpage2.summaryOfWorkExp"></textarea></div>
-              </div>
-            </div>
+                </div>
 
             <div *ngIf="appService.isImmigrationView()" class="row no-marg">
               <div class="col-md-12">
@@ -143,17 +143,15 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <div *ngIf="appService.isImmigrationView()" style="width:100%;">
-        <div class="col-md-12">
-          <h2>Complete This Section If Filing for H-2A or H-2B Classification</h2>
+        <div class="col-md-12 Questionnaireheader">
+          <h2 ><b>Section.2.</b>Complete This Section If Filing for H-2A or H-2B Classification</h2>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" style="margin-top: 1%;">
           <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-            <div class="row">
-              <div class="col-md-12">Employment is: (select only one box)</div>
+              <div class="col-md-12"><b>1.</b>Employment is: (select <b>only one</b> box)</div>
               <div class="col-md-12">
               <div class="row">
                 <div class="col-md-3" *ngFor="let x of I129Hpage2Employment">
@@ -163,7 +161,7 @@
               </div>
            <div class="col-md-12">
             <div class="row">
-              <div class="col-md-12">Temporary need is: (select only one box)</div>
+              <div class="col-md-12"><b>2.</b>Temporary need is: (select <b>only one</b> box)</div>
 
                 <div class="col-md-3" *ngFor="let x of I129Hpage2TemporaryNeed">
                   <input type="radio" name="temporaryneed" [value]="x.value" [(ngModel)]="I129Hpage2.temporaryNeed">{{x.display}}
@@ -171,10 +169,8 @@
 
             </div>
             </div>
-             </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
