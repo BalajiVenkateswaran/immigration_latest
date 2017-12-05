@@ -7,10 +7,10 @@
     box-shadow: 0px 0px 5px #ddd!important;
 }
 </style>
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="!editFiles">
     <h2 class="headerinsections" style="font-size: 18px!important;color: #4EA0F9 !important;">Document</h2>
-    <div class="dropzone">        
-        <div class="col-md-6 well-lg">            
+    <div class="dropzone">
+        <div class="col-md-6 well-lg">
             <!--<h4 style="color:#232F3F!important;margin-top: 0px!important;">Uploaded Files</h4>-->
             <table class="table">
                 <thead>
@@ -21,20 +21,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let pdf of getFiles; let fileNo = index" (Click)="editFileName($event)">
+                    <tr *ngFor="let pdf of getFiles; let fileNo = index">
                         <td style="text-overflow: ellipsis !important;max-width: 150px !important;overflow: hidden;"title="{{ (fileNo+1) + '. ' + pdf.fileName }}">{{ (fileNo+1) + '. ' + pdf.fileName }}</td>
                         <td>{{ pdf.updatedDate }}</td>
                         <td nowrap>
-                            <button title="Download" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
-                                <i class="fa fa-download" aria-hidden="true"></i>
-                            </button>
-                            <div class="fileUpload">
-                                <div>
-                                    <i class="fa fa-files-o" aria-hidden="true"></i>
-                                </div>
-                                <input type="file" #fileInput (change)="onReplaceClick($event, pdf)" class="upload" name="file" />
+                          <button title="Edit" type="button" class="btn btn-success btn-xs" (click)="editFileName(pdf)">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                          </button>
+                          <button title="Download" type="button" class="btn btn-success btn-xs" (click)="onDownloadClick(pdf)">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                          </button>
+                          <div class="fileUpload">
+                            <div>
+                              <i class="fa fa-files-o" aria-hidden="true"></i>
                             </div>
-                            <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
+                            <input type="file" #fileInput (change)="onReplaceClick($event, pdf)" class="upload" name="file" />
+                          </div>
+                          <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </td>

@@ -206,45 +206,42 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         });
         FileSaver.saveAs(blob, fileName);
     }
-    editFileName(event) {
-        this.selectedindex = event.rowIndex;
-        if (event.colDef.headerName != 'Actions') {
-            this.editFileObject.fileName = FileUtils.getFileName(event.data.fileName);
-            this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
-                editFiles: true,
-                getData: false,
-                title: 'Edit File Name',
-                editFileObject: this.editFileObject,
+    editFileName(pdf) {
+      this.editFileObject.fileName = FileUtils.getFileName(pdf.fileName);
+      this.dialogService.addDialog(ClientDocumentRepositoryComponent, {
+          editFiles: true,
+          getData: false,
+          title: 'Edit File Name',
+          editFileObject: this.editFileObject,
 
-            }).subscribe((isConfirmed) => {
-                if (isConfirmed) {
-                    let fileName = this.editFileObject.fileName.concat('.pdf');
-                    event.data.fileName = fileName;
-                    let url = '/file/rename';
-                    let data = {
-                        'accountId': this.accountId,
-                        'orgId': this.headerService.selectedOrg['orgId'],
-                        'fileId': event.data.fileId,
-                        'fileName': fileName
-                    };
-                    this.clientdocumentrepositoryService.renameFile(url, data).subscribe(
-                        res => {
-                            if (res['statusCode'] == 'SUCCESS') {
-                                this.getFilesList();
-                            }
-                            if (res['statusDescription'] == 'File Name Exists, Use a different Name') {
-                                this.dialogService.addDialog(ConfirmComponent, {
-                                    title: 'Error..!',
-                                    message: 'File with same name exists, please use a different name'
-                                });
-                            }
-                        }
-                    );
-                } else {
-                    this.editFileObject.fileName = event.data.fileName;
-                }
-            });
-        }
+      }).subscribe((isConfirmed) => {
+          if (isConfirmed) {
+              let fileName = this.editFileObject.fileName.concat('.pdf');
+              pdf.fileName = fileName;
+              let url = '/file/rename';
+              let data = {
+                  'accountId': this.accountId,
+                  'orgId': this.headerService.selectedOrg['orgId'],
+                  'fileId': pdf.fileId,
+                  'fileName': fileName
+              };
+              this.clientdocumentrepositoryService.renameFile(url, data).subscribe(
+                  res => {
+                      if (res['statusCode'] == 'SUCCESS') {
+                          this.getFilesList();
+                      }
+                      if (res['statusDescription'] == 'File Name Exists, Use a different Name') {
+                          this.dialogService.addDialog(ConfirmComponent, {
+                              title: 'Error..!',
+                              message: 'File with same name exists, please use a different name'
+                          });
+                      }
+                  }
+              );
+          } else {
+              this.editFileObject.fileName = pdf.fileName;
+          }
+      });
     }
     save() {
         if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
