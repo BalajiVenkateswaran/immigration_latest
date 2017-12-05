@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {JobDetailsService} from "./job-details.service";
-import {jobdetails} from "../../../../models/jobdetails";
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import {AppService} from "../../../../services/app.service";
+import {JobDetailsService} from './job-details.service';
+import {jobdetails} from '../../../../models/jobdetails';
+import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
 export interface formControl {
     name: string;
     value: FormControl;
@@ -24,23 +24,23 @@ export class JobDetailsComponent implements OnInit {
     private message: string;
     isjobdetailsEdit;
     public jobinDetail: any = {};
-    private hireDate: string;
-    private internationalHireDate: string;
+    public hireDate: string;
+    public internationalHireDate: string;
     public rehireDate: string;
-    private lastDayWorkedDate: string;
+    public lastDayWorkedDate: string;
     public terminationDate: string;
-    private beforeCancelJobDetails;
+    public beforeCancelJobDetails;
     public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    constructor(private JobDetailsService: JobDetailsService,
+    constructor(private jobDetailsService: JobDetailsService,
                 private formBuilder: FormBuilder, public headerService: HeaderService, public appService: AppService) {
     }
 
     ngOnInit() {
-        this.JobDetailsService.getJobDetails(this.headerService.user.userId).subscribe((res) => {
+        this.jobDetailsService.getJobDetails(this.headerService.user.userId).subscribe((res) => {
 
             if (res['jobDetails']) {
                 this.jobinDetail = res['jobDetails'];
@@ -118,7 +118,7 @@ export class JobDetailsComponent implements OnInit {
             this.jobinDetail['terminationDate'] = this.jobinDetail['terminationDate']['formatted'];
         }
         this.jobinDetail['clientId'] = this.headerService.user.userId;
-        this.JobDetailsService.saveJobDetails(this.jobinDetail)
+        this.jobDetailsService.saveJobDetails(this.jobinDetail)
             .subscribe((res) => {
                 this.isjobdetailsEdit = true;
                 if (res['jobDetails']) {
