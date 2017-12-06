@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import { RestService } from '../../../../../../services/rest.service';
 import {AppService} from '../../../../../../services/app.service'
 import {Router} from '@angular/router';
+import {HeaderService} from '../../../../../common/header/header.service';
 
 @Injectable()
 export class QuestionnaireCommonService {
@@ -22,7 +23,7 @@ export class QuestionnaireCommonService {
       return this._selectedQuestionnaire;
   }
 
-  constructor(private restService: RestService, private appService: AppService, private _router: Router) {
+  constructor(private restService: RestService, private appService: AppService, private _router: Router, private headerService: HeaderService) {
   }
 
   public moveToQuestionnaire(questionnaire: any) {
@@ -60,10 +61,10 @@ export class QuestionnaireCommonService {
   }
 
   public saveQuestionnaireData(questionnaireId: string, pageNo: number, data: any) {
-     return this.restService.postData('/immigration/questionnaire/' + questionnaireId + '/page/' + pageNo, data);
+     return this.restService.postData('/immigration/questionnaire/' + questionnaireId + '/updatedBy/' + this.headerService.user.userId + '/page/' + pageNo, data);
   }
 
   public submitQuestionnaireData(questionnaireId: string, pageNo: number, data: any, isSubmit: boolean) {
-    return this.restService.postData('/client/questionnaire/' + questionnaireId + '/page/' + pageNo + '/submit/' + isSubmit, data);
+    return this.restService.postData('/client/questionnaire/' + questionnaireId + '/updatedBy/' + this.headerService.user.userId + '/page/' + pageNo + '/submit/' + isSubmit, data);
   }
 }

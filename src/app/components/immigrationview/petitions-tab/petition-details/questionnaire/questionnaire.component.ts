@@ -7,6 +7,7 @@ import {QuestionnaireService} from './questionnaire.service';
 import {SendToClientQuestionnaire} from './SendToClientQuestionnaire';
 import {QuestionnaireCommonService} from '../questionnaires/common/questionnaire-common.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
+import {HeaderService} from '../../../../common/header/header.service';
 
 
 export interface ConfirmModel {
@@ -25,7 +26,7 @@ export interface ConfirmModel {
 }
 
 @Component({
-  selector: 'app-petition-details-questionnaire',
+  selector: 'ih-petition-details',
   templateUrl: './questionnaire.component.html',
   styleUrls: ['./questionnaire.component.sass'],
   styles: [`
@@ -83,7 +84,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       'employerStatus': 'Accepted'
     }
   ];
-  constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService,
+  constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService, private headerService: HeaderService,
     private questionnaireCommonService: QuestionnaireCommonService) {
     super(dialogService);
     this.settings = {
@@ -178,15 +179,15 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   }
   getquesnreData() {
     this.questionnaireService.getQuestionnaireForms(this.appService.petitionId).subscribe((res) => {
-      if (res['statusCode'] == 'SUCCESS') {
+      if (res['statusCode'] === 'SUCCESS') {
         this.formsList = res['applicationForms'];
         this.appService.formList = res['applicationForms'];
 
-        this.questionnaireService.getQuestionnaires(this.appService.petitionId).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
-            this.questionnaireList = res['questionnaires']['content'];
-            this.questionnaireCommonService.questionnaireList = res['questionnaires']['content'];
-            //this.appService.questionnaireName = res['questionnaires']['content'];
+        this.questionnaireService.getQuestionnaires(this.appService.petitionId).subscribe((res1) => {
+          if (res1['statusCode'] === 'SUCCESS') {
+            this.questionnaireList = res1['questionnaires']['content'];
+            this.questionnaireCommonService.questionnaireList = res1['questionnaires']['content'];
+            // this.appService.questionnaireName = res['questionnaires']['content'];
             let that = this;
             this.formattedData = this.objectMapper(this.questionnaireList);
           }
@@ -197,14 +198,12 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
           this.employerData = this.formattedData;
         });
       }
-
-
     });
   }
   objectMapper(data) {
     for (let i = 0; i < data.length; i++) {
       data[i]['questionnairePetitionType'] = this.appService.petitionType + '  ' + data[i]['formName'];
-      if (data[i]['sentToClient'] == false) {
+      if (data[i]['sentToClient'] === false) {
         data[i]['sentToClient'] = 'No';
       } else {
         data[i]['sentToClient'] = 'Yes';
@@ -222,9 +221,9 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       title: 'Add Questionnaire',
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.questionnaireService.saveNewQuestionnaireClient(this.appService.newQuestionnaireitem).subscribe((res) => {
+        this.questionnaireService.saveNewQuestionnaireClient(this.appService.newQuestionnaireitem, this.headerService.user.userId).subscribe((res) => {
           this.message = res['statusCode'];
-          if (this.message == 'SUCCESS') {
+          if (this.message === 'SUCCESS') {
             this.getquesnreData();
           } else {
             this.dialogService.addDialog(ConfirmComponent, {
@@ -238,17 +237,17 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     });
   }
 
-  //client questionnaire
+  // client questionnaire
 
   onEditQuestionnaireClick(newQuestionnaireitem) {
-    if (newQuestionnaireitem.data['sentToClient'] == 'Yes') {
+    if (newQuestionnaireitem.data['sentToClient'] === 'Yes') {
       newQuestionnaireitem.data['sentToClient'] = true;
     } else {
       newQuestionnaireitem.data['sentToClient'] = false;
     }
     this.editFlag = true;
     this.editFlag = true;
-    if (newQuestionnaireitem.colDef.headerName != 'Checkbox') {
+    if (newQuestionnaireitem.colDef.headerName !== 'Checkbox') {
       if (this.editFlag) {
         this.beforeEdit = (<any>Object).assign({}, newQuestionnaireitem.data);
       }
@@ -261,8 +260,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         newQuestionnaireitem: this.editFlag ? this.beforeEdit : this.newQuestionnaireitem,
       }).subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.questionnaireService.saveNewQuestionnaireClient(this.appService.newQuestionnaireitem).subscribe((res) => {
-            if (res['statusCode'] == 'SUCCESS') {
+          this.questionnaireService.saveNewQuestionnaireClient(this.appService.newQuestionnaireitem, this.headerService.user.userId).subscribe((res) => {
+            if (res['statusCode'] === 'SUCCESS') {
               this.getquesnreData();
             }
 
@@ -286,7 +285,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         if (isConfirmed) {
           this.questionnaireService.deleteQuestionnaire(questionaireId).subscribe(
             res => {
-              if (res['statusCode'] == 'SUCCESS') {
+              if (res['statusCode'] === 'SUCCESS') {
                 this.getquesnreData();
               }
             }
@@ -299,7 +298,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   onSaveQuestionnaireClick() {
     this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
 
-    if (this.newQuestionnaireitem['formId'] == '' || this.newQuestionnaireitem['formId'] == null || this.newQuestionnaireitem['formId'] == undefined || this.newQuestionnaireitem['questionnaireName'] == '' || this.newQuestionnaireitem['questionnaireName'] == null || this.newQuestionnaireitem['questionnaireName'] == undefined) {
+    if (this.newQuestionnaireitem['formId'] === '' || this.newQuestionnaireitem['formId'] == null || this.newQuestionnaireitem['formId'] === undefined ||
+      this.newQuestionnaireitem['questionnaireName'] === '' || this.newQuestionnaireitem['questionnaireName'] == null || this.newQuestionnaireitem['questionnaireName'] === undefined) {
       this.sfmQuestionnaire = true;
     } else {
       this.sfmQuestionnaire = false;
@@ -315,11 +315,11 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     this.close();
   }
 
-  //end of client questionnaire
+  // end of client questionnaire
 
-  //Employee Questionnaire
+  // Employee Questionnaire
   onEditEmpQuestionnaireClick(questionnaireEmployee) {
-    if (questionnaireEmployee.data['sentToClient'] == 'Yes') {
+    if (questionnaireEmployee.data['sentToClient'] === 'Yes') {
       questionnaireEmployee.data['sentToClient'] = true;
     } else {
       questionnaireEmployee.data['sentToClient'] = false;
@@ -336,8 +336,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       questionnaireEmployee: this.editFlag ? this.beforeEdit : this.questionnaireEmployee,
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.questionnaireService.saveNewQuestionnaireClient(this.appService.questionnaireEmployee).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+        this.questionnaireService.saveNewQuestionnaireClient(this.appService.questionnaireEmployee, this.headerService.user.userId).subscribe((res) => {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getquesnreData();
           }
 
@@ -370,7 +370,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
         if (isConfirmed) {
           this.questionnaireService.deleteQuestionnaire(questionaireId).subscribe(
             res => {
-              if (res['statusCode'] == 'SUCCESS') {
+              if (res['statusCode'] === 'SUCCESS') {
                 this.getquesnreData();
               }
             }
@@ -379,7 +379,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       });
   }
 
-  //send questionnaire to client
+  // send questionnaire to client
 
   sendQuestionnaireClient() {
     let questionnaries = [];
@@ -392,7 +392,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
 
     this.questionnaireService.sentQuestionnaireEmailToClient(req)
       .subscribe((res) => {
-        if (res['statusCode'] == 'SUCCESS') {
+        if (res['statusCode'] === 'SUCCESS') {
           this.ngOnInit();
         }
       });
@@ -407,11 +407,11 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       this.sentQuestionnaireClient.splice(this.sentQuestionnaireClient.indexOf(event.data, 1));
     }
 
-    if (this.sentQuestionnaireClient.length == 0) {
+    if (this.sentQuestionnaireClient.length === 0) {
       this.sendQuestionnaire = true;
     }
     for (let i = 0; i < this.sentQuestionnaireClient.length; i++) {
-      if (this.sentQuestionnaireClient[i]['itemChecked'] == true) {
+      if (this.sentQuestionnaireClient[i]['itemChecked'] === true) {
         this.sendQuestionnaire = false;
       } else {
         this.sendQuestionnaire = true;

@@ -12,9 +12,10 @@ export class QuestionnaireService {
     public getQuestionnaires(petitionId: string) {
         return this.restService.getData('/questionnaires/petition/' + petitionId + '?page=1&size=10');
     }
-    public saveNewQuestionnaireClient(questionnaireData: any) {
+    public saveNewQuestionnaireClient(questionnaireData: any, updatedUserId: string) {
         let req = {
-          questionnaire : questionnaireData
+          questionnaire: questionnaireData,
+          updatedUserId: updatedUserId
         };
         return this.restService.postData('/questionnaire', req);
     }
