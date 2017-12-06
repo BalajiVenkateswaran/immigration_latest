@@ -2,6 +2,7 @@ import { client } from '../../../../models/client';
 import { RestService } from '../../../../services/rest.service';
 import {Injectable} from '@angular/core';
 import {HeaderService} from '../../../common/header/header.service';
+import {PaginationUtil} from '../../../framework/utils/pagination';
 
 @Injectable()
 export class ClientsService {
@@ -38,6 +39,12 @@ export class ClientsService {
       return this.restService.deleteData('/client/' + clientId + '/immigrationOfficerId/' + immigrationOfficerId);
   }
   public getClientsWithQueryParams(orgId: string, queryData) {
-    return this.restService.getData('/clients/immigration/' + orgId + queryData);
+    let request = PaginationUtil.constructRequest(queryData);
+    request['queryParams'] = {
+      orgId : orgId
+    };
+    return this.restService.postData('/immigration?id=1', btoa(JSON.stringify(request)));
+    //return this.restService.getData('/clients/immigration/' + orgId + queryData);
   }
+
 }
