@@ -169,7 +169,7 @@ export class PetitionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.headerService.showSideBarMenu(null, 'petitions');
+        this.headerService.showSideBarMenu(null, 'immigrationview/tab/petitions');
         this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
     }
     gettingOrganizationId(value) {

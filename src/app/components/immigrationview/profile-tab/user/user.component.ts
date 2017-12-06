@@ -5,7 +5,7 @@ import {Component, OnInit} from '@angular/core';
 
 
 @Component({
-  selector: 'app-profileuser',
+  selector: 'ih-profileuser',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.sass'],
   providers: [ProfileUserService]
@@ -27,7 +27,7 @@ export class ProfileUserComponent implements OnInit {
     if (this.headerService.organizations === undefined) {
       this.showdefaultorg = false;
     }
-    this.headerService.showSideBarMenu('immiview-profuser', 'immiview-profileuser');
+    this.headerService.showSideBarMenu('immiview-profuser', 'immigrationview/profile/user');
     this.profileUserservice.getUserInfo(this.headerService.user.userId)
       .subscribe((res) => {
         console.log(res);
