@@ -420,7 +420,7 @@ font-weight: 500;
 .slide9 h1 {
 	font-size:36px;
 	font-weight:700;
-	margin: 185px 0px 0px 0;
+	margin: 180px 0px 0px 0;
 	padding:0px;
 	margin-bottom: 20px;
 }
@@ -496,7 +496,7 @@ font-weight: 500;
 	border-radius: 4px;
 	font-size: 16px;
 	font-weight: 400;
-	margin: 30px 0 25px 0;
+	margin: 52px 0 25px 0;
 }
 .getstart {
 	background: none;
@@ -1185,7 +1185,8 @@ a, a:hover {
     border-radius:4px;
 }
 .innot {
-    margin-top:50px;
+       margin-top: 46px;
+    margin-right: 10px;
 }
 .show768 {
         display:none;
@@ -1226,9 +1227,9 @@ a, a:hover {
 #imsTab1 {
     margin-bottom:40px;
 }
-.slide4 .sidcnt h1 {
-    margin-top:140px;
-}
+/*.slide4 .sidcnt h1 {
+    margin-top:180px;
+}*/
 .slide6 .sidcnt h1 {
     font-size:32px !important;
 }
