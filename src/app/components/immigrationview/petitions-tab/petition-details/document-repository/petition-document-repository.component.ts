@@ -56,7 +56,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     };
     ngOnInit() {
         this.uploader = new FileUploader({
-          url: environment.appUrl + '/file/upload/entityId/' + this.appService.petitionId + '/entityType/PETITION/org/' + this.headerService.selectedOrg['orgId']
+          url: environment.appUrl + '/file/upload/entityId/' + this.appService.petitionId + '/entityType/PETITION/org/' + this.headerService.selectedOrg['orgId'] + '/updatedBy/' + this.headerService.user.userId
         });
         // Check if the file extension as PDF, if not don't upload the file
         this.uploader.onAfterAddingFile = (fileItem) => {

@@ -116,7 +116,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   }
   ngOnInit() {
     this.uploader = new FileUploader({
-      url: environment.appUrl + '/file/upload/entityId/' + this.headerService.selectedOrg['orgId'] + '/entityType/ORGANIZATION/org/' + this.headerService.selectedOrg['orgId']
+      url: environment.appUrl + '/file/upload/entityId/' + this.headerService.selectedOrg['orgId'] + '/entityType/ORGANIZATION/org/' + this.headerService.selectedOrg['orgId'] + '/updatedBy/' + this.headerService.user.userId
     });
     // Check if the file extension as PDF, if not don't upload the file
     this.uploader.onAfterAddingFile = (fileItem) => {

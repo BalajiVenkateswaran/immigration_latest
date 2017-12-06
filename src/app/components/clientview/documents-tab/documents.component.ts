@@ -74,7 +74,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
   ngOnInit() {
       // dropdown code
       this.uploader = new FileUploader({
-          url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId
+          url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId + '/updatedBy/' + this.headerService.user.userId
       });
 
     // Check if the file extension as PDF, if not don't upload the file
@@ -125,7 +125,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                   this.appService.selectedOrgClienttId = this.orgNames[0].clientId;
                   this.documentservice.selectedOrgId = this.orgNames[0].orgId;
                   this.uploader.setOptions({
-                    url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId
+                    url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId + '/updatedBy/' + this.headerService.user.userId
                   });
                   this.uploader.clearQueue();
                   this.menuComponent.highlightSBLink(this.orgNames[0].orgName);
@@ -134,7 +134,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
           } else {
               this.appService.selectedOrgClienttId = params['clientId'];
               this.uploader.setOptions({
-                url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId
+                url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId + '/updatedBy/' + this.headerService.user.userId
               });
               this.uploader.clearQueue();
               this.getFilesList();
@@ -274,7 +274,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
   }
 
   save() {
-    if (this.editFileObject['fileName'] === '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
+    if (this.editFileObject['fileName'] === '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] === undefined) {
         this.warningMessage = true;
     } else {
         this.warningMessage = false;

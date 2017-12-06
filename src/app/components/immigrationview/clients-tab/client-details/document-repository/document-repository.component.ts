@@ -140,7 +140,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
 
     ngOnInit() {
        this.uploader = new FileUploader({
-            url: environment.appUrl + '/file/upload/entityId/' + this.appService.clientId + '/entityType/CLIENT/org/' + this.headerService.selectedOrg['orgId']
+            url: environment.appUrl + '/file/upload/entityId/' + this.appService.clientId + '/entityType/CLIENT/org/' + this.headerService.selectedOrg['orgId'] + '/updatedBy/' + this.headerService.user.userId
         });
        // Check if the file extension as PDF, if not don't upload the file
       this.uploader.onAfterAddingFile = (fileItem) => {
