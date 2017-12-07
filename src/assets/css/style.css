@@ -1545,22 +1545,22 @@ tr.i129htblRow:nth-child(even) {
   margin: 0px;
   padding: 0px; }
 
-.listsidemenu li {
+/*.listsidemenu li {
   padding: 0px;
-  margin-bottom: 1px; }
+  margin-bottom: 1px; }*/
 
 .listsidemenu li a {
   width: 100%;
-  padding: 5px 2px 5px 25px;
+  /*padding: 5px 2px 5px 25px;*/
   display: block; }
 
 .listsidemenu li a:hover {
-  color: #fff !important;
-  background: #44474e; }
+  color: #7593E3 !important;
+  /*background: #44474e;*/ }
 
 .listsidemenu li a.active {
-  color: #fff !important;
-  background: #44474e; }
+  color: #7593E3 !important;
+  /*background: #44474e;*/ }
 
 .qnameftype {
   width: 100%;

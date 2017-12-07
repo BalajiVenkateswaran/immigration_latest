@@ -321,7 +321,7 @@ section {
         text-decoration:none;
         &:hover {
             color: #5093e1;
-            text-decoration:underline;
+            text-decoration:none;
         }
         }
     .sendinvite {
@@ -1455,25 +1455,30 @@ confirm {
 }
 .listsidemenu li a{
     width:100%;
-    padding:5px 2px 5px 25px;
+    margin-top: 5px !important;
+    margin-left: 15%;
+    /*padding: 0px 0px 0px 22px;*/
     display: block;
 }
 .listsidemenu li a:hover{
     width:calc(100% - 14px);
-    padding:5px 2px 5px 25px;
-    color:#fff !important;
-    background:#44474e;
-    margin:0px 7px;
-    border-radius:10px;
+        margin-top: 5px !important;
+            font-weight: bold;
+    /*padding:0px 0px 0px 16px;*/
+    color:#7593E3 !important;
+    /*background:#44474e;*/
+    /*border-radius:10px;*/
 
 }
 .listsidemenu li a.active {
         width:calc(100% - 14px);
-    padding:5px 2px 5px 25px;
-    color:#fff !important;
-    background:#44474e;
-    margin:0px 7px;
-    border-radius:10px;
+        margin-left: 15%;
+        font-weight: 700;
+        font-size: 15px;    
+        color:#7593E3 !important;
+    /*padding:0px 0px 0px 16px;*/
+    /*background:#44474e;*/
+    /*border-radius:10px;*/
     }
 .qnameftype {
         width: 100%;
