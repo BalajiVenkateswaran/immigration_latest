@@ -21,29 +21,29 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     ssnRegex: RegExp;
 
     clientDetails: any = {};
-    private client: any = {};
-    private clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
-    private clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
+  public client: any = {};
+  public clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
+    public clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
     phoneNumber: FormControl;
     ssn: FormControl;
     public phoneRegex;
     // Profile section variables
     isProfileEdit;
     isPersonalInfoEdit;
-    private status: any[];
-    private gender: any[];
-    private user: User;
-    private dateOfBirth: string;
-    private creationDate: string;
+  public status: any[];
+  public gender: any[];
+  public user: User;
+  public dateOfBirth: string;
+  public creationDate: string;
     public warningMessage = false;
     public user1;
-    private myDatePickerOptions: IMyOptions = {
+    public myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-    private beforeCancelProfile;
-    private beforeCancelPersonal;
+  public beforeCancelProfile;
+  public beforeCancelPersonal;
     public disableSendInvite: boolean;
 
     constructor(public appService: AppService, public headerService: HeaderService, private clientDetailsService: ImmigrationViewClientDetailsService,
