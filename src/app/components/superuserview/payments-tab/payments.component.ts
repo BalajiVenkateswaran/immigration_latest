@@ -111,7 +111,7 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
     this.newclitem['accountId'] = this.headerService.user.accountId;
     this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
     this.newclitem['createdBy'] = this.headerService.user.userId;
-    if (this.newclitem['status'] == '' || null || undefined) {
+    if (this.newclitem['status'] === '' || null || undefined) {
       this.newclitem['status'] = 'Active';
     }
     this.appService.newclitem = this.newclitem;

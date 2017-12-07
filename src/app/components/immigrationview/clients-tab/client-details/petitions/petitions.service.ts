@@ -20,9 +20,10 @@ export class ImmigrationViewPetitionsService {
         return this.restService.getData('/petition/config/all/types/subtypes');
     }
 
-    public saveNewImmigrationViewPetition(petitionData: petition) {
+    public saveNewImmigrationViewPetition(petitionData: petition, userId: string) {
       let req = {
-        petition : petitionData
+        petition : petitionData,
+        userId: userId
       };
       return this.restService.postData('/petition', req);
   }

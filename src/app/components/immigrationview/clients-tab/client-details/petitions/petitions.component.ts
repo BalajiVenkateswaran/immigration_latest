@@ -185,7 +185,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     }
 
   ngOnInit() {
-    this.headerService.showSideBarMenu('immigrationview-client', 'clients');
+    this.headerService.showSideBarMenu('immigrationview-client', 'immigrationview/tab/clients');
 
 
   }
@@ -211,7 +211,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
           title: 'Add Petition',
         }).subscribe((isConfirmed) => {
           if (isConfirmed) {
-            this.immigrationviewpetitionService.saveNewImmigrationViewPetition(this.appService.newpetitionitem).subscribe((res) => {
+            this.immigrationviewpetitionService.saveNewImmigrationViewPetition(this.appService.newpetitionitem, this.headerService.user.userId).subscribe((res) => {
               this.message = res['statusCode'];
               if (this.message === 'SUCCESS') {
                 this.getPetitionData();

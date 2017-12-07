@@ -83,7 +83,7 @@ export class PetitionDetailsComponent implements OnInit {
                 public dialogService: DialogService, public headerService: HeaderService) {
     }
     ngOnInit() {
-        this.headerService.showSideBarMenu('immigrationview-petition', 'petitions');
+        this.headerService.showSideBarMenu('immigrationview-petition', 'immigrationview/tab/petitions');
         this.petitionDetailsService.getPetitionDetails(this.appService.petitionId)
             .subscribe((res) => {
                 if (res['petitionInfo'] != undefined) {
