@@ -383,7 +383,7 @@ section {
         .editbtn {
             float: right;
             margin:-30px 0 20px 0;
-            width: 80px;
+            width: auto;
             height: 30px;
             border: solid 1px #e0e0e0;
             background: #edeff5;
@@ -1263,7 +1263,7 @@ aside.left-opened.smoothness.loginScreen{display:none;}
 
 .tbl-head-btn {
   float: right;
-  height: 36px!important;
+  height: 30px!important;
 
   .savebtn {
     margin: -30px 10px 20px 0;
