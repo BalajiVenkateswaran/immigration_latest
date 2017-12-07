@@ -4,7 +4,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
-import { SuperuserViewAccountpreferencessService } from './accountpreferences.service';
+import { SuperuserViewAccountPreferencesService } from './accountpreferences.service';
 import { AccountDetailsCommonService } from '../common/account-details-common.service';
 
 export interface ConfirmModel {
@@ -22,9 +22,10 @@ export interface ConfirmModel {
 }
 
 @Component({
-    selector: 'app-account-preferences',
+    selector: 'ih-account-preferences',
     templateUrl: './accountpreferences.component.html',
-    styleUrls: ['./accountpreferences.component.sass']
+    styleUrls: ['./accountpreferences.component.sass'],
+    providers: [SuperuserViewAccountPreferencesService]
 })
 export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
@@ -56,7 +57,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public editDiscountFlag = true;
     public beforeDiscountEdit;
     public allProducts;
-    constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountpreferencessService: SuperuserViewAccountpreferencessService,
+    constructor(private appService: AppService, public dialogService: DialogService, public superuserViewAccountPreferencesService: SuperuserViewAccountPreferencesService,
         private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
         this.editdiscount = false;
@@ -140,7 +141,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         }
     }
     getproducts() {
-        this.superuserViewAccountpreferencessService.getproductsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
+        this.superuserViewAccountPreferencesService.getproductsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
             if (res['statusCode'] == 'SUCCESS') {
                 this.data = res['products'];
 
@@ -148,7 +149,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         });
     }
     getdiscounts() {
-        this.superuserViewAccountpreferencessService.getdiscountsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
+        this.superuserViewAccountPreferencesService.getdiscountsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
             if (res['statusCode'] == 'SUCCESS') {
                 this.discountData = res['discounts'];
             }
@@ -167,7 +168,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             editprdct: false
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.superuserViewAccountpreferencessService.saveproduct(this.accountDetailsCommonService.addProducts, this.accountDetailsCommonService.accountId).subscribe((res) => {
+                this.superuserViewAccountPreferencesService.saveproduct(this.accountDetailsCommonService.addProducts, this.accountDetailsCommonService.accountId).subscribe((res) => {
                     if (res['statusCode'] = 'SUCCESS') {
                         this.getproducts();
                         this.close();
@@ -196,7 +197,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
 
                 }
                 this.accountDetailsCommonService.addProducts[0].productId = event.data.productId;
-                this.superuserViewAccountpreferencessService.saveproduct(this.accountDetailsCommonService.addProducts, this.accountDetailsCommonService.accountId).subscribe((res) => {
+                this.superuserViewAccountPreferencesService.saveproduct(this.accountDetailsCommonService.addProducts, this.accountDetailsCommonService.accountId).subscribe((res) => {
                     if (res['statusCode'] = 'SUCCESS') {
                         this.getproducts();
                         this.close();
@@ -214,7 +215,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
             editdscnt: false
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.superuserViewAccountpreferencessService.savediscount(this.accountDetailsCommonService.addDiscounts, this.accountDetailsCommonService.accountId).subscribe((res) => {
+                this.superuserViewAccountPreferencesService.savediscount(this.accountDetailsCommonService.addDiscounts, this.accountDetailsCommonService.accountId).subscribe((res) => {
                     if (res['statusCode'] = 'SUCCESS') {
                         this.getdiscounts();
                         this.close();
@@ -240,7 +241,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.accountDetailsCommonService.addDiscounts[0].discountId = event.data.discountId;
-                this.superuserViewAccountpreferencessService.savediscount(this.accountDetailsCommonService.addDiscounts, this.accountDetailsCommonService.accountId).subscribe((res) => {
+                this.superuserViewAccountPreferencesService.savediscount(this.accountDetailsCommonService.addDiscounts, this.accountDetailsCommonService.accountId).subscribe((res) => {
                     if (res['statusCode'] = 'SUCCESS') {
                         this.getdiscounts();
                         this.close();
@@ -289,7 +290,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     }
 
     getAllProducts(){
-      this.superuserViewAccountpreferencessService.getProductDetails().subscribe(
+      this.superuserViewAccountPreferencesService.getProductDetails().subscribe(
         res => {
           this.allProducts = res['products'].filter(item => item.status === 'Active');
           console.log(this.allProducts)

@@ -1,15 +1,15 @@
 ﻿import { RestService } from '../../../../../services/rest.service';
-import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable()
-export class superuserclientstatusreportsservice {
+export class SuperUserClientStatusReportsService {
 
     constructor(private restService: RestService) {
 
     }
     public getclientstatusreports(accountId: string) {
-        console.log("petiontypereportsreports|getstatus|", accountId);
-        return this.restService.getData("/superuser/account/" + accountId + "/client/status");
+        console.log('petiontypereportsreports|getstatus|', accountId);
+        return this.restService.getData('/superuser/account/' + accountId + '/client/status');
     }
 }

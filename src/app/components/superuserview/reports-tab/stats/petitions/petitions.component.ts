@@ -1,8 +1,6 @@
-﻿import { AppService } from '../../../../../services/app.service';
-import { ReportsCommonService } from '../../common/reports-common.service';
-import { SuperUserstatpetitonReportsService } from './petitions.service';
-import { Component, OnInit } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+﻿import {AppService} from '../../../../../services/app.service';
+import {ReportsCommonService} from '../../common/reports-common.service';
+import {Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -11,12 +9,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./petitions.component.sass']
 })
 
-export class superuserstatspetitionReportsComponent implements OnInit {
+export class SuperUserStatsPetitionReportsComponent implements OnInit {
     public data: any = [];
 
 
-    constructor(public appService: AppService, private SuperuserstatpetitonReportsService: SuperUserstatpetitonReportsService,
-        public reportsCommonService: ReportsCommonService) { }
+    constructor(public appService: AppService, public reportsCommonService: ReportsCommonService) { }
 
 
     ngOnInit() {

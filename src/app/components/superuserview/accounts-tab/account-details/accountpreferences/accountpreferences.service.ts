@@ -2,7 +2,7 @@
 import {RestService} from '../../../../../services/rest.service';
 
 @Injectable()
-export class SuperuserViewAccountpreferencessService {
+export class SuperuserViewAccountPreferencesService {
   constructor(private restService: RestService) {
   }
   public getproductsAccount(accountid: string) {

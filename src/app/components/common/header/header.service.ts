@@ -143,7 +143,7 @@ export class HeaderService {
     } else if (userRole === ApplicationRoles.CLIENT) {
       return 'clientview-petitions';
     } else if (userRole === ApplicationRoles.SUPER_USER) {
-      return 'superuser-accounts';
+      return 'superuserview/tab/accounts';
     }
     return '';
   }

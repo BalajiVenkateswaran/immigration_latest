@@ -1,15 +1,14 @@
-﻿import { AppService } from '../../../../../services/app.service';
-import { ReportsCommonService } from '../../common/reports-common.service';
-import { SuperUserClientsCreatedReportsService } from './created.service';
-import { Component, OnInit } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {HeaderService} from "../../../../common/header/header.service";
+﻿import {ReportsCommonService} from '../../common/reports-common.service';
+import {SuperUserClientsCreatedReportsService} from './created.service';
+import {Component, OnInit} from '@angular/core';
+import {HeaderService} from '../../../../common/header/header.service';
 
 
 @Component( {
-    selector: 'app-superuserclientcreated-report',
+    selector: 'ih-superuserclientcreated-report',
     templateUrl: './created.component.html',
-    styleUrls: ['./created.component.sass']
+    styleUrls: ['./created.component.sass'],
+  providers: [SuperUserClientsCreatedReportsService]
 } )
 
 export class SuperUserClientsCreatedReportsComponent implements OnInit {

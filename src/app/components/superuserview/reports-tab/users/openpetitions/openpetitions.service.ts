@@ -1,6 +1,5 @@
-﻿import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
-import {RestService} from "../../../../../services/rest.service";
+﻿import {Injectable} from '@angular/core';
+import {RestService} from '../../../../../services/rest.service';
 
 @Injectable()
 export class SuperUsersOpenPetitionService {
@@ -9,6 +8,6 @@ export class SuperUsersOpenPetitionService {
 
     }
     public getuseropenpetitions(accountId: string) {
-        return this.restService.getData("/superuser/account/" + accountId + "/user/open/petition");
+        return this.restService.getData('/superuser/account/' + accountId + '/user/open/petition');
     }
 }

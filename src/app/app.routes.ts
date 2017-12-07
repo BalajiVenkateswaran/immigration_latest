@@ -19,32 +19,31 @@ import {clientviewQuestionnaireComponent} from './components/clientview/question
 import {requestclientviewcomponent} from './components/clientview/request-tab/request.component';
 import {ResetPasswordComponent} from './components/common/reset-password/reset-password.component';
 // superuserview
-import {SuperUserViewAccountsComponent} from './components/superuserview/accounts-tab/accounts/accounts.component';
 import {SuperuserViewAccountDetailsComponent} from './components/superuserview/accounts-tab/account-details/account-details/account-details.component';
 import {SuperuserviewProductcatalogComponent} from './components/superuserview/product-catalog-tab/products/product-catalog.component';
-import {AccountsManagers} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.component';
+import {AccountsManagersComponent} from './components/superuserview/accounts-tab/account-details/account-managers/accountmanagers.component';
 import {AccountInvoiceComponent} from './components/superuserview/accounts-tab/account-details/invoice/invoice.component';
-import {accountDetailsPaymentsComponent} from './components/superuserview/accounts-tab/account-details/payments/payments.component';
+import {AccountDetailsPaymentsComponent} from './components/superuserview/accounts-tab/account-details/payments/payments.component';
 
 import {SuperuserviewAccountdetailsMfdComponent} from './components/superuserview/accounts-tab/account-details/mfd/mfd.component';
 import {AccountPreferencesComponent} from './components/superuserview/accounts-tab/account-details/accountpreferences/accountpreferences.component';
 // immigrationview reports
 // profile
 // superuser reports
-import {statsaccountscomponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
+import {StatsAccountsComponent} from './components/superuserview/reports-tab/stats/accounts/accounts.component';
 import {SuperUserPetitionsStatusReportsComponent} from './components/superuserview/reports-tab/petitions/status/status.component';
-import {superuserpetfinalactionreportscomponent} from './components/superuserview/reports-tab/petitions/final-action/final-action.component';
+import {SuperUserPetitionFinalActionReportsComponent} from './components/superuserview/reports-tab/petitions/final-action/final-action.component';
 import {SuperUserClientsCreatedReportsComponent} from './components/superuserview/reports-tab/clients/created/created.component';
 import {SuperUserTotalPetitionsReportsComponent} from './components/superuserview/reports-tab/users/totalpetitions/totalpetitions.component';
 import {SuperUserOpenPetitionComponent} from './components/superuserview/reports-tab/users/openpetitions/openpetitions.component';
-import {superuserstatsotgsReportsComponent} from './components/superuserview/reports-tab/stats/orgs/orgs.component';
+import {SuperUserStatsOrgsReportsComponent} from './components/superuserview/reports-tab/stats/orgs/orgs.component';
 // PDF Pages I-129
 import {I129Page2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
 import {SuperUserPetitionStageReportsComponent} from './components/superuserview/reports-tab/petitions/stage/stage.component';
 import {SuperUserH1BReportsComponent} from './components/superuserview/reports-tab/petitions/petitiontypeh1b/petitiontypesH1B.component';
 import {SuperUserPetitionTagReportsComponent} from './components/superuserview/reports-tab/petitions/tag/tag.component';
-import {superuserstatsclientsReportsComponent} from './components/superuserview/reports-tab/stats/clients/clients.component';
-import {superuserstatspetitionReportsComponent} from './components/superuserview/reports-tab/stats/petitions/petitions.component';
+import {SuperUserStatsClientsReportsComponent} from './components/superuserview/reports-tab/stats/clients/clients.component';
+import {SuperUserStatsPetitionReportsComponent} from './components/superuserview/reports-tab/stats/petitions/petitions.component';
 import {SuperUserMonthlyReportsComponent} from './components/superuserview/reports-tab/payments/monthly/monthly.component';
 
 import {I129HPage1Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
@@ -54,7 +53,7 @@ import {SuperUserViewInvoicestabComponent} from './components/superuserview/invo
 import {SuperUserViewPaymentstabComponent} from './components/superuserview/payments-tab/payments.component';
 
 import {DemoRequestDetailsComponent} from './components/superuserview/misc-tab/demorequestdetails/demorequestdetails.component';
-import {miscsuperusersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
+import {MiscSuperUsersComponent} from './components/superuserview/misc-tab/superusers/miscsuperusers.component';
 
 
 // Website Components
@@ -143,115 +142,8 @@ export const appRoutes: Routes = [
         path: 'reset-password',
         component: ResetPasswordComponent
     },
-    // superuserview
-    {
-        path: 'superuser-accounts',
-        component: SuperUserViewAccountsComponent
-    },
-  {
-        path: 'invoices',
-        component: SuperUserViewInvoicestabComponent
-    },
-    {
-        path: 'payments',
-        component: SuperUserViewPaymentstabComponent
-    },
-    {
-        path: 'superuserview-productcatalog',
-        component: SuperuserviewProductcatalogComponent
-    },
-    {
-        path: 'account-details',
-        component: SuperuserViewAccountDetailsComponent
-    },
-    {
-        path: 'accountdetails-invoice',
-        component: AccountInvoiceComponent
-    },
-    {
-        path: 'accountdetails-payments',
-        component: accountDetailsPaymentsComponent
-    },
-    {
-        path: 'superuserview-accountmanagers',
-        component: AccountsManagers
-    },
-    {
-        path: 'superuserview-preference',
-        component: AccountPreferencesComponent
-    },
-    {
-        path: 'superuserview-productcatalog-discounts',
-        component: SuperuserviewProductcatalogDiscountsComponent
-    },
-    {
-        path: 'accountdetails-mfd',
-        component: SuperuserviewAccountdetailsMfdComponent,
-    },
-    {
-        path: 'superuser-statsaccounts',
-        component: statsaccountscomponent
-    },
-    {
-        path: 'superuser-petitionreports',
-        component: SuperUserPetitionsStatusReportsComponent
-    },
-    {
-        path: 'superuser-petiontypes',
-        component: SuperUserH1BReportsComponent
-    },
-    {
-        path: 'superuser-petionstagereports',
-        component: SuperUserPetitionStageReportsComponent
-    },
-    {
-        path: 'superuser-petiontagreports',
-        component: SuperUserPetitionTagReportsComponent
-    },
-    {
-        path: 'superuser-finalaction',
-        component: superuserpetfinalactionreportscomponent
-    },
-    {
-        path: 'superuser-clientstatusreports',
-        component: SuperUserClientStatusReportsComponent
-    },
-    {
-        path: 'superuser-clientscreated',
-        component: SuperUserClientsCreatedReportsComponent
-    },
-    {
-        path: 'superuser-totalpetitions',
-        component: SuperUserTotalPetitionsReportsComponent
-    },
-    {
-        path: 'superuser-openpetitions',
-        component: SuperUserOpenPetitionComponent
-    },
-    {
-        path: 'superuser-statsorgs',
-        component: superuserstatsotgsReportsComponent
-    },
-    {
-        path: 'superuser-statsclients',
-        component: superuserstatsclientsReportsComponent
-    },
-    {
-        path: 'superuser-statspetitions',
-        component: superuserstatspetitionReportsComponent
-    },
-    {
-        path: 'superuser-payments',
-        component: SuperUserMonthlyReportsComponent
-    },
-    {
-      path: 'superuser-misc',
-      component: DemoRequestDetailsComponent
-    },
-    {
-      path: 'superuser-miscsuperusers',
-      component: miscsuperusersComponent
-    },
+
+
 
   /**
    * Custom module routes
@@ -268,6 +160,10 @@ export const appRoutes: Routes = [
   {
       path: 'immigrationview',
       loadChildren: 'app/components/immigrationview/immigrationview.module#ImmigrationViewModule'
+  },
+  {
+      path: 'superuserview',
+      loadChildren: 'app/components/superuserview/superuserview.module#SuperUserViewModule'
   },
   {
       path: '**',

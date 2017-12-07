@@ -3,11 +3,11 @@ import {HeaderService} from '../../common/header/header.service';
 import {MenuComponent} from '../../common/menu/menu.component';
 import {AccountDetailsCommonService} from '../accounts-tab/account-details/common/account-details-common.service';
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {SuperUserViewPaymentstabService} from "./payments.service";
-import { SortType } from "../../framework/smarttable/types/query-parameters";
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {SuperUserViewPaymentstabService} from './payments.service';
+import { SortType } from '../../framework/smarttable/types/query-parameters';
 
 export interface ConfirmModel {
   title: string;
@@ -17,8 +17,9 @@ export interface ConfirmModel {
 }
 
 @Component({
-  selector: 'app-payments',
-  templateUrl: './payments.component.html'
+  selector: 'ih-payments',
+  templateUrl: './payments.component.html',
+  providers: [SuperUserViewPaymentstabService]
 })
 export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
@@ -27,9 +28,9 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
   private deleteclients: any;
   private clientName: any;
   public addNewClient: boolean;
-  public getClientsData: boolean = true;
+  public getClientsData = true;
   public newclitem: any = {};
-  public DefaultResponse = {"status": "Active"};
+  public DefaultResponse = {'status': 'Active'};
   public settings;
   public statusTypes: any = [];
   constructor(private superuserviewPaymentstabService: SuperUserViewPaymentstabService, private appService: AppService,
@@ -51,59 +52,59 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
       'isDeleteEnable': false,
       'isAddButtonEnable': false,
       'columnFilter': true,
-      'isMorefilters':true,
+      'isMorefilters': true,
       'sort': [{
-        headingName: "paymentDate",
+        headingName: 'paymentDate',
         sort: SortType.DESC
       }],
       'columnsettings': [
         {
-          headerName: "Payment Id",
-          field: "paymentId",
-          type:'text'
+          headerName: 'Payment Id',
+          field: 'paymentId',
+          type: 'text'
         },
         {
-          headerName: "Account Name",
-          field: "accountName",
-          type:'text'
+          headerName: 'Account Name',
+          field: 'accountName',
+          type: 'text'
         },
         {
-          headerName: "Account Number",
-          field: "accountNumber",
-          type:'text'
+          headerName: 'Account Number',
+          field: 'accountNumber',
+          type: 'text'
         },
         {
-          headerName: "Invoice Number",
-          field: "invoiceNumber",
-          type:'text'
+          headerName: 'Invoice Number',
+          field: 'invoiceNumber',
+          type: 'text'
         },
         {
-          headerName: "Invoice Date",
-          field: "invoiceDate",
-          type:'datePicker'
+          headerName: 'Invoice Date',
+          field: 'invoiceDate',
+          type: 'datePicker'
         },
         {
-          headerName: "Invoice Amount",
-          field: "invoiceAmount",
-          type:'text'
+          headerName: 'Invoice Amount',
+          field: 'invoiceAmount',
+          type: 'text'
         },
         {
-          headerName: "Payment Status",
-          field: "paymentStatus",
-          type:'dropDown',
-          data:this.statusTypes
+          headerName: 'Payment Status',
+          field: 'paymentStatus',
+          type: 'dropDown',
+          data: this.statusTypes
         },
         {
-          headerName: "Payment Date",
-          field: "paymentDate",
-          type:'datePicker'
+          headerName: 'Payment Date',
+          field: 'paymentDate',
+          type: 'datePicker'
         }
       ]
     }
   }
 
   ngOnInit() {
-    this.headerService.showSideBarMenu(null, "payments");
+    this.headerService.showSideBarMenu(null, 'payments');
   }
 
   clientSave() {
@@ -111,7 +112,7 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
     this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
     this.newclitem['createdBy'] = this.headerService.user.userId;
     if (this.newclitem['status'] == '' || null || undefined) {
-      this.newclitem['status'] = "Active";
+      this.newclitem['status'] = 'Active';
     }
     this.appService.newclitem = this.newclitem;
     this.result = true;
@@ -125,14 +126,14 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
   editRecord(event): void {
     console.log(event)
     this.menuComponent.highlightSBLink('Payments');
-    this.appService.moveToPage("accountdetails-payments");
+    this.appService.moveToPage('superuserview/account/payments');
     this.accountDetailsCommonService.accountId = event.data.accountId;
-    this.headerService.showSideBarMenu("superuser-accounts", "accounts");
+    this.headerService.showSideBarMenu('superuserview/tab/accounts', 'superuserview/tab/accounts');
 
   }
   dataWithParameters(queryParams) {
-    if(queryParams) {
-        console.log(''+queryParams);
+    if (queryParams) {
+        console.log('' + queryParams);
         this.superuserviewPaymentstabService.getPaymentsWithQueryParams(queryParams).subscribe(res => {
         this.data = res.payments;
       })

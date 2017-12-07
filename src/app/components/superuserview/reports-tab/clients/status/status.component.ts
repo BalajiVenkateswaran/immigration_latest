@@ -2,13 +2,14 @@
 import { ReportsCommonService } from '../../common/reports-common.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {superuserclientstatusreportsservice} from "./status.service";
+import {SuperUserClientStatusReportsService} from "./status.service";
 
 
 @Component({
     selector: 'app-clientstatusreport',
     templateUrl: './status.component.html',
-    styleUrls: ['./status.component.sass']
+    styleUrls: ['./status.component.sass'],
+  providers: [SuperUserClientStatusReportsService]
 })
 
 export class SuperUserClientStatusReportsComponent implements OnInit {
@@ -20,7 +21,7 @@ export class SuperUserClientStatusReportsComponent implements OnInit {
     public count: any = [];
     public Status: any = [];
     public selectedaccountId: string;
-   constructor(public appService: AppService, private superuserClientstatusreportsservice: superuserclientstatusreportsservice,
+   constructor(public appService: AppService, private superuserClientstatusreportsservice: SuperUserClientStatusReportsService,
         public reportsCommonService: ReportsCommonService) { }
     ngOnInit() {
         this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;

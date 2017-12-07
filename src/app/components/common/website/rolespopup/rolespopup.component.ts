@@ -7,7 +7,6 @@ import {ManageAccountUserService} from '../../../immigrationview/manage-account-
 import {HeaderComponentService} from '../../header/header.component.service';
 import {ApplicationRoles} from '../../constants/applicationroles.constants';
 import {ApplicationViews} from '../../constants/applicationviews.constants';
-import {Demorequestdetailsservice} from '../../../superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
 import {RolesPopupService} from './rolespopup.service';
 
 export interface ConfirmModel {
@@ -38,8 +37,7 @@ export class RolesPopupComponent extends DialogComponent<ConfirmModel, boolean> 
     public dialogService: DialogService,
     private headerService: HeaderService,
     private headerComponentService: HeaderComponentService,
-    private manageAccountUserService: ManageAccountUserService,
-    private demoRequestDetailsService: Demorequestdetailsservice
+    private manageAccountUserService: ManageAccountUserService
   ) {
     super(dialogService);
   }
@@ -66,8 +64,8 @@ export class RolesPopupComponent extends DialogComponent<ConfirmModel, boolean> 
     }
     if (userdet.roleName === ApplicationRoles.SUPER_USER) {
       this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;
-      this.headerService.currentTab = 'superuser-accounts';
-      moveToPage = 'superuser-accounts';
+      this.headerService.currentTab = 'superuserview/tab/accounts';
+      moveToPage = 'superuserview/tab/accounts';
     }
 
     this.appService.showHeader = true;

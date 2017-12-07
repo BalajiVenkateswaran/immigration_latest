@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {RestService} from "../../../../../services/rest.service";
+import {Injectable} from '@angular/core';
+import {RestService} from '../../../../../services/rest.service';
 
 @Injectable()
 export class AccountDetailsPaymentsService {
@@ -8,19 +8,19 @@ export class AccountDetailsPaymentsService {
 
   }
   public getPaymentDetails(accountId: string) {
-    return this.restService.getData("/superuser/account/" + accountId + "/payments");
+    return this.restService.getData('/superuser/account/' + accountId + '/payments');
   }
   public savePaymentDetails(accountId: string, payment: any) {
-    var req = {
-      "payment": payment
+    let req = {
+      'payment': payment
     };
-    return this.restService.postData("/superuser/account/" + accountId + "/payments", req);
+    return this.restService.postData('/superuser/account/' + accountId + '/payments', req);
   }
   public editpaymentss(accountId: string, payment: any) {
-    var req = {
+    let req = {
 
-      "payment": payment
+      'payment': payment
     };
-    return this.restService.postData("/superuser/account/" + accountId + "/payments", req);
+    return this.restService.postData('/superuser/account/' + accountId + '/payments', req);
   }
 }

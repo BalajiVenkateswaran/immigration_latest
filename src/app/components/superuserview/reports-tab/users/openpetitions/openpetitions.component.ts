@@ -1,17 +1,14 @@
 ﻿import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {User} from "../../../../../models/user";
-import {AppService} from "../../../../../services/app.service";
-import {RestService} from "../../../../../services/rest.service";
-import {SuperUsersOpenPetitionService} from "./openpetitions.service";
-import {ReportsCommonService} from "../../common/reports-common.service";
-import {HeaderService} from "../../../../common/header/header.service";
+import {SuperUsersOpenPetitionService} from './openpetitions.service';
+import {ReportsCommonService} from '../../common/reports-common.service';
+import {HeaderService} from '../../../../common/header/header.service';
 
 
 @Component({
     selector: 'app-superuseropenpetitons',
     templateUrl: './openpetitions.component.html',
-    styleUrls: ['./openpetitions.component.sass']
+    styleUrls: ['./openpetitions.component.sass'],
+  providers: [SuperUsersOpenPetitionService]
 })
 
 export class SuperUserOpenPetitionComponent implements OnInit {

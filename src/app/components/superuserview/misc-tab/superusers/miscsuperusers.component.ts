@@ -13,12 +13,13 @@ export interface ConfirmModel {
 }
 
 @Component({
-    selector: 'misc-superusers',
+    selector: 'ih-misc-superusers',
     templateUrl: './miscsuperusers.component.html',
+  providers: [MiscSuperUsersService]
 })
 
 
-export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+export class MiscSuperUsersComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public data;
     public settings;
     public getsuperUsers = true;
@@ -55,7 +56,7 @@ export class miscsuperusersComponent extends DialogComponent<ConfirmModel, boole
         }
     }
     addFunction() {
-        this.dialogService.addDialog(miscsuperusersComponent, {
+        this.dialogService.addDialog(MiscSuperUsersComponent, {
             addsuperuser: true,
             getsuperUsers: false,
             title: 'Add New Super User',

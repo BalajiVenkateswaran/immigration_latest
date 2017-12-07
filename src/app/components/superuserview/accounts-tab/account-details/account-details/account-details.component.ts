@@ -10,9 +10,10 @@ import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
 
 @Component({
-  selector: 'app-account-details',
+  selector: 'ih-account-details',
   templateUrl: './account-details.component.html',
-  styleUrls: ['./account-details.component.sass']
+  styleUrls: ['./account-details.component.sass'],
+  providers: [SuperuserViewAccountDetailsService]
 })
 export class SuperuserViewAccountDetailsComponent implements OnInit {
   errormsg = false;
@@ -22,19 +23,19 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   public cancelUserEdit = false;
   public createdOn: any;
   public MFDdisable: boolean;
-  constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
-    private menuComponent: MenuComponent, private accountDetailsCommonService: AccountDetailsCommonService,
-    public dialogService: DialogService, public headerService: HeaderService) {
-  }
-
   private myDatePickerOptions: IMyOptions = {
     // other options...
     dateFormat: 'mm-dd-yyyy',
     showClearDateBtn: false,
   };
+
   private beforeCancelAccountdetails;
+  constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
+              private menuComponent: MenuComponent, private accountDetailsCommonService: AccountDetailsCommonService,
+              public dialogService: DialogService, public headerService: HeaderService) {
+  }
   ngOnInit() {
-    this.headerService.showSideBarMenu('superuser-accounts', null);
+    this.headerService.showSideBarMenu('superuserview/tab/accounts', 'superuserview/tab/accounts');
     this.storagenable();
     this.getAcountDetails();
     this.menuComponent.highlightSBLink('Account Details');

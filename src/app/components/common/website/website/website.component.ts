@@ -11,7 +11,7 @@ import {HeaderComponentService} from '../../header/header.component.service';
 import { environment } from '../../../../../environments/environment';
 import {ApplicationRoles} from '../../constants/applicationroles.constants';
 import {ApplicationViews} from '../../constants/applicationviews.constants';
-import {Demorequestdetailsservice} from '../../../superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
+import {DemoRequestDetailsService} from '../../../superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
 import {InformationComponent} from '../../../framework/confirmbox/information.component';
 import {WebsiteService} from './website.service';
 
@@ -26,7 +26,7 @@ export interface ConfirmModel {
 @Component({
   selector: 'ih-website',
   templateUrl: 'website.component.html',
-  providers: [WebsiteService, ManageAccountUserService]
+  providers: [WebsiteService, ManageAccountUserService, DemoRequestDetailsService]
 })
 export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public static uiBuildNumber: string = environment.buildNumber; // "17.09.07";
@@ -62,7 +62,7 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
     private headerService: HeaderService,
     private headerComponentService: HeaderComponentService,
     private manageAccountUserService: ManageAccountUserService,
-    private demoRequestDetailsService: Demorequestdetailsservice
+    private demoRequestDetailsService: DemoRequestDetailsService
   ) {
     super(dialogService);
     console.log('Login Component Constructor');

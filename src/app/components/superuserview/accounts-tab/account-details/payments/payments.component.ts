@@ -21,9 +21,10 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-manageaccount-payments',
   templateUrl: './payments.component.html',
-  styleUrls: ['./payments.component.scss']
+  styleUrls: ['./payments.component.scss'],
+  providers: [AccountDetailsPaymentsService]
 })
-export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+export class AccountDetailsPaymentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
   public getPayments: boolean = true;
   public addPopups: boolean;
@@ -111,7 +112,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     this.getPaymentDetails();
   }
   addPayments(event) {
-    this.dialogService.addDialog(accountDetailsPaymentsComponent, {
+    this.dialogService.addDialog(AccountDetailsPaymentsComponent, {
       addPopups: true,
       getPayments: false,
       viewAccountPopup: false,
@@ -153,7 +154,7 @@ export class accountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     if (this.editFlag) {
       this.beforeEdit = (<any>Object).assign({}, event.data);
     }
-    this.dialogService.addDialog(accountDetailsPaymentsComponent, {
+    this.dialogService.addDialog(AccountDetailsPaymentsComponent, {
       viewAccountPopup: true,
       getPayments: false,
       addPopups: false,

@@ -164,7 +164,7 @@
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview/manageaccount/invoices');highlightSBLink('Invoices');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('immigrationview/manageaccount/invoices');highlightSBLink('superuserview/tab/invoices');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuserview/tab/invoices') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Invoices</span>
             </a>
@@ -222,7 +222,7 @@
                     </a>
                 </li>
                 <!--<li>
-                    <a (click)="appService.moveToPage('manageaccount/invoices');highlightSBLink('Invoices')" [ngClass]="[checkForCurrentSBLink('Invoices') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('manageaccount/invoices');highlightSBLink('superuserview/tab/invoices')" [ngClass]="[checkForCurrentSBLink('superuserview/tab/invoices') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Timeline</span>
                     </a>
@@ -399,40 +399,40 @@
         </li>
     </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-accounts'">
+    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview/tab/accounts'">
 
         <li>
-            <a (click)="appService.moveToPage('account-details');highlightSBLink('Account Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/account/details');highlightSBLink('Account Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Account Details</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('superuserview-accountmanagers');highlightSBLink('Account Managers');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Managers') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/account/managers');highlightSBLink('Account Managers');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Managers') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Account Managers</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('superuserview-preference');highlightSBLink('superuserview-preference');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuserview-preference') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/account/preference');highlightSBLink('superuserview/account/preference');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuserview/account/preference') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Account Preferences</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('accountdetails-invoice');highlightSBLink('Account Details Invoices');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Details Invoices') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/account/invoice');highlightSBLink('Account Details Invoices');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Details Invoices') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Invoices</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('accountdetails-payments');highlightSBLink('Payments');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Payments') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/account/payments');highlightSBLink('Payments');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Payments') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Payments</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('accountdetails-mfd');highlightSBLink('accountdetails-mfd');submenuclick('')" [ngClass]="[checkForCurrentSBLink('accountdetails-mfd') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/account/mfd');highlightSBLink('superuserview/account/mfd');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuserview/account/mfd') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Mark For Deletion</span>
             </a>
@@ -442,13 +442,13 @@
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">
 
         <li>
-            <a (click)="appService.moveToPage('superuserview-productcatalog');highlightSBLink('Products');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/productcatalog');highlightSBLink('Products');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Products</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('superuserview-productcatalog-discounts');highlightSBLink('Discounts');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Discounts') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/productcatalog/discounts');highlightSBLink('Discounts');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Discounts') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-history"></span>
                 <span>Discounts</span>
             </a>
@@ -459,32 +459,32 @@
 
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-reports'">
         <!--<li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts');superuserstatsclick()" [ngClass]="[checkForCurrentSBLink('superuser-statsaccounts') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appService.moveToPage('superuserview/reports/stats/accounts');highlightSBLink('superuserview/reports/stats/accounts');superuserstatsclick()" [ngClass]="[checkForCurrentSBLink('superuserview/reports/stats/accounts') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Stats</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" *ngIf="superuserstats" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts')" [ngClass]="[checkForCurrentSBLink('superuser-statsaccounts') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/stats/accounts');highlightSBLink('superuserview/reports/stats/accounts')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/stats/accounts') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Accounts</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-statsorgs');highlightSBLink('superuser-statsorgs')" [ngClass]="[checkForCurrentSBLink('superuser-statsorgs') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/stats/orgs');highlightSBLink('superuserview/reports/stats/orgs')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/stats/orgs') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Orgs</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-statsclients');highlightSBLink('superuser-statsclients')" [ngClass]="[checkForCurrentSBLink('superuser-statsclients') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/stats/clients');highlightSBLink('superuserview/reports/stats/clients')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/stats/clients') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Clients</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-statspetitions');highlightSBLink('superuser-statspetitions')" [ngClass]="[checkForCurrentSBLink('superuser-statspetitions') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/stats/petitions');highlightSBLink('superuserview/reports/stats/petitions')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/stats/petitions') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Petitions</span>
                     </a>
@@ -500,14 +500,14 @@
         <!--payments reports superuser-->
 
         <!--<li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('superuser-payments');highlightSBLink('superuser-payments');superuserpaymentsclick()" [ngClass]="[checkForCurrentSBLink('superuser-payments') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appService.moveToPage('superuserview/reports/payments/monthly');highlightSBLink('superuserview/reports/payments/monthly');superuserpaymentsclick()" [ngClass]="[checkForCurrentSBLink('superuserview/reports/payments/monthly') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Payments</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" *ngIf="superuserpayments" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-payments');highlightSBLink('superuser-payments')" [ngClass]="[checkForCurrentSBLink('superuser-payments') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/payments/monthly');highlightSBLink('superuserview/reports/payments/monthly')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/payments/monthly') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Monthly</span>
                     </a>
@@ -517,20 +517,20 @@
 
         <!--petitionsreports superuser-->
         <li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('superuser-petitionreports');highlightSBLink('superuser-petitionreports');submenuclick('superuserpetitions')" [ngClass]="[checkForCurrentSBLink('superuser-petitionreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="petreports" data-toggle="dropdown">
+            <a (click)="appService.moveToPage('superuserview/reports/petition/status');highlightSBLink('superuserview/reports/petition/status');submenuclick('superuserpetitions')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/petition/status') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="petreports" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Petitions</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" *ngIf="superuserpetitions" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-petitionreports');highlightSBLink('superuser-petitionreports')" [ngClass]="[checkForCurrentSBLink('superuser-petitionreports') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/petition/status');highlightSBLink('superuserview/reports/petition/status')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/petition/status') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Status</span>
                     </a>
                 </li>
                 <li ngbDropdown class="dropdown">
-                    <a (click)="appService.moveToPage('superuser-petiontypes');highlightSBLink('superuser-petiontypes')" [ngClass]="[checkForCurrentSBLink('superuser-petiontypes') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="petiontypes" data-toggle="dropdown">
+                    <a (click)="appService.moveToPage('superuserview/reports/petition/types');highlightSBLink('superuserview/reports/petition/types')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/petition/types') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="petiontypes" data-toggle="dropdown">
                         <span class="ico-flight"></span>
                         <span>Types</span>
                         <span class="ico-arrow"></span>
@@ -539,13 +539,13 @@
 
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-petionstagereports');highlightSBLink('superuser-petionstagereports')" [ngClass]="[checkForCurrentSBLink('superuser-petionstagereports') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/petition/stage');highlightSBLink('superuserview/reports/petition/stage')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/petition/stage') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Stage</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-finalaction');highlightSBLink('superuser-finalaction')" [ngClass]="[checkForCurrentSBLink('superuser-finalaction') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/petitions/finalaction');highlightSBLink('superuserview/reports/petitions/finalaction')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/petitions/finalaction') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Final Action</span>
                     </a>
@@ -572,7 +572,7 @@
                     </ul>-->
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-petiontagreports');highlightSBLink('superuser-petiontagreports')" [ngClass]="[checkForCurrentSBLink('superuser-petiontagreports') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/petition/tag');highlightSBLink('superuserview/reports/petition/tag')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/petition/tag') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Tag</span>
                     </a>
@@ -582,20 +582,20 @@
 
         <!--clients reports superuser-->
         <li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('superuser-clientstatusreports');highlightSBLink('superuser-clientstatusreports');submenuclick('superuserclientreports')" [ngClass]="[checkForCurrentSBLink('superuser-clientstatusreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appService.moveToPage('superuserview/reports/clients/status');highlightSBLink('superuserview/reports/clients/status');submenuclick('superuserclientreports')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/clients/status') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Clients</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" *ngIf="superuserclientreports" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-clientstatusreports');highlightSBLink('superuser-clientstatusreports')" [ngClass]="[checkForCurrentSBLink('superuser-clientstatusreports') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/clients/status');highlightSBLink('superuserview/reports/clients/status')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/clients/status') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Status</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-clientscreated');highlightSBLink('superuser-clientscreated')" [ngClass]="[checkForCurrentSBLink('superuser-clientscreated') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/clients/created');highlightSBLink('superuserview/reports/clients/created')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/clients/created') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Created</span>
                     </a>
@@ -626,20 +626,20 @@
 
         <!--userreports superuser-->
         <li ngbDropdown class="dropdown">
-            <a (click)="appService.moveToPage('superuser-totalpetitions');highlightSBLink('superuser-totalpetitions');;submenuclick('superuserpetitins')" [ngClass]="[checkForCurrentSBLink('superuser-totalpetitions') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
+            <a (click)="appService.moveToPage('superuserview/reports/users/petitions/total');highlightSBLink('superuserview/reports/users/petitions/total');;submenuclick('superuserpetitins')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/users/petitions/total') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
                 <span>Users</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" *ngIf="superuserpetitins" role="menu" aria-labelledby="users" name="users" ngDefaultControl>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-totalpetitions');highlightSBLink('superuser-totalpetitions')" [ngClass]="[checkForCurrentSBLink('superuser-totalpetitions') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/users/petitions/total');highlightSBLink('superuserview/reports/users/petitions/total')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/users/petitions/total') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Total Petitions</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="appService.moveToPage('superuser-openpetitions');highlightSBLink('superuser-openpetitions')" [ngClass]="[checkForCurrentSBLink('superuser-openpetitions') ? 'active': '']" routerLinkActive="active">
+                    <a (click)="appService.moveToPage('superuserview/reports/users/petitions/open');highlightSBLink('superuserview/reports/users/petitions/open')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/users/petitions/open') ? 'active': '']" routerLinkActive="active">
                         <span class="ico-flight"></span>
                         <span>Open petitions</span>
                     </a>
@@ -647,15 +647,15 @@
             </ul>
         </li>
     </ul>
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-misc'">
+    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview/misc/demorequest'">
         <li>
-            <a (click)="appService.moveToPage('superuser-misc');highlightSBLink('superuser-misc');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuser-misc') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/misc/demorequest');highlightSBLink('superuserview/misc/demorequest');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuserview/misc/demorequest') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Demo Request Details</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('superuser-miscsuperusers');highlightSBLink('superuser-miscsuperusers');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuser-miscsuperusers') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('superuserview/misc/superusers');highlightSBLink('superuserview/misc/superusers');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuserview/misc/superusers') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Super Users</span>
             </a>

@@ -1,9 +1,8 @@
-﻿import { User } from '../../../../models/user';
-import { RestService } from '../../../../services/rest.service';
+﻿import {RestService} from '../../../../services/rest.service';
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class Demorequestdetailsservice {
+export class DemoRequestDetailsService {
     constructor(private restService: RestService) {
     }
     public getDemoRequests() {

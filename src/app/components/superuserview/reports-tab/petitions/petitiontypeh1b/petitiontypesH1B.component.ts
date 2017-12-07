@@ -1,6 +1,6 @@
 ﻿import { AppService } from '../../../../../services/app.service';
 import { ReportsCommonService } from '../../common/reports-common.service';
-import { superuserH1Breportsservice } from './petitiontypesH1B.service';
+import { SuperUserH1BReportsService } from './petitiontypesH1B.service';
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ManageAccountPetitionStagesService} from '../../../../immigrationview/manage-account-tab/petitiontypestages/petitiontypestages.service';
@@ -10,7 +10,7 @@ import {ManageAccountPetitionStagesService} from '../../../../immigrationview/ma
     selector: 'app-petitiontypes-types',
     templateUrl: './petitiontypesH1B.component.html',
     styleUrls: ['./petitiontypesH1B.component.sass'],
-  providers: [ManageAccountPetitionStagesService]
+  providers: [ManageAccountPetitionStagesService, SuperUserH1BReportsService]
 })
 
 export class SuperUserH1BReportsComponent implements OnInit {
@@ -25,7 +25,7 @@ export class SuperUserH1BReportsComponent implements OnInit {
     public petitionstageTypes: any = [];
   selectedsubtype;
   petitionsubtypechange;
-  constructor(public appService: AppService, private superUserH1Breportsservice: superuserH1Breportsservice,
+  constructor(public appService: AppService, private superUserH1Breportsservice: SuperUserH1BReportsService,
       public reportsCommonService: ReportsCommonService, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
   ngOnInit() {
       this.immigrationViewPetitionsService.getPetitionTypes().subscribe(

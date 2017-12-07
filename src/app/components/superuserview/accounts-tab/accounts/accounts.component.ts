@@ -20,7 +20,8 @@ export interface ConfirmModel {
 
 @Component({
   selector: 'ih-app-clients',
-  templateUrl: './accounts.component.html'
+  templateUrl: './accounts.component.html',
+  providers: [SuperUserviewAccountService]
 })
 export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   private outlet: any = {
@@ -44,7 +45,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   public addAccounts: boolean;
   public accountDetails: any = {};
   public statusTypes: any = [];
-  public storageTypes:any=[];
+  public storageTypes: any = [];
 
 
   public DefaultResponse = {'status': 'Active'};
@@ -110,70 +111,60 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
       'columnsettings': [
         {
           headerName: 'Account Name',
-          field: 'accountName',
-          type: 'text'
+          field: 'accountName'
         },
         {
           headerName: 'Account Number',
-          field: 'accountNumber',
-          type:'text'
+          field: 'accountNumber'
         },
         {
           headerName: 'First Name',
-          field: 'firstName',
-          type:'text'
+          field: 'firstName'
         },
         {
           headerName: 'Last Name',
-          field: 'lastName',
-          type:'text'
+          field: 'lastName'
         },
         {
           headerName: 'Email',
-          field: 'email',
-          type:'text'
+          field: 'email'
         },
         {
           headerName: 'Phone',
-          field: 'phone',
-          type:'text'
+          field: 'phone'
         },
         {
           headerName: 'Status',
           field: 'status',
-          type:'dropDown',
-          data:this.statusTypes
+          type: 'dropDown',
+          data: this.statusTypes
         },
         {
             headerName: 'Orgs',
-            field: 'organizatinCount',
-          type:'text'
+            field: 'organizatinCount'
         },
         {
           headerName: 'Clients',
-          field: 'clientCount',
-          type:'text'
+          field: 'clientCount'
         },
         {
           headerName: 'Petitions',
-          field: 'petitionCount',
-          type:'text'
+          field: 'petitionCount'
         },
         {
           headerName: 'Created On',
           field: 'creationOn',
-          type:'datePicker'
+          type: 'datePicker'
         },
         {
           headerName: 'Last Payment Status',
-          field: 'lastPaymentStatus',
-          type:'text'
+          field: 'lastPaymentStatus'
         },
         {
           headerName: 'Storage Type',
           field: 'storageType',
-          type:'dropDown',
-          data:this.storageTypes
+          type: 'dropDown',
+          data: this.storageTypes
         }
       ]
     };
@@ -181,7 +172,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
 
   ngOnInit() {
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
-    this.headerService.showSideBarMenu(null, 'accounts');
+    this.headerService.showSideBarMenu(null, 'superuserview/tab/accounts');
     this.superUserAccountService.getaccountnames().subscribe((res) => {
         this.reportscommonService.totalAccounts = res['accounts'];
     });
@@ -241,8 +232,8 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
   }
 
   editRecord(event): void {
-    this.menuComponent.highlightSBLink('accounts');
-    this.appService.moveToPage('account-details');
+    this.menuComponent.highlightSBLink('Account Details');
+    this.appService.moveToPage('superuserview/account/details');
     // Destroy account details Common service and assign accountId
     this.accountDetailsCommonService.destroy();
     this.accountDetailsCommonService.accountId = event.data.accountId;

@@ -9,7 +9,7 @@ import {ICellRendererAngularComp} from 'ag-grid-angular/main';
     </div>
    `
 })
-export class InvoicedownloadButton implements ICellRendererAngularComp {
+export class InvoiceDownloadButtonComponent implements ICellRendererAngularComp {
   public params: any;
   agInit(params: any): void {
     this.params = params;

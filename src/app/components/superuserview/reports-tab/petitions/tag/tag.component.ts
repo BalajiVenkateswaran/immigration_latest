@@ -7,7 +7,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-petitiontag',
     templateUrl: './tag.component.html',
-    styleUrls: ['./tag.component.sass']
+    styleUrls: ['./tag.component.sass'],
+  providers: [SuperUserPetitionTagReportsService]
 })
 
 export class SuperUserPetitionTagReportsComponent implements OnInit {

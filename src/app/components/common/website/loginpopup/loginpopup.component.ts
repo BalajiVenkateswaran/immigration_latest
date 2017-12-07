@@ -12,7 +12,6 @@ import {HeaderComponentService} from '../../header/header.component.service';
 import {environment} from '../../../../../environments/environment';
 import {ApplicationRoles} from '../../constants/applicationroles.constants';
 import {ApplicationViews} from '../../constants/applicationviews.constants';
-import {Demorequestdetailsservice} from '../../../superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
 import {RolesPopupComponent} from '../rolespopup/rolespopup.component';
 
 export interface ConfirmModel {
@@ -48,8 +47,7 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
     public dialogService: DialogService,
     private headerService: HeaderService,
     private headerComponentService: HeaderComponentService,
-    private manageAccountUserService: ManageAccountUserService,
-    private demoRequestDetailsService: Demorequestdetailsservice
+    private manageAccountUserService: ManageAccountUserService
   ) {
     super(dialogService);
     console.log('Login Component Constructor');

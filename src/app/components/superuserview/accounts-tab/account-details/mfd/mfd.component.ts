@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {SuperUserViewMFDService} from './mfd.service';
-import {AccountDetailsCommonService} from "../common/account-details-common.service";
+import {AccountDetailsCommonService} from '../common/account-details-common.service';
 
 @Component({
   selector: 'app-superuserview-accountdetails-mfd',
   templateUrl: './mfd.component.html',
-  styleUrls: ['./mfd.component.scss']
+  styleUrls: ['./mfd.component.scss'],
+  providers: [SuperUserViewMFDService]
 })
 export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
   public settings;
@@ -18,37 +19,37 @@ export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
       'columnsettings': [
         {
 
-          headerName: "Name",
-          field: "entityName",
+          headerName: 'Name',
+          field: 'entityName',
         },
         {
 
-          headerName: "Type",
-          field: "entityType",
+          headerName: 'Type',
+          field: 'entityType',
         },
         {
-          headerName: "Organization",
-          field: "orgName",
+          headerName: 'Organization',
+          field: 'orgName',
         },
         {
-          headerName: "Client Name",
-          field: "clientName",
+          headerName: 'Client Name',
+          field: 'clientName',
         },
         {
-          headerName: "Petition Name",
-          field: "petitionName",
+          headerName: 'Petition Name',
+          field: 'petitionName',
         },
         {
-          headerName: "MFD on",
-          field: "markedForDeletionDate",
+          headerName: 'MFD on',
+          field: 'markedForDeletionDate',
         },
         {
-          headerName: "Deleted on",
-          field: "deletionDate",
+          headerName: 'Deleted on',
+          field: 'deletionDate',
         },
         {
-          headerName: "Deleted by",
-          field: "deletedByUser",
+          headerName: 'Deleted by',
+          field: 'deletedByUser',
         }
       ]
     }

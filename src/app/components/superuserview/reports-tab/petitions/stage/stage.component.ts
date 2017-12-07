@@ -7,7 +7,8 @@ import {SuperUserPetitionStagesReportsService} from "./stage.service";
 @Component({
     selector: 'app-petitionstages',
     templateUrl: './stage.component.html',
-    styleUrls: ['./stage.component.sass']
+    styleUrls: ['./stage.component.sass'],
+  providers: [SuperUserPetitionStagesReportsService]
 })
 
 export class SuperUserPetitionStageReportsComponent implements OnInit {

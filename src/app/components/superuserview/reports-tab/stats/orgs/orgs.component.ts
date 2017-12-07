@@ -1,23 +1,16 @@
 ﻿import { AppService } from '../../../../../services/app.service';
 import { ReportsCommonService } from '../../common/reports-common.service';
-import { SuperUserstatorgsReportsService } from './orgs.service';
 import { Component, OnInit } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
-    selector: 'app-orgreports',
+    selector: 'ih-orgreports',
     templateUrl: './orgs.component.html',
     styleUrls: ['./orgs.component.sass']
 })
-
-export class superuserstatsotgsReportsComponent implements OnInit {
+export class SuperUserStatsOrgsReportsComponent implements OnInit {
     public data: any = [];
-
-
-    constructor(public appService: AppService, private SuperuserstatorgsReportsService: SuperUserstatorgsReportsService,
-        public reportsCommonService: ReportsCommonService) { }
-
+    constructor(public appService: AppService, public reportsCommonService: ReportsCommonService) { }
 
     ngOnInit() {
     }

@@ -8,7 +8,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-superpetitionstatusreports',
     templateUrl: './status.component.html',
-    styleUrls: ['./status.component.sass']
+    styleUrls: ['./status.component.sass'],
+  providers: [SuperUserPetitionsStatusReportsService]
 })
 
 export class SuperUserPetitionsStatusReportsComponent implements OnInit {

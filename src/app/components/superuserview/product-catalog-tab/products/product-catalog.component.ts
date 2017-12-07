@@ -19,7 +19,8 @@ export interface ConfirmModel {
 @Component({
   selector: 'ih-superuserview-productcatalog',
   templateUrl: './product-catalog.component.html',
-  styleUrls: ['./product-catalog.component.sass']
+  styleUrls: ['./product-catalog.component.sass'],
+  providers: [ProductCatalogProductService]
 })
 export class SuperuserviewProductcatalogComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   queryParameters: any;

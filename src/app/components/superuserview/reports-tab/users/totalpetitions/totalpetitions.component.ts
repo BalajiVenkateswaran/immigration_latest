@@ -1,14 +1,13 @@
-﻿import { AppService } from '../../../../../services/app.service';
-import { ReportsCommonService } from '../../common/reports-common.service';
-import { SuperUserTotalPetitionsReportsService } from './totalpetitions.service';
+﻿import {ReportsCommonService} from '../../common/reports-common.service';
+import {SuperUserTotalPetitionsReportsService} from './totalpetitions.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
 
 @Component({
     selector: 'app-superuserusertotalpetitions',
     templateUrl: './totalpetitions.component.html',
-    styleUrls: ['./totalpetitions.component.sass']
+    styleUrls: ['./totalpetitions.component.sass'],
+  providers: [SuperUserTotalPetitionsReportsService]
 })
 
 export class SuperUserTotalPetitionsReportsComponent implements OnInit {

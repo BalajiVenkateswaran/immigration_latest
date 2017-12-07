@@ -4,11 +4,11 @@ import { HeaderService } from '../../common/header/header.service';
 import { MenuComponent } from '../../common/menu/menu.component';
 import { AccountDetailsCommonService } from '../accounts-tab/account-details/common/account-details-common.service';
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {SuperUserViewInvoicestabService} from "./invoices.service";
-import { SortType } from "../../framework/smarttable/types/query-parameters";
+import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {SuperUserViewInvoicestabService} from './invoices.service';
+import { SortType } from '../../framework/smarttable/types/query-parameters';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -18,13 +18,14 @@ export interface ConfirmModel {
 }
 @Component({
   selector: 'app-invoices',
-  templateUrl: './invoices.component.html'
+  templateUrl: './invoices.component.html',
+  providers: [SuperUserViewInvoicestabService]
 })
 export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     private invoicesList: invoice[];
     private message: string;
     public addNewClient: boolean;
-    public getClientsData: boolean = true;
+    public getClientsData = true;
     public newclitem: any = {};
     public settings;
     public data;
@@ -50,47 +51,47 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
             'isDeleteEnable': false,
             'isAddButtonEnable': false,
             'columnFilter': true,
-        'isMorefilters':true,
+        'isMorefilters': true,
             'sort': [{
-                headingName: "invoiceDate",
+                headingName: 'invoiceDate',
                 sort: SortType.DESC
             }],
             'columnsettings': [
                 {
-                    headerName: "Invoice Number",
-                    field: "invoiceNumber",
-                    type:'text'
+                    headerName: 'Invoice Number',
+                    field: 'invoiceNumber',
+                    type: 'text'
                 },
                 {
-                    headerName: "Account Name",
-                    field: "accountName",
-                    type:'text'
+                    headerName: 'Account Name',
+                    field: 'accountName',
+                    type: 'text'
                 },
                 {
-                    headerName: "Account Number",
-                    field: "accountNumber",
-                  type:'text'
+                    headerName: 'Account Number',
+                    field: 'accountNumber',
+                  type: 'text'
                 },
                 {
-                    headerName: "Invoice Date",
-                    field: "invoiceDate",
-                  type:'datePicker'
+                    headerName: 'Invoice Date',
+                    field: 'invoiceDate',
+                  type: 'datePicker'
                 },
                 {
-                    headerName: "Invoice Amount",
-                    field: "invoiceAmount",
-                  type:'text'
+                    headerName: 'Invoice Amount',
+                    field: 'invoiceAmount',
+                  type: 'text'
                 },
                 {
-                    headerName: "Payment Status",
-                    field: "paymentStatus",
-                  type:'dropDown',
-                  data:this.statusTypes
+                    headerName: 'Payment Status',
+                    field: 'paymentStatus',
+                  type: 'dropDown',
+                  data: this.statusTypes
                 },
                 {
-                    headerName: "PDF Generated",
-                    field: "pdfGenerated",
-                  type:'text'
+                    headerName: 'PDF Generated',
+                    field: 'pdfGenerated',
+                  type: 'text'
                 }
 
             ]
@@ -98,7 +99,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
     }
 
     ngOnInit() {
-        this.headerService.showSideBarMenu(null, "invoices");
+        this.headerService.showSideBarMenu(null, 'superuserview/tab/invoices');
     }
 
     clientSave() {
@@ -106,7 +107,7 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
         this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
         this.newclitem['createdBy'] = this.headerService.user.userId;
         if (this.newclitem['status'] == '' || null || undefined) {
-            this.newclitem['status'] = "Active";
+            this.newclitem['status'] = 'Active';
         }
         this.appService.newclitem = this.newclitem;
         this.result = true;
@@ -117,17 +118,17 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
         this.close();
     }
 
-  moveToInvoiceTab(event): void{
+  moveToInvoiceTab(event): void {
       this.menuComponent.highlightSBLink('Account Details Invoices');
-      this.headerService.showSideBarMenu('superuser-accounts', "accounts");
-      this.appService.moveToPage("accountdetails-invoice");
+      this.headerService.showSideBarMenu('superuserview/tab/accounts', 'superuserview/tab/accounts');
+      this.appService.moveToPage('superuserview/account/invoice');
       this.accountDetailsCommonService.accountId = event.data.accountId;
 
 
     }
     dataWithParameters(queryParams) {
         if (queryParams) {
-            this.superuserviewInvoicestabService.getInvoicesWithQueryParams(queryParams).subscribe(res=>{
+            this.superuserviewInvoicestabService.getInvoicesWithQueryParams(queryParams).subscribe(res => {
                  this.invoicesList = res.invoices;
                  this.data = this.invoicesList;
               this.paginationData = res['pageMetadata'];

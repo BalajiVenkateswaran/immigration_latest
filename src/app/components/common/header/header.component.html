@@ -258,8 +258,8 @@
                   </ul>
                   <ul *ngIf="appService.isSuperUserView()">
                       <li>
-                          <a (click)="appService.moveToPage('superuser-accounts'); highlightTab('superuser-accounts');"
-                             [ngClass]="[checkForCurrentTab('superuser-accounts') ? 'active': '']"
+                          <a (click)="appService.moveToPage('superuserview/tab/accounts'); highlightTab('superuserview/tab/accounts');"
+                             [ngClass]="[checkForCurrentTab('superuserview/tab/accounts') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-Accounts"></span>
                               <div class="clearfix"></div> Accounts
@@ -267,7 +267,7 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('superuserview-productcatalog'); highlightTab('ProductCatalog');"
+                          <a (click)="appService.moveToPage('superuserview/productcatalog'); highlightTab('ProductCatalog');"
                              [ngClass]="[checkForCurrentTab('ProductCatalog') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-procat"></span>
@@ -276,8 +276,8 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('invoices'); highlightTab('invoices');"
-                             [ngClass]="[checkForCurrentTab('invoices') ? 'active': '']"
+                          <a (click)="appService.moveToPage('superuserview/tab/invoices'); highlightTab('superuserview/tab/invoices');"
+                             [ngClass]="[checkForCurrentTab('superuserview/tab/invoices') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-invoices"></span>
                               <div class="clearfix"></div> Invoices
@@ -285,8 +285,8 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('payments'); highlightTab('payments');"
-                             [ngClass]="[checkForCurrentTab('payments') ? 'active': '']"
+                          <a (click)="appService.moveToPage('superuserview/tab/payments'); highlightTab('superuserview/tab/payments');"
+                             [ngClass]="[checkForCurrentTab('superuserview/tab/payments') ? 'active': '']"
                              routerLinkActive="active">
                               <span class="maintab-payments"></span>
                               <div class="clearfix"></div> Payments
@@ -294,8 +294,8 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('superuser-statsaccounts'); highlightTab('superuser-statsaccounts');highlightSBLink('superuser-statsaccounts');"
-                             [ngClass]="[checkForCurrentTab('superuser-statsaccounts') ? 'active' : '']"
+                          <a (click)="appService.moveToPage('superuserview/reports/stats/accounts'); highlightTab('superuserview/reports/stats/accounts');highlightSBLink('superuserview/reports/stats/accounts');"
+                             [ngClass]="[checkForCurrentTab('superuserview/reports/stats/accounts') ? 'active' : '']"
                              routerLinkActive="active">
                               <span class="maintab-Reports"></span>
                               <div class="clearfix"></div> Reports
@@ -303,8 +303,8 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('superuser-misc'); highlightTab('superuser-misc');highlightSBLink('superuser-misc');"
-                             [ngClass]="[checkForCurrentTab('superuser-misc') ? 'active' : '']"
+                          <a (click)="appService.moveToPage('superuserview/misc/demorequest'); highlightTab('superuserview/misc/demorequest');highlightSBLink('superuserview/misc/demorequest');"
+                             [ngClass]="[checkForCurrentTab('superuserview/misc/demorequest') ? 'active' : '']"
                              routerLinkActive="active">
                               <span class="maintab-Profile"></span>
                               <div class="clearfix"></div> Misc

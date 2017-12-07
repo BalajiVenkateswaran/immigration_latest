@@ -1,10 +1,8 @@
-﻿import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
+﻿import {AppService} from '../../../../services/app.service';
 import {Component, OnInit} from '@angular/core';
-import {Demorequestdetailsservice} from './demorequestdetails.service';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {DemoRequestDetailsService} from './demorequestdetails.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../common/header/header.service';
 
 export interface ConfirmModel {
@@ -18,10 +16,8 @@ export interface ConfirmModel {
 @Component({
     selector: 'ih-misc-demorequest',
     templateUrl: './demorequestdetails.component.html',
-
+    providers: [DemoRequestDetailsService]
 })
-
-
 export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public data;
     public settings;
@@ -34,7 +30,7 @@ export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, b
         dateFormat: 'mm-dd-yyyy',
         showClearDateBtn: false,
     };
-  constructor(private demorequestdetailsservice: Demorequestdetailsservice,
+  constructor(private demorequestdetailsservice: DemoRequestDetailsService,
               private appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
 
@@ -77,7 +73,7 @@ export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, b
   }
 
   ngOnInit() {
-        this.headerService.showSideBarMenu('superuser-misc', 'superuser-misc');
+        this.headerService.showSideBarMenu('superuserview/misc/demorequest', 'superuserview/misc/demorequest');
         this.getDemoRequests();
     }
   getDemoRequests() {

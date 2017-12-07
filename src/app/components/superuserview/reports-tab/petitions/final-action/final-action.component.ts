@@ -8,10 +8,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-petitionfinalaction',
     templateUrl: './final-action.component.html',
-    styleUrls: ['./final-action.component.sass']
+    styleUrls: ['./final-action.component.sass'],
+  providers: [SuperUserPetitionFinalActionReportsService]
 })
 
-export class superuserpetfinalactionreportscomponent implements OnInit {
+export class SuperUserPetitionFinalActionReportsComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
     public pieChartType: string = 'pie';

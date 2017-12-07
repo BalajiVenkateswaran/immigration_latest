@@ -8,7 +8,7 @@ import {ICellRendererAngularComp} from 'ag-grid-angular/main';
                     <input type="file" class="upload" name="file" (change)="fileUpload($event)" />
                 </div>`,
 })
-export class InvoiceUploadButton implements ICellRendererAngularComp {
+export class InvoiceUploadButtonComponent implements ICellRendererAngularComp {
   public params: any;
   agInit(params: any): void {
     this.params = params;

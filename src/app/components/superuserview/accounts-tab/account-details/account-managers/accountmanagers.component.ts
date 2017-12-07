@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {AccountManagersService} from './accountmanagers.service';
 import {AccountDetailsCommonService} from '../common/account-details-common.service';
 import {HeaderService} from '../../../../common/header/header.service';
@@ -14,13 +13,14 @@ export interface ConfirmModel {
   viewUsers: boolean;
   addPopups: boolean;
   addUsers: Object;
-
 }
+
 @Component({
   selector: 'ih-managers-account',
-  templateUrl: './accountmanagers.component.html'
+  templateUrl: './accountmanagers.component.html',
+  providers: [AccountManagersService]
 })
-export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public settings;
   public data;
   public addUsers: any = {};
@@ -74,7 +74,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
       });
   }
   addFunction(event) {
-    this.dialogService.addDialog(AccountsManagers, {
+    this.dialogService.addDialog(AccountsManagersComponent, {
       addPopups: true,
       viewUsers: false,
       title: 'Add New User',
@@ -96,7 +96,9 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
   accountmanagersSave(email) {
     this.addUsers['role'] = this.roles[this.addUsers['role']];
     this.addUsers['accountId'] = this.accountDetailsCommonService.accountId;
-    if (this.addUsers['firstName'] === '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] == undefined || this.addUsers['lastName'] == '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] == undefined || this.addUsers['emailId'] == '' || this.addUsers['emailId'] == null || this.addUsers['emailId'] == undefined || this.addUsers['role'] == '' || this.addUsers['role'] == null || this.addUsers['role'] == undefined) {
+    if (this.addUsers['firstName'] === '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] === undefined || this.addUsers['lastName'] === ''
+      || this.addUsers['lastName'] == null || this.addUsers['lastName'] === undefined || this.addUsers['emailId'] === '' || this.addUsers['emailId'] == null ||
+      this.addUsers['emailId'] === undefined || this.addUsers['role'] === '' || this.addUsers['role'] == null || this.addUsers['role'] === undefined) {
       this.warningMessage = true;
     } else if (email != null) {
       this.warningMessage = false;
@@ -115,7 +117,7 @@ export class AccountsManagers extends DialogComponent<ConfirmModel, boolean> imp
     if (this.editFlag) {
       this.beforeEdit = (<any>Object).assign({}, event.data);
     }
-    this.dialogService.addDialog(AccountsManagers, {
+    this.dialogService.addDialog(AccountsManagersComponent, {
       addPopups: true,
       viewUsers: false,
       title: 'Edit User',

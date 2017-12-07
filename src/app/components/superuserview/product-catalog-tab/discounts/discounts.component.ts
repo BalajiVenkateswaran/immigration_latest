@@ -15,10 +15,11 @@ export interface ConfirmModel {
 @Component({
     selector: 'app-superuserview-productcatalog-discounts',
     templateUrl: './discounts.component.html',
-    styleUrls: ['./discounts.component.sass']
+    styleUrls: ['./discounts.component.sass'],
+  providers: [ProductCatalogDiscountService]
 })
 export class SuperuserviewProductcatalogDiscountsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    
+
     public data;
     public settings;
     public paginationData;
@@ -32,7 +33,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     public viewDetails: boolean = true;
     public isEditDiscount: boolean = true;
     public warningMessage: boolean = false;
-    
+
     constructor(private appService: AppService, public productCatalogDiscountService: ProductCatalogDiscountService, public dialogService: DialogService) {
         super(dialogService);
         this.settings = {
@@ -130,7 +131,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
         this.close();
     }
 
-    //view 
+    //view
     viewDiscountDetails(event) {
         this.editFlag = true;
         if (this.editFlag) {

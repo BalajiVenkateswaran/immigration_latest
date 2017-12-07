@@ -6,8 +6,8 @@ import {AccountInvoiceService} from './invoice.service';
 import * as FileSaver from 'file-saver';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {AccountDetailsCommonService} from '../common/account-details-common.service';
-import { InvoicedownloadButton } from './invoicedownloadbutton';
-import {InvoiceUploadButton} from './invoiceuploadbutton';
+import { InvoiceDownloadButtonComponent } from './invoicedownloadbutton';
+import {InvoiceUploadButtonComponent} from './invoiceuploadbutton';
 
 export interface ConfirmModel {
     title: string;
@@ -21,7 +21,9 @@ export interface ConfirmModel {
 @Component({
     selector: 'ih-account-invoice',
     templateUrl: './invoice.component.html',
-    styleUrls: ['./invoice.component.scss']
+    styleUrls: ['./invoice.component.scss'],
+  providers: [AccountInvoiceService],
+  entryComponents: [InvoiceDownloadButtonComponent, InvoiceUploadButtonComponent]
 })
 export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     public getInvoice = true;
@@ -69,11 +71,11 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
                 },
                 {
                     headerName: 'PDF Uploaded',
-                    cellRendererFramework: InvoiceUploadButton
+                    cellRendererFramework: InvoiceUploadButtonComponent
                 },
                 {
                     headerName: 'Download Button',
-                    cellRendererFramework: InvoicedownloadButton
+                    cellRendererFramework: InvoiceDownloadButtonComponent
                 }
             ]
         };

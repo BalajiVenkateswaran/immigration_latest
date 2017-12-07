@@ -1,10 +1,9 @@
 ﻿import { AppService } from '../../../../../services/app.service';
 import { ReportsCommonService } from '../../common/reports-common.service';
-import { SuperUsermonthlyReportsService } from './monthly.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-monthly',
+    selector: 'ih-monthly',
     templateUrl: './monthly.component.html',
     styleUrls: ['./monthly.component.sass']
 })
@@ -12,8 +11,7 @@ export class SuperUserMonthlyReportsComponent implements OnInit {
     public data: any = [];
 
 
-    constructor(public appService: AppService, private SuperusermonthlyReportsService: SuperUsermonthlyReportsService,
-        public reportsCommonService: ReportsCommonService) { }
+    constructor(public appService: AppService, public reportsCommonService: ReportsCommonService) { }
 
 
     ngOnInit() {
