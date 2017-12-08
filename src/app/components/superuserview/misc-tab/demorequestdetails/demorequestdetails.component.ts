@@ -109,8 +109,10 @@ export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, b
         });
     }
     demorequestsave(email) {
-        this.adddemoRequests['demoRequestDate'] = this.adddemoRequests['demoRequestDate']['formatted'];
-          this.demorequestdetailsservice.savedemoRequest(this.adddemoRequests).subscribe((res) => {
+        if (this.adddemoRequests['demoRequestDate']) {
+          this.adddemoRequests['demoRequestDate'] = this.adddemoRequests['demoRequestDate']['formatted'];
+        }
+        this.demorequestdetailsservice.savedemoRequest(this.adddemoRequests).subscribe((res) => {
               console.log(res);
 
             });
