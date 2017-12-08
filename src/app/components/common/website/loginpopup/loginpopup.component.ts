@@ -166,8 +166,8 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
               if (res.userAccountRoleList[0].roleName === ApplicationRoles.CLIENT) {
                 this.appService.applicationViewMode = ApplicationViews.CLIENT_VIEW;
                 this.appService.clientId = this.headerService.user.userId;
-                this.headerService.currentTab = 'clientview-petitions';
-                moveToPage = 'clientview-petitions';
+                this.headerService.currentTab = 'clientview/petitions';
+                moveToPage = 'clientview/petitions';
               }
               if (res.userAccountRoleList[0].roleName === ApplicationRoles.SUPER_USER) {
                 this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;

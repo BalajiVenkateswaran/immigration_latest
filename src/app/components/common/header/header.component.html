@@ -196,8 +196,8 @@
                   </ul>
                   <ul *ngIf="appService.isClientView()" id="MainMenuListItems">
                       <li>
-                          <a (click)="appService.moveToPage('clientview-petitions'); highlightTab('clientview-petitions');"
-                             [ngClass]="[checkForCurrentTab('clientview-petitions') ? 'active': '']"
+                          <a (click)="appService.moveToPage('clientview/petitions'); highlightTab('clientview/petitions');"
+                             [ngClass]="[checkForCurrentTab('clientview/petitions') ? 'active': '']"
                              routerLinkActive="active">
                               <!--<span class="maintab-Petitions"></span>-->
                               <img class="imgg" src="../../../../assets/images/Petitions.png" />
@@ -206,8 +206,8 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('clientview-client-details'); highlightTab('clientview-client-details');highlightSBLink('ClientDetails');"
-                             [ngClass]="[checkForCurrentTab('clientview-client-details') ? 'active': '']"
+                          <a (click)="appService.moveToPage('clientview/client/details'); highlightTab('clientview/client/details');highlightSBLink('ClientDetails');"
+                             [ngClass]="[checkForCurrentTab('clientview/client/details') ? 'active': '']"
                              routerLinkActive="active">
                               <!--<span class="maintab-clientdetails"></span>-->
                               <img class="imgg" src="../../../../assets/images/Client Details.png" />
@@ -216,8 +216,8 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPageWithParams('clientview-documents',''); highlightTab('clientview-documents');"
-                             [ngClass]="[checkForCurrentTab('clientview-documents') ? 'active': '']"
+                          <a (click)="appService.moveToPageWithParams('clientview/documents',''); highlightTab('clientview/documents');"
+                             [ngClass]="[checkForCurrentTab('clientview/documents') ? 'active': '']"
                              routerLinkActive="active">
                               <!--<span class="maintab-clientdocuments"></span>-->
                               <img class="imgg" src="../../../../assets/images/Documents.png" />
@@ -226,8 +226,8 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('clientview-Questionnaries'); highlightTab('clientview-Questionnaries');highlightSBLink('Questionnaires');"
-                             [ngClass]="[checkForCurrentTab('clientview-Questionnaries') ? 'active': '']"
+                          <a (click)="appService.moveToPage('clientview/questionnaries'); highlightTab('clientview/questionnaries');highlightSBLink('Questionnaires');"
+                             [ngClass]="[checkForCurrentTab('clientview/questionnaries') ? 'active': '']"
                              routerLinkActive="active">
                               <!--<span class="maintab-clientQuestionnaire"></span>-->
                               <img class="imgg" src="../../../../assets/images/Questionnaire_clint.png" />
@@ -236,8 +236,8 @@
                           </a>
                       </li>
                       <li>
-                          <a (click)="appService.moveToPage('clientview-Requests'); highlightTab('clientview-Requests');"
-                             [ngClass]="[checkForCurrentTab('clientview-Requests') ? 'active': '']"
+                          <a (click)="appService.moveToPage('clientview/requests'); highlightTab('clientview/requests');"
+                             [ngClass]="[checkForCurrentTab('clientview/requests') ? 'active': '']"
                              routerLinkActive="active">
                               <img class="imgg" src="../../../../assets/images/Request_clint.png" />
                                <span>Requests</span>

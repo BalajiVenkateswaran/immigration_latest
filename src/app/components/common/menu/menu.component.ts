@@ -1,10 +1,10 @@
-import { AppService } from '../../../services/app.service';
-import { Component, OnInit, DoCheck } from '@angular/core';
-import { MenuService } from "./menu.service";
-import { QuestionnaireCommonService } from '../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
-import {HeaderService} from "../header/header.service";
-import {DocumentService} from "../../clientview/documents-tab/documents.service";
-//import { NgbDropdown } from "@ng-bootstrap/ng-bootstrap/dropdown";
+import {AppService} from '../../../services/app.service';
+import {Component, OnInit} from '@angular/core';
+import {MenuService} from './menu.service';
+import {QuestionnaireCommonService} from '../../immigrationview/petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
+import {HeaderService} from '../header/header.service';
+import {DocumentService} from '../../clientview/documents-tab/documents.service';
+
 
 @Component({
     selector: 'menu',
@@ -23,16 +23,16 @@ export class MenuComponent implements OnInit {
     public immidependents;
     public clientQuest: boolean;
     public manageUser: boolean;
-    private immipetitionreports: boolean = true;
+    private immipetitionreports = true;
     private immicilentreports;
     private immiuserreports;
-    public superuserstats: boolean = true;
+    public superuserstats = true;
     public superuserpayments: boolean;
     public superuserpetitions: boolean;
     public superuserclientreports: boolean;
     public superuserpetitins: boolean;
     public immiQstnre: boolean;
-    public isShow: boolean = true;
+    public isShow = true;
     constructor(private menuService: MenuService, public appService: AppService,
         public questionnaireCommonService: QuestionnaireCommonService, private headerService: HeaderService, public clientViewDocuments: DocumentService) {
         this.sideBarMenu = headerService.sideBarMenu;
@@ -43,10 +43,10 @@ export class MenuComponent implements OnInit {
     ngDoCheck() {
         this.sideBarMenu = this.headerService.sideBarMenu;
         this.docsideBarMenu = this.appService.docsideBarMenu;
-        if(this.manageUser && this.appService.currentSBLink != "User"){
+        if (this.manageUser && this.appService.currentSBLink !== 'User') {
             this.manageUser = false;
         }
-        if(this.userDetailsClicked){
+        if (this.userDetailsClicked) {
             this.manageUser = true;
         }
     }
@@ -66,37 +66,37 @@ export class MenuComponent implements OnInit {
         this.superuserpetitins = false;
         this.superuserstats = false;
         this.superuserpayments = false;
-        if (menu == "immiQstnre") {
+        if (menu == 'immiQstnre') {
             this.immiQstnre = true;
         }
-        if (menu == "immipetitiondoc") {
+        if (menu == 'immipetitiondoc') {
             this.immipetitiondoc = true;
         }
-        if (menu == "immidependents") {
+        if (menu == 'immidependents') {
             this.immidependents = true;
         }
-        if (menu == "manageUser") {
+        if (menu == 'manageUser') {
             this.manageUser = true;
         }
-        if (menu == "immipetitionreports") {
+        if (menu == 'immipetitionreports') {
             this.immipetitionreports = true;
         }
-        if (menu == "immicilentreports") {
+        if (menu == 'immicilentreports') {
             this.immicilentreports = true;
         }
-        if (menu == "clientdependents") {
+        if (menu == 'clientdependents') {
             this.clientdependents = true;
         }
-        if (menu == "clientQuest") {
+        if (menu == 'clientQuest') {
             this.clientQuest = true;
         }
-        if (menu == "superuserpetitions") {
+        if (menu == 'superuserpetitions') {
             this.superuserpetitions = true;
         }
-        if (menu == "superuserclientreports") {
+        if (menu == 'superuserclientreports') {
             this.superuserclientreports = true;
         }
-        if (menu == "superuserpetitins") {
+        if (menu == 'superuserpetitins') {
             this.superuserpetitins = true;
         }
 
@@ -105,9 +105,9 @@ export class MenuComponent implements OnInit {
         return this.appService.currentSBLink == sblink;
     }
     highlightSBLink(sblink) {
-      if(this.appService.currentSBLink){
-        if(this.appService.currentSBLink === sblink){
-            this.isShow =! this.isShow;
+      if (this.appService.currentSBLink) {
+        if (this.appService.currentSBLink === sblink) {
+            this.isShow = ! this.isShow;
             return;
         }
       }

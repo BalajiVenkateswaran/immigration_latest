@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ArrivalDespartureInfoComponent } from './arrival-desparture-info.component';
+import { ArrivalDepartureInfoComponent } from './arrival-departure-info.component';
 
-describe('ArrivalDespartureInfoComponent', () => {
-  let component: ArrivalDespartureInfoComponent;
-  let fixture: ComponentFixture<ArrivalDespartureInfoComponent>;
+describe('ArrivalDepartureInfoComponent', () => {
+  let component: ArrivalDepartureInfoComponent;
+  let fixture: ComponentFixture<ArrivalDepartureInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArrivalDespartureInfoComponent ]
+      declarations: [ ArrivalDepartureInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArrivalDespartureInfoComponent);
+    fixture = TestBed.createComponent(ArrivalDepartureInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

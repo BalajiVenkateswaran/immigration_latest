@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {ICellRendererAngularComp} from 'ag-grid-angular/main';
 import {Subject} from 'rxjs/Subject';
-import {ClientRequestService} from "./request.service";
-import {HeaderService} from "../../common/header/header.service";
+import {ClientRequestService} from './request.service';
+import {HeaderService} from '../../common/header/header.service';
 
 @Component({
   template: `
@@ -14,12 +14,12 @@ import {HeaderService} from "../../common/header/header.service";
    `,
 
 })
-export class RequestButton implements ICellRendererAngularComp {
+export class RequestButtonComponent implements ICellRendererAngularComp {
   public params: any;
   public static onRequestClicked = new Subject<any>();
   public static onDeclineClicked = new Subject<any>();
-  public buttonVisible: boolean = false;
-  public textVisisble: boolean = false;
+  public buttonVisible = false;
+  public textVisisble = false;
   public displayStatus;
   public updateStatus: any = {};
   agInit(params: any): void {
@@ -31,15 +31,14 @@ export class RequestButton implements ICellRendererAngularComp {
   }
   checkedIniviteStatus(status) {
     this.displayStatus = status;
-    if (status == "Accept" || status == "Decline") {
+    if (status == 'Accept' || status == 'Decline') {
       this.textVisisble = true;
 
-    }
-    else {
+    } else {
       this.textVisisble = false;
 
     }
-    if (status == "" || status == null) {
+    if (status == '' || status == null) {
       this.buttonVisible = true;
     } else {
       this.buttonVisible = false;
@@ -49,11 +48,11 @@ export class RequestButton implements ICellRendererAngularComp {
   }
   onRequestClick() {
     this.updateStatus['clientInviteId'] = this.params.data.clientInviteId;
-    this.updateStatus['status'] = "Accept";
+    this.updateStatus['status'] = 'Accept';
     this.clientviewrequestservice.updateClientInviteStatus(this.updateStatus).subscribe((res) => {
-      if (res['statusCode'] == "SUCCESS") {
+      if (res['statusCode'] == 'SUCCESS') {
         this.clientviewrequestservice.getClientInvites(this.headerService.user.userId).subscribe(res => {
-          if (res['statusCode'] == "SUCCESS") {
+          if (res['statusCode'] == 'SUCCESS') {
             let invite = res['clientInvite'].filter(item => {
               if (item['clientInviteId'] == this.params.data.clientInviteId) {
                 return item;
@@ -69,11 +68,11 @@ export class RequestButton implements ICellRendererAngularComp {
   }
   onDeclineClick() {
     this.updateStatus['clientInviteId'] = this.params.data.clientInviteId;
-    this.updateStatus['status'] = "Decline";
+    this.updateStatus['status'] = 'Decline';
     this.clientviewrequestservice.updateClientInviteStatus(this.updateStatus).subscribe((res) => {
-      if (res['statusCode'] == "SUCCESS") {
+      if (res['statusCode'] == 'SUCCESS') {
         this.clientviewrequestservice.getClientInvites(this.headerService.user.userId).subscribe(res => {
-          if (res['statusCode'] == "SUCCESS") {
+          if (res['statusCode'] == 'SUCCESS') {
             let invite = res['clientInvite'].filter(item => {
               if (item['clientInviteId'] == this.params.data.clientInviteId) {
                 return item;

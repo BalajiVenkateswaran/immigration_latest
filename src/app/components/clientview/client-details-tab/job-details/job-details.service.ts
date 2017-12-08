@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {RestService} from "../../../../services/rest.service";
-import {clientdetails} from "../../../../models/clientdetails";
+import {Injectable} from '@angular/core';
+import {RestService} from '../../../../services/rest.service';
+import {clientdetails} from '../../../../models/clientdetails';
 
 @Injectable()
 export class JobDetailsService {
@@ -9,15 +9,15 @@ export class JobDetailsService {
     }
 
     public getJobDetails(userId: string) {
-        return this.restService.getData("/clientview/jobDetails/" + userId);
+        return this.restService.getData('/clientview/jobDetails/' + userId);
     }
 
     public saveJobDetails(jobDetails: any) {
-        var req = {
-            "jobDetails": jobDetails
+        let req = {
+            'jobDetails': jobDetails
         };
 
-        return this.restService.postData("/clientview/jobDetails", req);
+        return this.restService.postData('/clientview/jobDetails', req);
     }
 
 

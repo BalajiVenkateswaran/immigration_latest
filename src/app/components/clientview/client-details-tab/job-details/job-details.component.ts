@@ -13,7 +13,8 @@ export interface formControl {
 @Component({
     selector: 'app-job-details',
     templateUrl: './job-details.component.html',
-    styleUrls: ['./job-details.component.sass']
+    styleUrls: ['./job-details.component.sass'],
+  providers: [JobDetailsService]
 })
 export class JobDetailsComponent implements OnInit {
 

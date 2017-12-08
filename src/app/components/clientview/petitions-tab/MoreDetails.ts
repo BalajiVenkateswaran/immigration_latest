@@ -9,7 +9,7 @@ import { User } from "../../../models/user";
     selector: 'actions-columns',
     template: `<a (click)="viewAllColumns()" class="more">More Details</a>`,
 })
-export class MoreDetails implements ICellRendererAngularComp    {
+export class MoreDetailsComponent implements ICellRendererAngularComp    {
     public params: any;
     public static viewDetails = new Subject<Object>();
     private user: User;
@@ -23,7 +23,7 @@ export class MoreDetails implements ICellRendererAngularComp    {
 
     }
     viewAllColumns(){
-        MoreDetails.viewDetails.next({'data':this.params.data,'flag':true});
+        MoreDetailsComponent.viewDetails.next({'data':this.params.data,'flag':true});
     }
 
 

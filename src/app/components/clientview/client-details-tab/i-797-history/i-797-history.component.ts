@@ -24,7 +24,8 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-i-797-history',
   templateUrl: './i-797-history.component.html',
-  styleUrls: ['./i-797-history.component.sass']
+  styleUrls: ['./i-797-history.component.sass'],
+  providers: [I797HistoryService]
 })
 export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public delmessage;

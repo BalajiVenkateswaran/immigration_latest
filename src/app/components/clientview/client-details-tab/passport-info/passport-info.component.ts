@@ -14,7 +14,8 @@ export interface formControl {
 @Component({
     selector: 'app-passport-info',
     templateUrl: './passport-info.component.html',
-    styleUrls: ['./passport-info.component.sass']
+    styleUrls: ['./passport-info.component.sass'],
+  providers: [ClientViewPassportInfoService]
 })
 export class ClientViewPassportInfoComponent implements OnInit {
 

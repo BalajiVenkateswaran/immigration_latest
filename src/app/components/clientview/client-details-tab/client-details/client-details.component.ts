@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientDetailsService} from './client-details.service';
 import {clientdetails} from '../../../../models/clientdetails';
-import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {AppService} from '../../../../services/app.service';
 import {ImmigrationViewClientProfile} from '../../../../models/immigrationviewclientprofile';
 import {ImmigrationViewClientPersonalInfo} from '../../../../models/ImmigrationViewClientPersonalInfo';
 
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {User} from '../../../../models/user';
 import {HeaderService} from '../../../common/header/header.service';
-import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {DialogService} from 'ng2-bootstrap-modal';
 
 
 export interface formControl {
@@ -22,7 +22,8 @@ export interface formControl {
 @Component({
   selector: 'app-client-details',
   templateUrl: './client-details.component.html',
-  styleUrls: ['./client-details.component.sass']
+  styleUrls: ['./client-details.component.sass'],
+  providers: [ClientDetailsService]
 })
 export class ClientDetailsComponent  implements OnInit {
 
@@ -67,7 +68,7 @@ export class ClientDetailsComponent  implements OnInit {
   }
 
    ngOnInit() {
-    this.headerService.showSideBarMenu('clientView-client', 'clientview-client-details');
+    this.headerService.showSideBarMenu('clientView-client', 'clientview/client/details');
      this.clientDetailsService.getClientDetails(this.user.userId)
       .subscribe((res) => {
          if (res['clientDetails']) {

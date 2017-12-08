@@ -1,4 +1,4 @@
-import {documentExpiration} from '../../../../../models/documentExpiration';
+import {DocumentExpiration} from '../../../../../models/documentExpiration';
 import {AppService} from '../../../../../services/app.service';
 import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
@@ -26,7 +26,7 @@ export interface ConfirmModel {
   entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-  private documentExpirationList: documentExpiration[];
+  private documentExpirationList: DocumentExpiration[];
   public addDocumentExpairation: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
@@ -77,7 +77,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
   getDocumentsExpirations() {
     this.ImmigrationviewDocumentExpirationsService.getDocumentExpiration(this.appService.clientId)
       .subscribe((res) => {
-        this.data = res['documentExpiration'];
+        this.data = res['DocumentExpiration'];
       });
   }
   ngOnInit() {

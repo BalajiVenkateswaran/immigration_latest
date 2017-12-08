@@ -221,7 +221,7 @@ export class I129Page3Component implements OnInit {
       this.mapDatesToSave();
       this.questionnaireService.submitQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3,
         this.page3, true).subscribe(res => {
-          this.appService.moveToPage('clientview-Questionnaries');
+          this.appService.moveToPage('clientview/questionnaries');
       });
     }
 

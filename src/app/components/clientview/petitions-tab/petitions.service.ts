@@ -1,6 +1,5 @@
-﻿import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { RestService } from "../../../services/rest.service";
+﻿import {Injectable} from '@angular/core';
+import {RestService} from '../../../services/rest.service';
 
 @Injectable()
 export class ClientViewPetitionsService {
@@ -9,19 +8,19 @@ export class ClientViewPetitionsService {
   }
 
   public getPetitions(userId: string, queryData: string) {
-    console.log("PetitionsService|getPetitions|userId:%o", userId);
-    return this.restService.getData("/petitions/clientview/" + userId + queryData);
+    console.log('PetitionsService|getPetitions|userId:%o', userId);
+    return this.restService.getData('/petitions/clientview/' + userId + queryData);
   }
   public getPetitionsFilteredData(userId: string, filterQueries: any) {
-    return this.restService.getData("/petitions/clientview/" + userId + '?' + "filter=" + filterQueries)
+    return this.restService.getData('/petitions/clientview/' + userId + '?' + 'filter=' + filterQueries)
   }
   public getAllPetitionTypesAndSubTypes() {
-    return this.restService.getData("/petition/config/all/types/subtypes");
+    return this.restService.getData('/petition/config/all/types/subtypes');
   }
 
   public getPetitionsWithQueryParams(userId: string, queryData: string) {
-    console.log("PetitionsService|getPetitions|userId:%o", userId);
-    return this.restService.getData("/petitions/clientview/" + userId + queryData);
+    console.log('PetitionsService|getPetitions|userId:%o', userId);
+    return this.restService.getData('/petitions/clientview/' + userId + queryData);
   }
 }
 

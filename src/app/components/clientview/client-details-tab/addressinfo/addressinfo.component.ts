@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {addressinfo} from "../../../../models/addressinfo";
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {User} from "../../../../models/user";
-import {AppService} from "../../../../services/app.service";
-import {AddressInfoService} from "./addressinfo.service";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../common/header/header.service";
+import {addressinfo} from '../../../../models/addressinfo';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
+import {AddressInfoService} from './addressinfo.service';
+import {IMyDateModel, IMyOptions} from 'mydatepicker';
+import {HeaderService} from '../../../common/header/header.service';
 
 export interface formControl {
   name: string;
@@ -16,7 +14,8 @@ export interface formControl {
 @Component({
   selector: 'app-addressinfo',
   templateUrl: './addressinfo.component.html',
-  styleUrls: ['./addressinfo.component.sass']
+  styleUrls: ['./addressinfo.component.sass'],
+  providers: [AddressInfoService]
 })
 export class AddressinfoComponent implements OnInit {
 
@@ -28,7 +27,7 @@ export class AddressinfoComponent implements OnInit {
   isEdit: boolean[] = [true];
   private message: string;
   private saveEditUser: any;
-  public cancelUserEdit: boolean = false;
+  public cancelUserEdit = false;
   public WorkaddressinfoList: any = {address: {}};
   private ResidenceaddressinfoList: any = {address: {}};
   private MailingaddressinfoList: any = {address: {}};
@@ -62,7 +61,7 @@ export class AddressinfoComponent implements OnInit {
 
     this.addressinfoservice.getClientAddress(this.headerService.user.userId)
       .subscribe((res) => {
-        console.log("clientaddress%o", res);
+        console.log('clientaddress%o', res);
         this.addressinfoList = res['clientAddress'];
         this.addressType();
         this.ClientDetailsforaddress = JSON.parse(JSON.stringify(this.addressinfoList));
@@ -74,18 +73,18 @@ export class AddressinfoComponent implements OnInit {
   }
 
   addressType() {
-    for (var key in this.addressinfoList) {
-      if (this.addressinfoList[key].addressType == "WORK") {
+    for (let key in this.addressinfoList) {
+      if (this.addressinfoList[key].addressType == 'WORK') {
         this.WorkaddressinfoList = this.addressinfoList[key];
       }
-      if (this.addressinfoList[key].addressType == "RESIDENCE") {
+      if (this.addressinfoList[key].addressType == 'RESIDENCE') {
         this.ResidenceaddressinfoList = this.addressinfoList[key];
       }
-      if (this.addressinfoList[key].addressType == "MAILING") {
+      if (this.addressinfoList[key].addressType == 'MAILING') {
         this.MailingaddressinfoList = this.addressinfoList[key];
         this.copyMailingList = JSON.parse(JSON.stringify(this.MailingaddressinfoList));
       }
-      if (this.addressinfoList[key].addressType == "FOREIGN") {
+      if (this.addressinfoList[key].addressType == 'FOREIGN') {
         this.ForiegnaddressinfoList = this.addressinfoList[key];
       }
     }
@@ -107,12 +106,10 @@ export class AddressinfoComponent implements OnInit {
       }
       if (this.phoneAdd == true && this.faxAdd == true) {
         this.checked = true;
-      }
-      else {
+      } else {
         this.checked = false;
       }
-    }
-    else {
+    } else {
       this.checked = false;
     }
   }
@@ -126,11 +123,10 @@ export class AddressinfoComponent implements OnInit {
       this.MailingaddressinfoList['address'] = this.ResidenceaddressinfoList['address'];
       this.MailingaddressinfoList['telephone'] = this.ResidenceaddressinfoList['telephone'];
       this.MailingaddressinfoList['fax'] = this.ResidenceaddressinfoList['fax'];
-      if (this.copyMailingList.length!=0) {
+      if (this.copyMailingList.length != 0) {
         this.MailingaddressinfoList['address']['addressId'] = this.copyMailingList['address']['addressId'];
-      }
-      else {
-        this.MailingaddressinfoList['address']['addressId'] = "";
+      } else {
+        this.MailingaddressinfoList['address']['addressId'] = '';
       }
     }
     if (this.checked == false) {
@@ -143,57 +139,57 @@ export class AddressinfoComponent implements OnInit {
   addressedit(addresstype) {
     this.addressinfoservice.getClientAddress(this.headerService.user.userId)
       .subscribe((res) => {
-        console.log("clientaddress%o", res);
+        console.log('clientaddress%o', res);
         this.addressinfoList = res['clientAddress'];
         this.ClientDetailsforaddress = res['clientAddress'];
       });
-    if (addresstype == "WORK") {
+    if (addresstype == 'WORK') {
       this.workedit = !this.workedit;
       this.workResidingSince = this.WorkaddressinfoList['residingSince'];
     }
-    if (addresstype == "RESIDENCE") {
+    if (addresstype == 'RESIDENCE') {
       this.residenceedit = !this.residenceedit;
       this.resiResidingSince = this.ResidenceaddressinfoList['residingSince'];
     }
-    if (addresstype == "MAILING") {
+    if (addresstype == 'MAILING') {
       this.mailingedit = !this.mailingedit;
     }
-    if (addresstype == "FOREIGN") {
+    if (addresstype == 'FOREIGN') {
       this.foreignedit = !this.foreignedit;
     }
   }
 
   cancelEdit(addresstype) {
 
-    for (var key in this.ClientDetailsforaddress) {
-      if (this.ClientDetailsforaddress[key].addressType == "WORK") {
+    for (let key in this.ClientDetailsforaddress) {
+      if (this.ClientDetailsforaddress[key].addressType == 'WORK') {
         this.WorkaddressinfoListspare = this.ClientDetailsforaddress[key];
       }
-      if (this.ClientDetailsforaddress[key].addressType == "RESIDENCE") {
+      if (this.ClientDetailsforaddress[key].addressType == 'RESIDENCE') {
         this.ResidenceaddressinfoListspare = this.ClientDetailsforaddress[key];
       }
-      if (this.ClientDetailsforaddress[key].addressType == "MAILING") {
+      if (this.ClientDetailsforaddress[key].addressType == 'MAILING') {
         this.MailingaddressinfoListspare = this.ClientDetailsforaddress[key];
       }
-      if (this.ClientDetailsforaddress[key].addressType == "FOREIGN") {
+      if (this.ClientDetailsforaddress[key].addressType == 'FOREIGN') {
         this.ForiegnaddressinfoListspare = this.ClientDetailsforaddress[key];
       }
     }
 
-    if (addresstype == "WORK") {
+    if (addresstype == 'WORK') {
       this.WorkaddressinfoList = this.WorkaddressinfoListspare
       this.workedit = true;
     }
-    if (addresstype == "RESIDENCE") {
+    if (addresstype == 'RESIDENCE') {
       this.ResidenceaddressinfoList = this.ResidenceaddressinfoListspare
       this.residenceedit = true;
     }
-    if (addresstype == "MAILING") {
+    if (addresstype == 'MAILING') {
       this.MailingaddressinfoList = this.MailingaddressinfoListspare
       this.mailingedit = true;
       this.checkedAddress();
     }
-    if (addresstype == "FOREIGN") {
+    if (addresstype == 'FOREIGN') {
       this.ForiegnaddressinfoList = this.ForiegnaddressinfoListspare
       this.foreignedit = true;
     }
@@ -201,7 +197,7 @@ export class AddressinfoComponent implements OnInit {
 
 
   saveClientAdress(addresstype) {
-    if (addresstype == "WORK") {
+    if (addresstype == 'WORK') {
       this.WorkaddressinfoList['userId'] = this.headerService.user.userId;
       this.WorkaddressinfoList.addressType = addresstype;
       if (this.WorkaddressinfoList['residingSince'] && this.WorkaddressinfoList['residingSince']['formatted']) {
@@ -216,7 +212,7 @@ export class AddressinfoComponent implements OnInit {
           }
         });
     }
-    if (addresstype == "RESIDENCE") {
+    if (addresstype == 'RESIDENCE') {
       this.ResidenceaddressinfoList['userId'] = this.headerService.user.userId;
       this.ResidenceaddressinfoList.addressType = addresstype;
       if (this.ResidenceaddressinfoList['residingSince'] && this.ResidenceaddressinfoList['residingSince']['formatted']) {
@@ -231,7 +227,7 @@ export class AddressinfoComponent implements OnInit {
           }
         });
     }
-    if (addresstype == "MAILING") {
+    if (addresstype == 'MAILING') {
       this.MailingaddressinfoList['userId'] = this.headerService.user.userId;
       this.MailingaddressinfoList.addressType = addresstype;
       this.addressinfoservice.saveClientAddress(this.MailingaddressinfoList)
@@ -244,7 +240,7 @@ export class AddressinfoComponent implements OnInit {
           }
         });
     }
-    if (addresstype == "FOREIGN") {
+    if (addresstype == 'FOREIGN') {
       this.ForiegnaddressinfoList['userId'] = this.headerService.user.userId;
       this.ForiegnaddressinfoList.addressType = addresstype;
       this.addressinfoservice.saveClientAddress(this.ForiegnaddressinfoList)

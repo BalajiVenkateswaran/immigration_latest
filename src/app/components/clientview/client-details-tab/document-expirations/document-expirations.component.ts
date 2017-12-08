@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {DocumentExpirationsService} from "./document-expirations.service";
-import {documentExpiration} from "../../../../models/documentExpiration";
-import {FormGroup, FormControl} from "@angular/forms";
-import {AppService} from "../../../../services/app.service";
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../common/header/header.service";
+import {Component, OnInit} from '@angular/core';
+import {DocumentExpirationsService} from './document-expirations.service';
+import {DocumentExpiration} from '../../../../models/documentExpiration';
+import {FormControl, FormGroup} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
+import {IMyOptions} from 'mydatepicker';
+import {HeaderService} from '../../../common/header/header.service';
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -20,7 +20,8 @@ export interface ConfirmModel {
 @Component({
     selector: 'app-document-expirations',
   templateUrl: './document-expirations.component.html',
-  styleUrls: ['./document-expirations.component.sass']
+  styleUrls: ['./document-expirations.component.sass'],
+  providers: [DocumentExpirationsService]
 })
 export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel, boolean > implements OnInit {
     public settings;
@@ -29,10 +30,10 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     public addDocumentExpiration: FormGroup; // our model driven form
     public submitted: boolean; // keep track on whether form is submitted
     private message: string;
-    public getClientDocExp: boolean = true;
+    public getClientDocExp = true;
     public addClientDocExp: boolean;
     public addClientNewDocExp: any = {};
-    public editFlag: boolean = true;
+    public editFlag = true;
     public beforeEdit: any;
     private myDatePickerOptions: IMyOptions = {
         // other options...
@@ -52,24 +53,24 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
             'columnsettings': [
                 {
 
-                    headerName: "Document Type",
-                    field: "documentType",
+                    headerName: 'Document Type',
+                    field: 'documentType',
                 },
                 {
 
-                    headerName: "Valid From",
-                    field: "validFrom",
+                    headerName: 'Valid From',
+                    field: 'validFrom',
 
                 },
                 {
 
-                    headerName: "Valid To",
-                    field: "validTo",
+                    headerName: 'Valid To',
+                    field: 'validTo',
 
                 },
                 {
-                    headerName: "Status",
-                    field: "status",
+                    headerName: 'Status',
+                    field: 'status',
                 },
 
 
@@ -79,7 +80,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     getClientDocumentExp() {
         this.documentExpirationsService.getDocumentExpiration(this.headerService.user.userId)
             .subscribe((res) => {
-                this.data = res['documentExpiration'];
+                this.data = res['DocumentExpiration'];
             });
     }
     ngOnInit() {
@@ -137,8 +138,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
                         this.getClientDocumentExp();
                     }
                 });
-            }
-            else {
+            } else {
                 this.editFlag = false;
             }
         });
@@ -153,7 +153,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         })
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    console.log("User table onDeleteConfirm event: %o", event.data);
+                    console.log('User table onDeleteConfirm event: %o', event.data);
                     this.documentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
                         if (res['statusCode'] == 'SUCCESS') {
                             this.getClientDocumentExp();

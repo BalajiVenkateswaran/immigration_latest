@@ -1,11 +1,10 @@
-import { jobdetails } from '../../../../../models/jobdetails';
-import { AppService } from '../../../../../services/app.service';
-import { UiFieldService } from '../../../../../services/uifield.service';
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import {AppService} from '../../../../../services/app.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {JobdetailsService} from './job-details.service';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../../common/header/header.service';
+
 export interface formControl {
     name: string;
     value: FormControl;
@@ -33,7 +32,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
     private lastDayWorkedDate: string;
     private terminationDate: string;
     private beforeCancelJobDetails;
-    constructor(private uiFieldService: UiFieldService, public headerService: HeaderService,
+    constructor(public headerService: HeaderService,
         private formBuilder: FormBuilder, public appService: AppService, private jobdetails: JobdetailsService) {
     }
 
@@ -59,38 +58,6 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
-    editUserSubmit(model: jobdetails, isValid: boolean, index: number, sectionName: string) {
-        console.log('formdata|account: %o|isValid:%o', model, isValid);
-        if (isValid) {
-            let sectionIndex = -1;
-            let dataIndex = 0;
-            this.jobdetailsList.map((forms) => {
-                if (forms.name === sectionName) {
-                    forms.data[0].data.map((val) => {
-                        this.jobdetailsList[index].data[0].data[dataIndex].value = model[val.name];
-                        dataIndex += 1;
-                    });
-                    dataIndex = 0;
-                }
-                sectionIndex += 1;
-            });
-            //model is key value pair and this.jobdetailsList holds the data in the form it got from server
-            //console.log('form data: %o | data in the receieved form: %o', model, this.jobdetailsList);
-            // service is not available
-
-            this.uiFieldService.saveEditUser(this.jobdetailsList, this.entityId).subscribe((response) => {
-                this.message = response['statusCode']
-                if (this.message === 'SUCCESS') {
-                  this.jobdetailsList = response['uiFieldGroups'];
-                }
-                this.isEdit[index] = !this.isEdit[index];
-            });
-        } else {
-            this.message = 'Filled etails are not correct! please correct...';
-        }
-
-    }
-
 
     editJobInfoForm() {
         this.beforeCancelJobDetails = (<any>Object).assign({}, this.jobDetails);

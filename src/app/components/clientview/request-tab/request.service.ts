@@ -1,8 +1,6 @@
-﻿
-import {Injectable} from "@angular/core";
-import {RestService} from "../../../services/rest.service";
-import {clientviewrequest} from "../../../models/clientviewrequest";
-import {Router} from "@angular/router";
+import {Injectable} from '@angular/core';
+import {RestService} from '../../../services/rest.service';
+
 @Injectable()
 export class ClientRequestService {
 
@@ -11,13 +9,13 @@ export class ClientRequestService {
   }
 
   public getClientInvites(userId: string) {
-      return this.restService.getData("/client/invite/" + userId);
+      return this.restService.getData('/client/invite/' + userId);
   }
 
-  public updateClientInviteStatus(updateStatus:any) {
-      var req = {
-          "updateStatus": updateStatus
+  public updateClientInviteStatus(updateStatus: any) {
+      let req = {
+          'updateStatus': updateStatus
       };
-      return this.restService.postData("/client/invite/updateStatus", updateStatus);
+      return this.restService.postData('/client/invite/updateStatus', updateStatus);
   }
 }

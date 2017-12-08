@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {DependentService} from "./dependents.service";
-import {dependent} from "../../../../models/dependent";
-import {FormGroup, FormControl} from "@angular/forms";
-import {AppService} from "../../../../services/app.service";
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
+import {DependentService} from './dependents.service';
+import {dependent} from '../../../../models/dependent';
+import {FormGroup} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {HeaderService} from "../../../common/header/header.service";
+import {HeaderService} from '../../../common/header/header.service';
 
 
 export interface ConfirmModel {
@@ -21,7 +20,8 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-dependents',
   templateUrl: './dependents.component.html',
-  styleUrls: ['./dependents.component.sass']
+  styleUrls: ['./dependents.component.sass'],
+  providers: [DependentService]
 })
 export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public delmessage;

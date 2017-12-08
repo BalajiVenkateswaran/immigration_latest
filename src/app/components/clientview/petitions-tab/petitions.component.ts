@@ -1,15 +1,13 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { clientviewpetition } from "../../../models/clientviewpetitions";
-import { FormGroup, FormControl } from "@angular/forms";
-import { AppService } from "../../../services/app.service";
-import { User } from "../../../models/user";
-import { ConfirmComponent } from '../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
-import { MoreDetails } from './MoreDetails';
-import { ClientViewPetitionsService } from './petitions.service';
-import { SortType } from "../../framework/smarttable/types/query-parameters";
-import { HeaderService } from "../../common/header/header.service";
+﻿import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormGroup} from '@angular/forms';
+import {AppService} from '../../../services/app.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {MoreDetailsComponent} from './MoreDetails';
+import {ClientViewPetitionsService} from './petitions.service';
+import {SortType} from '../../framework/smarttable/types/query-parameters';
+import {HeaderService} from '../../common/header/header.service';
+
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -18,12 +16,14 @@ export interface ConfirmModel {
   cvpedit: Object;
 }
 @Component({
-  selector: 'app-petitions-clientview.component',
+  selector: 'ih-petitions-clientview',
   templateUrl: './petitions.component.html',
-  styleUrls: ['./petitions.component.sass']
+  styleUrls: ['./petitions.component.sass'],
+  providers: [ClientViewPetitionsService],
+  entryComponents: [MoreDetailsComponent]
 })
 
-export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+export class ClientViewPetitionsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   private outlet: any = {
     breadcrumbs: null,
     header: 'header',
@@ -38,11 +38,11 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   private message: string;
   public clientviewpetitionList;
   public addPetition: FormGroup;
-  public editFlag: boolean = true;
+  public editFlag = true;
   public beforeEdit: any;
   public cvpmore: any = {};
   public showclientviewPetitionpopup: boolean;
-  public getClientviewPetitionData: boolean = true;
+  public getClientviewPetitionData = true;
   private clientviewpetition = {};
   private cvpedit = {};
   public settings;
@@ -89,78 +89,77 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
     ];
     this.settings = {
 
-      "isAddButtonEnable": false,
-      "columnFilter": false,
+      'isAddButtonEnable': false,
+      'columnFilter': false,
       'isAddFilterButtonEnable': true,
-      'isMorefilters':true,
-      "isDeleteEnable": false,
+      'isMorefilters': true,
+      'isDeleteEnable': false,
       'customPanel': true,
       'sort': [{
-        headingName: "lastUpdate",
+        headingName: 'lastUpdate',
         sort: SortType.DESC
       }],
       'columnsettings': [
         {
-          headerName: "Petition Name",
-          field: "petitionName",
-          type:'text'
+          headerName: 'Petition Name',
+          field: 'petitionName',
+          type: 'text'
         },
         {
-          headerName: "Petition Type",
-          field: "petitionType",
+          headerName: 'Petition Type',
+          field: 'petitionType',
           type: 'dropDown',
           data: this.getPetitionTypeValues()
         },
         {
-          headerName: "Organization",
-          field: "organization",
-          type:'text'
+          headerName: 'Organization',
+          field: 'organization',
+          type: 'text'
         },
         {
-          headerName: "Status",
-          field: "status",
+          headerName: 'Status',
+          field: 'status',
           type: 'dropDown',
           data: this.statusTypes
         },
         {
-          headerName: "Stage",
-          field: "petitionStage",
-          type:'text'
+          headerName: 'Stage',
+          field: 'petitionStage',
+          type: 'text'
         },
         {
-          headerName: "Start Date",
-          field: "startDate",
+          headerName: 'Start Date',
+          field: 'startDate',
           type: 'datePicker'
         },
         {
-          headerName: "Last Updated",
-          field: "lastUpdate",
+          headerName: 'Last Updated',
+          field: 'lastUpdate',
           type: 'datePicker'
         },
         {
-          headerName: "Receipt Number",
-          field: "recieptNumber",
-          type:'text'
+          headerName: 'Receipt Number',
+          field: 'recieptNumber',
+          type: 'text'
         },
         {
-          headerName: "More",
-          cellRendererFramework: MoreDetails,
+          headerName: 'More',
+          cellRendererFramework: MoreDetailsComponent,
           type: 'none',
           filter:
             {
-            showInMoreFilters:false
+            showInMoreFilters: false
           }
         }
       ]
     };
-    this.viewSubscription = MoreDetails.viewDetails.subscribe(res => {
+    this.viewSubscription = MoreDetailsComponent.viewDetails.subscribe(res => {
       if (res) {
         if (res.hasOwnProperty('flag')) {
           this.checked = true;
           this.viewData = res['data'];
           this.viewAllColumns();
-        }
-        else {
+        } else {
           this.checked = false;
 
         }
@@ -170,9 +169,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
   }
 
   ngOnInit() {
-    //this.getClientPetitionData();
-
-    this.headerService.showSideBarMenu(null, "clientview-petitions");
+    this.headerService.showSideBarMenu(null, 'clientview/petitions');
     this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
   }
 
@@ -213,7 +210,7 @@ export class petitionsclientviewComponent extends DialogComponent<ConfirmModel, 
         this.beforeEdit = (<any>Object).assign({}, this.viewData);
       }
 
-      this.dialogService.addDialog(petitionsclientviewComponent, {
+      this.dialogService.addDialog(ClientViewPetitionsComponent, {
         showclientviewPetitionpopup: true,
         getClientviewPetitionData: false,
         title: 'Petition Details',

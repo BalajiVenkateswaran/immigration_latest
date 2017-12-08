@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ArrivalDespartureInfoService} from "./arrival-desparture-info.service";
-import {arrivaldespartureinfo} from "../../../../models/arrivaldespartureinfo";
-import {FormGroup, FormControl} from "@angular/forms";
-import {AppService} from "../../../../services/app.service";
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
+import {ArrivalDepartureInfoService} from './arrival-departure-info.service';
+import {FormGroup} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../common/header/header.service";
+import {IMyOptions} from 'mydatepicker';
+import {HeaderService} from '../../../common/header/header.service';
 
 
 export interface ConfirmModel {
@@ -22,14 +20,15 @@ export interface ConfirmModel {
 }
 
 @Component({
-  selector: 'app-arrival-desparture-info',
-  templateUrl: './arrival-desparture-info.component.html',
-  styleUrls: ['./arrival-desparture-info.component.sass']
+  selector: 'ih-arrival-desparture-info',
+  templateUrl: './arrival-departure-info.component.html',
+  styleUrls: ['./arrival-departure-info.component.sass'],
+  providers: [ArrivalDepartureInfoService]
 })
-export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+export class ArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
   public beforeEdit: any;
-  public editFlag: boolean = true;
+  public editFlag = true;
   public newArvdInfoitem: any = {};
   public addArrDep: boolean;
   public settings;
@@ -38,68 +37,68 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
   public addArrivalDespartureInfo: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
-  public getArvdInfoData: boolean = true;
+  public getArvdInfoData = true;
   private myDatePickerOptions: IMyOptions = {
     // other options...
     dateFormat: 'mm-dd-yyyy',
     showClearDateBtn: false,
   };
-  constructor(private arrivalDespartureInfoService: ArrivalDespartureInfoService, public appService: AppService, public dialogService: DialogService,
+  constructor(private arrivalDepartureInfoService: ArrivalDepartureInfoService, public appService: AppService, public dialogService: DialogService,
               public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
         {
-          headerName: "Departure date",
-          field: "departureDate"
+          headerName: 'Departure date',
+          field: 'departureDate'
         },
         {
-          headerName: "Departure Country",
-          field: "departureCountry"
+          headerName: 'Departure Country',
+          field: 'departureCountry'
         },
         {
-          headerName: "Arrival date",
-          field: "arrivalDate"
+          headerName: 'Arrival date',
+          field: 'arrivalDate'
         },
         {
-          headerName: "Arrival Country",
-          field: "arrivalCountry"
+          headerName: 'Arrival Country',
+          field: 'arrivalCountry'
         },
         {
-          headerName: "Visa Type",
-          field: "visaType"
+          headerName: 'Visa Type',
+          field: 'visaType'
         },
         {
-          headerName: "I-94",
-          field: "i94"
+          headerName: 'I-94',
+          field: 'i94'
         }
       ]
     }
 
   }
   getarvdptData() {
-    this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.headerService.user.userId).subscribe((res) => {
+    this.arrivalDepartureInfoService.getArrivalDepartureInfo(this.headerService.user.userId).subscribe((res) => {
       this.data = res['arrivalDepartures'];
 
     });
   }
 
   ngOnInit() {
-    this.arrivalDespartureInfoService.getArrivalDepartureInfo(this.headerService.user.userId)
+    this.arrivalDepartureInfoService.getArrivalDepartureInfo(this.headerService.user.userId)
       .subscribe((res) => {
         this.data = res['arrivalDepartures'];
       });
 
   }
   addFunction() {
-    this.dialogService.addDialog(ArrivalDespartureInfoComponent, {
+    this.dialogService.addDialog(ArrivalDepartureInfoComponent, {
       addArrDep: true,
       getArvdInfoData: false,
       title: 'Add Arrival Departure Info',
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
 
-        this.arrivalDespartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
+        this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
           this.message = res['statusCode'];
           if (this.message == 'SUCCESS') {
             this.getarvdptData();
@@ -135,7 +134,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     if (this.editFlag) {
       this.beforeEdit = (<any>Object).assign({}, event.data);
     }
-    this.dialogService.addDialog(ArrivalDespartureInfoComponent, {
+    this.dialogService.addDialog(ArrivalDepartureInfoComponent, {
       addArrDep: true,
       getArvdInfoData: false,
       title: 'Edit Arrival Departure Info',
@@ -145,13 +144,12 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
 
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.arrivalDespartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
+        this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
           if (res['statusCode'] == 'SUCCESS') {
             this.getarvdptData();
           }
         });
-      }
-      else {
+      } else {
         this.editFlag = false;
       }
     });
@@ -165,7 +163,7 @@ export class ArrivalDespartureInfoComponent extends DialogComponent<ConfirmModel
     })
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.arrivalDespartureInfoService.removeClientArrivalDeparture(event.data['arrivalDepartureInfoId']).subscribe((res) => {
+          this.arrivalDepartureInfoService.removeClientArrivalDeparture(event.data['arrivalDepartureInfoId']).subscribe((res) => {
             this.message = res['statusCode'];
             if (this.message == 'SUCCESS') {
               this.getarvdptData();

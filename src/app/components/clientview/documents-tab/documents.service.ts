@@ -1,6 +1,5 @@
 ﻿import {Injectable} from '@angular/core';
 import {RestService} from '../../../services/rest.service';
-import {clientDocuments} from '../../../models/documents';
 
 @Injectable()
 export class DocumentService {

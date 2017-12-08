@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {RestService} from "../../../../services/rest.service";
-import {documentExpiration} from "../../../../models/documentExpiration";
+import {Injectable} from '@angular/core';
+import {RestService} from '../../../../services/rest.service';
+import {DocumentExpiration} from '../../../../models/documentExpiration';
 
 @Injectable()
 export class DocumentExpirationsService {
@@ -9,19 +9,19 @@ export class DocumentExpirationsService {
 
     }
     public getDocumentExpiration(clientId: string) {
-        return this.restService.getData("/clientview/documentExpiration/" + clientId);
+        return this.restService.getData('/clientview/DocumentExpiration/' + clientId);
     }
 
-    public saveDocumentExpairation(documentExpiration: documentExpiration) {
-        var req = {
-            "documentExpirations": documentExpiration
+    public saveDocumentExpairation(documentExpiration: DocumentExpiration) {
+        let req = {
+            'documentExpirations': documentExpiration
         }
-        return this.restService.postData("/clientview/documentExpiration", req);
+        return this.restService.postData('/clientview/DocumentExpiration', req);
     }
 
 
     public deleteDocumentExpiration(documentExpirationId: string) {
-        return this.restService.deleteData("/client/documentExpiration/" + documentExpirationId);
+        return this.restService.deleteData('/client/DocumentExpiration/' + documentExpirationId);
     }
 
 }

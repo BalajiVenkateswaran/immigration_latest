@@ -86,7 +86,7 @@ export class I129HPage2Component implements OnInit {
     this.I129Hpage2.pageNumber = 14;
     this.mapDatesToSave();
     this.questionnaireService.submitQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 14, this.I129Hpage2, true).subscribe(res => {
-      this.appService.moveToPage('clientview-Questionnaries');
+      this.appService.moveToPage('clientview/questionnaries');
     });
   }
 

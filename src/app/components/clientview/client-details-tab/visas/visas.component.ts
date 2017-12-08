@@ -21,7 +21,8 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-visas',
   templateUrl: './visas.component.html',
-  styleUrls: ['./visas.component.sass']
+  styleUrls: ['./visas.component.sass'],
+  providers: [VisasService]
 })
 export class VisasComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 

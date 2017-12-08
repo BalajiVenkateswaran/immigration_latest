@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {RestService} from '../../../../services/rest.service';
-import {passportinfo} from '../../../../models/passportinfo';
 
 @Injectable()
 export class ClientViewPassportInfoService {

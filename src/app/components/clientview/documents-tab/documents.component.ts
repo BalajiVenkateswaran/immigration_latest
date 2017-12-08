@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { DocumentService } from './documents.service';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { AppService } from '../../../services/app.service';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
-import { MenuComponent } from '../../common/menu/menu.component';
-import { ActionIcons } from '../../framework/smarttable/cellRenderer/ActionsIcons';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {DocumentService} from './documents.service';
+import {Http} from '@angular/http';
+import {AppService} from '../../../services/app.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {ConfirmComponent} from '../../framework/confirmbox/confirm.component';
+import {MenuComponent} from '../../common/menu/menu.component';
+import {ActivatedRoute, Router} from '@angular/router';
 import * as FileSaver from 'file-saver';
 import {HeaderService} from '../../common/header/header.service';
 //dropfile code
 import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
-import { environment } from '../../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 //dropfile code end
 import {FileUtils} from '../../common/FileUtils';
 import {DatePipe} from '@angular/common';
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -139,7 +138,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
               this.uploader.clearQueue();
               this.getFilesList();
           }
-          this.headerService.showSideBarMenu('clientview-document', 'clientview-documents');
+          this.headerService.showSideBarMenu('clientview-document', 'clientview/documents');
       });
   }
 
