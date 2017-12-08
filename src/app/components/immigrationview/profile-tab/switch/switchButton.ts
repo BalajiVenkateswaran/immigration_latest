@@ -8,7 +8,7 @@ import {ApplicationRoles} from '../../../common/constants/applicationroles.const
 @Component({
     template: `
     <div>
-     <button class="iportal-btnIMclient" id="{{this.getId()}}" [ngClass]="{'myclass':switchdisable,'iportal-btnIMclient':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
+     <button class="iportal-btnIMclient" id="{{this.getId()}}" [ngClass]="{'myclass':switchdisable,'iportal-btnIMclient btnhov':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
     </div>
    `
 

@@ -304,19 +304,31 @@ $dateColumnWidth:110px;
         left:81% !important;
     }
 }
-.immiviewSwitchTable{
-    .ag-fresh .ag-ltr .ag-header-cell[title~="Role Name"],.ag-fresh .ag-ltr .ag-cell-value[col-id="roleName"]{
-    width: 40%!important;
-    left: 0px!important;
-    }
-     .ag-fresh .ag-ltr .ag-header-cell[title="Account Name"],.ag-fresh .ag-ltr .ag-cell-value[col-id="accountName"]{
-    width: 40%!important;
-    left: 40%!important;
-    }
-      .ag-fresh .ag-ltr .ag-header-cell[title="Switch"],.ag-fresh .ag-ltr .ag-cell-value[col-id="0"]{
-   width: 20% !important;
+.immiviewSwitchTable {
+  .ag-fresh .ag-ltr .ag-header-cell[title~="Role Name"], .ag-fresh .ag-ltr .ag-cell-value[col-id="roleName"] {
+    width: 40% !important;
+    left: 0px !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[title="Account Name"], .ag-fresh .ag-ltr .ag-cell-value[col-id="accountName"] {
+    width: 40% !important;
+    left: 40% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[title="Switch"], .ag-fresh .ag-ltr .ag-cell-value[col-id="0"] {
+    width: 20% !important;
     left: 80% !important;
-    }
+  }
+
+  .ag-fresh .ag-row-even:hover {
+    background: #F6F7FA !important;
+    color: black !important;
+  }
+
+  .ag-fresh .ag-row-odd:hover {
+    background: #F6F7FA !important;
+    color: black !important;
+  }
 }
 .petitionslistTbl {
     .ag-fresh .ag-ltr .ag-header-cell[title~="Actions"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {

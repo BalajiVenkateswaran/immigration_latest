@@ -158,13 +158,19 @@ placeholder :-ms-input-placeholder {
   border:1px solid #5093E1;
   background: #F6F7FA;
   color: #5093E1 !important;
-  border-radius: 5px; }
-.headerinsections{
-    height: 40px!important;
-    padding: 10px 0px 0px 10px !important;
-    background-color: #EFEFEF !important;
-    border-radius: 5px;
-        text-transform: none!important;
+  border-radius: 5px;
+}
+.btnhov:hover {
+  background-color: #72ADF9 !important;
+  font-weight: 700;
+  color: black !important;
+}
+ .headerinsections {
+  height: 40px !important;
+  padding: 10px 0px 0px 10px !important;
+  background-color: #EFEFEF !important;
+  border-radius: 5px;
+  text-transform: none !important;
 }
 /*Login page css*/
 .login-bg {

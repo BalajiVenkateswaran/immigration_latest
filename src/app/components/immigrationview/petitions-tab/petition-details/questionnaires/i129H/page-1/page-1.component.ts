@@ -32,7 +32,7 @@ export class I129HPage1Component implements OnInit {
     showClearDateBtn: false,
     showSelectorArrow: false,
     alignSelectorRight: true,
-    //openSelectorTopOfInput:true,
+    openSelectorTopOfInput:true,
   };
 
   constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,

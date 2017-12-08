@@ -1,4 +1,4 @@
-﻿import {AppService} from '../../../../services/app.service';
+import {AppService} from '../../../../services/app.service';
 import {HeaderService} from '../../../common/header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {SwitchButtonComponent} from './switchButton';
@@ -23,7 +23,7 @@ export class ProfileSwitchComponent implements OnInit {
         this.settings = {
             'isAddButtonEnable': false,
             'isDeleteEnable': false,
-            'rowHeight': 60,
+            'rowHeight': 45,
             'context': {
                             'componentParent': this
                         },

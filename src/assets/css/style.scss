@@ -231,53 +231,58 @@ section {
         background-color: transparent;
     }
 }
-.navbar {} .left-opened .navbar-inverse,
+.navbar {}
+.left-opened .navbar-inverse,
 .left-closed .navbar-inverse {
-    .navbar-nav>li>a {
-
-        padding: 0 !important;
-        font-size: 14px !important;
-        text-decoration: none;
-        color: #232f3f;
-        /*white-space: nowrap;
+  .navbar-nav > li > a {
+    padding: 0 !important;
+    font-size: 14px !important;
+    text-decoration: none;
+    color: #232f3f;
+    /*white-space: nowrap;
         overflow: hidden;
         -webkit-transition: transform 0.2s linear;
         -moz-transition: transform 0.2s linear;
         transition: transform 0.2s linear;*/
-        span[class*="ico-"] {
-            width: 12px;
-            height: 12px;
-            padding: 0 10px 0 3px;
-            margin: 0 20px 0 0;
-            display:none;
-        }
-        span[class*="ico-arrow"] {
-            display:inline;
-            }
-        /*a.dropdown-toggle:after{
+    span[class*="ico-"] {
+      width: 12px;
+      height: 12px;
+      padding: 0 10px 0 3px;
+      margin: 0 20px 0 0;
+      display: none;
+    }
+
+    span[class*="ico-arrow"] {
+      display: inline;
+    }
+    /*a.dropdown-toggle:after{
             opacity:0;
         }*/
-    }
-    .navbar-nav>li>a:hover,
-    .navbar-nav>li>a:focus, .navbar-nav>li>a.active {
-        color: #109bf8;
-        margin:0px;
-        background:none !important;
-    }
-    li.dropdown span.ico-arrow {
-        position: absolute;
-        right: 0px;
-        margin-top: 18px !important;
-        background: url(../images/icons/down-arrow.png) no-repeat 0 0;
-        -webkit-transition: transform 0.2s linear;
-        -moz-transition: transform 0.2s linear;
-        transition: transform 0.2s linear;
-    }
-    li.dropdown.open span.ico-arrow {
-        -webkit-transform: rotate(180deg);
-        -moz-transform: rotate(180deg);
-        transform: rotate(180deg);
-    }
+  }
+
+  .navbar-nav > li > a:hover,
+  .navbar-nav > li > a:focus, .navbar-nav > li > a.active {
+    color: #7593E3 !important;
+    font-weight: 700;
+    margin: 0px;
+    background: none !important;
+  }
+
+  li.dropdown span.ico-arrow {
+    position: absolute;
+    right: 0px;
+    margin-top: 18px !important;
+    background: url(../images/icons/down-arrow.png) no-repeat 0 0;
+    -webkit-transition: transform 0.2s linear;
+    -moz-transition: transform 0.2s linear;
+    transition: transform 0.2s linear;
+  }
+
+  li.dropdown.open span.ico-arrow {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
 }
            .sendchecklistbtn {
 
