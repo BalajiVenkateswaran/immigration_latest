@@ -31,7 +31,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
 
   private beforeCancelAccountdetails;
   constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
-              private menuComponent: MenuComponent, private accountDetailsCommonService: AccountDetailsCommonService,
+              private menuComponent: MenuComponent, public accountDetailsCommonService: AccountDetailsCommonService,
               public dialogService: DialogService, public headerService: HeaderService) {
   }
   ngOnInit() {
