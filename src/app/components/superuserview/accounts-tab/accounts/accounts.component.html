@@ -1,18 +1,22 @@
 <div class="main-content" *ngIf="getAccountsData">
-    <ul class="breadcrumb">
+    <!--<ul class="breadcrumb">
         <li><a href="#">Accounts</a></li>
-    </ul>
-    <div class="clearfix"></div>
-    <div class="table-data">
-        <h2>Accounts</h2>
+    </ul>-->
+    <!--<div class="clearfix"></div>-->
+  <div class="pagetitleandfilters">
+    <div class="mainContainer">
+      <h2>Accounts</h2>
+      <div class="table-data">
         <ih-smart-table class="superUserViewAccounts"
-                   [settings]="settings"
-                   [data]="data"
-                   (onAddClick)="addFunction($event)"
-                   [paginationData]="paginationData"
-                   (onRowClick)="editRecord($event)"
-                   (dataWithQueryParams)="dataWithParameters($event)"></ih-smart-table>
+                        [settings]="settings"
+                        [data]="data"
+                        (onAddClick)="addFunction($event)"
+                        [paginationData]="paginationData"
+                        (onRowClick)="editRecord($event)"
+                        (dataWithQueryParams)="dataWithParameters($event)"></ih-smart-table>
+      </div>
     </div>
+  </div>
 </div>
 
 <div *ngIf="addAccounts">
