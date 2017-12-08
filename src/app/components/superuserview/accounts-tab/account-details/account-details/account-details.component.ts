@@ -45,6 +45,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
       .subscribe((res) => {
         console.log('filesGetmethod%o', res);
         this.accountDetails = res;
+        this.accountDetailsCommonService.accountName = res['accountName'];
         console.log(this.accountDetails);
         this.isEdit = true
         this.isEditstorage = true;
