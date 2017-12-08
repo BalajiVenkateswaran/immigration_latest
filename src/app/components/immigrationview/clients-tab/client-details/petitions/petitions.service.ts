@@ -38,4 +38,7 @@ export class ImmigrationViewPetitionsService {
 
       return this.restService.getData('/petition/config/all/types/subtypes');
   }
+  public toggleEmailNotification(clientId: string) {
+      return this.restService.postData('/immigration/clientId/' + clientId, {});
+  }
 }

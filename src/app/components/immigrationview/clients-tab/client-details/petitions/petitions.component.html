@@ -15,6 +15,7 @@
 
       <div class="clearfix"></div>
         <h2 class="headerinsections">Petitions</h2>
+      <button type="button" class="pull-right no-marg-right agridadd addbtnnsmart iportal-btnIMclient" style="margin: -42px 80px!important" (click)="toggleEmailNotifications()">Email Notifications : {{client['emailNotification'] ? 'On' : 'Off'}}</button>
        <ih-smart-table class="immiview-clienttab-petitions" [settings]="settings" [data]="data"
                      (onAddClick)="addNewPetition($event)" (onRowClick)="onUserRowClick($event)" (onDeleteClick)="deleteRecord($event)"
                        (dataWithQueryParams)="dataWithParameters($event)"></ih-smart-table>

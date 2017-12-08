@@ -52,6 +52,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     public countryNames: string[] = [];
   public queryParams: any;
   clientDetails: any = {};
+  client: any = {};
   public user1;
 
 
@@ -148,46 +149,45 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     this.clientDetailsService.getClientDetails(this.appService.clientId)
       .subscribe((res) => {
         this.clientDetails = res['clientDetails'];
+        this.client = res['client'];
         this.appService.clientfirstName = res['clientDetails']['firstName'];
         this.appService.clientlastName = res['clientDetails']['lastName'];
-        //console.log(res)
+
       });
+  }
+
+
+  getPetitionTypes() {
+    this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
+      .subscribe((res) => {
+          this.allPetitionTypesAndSubTypes = res['petitionTypes'];
+
+          // Get all currencies
+          const countryNamesMap: string[] = this.allPetitionTypesAndSubTypes.map(data => data['country']);
+
+          // Unique currencies
+          this.countryNames = countryNamesMap.filter((x, i, a) => x && a.indexOf(x) === i);
+      });
+  }
+
+  handleChange(event) {
+      console.log(event.target.value);
+      for (let i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
+          if (event.target.value === this.allPetitionTypesAndSubTypes[i].petitiontype) {
+              this.allSubTypes = this.allPetitionTypesAndSubTypes[i].petitionSubTypes;
+          }
       }
+      if (!this.allSubTypes) {
+        this.allSubTypes = [];
+      }
+      this.appService.allsubtypesarray(this.allSubTypes);
 
-
-    getPetitionTypes() {
-      this.immigrationviewpetitionService.getAllPetitionTypesAndSubTypes()
-        .subscribe((res) => {
-            this.allPetitionTypesAndSubTypes = res['petitionTypes'];
-
-            // Get all currencies
-            const countryNamesMap: string[] = this.allPetitionTypesAndSubTypes.map(data => data['country']);
-
-            // Unique currencies
-            this.countryNames = countryNamesMap.filter((x, i, a) => x && a.indexOf(x) === i);
-        });
-    }
-
-    handleChange(event) {
-        console.log(event.target.value);
-        for (let i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
-            if (event.target.value === this.allPetitionTypesAndSubTypes[i].petitiontype) {
-                this.allSubTypes = this.allPetitionTypesAndSubTypes[i].petitionSubTypes;
-            }
-        }
-        if (!this.allSubTypes) {
-          this.allSubTypes = [];
-        }
-        this.appService.allsubtypesarray(this.allSubTypes);
-
-        let currentYear = new Date().getFullYear();
-        this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + ' ' + currentYear;
-    }
+      let currentYear = new Date().getFullYear();
+      this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + ' ' + currentYear;
+  }
 
   ngOnInit() {
     this.headerService.showSideBarMenu('immigrationview-client', 'immigrationview/tab/clients');
-
-
   }
 
   addNewPetition() {
@@ -298,8 +298,13 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       this.close();
   }
 
-
-
+  toggleEmailNotifications() {
+    this.immigrationviewpetitionService.toggleEmailNotification(this.appService.clientId).subscribe((res) => {
+      if (res['statusCode'] === 'SUCCESS') {
+        this.getPetitionData();
+      }
+    });
+  }
 
 
     onDeleteConfirm(immViewpetitions) {
