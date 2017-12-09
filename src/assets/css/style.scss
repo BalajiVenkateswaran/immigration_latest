@@ -1932,6 +1932,7 @@ header {
           span.maintab-procat,
           span.maintab-invoices,
           span.maintab-payments,
+          span.maintab-Misc,
           span.maintab-clientdetails,
           span.maintab-clientdocuments,
           span.maintab-clientQuestionnaire,
@@ -1972,25 +1973,30 @@ header {
             /*background-size: 50%;*/
           }
 
-          span.maintab-Accounts {
+          /*span.maintab-Accounts {
             background: url(../images/Profile.png) no-repeat center center;
-            /*background-size: 110%;*/
-          }
+            background-size: 110%;
+          }*/
 
-          span.maintab-procat {
-            background: url(../images/Profile.png) no-repeat center center;
-            /*#0073b7 background-size: 110%;*/
-          }
+          /*span.maintab-procat {
+            background: url(../images/Supprocat.png) no-repeat center center;
+            #0073b7 background-size: 110%;
+          }*/
 
-          span.maintab-invoices {
-            background: url(../images/Profile.png) no-repeat center center;
-            /*background-size: 110%;*/
-          }
+          /*span.maintab-invoices {
+            background: url(../images/Supinvoice.png) no-repeat center center;
+            background-size: 110%;
+          }*/
 
-          span.maintab-payments {
-            background: url(../images/Profile.png) no-repeat center center;
-            /*#6c811ebackground-size: 110%;*/
-          }
+          /*span.maintab-Misc {
+            background: url(../images/Supmisc.png) no-repeat center center;
+            background-size: 110%;
+          }*/
+
+          /*span.maintab-payments {
+            background: url(../images/Suppay.png) no-repeat center center;
+            #6c811ebackground-size: 110%;
+          }*/
 
           span.maintab-clientdetails {
             background: url(../images/Clients.png) no-repeat center center;
