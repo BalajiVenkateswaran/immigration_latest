@@ -647,60 +647,96 @@ $dateColumnWidth:110px;
         left:80% !important;
     }
  }*/
-/*.superUserViewAccounts {
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="accountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountName"] {
-    width:8% !important;
-    left:0% !important;
+.superUserViewAccounts {
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="accountName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountName"] {
+    width: 15% !important;
+    left: 0% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="accountNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountNumber"] {
+    width: 11% !important;
+    left: 13% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
+    width: 8% !important;
+    left: 22% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
+    width: 8% !important;
+    left: 29% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="email"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="email"] {
+    width: 15% !important;
+    left: 36% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="phone"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phone"] {
+    width: 10% !important;
+    left: 50% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"] {
+    width: 6% !important;
+    left: 58% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+    width: 6% !important;
+    left: 58.8% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="organizatinCount"] {
+    width: 5% !important;
+    left: 63% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-cell-value[col-id~="organizatinCount"] {
+    width: 5% !important;
+    left: 64% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="clientCount"] {
+    width: 8% !important;
+    left: 67% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientCount"] {
+    width: 5% !important;
+    left: 69% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionCount"] {
+    width: 8% !important;
+    left: 72% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionCount"] {
+    width: 5% !important;
+    left: 74% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="creationOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="creationOn"] {
+    width: 10% !important;
+    left: 78% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastPaymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastPaymentStatus"] {
+    width: 8% !important;
+    left: 85% !important;
+  }
+
+  .ag-fresh .ag-ltr .ag-header-cell[col-id~="storageType"] {
+    width: 9% !important;
+    left: 91% !important;
+  }
+  .ag-fresh .ag-ltr .ag-cell-value[col-id~="storageType"] {
+    width: 9% !important;
+    left: 93% !important;
+  }
 }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="accountNumber"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="accountNumber"] {
-    width:8% !important;
-    left:8% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="firstName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="firstName"] {
-    width:7% !important;
-    left:16% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastName"] {
-    width:8% !important;
-    left:23% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="email"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="email"] {
-    width:7% !important;
-    left:31% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="phone"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="phone"] {
-    width:8% !important;
-    left:38% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
-    width:8% !important;
-    left:46% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="orgCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="orgCount"] {
-    width:8% !important;
-    left:54% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="clientCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="clientCount"] {
-    width:8% !important;
-    left:62% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionCount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionCount"] {
-    width:8% !important;
-    left:70% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="creationOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="creationOn"] {
-    width:6.5% !important;
-    left:78% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastPaymentStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastPaymentStatus"] {
-    width:8% !important;
-    left:84.5% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="storageType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="storageType"] {
-    width:8% !important;
-    left:92.5% !important;
-    }
- }*/
 .superUserViewAccountManagers {
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
     width:10% !important;

@@ -1,14 +1,14 @@
 <div class="main-content" *ngIf="viewUsers">
-
-    <ul class="breadcrumb">
+    <!--<ul class="breadcrumb">
         <li><a href="#">Account Managers</a></li>
     </ul>
-    <div class="clearfix"></div>
+    <div class="clearfix"></div>-->
     <div class="table-data">
-        <h2>
-            <span>Account Managers</span>
-
-        </h2>
+      <h1 _ngcontent-c8="" class="clickname">
+        <span _ngcontent-c8="">{{accountDetailsCommonService.accountName}}</span>
+      </h1>
+      <div class="clearfix"></div>
+      <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Account Manager</h2>
         <ih-smart-table class="superUserViewAccountManagers" [settings]="settings"
                         [data]="data"
                         (onAddClick)="addFunction($event)"

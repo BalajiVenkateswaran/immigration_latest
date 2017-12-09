@@ -1,111 +1,108 @@
-﻿<div class="main-content" *ngIf="getacntpref">
-
-    <ul class="breadcrumb">
-        <li><a href="#">Account Preferences</a></li>
-    </ul>
+<div class="main-content" *ngIf="getacntpref">
+  <!--<ul class="breadcrumb">
+      <li><a href="#">Account Preferences</a></li>
+  </ul>
+  <div class="clearfix"></div>-->
+  <div class="table-data">
+    <h2 _ngcontent-c6="" class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Account Preferences</h2>
+    <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Products</h2>
+    <ih-smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)"
+                    (onRowClick)="editProducts($event)">
+    </ih-smart-table>
+    <!--<h2 style="margin-top: 50px;">Discounts</h2>-->
     <div class="clearfix"></div>
-    <div class="table-data">
-        <h2>
-            Products
-        </h2>
-        <ih-smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)"
-            (onRowClick)="editProducts($event)">
-        </ih-smart-table>
-
-        <h2 style="margin-top: 50px;">
-            Discounts
-        </h2>
-        <ih-smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)"
-            (onRowClick)="editDiscounts($event)">
-        </ih-smart-table>
-    </div>
+    <h2 class="headerinsections" style="margin-top: 20px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Discounts</h2>
+    <ih-smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)"
+                    (onRowClick)="editDiscounts($event)">
+    </ih-smart-table>
+  </div>
 
 </div>
 <div *ngIf="adddprdctPref">
-    <div class="modal-dialog" ngDraggable>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" id="svActPrefClose" (click)="close()">&times;</button>
-            </div>
-            <div class="modal-body">
+  <div class="modal-dialog" ngDraggable>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+        <button type="button" class="close" id="svActPrefClose" (click)="close()">&times;</button>
+      </div>
+      <div class="modal-body">
 
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-4">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-8">
-                              <select class="form-control" [(ngModel)]="addproduct.code">
-                                <option *ngFor="let c of allProducts"  [value]="c.code" id="{{c.code}}">{{ c.code }}</option>
-                              </select>
-                              <!--<input type="text" class="form-control" id="svActPrefCode" [disabled]="editprdct" [(ngModel)]="addproduct.code">-->
-                            </div>
-                            <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
-                            <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions" id="svActPrefStartDate" [(ngModel)]="addproduct.startDate" [selDate]="startDate"></my-date-picker>
-                            </div>
-                            <div class="col-md-4">End Date:<span class="redstar">*</span></div>
-                            <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions" id="svActPrefEndDate" [(ngModel)]="addproduct.endDate" [selDate]="endDate"></my-date-picker>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-                <div class="row">
-                    <div class="row sfm" *ngIf="warningMessage">
-                        <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-4">Code:<span class="redstar">*</span></div>
+              <div class="col-md-8">
+                <select class="form-control" [(ngModel)]="addproduct.code">
+                  <option *ngFor="let c of allProducts" [value]="c.code" id="{{c.code}}">{{ c.code }}</option>
+                </select>
+                <!--<input type="text" class="form-control" id="svActPrefCode" [disabled]="editprdct" [(ngModel)]="addproduct.code">-->
+              </div>
+              <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
+              <div class="col-md-8">
+                <my-date-picker [options]="myDatePickerOptions" id="svActPrefStartDate" [(ngModel)]="addproduct.startDate" [selDate]="startDate"></my-date-picker>
+              </div>
+              <div class="col-md-4">End Date:<span class="redstar">*</span></div>
+              <div class="col-md-8">
+                <my-date-picker [options]="myDatePickerOptions" id="svActPrefEndDate" [(ngModel)]="addproduct.endDate" [selDate]="endDate"></my-date-picker>
+              </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="svActPrefSave" (click)="productSave()">Save</button>
-                <button type="button" class="btn btn-default" id="svActPrefCancel" (click)="cancel()">Cancel</button>
-            </div>
+          </div>
+          <div class="col-md-1"></div>
         </div>
+        <div class="row">
+          <div class="row sfm" *ngIf="warningMessage">
+            <div class="col-md-12">
+              <span class="redstar">* Fields are Mandatory.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="svActPrefSave" (click)="productSave()">Save</button>
+        <button type="button" class="btn btn-default" id="svActPrefCancel" (click)="cancel()">Cancel</button>
+      </div>
     </div>
+  </div>
 </div>
 <div *ngIf="adddiscntPref">
-    <div class="modal-dialog" ngDraggable>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">{{title}}</h4>
-                <button type="button" class="close" id="svActPrefClose1" (click)="close()">&times;</button>
+  <div class="modal-dialog" ngDraggable>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+        <button type="button" class="close" id="svActPrefClose1" (click)="close()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-4">Code:<span class="redstar">*</span></div>
+              <div class="col-md-8"><input type="text" id="svActPrefCode1" class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode"></div>
+              <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
+              <div class="col-md-8">
+                <my-date-picker [options]="myDatePickerOptions" id="svActPrefStartDate1" [(ngModel)]="discounts.startDate" [selDate]="startDate"></my-date-picker>
+              </div>
+              <div class="col-md-4">End Date:<span class="redstar">*</span></div>
+              <div class="col-md-8">
+                <my-date-picker [options]="myDatePickerOptions" id="svActPrefEndDate1" [(ngModel)]="discounts.endDate" [selDate]="endDate"></my-date-picker>
+              </div>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-4">Code:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" id="svActPrefCode1" class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode"></div>
-                            <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
-                            <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions" id="svActPrefStartDate1" [(ngModel)]="discounts.startDate" [selDate]="startDate"></my-date-picker>
-                            </div>
-                            <div class="col-md-4">End Date:<span class="redstar">*</span></div>
-                            <div class="col-md-8">
-                                <my-date-picker [options]="myDatePickerOptions" id="svActPrefEndDate1" [(ngModel)]="discounts.endDate" [selDate]="endDate"></my-date-picker>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-                <div class="row">
-                    <div class="row sfm" *ngIf="warningMessage">
-                        <div class="col-md-12">
-                            <span class="redstar">* Fields are Mandatory.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="svActPrefSave1"(click)="discountSave()">Save</button>
-                <button type="button" class="btn btn-default"  id="svActPrefCancel1" (click)="cancel()">Cancel</button>
-            </div>
+          </div>
+          <div class="col-md-1"></div>
         </div>
+        <div class="row">
+          <div class="row sfm" *ngIf="warningMessage">
+            <div class="col-md-12">
+              <span class="redstar">* Fields are Mandatory.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="svActPrefSave1" (click)="discountSave()">Save</button>
+        <button type="button" class="btn btn-default" id="svActPrefCancel1" (click)="cancel()">Cancel</button>
+      </div>
     </div>
+  </div>
 </div>

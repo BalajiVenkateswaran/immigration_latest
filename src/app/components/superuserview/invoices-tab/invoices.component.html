@@ -1,17 +1,21 @@
-<div class="main-content"  *ngIf="getClientsData">
-  <ul class="breadcrumb">
+<div class="main-content" *ngIf="getClientsData">
+  <!--<ul class="breadcrumb">
     <li><a href="#">Clients</a></li>
   </ul>
-  <div class="clearfix"></div>
-  <div class="table-data">
-    <h2>Invoices</h2>
-              <ih-smart-table [settings]="settings" [data]="data"
-                              (onRowClick)="moveToInvoiceTab($event)"
-                              (dataWithQueryParams)="dataWithParameters($event)"
-                              [paginationData]="paginationData">
-              </ih-smart-table>
-</div>
-</div>
+  <div class="clearfix"></div>-->
+  <div class="pagetitleandfilters">
+    <div class="mainContainer">
+      <h2>Invoices</h2>
+      <div class="table-data">
+        <ih-smart-table [settings]="settings" [data]="data"
+                        (onRowClick)="moveToInvoiceTab($event)"
+                        (dataWithQueryParams)="dataWithParameters($event)"
+                        [paginationData]="paginationData">
+        </ih-smart-table>
+      </div>
+      </div>
+    </div>
+    </div>
 
 
 

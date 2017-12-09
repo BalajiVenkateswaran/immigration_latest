@@ -1,13 +1,11 @@
 <div class="main-content" *ngIf="getPayments">
     <!--<h1>{{user.lastName}} {{user.firstName}}</h1>-->
-    <ul class="breadcrumb">
+    <!--<ul class="breadcrumb">
         <li><a href="#">Account Preferences</a></li>
     </ul>
-    <div class="clearfix"></div>
+    <div class="clearfix"></div>-->
     <div class="table-data">
-        <h2>payments
-
-        </h2>
+      <h2 _ngcontent-c6="" class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">payments</h2>
         <ih-smart-table class="superUserViewaccPayments" [settings]="settings" [data]="data" (onAddClick)="addPayments($event)" (onRowClick)="editPayments($event)"
             (onDeleteClick)="deleteRecord($event)">
         </ih-smart-table>
