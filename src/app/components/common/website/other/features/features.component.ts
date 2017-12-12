@@ -21,7 +21,6 @@ export class WebsiteFeaturesComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
-    this.appService.currentPage = 'login';
   }
 
 

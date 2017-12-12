@@ -93,6 +93,7 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
     this.appService.currentPage = 'login';
 */
+    this.appService.currentPage = 'login';
     this.isforgotPwd = true;
   }
 

@@ -27,7 +27,6 @@ export class WebsiteHeaderComponent implements OnInit {
     this.appService.showFooter = false;
     this.appService.expandMenu = false;
     this.router.navigate(['', {outlets: this.outlet}], {skipLocationChange: true});
-    this.appService.currentPage = 'login';
   }
 
   clicktogotop() {

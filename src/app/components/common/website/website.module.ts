@@ -7,6 +7,7 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {WebsiteHeaderComponent} from './header/websiteheader.component';
 import {LoginPopupComponent} from './loginpopup/loginpopup.component';
 import {RolesPopupComponent} from './rolespopup/rolespopup.component';
+import {WebsiteFooterComponent} from './footer/websitefooter.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {RolesPopupComponent} from './rolespopup/rolespopup.component';
     /*Website routes*/
     websiteRoute],
   exports: [
-    WebsiteHeaderComponent
+    WebsiteHeaderComponent,
+    WebsiteFooterComponent
   ],
   entryComponents: [
     RolesPopupComponent,
@@ -29,6 +31,7 @@ import {RolesPopupComponent} from './rolespopup/rolespopup.component';
     RolesPopupComponent,
     LoginPopupComponent,
     WebsiteHeaderComponent,
+    WebsiteFooterComponent,
     WebsiteComponent ]
 })
 export class WebsiteModule {

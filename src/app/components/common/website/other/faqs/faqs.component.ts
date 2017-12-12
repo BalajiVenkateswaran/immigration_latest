@@ -16,9 +16,7 @@ export class WebsiteFaqComponent implements OnInit {
     footer: null
   };
 
-  constructor(
-    public appService: AppService
-  ) {
+  constructor(public appService: AppService) {
   }
 
   ngOnInit(): void {

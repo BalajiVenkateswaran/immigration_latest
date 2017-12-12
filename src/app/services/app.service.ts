@@ -161,7 +161,6 @@ export class AppService {
     }
 
     public moveToPage(pageLink) {
-
         if (pageLink !== this._currentPage) {
             this._currentPage = '';
         }
