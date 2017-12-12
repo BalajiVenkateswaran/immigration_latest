@@ -1,12 +1,12 @@
 <div class="main-content" *ngIf="viewDetails">
 
-    <ul class="breadcrumb">
+    <!--<ul class="breadcrumb">
         <li><a href="#">Clients</a></li>
         <li><a href="#">Visas</a></li>
     </ul>
-    <div class="clearfix"></div>
+    <div class="clearfix"></div>-->
     <div class="table-data">
-        <h2>Discounts</h2>
+      <h2 _ngcontent-c6="" class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Discounts</h2>
         <ih-smart-table class="acctabprodcatDiscounts" [settings]="settings" [data]="data" [paginationData]="paginationData" (onAddClick)="addDiscounts($event)" (onRowClick)="viewDiscountDetails($event)" (dataWithQueryParams)="dataWithParameters($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
