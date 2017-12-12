@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+import {Component, OnInit} from '@angular/core';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import * as FileSaver from 'file-saver';
 
-import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { FormsService } from './forms.service';
-import { GenerateFormButton } from './GenerateFormButton';
-import { DownloadButton } from './DownloadButton';
+import {AppService} from '../../../../../services/app.service';
+import {FormsService} from './forms.service';
+import {GenerateFormButton} from './GenerateFormButton';
+import {DownloadButton} from './DownloadButton';
 import {HeaderService} from '../../../../common/header/header.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {MatDialog} from '@angular/material';
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -41,7 +43,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
     public editFlag = true;
     public generateFormData: any = {};
     public errorMessage= false;
-    constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
+    constructor(private formsService: FormsService, public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService) {
         super(dialogService);
         this.settings = {
             'isAddButtonEnable': false,
@@ -52,33 +54,27 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
                 'componentParent': this
             },
             'columnsettings': [
-
                 {
                     headerName: 'Form Name',
                     field: 'formName'
                 },
                 {
-
                     headerName: 'Questionnaire Name',
                     field: 'questionnaireName'
                 },
                 {
-
                     headerName: 'Generate Form',
                     cellRendererFramework: GenerateFormButton
                 },
                 {
-
                     headerName: 'Save Form As',
                     field: 'fileName'
                 },
                 {
-
                     headerName: 'Generated Date',
                     field: 'fileCreationDate'
                 },
                 {
-
                     headerName: 'Download Form',
                     cellRendererFramework: DownloadButton
                 }
@@ -96,7 +92,7 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
     getFormsData() {
         this.formsService.getForms(this.appService.petitionId).subscribe(
             (res) => {
-                if (res['statusCode'] == 'SUCCESS') {
+                if (res['statusCode'] === 'SUCCESS') {
                     this.formsData = res['forms'];
                     this.data = res['forms'];
                 }
@@ -176,13 +172,16 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
         }).subscribe((isConfirmed) => {
 
             if (isConfirmed) {
-                this.dialogService.addDialog(ConfirmComponent, {
-                                title: 'Please Wait...',
-                                message: 'This may take sometime',
-                            })
+                this.dialog.open(InformationDialogComponent,
+                  {
+                    data: {
+                      title: 'Please Wait...',
+                      message: 'This may take sometime'
+                    }
+                });
                 this.formsService.generateForms(questionnaireId, this.headerService.user.accountId, event.data).subscribe(
                     res => {
-                        if (res['statusCode'] == 'FAILURE') {
+                        if (res['statusCode'] === 'FAILURE') {
                             this.errorMessage = true;
                         } else {
                            this.getFormsData();
@@ -199,9 +198,9 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
     onGenerateFormDownloadClick(event) {
           if (event.data.fileId) {
             let fileName = event.data.fileName;
-            this.formsService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(data => this.downloadFiles(data, fileName)),
-            error => console.log('Error Downloading....');
-            () => console.log('OK');
+            this.formsService.downloadFile(event.data.fileId, this.headerService.selectedOrg['orgId']).subscribe(data => this.downloadFiles(data, fileName),
+            error => console.log('Error Downloading....'),
+            () => console.log('OK'));
         }
     }
     downloadFiles(data: any, fileName) {

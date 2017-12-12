@@ -1,14 +1,15 @@
-import { dependent } from '../../../../../models/dependent';
-import { User } from '../../../../../models/user';
-import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
+import {dependent} from '../../../../../models/dependent';
+import {AppService} from '../../../../../services/app.service';
 import {Component, OnInit} from '@angular/core';
 import {ImmigrationViewDependentService} from './dependents.service';
-import {FormGroup, FormControl} from '@angular/forms';
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {FormGroup} from '@angular/forms';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
+import {MatDialog} from '@angular/material';
+
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -39,39 +40,33 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   public settings;
   public data;
   constructor(private immigrationViewDependentService: ImmigrationViewDependentService, public appService: AppService, public dialogService: DialogService,
-              public headerService: HeaderService) {
+              public dialog: MatDialog, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
         {
-
           headerName: 'First Name',
-          field: 'firstName',
+          field: 'firstName'
         },
         {
-
           headerName: 'Middle Name',
-          field: 'middleName',
+          field: 'middleName'
         },
         {
-
           headerName: 'Last Name',
           field: 'lastName'
         },
         {
           headerName: 'Relation',
           field: 'relation'
-        },
-
-
+        }
         ]
-    }
+    };
   }
   getDepData() {
     this.immigrationViewDependentService.getDependentSummery(this.appService.clientId)
       .subscribe((res) => {
         this.data = res['dependents'];
-
         this.appService.dependents = res['dependents'];
       });
   }
@@ -90,7 +85,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
       if (isConfirmed) {
         this.addDependents = this.appService.addDependents;
         this.immigrationViewDependentService.saveDependentsSummary(this.addDependents, this.headerService.user.userId).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getDepData();
           }
         });
@@ -101,20 +96,26 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   dependentSave() {
     let isDuplicateExists: boolean;
     this.data.map(item => {
-       if (item.firstName.toUpperCase() == this.addDependents['firstName'].toUpperCase() && item.lastName.toUpperCase() == this.addDependents['lastName'].toUpperCase() && item.relation.toUpperCase() == this.addDependents['relation'].toUpperCase() && (item.middleName == this.addDependents.middleName || item.middleName == undefined || item.middleName == '')) {
+       if (item.firstName.toUpperCase() === this.addDependents['firstName'].toUpperCase() && item.lastName.toUpperCase() === this.addDependents['lastName'].toUpperCase()
+         && item.relation.toUpperCase() === this.addDependents['relation'].toUpperCase() && (item.middleName === this.addDependents.middleName || item.middleName === undefined
+           || item.middleName === '')) {
         isDuplicateExists = true;
         return true;
       }
       return false;
     })
     this.addDependents['clientId'] = this.appService.clientId;
-    if (this.addDependents['firstName'] == '' || this.addDependents['firstName'] == null || this.addDependents['firstName'] == undefined || this.addDependents['lastName'] == '' || this.addDependents['lastName'] == null || this.addDependents['lastName'] == undefined || this.addDependents['relation'] == '' || this.addDependents['relation'] == null || this.addDependents['relation'] == undefined) {
+    if (this.addDependents['firstName'] === '' || this.addDependents['firstName'] == null || this.addDependents['firstName'] === undefined ||
+      this.addDependents['lastName'] === '' || this.addDependents['lastName'] == null || this.addDependents['lastName'] === undefined ||
+      this.addDependents['relation'] === '' || this.addDependents['relation'] == null || this.addDependents['relation'] === undefined) {
       this.warningMessage = true;
     } else if (isDuplicateExists) {
-      this.dialogService.addDialog(ConfirmComponent, {
-        title: 'Error..!',
-        message: 'Dependent Already exists'
-      })
+      this.dialog.open(InformationDialogComponent, {
+        data: {
+          title: 'Error',
+          message: 'Dependent Already exists'
+        }
+      });
     } else {
       this.warningMessage = false;
       this.appService.addDependents = this.addDependents;
@@ -135,15 +136,16 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
 
   deleteRecord(dependents) {
     this.dependent = dependents.data.firstName;
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + this.dependent + ' ?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete ' + this.dependent + ' ?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
           this.immigrationViewDependentService.removeDependentsSummary(dependents.data['dependentId']).subscribe((res) => {
             this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
+            if (this.message === 'SUCCESS') {
               this.getDepData();
             }
           });

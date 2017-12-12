@@ -1,6 +1,5 @@
 import {User} from '../../../../models/user';
 import {AppService} from '../../../../services/app.service';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {HeaderService} from '../../header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
@@ -13,6 +12,8 @@ import {environment} from '../../../../../environments/environment';
 import {ApplicationRoles} from '../../constants/applicationroles.constants';
 import {ApplicationViews} from '../../constants/applicationviews.constants';
 import {RolesPopupComponent} from '../rolespopup/rolespopup.component';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
+import {MatDialog} from '@angular/material';
 
 export interface ConfirmModel {
   title: string;
@@ -44,7 +45,7 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
     private router: Router,
     public appService: AppService,
     private loginPopupService: LoginPopupService,
-    public dialogService: DialogService,
+    public dialogService: DialogService, public dialog: MatDialog,
     private headerService: HeaderService,
     private headerComponentService: HeaderComponentService,
     private manageAccountUserService: ManageAccountUserService
@@ -90,16 +91,19 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
       console.log('ForgetPassword Response %o', res);
       if (res['statusCode'] === 'SUCCESS') {
         this.close();
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Information',
-          message: 'Password reset information is sent to ' + email
-        }).subscribe((isConfirmed) => {
+        this.dialog.open(InformationDialogComponent, {
+         data: {
+           message: 'Password reset information is sent to ' + email
+         }
+        }).afterClosed().subscribe((isConfirmed) => {
           this.appService.moveToPage('');
         });
       } else {
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Information',
-          message: res['statusDescription']
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: res['statusDescription']
+          }
         });
       }
     });
@@ -111,10 +115,11 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
         console.log('Login User %o', res);
         if (res.uiBuildNumber != null &&  LoginPopupComponent.uiBuildNumber !== res.uiBuildNumber) {
           this.close();
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Information',
-            message: 'Page will be reloaded to get the latest updates'
-          }).subscribe((isConfirmed) => {
+          this.dialog.open(InformationDialogComponent, {
+            data: {
+              message: 'Page will be reloaded to get the latest updates'
+            }
+          }).afterClosed().subscribe((isConfirmed) => {
             window.location.reload(true);
           });
         }
@@ -181,7 +186,6 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
               this.appService.showMenu = false;
               this.headerComponentService.onHeaderPageLoad(moveToPage);
             }
-
           }
         }
       });
@@ -211,10 +215,10 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
       }
     });
   }
+
   multiRolepopupClose() {
     this.appService.destroy(true);
     this.close();
     this.appService.moveToPage('');
-
   }
 }

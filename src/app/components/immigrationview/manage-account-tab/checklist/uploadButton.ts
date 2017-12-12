@@ -1,15 +1,10 @@
 ﻿import {Component} from '@angular/core';
 import {ICellRendererAngularComp} from 'ag-grid-angular/main';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs';
-import {Subscription} from 'rxjs/Subscription';
-import {AppService} from '../../../../services/app.service';
 import {ManageAccountChecklistService} from './checklist.service';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../common/header/header.service';
-import {InformationComponent} from '../../../framework/confirmbox/information.component';
 import {FileUtils} from '../../../common/FileUtils';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 
 
 @Component({
@@ -29,7 +24,7 @@ export class CheckListUploadButtonComponent implements ICellRendererAngularComp 
       return false;
     }
 
-    constructor(private manageAccountChecklistService: ManageAccountChecklistService, public headerService: HeaderService, public dialogService: DialogService) {
+    constructor(private manageAccountChecklistService: ManageAccountChecklistService, public headerService: HeaderService, public dialog: MatDialog) {
     }
 
     fileUpload(event) {
@@ -41,16 +36,16 @@ export class CheckListUploadButtonComponent implements ICellRendererAngularComp 
             this.manageAccountChecklistService.uploadFile(this.headerService.user.accountId, this.params.data.petitionTypeId, formData)
                 .subscribe(
                 res => {
-                    console.log(res);
                     this.params.context.componentParent.getchecklist();
-                }
-                );
+                });
 
         } else {
-                this.dialogService.addDialog(InformationComponent, {
-                    title: 'Error',
-                    message: 'Please Upload Only Pdf files'
-                });
+            this.dialog.open(InformationDialogComponent, {
+                data: {
+                  title: 'Error',
+                  message: 'Please Upload Only Pdf files'
+                }
+            });
         }
     }
 }

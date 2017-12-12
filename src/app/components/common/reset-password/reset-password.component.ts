@@ -1,10 +1,10 @@
-import { AppService } from '../../../services/app.service';
-import { ConfirmComponent } from '../../framework/confirmbox/confirm.component';
-import { Component, OnInit, DoCheck } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { ResetPasswordService } from './reset-password.service';
-import { DialogService } from 'ng2-bootstrap-modal';
+import {AppService} from '../../../services/app.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ResetPasswordService} from './reset-password.service';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../framework/popup/information/information.component';
 
 @Component({
   selector: 'app-reset-password',
@@ -31,7 +31,7 @@ export class ResetPasswordComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required])
   });
   constructor(private router: Router, private resetPasswordService: ResetPasswordService,
-    private appService: AppService, private dialogService: DialogService) {
+    private appService: AppService, private dialog: MatDialog) {
     console.log(this.login);
 
     }
@@ -52,30 +52,31 @@ export class ResetPasswordComponent implements OnInit {
     this.resetPasswordService.updatePassword(req).subscribe(
       res => {
         if (res['statusCode'] === 'SUCCESS') {
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Information',
-            message: 'Password is successfully updated'
-          })
-            .subscribe((isConfirmed) => {
+          this.dialog.open(InformationDialogComponent, {
+            data: {
+              message: 'Password is successfully updated'
+            }
+          }).afterClosed().subscribe((isConfirmed) => {
               this.appService.moveToPage('login');
-            });
+          });
         } else {
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Information',
-            message: 'Authentication failed. Please check the password and try it again.'
+          this.dialog.open(InformationDialogComponent, {
+            data: {
+              message: 'Authentication failed. Please check the password and try it again.'
+            }
           });
         }
 
       });
   }
   validatePassword() {
-    if (this.login.value.oldPassword == this.login.value.newPassword) {
+    if (this.login.value.oldPassword === this.login.value.newPassword) {
       this.oldPasswordValidationFlag = true;
 
     } else {
       this.oldPasswordValidationFlag = false;
     }
-    if (this.login.value.newPassword != this.login.value.confirmPassword) {
+    if (this.login.value.newPassword !== this.login.value.confirmPassword) {
       this.confirmPasswordValidFlag = true;
     } else {
       this.confirmPasswordValidFlag = false;

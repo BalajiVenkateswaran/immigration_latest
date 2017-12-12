@@ -6,8 +6,8 @@ import {DocumentManagementService} from './document-management.service';
 import {FormGroup} from '@angular/forms';
 import {Http} from '@angular/http';
 import {DragulaService} from 'ng2-dragula/ng2-dragula';
-import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
-import {DialogService} from 'ng2-bootstrap-modal';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 
 @Component({
     selector: 'app-document-management',
@@ -34,7 +34,7 @@ export class DocumentManagementComponent implements OnInit {
 
     constructor(private documentManagementService: DocumentManagementService, private http: Http,
         public appService: AppService, private dragulaService: DragulaService, private headerService: HeaderService,
-                private dialogService: DialogService) {
+                private dialog: MatDialog) {
 
         dragulaService.dropModel.subscribe((value) => {
           this.isSaveOrderVisible = true;
@@ -90,13 +90,13 @@ export class DocumentManagementComponent implements OnInit {
             this.addDocToSelectedList(x);
         } else {
             for (let obj of this.selectedDocList) {
-                if (obj['fileId'] == x['fileId']) {
+                if (obj['fileId'] === x['fileId']) {
                     this.selectedDocList.splice(this.selectedDocList.indexOf(obj), 1);
                     break;
                 }
             }
         }
-        if (this.selectedDocList.length == 0) {
+        if (this.selectedDocList.length === 0) {
             this.isSaveOrderVisible = false;
             this.isMergeOrderVisible = true;
         }
@@ -112,7 +112,7 @@ export class DocumentManagementComponent implements OnInit {
     }
 
 
-    //Save Document order
+    // Save Document order
     saveOrder() {
       let fileOrderList = [];
       for (let obj of this.selectedDocList) {
@@ -137,9 +137,10 @@ export class DocumentManagementComponent implements OnInit {
         });
     }
     mergeOrder() {
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Information',
-          message: 'Document merge process has been scheduled. Once the merge document is generated. Will notify you in email'
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            message: 'Document merge process has been scheduled. Once the merge document is generated. Will notify you in email'
+          }
         });
         this.documentManagementService.mergeFile(this.appService.petitionId).subscribe(
             res => { console.log(res); }

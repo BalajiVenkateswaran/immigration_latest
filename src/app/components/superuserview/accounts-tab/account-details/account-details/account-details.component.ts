@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppService} from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {SuperuserViewAccountDetailsService} from './account-details.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {MenuComponent} from '../../../../common/menu/menu.component';
 import {AccountDetailsCommonService} from '../common/account-details-common.service';
 import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 
 @Component({
   selector: 'ih-account-details',
@@ -32,7 +33,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   private beforeCancelAccountdetails;
   constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
               private menuComponent: MenuComponent, public accountDetailsCommonService: AccountDetailsCommonService,
-              public dialogService: DialogService, public headerService: HeaderService) {
+              public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService) {
   }
   ngOnInit() {
     this.headerService.showSideBarMenu('superuserview/tab/accounts', 'superuserview/tab/accounts');
@@ -58,7 +59,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   }
 
   accountStatus() {
-    if (this.accountDetails['status'] == 'PreAct') {
+    if (this.accountDetails['status'] === 'PreAct') {
       return [{name: 'Pre-Act', value: 'PreAct'},
       {name: 'Active', value: 'Active'}];
     } else {
@@ -104,8 +105,6 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     }
   }
   saveAccountDetails() {
-
-
     if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
       this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
     }
@@ -117,7 +116,6 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
       || this.accountDetails['phone'] === '' || this.accountDetails['phone'] == null || this.accountDetails['phone'] === undefined
       || this.accountDetails['storageType'] === '' || this.accountDetails['storageType'] == null || this.accountDetails['storageType'] === undefined
       || this.accountDetails['markForDeletion'] == null || this.accountDetails['markForDeletion'] === undefined
-      // || this.accountDetails['notes'] == '' || this.accountDetails['notes'] == null || this.accountDetails['notes'] == undefined
       || this.accountDetails['status'] === '' || this.accountDetails['status'] == null || this.accountDetails['status'] === undefined) {
       this.errormsg = true;
     } else {
@@ -127,12 +125,13 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
       this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
         .subscribe((res) => {
           this.isEditstorage = true;
-          console.log(this.accountDetails)
           this.getAcountDetails();
           if (res['statusCode'] !== 'SUCCESS') {
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error',
-              message: res['statusDescription']
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: res['statusDescription']
+              }
             });
           }
         });

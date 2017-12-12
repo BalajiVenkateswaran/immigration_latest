@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 
-import { ImmigrationViewPetitionInformation } from '../../../../../models/ImmigrationViewPetitionInformation';
-import { AppService } from '../../../../../services/app.service';
-import { PetitionDetailsService } from './petition-details.service';
-import { IhDateUtil } from '../../../../framework/utils/date.component';
-import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
+import {ImmigrationViewPetitionInformation} from '../../../../../models/ImmigrationViewPetitionInformation';
+import {AppService} from '../../../../../services/app.service';
+import {PetitionDetailsService} from './petition-details.service';
+import {IhDateUtil} from '../../../../framework/utils/date.component';
 import {DialogService} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 
 
 @Component({
@@ -80,28 +78,28 @@ export class PetitionDetailsComponent implements OnInit {
     ];
     petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
     constructor(public appService: AppService, private petitionDetailsService: PetitionDetailsService,
-                public dialogService: DialogService, public headerService: HeaderService) {
+                public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService) {
     }
     ngOnInit() {
         this.headerService.showSideBarMenu('immigrationview-petition', 'immigrationview/tab/petitions');
         this.petitionDetailsService.getPetitionDetails(this.appService.petitionId)
             .subscribe((res) => {
-                if (res['petitionInfo'] != undefined) {
+                if (res['petitionInfo'] !== undefined) {
                     this.petitionDetails = res['petitionInfo'];
                     this.appService.petitionDetails = res['petitionInfo']['name'];
                     this.petitionInformation = this.petitionDetails;
                     //TODO - Set client first name and last name to appService
                 }
-                if (res['receiptInfo'] != undefined) {
+                if (res['receiptInfo'] !== undefined) {
                     this.receiptInfo = res['receiptInfo'];
                 }
-                if (res['petitionAdditionalDetails'] != undefined) {
+                if (res['petitionAdditionalDetails'] !== undefined) {
                     this.petitionAdditionalDetails = res['petitionAdditionalDetails'];
                 }
-                if (res['lcaInfo'] != undefined) {
+                if (res['lcaInfo'] !== undefined) {
                     this.lcaInfo = res['lcaInfo'];
                 }
-                if (res['sponsorInfo'] != undefined) {
+                if (res['sponsorInfo'] !== undefined) {
                     this.sponsorInfo = res['sponsorInfo'];
                     this.sponsorInfoAddress = this.sponsorInfo.address;
                 }
@@ -188,14 +186,17 @@ export class PetitionDetailsComponent implements OnInit {
     sendCheckList() {
         this.petitionDetailsService.sendChecklist(this.headerService.user.accountId, this.appService.petitionId).subscribe((res) => {
           if (res['statusCode'] === 'SUCCESS') {
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Information',
-              message: 'Checklist email is sent to client'
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                message: 'Checklist email is sent to client'
+              }
             });
           } else if (res['statusCode'] === 'FAILURE') {
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error..!',
-              message: res['statusDescription']
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: res['statusDescription']
+              }
             });
           }
         });
@@ -233,9 +234,8 @@ export class PetitionDetailsComponent implements OnInit {
         this.isPetitionInformationEdit = !this.isPetitionInformationEdit;
     }
 
-    //Save Client Details
+    // Save Client Details
     onSavePetitionInfoClick() {
-console.log("hiii")
         this.petitionDetails['petitionId'] = this.appService.petitionId;
         this.petitionDetails = this.petitionInformation;
         this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
@@ -260,7 +260,7 @@ console.log("hiii")
             this.sfmpi = false;
             this.petitionDetailsService.savePetitionDetails(this.petitionDetails, this.headerService.user.userId)
                 .subscribe((res) => {
-                    if (res['petitionInfo'] != undefined) {
+                    if (res['petitionInfo'] !== undefined) {
                         this.isPetitionInformationSave = false;
                         this.petitionDetails = res['petitionInfo'];
                         console.log(res);
@@ -269,7 +269,7 @@ console.log("hiii")
                             .subscribe((res) => {
                                 this.users = res['users'];
                                 this.users.filter(user => {
-                                    if (user.emailId == this.petitionDetails['assignedTo']) {
+                                    if (user.emailId === this.petitionDetails['assignedTo']) {
                                         this.assignedToName = user.firstName + ', ' + user.lastName;
                                     }
                                 });
@@ -304,7 +304,7 @@ console.log("hiii")
         }
     }
 
-    //cancel button function
+    // cancel button function
     onCancelReceiptInfoClick() {
         this.receiptInfo = this.backendReceiptInfo;
         if (this.receiptInfo['receiptDate'] && this.receiptInfo['receiptDate']['formatted']) {
@@ -331,7 +331,7 @@ console.log("hiii")
         this.isReceiptInfoEdit = !this.isReceiptInfoEdit;
     }
 
-    //Save Client Details
+    // Save Client Details
     onSaveReceiptInfoClick() {
         this.receiptInfo.petitionId = this.appService.petitionId;
 
@@ -383,7 +383,7 @@ console.log("hiii")
 
 
     }
-    //For LCA form Section
+    // For LCA form Section
     onEditLCAInfoClick() {
 
         this.backendLCAInfo = (<any>Object).assign({}, this.lcaInfo);
@@ -396,7 +396,7 @@ console.log("hiii")
         this.isLCAInfoEdit = !this.isLCAInfoEdit;
     }
 
-    //cancel button function
+    // cancel button function
     onCancelLCAInfoClick() {
         this.lcaInfo = this.backendLCAInfo;
         this.lcaInfo = this.backendLCAInfo;
@@ -446,13 +446,13 @@ console.log("hiii")
             });
 
     }
-    //For Sponsor Info On Form
+    // For Sponsor Info On Form
     onEditSponsorInfoClick() {
         this.beforeCancelSponsor = (<any>Object).assign({}, this.sponsorInfo);
         this.isSponsorInfoEdit = !this.isSponsorInfoEdit;
     }
 
-    //cancel button function
+    // cancel button function
     onCancelSponsorInfoClick() {
         this.sponsorInfo = this.beforeCancelSponsor;
         this.isSponsorInfoEdit = !this.isSponsorInfoEdit;
@@ -473,7 +473,7 @@ console.log("hiii")
             });
     }
 
-    //edit petitionAdditionalDetails Details
+    // edit petitionAdditionalDetails Details
     onEditAdditionalDetailsClick() {
         this.backendReceiptInfo = (<any>Object).assign({}, this.petitionAdditionalDetails);
         this.receiptDate = this.petitionAdditionalDetails.receiptDate;
@@ -484,7 +484,7 @@ console.log("hiii")
         this.isAdditionalDetailsEdit = !this.isAdditionalDetailsEdit;
     }
 
-    //cancel button function
+    // cancel button function
     onCancelAdditionalDetailsClick() {
         this.petitionAdditionalDetails = this.backendReceiptInfo;
         if (this.petitionAdditionalDetails['shippingDate'] && this.petitionAdditionalDetails['shippingDate']['formatted']) {
@@ -493,7 +493,7 @@ console.log("hiii")
         this.isAdditionalDetailsEdit = !this.isAdditionalDetailsEdit;
     }
 
-    //Save petitionAdditionalDetails Details
+    // Save petitionAdditionalDetails Details
     onSaveAdditionalDetailsClick() {
         this.petitionAdditionalDetails.petitionId = this.appService.petitionId;
 
@@ -523,7 +523,7 @@ console.log("hiii")
         this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
     }
 
-    //cancel button function
+    // cancel button function
     onCancelDelegatedOrgsClick() {
         this.petitionDetails = this.beforeCancelPetition;
         this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
@@ -532,13 +532,13 @@ console.log("hiii")
     onSaveDelegatedOrgsClick() {
         this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
         for (let i = 0; i < this.delegatedOrgsList.length; i++) {
-            if (this.delegatedOrgsList[i].petitionAssigned == true) {
+            if (this.delegatedOrgsList[i].petitionAssigned === true) {
                 this.orgs.push(this.delegatedOrgsList[i].orgId);
             }
         }
         this.petitionDetailsService.saveDelegatedOrgs(this.orgs, this.appService.petitionId, this.headerService.user.userId)
             .subscribe((res) => {
-                if (res['statusCode'] == 'SUCCESS') {
+                if (res['statusCode'] === 'SUCCESS') {
                     this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
                     this.getPetionDelOrgs();
                 }
@@ -549,10 +549,11 @@ console.log("hiii")
 
   onPetitionStatusChange(event) {
       if (event.target.value === 'Close') {
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Information',
-          message: 'Closing a Petition will lead to removal of the Questionnaires (if any) in the Petition'
-        }).subscribe((isConfirmed) => {});
+        this.dialog.open(InformationDialogComponent, {
+          data:{
+            message: 'Closing a Petition will lead to removal of the Questionnaires (if any) in the Petition'
+          }
+        });
       }
   }
 }

@@ -1,11 +1,13 @@
-import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
+import {AppService} from '../../../../services/app.service';
 import {Component, OnInit} from '@angular/core';
 import {ManageAccountUserService} from './user.service';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {SortType} from '../../../framework/smarttable/types/query-parameters';
 import {HeaderService} from '../../../common/header/header.service';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
+import {MatDialog} from '@angular/material';
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -39,7 +41,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     public paginationData: any;
 
     constructor(private manageAccountUserService: ManageAccountUserService,
-        private appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
+        private appService: AppService, public dialogService: DialogService, public dialog: MatDialog, private headerService: HeaderService) {
         super(dialogService);
         this.settings = {
           'customPanel': true,
@@ -103,15 +105,16 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
             title: 'Add New User',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-
                 this.manageAccountUserService.saveNewUser(this.appService.addUsers).subscribe((res) => {
                     if (res['statusCode'] === 'SUCCESS') {
                         this.getManageUsers();
                     }
                     if (res['statusDescription'] === 'User already exists') {
-                        this.dialogService.addDialog(ConfirmComponent, {
-                              title: 'Error..!',
-                              message: 'User already Exists'
+                        this.dialog.open(InformationDialogComponent, {
+                              data: {
+                                title: 'Error',
+                                message: 'User already Exists'
+                              }
                         })
                     }
                 });
@@ -147,10 +150,11 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
     }
 
     deleteRecord(event): void {
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Confirmation',
-            message: 'Are you sure you want to Delete ' + event.data['emailId'] + '?'
-        })
+        this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+              message: 'Are you sure you want to Delete ' + event.data['emailId'] + '?'
+            }
+        }).afterClosed()
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
                     this.manageAccountUserService.deleteUser(event.data['userId'], this.headerService.user.accountId, this.headerService.user.userId).subscribe((res) => {

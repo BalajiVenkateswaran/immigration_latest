@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {VisasService} from "./visas.service";
-import {visa} from "../../../../models/visa";
-import {FormGroup, FormControl} from "@angular/forms";
-import {AppService} from "../../../../services/app.service";
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../common/header/header.service";
+import {VisasService} from './visas.service';
+import {FormControl, FormGroup} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {IMyOptions} from 'mydatepicker';
+import {HeaderService} from '../../../common/header/header.service';
+import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
+import {MatDialog} from '@angular/material';
 
 export interface ConfirmModel {
   title: string;
@@ -29,7 +28,7 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
   public addVisa: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
-  public getCleintVisa: boolean = true;
+  public getCleintVisa = true;
   public addCleintVisa: boolean;
   public addNewVisa: any = {};
   private myDatePickerOptions: IMyOptions = {
@@ -37,12 +36,13 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     dateFormat: 'mm-dd-yyyy',
     showClearDateBtn: false,
   };
-  public editvisaFlag: boolean = true;
+  public editvisaFlag = true;
   public beforevisaEdit: any;
   public settings;
   public data;
 
-  constructor(private visasService: VisasService, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
+  constructor(private visasService: VisasService, public appService: AppService, public dialogService: DialogService,
+              public dialog: MatDialog, public headerService: HeaderService) {
     super(dialogService);
     this.addVisa = new FormGroup({
       country: new FormControl(''),
@@ -55,38 +55,31 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
     this.settings = {
       'columnsettings': [
         {
-
-          headerName: "Country",
-          field: "country",
+          headerName: 'Country',
+          field: 'country'
         },
         {
-
-          headerName: "Petition Number",
-          field: "petitionNumber",
-
+          headerName: 'Petition Number',
+          field: 'petitionNumber'
         },
         {
-
-          headerName: "Visa Number",
-          field: "visaNumber",
+          headerName: 'Visa Number',
+          field: 'visaNumber'
         },
         {
-          headerName: "Visa Type",
-          field: "visaType",
+          headerName: 'Visa Type',
+          field: 'visaType'
         },
         {
-
-          headerName: "Issued On",
-          field: "issuedOn",
+          headerName: 'Issued On',
+          field: 'issuedOn'
         },
         {
-
-          headerName: "Expires On",
-          field: "expiresOn",
-        },
-
+          headerName: 'Expires On',
+          field: 'expiresOn'
+        }
       ]
-    }
+    };
   }
 
   getClientviewvisa() {
@@ -95,13 +88,10 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
         this.data = res['visas'];
 
       });
-
   }
 
   ngOnInit() {
-
     this.getClientviewvisa();
-
   }
   addFunction(event) {
     this.dialogService.addDialog(VisasComponent, {
@@ -110,7 +100,6 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
       title: 'Add Visa',
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-
         this.visasService.saveClientVisas(this.appService.addNewVisa).subscribe((res) => {
           if (res['statusCode'] === 'SUCCESS') {
             this.getClientviewvisa();
@@ -152,7 +141,6 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
         this.visasService.saveClientVisas(this.appService.addNewVisa).subscribe((res) => {
           if (res['statusCode'] === 'SUCCESS') {
             this.getClientviewvisa();
-
           }
         });
       }
@@ -161,10 +149,11 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
   public delmesage;
   deleteRecord(event): void {
     this.delmesage = event.data.country
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete  ' + this.delmesage + ' ?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete  ' + this.delmesage + ' ?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
           this.visasService.deleteClientVisa(event.data['visaId']).subscribe((res) => {

@@ -15,13 +15,11 @@ import {SearchPipe} from './pipes/search-pipe';
 import {LooseCurrencyPipe} from './pipes/loose.currency.pipe';
 import {HttpModule} from '@angular/http';
 import {AppService} from './services/app.service';
-import {RequestButtonComponent} from './components/clientview/request-tab/RequestButton';
 import {HeaderComponent} from './components/common/header/header.component';
 
 import {MenuComponent} from './components/common/menu/menu.component';
 import {MenuService} from './components/common/menu/menu.service';
 import {ResetPasswordComponent} from './components/common/reset-password/reset-password.component';
-import {ConfirmComponent} from './components/framework/confirmbox/confirm.component';
 import {ConfirmorgComponent} from './components/framework/confirmbox/confirmorg.component';
 import {SmartTableService} from './components/framework/smarttable/common/smarttable.service';
 
@@ -40,24 +38,25 @@ import {HeaderComponentService} from './components/common/header/header.componen
 import {FilterComponent} from './components/framework/smarttable/filter/filter.component';
 import {CategoryPipe} from './components/framework/pipes/pipes';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDatepickerModule, MatInputModule, MatNativeDateModule, MatSelectModule} from '@angular/material';
-import {InformationComponent} from './components/framework/confirmbox/information.component';
+import {MatButtonModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, MatSelectModule} from '@angular/material';
 import {ImmigrationClientCommonService} from './components/immigrationview/clients-tab/client-details/common/immigration-client.service';
 import {AppSharedModule} from './shared/app.shared.module';
 import {ClientsService} from './components/immigrationview/clients-tab/clients/clients.service';
 import {DocumentService} from './components/clientview/documents-tab/documents.service';
+import {InformationDialogComponent} from './components/framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from './components/framework/popup/confirmation/confirmation.component';
 
 
 @NgModule({
     imports: [
         MatInputModule,
+        MatButtonModule,
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
         BrowserAnimationsModule,
         BrowserModule,
         AngularDraggableModule,
-
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
@@ -66,7 +65,7 @@ import {DocumentService} from './components/clientview/documents-tab/documents.s
         NgbModule.forRoot(),
       NgIdleModule.forRoot()],
     entryComponents: [
-        ConfirmComponent, InformationComponent, ConfirmorgComponent, ActionColumns,
+        ConfirmorgComponent, ActionColumns, InformationDialogComponent, ConfirmationDialogComponent,
 
         ActionIcons, FilterComponent
     ],
@@ -84,8 +83,8 @@ import {DocumentService} from './components/clientview/documents-tab/documents.s
         ActionColumns,
 
         ResetPasswordComponent,
-        ConfirmComponent,
-        InformationComponent,
+        InformationDialogComponent,
+        ConfirmationDialogComponent,
         ConfirmorgComponent,
         HomeComponent
     ],

@@ -4,7 +4,6 @@ import {ManageAccountChecklistService} from './checklist.service';
 import { AppService } from '../../../../services/app.service';
 import { CheckListDownloadButtonComponent } from './downloadButton';
 import { CheckListUploadButtonComponent } from './uploadButton';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {ManageAccountPetitionStagesService} from '../petitiontypestages/petitiontypestages.service';
 import {HeaderService} from '../../../common/header/header.service';
 import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';

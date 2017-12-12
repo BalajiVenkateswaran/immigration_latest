@@ -1,6 +1,5 @@
 import { User } from '../../../../../models/user';
 import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import { ActionIcons } from '../../../../framework/smarttable/cellRenderer/ActionsIcons';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClientDocumentRepositoryService } from './document-repository.service';
@@ -13,6 +12,9 @@ import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { environment } from '../../../../../../environments/environment';
 import {FileUtils} from '../../../../common/FileUtils';
 import {DatePipe} from '@angular/common';
+import {MatDialog} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 
 export interface ConfirmModel {
     title: string;
@@ -50,7 +52,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     public circularProgess= 0;
     public selectedindex: number;
     constructor(private clientdocumentrepositoryService: ClientDocumentRepositoryService, private http: Http,
-        public appService: AppService, public dialogService: DialogService, public headerService: HeaderService, private datePipe: DatePipe) {
+        public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService, private datePipe: DatePipe) {
         super(dialogService);
         if (this.headerService.user) {
             this.user = this.headerService.user;
@@ -66,18 +68,19 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
       this.hasAnotherDropZoneOver = e;
     }
     onDeleteClick(data) {
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Confirmation',
-            message: 'Are you sure you want to delete ' + data.fileName + ' ?'
-        })
-            .subscribe((isConfirmed) => {
-                // Get dialog result
-                if (isConfirmed) {
-                    this.clientdocumentrepositoryService.deleteFile(data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
-                        this.getFilesList();
-                    });
-                }
-            });
+        this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+              message: 'Are you sure you want to delete ' + data.fileName + ' ?'
+            }
+        }).afterClosed()
+          .subscribe((isConfirmed) => {
+              // Get dialog result
+              if (isConfirmed) {
+                  this.clientdocumentrepositoryService.deleteFile(data.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
+                      this.getFilesList();
+                  });
+              }
+          });
     }
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
@@ -98,10 +101,11 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
         let file: File = fileList[0];
         let fileName = this.getFiles[this.selectedindex].fileName;
         let fileExists = this.isfileExists(file);
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Information',
-            message: 'Do you want to replace ' + fileName + ' file ?'
-        }).subscribe((isConfirmed) => {
+        this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+              message: 'Do you want to replace ' + fileName + ' file ?'
+            }
+        }).afterClosed().subscribe((isConfirmed) => {
             if (isConfirmed) {
                 if (fileList.length > 0 && FileUtils.checkFileExtension(fileName)  && fileExists !== true) {
                     let formData: FormData = new FormData();
@@ -114,15 +118,19 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
                         );
                 }
                 if (fileExists) {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Error..!',
-                        message: 'File already exists'
+                    this.dialog.open(InformationDialogComponent, {
+                        data: {
+                          title: 'Error',
+                          message: 'File already exists'
+                        }
                     });
                 }
                 if (!FileUtils.checkFileExtension(fileName) ) {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Error..!',
-                        message: 'Please upload only PDF file'
+                    this.dialog.open(InformationDialogComponent, {
+                        data: {
+                          title: 'Error',
+                          message: 'Please upload only PDF file'
+                        }
                     });
                 }
 
@@ -132,10 +140,10 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     }
 
     onDownloadClick(event) {
-        this.clientdocumentrepositoryService.downloadFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe
-            (data => this.downloadFiles(data, event.fileName)),
-            error => console.log('Error Downloading....');
-        () => console.log('OK');
+        this.clientdocumentrepositoryService.downloadFile(event.fileId, this.headerService.selectedOrg['orgId'])
+          .subscribe(data => this.downloadFiles(data, event.fileName),
+            error => console.log('Error Downloading....'),
+            () => console.log('OK'));
     }
 
     ngOnInit() {
@@ -146,15 +154,19 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
       this.uploader.onAfterAddingFile = (fileItem) => {
         if (!FileUtils.checkFileExtension(fileItem.file.name)) {
           fileItem.remove();
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Error..!',
-            message: 'Please upload only PDF file'
+          this.dialog.open(InformationDialogComponent, {
+            data: {
+              title: 'Error',
+              message: 'Please upload only PDF file'
+            }
           });
         } else if (this.isfileExists(fileItem.file)) {
           fileItem.remove();
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Error..!',
-            message: 'A file already exists with name ' + fileItem.file.name
+          this.dialog.open(InformationDialogComponent, {
+            data: {
+              title: 'Error',
+              message: 'A file already exists with name ' + fileItem.file.name
+            }
           });
         } else {
           fileItem.upload();
@@ -227,13 +239,15 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
               };
               this.clientdocumentrepositoryService.renameFile(url, data).subscribe(
                   res => {
-                      if (res['statusCode'] == 'SUCCESS') {
+                      if (res['statusCode'] === 'SUCCESS') {
                           this.getFilesList();
                       }
-                      if (res['statusDescription'] == 'File Name Exists, Use a different Name') {
-                          this.dialogService.addDialog(ConfirmComponent, {
-                              title: 'Error..!',
-                              message: 'File with same name exists, please use a different name'
+                      if (res['statusDescription'] === 'File Name Exists, Use a different Name') {
+                          this.dialog.open(InformationDialogComponent, {
+                              data: {
+                                title: 'Error',
+                                message: 'File with same name exists, please use a different name'
+                              }
                           });
                       }
                   }
@@ -244,14 +258,13 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
       });
     }
     save() {
-        if (this.editFileObject['fileName'] == '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] == undefined) {
-            this.warningMessage = true;
-        } else {
-            this.warningMessage = false;
-            this.result = true;
-            this.close();
-        }
-
+      if (this.editFileObject['fileName'] === '' || this.editFileObject['fileName'] == null || this.editFileObject['fileName'] === undefined) {
+          this.warningMessage = true;
+      } else {
+          this.warningMessage = false;
+          this.result = true;
+          this.close();
+      }
     }
     cancel() {
         this.result = false;

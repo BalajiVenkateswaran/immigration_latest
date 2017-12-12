@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 
 import {AppService} from '../../../../../services/app.service';
-import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
 import {QuestionnaireService} from './questionnaire.service';
 import {SendToClientQuestionnaire} from './SendToClientQuestionnaire';
 import {QuestionnaireCommonService} from '../questionnaires/common/questionnaire-common.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 import {HeaderService} from '../../../../common/header/header.service';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
 
 
 export interface ConfirmModel {
@@ -84,8 +86,8 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
       'employerStatus': 'Accepted'
     }
   ];
-  constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService, private headerService: HeaderService,
-    private questionnaireCommonService: QuestionnaireCommonService) {
+  constructor(private questionnaireService: QuestionnaireService, public appService: AppService, public dialogService: DialogService,
+              public dialog: MatDialog, private headerService: HeaderService, private questionnaireCommonService: QuestionnaireCommonService) {
     super(dialogService);
     this.settings = {
       'context': {
@@ -226,12 +228,13 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
           if (this.message === 'SUCCESS') {
             this.getquesnreData();
           } else {
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error..!',
-              message: 'Unable to Add Questionnaire.'
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: 'Unable to Add Questionnaire'
+              }
             });
           }
-
         });
       }
     });
@@ -276,12 +279,12 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
     let questionaireName = questions.data.questionnaireName;
     let questionaireId = questions.data.questionnaireId;
     this.delmessage = questions.data.questionnaireName;
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
-
         if (isConfirmed) {
           this.questionnaireService.deleteQuestionnaire(questionaireId).subscribe(
             res => {
@@ -362,10 +365,11 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   onDeleteEmpQuestionniareClick(questions) {
     let questionaireName = questions.data.questionnaireName;
     let questionaireId = questions.data.questionnaireId;
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + questionaireName + '?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete ' + questionaireName + '?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
           this.questionnaireService.deleteQuestionnaire(questionaireId).subscribe(

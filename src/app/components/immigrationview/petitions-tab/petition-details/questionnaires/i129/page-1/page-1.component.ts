@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../../../../../../services/app.service';
-import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {Component, OnInit} from '@angular/core';
+import {AppService} from '../../../../../../../services/app.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../../../../framework/popup/information/information.component';
+
 @Component({
-    selector: 'app-page-1.component',
+    selector: 'ih-i129-page-1',
     templateUrl: './page-1.component.html'
 })
 export class I129Page1Component implements OnInit {
@@ -17,7 +19,7 @@ export class I129Page1Component implements OnInit {
     public aptType;
     public states: any[] = [];
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
-     private route: ActivatedRoute, private router: Router) {
+     private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
         this.aptType = [
             {
                 'id': '0',
@@ -151,15 +153,26 @@ export class I129Page1Component implements OnInit {
         this.page1 = this.beforecancelquestionnaire;
         this.isquestionnaireEdit = true;
     }
-    savequestionnaireInformation() {
-        //this.isquestionnaireEdit = true;
+    savequestionnaireInformation(): boolean {
+        // this.isquestionnaireEdit = true;
         this.page1.pageNumber = 1;
+
+        if (this.page1.address && (this.page1.address['state'] || this.page1.address['zipCode'] )) {
+          if (!this.page1.address['country']) {
+            this.dialog.open(InformationDialogComponent, {
+              data: {message: 'Please enter a country name'}
+            });
+            return false;
+          }
+        }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 1, this.page1).subscribe(res => {
-        })
+        });
+        return true;
     }
     gotoNext() {
-        this.savequestionnaireInformation();
-        this.appService.moveToPage('immigrationview/questionnaire/i129/page/2');
+        if(this.savequestionnaireInformation()){
+          this.appService.moveToPage('immigrationview/questionnaire/i129/page/2');
+        }
     }
 
 

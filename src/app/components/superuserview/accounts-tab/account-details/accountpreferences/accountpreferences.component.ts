@@ -1,11 +1,9 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../../../../services/app.service';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
-import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
-import { SuperuserViewAccountPreferencesService } from './accountpreferences.service';
-import { AccountDetailsCommonService } from '../common/account-details-common.service';
+﻿import {Component, OnInit} from '@angular/core';
+import {AppService} from '../../../../../services/app.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {IMyOptions} from 'mydatepicker';
+import {SuperuserViewAccountPreferencesService} from './accountpreferences.service';
+import {AccountDetailsCommonService} from '../common/account-details-common.service';
 
 export interface ConfirmModel {
     title: string;
@@ -142,7 +140,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     }
     getproducts() {
         this.superuserViewAccountPreferencesService.getproductsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
-            if (res['statusCode'] == 'SUCCESS') {
+            if (res['statusCode'] === 'SUCCESS') {
                 this.data = res['products'];
 
             }
@@ -150,7 +148,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     }
     getdiscounts() {
         this.superuserViewAccountPreferencesService.getdiscountsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {
-            if (res['statusCode'] == 'SUCCESS') {
+            if (res['statusCode'] === 'SUCCESS') {
                 this.discountData = res['discounts'];
             }
         });
@@ -269,7 +267,9 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
 
     }
     discountSave() {
-        if ((this.discounts['code'] == '' || this.discounts['code'] == null || this.discounts['code'] == undefined || this.discounts['startDate'] == '' || this.addproduct['startDate'] == null || this.discounts['startDate'] == undefined || this.discounts['endDate'] == '' || this.discounts['endDate'] == null || this.discounts['endDate'] == undefined)) {
+        if ((this.discounts['code'] === '' || this.discounts['code'] == null || this.discounts['code'] === undefined ||
+            this.discounts['startDate'] === '' || this.addproduct['startDate'] == null || this.discounts['startDate'] === undefined ||
+            this.discounts['endDate'] === '' || this.discounts['endDate'] == null || this.discounts['endDate'] === undefined)) {
             this.warningMessage = true;
 
         }

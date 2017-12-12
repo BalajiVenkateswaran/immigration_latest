@@ -1,5 +1,4 @@
 import {AppService} from '../../../../services/app.service';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {HeaderService} from '../../../common/header/header.service';
 import {MenuComponent} from '../../../common/menu/menu.component';
 import {StatusButtonComponent} from './statusButton';
@@ -10,6 +9,9 @@ import {SortType} from '../../../framework/smarttable/types/query-parameters';
 import {Router} from '@angular/router';
 import {ImmigrationClientCommonService} from '../client-details/common/immigration-client.service';
 import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
 
 export interface ConfirmModel {
   title: string;
@@ -55,7 +57,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
   public statusTypes: any = [];
 
   constructor(private router: Router, private clientService: ClientsService, private appService: AppService,
-    public dialogService: DialogService, private menuComponent: MenuComponent,
+    public dialogService: DialogService, public dialog: MatDialog, private menuComponent: MenuComponent,
     private headerService: HeaderService, private immigrationClientCommonService: ImmigrationClientCommonService) {
     super(dialogService);
     console.log('Clients component constructor');
@@ -177,12 +179,13 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                       if (res['statusDescription'] === 'Duplicate client') {
                         message = 'User already Exists';
                       }
-                      this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Error..!',
-                        message: message
-                      })
+                      this.dialog.open(InformationDialogComponent, {
+                        data: {
+                          title: 'Error',
+                          message: message
+                        }
+                      });
                     }
-
                 });
             }
         });
@@ -225,21 +228,21 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
 
     onDeleteConfirm(clients) {
         this.clientName = clients.data.firstName;
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Confirmation',
-            message: 'Are you sure you want to Delete ' + this.clientName + ' ?'
-        })
-            .subscribe((isConfirmed) => {
-                // Get dialog result
-                if (isConfirmed) {
-                    this.clientService.removeclient(clients.data['clientId'], this.headerService.user.userId).subscribe((res) => {
-                        this.message = res['statusCode'];
-                        clients.data.clientStatus = 'Mark for Deletion';
-                        clients.confirm.reject();
-                    });
-
-                }
-            });
+        this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+              message: 'Are you sure you want to Delete ' + this.clientName + ' ?'
+            }
+        }).afterClosed()
+          .subscribe((isConfirmed) => {
+              // Get dialog result
+              if (isConfirmed) {
+                  this.clientService.removeclient(clients.data['clientId'], this.headerService.user.userId).subscribe((res) => {
+                      this.message = res['statusCode'];
+                      clients.data.clientStatus = 'Mark for Deletion';
+                      clients.confirm.reject();
+                  });
+              }
+          });
     }
     onUserRowClick(event): void {
         this.menuComponent.highlightSBLink('Petitions');

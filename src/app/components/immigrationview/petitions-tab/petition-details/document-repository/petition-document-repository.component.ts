@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 import * as FileSaver from 'file-saver';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
-
 import {AppService} from '../../../../../services/app.service';
-import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
 import {PetitionDocumentRepositoryService} from './petition-document-repository.service';
 import {HeaderService} from '../../../../common/header/header.service';
 import {FileUtils} from '../../../../common/FileUtils';
@@ -12,6 +10,9 @@ import {environment} from '../../../../../../environments/environment';
 
 import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {DatePipe} from '@angular/common';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {MatDialog} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
 
 export interface ConfirmModel {
     title: string;
@@ -19,8 +20,8 @@ export interface ConfirmModel {
     getData: boolean;
     editFiles: boolean;
     editFileObject: Object;
-
 }
+
 @Component({
     selector: 'ih-petition-details-document-repository',
     templateUrl: './petition-document-repository.component.html',
@@ -50,7 +51,7 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     }
 
     constructor(private petitiondocumentrepositoryService: PetitionDocumentRepositoryService, private http: Http, public appService: AppService,
-       public dialogService: DialogService, public headerService: HeaderService, private datePipe: DatePipe) {
+       public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService, private datePipe: DatePipe) {
         super(dialogService);
         this.accountId = this.headerService.user.accountId;
     };
@@ -62,15 +63,19 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         this.uploader.onAfterAddingFile = (fileItem) => {
           if (!FileUtils.checkFileExtension(fileItem.file.name)) {
             fileItem.remove();
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error..!',
-              message: 'Please upload only PDF file'
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: 'Please upload only PDF file'
+              }
             });
           } else if (this.isfileExists(fileItem.file)) {
             fileItem.remove();
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error..!',
-              message: 'A file already exists with name ' + fileItem.file.name
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: 'A file already exists with name ' + fileItem.file.name
+              }
             });
           } else {
             fileItem.upload();
@@ -101,11 +106,11 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         this.getFilesList();
     }
     onDeleteClick(event) {
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Confirmation',
+        this.dialog.open(ConfirmationDialogComponent, {
+          data: {
             message: 'Are you sure you want to delete ' + event.fileName + ' ?'
-        })
-            .subscribe((isConfirmed) => {
+          }
+        }).afterClosed().subscribe((isConfirmed) => {
                 // Get dialog result
                 if (isConfirmed) {
                     this.petitiondocumentrepositoryService.deleteFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe(res => {
@@ -122,10 +127,11 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
         let file: File = fileList[0];
         let fileName = file.name;
         let fileExists = this.isfileExists(file);
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Information',
-            message: 'Do you want to replace ' + fileName + ' file ?'
-        }).subscribe((isConfirmed) => {
+        this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+              message: 'Do you want to replace ' + fileName + ' file ?'
+            }
+        }).afterClosed().subscribe((isConfirmed) => {
             if (isConfirmed) {
                 let formData: FormData = new FormData();
                 if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
@@ -137,15 +143,19 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                 }
 
                 if (fileExists) {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Error..!',
+                    this.dialog.open(InformationDialogComponent, {
+                      data: {
+                        title: 'Error',
                         message: 'File already exists'
+                      }
                     });
                 }
                 if (!FileUtils.checkFileExtension(fileName)) {
-                    this.dialogService.addDialog(ConfirmComponent, {
-                        title: 'Error..!',
+                    this.dialog.open(InformationDialogComponent, {
+                      data: {
+                        title: 'Error',
                         message: 'Please upload only PDF file'
+                      }
                     });
                 }
             }
@@ -163,9 +173,9 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
     }
     onDownloadClick(event) {
         this.petitiondocumentrepositoryService.downloadFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe
-            (data => this.downloadFiles(data, event.fileName)),
-            error => console.log('Error Downloading....');
-        () => console.log('OK');
+            (data => this.downloadFiles(data, event.fileName),
+            error => console.log('Error Downloading....'),
+              () => console.log('OK'));
 
     }
     getFilesList() {
@@ -209,12 +219,13 @@ export class PetitionDocumentRepositoryComponent extends DialogComponent<Confirm
                   res => {
                       if (res['statusCode'] === 'SUCCESS') {
                           this.getFilesList();
-
                       }
                       if (res['statusDescription'] === 'File Name Exists, Use a different Name') {
-                          this.dialogService.addDialog(ConfirmComponent, {
-                              title: 'Error..!',
-                              message: 'File with same name exists, please use a different name'
+                          this.dialog.open(InformationDialogComponent, {
+                              data : {
+                                title: 'Error',
+                                message: 'File with same name exists, please use a different name'
+                              }
                           });
                       }
                   }

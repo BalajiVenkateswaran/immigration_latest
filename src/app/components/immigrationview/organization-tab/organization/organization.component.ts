@@ -1,12 +1,12 @@
-import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
-import { HeaderService } from '../../../common/header/header.service';
-import { Component, OnInit } from '@angular/core';
+import {AppService} from '../../../../services/app.service';
+import {HeaderService} from '../../../common/header/header.service';
+import {Component, OnInit} from '@angular/core';
 import {OrganizationService} from './organization.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {IhDateUtil} from '../../../framework/utils/date.component';
-import { DialogService } from 'ng2-bootstrap-modal';
-import {InformationComponent} from '../../../framework/confirmbox/information.component';
+import {DialogService} from 'ng2-bootstrap-modal';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
+import {MatDialog} from '@angular/material';
 
 
 @Component({
@@ -40,7 +40,7 @@ export class OrganizationComponent implements OnInit {
                 ];
 
     constructor(private appService: AppService, private  organizationService: OrganizationService,
-        private dialogService: DialogService, private headerService: HeaderService) {
+        private dialogService: DialogService, private dialog: MatDialog, private headerService: HeaderService) {
             this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             this.email = new FormControl('', [Validators.required, Validators.pattern(this.emailRegex)]);
     }
@@ -73,9 +73,6 @@ export class OrganizationComponent implements OnInit {
         });
     }
 
-
-
-
     saveOrgProfile() {
         if (this.orgDetails['openDate'] && this.orgDetails['openDate']['formatted']) {
             this.orgDetails['openDate'] = this.orgDetails['openDate']['formatted'];
@@ -103,26 +100,25 @@ export class OrganizationComponent implements OnInit {
                     }
 
                     if (res['statusCode'] === 'FAILURE') {
-                        this.dialogService.addDialog(InformationComponent, {
-                            title: 'Error',
-                            message: 'Organization cannot be deleted as there are clients for this organization'
+                        this.dialog.open(InformationDialogComponent, {
+                            data: {
+                              title: 'Error',
+                              message: 'Organization cannot be deleted as there are clients for this organization'
+                            }
                         });
 
                         this.organizationService.getOrganizationDetails(this.headerService.selectedOrg['orgId'])
-                            .subscribe((res) => {
-                                if (res['organizationDetails']) {
-                                    this.orgDetails = res['organizationDetails'];
-                                    if (this.orgDetails['markForDeletion'] == true) {
+                            .subscribe((res1) => {
+                                if (res1['organizationDetails']) {
+                                    this.orgDetails = res1['organizationDetails'];
+                                    if (this.orgDetails['markForDeletion'] === true) {
                                         this.orgDetails['status'] = 'Mark for Deletion';
                                     }
-                                    console.log(this.orgDetails);
                                 }
                             });
                     }
                 });
         }
-
-
     }
 
     editProfileForm() {
@@ -130,7 +126,7 @@ export class OrganizationComponent implements OnInit {
         this.isProfileEdit = !this.isProfileEdit;
         this.openDate = this.orgDetails.openDate;
         this.orgDetails.markForDeletion = this.orgDetails['markForDeletion'];
-   }
+    }
 
     cancelProfileEdit() {
         this.orgDetails = this.beforeCancelOrg;
@@ -150,20 +146,20 @@ export class OrganizationComponent implements OnInit {
         this.isPersonProfileEdit = !this.isPersonProfileEdit;
     }
 
-    //For signing form
-    //is edit function for read only
+    // For signing form
+    // is edit function for read only
     editSigninDetails() {
         this.beforeCancelSignin = (<any>Object).assign({}, this.signinDetails);
         this.isSigninEdit = !this.isSigninEdit;
     }
 
-    //cancel button function
+    // cancel button function
     cancelSigninEdit() {
         this.signinDetails = this.beforeCancelSignin;
         this.isSigninEdit = !this.isSigninEdit;
     }
 
-    //Save Client Details
+    // Save Client Details
     saveSignInformation() {
         this.signinDetails.orgId = this.headerService.selectedOrg['orgId'];
         this.signinDetails.contactType = 'SIGNING';
@@ -202,9 +198,5 @@ export class OrganizationComponent implements OnInit {
                     this.adminstrativeAddress = this.adminstrativeDetails.address;
                 }
             });
-
-
     }
-
-
 }

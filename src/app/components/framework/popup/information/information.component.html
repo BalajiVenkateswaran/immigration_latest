@@ -1,0 +1,21 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" (click)="confirmClick()" >&times;</button>
+      <h4 class="modal-title" mat-dialog-title>{{data.title || 'Information'}}</h4>
+    </div>
+    <div class="modal-body" mat-dialog-content>
+      <p>{{data.message}}</p>
+
+      <div class="row">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-7">
+          <div class="row">
+            <div class="col-md-6" mat-dialog-actions><button type="button" class="btn btn-primary" (click)="confirmClick()">{{data.buttonLabel || 'Ok'}}</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

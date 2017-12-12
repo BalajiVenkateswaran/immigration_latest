@@ -4,9 +4,10 @@ import {DocumentExpiration} from '../../../../models/documentExpiration';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AppService} from '../../../../services/app.service';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../common/header/header.service';
+import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
+import {MatDialog} from '@angular/material';
 
 export interface ConfirmModel {
     title: string;
@@ -41,7 +42,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         showClearDateBtn: false,
     };
     constructor(private documentExpirationsService: DocumentExpirationsService, public appService: AppService, public dialogService: DialogService,
-                public headerService: HeaderService) {
+                public dialog: MatDialog, public headerService: HeaderService) {
         super(dialogService);
         this.addDocumentExpiration = new FormGroup({
             documentType: new FormControl(''),
@@ -52,30 +53,23 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         this.settings = {
             'columnsettings': [
                 {
-
                     headerName: 'Document Type',
-                    field: 'documentType',
+                    field: 'documentType'
                 },
                 {
-
                     headerName: 'Valid From',
-                    field: 'validFrom',
-
+                    field: 'validFrom'
                 },
                 {
-
                     headerName: 'Valid To',
-                    field: 'validTo',
-
+                    field: 'validTo'
                 },
                 {
                     headerName: 'Status',
                     field: 'status',
-                },
-
-
+                }
             ]
-        }
+        };
     }
     getClientDocumentExp() {
         this.documentExpirationsService.getDocumentExpiration(this.headerService.user.userId)
@@ -95,7 +89,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
             if (isConfirmed) {
                 this.appService.addClientNewDocExp['clientId'] = this.appService.clientId;
                 this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp).subscribe((res) => {
-                    if (res['statusCode'] == 'SUCCESS') {
+                    if (res['statusCode'] === 'SUCCESS') {
                         this.getClientDocumentExp();
                     }
                 });
@@ -134,7 +128,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
             if (isConfirmed) {
 
                 this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp).subscribe((res) => {
-                    if (res['statusCode'] == 'SUCCESS') {
+                    if (res['statusCode'] === 'SUCCESS') {
                         this.getClientDocumentExp();
                     }
                 });
@@ -146,20 +140,21 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
 
     deleteRecord(event): void {
         this.delmessage = event.data.documentType
-        //TODO - call delete backend
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Confirmation',
-            message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-        })
-            .subscribe((isConfirmed) => {
-                if (isConfirmed) {
-                    console.log('User table onDeleteConfirm event: %o', event.data);
-                    this.documentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
-                        if (res['statusCode'] == 'SUCCESS') {
-                            this.getClientDocumentExp();
-                        }
-                    });
-                }
-            });
+        // TODO - call delete backend
+        this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+              message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+            }
+        }).afterClosed()
+          .subscribe((isConfirmed) => {
+              if (isConfirmed) {
+                  console.log('User table onDeleteConfirm event: %o', event.data);
+                  this.documentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
+                      if (res['statusCode'] === 'SUCCESS') {
+                          this.getClientDocumentExp();
+                      }
+                  });
+              }
+          });
     }
 }

@@ -1,20 +1,16 @@
-import { User } from '../../../../../models/user';
-import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { HeaderService } from '../../../../common/header/header.service';
-import { MenuService } from '../../../../common/menu/menu.service';
-import { Component, OnInit } from '@angular/core';
+import {AppService} from '../../../../../services/app.service';
+import {HeaderService} from '../../../../common/header/header.service';
+import {MenuService} from '../../../../common/menu/menu.service';
+import {Component, OnInit} from '@angular/core';
 import {ImmigrationViewPetitionsService} from './petitions.service';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {SortType} from '../../../../framework/smarttable/types/query-parameters';
-
-
-import {InformationComponent} from '../../../../framework/confirmbox/information.component';
 import {ImmigrationViewClientDetailsService} from '../client-details/client-details.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {AddPetitionDialogComponent, NewPetitionData} from './addpetition.component';
 
 export interface ConfirmModel {
     title: string;
@@ -31,11 +27,9 @@ export interface ConfirmModel {
   templateUrl: './petitions.component.html',
   styleUrls: ['./petitions.component.sass'],
   providers: [ImmigrationViewClientDetailsService, ImmigrationViewPetitionsService],
-  entryComponents: [SmartTableFrameworkComponent]
+  entryComponents: [AddPetitionDialogComponent, SmartTableFrameworkComponent]
 })
-export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-
-    private allSubTypes = [];
+export class ImmigrationViewPetitionsComponent implements OnInit {
 
     private delmessage;
     public addPetition: FormGroup; // our model driven form
@@ -44,25 +38,23 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
     private allPetitionTypesAndSubTypes;
     public showAddPetitionpopup: boolean;
     public getPetitionsData = true;
-    public newpetitionitem: any = {};
-    public warningMessage= false;
+
     public settings;
     public data;
     public clientInviteStatus;
     public countryNames: string[] = [];
-  public queryParams: any;
-  clientDetails: any = {};
-  client: any = {};
-  public user1;
+    public queryParams: any;
+    clientDetails: any = {};
+    client: any = {};
+    public user1;
 
 
-  highlightSBLink(link) {
+    highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
     constructor(private immigrationviewpetitionService: ImmigrationViewPetitionsService, public appService: AppService,
-        private menuService: MenuService, private router: Router, public dialogService: DialogService, private headerService: HeaderService,
-                private clientDetailsService: ImmigrationViewClientDetailsService) {
-        super(dialogService);
+        private menuService: MenuService, private router: Router, private headerService: HeaderService,
+                private clientDetailsService: ImmigrationViewClientDetailsService, private dialog: MatDialog) {
         this.addPetition = new FormGroup({
             petitionName: new FormControl(''),
             petitionNumber: new FormControl(''),
@@ -170,21 +162,7 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       });
   }
 
-  handleChange(event) {
-      console.log(event.target.value);
-      for (let i = 0; i < this.allPetitionTypesAndSubTypes.length; i++) {
-          if (event.target.value === this.allPetitionTypesAndSubTypes[i].petitiontype) {
-              this.allSubTypes = this.allPetitionTypesAndSubTypes[i].petitionSubTypes;
-          }
-      }
-      if (!this.allSubTypes) {
-        this.allSubTypes = [];
-      }
-      this.appService.allsubtypesarray(this.allSubTypes);
 
-      let currentYear = new Date().getFullYear();
-      this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + ' ' + currentYear;
-  }
 
   ngOnInit() {
     this.headerService.showSideBarMenu('immigrationview-client', 'immigrationview/tab/clients');
@@ -196,22 +174,22 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
         if (this.clientInviteStatus === 'Decline') {
           informationMessage = 'Petitions cannot be added to this client as the invitation is declined.';
         }
-        this.dialogService.addDialog(InformationComponent, {
-          title: 'Information',
-          message: informationMessage
+        this.dialog.open(InformationDialogComponent, {
+          data: {message: informationMessage}
         });
       } else {
 
-        this.dialogService.addDialog(ImmigrationViewPetitionsComponent, {
-          showAddPetitionpopup: true,
-          getPetitionsData: false,
+
+        let newPetitionData: NewPetitionData = {
           countryNames: this.countryNames,
-          allPetitionTypesAndSubTypes: this.allPetitionTypesAndSubTypes,
-          allSubTypes: this.allSubTypes,
-          title: 'Add Petition',
-        }).subscribe((isConfirmed) => {
-          if (isConfirmed) {
-            this.immigrationviewpetitionService.saveNewImmigrationViewPetition(this.appService.newpetitionitem, this.headerService.user.userId).subscribe((res) => {
+          allPetitionTypesAndSubTypes: this.allPetitionTypesAndSubTypes
+        };
+
+        this.dialog.open(AddPetitionDialogComponent, {
+          data: newPetitionData
+        }).afterClosed().subscribe((result) => {
+          if (result) {
+            this.immigrationviewpetitionService.saveNewImmigrationViewPetition(result, this.headerService.user.userId).subscribe((res) => {
               this.message = res['statusCode'];
               if (this.message === 'SUCCESS') {
                 this.getPetitionData();
@@ -221,9 +199,11 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
                   errorMessage = res['statusDescription'];
                 }
 
-                this.dialogService.addDialog(ConfirmComponent, {
-                  title: 'Error..!',
-                  message: errorMessage
+                this.dialog.open(InformationDialogComponent, {
+                  data: {
+                    title: 'Error',
+                    message: errorMessage
+                  }
                 });
               }
             });
@@ -233,71 +213,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       }
   }
 
-  getPetitionTypeId(petitionType: string): string {
-    for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
-      if (petitionTypeObj['petitiontype'] === petitionType) {
-        return petitionTypeObj['petitionTypeId'];
-      }
-    }
-  }
-
-  getPetitionSubTypeId(petitionType: string, petitionSubType: string): string {
-      for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
-        if (petitionTypeObj['petitiontype'] === petitionType) {
-          if (petitionTypeObj['petitionSubTypes'].length === 0) {
-            return;
-          }
-          for (let petitionSubTypeObj of petitionTypeObj['petitionSubTypes']) {
-            if (petitionSubTypeObj['petitionSubType'] === petitionSubType) {
-              return petitionSubTypeObj['petitionSubTypeId'];
-            }
-          }
-        }
-      }
-    }
-
-  isPetitionSubTypeExists(petitionType: string) {
-    for (let petitionTypeObj of this.allPetitionTypesAndSubTypes) {
-      if (petitionTypeObj['petitiontype'] === petitionType && petitionTypeObj['petitionSubTypes'].length > 0) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  petitionSave() {
-      this.newpetitionitem['clientId'] = this.appService.clientId;
-      this.newpetitionitem['orgId'] = this.headerService.selectedOrg['orgId'];
-      this.newpetitionitem['petitionTypeId'] = this.getPetitionTypeId(this.newpetitionitem['petitiontype']);
-      this.newpetitionitem['petitionSubTypeId'] = this.getPetitionSubTypeId(this.newpetitionitem['petitiontype'], this.newpetitionitem['petitionSubType']);
-      this.newpetitionitem['userId'] = this.headerService.user.userId;
-      this.newpetitionitem['accountId'] = this.headerService.user.accountId;
-
-      // Set default values
-      if (this.newpetitionitem['status'] === undefined) {
-          this.newpetitionitem['status'] = 'Open';
-      }
-      if (this.newpetitionitem['petitionName'] === undefined || this.newpetitionitem['petitionName'] === '') {
-          let currentYear = new Date().getFullYear();
-          this.newpetitionitem['petitionName'] = this.newpetitionitem['petitiontype'] + currentYear;
-      }
-      if ((this.isPetitionSubTypeExists(this.newpetitionitem['petitiontype']) && this.newpetitionitem['petitionSubType'] === undefined)
-        || this.newpetitionitem['petitiontype'] === undefined || this.newpetitionitem['petitionName'] === '') {
-          this.warningMessage = true;
-      } else {
-          this.warningMessage = false;
-          this.appService.newpetitionitem = this.newpetitionitem;
-          this.result = true;
-          this.close();
-      }
-
-  }
-
-  closePopup() {
-      this.result = false;
-      this.close();
-  }
-
   toggleEmailNotifications() {
     this.immigrationviewpetitionService.toggleEmailNotification(this.appService.clientId).subscribe((res) => {
       if (res['statusCode'] === 'SUCCESS') {
@@ -305,21 +220,6 @@ export class ImmigrationViewPetitionsComponent extends DialogComponent<ConfirmMo
       }
     });
   }
-
-
-    onDeleteConfirm(immViewpetitions) {
-        this.delmessage = immViewpetitions.data.petitionName;
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Confirmation',
-            message: 'Are you sure you want to Delete ' + this.delmessage + ' ?'
-        })
-            .subscribe((isConfirmed) => {
-                // Get dialog result
-                if (isConfirmed) {
-
-                }
-            });
-    }
 
   onUserRowClick(event): void {
       console.log('petitions:::::%o', event.data);

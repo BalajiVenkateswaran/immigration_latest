@@ -1,14 +1,13 @@
 import { User } from '../../../../models/user';
 import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import { HeaderService } from '../../../common/header/header.service';
 import { MenuComponent } from '../../../common/menu/menu.component';
 import {Component, OnInit} from '@angular/core';
 import {ManageAccountOrganizationsService} from './organizations.service';
-
 import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
-import {InformationComponent} from '../../../framework/confirmbox/information.component';
 import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
+import {MatDialog} from '@angular/material';
 
 export interface ConfirmModel {
   title: string;
@@ -40,7 +39,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
   public paginationData;
   private queryParams;
   constructor(private manageaccountorganizationService: ManageAccountOrganizationsService,
-    private appService: AppService, public dialogService: DialogService, private menuComponent: MenuComponent,
+    private appService: AppService, public dialogService: DialogService, public dialog: MatDialog, private menuComponent: MenuComponent,
     private headerService: HeaderService) {
     super(dialogService);
     if (this.headerService.user) {
@@ -103,12 +102,13 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
           if (this.message === 'SUCCESS') {
             this.dataWithParameters(this.queryParams);
           } else {
-            this.dialogService.addDialog(InformationComponent, {
-              title: 'Error',
-              message: res['statusDescription']
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: res['statusDescription']
+              }
             });
           }
-
         });
       }
     });
@@ -153,5 +153,4 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
         });
     }
   }
-
 }

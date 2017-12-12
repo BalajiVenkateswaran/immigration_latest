@@ -52,7 +52,6 @@ export class AppService {
     public newclitem: any = {};
     public orgClientId;
     public addNewDocExp: any = {};
-    public _subtypes: any[] = [];
     public questionnaireEmployee: any = {};
     public newi797item: any = {};
     public newArvdInfoitem: any = {};
@@ -117,14 +116,6 @@ export class AppService {
   set expandMenu(value: boolean) {
     this._expandMenu = value;
   }
-
-  allsubtypesarray(allSubTypes) {
-        this._subtypes = allSubTypes;
-    }
-
-    get subtypesarray() {
-        return this._subtypes;
-    }
 
     destroy(isLogout: boolean) {
         this._menuSlider = null;

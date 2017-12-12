@@ -3,9 +3,11 @@ import {ArrivalDepartureInfoService} from './arrival-departure-info.service';
 import {FormGroup} from '@angular/forms';
 import {AppService} from '../../../../services/app.service';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../common/header/header.service';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
+import {MatDialog} from '@angular/material';
 
 
 export interface ConfirmModel {
@@ -16,7 +18,6 @@ export interface ConfirmModel {
   newArvdInfoitem: Object;
   arrivalDate: string;
   departureDate: string;
-
 }
 
 @Component({
@@ -44,7 +45,7 @@ export class ArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel,
     showClearDateBtn: false,
   };
   constructor(private arrivalDepartureInfoService: ArrivalDepartureInfoService, public appService: AppService, public dialogService: DialogService,
-              public headerService: HeaderService) {
+              public dialog: MatDialog, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -100,15 +101,16 @@ export class ArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel,
 
         this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
           this.message = res['statusCode'];
-          if (this.message == 'SUCCESS') {
+          if (this.message === 'SUCCESS') {
             this.getarvdptData();
           } else {
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error..!',
-              message: 'Unable to Add Arrival Departure Info.'
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: 'Unable to Add Arrival Departure Info.'
+              }
             });
           }
-
         });
       }
     });
@@ -145,7 +147,7 @@ export class ArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel,
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.arrivalDepartureInfoService.saveClientArrivalDeparture(this.appService.newArvdInfoitem).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getarvdptData();
           }
         });
@@ -156,16 +158,17 @@ export class ArrivalDepartureInfoComponent extends DialogComponent<ConfirmModel,
   }
 
   deleteRecord(event): void {
-    this.delmessage = event.data.i94
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-    })
+    this.delmessage = event.data.i94;
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
           this.arrivalDepartureInfoService.removeClientArrivalDeparture(event.data['arrivalDepartureInfoId']).subscribe((res) => {
             this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
+            if (this.message === 'SUCCESS') {
               this.getarvdptData();
             }
           });

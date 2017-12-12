@@ -1,14 +1,15 @@
 import {DocumentExpiration} from '../../../../../models/documentExpiration';
 import {AppService} from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
-import {ImmigrationviewDocumentExpirationsService} from "./document-expirations.service";
-import {FormGroup, FormControl} from "@angular/forms";
+import {ImmigrationviewDocumentExpirationsService} from './document-expirations.service';
+import {FormGroup, FormControl} from '@angular/forms';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
+import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
+import {MatDialog} from '@angular/material';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -31,38 +32,38 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
   public delmessage;
-  public getDocExpirations: boolean = true;
+  public getDocExpirations = true;
   public addDocExpiration: boolean;
   public addNewDocExp: any = {};
   public settings;
   public data;
-  public editFlag: boolean = true;
+  public editFlag = true;
   public beforeEdit: any;
   private myDatePickerOptions: IMyOptions = {
     // other options...
     dateFormat: 'mm-dd-yyyy',
     showClearDateBtn: false,
   };
-  constructor(private ImmigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService,
-    public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
+  constructor(private immigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService,
+    public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
         {
-          headerName: "Document Type",
-          field: "documentType",
+          headerName: 'Document Type',
+          field: 'documentType'
         },
         {
-          headerName: "Valid From",
-          field: "validFrom",
+          headerName: 'Valid From',
+          field: 'validFrom'
         },
         {
-          headerName: "Valid To",
-          field: "validTo",
+          headerName: 'Valid To',
+          field: 'validTo'
         },
         {
-          headerName: "Status",
-          field: "status",
+          headerName: 'Status',
+          field: 'status'
         }
         ]
     };
@@ -75,7 +76,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
 
   }
   getDocumentsExpirations() {
-    this.ImmigrationviewDocumentExpirationsService.getDocumentExpiration(this.appService.clientId)
+    this.immigrationviewDocumentExpirationsService.getDocumentExpiration(this.appService.clientId)
       .subscribe((res) => {
         this.data = res['DocumentExpiration'];
       });
@@ -92,8 +93,8 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
       if (isConfirmed) {
 
         this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
-        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp,this.headerService.user.userId).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+        this.immigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp, this.headerService.user.userId).subscribe((res) => {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getDocumentsExpirations();
           }
 
@@ -102,8 +103,8 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     });
   }
   docExpSave() {
-    if (this.addNewDocExp['status'] == '' || null || undefined) {
-      this.addNewDocExp['status'] == "Active";
+    if (this.addNewDocExp['status'] === '' || null || undefined) {
+      this.addNewDocExp['status'] === 'Active';
     }
     this.addNewDocExp['clientId'] = this.appService.clientId;
     this.addNewDocExp['validFrom'] = this.addNewDocExp['validFrom']['formatted'];
@@ -135,8 +136,8 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
       validTo: event.data.validTo,
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.ImmigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp, this.headerService.user.userId).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+        this.immigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp, this.headerService.user.userId).subscribe((res) => {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getDocumentsExpirations();
           }
 
@@ -149,19 +150,20 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
 
   deleteDocuments(event): void {
     this.delmessage = event.data.documentType;
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.ImmigrationviewDocumentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
-            if (res['statusCode'] == 'SUCCESS') {
+          this.immigrationviewDocumentExpirationsService.deleteDocumentExpiration(event.data['clientDocumentExpirationId']).subscribe((res) => {
+            if (res['statusCode'] === 'SUCCESS') {
               this.getDocumentsExpirations();
             }
           });
         }
-      })
+      });
 
   }
 

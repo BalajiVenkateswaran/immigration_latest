@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../../services/app.service';
-import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {AccountManagersService} from './accountmanagers.service';
 import {AccountDetailsCommonService} from '../common/account-details-common.service';
 import {HeaderService} from '../../../../common/header/header.service';
-import {InformationComponent} from '../../../../framework/confirmbox/information.component';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
 
 export interface ConfirmModel {
   title: string;
@@ -36,7 +37,7 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
     'Immigration Manager': 'a724fdd7-cd6e-11e6-a939-34e6d7382cac'
   };
   constructor(public appService: AppService, public managersAccountService: AccountManagersService, public dialogService: DialogService,
-    private accountDetailsCommonService: AccountDetailsCommonService, public headerService: HeaderService) {
+    public dialog: MatDialog, private accountDetailsCommonService: AccountDetailsCommonService, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -84,9 +85,11 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
           if (res['statusCode'] === 'SUCCESS') {
             this.getAccountsManagers();
           } else {
-            this.dialogService.addDialog(InformationComponent, {
-              title: 'Error',
-              message: res['statusDescription']
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: res['statusDescription']
+              }
             });
           }
         });
@@ -128,9 +131,11 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
           if (res['statusCode'] === 'SUCCESS') {
             this.getAccountsManagers();
           } else {
-            this.dialogService.addDialog(InformationComponent, {
-              title: 'Error',
-              message: res['statusDescription']
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: res['statusDescription']
+              }
             });
           }
         });
@@ -141,10 +146,11 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
   }
 
   deleteRecord(event): void {
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + event.data['emailId'] + '?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete ' + event.data['emailId'] + '?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
           this.managersAccountService.deleteUser(event.data['userId'], this.accountDetailsCommonService.accountId, this.headerService.user.userId).subscribe((res) => {
@@ -152,9 +158,11 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
             if (res['statusCode'] === 'SUCCESS') {
               this.getAccountsManagers();
             } else {
-              this.dialogService.addDialog(InformationComponent, {
-                title: 'Error',
-                message: res['statusDescription']
+              this.dialog.open(InformationDialogComponent, {
+                data: {
+                  title: 'Error',
+                  message: res['statusDescription']
+                }
               });
             }
           });

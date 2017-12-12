@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {I797HistoryService} from "./i-797-history.service";
-import {i797history} from "../../../../models/i797history";
-import {FormGroup, FormControl} from "@angular/forms";
-import {AppService} from "../../../../services/app.service";
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
-import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../common/header/header.service";
+import {I797HistoryService} from './i-797-history.service';
+import {FormGroup} from '@angular/forms';
+import {AppService} from '../../../../services/app.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {IMyOptions} from 'mydatepicker';
+import {HeaderService} from '../../../common/header/header.service';
+import {MatDialog} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 
 
 export interface ConfirmModel {
@@ -35,9 +35,9 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
   public settings;
   public data;
   public showAddi797popup: boolean;
-  public getCvi797Data: boolean = true;
+  public getCvi797Data = true;
   public newi797item: any = {};
-  public editFlag: boolean = true;
+  public editFlag = true;
   public beforeEdit: any;
   private myDatePickerOptions: IMyOptions = {
     // other options...
@@ -46,35 +46,35 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
   };
 
   constructor(private i797HistoryService: I797HistoryService, public appService: AppService, public dialogService: DialogService,
-              public headerService: HeaderService) {
+              public dialog: MatDialog, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
         {
-          headerName: "Receipt Number",
-          field: "receiptNumber"
+          headerName: 'Receipt Number',
+          field: 'receiptNumber'
         },
         {
-          headerName: "Status On I-797",
-          field: "status"
+          headerName: 'Status On I-797',
+          field: 'status'
         },
         {
-          headerName: "Receipt Date",
-          field: "receiptDate"
+          headerName: 'Receipt Date',
+          field: 'receiptDate'
         },
         {
-          headerName: "Approved on",
-          field: "approvedOn",
+          headerName: 'Approved on',
+          field: 'approvedOn',
           width: 100
         },
         {
-          headerName: "Valid From",
-          field: "validFrom",
+          headerName: 'Valid From',
+          field: 'validFrom',
           width: 100
         },
         {
-          headerName: "Valid Till",
-          field: "validTill",
+          headerName: 'Valid Till',
+          field: 'validTill',
           width: 100
         }
       ]
@@ -99,15 +99,16 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
 
         this.i797HistoryService.saveI797Details(this.appService.newi797item).subscribe((res) => {
           this.message = res['statusCode'];
-          if (this.message == 'SUCCESS') {
+          if (this.message === 'SUCCESS') {
             this.geti797Data();
           } else {
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error..!',
-              message: 'Unable to Add I-797 History.'
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: 'Unable to Add I-797 History.'
+              }
             });
           }
-
         });
       }
     });
@@ -145,10 +146,9 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.i797HistoryService.saveI797Details(this.appService.newi797item).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.geti797Data();
           }
-
         });
       } else {
         this.editFlag = false;
@@ -157,15 +157,16 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
   }
   deleteRecord(event): void {
     this.delmessage = event.data.receiptNumber
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
           this.i797HistoryService.removeI797Details(event.data['i797HistoryId']).subscribe((res) => {
             this.message = res['statusCode'];
-            if (this.message == 'SUCCESS') {
+            if (this.message === 'SUCCESS') {
               event.confirm.resolve();
             } else {
               event.confirm.reject();

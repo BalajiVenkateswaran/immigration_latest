@@ -2,7 +2,6 @@ import {ImmigrationViewClientPersonalInfo} from '../../../../../models/Immigrati
 import {ImmigrationViewClientProfile} from '../../../../../models/immigrationviewclientprofile';
 import {User} from '../../../../../models/user';
 import {AppService} from '../../../../../services/app.service';
-import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {ImmigrationViewClientDetailsService} from './client-details.service';
@@ -10,6 +9,9 @@ import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {DialogService} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
 import {ImmigrationClientCommonService} from '../common/immigration-client.service';
+import {MatDialog} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 
 @Component({
     selector: 'ih-client-details',
@@ -47,7 +49,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     public disableSendInvite: boolean;
 
     constructor(public appService: AppService, public headerService: HeaderService, private clientDetailsService: ImmigrationViewClientDetailsService,
-                private dialogService: DialogService, private immigrationClientCommonService: ImmigrationClientCommonService) {
+                private dialog: MatDialog, private immigrationClientCommonService: ImmigrationClientCommonService) {
         if (this.headerService.user) {
             this.user = this.headerService.user;
         }
@@ -149,12 +151,14 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     sendInvite(event) {
         let targetEvent = event;
         targetEvent.preventDefault();
-        this.dialogService.addDialog(ConfirmComponent, {
-            message: 'An email will be sent to' + this.appService.firstName + ' ' + this.appService.lastName
-            + ' ' + 'asking to accept the invitation to join' + ' ' + this.headerService.selectedOrg.displayName
-            + '.' + '   ' + ' Are you sure you want to send the email invite again ?',
-            title: 'Send Invite'
-        }).subscribe((isConfirmed) => {
+        this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+              title: 'Send Invite',
+              message: 'An email will be sent to' + this.appService.firstName + ' ' + this.appService.lastName
+              + ' ' + 'asking to accept the invitation to join' + ' ' + this.headerService.selectedOrg.displayName
+              + '.' + '   ' + ' Are you sure you want to send the email invite again ?'
+            }
+        }).afterClosed().subscribe((isConfirmed) => {
           if (isConfirmed) {
 
             this.clientDetailsService.sendClientInvite(this.appService.clientId)
@@ -198,9 +202,11 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
                         this.clientProfile.markForDeletion = this.client['markForDeletion'];
                     }
                     if (res['statusCode'] === 'FAILURE') {
-                        this.dialogService.addDialog(ConfirmComponent, {
-                            title: 'Error..!',
-                            message: 'Client has Active Petitions Associated..'
+                        this.dialog.open(InformationDialogComponent, {
+                            data: {
+                              title: 'Error',
+                              message: 'Client has Active Petitions Associated'
+                            }
                         });
                     }
                 });

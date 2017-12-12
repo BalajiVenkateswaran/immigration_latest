@@ -3,17 +3,19 @@ import {DocumentService} from './documents.service';
 import {Http} from '@angular/http';
 import {AppService} from '../../../services/app.service';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from '../../framework/confirmbox/confirm.component';
 import {MenuComponent} from '../../common/menu/menu.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as FileSaver from 'file-saver';
 import {HeaderService} from '../../common/header/header.service';
-//dropfile code
+// dropfile code
 import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {environment} from '../../../../environments/environment';
-//dropfile code end
+// dropfile code end
 import {FileUtils} from '../../common/FileUtils';
 import {DatePipe} from '@angular/common';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../framework/popup/confirmation/confirmation.component';
 
 export interface ConfirmModel {
     title: string;
@@ -30,11 +32,11 @@ export interface ConfirmModel {
 })
 export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
     warningMessage: boolean;
-    //dropfile code
+    // dropfile code
     public uploader: FileUploader;
     public hasBaseDropZoneOver = false;
     public hasAnotherDropZoneOver = false;
-    //dropfile code end
+    // dropfile code end
     private message: string;
     private user: any;
     private accountId;
@@ -56,7 +58,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     public beforeEdit: any;
     public count = 0;
     constructor(private documentservice: DocumentService, private http: Http, public appService: AppService,
-                public dialogService: DialogService, private router: Router, private route: ActivatedRoute,
+                public dialogService: DialogService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute,
                 private menuComponent: MenuComponent, public headerService: HeaderService, private datePipe: DatePipe) {
         super(dialogService);
     }
@@ -80,15 +82,19 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
     this.uploader.onAfterAddingFile = (fileItem) => {
       if (!FileUtils.checkFileExtension(fileItem.file.name)) {
         fileItem.remove();
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Error..!',
-          message: 'Please upload only PDF file'
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: 'Please upload only PDF file'
+          }
         });
       } else if (this.isfileExists(fileItem.file)) {
         fileItem.remove();
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Error..!',
-          message: 'A file already exists with name ' + fileItem.file.name
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: 'A file already exists with name ' + fileItem.file.name
+          }
         });
       } else {
         fileItem.upload();
@@ -143,10 +149,11 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
   }
 
   onDeleteClick(data) {
-    this.dialogService.addDialog(ConfirmComponent, {
-        title: 'Confirmation',
-        message: 'Are you sure you want to delete ' + data.fileName + '?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+        data: {
+          message: 'Are you sure you want to delete ' + data.fileName + '?'
+        }
+    }).afterClosed()
     .subscribe((isConfirmed) => {
         // Get dialog result
         if (isConfirmed) {
@@ -174,10 +181,11 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
       let fileName = file.name;
 
       let fileExists = this.isfileExists(file);
-      this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Information',
-          message: 'Do You Want to Replace this file?'
-      }).subscribe((isConfirmed) => {
+      this.dialog.open(ConfirmationDialogComponent, {
+          data: {
+            message: 'Do You Want to Replace this file?'
+          }
+      }).afterClosed().subscribe((isConfirmed) => {
           if (isConfirmed) {
               if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
                   let formData: FormData = new FormData();
@@ -191,15 +199,19 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
               }
 
               if (fileExists) {
-                  this.dialogService.addDialog(ConfirmComponent, {
-                      title: 'Error..!',
-                      message: 'Filename is already exists.'
+                  this.dialog.open(InformationDialogComponent, {
+                      data: {
+                        title: 'Error',
+                        message: 'Filename is already exists.'
+                      }
                   });
               }
               if (!FileUtils.checkFileExtension(fileName)) {
-                  this.dialogService.addDialog(ConfirmComponent, {
-                      title: 'Error..!',
-                      message: 'Please Upload Only Pdf files.'
+                  this.dialog.open(InformationDialogComponent, {
+                      data: {
+                        title: 'Error',
+                        message: 'Please Upload Only Pdf files.'
+                      }
                   });
               }
           }
@@ -259,9 +271,11 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
                         this.getFilesList();
                     }
                     if (res['statusDescription'] === 'File Name Exists, Use a different Name') {
-                        this.dialogService.addDialog(ConfirmComponent, {
-                            title: 'Error..!',
-                            message: 'File Name Exists, Use a different Name'
+                        this.dialog.open(InformationDialogComponent, {
+                            data: {
+                              title: 'Error',
+                              message: 'File Name Exists, Use a different Name'
+                            }
                         });
                     }
                 }

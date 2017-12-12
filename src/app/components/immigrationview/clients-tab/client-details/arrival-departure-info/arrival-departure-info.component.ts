@@ -1,5 +1,4 @@
 import {AppService} from '../../../../../services/app.service';
-import {ConfirmComponent} from '../../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
 import {ImmigrationViewArrivalDepartureInfoService} from './arrival-departure-info.service';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
@@ -8,6 +7,8 @@ import {HeaderService} from '../../../../common/header/header.service';
 import {PetitionsService} from '../../../petitions-tab/petitions/petitions.service';
 import {SortType} from '../../../../framework/smarttable/types/query-parameters';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
+import {MatDialog} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
 
 export interface ConfirmModel {
     title: string;
@@ -45,53 +46,53 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       showClearDateBtn: false,
   };
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
-      public appService: AppService, public dialogService: DialogService, public headerService: HeaderService,  private petitionService: PetitionsService) {
+      public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService,  private petitionService: PetitionsService) {
       super(dialogService);
       this.settings = {
         'sort': [{
           headingName: 'lastUpdate',
           sort: SortType.DESC
         }],
-            'columnsettings': [
-                {
+        'columnsettings': [
+            {
 
-                    headerName: 'Departure Date',
-                    field: 'departureDate',
-                  type: 'datePicker'
-                },
-                {
+                headerName: 'Departure Date',
+                field: 'departureDate',
+              type: 'datePicker'
+            },
+            {
 
-                    headerName: 'Departure Country',
-                    field: 'departureCountry',
-                  type: 'text'
-                },
-                {
+                headerName: 'Departure Country',
+                field: 'departureCountry',
+              type: 'text'
+            },
+            {
 
-                    headerName: 'Arrival Date',
-                    field: 'arrivalDate',
-                  type: 'datePicker'
-                },
-                {
-                    headerName: 'Arrival Country',
-                    field: 'arrivalCountry',
-                  type: 'text'
-                },
-                {
+                headerName: 'Arrival Date',
+                field: 'arrivalDate',
+              type: 'datePicker'
+            },
+            {
+                headerName: 'Arrival Country',
+                field: 'arrivalCountry',
+              type: 'text'
+            },
+            {
 
-                    headerName: 'Visa Type',
-                    field: 'visaType',
-                  type: 'dropDown',
-                  data: this.getPetitionTypeValues()
-                },
-                {
+                headerName: 'Visa Type',
+                field: 'visaType',
+              type: 'dropDown',
+              data: this.getPetitionTypeValues()
+            },
+            {
 
-                    headerName: 'I-94',
-                    field: 'i94',
-                  type: 'text'
-                },
+                headerName: 'I-94',
+                field: 'i94',
+              type: 'text'
+            },
 
-            ]
-        }
+        ]
+      }
   }
   getArrivalDepartueInfo() {
       this.arrivalDepartureInfoService.getArrivalDepartureInfo(this.appService.clientId)
@@ -142,19 +143,19 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   }
   deleteArrivalInfo(arrivalDeprtInfo) {
       this.delmessage = arrivalDeprtInfo.data.i94;
-      this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Confirmation',
-          message: 'Are you sure you want to Delete ' + this.delmessage + '?'
-      })
-          .subscribe((isConfirmed) => {
-              if (isConfirmed) {
-                  this.arrivalDepartureInfoService.removeClientArrivalDeparture(arrivalDeprtInfo.data['arrivalDepartureInfoId']).subscribe((res) => {
-                      if (res['statusCode'] === 'SUCCESS') {
-                          this.getArrivalDepartueInfo();
-                      }
-                  });
-              }
-          });
+      this.dialog.open(ConfirmationDialogComponent, {
+          data: {
+            message: 'Are you sure you want to Delete ' + this.delmessage + '?'
+          }
+      }).afterClosed().subscribe((isConfirmed) => {
+            if (isConfirmed) {
+                this.arrivalDepartureInfoService.removeClientArrivalDeparture(arrivalDeprtInfo.data['arrivalDepartureInfoId']).subscribe((res) => {
+                    if (res['statusCode'] === 'SUCCESS') {
+                        this.getArrivalDepartueInfo();
+                    }
+                });
+            }
+      });
   }
   editArrivalInfo(arrivalDeptInfo) {
       this.editFlag = true;

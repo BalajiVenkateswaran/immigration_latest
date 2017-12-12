@@ -1,13 +1,14 @@
-import { dragula } from '../../../../models/dragula';
-import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
-import { Component, OnInit } from '@angular/core';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import {dragula} from '../../../../models/dragula';
+import {Component, OnInit} from '@angular/core';
+import {DragulaService} from 'ng2-dragula/ng2-dragula';
 import {ManageAccountPetitionStagesService} from './petitiontypestages.service';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService } from 'ng2-bootstrap-modal';
+import {DialogService} from 'ng2-bootstrap-modal';
 import {ImmigrationViewPetitionsService} from '../../clients-tab/client-details/petitions/petitions.service';
 import {HeaderService} from '../../../common/header/header.service';
+import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
+import {MatDialog} from '@angular/material';
+
 @Component({
     selector: 'app-manageaccount-petitiontypestages',
     templateUrl: './petitiontypestages.component.html',
@@ -15,8 +16,6 @@ import {HeaderService} from '../../../common/header/header.service';
   providers: [ManageAccountPetitionStagesService, ImmigrationViewPetitionsService]
 })
 export class ManageAccountPetitionTypeStagesComponent implements OnInit {
-
-
     dragbox;
     setClickedRowstages: Function;
     editStagesList: Function;
@@ -44,7 +43,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
 
 
     constructor(private dragulaService: DragulaService, private manageAccountPetitionStagesService: ManageAccountPetitionStagesService,
-                private dialogService: DialogService, private immigrationViewPetitionsService: ImmigrationViewPetitionsService, private headerService: HeaderService) {
+                private dialogService: DialogService, private dialog: MatDialog, private immigrationViewPetitionsService: ImmigrationViewPetitionsService, private headerService: HeaderService) {
         this.setClickedRowstages = function (selectedpetitionstages, index) {
             this.deletetrue = true;
             this.edittrue = true;
@@ -80,7 +79,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
             let petitionname = this.addPetionStagesName;
             let petitionstages = { 'accountId': this.headerService.user.accountId, 'petitionStageName': petitionname, 'petitionTypeId': petitionstage[0].petitionTypeId };
             this.manageAccountPetitionStagesService.addPetitionStage(petitionstages).subscribe((res) => {
-                if (res.statusCode == 'SUCCESS') {
+                if (res.statusCode === 'SUCCESS') {
                     this.getpetitionstages();
                 }
             });
@@ -90,12 +89,12 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
         }
         this.updateStages = function (stage, i) {
             stage['edit'] = false;
-            if (this.updatename != undefined) {
+            if (this.updatename !== undefined) {
                 stage.name = this.updatename;
             }
             let updatedname = { 'accountId': this.headerService.user.accountId, 'petitionStages': [stage], 'petitionTypeId': stage.petitionTypeId};
             this.manageAccountPetitionStagesService.updatePetitionStage(updatedname).subscribe((res) => {
-                if (res.statusCode == 'SUCCESS') {
+                if (res.statusCode === 'SUCCESS') {
 
                 }
             });
@@ -116,7 +115,7 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
             this.manageAccountPetitionStagesService
                 .saveStageOrder(req)
                 .subscribe((res: any) => {
-                    if (res.statusCode == 'SUCCESS') {
+                    if (res.statusCode === 'SUCCESS') {
                         this.saveorder = false;
                         this.cancelBtn = false;
                         this.addDeleteBtn = true;
@@ -170,18 +169,20 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
     deleteStagesList(stage, index) {
             this.cancelBtn = false;
 
-            this.dialogService.addDialog(ConfirmComponent, {
-                title: 'Confirmation',
-                message: 'Are you sure you want to Delete ' + stage.name + '?'
-            })
+            this.dialog.open(ConfirmationDialogComponent, {
+                data: {
+                  message: 'Are you sure you want to Delete ' + stage.name + '?'
+                }
+            }).afterClosed()
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
                     this.manageAccountPetitionStagesService.deletePetitionStage(stage['stageId']).subscribe(
                       res => {
                           if (res['statusCode'] === 'FAILURE') {
-                              this.dialogService.addDialog(ConfirmComponent, {
-                                 title: 'Information',
-                                 message: res['statusDescription']
+                              this.dialog.open(InformationDialogComponent, {
+                                 data: {
+                                   message: res['statusDescription']
+                                 }
                               });
                           }
                           if (res['statusCode'] === 'SUCCESS') {
@@ -191,8 +192,6 @@ export class ManageAccountPetitionTypeStagesComponent implements OnInit {
                 }
             });
      }
-
-
 
     private hasClass(el: any, name: string) {
         return new RegExp('(?:^|\\s+)' + name + '(?:\\s+|$)').test(el.className);

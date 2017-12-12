@@ -1,8 +1,8 @@
-﻿import { AppService } from '../../../services/app.service';
-import { RestService } from '../../../services/rest.service';
+﻿import {AppService} from '../../../services/app.service';
 import {Injectable} from '@angular/core';
 import {ApplicationRoles} from '../constants/applicationroles.constants';
 import {User} from '../../../models/user';
+import {MatDialog} from '@angular/material';
 
 @Injectable()
 export class HeaderService {
@@ -19,7 +19,7 @@ export class HeaderService {
   private _currentTab: string;
   private _isBurgerMenuVisible: boolean;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private dialog: MatDialog) {
   }
 
   get Immigrant(): string {
@@ -127,6 +127,7 @@ export class HeaderService {
   }
 
   logOut() {
+    this.dialog.closeAll();
     this.destroy();
     // Explict clean up of user object from headerService while logout
     this._user = null;

@@ -1,5 +1,4 @@
 import {AppService} from '../../../../services/app.service';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {HeaderService} from '../../../common/header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {OrganizationDocumentRepositoryService} from './document-repository.service';
@@ -10,6 +9,9 @@ import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {environment} from '../../../../../environments/environment';
 import {FileUtils} from '../../../common/FileUtils';
 import {DatePipe} from '@angular/common';
+import {MatDialog} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 
 export interface ConfirmModel {
   title: string;
@@ -37,15 +39,16 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   public hasBaseDropZoneOver = false;
   public hasAnotherDropZoneOver = false;
   constructor(private organizationdocumentrepositoryService: OrganizationDocumentRepositoryService, private http: Http,
-    public appService: AppService, public dialogService: DialogService, private headerService: HeaderService, private datePipe: DatePipe) {
+    public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, private headerService: HeaderService, private datePipe: DatePipe) {
     super(dialogService);
     this.accountId = this.headerService.user.accountId;
   };
   onDeleteClick(event) {
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to delete ' + event.fileName + ' ?'
-    })
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to delete ' + event.fileName + ' ?'
+      }
+    }).afterClosed()
       .subscribe((isConfirmed) => {
         // Get dialog result
         if (isConfirmed) {
@@ -72,35 +75,36 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     let file: File = fileList[0];
     let fileName = file.name;
     let fileExists = this.isfileExists(file);
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Information',
-      message: 'Do you want to replace ' + fileName + ' file ?'
-    }).subscribe((isConfirmed) => {
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Do you want to replace ' + fileName + ' file ?'
+      }
+    }).afterClosed().subscribe((isConfirmed) => {
       if (isConfirmed) {
-
         let formData: FormData = new FormData();
 
         if (fileList.length > 0 && FileUtils.checkFileExtension(fileName) && fileExists !== true) {
           formData.append('file', file, file.name);
           this.organizationdocumentrepositoryService.replaceFile(data.fileId, this.headerService.selectedOrg['orgId'], formData)
-            .subscribe(
-            res => {
+            .subscribe(res => {
               this.getFilesList();
-            }
-            );
-
+            });
         }
 
         if (fileExists) {
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Error..!',
-            message: 'File already exists.'
+          this.dialog.open(InformationDialogComponent, {
+            data : {
+              title: 'Error',
+              message: 'File already exists.'
+            }
           });
         }
         if (!FileUtils.checkFileExtension(fileName)) {
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Error..!',
-            message: 'Please upload only PDF file'
+          this.dialog.open(InformationDialogComponent, {
+            data: {
+              title: 'Error',
+              message: 'Please upload only PDF file'
+            }
           });
         }
       }
@@ -109,9 +113,9 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
   }
   onDownloadClick(event) {
     this.organizationdocumentrepositoryService.downloadFile(event.fileId, this.headerService.selectedOrg['orgId']).subscribe
-      (data => this.downloadFiles(data, event.fileName)),
-      error => console.log('Error Downloading....');
-    () => console.log('OK');
+      (data => this.downloadFiles(data, event.fileName),
+      error => console.log('Error Downloading....'),
+    () => console.log('OK'));
 
   }
   ngOnInit() {
@@ -122,15 +126,19 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
     this.uploader.onAfterAddingFile = (fileItem) => {
       if (!FileUtils.checkFileExtension(fileItem.file.name)) {
         fileItem.remove();
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Error..!',
-          message: 'Please upload only PDF file'
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: 'Please upload only PDF file'
+          }
         });
       } else if (this.isfileExists(fileItem.file)) {
         fileItem.remove();
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Error..!',
-          message: 'A file already exists with name ' + fileItem.file.name
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: 'A file already exists with name ' + fileItem.file.name
+          }
         });
       } else {
         fileItem.upload();
@@ -211,9 +219,11 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
 
             }
             if (res['statusDescription'] === 'File Name Exists, Use a different Name') {
-              this.dialogService.addDialog(ConfirmComponent, {
-                title: 'Error..!',
-                message: 'File with same name exists, please use a different name'
+              this.dialog.open(InformationDialogComponent, {
+                data: {
+                  title: 'Error',
+                  message: 'File with same name exists, please use a different name'
+                }
               });
             }
           }

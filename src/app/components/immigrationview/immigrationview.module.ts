@@ -82,6 +82,7 @@ import {PetitionsTagsReportsComponent} from './reports-tab/petition/tags/tags.co
 import {PetitionTypeReportComponent} from './reports-tab/petition/type/type.component';
 import {UserOpenPetitionComponent} from './reports-tab/user/open-petitions/open-petitions.component';
 import {UserTotalPetitionsComponent} from './reports-tab/user/total-petitions/total-petitions.component';
+import {AddPetitionDialogComponent} from './clients-tab/client-details/petitions/addpetition.component';
 
 @NgModule({
   imports: [
@@ -117,7 +118,7 @@ import {UserTotalPetitionsComponent} from './reports-tab/user/total-petitions/to
     ClientDocumentRepositoryComponent,
     ImmigrationViewI797HistoryComponent,
     ImmigrationViewPassportInfoComponent,
-    ImmigrationViewPetitionsComponent,
+    ImmigrationViewPetitionsComponent, /*AddPetitionDialogComponent,*/
     ImmigrationViewVisasComponent,
     ImmigrationViewJobDetailsComponent,
 

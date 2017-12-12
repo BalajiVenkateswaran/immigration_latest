@@ -1,13 +1,13 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+﻿import {Component, OnInit} from '@angular/core';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {AccountInvoiceService} from './invoice.service';
 import * as FileSaver from 'file-saver';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {IMyOptions} from 'mydatepicker';
 import {AccountDetailsCommonService} from '../common/account-details-common.service';
-import { InvoiceDownloadButtonComponent } from './invoicedownloadbutton';
+import {InvoiceDownloadButtonComponent} from './invoicedownloadbutton';
 import {InvoiceUploadButtonComponent} from './invoiceuploadbutton';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {MatDialog} from '@angular/material';
 
 export interface ConfirmModel {
     title: string;
@@ -42,7 +42,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         showClearDateBtn: false,
     };
 
-    constructor(public dialogService: DialogService, public accountInvoiceService: AccountInvoiceService,
+    constructor(public dialogService: DialogService, public dialog: MatDialog, public accountInvoiceService: AccountInvoiceService,
       private accountDetailsCommonService: AccountDetailsCommonService) {
         super(dialogService);
         this.settings = {
@@ -84,16 +84,14 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
       console.log(this.accountDetailsCommonService.accountId)
         this.accountInvoiceService.getAccountInvoice(this.accountDetailsCommonService.accountId)
             .subscribe((res) => {
-                console.log('getinoices%o', res);
                 if (res['invoices']) {
                     this.data = res['invoices'];
                     this.AccountInvoices = res['invoices'];
                 }
-                console.log(this.AccountInvoices);
             });
     }
     editRecord(event) {
-        if (event.colDef.headerName != 'PDF Uploaded' && event.colDef.headerName != 'Download Button') {
+        if (event.colDef.headerName !== 'PDF Uploaded' && event.colDef.headerName !== 'Download Button') {
         this.dialogService.addDialog(AccountInvoiceComponent, {
             title: 'View Invoice Details',
             viewPopup: true,
@@ -108,16 +106,16 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     }
     onDownloadClick(event) {
        this.accountInvoiceService.downloadFile(event.data.invoiceId).subscribe
-            (data => this.downloadFiles(data, event.data.fileName)),
-            error => console.log('Error Downloading....');
-        () => console.log('OK');
+            (data => this.downloadFiles(data, event.data.fileName),
+            error => console.log('Error Downloading....'),
+        () => console.log('OK'));
     }
 
   downloadInvoice(event) {
     this.accountInvoiceService.downloadFile(event.invoiceId).subscribe
-    (data => this.downloadFiles(data, event.fileName)),
-      error => console.log('Error Downloading....');
-    () => console.log('OK');
+    (data => this.downloadFiles(data, event.fileName),
+      error => console.log('Error Downloading....'),
+    () => console.log('OK'));
   }
 
     downloadFiles(data: any, fileName) {
@@ -151,14 +149,18 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
 
         } else {
             if (fileExists === true) {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Filename is already exists.'
+                this.dialog.open(InformationDialogComponent, {
+                    data: {
+                      title: 'Error',
+                      message: 'Filename is already exists.'
+                    }
                 });
             } else {
-                this.dialogService.addDialog(ConfirmComponent, {
-                    title: 'Error..!',
-                    message: 'Please Upload Only Pdf files'
+                this.dialog.open(InformationDialogComponent, {
+                    data: {
+                      title: 'Error',
+                      message: 'Please Upload Only Pdf files'
+                    }
                 });
             }
         }
@@ -182,7 +184,6 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         }
       );
     }
-
 
     emailInvoice(invoice: any) {
       this.accountInvoiceService.sendInvoiceEmail(invoice['invoiceId']).subscribe(

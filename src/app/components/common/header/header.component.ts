@@ -1,15 +1,15 @@
-import { User } from '../../../models/user';
-import { AppService } from '../../../services/app.service';
-import { ConfirmorgComponent } from '../../framework/confirmbox/confirmorg.component';
-import {Component, OnInit, ViewChild, AfterViewChecked} from '@angular/core';
+import {User} from '../../../models/user';
+import {AppService} from '../../../services/app.service';
+import {ConfirmorgComponent} from '../../framework/confirmbox/confirmorg.component';
+import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
-import { HeaderService } from './header.service';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {HeaderService} from './header.service';
 import {HeaderComponentService} from './header.component.service';
 import {ApplicationRoles} from '../constants/applicationroles.constants';
-import { ConfirmComponent} from "../../framework/confirmbox/confirm.component";
-import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
+import {DEFAULT_INTERRUPTSOURCES, Idle} from '@ng-idle/core';
+import {ConfirmationDialogComponent} from '../../framework/popup/confirmation/confirmation.component';
+import {MatDialog} from '@angular/material';
 
 
 export interface ConfirmModel {
@@ -51,10 +51,10 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   checkForCurrentTab(tab) {
     return this.headerService.currentTab === tab;
   }
-  constructor(private router: Router, public appService: AppService, public dialogService: DialogService,
+  constructor(private router: Router, public appService: AppService, public dialogService: DialogService, public dialog: MatDialog,
               public headerService: HeaderService, public headerComponentService: HeaderComponentService, private idle: Idle) {
     super(dialogService);
-    //code for no activity for 20 mins
+    // code for no activity for 20 mins
 
     idle.setIdle(5);
     idle.setTimeout(1200);
@@ -66,7 +66,7 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
     });
     idle.watch();
 
-    //code for no activity for 20 mins ends
+    // code for no activity for 20 mins ends
   }
 
   ngOnInit() {
@@ -100,10 +100,11 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   }
 
   logOut() {
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Logout  '+ ' ?'
-    }).subscribe((isConfirmed) => {
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Logout ?'
+      }
+    }).afterClosed().subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.headerService.logOut();
       }

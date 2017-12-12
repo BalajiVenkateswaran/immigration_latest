@@ -1,19 +1,19 @@
 import {User} from '../../../../models/user';
 import {AppService} from '../../../../services/app.service';
-import {ConfirmComponent} from '../../../framework/confirmbox/confirm.component';
 import {HeaderService} from '../../header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormGroup, FormControl} from '@angular/forms';
-import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {FormControl, FormGroup} from '@angular/forms';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {ManageAccountUserService} from '../../../immigrationview/manage-account-tab/user/user.service';
 import {HeaderComponentService} from '../../header/header.component.service';
-import { environment } from '../../../../../environments/environment';
+import {environment} from '../../../../../environments/environment';
 import {ApplicationRoles} from '../../constants/applicationroles.constants';
 import {ApplicationViews} from '../../constants/applicationviews.constants';
 import {DemoRequestDetailsService} from '../../../superuserview/misc-tab/demorequestdetails/demorequestdetails.service';
-import {InformationComponent} from '../../../framework/confirmbox/information.component';
 import {WebsiteService} from './website.service';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 
 export interface ConfirmModel {
   title: string;
@@ -59,6 +59,7 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
     public appService: AppService,
     private websiteService: WebsiteService,
     public dialogService: DialogService,
+    public dialog: MatDialog,
     private headerService: HeaderService,
     private headerComponentService: HeaderComponentService,
     private manageAccountUserService: ManageAccountUserService,
@@ -113,16 +114,19 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
       console.log('ForgetPassword Response %o', res);
       if (res['statusCode'] === 'SUCCESS') {
         this.close();
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Information',
-          message: 'Password reset information is sent to ' + email
-        }).subscribe((isConfirmed) => {
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            message: 'Password reset information is sent to ' + email
+          }
+        }).afterClosed().subscribe((isConfirmed) => {
           this.appService.moveToPage('login');
         });
       } else {
-        this.dialogService.addDialog(ConfirmComponent, {
-          title: 'Information',
-          message: res['statusDescription']
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: res['statusDescription']
+          }
         });
       }
     });
@@ -134,16 +138,14 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
         console.log('Login User %o', res);
         if (res.uiBuildNumber != null && WebsiteComponent.uiBuildNumber !== res.uiBuildNumber) {
           this.close();
-          this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Information',
-            message: 'Page will be reloaded to get the latest updates'
-          }).subscribe((isConfirmed) => {
+          this.dialog.open(InformationDialogComponent, {
+            data: {
+              message: 'Page will be reloaded to get the latest updates'
+            }
+          }).afterClosed().subscribe((isConfirmed) => {
             window.location.reload(true);
           });
         }
-        /*this.websiteService.getIPAndLocation().subscribe(res => {
-          this.locationObject = res;
-        });*/
         if (res.statusCode === 'FAILURE') {
           this.message = res.statusDescription;
         } else {
@@ -289,14 +291,17 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
   submitRequestClick() {
     this.demoRequestDetailsService.savedemoRequest(this.submitRequest).subscribe((res) => {
       if (res['statusCode'] === 'SUCCESS') {
-        this.dialogService.addDialog(InformationComponent, {
-          title: 'Information',
-          message: 'Request is submitted successfully'
+        this.dialog.open(InformationDialogComponent, {
+          data:{
+            message: 'Request is submitted successfully'
+          }
         });
       } else {
-        this.dialogService.addDialog(InformationComponent, {
-          title: 'Error',
-          message: res['statusDescription']
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: res['statusDescription']
+          }
         });
       }
     });

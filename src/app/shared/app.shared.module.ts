@@ -12,6 +12,7 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {I129HPage1Component} from '../components/immigrationview/petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
 import {I129Page2Component} from '../components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
 import {ChartsModule} from 'ng2-charts';
+import {AddPetitionDialogComponent} from '../components/immigrationview/clients-tab/client-details/petitions/addpetition.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import {ChartsModule} from 'ng2-charts';
     ChartsModule,
   ],
   exports: [
+    AddPetitionDialogComponent,
     // SmartTable related components
     SmartTableFrameworkComponent,
     FilterComponent,
@@ -42,21 +44,20 @@ import {ChartsModule} from 'ng2-charts';
     DragulaModule,
     FileUploadModule,
 
-
-
     /*Temporary Components*/
     I129Page2Component,
     I129HPage1Component,
 
     ChartsModule,
-
   ],
   entryComponents: [
     FilterComponent,
     SmartTableFrameworkComponent,
-
+    AddPetitionDialogComponent
   ],
   declarations: [
+
+    AddPetitionDialogComponent,
     // SmartTable related components
     FilterComponent,
     PaginationComponent,

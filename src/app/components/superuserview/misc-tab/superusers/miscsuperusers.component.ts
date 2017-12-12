@@ -1,8 +1,6 @@
 ﻿import { AppService } from '../../../../services/app.service';
-import { ConfirmComponent } from '../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
 import {MiscSuperUsersService} from './miscsuperusers.service';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 export interface ConfirmModel {
     title: string;

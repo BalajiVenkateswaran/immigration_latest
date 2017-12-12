@@ -1,5 +1,4 @@
 import { AppService } from '../../../../../services/app.service';
-import { ConfirmComponent } from '../../../../framework/confirmbox/confirm.component';
 import {Component, OnInit} from '@angular/core';
 import {ImmigrationViewVisasService} from './visas.service';
 import {FormGroup, FormControl} from '@angular/forms';
@@ -8,6 +7,9 @@ import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import {HeaderService} from '../../../../common/header/header.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
 
 
 export interface ConfirmModel {
@@ -29,7 +31,6 @@ export interface ConfirmModel {
   entryComponents: [SmartTableFrameworkComponent]
 })
 export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-  private delmessage;
   public addVisa: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   private message: string;
@@ -42,6 +43,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
   public issuedOn;
   public settings;
   public data;
+  public delmesage;
   private myDatePickerOptions: IMyOptions = {
     // other options...
     dateFormat: 'mm-dd-yyyy',
@@ -54,7 +56,8 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
     // event properties are: event.date, event.jsdate, event.formatted and event.epoc
   }
 
-  constructor(private immigrationviewVisasService: ImmigrationViewVisasService, public appService: AppService, public dialogService: DialogService, public headerService: HeaderService) {
+  constructor(private immigrationviewVisasService: ImmigrationViewVisasService, public appService: AppService, public dialogService: DialogService,
+              public dialog: MatDialog, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
       'columnsettings': [
@@ -102,9 +105,6 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
   }
 
   ngOnInit() {
-    this.immigrationviewVisasService.getClientVisas(this.appService.clientId)
-      .subscribe((res) => {
-      });
     this.getVisaaData();
   }
 
@@ -117,12 +117,14 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       if (isConfirmed) {
         this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.headerService.user.userId).subscribe((res) => {
           this.message = res['statusCode'];
-          if (this.message == 'SUCCESS') {
+          if (this.message === 'SUCCESS') {
             this.getVisaaData();
           } else {
-            this.dialogService.addDialog(ConfirmComponent, {
-              title: 'Error..!',
-              message: 'Unable to Add Visa.'
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: 'Unable to Add Visa.'
+              }
             });
           }
 
@@ -168,7 +170,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       if (isConfirmed) {
 
         this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.headerService.user.userId).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getVisaaData();
 
           }
@@ -176,23 +178,21 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       }
     });
   }
-  public delmesage;
+
   deleteVisas(event): void {
     this.delmesage = event.data.country
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: 'Confirmation',
-      message: 'Are you sure you want to Delete  ' + this.delmesage + ' ?'
-    })
-      .subscribe((isConfirmed) => {
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to Delete  ' + this.delmesage + ' ?'
+      }
+    }).afterClosed().subscribe((isConfirmed) => {
         if (isConfirmed) {
           this.immigrationviewVisasService.deleteClientVisa(event.data['visaId']).subscribe((res) => {
-            if (res['statusCode'] == 'SUCCESS') {
+            if (res['statusCode'] === 'SUCCESS') {
               this.getVisaaData();
             }
           });
         }
       });
   }
-
-
 }
