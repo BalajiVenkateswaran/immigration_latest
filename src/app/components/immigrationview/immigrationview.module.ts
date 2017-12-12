@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {ClientsComponent} from './clients-tab/clients/clients.component';
 import {
-  immigrationViewClientRoute, immigrationViewManageAccountRoute, immigrationViewOrganizationRoute, immigrationViewPetitionRoute, immigrationViewProfileRoute, immigrationViewQuestionnaireRoute,
+  immigrationViewClientRoute, immigrationViewManageAccountRoute, immigrationViewOrganizationRoute, immigrationViewPetitionRoute, immigrationViewQuestionnaireRoute,
   immigrationViewReportsRoute
 } from './immigrationview.route';
 import {StatusButtonComponent} from './clients-tab/clients/statusButton';
@@ -100,7 +100,6 @@ import {AddPetitionDialogComponent} from './clients-tab/client-details/petitions
     immigrationViewQuestionnaireRoute,
     immigrationViewOrganizationRoute,
     immigrationViewManageAccountRoute,
-    immigrationViewProfileRoute,
     immigrationViewReportsRoute
   ],
   declarations: [
@@ -170,14 +169,6 @@ import {AddPetitionDialogComponent} from './clients-tab/client-details/petitions
     ManageAccountShippingAddressComponent,
     ManageAccountUserComponent,
     ManageaccountUserDetailsComponent,
-
-
-    /*Profile tab*/
-    ProfileChangePwdComponent,
-    ProfileLoginHisComponent,
-    ProfileSwitchComponent, SwitchButtonComponent,
-    ProfileTodoListComponent,
-    ProfileUserComponent,
 
     /*reports - START*/
     /*client*/

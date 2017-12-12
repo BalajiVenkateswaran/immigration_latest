@@ -295,29 +295,6 @@ const IMMIGRATION_VIEW_MANAGE_ACCOUNT_ROUTER: Routes = [
   }
 ];
 
-const IMMIGRATION_VIEW_PROFILE_ROUTER: Routes = [
-  {
-    path: 'profile/changepassword',
-    component: ProfileChangePwdComponent
-  },
-  {
-    path: 'profile/loginhistory',
-    component: ProfileLoginHisComponent
-  },
-  {
-    path: 'profile/switch',
-    component: ProfileSwitchComponent
-  },
-  {
-    path: 'profile/todo',
-    component: ProfileTodoListComponent
-  },
-  {
-    path: 'profile/user',
-    component: ProfileUserComponent
-  },
-];
-
 const IMMIGRATION_VIEW_REPORTS_ROUTER: Routes = [
   /*client*/
   {
@@ -368,5 +345,4 @@ export const immigrationViewPetitionRoute = RouterModule.forChild(IMMIGRATION_VI
 export const immigrationViewQuestionnaireRoute = RouterModule.forChild(IMMIGRATION_VIEW_QUESTIONNAIRE_ROUTER);
 export const immigrationViewOrganizationRoute = RouterModule.forChild(IMMIGRATION_VIEW_ORGANIZATION_ROUTER);
 export const immigrationViewManageAccountRoute = RouterModule.forChild(IMMIGRATION_VIEW_MANAGE_ACCOUNT_ROUTER);
-export const immigrationViewProfileRoute = RouterModule.forChild(IMMIGRATION_VIEW_PROFILE_ROUTER);
 export const immigrationViewReportsRoute = RouterModule.forChild(IMMIGRATION_VIEW_REPORTS_ROUTER);

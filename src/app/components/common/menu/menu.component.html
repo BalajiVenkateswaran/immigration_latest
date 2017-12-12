@@ -274,31 +274,31 @@
     </ul>
     <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immiview-profuser'">
         <li>
-            <a (click)="appService.moveToPage('immigrationview/profile/user');highlightSBLink('immiview-profileuser');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileuser') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('profile/user');highlightSBLink('immiview-profileuser');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileuser') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>User</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview/profile/changepassword');highlightSBLink('immiview-profilechangepwd');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profilechangepwd') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('profile/changepassword');highlightSBLink('immiview-profilechangepwd');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profilechangepwd') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Change Password</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview/profile/todo');highlightSBLink('immiview-profileTodo');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileTodo') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('profile/todo');highlightSBLink('immiview-profileTodo');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileTodo') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>TODO List</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview/profile/switch');highlightSBLink('immiview-profileswitch');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileswitch') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('profile/switch');highlightSBLink('immiview-profileswitch');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileswitch') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Switch</span>
             </a>
         </li>
         <li>
-            <a (click)="appService.moveToPage('immigrationview/profile/loginhistory');highlightSBLink('immiview-profileloginhis');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileloginhis') ? 'active': '']" routerLinkActive="active">
+            <a (click)="appService.moveToPage('profile/loginhistory');highlightSBLink('immiview-profileloginhis');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileloginhis') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
                 <span>Login History</span>
             </a>

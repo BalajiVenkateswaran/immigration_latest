@@ -27,7 +27,7 @@ export class ProfileUserComponent implements OnInit {
     if (this.headerService.organizations === undefined) {
       this.showdefaultorg = false;
     }
-    this.headerService.showSideBarMenu('immiview-profuser', 'immigrationview/profile/user');
+    this.headerService.showSideBarMenu('immiview-profuser', 'profile/user');
     this.profileUserservice.getUserInfo(this.headerService.user.userId)
       .subscribe((res) => {
         console.log(res);

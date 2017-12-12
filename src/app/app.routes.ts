@@ -62,6 +62,10 @@ export const appRoutes: Routes = [
       loadChildren: 'app/components/immigrationview/immigrationview.module#ImmigrationViewModule'
   },
   {
+      path: 'profile',
+      loadChildren: 'app/components/immigrationview/profile-tab/profiletab.module#ProfileTabModule'
+  },
+  {
       path: 'superuserview',
       loadChildren: 'app/components/superuserview/superuserview.module#SuperUserViewModule'
   },

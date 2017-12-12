@@ -293,7 +293,7 @@ export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.demoRequestDetailsService.savedemoRequest(this.submitRequest).subscribe((res) => {
       if (res['statusCode'] === 'SUCCESS') {
         this.dialog.open(InformationDialogComponent, {
-          data:{
+          data: {
             message: 'Request is submitted successfully'
           }
         });
