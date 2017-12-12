@@ -94,6 +94,11 @@ export class AddPetitionDialogComponent {
     this.newPetitionItem['petitionName'] = this.newPetitionItem['petitiontype'] + ' ' + currentYear;
   }
 
+  handleCountryChange(event){
+
+  }
+
+
 
   petitionSave() {
     this.newPetitionItem['clientId'] = this.appService.clientId;
