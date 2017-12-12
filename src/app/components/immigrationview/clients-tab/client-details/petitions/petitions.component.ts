@@ -73,32 +73,36 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
          this.settings = {
             'isDeleteEnable': false,
             'isMorefilters': false,
-           'sort' : [{
-             headingName: 'Created On',
-             sort: SortType.ASC
-           }],
             'columnsettings': [
                 {
-                    headerName: 'Petition Name',
+                    headerName: 'Name',
                     field: 'petitionName'
                 },
                 {
-                    headerName: 'Petition Type',
+                    headerName: 'Type',
                     field: 'petitionType'
                 },
                 {
-                    headerName: 'Petition SubType',
+                    headerName: 'SubType',
                     field: 'petitionSubType'
                 },
+              {
+                headerName: 'Stage',
+                field: 'stage'
+              },
                 {
                     headerName: 'Status',
                     field: 'status'
                 },
-                {
-                    headerName: 'Stage',
-                    field: 'stage'
-                },
-                {
+              {
+                headerName: 'Final Action',
+                field: 'finalAction'
+              },
+              {
+                headerName: 'Assigned To',
+                field: 'assignedToName'
+              },
+              {
                     headerName: 'Created On',
                     field: 'createdOn',
                     width: 350
@@ -107,13 +111,9 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
                     headerName: 'Last Updated',
                     field: 'lastUpdate',
                     width: 350
-                },
-                {
-                    headerName: 'Assigned To',
-                    field: 'assignedToName'
                 }
             ]
-        }
+        };
     }
 
   dataWithParameters(queryData) {
@@ -162,8 +162,6 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
       });
   }
 
-
-
   ngOnInit() {
     this.headerService.showSideBarMenu('immigrationview-client', 'immigrationview/tab/clients');
   }
@@ -178,8 +176,6 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
           data: {message: informationMessage}
         });
       } else {
-
-
         let newPetitionData: NewPetitionData = {
           countryNames: this.countryNames,
           allPetitionTypesAndSubTypes: this.allPetitionTypesAndSubTypes

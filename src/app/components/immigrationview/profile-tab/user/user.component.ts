@@ -18,7 +18,7 @@ export class ProfileUserComponent implements OnInit {
   public warningMessage: boolean;
   public beforeCancelUserInfo: any = {};
   public isUserorgEdit = true;
-  public orgdisable: boolean;
+  public orgdisable = true;
   public beforeCancelorgid: any;
   public selectedorg: any = {};
   public showdefaultorg = true;
@@ -38,8 +38,8 @@ export class ProfileUserComponent implements OnInit {
     this.profileUserservice.getDefaultOrg(this.headerService.user.accountId, this.headerService.user.userId)
       .subscribe((res) => {
         console.log(res);
-        if (res['statusCode'] == 'SUCCESS') {
-          if (res['userDefaultOrg'] != null && res['userDefaultOrg'] != undefined) {
+        if (res['statusCode'] === 'SUCCESS') {
+          if (res['userDefaultOrg'] != null && res['userDefaultOrg'] !== undefined) {
             this.defaultorg = res['userDefaultOrg']['orgId'];
           }
         }

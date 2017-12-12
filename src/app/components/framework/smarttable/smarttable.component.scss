@@ -393,7 +393,7 @@ $dateColumnWidth:110px;
       width:6% !important;
       left:-webkit-calc(83% + #{$dateColumnWidth}) !important;
       left:-moz-calc(83% + #{$dateColumnWidth}) !important;
-      left:calc(83% + #{$dateColumnWidth}) !important;     
+      left:calc(83% + #{$dateColumnWidth}) !important;
         left:84% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="tag"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="tag"] {
@@ -981,7 +981,7 @@ $dateColumnWidth:110px;
         left:90% !important;
     }
  }
-/*.immiview-clienttab-petitions {
+.immiview-clienttab-petitions {
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
         width:20% !important;
         left:0% !important;
@@ -994,27 +994,31 @@ $dateColumnWidth:110px;
         width:10% !important;
         left:30% !important;
     }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
-        width:10% !important;
-        left:40% !important;
-    }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="stage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="stage"] {
-        width:20% !important;
-        left:50% !important;
+      width:10% !important;
+      left:40% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
+      width:10% !important;
+      left:50% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="finalAction"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="finalAction"] {
+      width:10% !important;
+      left:60% !important;
+    }
+    .ag-fresh .ag-ltr .ag-header-cell[col-id~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
+      width:10% !important;
+      left:70% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="createdOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="createdOn"] {
         width:10% !important;
-        left:70% !important;
+        left:80% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
         width:10% !important;
-        left:80% !important;
-    }
-    .ag-fresh .ag-ltr .ag-header-cell[col-id~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
-        width:10% !important;
         left:90% !important;
     }
-}*/
+}
 .immiview-clienttab-docexp {
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="0"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="0"] {
         width:5% !important;
