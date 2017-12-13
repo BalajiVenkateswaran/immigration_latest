@@ -12,7 +12,7 @@ export class SuperuserviewAccountdetailsMfdComponent implements OnInit {
   public settings;
   public data;
   public paginationData;
-  constructor(public accountDetailsMFDService: SuperUserViewMFDService, private accountDetailsCommonService: AccountDetailsCommonService) {
+  constructor(public accountDetailsMFDService: SuperUserViewMFDService, public accountDetailsCommonService: AccountDetailsCommonService) {
     this.settings = {
       'isDeleteEnable': false,
       'isAddButtonEnable': false,
