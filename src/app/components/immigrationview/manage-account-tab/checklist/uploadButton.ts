@@ -36,7 +36,7 @@ export class CheckListUploadButtonComponent implements ICellRendererAngularComp 
             this.manageAccountChecklistService.uploadFile(this.headerService.user.accountId, this.params.data.petitionTypeId, formData)
                 .subscribe(
                 res => {
-                    this.params.context.componentParent.getchecklist();
+                    this.params.context.componentParent.dataWithParameters('');
                 });
 
         } else {

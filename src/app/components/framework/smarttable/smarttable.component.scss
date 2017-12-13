@@ -365,7 +365,7 @@ $dateColumnWidth:110px;
       left:-webkit-calc(53% + #{$dateColumnWidth}) !important;
       left:-moz-calc(53% + #{$dateColumnWidth}) !important;
       left:calc(53% + #{$dateColumnWidth}) !important;
-      left:calc(53%+$dateColumnWidth);
+      left:calc(53%+ #{$dateColumnWidth});
       left:51%!important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="finalStatus"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="finalStatus"] {
