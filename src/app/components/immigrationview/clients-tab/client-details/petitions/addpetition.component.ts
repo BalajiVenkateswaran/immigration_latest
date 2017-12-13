@@ -9,7 +9,7 @@ import {HeaderService} from '../../../../common/header/header.service';
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" mat-dialog-title="">Add Petition</h4>
-        <button type="button" class="close" (click)="cancelClick()" id="ivClientDtlsPetitionsClose">&times;</button>
+        <button type="button" class="close" (click)="cancelClick()" id="ivClientDtlsPetitionsClose" tabindex=-1 >&times;</button>
       </div>
       <div class="modal-body" mat-dialog-content>
         <div class="row">

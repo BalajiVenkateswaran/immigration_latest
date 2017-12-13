@@ -296,6 +296,12 @@ section {
   float:right;
 }
 /*Inner pages Css*/
+.mat-dialog-container{
+    padding:0px!important;
+    .modal-dialog{
+        margin: 0% auto 0px auto !important;
+}
+}
 
 .main-content {
     /*background:url(../images/bg-maincontent.jpg) no-repeat left top #485499;*/
