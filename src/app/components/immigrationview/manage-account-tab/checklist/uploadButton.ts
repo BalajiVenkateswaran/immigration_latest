@@ -8,8 +8,8 @@ import {InformationDialogComponent} from '../../../framework/popup/information/i
 
 
 @Component({
-    template: `<div class="fileUpload btn btn-primary iportal-btn no-marg-right agridadd">
-                        <i class="fa fa-upload" aria-hidden="true"></i>
+    template: `<div class="fileUpload btn btn-primary iportal-btn no-marg-right agridadd" style="background:none !important;color: #04a9fc !important;margin-top: -7px !important;">
+                        <i class="fa fa-upload" style=" font-size: 20px !important;" aria-hidden="true"></i>
                         <input type="file" #fileInput class="upload" name="file" (change)="fileUpload($event)"/>
                     </div>`,
 

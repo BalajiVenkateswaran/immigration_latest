@@ -983,40 +983,40 @@ $dateColumnWidth:110px;
  }
 .immiview-clienttab-petitions {
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionName"] {
-        width:20% !important;
+        width:12% !important;
         left:0% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionType"] {
         width:10% !important;
-        left:20% !important;
+        left:12% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="petitionSubType"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="petitionSubType"] {
         width:10% !important;
-        left:30% !important;
+        left:21% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="stage"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="stage"] {
-      width:10% !important;
-      left:40% !important;
+      width:15% !important;
+      left:29% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="status"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="status"] {
       width:10% !important;
-      left:50% !important;
+      left:42% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="finalAction"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="finalAction"] {
-      width:10% !important;
-      left:60% !important;
+      width: 11% !important;
+    left: 50% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="assignedToName"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="assignedToName"] {
-      width:10% !important;
-      left:70% !important;
+      width: 12% !important;
+    left: 62% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="createdOn"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="createdOn"] {
-        width:10% !important;
-        left:80% !important;
+            width: 11% !important;
+    left: 74% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="lastUpdate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="lastUpdate"] {
-        width:10% !important;
-        left:90% !important;
+        width: 12% !important;
+    left: 86% !important;
     }
 }
 .immiview-clienttab-docexp {

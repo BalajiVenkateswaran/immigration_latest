@@ -9,7 +9,9 @@ import * as FileSaver from 'file-saver';
 
 @Component({
     template: `
-     <a class="iportal-btn" (click)="downloadClick($event)"><i aria-hidden="true" class="fa fa-download"></i></a>
+     <a class="iportal-btn" style="background:none !important; margin-left: 16px !important; color: #04a9fc !important; margin-top: -7px !important;" (click)="downloadClick($event)">
+      <i class="fa fa-download" style=" font-size: 20px !important;" aria-hidden="true"></i>
+    </a>
    `
 })
 export class CheckListDownloadButtonComponent implements ICellRendererAngularComp {
