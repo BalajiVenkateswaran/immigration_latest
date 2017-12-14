@@ -176,8 +176,8 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
               }
               if (res.userAccountRoleList[0].roleName === ApplicationRoles.SUPER_USER) {
                 this.appService.applicationViewMode = ApplicationViews.SUPER_USER_VIEW;
-                this.headerService.currentTab = 'superuser-accounts';
-                moveToPage = 'superuser-accounts';
+                this.headerService.currentTab = 'superuserview/tab/accounts';
+                moveToPage = 'superuserview/tab/accounts';
               }
               this.getUsers();
 
