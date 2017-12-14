@@ -41,7 +41,14 @@
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                             <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.address.aptType}}</span></div>
-                            <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="cvaddrApt" [(ngModel)]="WorkaddressinfoList.address.aptType" /></div>
+                            <div class="col-md-8" *ngIf="workedit==false">
+                              <select style="border-radius: 4px;" id="cvaddrApt" [(ngModel)]="WorkaddressinfoList.address.aptType">
+                                <option id="APT" value="APT">APT</option>
+                                <option id="STE" value="STE">STE</option>
+                                <option id="FLR" value="FLR">FLR</option>
+                                <option id="DOOR" value="DOOR">DOOR</option>
+                              </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
@@ -125,7 +132,14 @@
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                             <div class="col-md-8" *ngIf="residenceedit==true"><span>{{ResidenceaddressinfoList.address.aptType}}</span></div>
-                            <div class="col-md-8" *ngIf="residenceedit==false"><input type="text" id="cvaddrResApt" [(ngModel)]="ResidenceaddressinfoList.address.aptType" /></div>
+                            <div class="col-md-8" *ngIf="residenceedit==false">
+                              <select style="border-radius: 4px;" id="cvaddrResApt" [(ngModel)]="ResidenceaddressinfoList.address.aptType">
+                                <option id="APT" value="APT">APT</option>
+                                <option id="STE" value="STE">STE</option>
+                                <option id="FLR" value="FLR">FLR</option>
+                                <option id="DOOR" value="DOOR">DOOR</option>
+                              </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
@@ -216,7 +230,14 @@
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                             <div class="col-md-8" *ngIf="mailingedit==true"><span>{{MailingaddressinfoList.address.aptType}}</span></div>
-                            <div class="col-md-8" *ngIf="mailingedit==false"><input type="text" id="cvaddrMailingApt" [(ngModel)]="MailingaddressinfoList.address.aptType" /></div>
+                            <div class="col-md-8" *ngIf="mailingedit==false">
+                              <select style="border-radius: 4px;" id="cvaddrMailingApt" [(ngModel)]="MailingaddressinfoList.address.aptType">
+                                <option id="APT" value="APT">APT</option>
+                                <option id="STE" value="STE">STE</option>
+                                <option id="FLR" value="FLR">FLR</option>
+                                <option id="DOOR" value="DOOR">DOOR</option>
+                              </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
@@ -288,7 +309,14 @@
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                             <div class="col-md-8" *ngIf="foreignedit==true"><span>{{ForiegnaddressinfoList.address.aptType}}</span></div>
-                            <div class="col-md-8" *ngIf="foreignedit==false"><input type="text" id="cvaddrForiegnApt" [(ngModel)]="ForiegnaddressinfoList.address.aptType" /></div>
+                            <div class="col-md-8" *ngIf="foreignedit==false">
+                              <select style="border-radius: 4px;" id="cvaddrForiegnApt" [(ngModel)]="ForiegnaddressinfoList.address.aptType">
+                                <option id="APT" value="APT">APT</option>
+                                <option id="STE" value="STE">STE</option>
+                                <option id="FLR" value="FLR">FLR</option>
+                                <option id="DOOR" value="DOOR">DOOR</option>
+                              </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
