@@ -16,7 +16,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 ">                      
+                    <div class="col-md-4">                      
                         <div class="left-form petition-type-stages-left">
                             <form>
                                 <h5 style="color:#283343!important;padding: 8px!important;"><strong>Stages</strong></h5>
@@ -25,11 +25,11 @@
                                     <ul class="col-md-12 right-form petition-type-stages" [dragula]="dragbox" [dragulaModel]="petitionStages">
                                         <li *ngFor="let stage of petitionStages;let i = index" id="petitionstage" (click)="setClickedRowstages(stage,i)">
                                             <div *ngIf="!stage.edit">
-                                                <span>{{ i + 1 }}  {{stage.name}}</span>
-                                                <div class="" style="float:right;">
+                                                <label style="width: 80%;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;font-weight: normal;">{{ i + 1 }}  {{stage.name}}</label>
+                                                <span class="" style="float:right;margin-top:-7%">
                                                     <a><i class="fa fa-pencil" (click)="editStagesList(stage)" aria-hidden="true" style="padding-left: 15px;"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteStagesList(stage, i)" aria-hidden="true"></i></a>
-                                                </div>
+                                                </span>
                                             </div>
                                             <div *ngIf="stage.edit">
                                                 <input type="text" class="selecteditems" [value]="stage.name" (input)="updatename=$event.target.value" />
@@ -64,3 +64,4 @@
 
         </div>
     </div>
+        </div>
