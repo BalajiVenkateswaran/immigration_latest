@@ -32,10 +32,6 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
   public warningMessage = false;
   public paginationData;
 
-  private roles: any = {
-    'Immigration Officer': '501f6e87-cd6e-11e6-a939-34e6d7382cac',
-    'Immigration Manager': 'a724fdd7-cd6e-11e6-a939-34e6d7382cac'
-  };
   constructor(public appService: AppService, public managersAccountService: AccountManagersService, public dialogService: DialogService,
     public dialog: MatDialog, private accountDetailsCommonService: AccountDetailsCommonService, public headerService: HeaderService) {
     super(dialogService);
@@ -97,7 +93,6 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
     });
   }
   accountmanagersSave(email) {
-    this.addUsers['role'] = this.roles[this.addUsers['role']];
     this.addUsers['accountId'] = this.accountDetailsCommonService.accountId;
     if (this.addUsers['firstName'] === '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] === undefined || this.addUsers['lastName'] === ''
       || this.addUsers['lastName'] == null || this.addUsers['lastName'] === undefined || this.addUsers['emailId'] === '' || this.addUsers['emailId'] == null ||

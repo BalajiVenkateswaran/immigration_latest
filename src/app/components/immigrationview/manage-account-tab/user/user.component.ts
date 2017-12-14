@@ -26,10 +26,6 @@ export interface ConfirmModel {
 export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
 
     private message: string;
-    private roles: any = {
-        'Immigration Officer': '501f6e87-cd6e-11e6-a939-34e6d7382cac',
-        'Immigration Manager': 'a724fdd7-cd6e-11e6-a939-34e6d7382cac'
-    };
     public getUsers = true;
     public addUsers: any = {};
     public adduser: boolean;
@@ -46,7 +42,6 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         this.settings = {
           'customPanel': true,
           'isMorefilters':true,
-
           'sort' : [{
             headingName: 'firstName',
             sort: SortType.ASC
@@ -122,7 +117,6 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
         });
     }
     manageUserSave(email, roles) {
-        this.addUsers['role'] = this.roles[this.addUsers['role']];
         this.addUsers['accountId'] = this.headerService.user.accountId;
         if ((this.addUsers['firstName'] === '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] === undefined ||
             this.addUsers['lastName'] === '' || this.addUsers['lastName'] == null || this.addUsers['lastName'] === undefined ||
