@@ -9,7 +9,7 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 })
 export class I129Page7Component implements OnInit {
     beforecancelquestionnaire: any;
-    isquestionnaireEdit: boolean = false;
+    isQuestionnaireEdit: boolean = false;
     public states: any[] = [];
     public page7: any = {
         "preparerAddress":{}
@@ -120,7 +120,7 @@ export class I129Page7Component implements OnInit {
     }
 
     ngOnInit() {
-        //this.isquestionnaireEdit = true;
+        //this.isQuestionnaireEdit = true;
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 7).subscribe(res => {
             if (res['formPage'] != undefined) {
 
@@ -133,15 +133,15 @@ export class I129Page7Component implements OnInit {
         })
     }
      editQuestinnaireForm() {
-        this.isquestionnaireEdit = !this.isquestionnaireEdit;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
         this.beforecancelquestionnaire = (<any>Object).assign({}, this.page7);
     }
     cancelQuestinnaireEdit() {
         this.page7 = this.beforecancelquestionnaire;
-        this.isquestionnaireEdit = true;
+        this.isQuestionnaireEdit = true;
     }
     savequestionnaireInformation() {
-        //this.isquestionnaireEdit = true;
+        //this.isQuestionnaireEdit = true;
         this.page7.pageNumber = 7;
         if(this.page7['dateOfSignature'] != null){
           this.page7['dateOfSignature'] = this.page7['dateOfSignature']['formatted'];

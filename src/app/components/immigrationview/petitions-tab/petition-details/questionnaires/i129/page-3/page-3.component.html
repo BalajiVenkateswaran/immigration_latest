@@ -10,8 +10,12 @@
                     </div>
                     <div class="col-md-4 pagenoof36">Page 3 of 36</div>
                     <div class="col-md-4">
-                        <a *ngIf="appService.isClientView()" (click)="submit()" class="nextbtn">Submit</a>
-                        <a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn">Save & Continue</a>
+                        <a *ngIf="appService.isClientView()" (click)="submit()" class="nextbtn">Inform to firm</a>
+                        <a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn">Next</a>
+                      <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+                      <a *ngIf="isQuestionnaireEdit" (click)="savequestionnaireInformation()" class="nextbtn">Save</a>
+                      <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
+
                     </div>
                 </div>
             </div>
@@ -25,33 +29,33 @@
                             <div class="row">
                                 <div class="col-md-4">Alien Registration Number (A-Number)</div>
                                 <div class="col-md-8">
-                                  <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.alienRegistrationNumber" style="width: 100%;" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.alienRegistrationNumber}}</span>
+                                  <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.alienRegistrationNumber" style="width: 100%;" />
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.alienRegistrationNumber}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6"style="margin-top: 10px;">
                             <div class="row">
                                 <div class="col-md-4">Country of Birth</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.countryOfBirth" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.countryOfBirth}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.countryOfBirth" />
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.countryOfBirth}}</span>
                               </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Province of Birth </div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.provinceOfBirth"
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.provinceOfBirth"
                                     />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.provinceOfBirth}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.provinceOfBirth}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Country of Citizenship or Nationality</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.nationality" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.nationality}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.nationality" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.nationality}}</span>
                                 </div>
                             </div>
                         </div>
@@ -62,9 +66,9 @@
                             <div class="row">
                                 <div class="col-md-4">Date of Last Arrival (mm/dd/yyyy)</div>
                                 <div class="col-md-4">
-                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page3.dateOfLastArrival"
+                                    <my-date-picker *ngIf="isQuestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page3.dateOfLastArrival"
                                         [selDate]="dateOfLastArrival"></my-date-picker>
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.dateOfLastArrival}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.dateOfLastArrival}}</span>
                                 </div>
                             </div>
                         </div>
@@ -72,16 +76,16 @@
                             <div class="row">
                                 <div class="col-md-4">I-94 Arrival-Departure Record Number</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.i94" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.i94}}</span>
+                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.i94" />
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.i94}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Passport or Travel Document Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.passportNo" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.passportNo}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.passportNo" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.passportNo}}</span>
                                 </div>
                             </div>
                         </div>
@@ -89,9 +93,9 @@
                             <div class="row">
                                 <div class="col-md-4">Date Passport or Travel Document Issued (mm/dd/yyyy)</div>
                                 <div class="col-md-4">
-                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page3.passportIssueDate"
+                                    <my-date-picker *ngIf="isQuestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page3.passportIssueDate"
                                         [selDate]="passportIssueDate"></my-date-picker>
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.passportIssueDate}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.passportIssueDate}}</span>
                                 </div>
                             </div>
                         </div>
@@ -99,27 +103,27 @@
                             <div class="row">
                                 <div class="col-md-4">Date Passport or Travel Document Expires (mm/dd/yyyy)</div>
                                 <div class="col-md-4">
-                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page3.passportExpiryDate"
+                                    <my-date-picker *ngIf="isQuestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page3.passportExpiryDate"
                                         [selDate]="passportExpiryDate"></my-date-picker>
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.passportExpiryDate}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.passportExpiryDate}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Passport or Travel Document Country of Issuance</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.countryOfIssuance"
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.countryOfIssuance"
                                     />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.countryOfIssuance}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.countryOfIssuance}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Current Nonimmigrant Status </div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.currentNonImmigrantStatus"
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.currentNonImmigrantStatus"
                                     />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.currentNonImmigrantStatus}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.currentNonImmigrantStatus}}</span>
                                 </div>
                             </div>
                         </div>
@@ -127,25 +131,25 @@
                             <div class="row">
                                 <div class="col-md-4">Date Status Expires or D/S (mm/dd/yyyy)</div>
                                 <div class="col-md-4">
-                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page3.dateStatusExpires"
+                                    <my-date-picker *ngIf="isQuestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page3.dateStatusExpires"
                                         [selDate]="dateStatusExpires"></my-date-picker>
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.dateStatusExpires}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.dateStatusExpires}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Employment Authorization Document (EAD) Number (if any)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.ead" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.ead}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.ead" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.ead}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Student and Exchange Visitor Information System (SEVIS) Number (if any)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.sevisNumber" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.sevisNumber}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.sevisNumber" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.sevisNumber}}</span>
                                 </div>
                             </div>
                         </div>
@@ -155,9 +159,9 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Street Number and Name</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.address.street"
+                                <div class="col-md-7"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.address.street"
                                     />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.address.street}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.address.street}}</span>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +170,7 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-4" *ngFor="let x of aptType">
-                                            {{x.display}}<input type="radio" name="aptType" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page3.address.aptType">
+                                            {{x.display}}<input type="radio" name="aptType" [value]="x.value" [(disabled)]="isQuestionnaireEdit" [(ngModel)]="page3.address.aptType">
                                         </div>
                                     </div>
                                 </div>
@@ -175,9 +179,9 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Number </div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.address.houseNumber"
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.address.houseNumber"
                                     />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.address.houseNumber}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.address.houseNumber}}</span>
                                 </div>
                             </div>
                         </div>
@@ -186,8 +190,8 @@
                             <div class="row">
                                 <div class="col-md-4">City or Town</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.address.city" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.address.city}}</span>
+                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.address.city" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.address.city}}</span>
                                 </div>
                             </div>
                         </div>
@@ -195,10 +199,10 @@
                             <div class="row">
                                 <div class="col-md-4">State</div>
                                 <div class="col-md-8">
-                                    <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.address.state">
+                                    <select *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.address.state">
                                         <option [value]="address.name" *ngFor="let address of states">{{address.name}}</option>
                                     </select>
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.address.state}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.address.state}}</span>
                                 </div>
                             </div>
                         </div>
@@ -206,8 +210,8 @@
                             <div class="row">
                                 <div class="col-md-4">ZIP Code</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.address.zipCode" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page3.address.zipCode}}</span>
+                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.address.zipCode" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page3.address.zipCode}}</span>
                                 </div>
                             </div>
                         </div>
@@ -228,25 +232,25 @@
                                 <div class="row">
                                     <div class="col-md-3"><b>a. Type of Office</b>(select only one box):</div>
                                     <div class="col-md-3" *ngFor="let x of typeOfOffice">
-                                        <input type="radio" name="typeOfOffice" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page3.typeOfOffice">{{x.display}}                      </div>
+                                        <input type="radio" name="typeOfOffice" [value]="x.value" [(disabled)]="isQuestionnaireEdit" [(ngModel)]="page3.typeOfOffice">{{x.display}}                      </div>
 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-5"><b>b. Office Address (City)</b></div>
-                                    <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.officeAddress"
+                                    <div class="col-md-7"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.officeAddress"
                                         />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.officeAddress}}</span>
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.officeAddress}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-5"><b>c. U.S. State or Foreign Country </b></div>
-                                    <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.usStateOrForeignCountry"
+                                    <div class="col-md-7"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.usStateOrForeignCountry"
                                         />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.usStateOrForeignCountry}}</span>
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.usStateOrForeignCountry}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -256,15 +260,15 @@
                             <div class="col-md-7">
                               <div class="form-group">
                                 <label>Street Number and Name</label>
-                                <input class="form-control" id="StreetNumberAndName" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.street" />
-                                <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.street}}</span>
+                                <input class="form-control" id="StreetNumberAndName" type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.street" />
+                                <span *ngIf="isQuestionnaireEdit==true">{{page3.foreignAddress.street}}</span>
                               </div>
                             </div>
                             <div class="col-md-2">
                               <div class="col-md-12">
                                 <div class="row">
                                   <div class="col-md-4" *ngFor="let x of aptType">
-                                    {{x.display}}<input type="radio" [(disabled)]="isquestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page3.foreignAddress.aptType">
+                                    {{x.display}}<input type="radio" [(disabled)]="isQuestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page3.foreignAddress.aptType">
                                   </div>
                                 </div>
                               </div>
@@ -272,52 +276,52 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <label for="Number">Number</label>
-                                <input class="form-control" id="Number" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.houseNumber" />
-                                <span *ngIf="isquestionnaireEdit==true">{{page1.foreignAddress.houseNumber}}</span>
+                                <input class="form-control" id="Number" type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.houseNumber" />
+                                <span *ngIf="isQuestionnaireEdit==true">{{page1.foreignAddress.houseNumber}}</span>
                               </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-3">City or Town</div>
-                                    <div class="col-md-9"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.city"
+                                    <div class="col-md-9"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.city"
                                         />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-2">State</div>
-                                    <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.state"
+                                    <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.state"
                                         />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-4">Province</div>
-                                    <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.province"
+                                    <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.province"
                                         />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-4">Postal Code</div>
-                                    <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.zipCode"
+                                    <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.zipCode"
                                         />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-4">Country</div>
-                                    <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.country"
+                                    <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page3.foreignAddress.country"
                                         />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
+                                        <span *ngIf="isQuestionnaireEdit==true">{{page3.foreignAddress.lastName}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -325,7 +329,7 @@
                                 <div class="row">
                                     <div class="col-md-5"><b>2.</b>Does each person in this petition have a valid passport?</div>
                                     <div class="col-md-1" *ngFor="let x of questions">
-                                        <input type="radio" name="" [value]="x.value" [(ngModel)]="page3.eachPersonHaveValidPassport" [(disabled)]="isquestionnaireEdit">{{x.display}}
+                                        <input type="radio" name="" [value]="x.value" [(ngModel)]="page3.eachPersonHaveValidPassport" [(disabled)]="isQuestionnaireEdit">{{x.display}}
                                     </div>
 
                                     <div class="col-md-5">If no, go to Part 9. and type or print your explanation</div>

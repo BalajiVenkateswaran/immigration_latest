@@ -12,7 +12,7 @@ export class I129dcPage2Component implements OnInit {
     public questions;
     public aptType;
     public petitionType;
-    public isquestionnaireEdit: boolean = false;
+    public isQuestionnaireEdit: boolean = false;
     public page2:any={
         "addressOfUSinstitution":{}
     }

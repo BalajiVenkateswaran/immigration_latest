@@ -10,7 +10,7 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 })
 export class I129dcPage1Component implements OnInit {
     beforecancelquestionnaire: any;
-    isquestionnaireEdit = false;
+    isQuestionnaireEdit = false;
     public page1: any = {
         'employerInfo': {}
     };
@@ -104,12 +104,12 @@ export class I129dcPage1Component implements OnInit {
         });
     }
     editQuestinnaireForm() {
-        this.isquestionnaireEdit = !this.isquestionnaireEdit;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
         this.beforecancelquestionnaire = (<any>Object).assign({}, this.page1);
     }
     cancelQuestinnaireEdit() {
         this.page1 = this.beforecancelquestionnaire;
-        this.isquestionnaireEdit = true;
+        this.isQuestionnaireEdit = true;
     }
     savequestionnaireInformation() {
         this.page1.pageNumber = 19;

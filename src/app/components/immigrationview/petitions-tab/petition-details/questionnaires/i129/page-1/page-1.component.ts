@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../../../framework/popup/information/information.component';
+import {ConfirmationDialogComponent} from '../../../../../../framework/popup/confirmation/confirmation.component';
 
 @Component({
     selector: 'ih-i129-page-1',
@@ -11,7 +12,7 @@ import {InformationDialogComponent} from '../../../../../../framework/popup/info
 })
 export class I129Page1Component implements OnInit {
     beforecancelquestionnaire: any;
-    public isquestionnaireEdit = false;
+    public isQuestionnaireEdit = false;
     public page1: any = {
         'address': {},
         'contact': {}
@@ -122,8 +123,6 @@ export class I129Page1Component implements OnInit {
                 'address': {},
                 'contact': {}
             };
-
-
         this.route.params.subscribe(params => {
             this.page1 = {
                            'address': {},
@@ -131,9 +130,7 @@ export class I129Page1Component implements OnInit {
                          };
             this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 1).subscribe(res => {
                 if (res['formPage'] !== undefined) {
-
                     this.page1 = res['formPage'];
-
                     if (res['formPage']['address'] !== undefined) {
                         this.page1.address = res['formPage']['address'];
                     }
@@ -146,15 +143,15 @@ export class I129Page1Component implements OnInit {
     }
 
     editQuestinnaireForm() {
-        this.isquestionnaireEdit = !this.isquestionnaireEdit;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
         this.beforecancelquestionnaire = (<any>Object).assign({}, this.page1);
     }
     cancelQuestinnaireEdit() {
         this.page1 = this.beforecancelquestionnaire;
-        this.isquestionnaireEdit = true;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
     savequestionnaireInformation(): boolean {
-        // this.isquestionnaireEdit = true;
+        // this.isQuestionnaireEdit = true;
         this.page1.pageNumber = 1;
 
         if (this.page1.address && (this.page1.address['state'] || this.page1.address['zipCode'] )) {
@@ -166,14 +163,11 @@ export class I129Page1Component implements OnInit {
           }
         }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 1, this.page1).subscribe(res => {
+          this.isQuestionnaireEdit = false;
         });
         return true;
     }
     gotoNext() {
-        if(this.savequestionnaireInformation()){
-          this.appService.moveToPage('immigrationview/questionnaire/i129/page/2');
-        }
+      this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129/page/2');
     }
-
-
 }

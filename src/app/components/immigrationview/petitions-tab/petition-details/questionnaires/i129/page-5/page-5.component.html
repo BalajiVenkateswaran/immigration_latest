@@ -29,8 +29,8 @@
                     <div class="row">
                         <div class="col-md-6">Street Number and Name</div>
                         <div class="col-md-6">
-                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page5.address.street" />
-                            <span *ngIf="isquestionnaireEdit==true">{{page5.address.street}}</span>
+                            <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page5.address.street" />
+                            <span *ngIf="isQuestionnaireEdit==true">{{page5.address.street}}</span>
                         </div>
                     </div>
                 </div>
@@ -50,21 +50,21 @@
                     <div class="row">
                         <div class="col-md-6">Number</div>
                         <div class="col-md-6">
-                            <input type="text" *ngIf="isquestionnaireEdit==false"
+                            <input type="text" *ngIf="isQuestionnaireEdit==false"
                                    [(ngModel)]="page5.address.houseNumber" />
-                            <span *ngIf="isquestionnaireEdit==true">{{page5.address.houseNumber}}</span>
+                            <span *ngIf="isQuestionnaireEdit==true">{{page5.address.houseNumber}}</span>
                         </div>
                     </div>
                 </div>
-            </div>         
+            </div>
             <div class="col-md-12">
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-5">City or Town</div>
                         <div class="col-md-7">
-                            <input type="text" *ngIf="isquestionnaireEdit==false"
+                            <input type="text" *ngIf="isQuestionnaireEdit==false"
                                    [(ngModel)]="page5.address.city" />
-                            <span *ngIf="isquestionnaireEdit==true">{{page5.address.city}}</span>
+                            <span *ngIf="isQuestionnaireEdit==true">{{page5.address.city}}</span>
                         </div>
                     </div>
                 </div>
@@ -72,10 +72,10 @@
                     <div class="row">
                         <div class="col-md-4">State</div>
                         <div class="col-md-8">
-                            <select *ngIf="isquestionnaireEdit==false" [(ngModel)]="page5.address.state">
+                            <select *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page5.address.state">
                                 <option [value]="address.name" *ngFor="let address of states">{{address.name}}</option>
                             </select>
-                            <span *ngIf="isquestionnaireEdit==true">{{page5.address.state}}</span>
+                            <span *ngIf="isQuestionnaireEdit==true">{{page5.address.state}}</span>
                         </div>
                     </div>
                 </div>
@@ -83,13 +83,13 @@
                     <div class="row">
                         <div class="col-md-3">ZIP Code</div>
                         <div class="col-md-9">
-                            <input type="text" *ngIf="isquestionnaireEdit==false"
+                            <input type="text" *ngIf="isQuestionnaireEdit==false"
                                    [(ngModel)]="page5.address.zipCode" />
-                            <span *ngIf="isquestionnaireEdit==true">{{page5.address.zipCode}}</span>
+                            <span *ngIf="isQuestionnaireEdit==true">{{page5.address.zipCode}}</span>
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
             <div class="col-md-8"><b>4.</b>&nbsp;Did you include an itinerary with the petition?</div>
             <div class="col-md-4">
               <div class="row">
@@ -130,31 +130,31 @@
             </div>
             <div class="col-md-8"><b>8.</b>&nbsp;If the answer to <b>Item Number 7.</b> is no, how many hours per week for the position?</div>
             <div class="col-md-2">
-              <input type="text" name="hoursPerWeek" *ngIf="isquestionnaireEdit==false"
+              <input type="text" name="hoursPerWeek" *ngIf="isQuestionnaireEdit==false"
                      [(ngModel)]="page5.hoursPerWeek"/>
             </div>
 
             <div class="col-md-4">
               <div class="row">
                 <div class="col-md-3"><b>9.</b>&nbsp;Wages:&nbsp;&nbsp;<b>$</b></div>
-                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page5.wages"/>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.wages}}</span>
+                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page5.wages"/>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.wages}}</span>
                 </div>
               </div>
             </div>
             <div class="col-md-8">
                 <div class="col-md-6">Per (Specifi hour, week, month or year)</div>
-                <div class="col-md-6"><input type="text" *ngIf="isquestionnaireEdit==false"
+                <div class="col-md-6"><input type="text" *ngIf="isQuestionnaireEdit==false"
                                              [(ngModel)]="page5.wagesUnit"/>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.wagesUnit}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.wagesUnit}}</span>
                 </div>
             </div>
             <div class="col-md-12">
               <b>10.</b>&nbsp;Other Compensation (Explain)
               <div class="row">
-                <div class="col-md-12"><input type="text" *ngIf="isquestionnaireEdit==false"
+                <div class="col-md-12"><input type="text" *ngIf="isQuestionnaireEdit==false"
                                               [(ngModel)]="page5.otherCompensations"/>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.otherCompensations}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.otherCompensations}}</span>
                 </div>
               </div>
             </div>
@@ -163,10 +163,10 @@
               <div class="row">
                 <div class="col-md-5">From: (mm/dd/yyyy)</div>
                 <div class="col-md-7">
-                  <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
+                  <my-date-picker *ngIf="isQuestionnaireEdit==false" [options]="myDatePickerOptions"
                                   [(ngModel)]="page5.intendentEmploymentFrom"
                                   [selDate]="intendentEmploymentFrom"></my-date-picker>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.intendentEmploymentFrom}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.intendentEmploymentFrom}}</span>
                 </div>
               </div>
             </div>
@@ -174,55 +174,55 @@
               <div class="row">
                 <div class="col-md-5">To: (mm/dd/yyyy)</div>
                 <div class="col-md-7">
-                  <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
+                  <my-date-picker *ngIf="isQuestionnaireEdit==false" [options]="myDatePickerOptions"
                                   [(ngModel)]="page5.intendentEmploymentTo"
                                   [selDate]="intendentEmploymentTo"></my-date-picker>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.intendentEmploymentTo}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.intendentEmploymentTo}}</span>
                 </div>
               </div>
             </div>
             <div class="col-md-8">
               <div class="row">
                 <div class="col-md-3"><b>12.</b>&nbsp;Type of Business</div>
-                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"
+                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false"
                                              [(ngModel)]="page5.typeOfBusiness"/>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.typeOfBusiness}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.typeOfBusiness}}</span>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="row">
                 <div class="col-md-4"><b>13.</b>&nbsp;Year Established</div>
-                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"
+                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false"
                                              [(ngModel)]="page5.yearEstablished"/>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.yearEstablished}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.yearEstablished}}</span>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="row">
                 <div class="col-md-4"><b>14.</b>&nbsp;Current Number of Employees in the United States</div>
-                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"
+                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false"
                                              [(ngModel)]="page5.currentNoOfEmployeesInUSA"/>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.currentNoOfEmployeesInUSA}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.currentNoOfEmployeesInUSA}}</span>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="row">
                 <div class="col-md-4"><b>15.</b>&nbsp;Gross Annual Income</div>
-                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"
+                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false"
                                              [(ngModel)]="page5.grossAnnualIncome"/>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.grossAnnualIncome}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.grossAnnualIncome}}</span>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="row">
                 <div class="col-md-4"><b>16.</b>&nbsp;Net Annual Income</div>
-                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false"
+                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false"
                                              [(ngModel)]="page5.netAnnualIncome"/>
-                  <span *ngIf="isquestionnaireEdit==true">{{page5.netAnnualIncome}}</span>
+                  <span *ngIf="isQuestionnaireEdit==true">{{page5.netAnnualIncome}}</span>
                 </div>
               </div>
             </div>

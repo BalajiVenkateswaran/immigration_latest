@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from "../../../../../../../services/app.service";
+import { AppService } from '../../../../../../../services/app.service';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
@@ -11,7 +11,7 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 })
 export class I129Page3Component implements OnInit {
     beforecancelquestionnaire: any;
-    isquestionnaireEdit: boolean = false;
+    isQuestionnaireEdit = false;
     public aptType;
     public questions;
     public typeOfOffice;
@@ -26,55 +26,54 @@ export class I129Page3Component implements OnInit {
         showClearDateBtn: false,
     };
     public page3: any = {
-        "address": {},
-        "foreignAddress": {}
+        'address': {},
+        'foreignAddress': {}
     };
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
         this.aptType = [
             {
-                "id": "0",
-                "display": "Apt.",
-                "value": "APT"
+                'id': '0',
+                'display': 'Apt.',
+                'value': 'APT'
             },
             {
-                "id": "1",
-                "display": "Stc.",
-                "value": "STE"
+                'id': '1',
+                'display': 'Stc.',
+                'value': 'STE'
             },
             {
-                "id": "2",
-                "display": "Flr.",
-                "value": "FLR"
+                'id': '2',
+                'display': 'Flr.',
+                'value': 'FLR'
             }
-
         ];
         this.questions = [
             {
-                "id": "0",
-                "display": "Yes",
-                "value": "Y"
+                'id': '0',
+                'display': 'Yes',
+                'value': 'Y'
             },
             {
-                "id": "1",
-                "display": "No",
-                "value": "N"
-            },
+                'id': '1',
+                'display': 'No',
+                'value': 'N'
+            }
         ];
         this.typeOfOffice = [
             {
-                "id": "0",
-                "display": "Consulate",
-                "value": "CONSULATE"
+                'id': '0',
+                'display': 'Consulate',
+                'value': 'CONSULATE'
             },
             {
-                "id": "1",
-                "display": "Pre-flight inspection",
-                "value": "PRE_FLIGHT_INSPECTION"
+                'id': '1',
+                'display': 'Pre-flight inspection',
+                'value': 'PRE_FLIGHT_INSPECTION'
             },
             {
-                "id": "2",
-                "display": "Port of entry",
-                "value": "PORT_OF_ENTRY"
+                'id': '2',
+                'display': 'Port of entry',
+                'value': 'PORT_OF_ENTRY'
             },
         ];
         this.states = [
@@ -156,12 +155,12 @@ export class I129Page3Component implements OnInit {
 
     ngOnInit() {
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3).subscribe(res => {
-            if (res['formPage']!=undefined) {
+            if (res['formPage'] !== undefined) {
                 this.page3 = res['formPage'];
-                if (res['formPage']['address'] != undefined) {
+                if (res['formPage']['address'] !== undefined) {
                     this.page3.address = res['formPage']['address'];
                 }
-                if (res['formPage']['foreignAddress'] != undefined) {
+                if (res['formPage']['foreignAddress'] !== undefined) {
                     this.page3.foreignAddress = res['formPage']['foreignAddress'];
                 }
               this.dateOfLastArrival = this.page3['dateOfLastArrival'];
@@ -169,30 +168,28 @@ export class I129Page3Component implements OnInit {
               this.passportExpiryDate = this.page3['passportExpiryDate'];
               this.dateStatusExpires = this.page3['dateStatusExpires'];
             }
-
-
-        })
+        });
     }
     editQuestinnaireForm() {
-        this.isquestionnaireEdit = !this.isquestionnaireEdit;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
         this.beforecancelquestionnaire = (<any>Object).assign({}, this.page3);
     }
     cancelQuestinnaireEdit() {
         this.page3 = this.beforecancelquestionnaire;
-        this.isquestionnaireEdit = true;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
 
-    mapDatesToSave(){
-      if(this.page3['dateOfLastArrival'] != null && this.page3['dateOfLastArrival']['formatted'] != null){
+    mapDatesToSave() {
+      if (this.page3['dateOfLastArrival'] != null && this.page3['dateOfLastArrival']['formatted'] != null) {
         this.page3['dateOfLastArrival'] = this.page3['dateOfLastArrival']['formatted'];
       }
-      if(this.page3['passportIssueDate'] != null && this.page3['passportIssueDate']['formatted'] != null){
+      if (this.page3['passportIssueDate'] != null && this.page3['passportIssueDate']['formatted'] != null) {
         this.page3['passportIssueDate'] = this.page3['passportIssueDate']['formatted'];
       }
-      if(this.page3['passportExpiryDate'] != null && this.page3['passportExpiryDate']['formatted'] != null){
+      if (this.page3['passportExpiryDate'] != null && this.page3['passportExpiryDate']['formatted'] != null) {
         this.page3['passportExpiryDate'] = this.page3['passportExpiryDate']['formatted'];
       }
-      if(this.page3['dateStatusExpires'] != null && this.page3['dateStatusExpires']['formatted'] != null){
+      if (this.page3['dateStatusExpires'] != null && this.page3['dateStatusExpires']['formatted'] != null) {
         this.page3['dateStatusExpires'] = this.page3['dateStatusExpires']['formatted'];
       }
     }
@@ -203,8 +200,8 @@ export class I129Page3Component implements OnInit {
 
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3,
           this.page3).subscribe(res => {
-          //Call ngOnInit for client view page
-          if(isNextPage) {
+          // Call ngOnInit for client view page
+          if (isNextPage) {
             if (this.appService.applicationViewMode === 'Client') {
               this.ngOnInit();
             } else {

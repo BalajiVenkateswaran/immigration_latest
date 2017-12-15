@@ -1,213 +1,178 @@
-
 <div class="main-content">
     <div class="table-data">
         <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <h1 style="float:right;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>-->
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-4">
+      <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4">
 
+            </div>
+            <div class="col-md-4 pagenoof36">Page 1 of 36</div>
+            <div class="col-md-4">
+              <a (click)="gotoNext()" class="nextbtn">Next</a>
+              <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+              <a *ngIf="isQuestionnaireEdit" (click)="savequestionnaireInformation()" class="nextbtn">Save</a>
+              <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-12 Questionnaireheader">
+        <h2>1. Petitioner Information</h2>
+      </div>
+      <div class="col-md-12">
+          <p>If you are an individual filing this petition, complete <b>Item Number 1. If you are a company or an organization
+              filing this petition,</b> complete <b>Item Number 2.</b></p>
+          <div class="col-md-12 addresbox box-shadow clientview-ques129h">
+            <div class="col-md-12">
+                <p class="fieldsetheading">1. Legal Name of Individual Petitioner</p>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="familynameLastname">Family Name (Last Name)</label>
+                        <input class="form-control" id="familynameLastname" [disabled]="!isQuestionnaireEdit" type="text" [(ngModel)]="page1.lastName"/>
                     </div>
-                    <div class="col-md-4 pagenoof36">Page 1 of 36</div>
-                    <div class="col-md-4">
-                        <a (click)="gotoNext()" class="nextbtn">Save & Continue</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="givenFirstname">Given Name (First Name)</label>
+                        <input class="form-control" id="givenFirstname" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.firstName"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <input class="form-control" id="middleName" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.middleName"/>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 Questionnaireheader">
-                <h2>1. Petitioner Information</h2>
-            </div>
             <div class="col-md-12">
-                <p>If you are an individual filing this petition, complete <b>Item Number 1. If you are a company or an organization
-                    filing this petition,</b> complete <b>Item Number 2.</b></p>
-                <div class="col-md-12 addresbox box-shadow clientview-ques129h">
-                        <div class="col-md-12">
-                            <p class="fieldsetheading">1. Legal Name of Individual Petitioner</p>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="familynameLastname">Family Name (Last Name)</label>
-                                    <input class="form-control" id="familynameLastname" *ngIf="isquestionnaireEdit==false" type="text" [(ngModel)]="page1.lastName"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.lastName}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="givenFirstname">Given Name (First Name)</label>
-                                    <input class="form-control" id="givenFirstname" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.firstName"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.firstName}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="middleName">Middle Name</label>
-                                    <input class="form-control" id="middleName" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.middleName"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.middleName}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <p class="fieldsetheading">2. Company or Organization Name</p>
-                                <div class="col-md-12">
-                                    <input class="form-control" id="companyOrgName" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.companyName"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.companyName}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <p class="fieldsetheading">3. Mailing Address of Individual, Company or Organization</p>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="inCareofName">In Care Of Name</label>
-                                    <input class="form-control" id="inCareofName" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.inCareOfName"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.inCareOfName}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <label for="StreetNumberAndName">Street Number and Name</label>
-                                    <input class="form-control" id="StreetNumberAndName" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.street"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.street}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-4" *ngFor="let x of aptType">
-                                            {{x.display}}<input type="radio" [(disabled)]="isquestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="Number">Number</label>
-                                    <input class="form-control" id="Number" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.houseNumber"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.houseNumber}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="cityOrtown">City or Town</label>
-                                    <input class="form-control" id="cityOrtown" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.city"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.city}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="state">State</label>
-                                    <select class="form-control" id="state" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.state">
-                                        <option [value]="mailingAddress.name" *ngFor="let mailingAddress of states">{{mailingAddress.name}}</option>
-                                    </select>
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.state}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="state">ZIP Code</label>
-                                    <input class="form-control" id="state" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.zipCode"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.zipCode}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="province">Province</label>
-                                    <input class="form-control" id="province" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.province"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.province}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="postalCode">Postal Code</label>
-                                    <input class="form-control" id="postalCode" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.postalCode"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.postalCode}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="country">Country</label>
-                                    <input class="form-control" id="country" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.address.country"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.address.country}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <p class="fieldsetheading">4. Contact Information</p>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="daytimeTelnumber">Daytime Telephone Number</label>
-                                    <input class="form-control" id="daytimeTelnumber" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.contact.dayTimeTn"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.contact.dayTimeTn}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="mobileTelnumber">Mobile Telephone Number</label>
-                                    <input class="form-control" id="mobileTelnumber" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.contact.mobileTn"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.contact.mobileTn}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="emailifany">Email (if any)</label>
-                                    <input class="form-control" id="emailifany" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.contact.email"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.contact.email}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <p class="fieldsetheading">5. Other Information</p>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label for="fein">Federal Employer Identification Number (FEIN)</label>
-                                    <input class="form-control" id="fein" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.fein" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.fein}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="irsTaxnumber">Individual IRS Tax Number </label>
-                                     <input class="form-control" for="irsTaxnumber" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.irsTaxNumber"/>
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.irsTaxNumber}}</span>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="usSSN">U.S. Social Security Number (if any) </label>
-                                    <input class="form-control" id="usSSN" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.ssn" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.ssn}}</span>
-                                </div>
-                            </div>
-
-                        </div>
-
+                <div class="form-group">
+                    <p class="fieldsetheading">2. Company or Organization Name</p>
+                    <div class="col-md-12">
+                        <input class="form-control" id="companyOrgName" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.companyName"/>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-12">
+                <p class="fieldsetheading">3. Mailing Address of Individual, Company or Organization</p>
             </div>
+
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="inCareofName">In Care Of Name</label>
+                        <input class="form-control" id="inCareofName" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.inCareOfName"/>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="StreetNumberAndName">Street Number and Name</label>
+                        <input class="form-control" id="StreetNumberAndName" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.street"/>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4" *ngFor="let x of aptType">
+                                {{x.display}}<input type="radio" [(disabled)]="isQuestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="Number">Number</label>
+                        <input class="form-control" id="Number" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.houseNumber"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cityOrtown">City or Town</label>
+                        <input class="form-control" id="cityOrtown" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.city"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <select class="form-control" id="state" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.state">
+                            <option [value]="mailingAddress.name" *ngFor="let mailingAddress of states">{{mailingAddress.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="state">ZIP Code</label>
+                        <input class="form-control" id="state" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.zipCode"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="province">Province</label>
+                        <input class="form-control" id="province" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.province"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="postalCode">Postal Code</label>
+                        <input class="form-control" id="postalCode" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.postalCode"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input class="form-control" id="country" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.country"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <p class="fieldsetheading">4. Contact Information</p>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="daytimeTelnumber">Daytime Telephone Number</label>
+                        <input class="form-control" id="daytimeTelnumber" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.contact.dayTimeTn"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="mobileTelnumber">Mobile Telephone Number</label>
+                        <input class="form-control" id="mobileTelnumber" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.contact.mobileTn"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="emailifany">Email (if any)</label>
+                        <input class="form-control" id="emailifany" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.contact.email"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <p class="fieldsetheading">5. Other Information</p>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="fein">Federal Employer Identification Number (FEIN)</label>
+                        <input class="form-control" id="fein" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.fein" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="irsTaxnumber">Individual IRS Tax Number </label>
+                         <input class="form-control" id="irsTaxnumber" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.irsTaxNumber"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="usSSN">U.S. Social Security Number (if any) </label>
+                        <input class="form-control" id="usSSN" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.ssn" />
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
 </div>

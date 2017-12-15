@@ -6,11 +6,14 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
-                        <a *ngIf="appService.isImmigrationView()" (click)="gotoPrev()" class="prevbtn">Back</a>
+                        <a *ngIf="appService.isImmigrationView()" (click)="gotoPrev()" class="prevbtn">Previous</a>
                     </div>
                     <div class="col-md-4 pagenoof36">Page 2 of 36</div>
                     <div class="col-md-4">
-                        <a (click)="gotoNext()" class="nextbtn">Save & Continue</a>
+                      <a (click)="gotoNext()" class="nextbtn">Next</a>
+                      <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+                      <a *ngIf="isQuestionnaireEdit" (click)="savequestionnaireInformation()" class="nextbtn">Save</a>
+                      <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
                     </div>
                 </div>
             </div>
@@ -26,9 +29,7 @@
                                         <div class="col-md-7" style="margin-left: -18px;"><p class="fieldsetheading">1. Requested Nonimmigrant Classification (Write classification symbol):</p>
                                         </div>
                                         <div class="col-md-5" style="margin-left: -35px;">
-                                            <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.nonImmigrantClassification"
-                                            />
-                                            <span *ngIf="isquestionnaireEdit==true">{{page2.nonImmigrantClassification}}</span>
+                                            <input class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.nonImmigrantClassification"/>
                                         </div>
                                     </div>
 
@@ -39,7 +40,7 @@
                                     <div class="col-md-12">
                                         <p class="fieldsetheading">2. Basis for Classification (select only one box): </p>
                                         <div class="col-md-12" *ngFor="let x of basicClassification">
-                                            <input type="radio" name="basicClassification" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.basicClassification">{{x.display}}
+                                            <input type="radio" name="basicClassification" [value]="x.value" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page2.basicClassification"/>{{x.display}}
                                         </div>
                                     </div>
                                 </div>
@@ -50,8 +51,7 @@
                                         <p class="fieldsetheading">3. Provide the most recent petition/application receipt number for the beneficiary.
                                             If none exists, indicate "None."</p>
                                         <div class="col-md-6">
-                                          <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.recentPetitionReceiptNo" />
-                                                <span *ngIf="isquestionnaireEdit==true">{{page2.recentPetitionReceiptNo}}</span>
+                                          <input class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.recentPetitionReceiptNo" />
                                         </div>
                                     </div>
 
@@ -61,7 +61,7 @@
                             <div class="col-md-12">
                                 <p class="fieldsetheading">4. Requested Action (select only one box):</p>
                                 <div class="col-md-12" *ngFor="let x of requestedAction">
-                                    <input type="radio" name="requestedAction" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.requestedAction">{{x.display}}
+                                    <input type="radio" name="requestedAction" [value]="x.value" [(disabled)]="isQuestionnaireEdit" [(ngModel)]="page2.requestedAction">{{x.display}}
                                 </div>
                             </div>
 
@@ -72,8 +72,7 @@
                                             <p class="fieldsetheading"> 5. Total number of workers included in this petition. (See instructions relating to when more than one worker can be included.)</p>
                                         </div>
                                         <div class="col-md-5">
-                                            <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.totalNumberOfWorkers" />
-                                            <span *ngIf="isquestionnaireEdit==true">{{page2.totalNumberOfWorkers}}</span>
+                                            <input class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.totalNumberOfWorkers" />
                                         </div>
                                     </div>
                                 </div>
@@ -91,8 +90,7 @@
                                 <div class="col-md-12">
                                     <p class="fieldsetheading">1. If an Entertainment Group, Provide the Group Name</p>
                                     <div class="col-md-12">
-                                        <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.groupName" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.groupName}}</span>
+                                        <input class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.groupName" />
                                     </div>
                                 </div>
                             </div>
@@ -104,25 +102,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="familyNameLastname">Family Name (Last Name)</label>
-                                    <input id="familyNameLastname" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.lastName"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page2.lastName}}</span>
+                                    <input id="familyNameLastname" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.lastName"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="givenNameFirstname">Given Name (First Name)</label>
-                                    <input id="givenNameFirstname" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.firstName"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page2.firstName}}</span>
+                                    <label for="givenNameFirstname1">Given Name (First Name)</label>
+                                    <input id="givenNameFirstname1" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.firstName"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="middleName">Middle Name </label>
-                                    <input id="middleName" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.middleName"
-                                    />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page2.middleName}}</span>
+                                    <label for="middleName1">Middle Name </label>
+                                    <input id="middleName1" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.middleName"/>
                                 </div>
                             </div>
                         </div>
@@ -136,21 +128,15 @@
                         <div class="col-md-12">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="familynameLastname">Family Name (Last Name)</label>
+                                    <label for="familynameLastname2">Family Name (Last Name)</label>
                                     <div>
-                                        <input id="familynameLastname" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName1"
-                                        />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName1}}</span>
+                                        <input id="familynameLastname2" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherLastName1"/>
                                     </div>
                                     <div>
-                                        <input id="familynameLastname" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName2"
-                                        />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName2}}</span>
+                                        <input id="familynameLastname" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherLastName2"/>
                                     </div>
                                     <div>
-                                        <input id="familynameLastname" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherLastName3"
-                                        />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherLastName3}}</span>
+                                        <input id="familynameLastname" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherLastName3"/>
                                     </div>
                                 </div>
                             </div>
@@ -159,17 +145,13 @@
                                 <div class="form-group">
                                     <label for="givenNameFirstname">Given Name (First Name)</label>
                                     <div>
-                                        <input id="givenNameFirstname" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName1"
-                                        />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName1}}</span>
+                                        <input id="givenNameFirstname" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherFirstName1"/>
                                     </div>
                                     <div>
-                                        <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName2" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName2}}</span>
+                                        <input class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherFirstName2" />
                                     </div>
                                     <div>
-                                        <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherFirstName3" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherFirstName3}}</span>
+                                        <input class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherFirstName3" />
                                     </div>
 
                                 </div>
@@ -179,17 +161,13 @@
                                 <div class="form-group">
                                     <label for="MiddleName">Middle Name </label>
                                     <div>
-                                        <input id="MiddleName" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherMiddleName1"
-                                        />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherMiddleName1}}</span>
+                                        <input id="MiddleName" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherMiddleName1"/>
                                     </div>
                                     <div>
-                                        <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherMiddleName2" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherMiddleName2}}</span>
+                                        <input class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherMiddleName2" />
                                     </div>
                                     <div>
-                                        <input class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.otherMiddleName3" />
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.otherMiddleName3}}</span>
+                                        <input class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.otherMiddleName3" />
                                     </div>
                                 </div>
                             </div>
@@ -203,9 +181,8 @@
                                 <div class="form-group">
                                     <label for="DOB">Date of birth (mm-dd-yyyy)</label>
                                     <div>
-                                        <my-date-picker id="DOB" *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions" [(ngModel)]="page2.dateOfBirth"
+                                        <my-date-picker id="DOB" [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page2.dateOfBirth"
                                             [selDate]="dateOfBirth"></my-date-picker>
-                                        <span *ngIf="isquestionnaireEdit==true">{{page2.dateOfBirth}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +192,7 @@
                                     <div>
                                         <div class="row">
                                             <div class="col-md-6" *ngFor="let x of gender">
-                                                <input id="label" type="radio" name="gender" [value]="x.value" [(disabled)]="isquestionnaireEdit" [(ngModel)]="page2.gender">{{x.display}}
+                                                <input id="label" type="radio" name="gender" [value]="x.value" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page2.gender">{{x.display}}
                                             </div>
                                         </div>
                                     </div>
@@ -225,9 +202,8 @@
                                 <div class="form-group">
                                     <label for="USSSN">U.S.Social Security Number (if any)</label>
                                     <div>
-                                        <input id="USSSN" class="form-control" type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page2.ssn" />
-                                            <span *ngIf="isquestionnaireEdit==true">{{page2.ssn}}</span>
-</div>
+                                        <input id="USSSN" class="form-control" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.ssn" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

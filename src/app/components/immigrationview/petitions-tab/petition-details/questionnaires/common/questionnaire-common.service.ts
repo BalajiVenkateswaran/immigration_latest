@@ -3,6 +3,8 @@ import { RestService } from '../../../../../../services/rest.service';
 import {AppService} from '../../../../../../services/app.service'
 import {Router} from '@angular/router';
 import {HeaderService} from '../../../../../common/header/header.service';
+import {ConfirmationDialogComponent} from '../../../../../framework/popup/confirmation/confirmation.component';
+import {MatDialog} from '@angular/material';
 
 @Injectable()
 export class QuestionnaireCommonService {
@@ -23,7 +25,7 @@ export class QuestionnaireCommonService {
       return this._selectedQuestionnaire;
   }
 
-  constructor(private restService: RestService, private appService: AppService, private _router: Router, private headerService: HeaderService) {
+  constructor(private restService: RestService, private appService: AppService, private _router: Router, private headerService: HeaderService, private dialog: MatDialog) {
   }
 
   public moveToQuestionnaire(questionnaire: any) {
@@ -52,8 +54,22 @@ export class QuestionnaireCommonService {
       }
 
       this._router.navigate([pageName, this.selectedQuestionnaire['questionnaireId']], { skipLocationChange: true });
-    }
+  }
 
+  public goToNextPage(isQuestionnaireEdit: boolean, moveToPage: string){
+    if (isQuestionnaireEdit) {
+      this.dialog.open(ConfirmationDialogComponent, {
+        data: {message: 'There are unsaved changes. Are you sure you want to leave the current page?'}
+      }).afterClosed()
+        .subscribe( confirm => {
+          if (confirm) {
+            this.appService.moveToPage(moveToPage);
+          }
+        });
+    } else {
+      this.appService.moveToPage(moveToPage);
+    }
+  }
 
 
   public getQuestionnaireData(questionnaireId, pageNo) {

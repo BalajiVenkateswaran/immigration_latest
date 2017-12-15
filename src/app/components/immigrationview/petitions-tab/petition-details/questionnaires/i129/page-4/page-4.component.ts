@@ -9,7 +9,7 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 })
 export class I129Page4Component implements OnInit {
     beforecancelquestionnaire: any;
-    isquestionnaireEdit: boolean = false;
+    isQuestionnaireEdit: boolean = false;
     public page4: any = {};
     public questions;
      constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
@@ -28,7 +28,7 @@ export class I129Page4Component implements OnInit {
     }
 
     ngOnInit() {
-        //this.isquestionnaireEdit=true;
+        //this.isQuestionnaireEdit=true;
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 4).subscribe(res => {
             if (res['formPage'] != undefined) {
                 this.page4 = res['formPage'];
@@ -36,15 +36,15 @@ export class I129Page4Component implements OnInit {
         })
     }
      editQuestinnaireForm() {
-        this.isquestionnaireEdit = !this.isquestionnaireEdit;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
         this.beforecancelquestionnaire = (<any>Object).assign({}, this.page4);
     }
     cancelQuestinnaireEdit() {
         this.page4 = this.beforecancelquestionnaire;
-        this.isquestionnaireEdit = true;
+        this.isQuestionnaireEdit = true;
     }
     savequestionnaireInformation() {
-        //this.isquestionnaireEdit = true;
+        //this.isQuestionnaireEdit = true;
         this.page4.pageNumber = 4;
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 4, this.page4).subscribe(res => {
 

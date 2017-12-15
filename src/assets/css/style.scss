@@ -531,32 +531,32 @@ section {
                 .col-md-8 {
                     span {
                         width: 100%;
-                border-radius:0px;
-               border: solid 1px #dfdddd;
-                padding: 3px 4px 2px 5px;
-                background:#f6f7fa;
-                color: #585155;
-                font-weight: 500;
-                font-size: 14px;
-                /*background: rgba(0, 0, 0, 0.1);*/
-                height: 30px;
-                margin-bottom: 12px;
-                float:left;
+                        border-radius:0px;
+                        border: solid 1px #dfdddd;
+                        padding: 3px 4px 2px 5px;
+                        background:#f6f7fa;
+                        color: #585155;
+                        font-weight: 500;
+                        font-size: 14px;
+                        /*background: rgba(0, 0, 0, 0.1);*/
+                        height: 30px;
+                        margin-bottom: 12px;
+                        float:left;
                     }
                 }
                 .col-md-12 {
                     span.notes {
                         width: 100%;
-                @include border-radius(4px);
-               border: transparent;
-                padding: 3px 4px 2px 5px;
-                color:#585155;
-                font-weight: 500;
-                font-size: 14px;
-                background: none;
-                margin-bottom: 12px;
-                float:left;
-                    border: solid 1px #c7c5c6;
+                        @include border-radius(4px);
+                        border: transparent;
+                        padding: 3px 4px 2px 5px;
+                        color:#585155;
+                        font-weight: 500;
+                        font-size: 14px;
+                        background: none;
+                        margin-bottom: 12px;
+                        float:left;
+                        border: solid 1px #c7c5c6;
                     }
                 }
             }
@@ -566,6 +566,7 @@ section {
                 font-weight: 500;
                 font-size: 14px;
             }
+
             input[type=text],
             input[type=password],
             textarea,
@@ -573,7 +574,7 @@ section {
                 width: 100%;
                 border-radius:0px;
                 border: solid 1px #dddbdc;
-                background:#f6f7fa !important;
+                //background:#f6f7fa !important;
                 /*border-color: rgba(255, 255, 255, 0.5);*/
                 padding: 3px 4px 2px 5px;
                 color: #585155;
@@ -591,10 +592,12 @@ section {
                 background: rgba(0, 0, 0, 0.1);
                 border: transparent;
             }
-            input[disabled] {
-                border: solid 1px #c1c1c1;
-                background:#dededf;
-                cursor:not-allowed;
+          input[disabled],
+          textarea[disabled],
+          select[disabled] {
+              border: solid 1px #c1c1c1;
+              background:#dededf !important;
+              cursor:not-allowed;
             }
             select.custom-select.d-inline-block{
                 width: 48% !important;
@@ -1485,7 +1488,7 @@ confirm {
         width:calc(100% - 14px);
         margin-left: 15%;
         font-weight: 700;
-        font-size: 15px;    
+        font-size: 15px;
         color:#7593E3 !important;
     /*padding:0px 0px 0px 16px;*/
     /*background:#44474e;*/
@@ -1575,19 +1578,19 @@ confirm {
      .col-md-12 {
             span {
                 width: 100%;
-    border-radius: 4px;
-    border: solid 1px #c7c5c6;
-    padding: 3px 4px 2px 5px;
-    color: #585155;
-    font-weight: 500;
-    font-size: 14px;
-    /* background: rgba(0, 0, 0, 0.1); */
-    height: 30px;
-    margin-bottom: 12px;
-    float: left;
+                border-radius: 4px;
+                border: solid 1px #c7c5c6;
+                padding: 3px 4px 2px 5px;
+                color: #585155;
+                font-weight: 500;
+                font-size: 14px;
+                /* background: rgba(0, 0, 0, 0.1); */
+                height: 30px;
+                margin-bottom: 12px;
+                float: left;
             }
-        }
-        }
+     }
+   }
     }
 
     .addresbox {
@@ -1652,10 +1655,10 @@ confirm {
 }
 
 .nextbtn, .prevbtn {
-background: #5cc34a;
-padding:4px 10px;
-margin:10px 0;
-float:right;
+    background: #5cc34a;
+    padding:4px 10px;
+    margin:10px 0;
+    float:right;
     color: #fff !important;
     border-radius: 5px;
 }

@@ -23,16 +23,16 @@
                             <div class="row">
                                 <div class="col-md-4">Name of the Petitioner</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.petitionerName" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.petitionerName}}</span>
+                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page1.petitionerName" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page1.petitionerName}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Name of the Beneficiary</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.beneficiaryname"/>
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.beneficiaryname}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page1.beneficiaryname"/>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page1.beneficiaryname}}</span>
 
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" name="isDepedentEmployers" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isDepedentEmployers">{{x.display}}
+                                    <input type="radio" name="isDepedentEmployers" [(disabled)]="isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isDepedentEmployers">{{x.display}}
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" name="isWillfulViolator" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isWillfulViolator">{{x.display}}
+                                    <input type="radio" name="isWillfulViolator" [(disabled)]="isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isWillfulViolator">{{x.display}}
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" name="isNonimmigrantExempt" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isNonimmigrantExempt">{{x.display}}
+                                    <input type="radio" name="isNonimmigrantExempt" [(disabled)]="isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isNonimmigrantExempt">{{x.display}}
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" name="isAnnualRateEq60K" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isAnnualRateEq60K">{{x.display}}
+                                    <input type="radio" name="isAnnualRateEq60K" [(disabled)]="isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isAnnualRateEq60K">{{x.display}}
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" name="isSpecialMasterDegree" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isSpecialMasterDegree">{{x.display}}
+                                    <input type="radio" name="isSpecialMasterDegree" [(disabled)]="isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isSpecialMasterDegree">{{x.display}}
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" name="isEmployeesSizeMoreThan50" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isEmployeesSizeMoreThan50">{{x.display}}
+                                    <input type="radio" name="isEmployeesSizeMoreThan50" [(disabled)]="isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page1.employerInfo.isEmployeesSizeMoreThan50">{{x.display}}
                                 </div>
                             </div>
                         </div>
@@ -104,21 +104,21 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" [(disabled)]="isquestionnaireEdit" name="isNonimmigrantStatus_HB_LA_LB" [value]="x.value" [(ngModel)]="page1.employerInfo.isNonimmigrantStatus_HB_LA_LB">{{x.display}}
+                                    <input type="radio" [(disabled)]="isQuestionnaireEdit" name="isNonimmigrantStatus_HB_LA_LB" [value]="x.value" [(ngModel)]="page1.employerInfo.isNonimmigrantStatus_HB_LA_LB">{{x.display}}
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <p class="fieldsetheading">Beneficiary's Highest Level of Education (select only one box)</p>
                         </div>
-                        <div class="col-md-6" *ngFor="let x of higherEducation"><input type="radio" name="higherEducation" [(disabled)]="isquestionnaireEdit" [value]="x.value" [(ngModel)]="page1.higherEducation">{{x.display}}</div>
+                        <div class="col-md-6" *ngFor="let x of higherEducation"><input type="radio" name="higherEducation" [(disabled)]="isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page1.higherEducation">{{x.display}}</div>
                         <div class="clearfix"></div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">Major/Primary Field of Study</div>
                                 <div class="col-md-8">
                                     <input type="text" [(ngModel)]="page1.primaryStudy" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.primaryStudy}}</span>
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page1.primaryStudy}}</span>
                                 </div>
                             </div>
                         </div>
@@ -126,8 +126,8 @@
                             <div class="row">
                                 <div class="col-md-4">Rate of Pay Per Year</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.ratePerYear" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.ratePerYear}}</span>
+                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page1.ratePerYear" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page1.ratePerYear}}</span>
                                 </div>
                             </div>
                         </div>
@@ -135,8 +135,8 @@
                             <div class="row">
                                 <div class="col-md-4">DOT Code</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.dotcode" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.dotcode}}</span>
+                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page1.dotcode" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page1.dotcode}}</span>
                                 </div>
                             </div>
                         </div>
@@ -144,8 +144,8 @@
                             <div class="row">
                                 <div class="col-md-4">NAICS Code</div>
                                 <div class="col-md-8">
-                                    <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page1.naicscode" />
-                                    <span *ngIf="isquestionnaireEdit==true">{{page1.naicscode}}</span>
+                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page1.naicscode" />
+                                    <span *ngIf="isQuestionnaireEdit==true">{{page1.naicscode}}</span>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" [(disabled)]="isquestionnaireEdit" name="isHigherEducationAct20USC" [value]="x.value" [(ngModel)]="page1.isHigherEducationAct20USC">{{x.display}}
+                                    <input type="radio" [(disabled)]="isQuestionnaireEdit" name="isHigherEducationAct20USC" [value]="x.value" [(ngModel)]="page1.isHigherEducationAct20USC">{{x.display}}
                                 </div>
                             </div>
                         </div>
@@ -182,7 +182,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-3" *ngFor="let x of questions">
-                                    <input type="radio" [(disabled)]="isquestionnaireEdit" name="isOrgOrEntityDefinedIn8CFR19B" [value]="x.value" [(ngModel)]="page1.isOrgOrEntityDefinedIn8CFR19B">{{x.display}}
+                                    <input type="radio" [(disabled)]="isQuestionnaireEdit" name="isOrgOrEntityDefinedIn8CFR19B" [value]="x.value" [(ngModel)]="page1.isOrgOrEntityDefinedIn8CFR19B">{{x.display}}
                                 </div>
                             </div>
                         </div>

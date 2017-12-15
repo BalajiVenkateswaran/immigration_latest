@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                  
+
                         <div class="col-md-12" style="margin-top: 20px !important;">
                             <p>Copies of any documents submitted are exact photocopies of unaltered, original documents, and I understand that, as the petitioner, I may be required to submit original documents to U.S. Citizenship and Immigration Services (USCIS) at a later date. </p>
                             <p>I authorize the release of any information from my records, or from the petitioning organization's records that USCIS needs to determine eligibility for the immigration benefit sought.  I recognize the authority of USCIS to conduct audits of this petition using publicly available open source information.  I also recognize that any supporting evidence submitted in support of this petition may be verified by USCIS through any means determined appropriate by USCIS, including but not limited to, on-site compliance reviews.</p>
@@ -33,24 +33,24 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Family Name (Last Name)</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.familyName"/>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.familyName}}</span>
+                                <div class="col-md-7"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.familyName"/>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.familyName}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Given Name (First Name)</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.givenName"/>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.givenName}}</span>
+                                <div class="col-md-7"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.givenName"/>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.givenName}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Title</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.title"/>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.title}}</span>
+                                <div class="col-md-7"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.title"/>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.title}}</span>
                                 </div>
                             </div>
                         </div>
@@ -60,8 +60,8 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Signature of Authorized Signatory</div>
-                                <div class="col-md-7"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.signature"/>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.signature}}</span>
+                                <div class="col-md-7"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.signature"/>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.signature}}</span>
                                 </div>
                             </div>
                         </div>
@@ -70,10 +70,10 @@
                                 <div class="col-md-4">Date of Signature</div>
                                 <div class="col-md-4">
 
-                                    <my-date-picker *ngIf="isquestionnaireEdit==false" [options]="myDatePickerOptions"
+                                    <my-date-picker *ngIf="isQuestionnaireEdit==false" [options]="myDatePickerOptions"
                                                     [(ngModel)]="page6.dateOfSignature"
                                                     [selDate]="dateOfSignature"></my-date-picker>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.dateOfSignature}}</span>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.dateOfSignature}}</span>
                                 </div>
                             </div>
                         </div>
@@ -83,16 +83,16 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Daytime Telephone Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.telephoneNumber"/>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.telephoneNumber}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.telephoneNumber"/>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.telephoneNumber}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Email Address (if any)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.email"/>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.email}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.email"/>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.email}}</span>
                                 </div>
                             </div>
                         </div>
@@ -115,16 +115,16 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Family Name (Last Name)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.preparerFamilyName"/>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.preparerFamilyName}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.preparerFamilyName"/>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.preparerFamilyName}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Given Name (First Name)</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.preparerGivenName"/>
-                                  <span *ngIf="isquestionnaireEdit==true">{{page6.preparerGivenName}}</span>
+                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.preparerGivenName"/>
+                                  <span *ngIf="isQuestionnaireEdit==true">{{page6.preparerGivenName}}</span>
                                 </div>
                             </div>
                         </div>
@@ -135,8 +135,8 @@
                             (If applicable, provide the name of your accredited organization recognized by the Board of Immigration Appeals (BIA).)
                         </div>
                         <div class="col-md-12">
-                            <input type="text" *ngIf="isquestionnaireEdit==false" [(ngModel)]="page6.preparerOrgName"/>
-                              <span *ngIf="isquestionnaireEdit==true">{{page6.preparerOrgName}}</span>
+                            <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page6.preparerOrgName"/>
+                              <span *ngIf="isQuestionnaireEdit==true">{{page6.preparerOrgName}}</span>
                         </div>
                 </div>
             </div>

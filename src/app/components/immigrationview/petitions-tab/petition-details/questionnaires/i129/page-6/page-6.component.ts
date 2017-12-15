@@ -10,7 +10,7 @@ import { QuestionnaireCommonService } from '../../../questionnaires/common/quest
 })
 export class I129Page6Component implements OnInit {
     beforecancelquestionnaire: any;
-    isquestionnaireEdit: boolean = false;
+    isQuestionnaireEdit: boolean = false;
     public page6: any = {};
     public dateOfSignature: string;
     private myDatePickerOptions: IMyOptions = {
@@ -22,7 +22,7 @@ export class I129Page6Component implements OnInit {
     }
 
     ngOnInit() {
-        //this.isquestionnaireEdit = true;
+        //this.isQuestionnaireEdit = true;
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 6).subscribe(res => {
             if (res['formPage'] != undefined) {
                 this.page6 = res['formPage'];
@@ -32,15 +32,15 @@ export class I129Page6Component implements OnInit {
     }
 
     editQuestinnaireForm() {
-        this.isquestionnaireEdit = !this.isquestionnaireEdit;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
         this.beforecancelquestionnaire = (<any>Object).assign({}, this.page6);
     }
     cancelQuestinnaireEdit() {
         this.page6 = this.beforecancelquestionnaire;
-        this.isquestionnaireEdit = true;
+        this.isQuestionnaireEdit = true;
     }
     savequestionnaireInformation() {
-        //this.isquestionnaireEdit = true;
+        //this.isQuestionnaireEdit = true;
         this.page6.pageNumber = 6;
         if(this.page6['dateOfSignature'] != null){
           this.page6['dateOfSignature'] = this.page6['dateOfSignature']['formatted'];
