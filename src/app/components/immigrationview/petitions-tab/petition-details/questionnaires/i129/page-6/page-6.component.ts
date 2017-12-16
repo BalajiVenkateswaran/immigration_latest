@@ -4,7 +4,7 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 import {IHDateUtil} from '../../../../../../framework/utils/date.component';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
 
 @Component({
     selector: 'ih-i129-page-6',
@@ -15,7 +15,7 @@ export class I129Page6Component implements OnInit {
     isQuestionnaireEdit = false;
     public page6: any = {};
     public dateOfSignature: string;
-    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     constructor(public questionnaireService: QuestionnaireCommonService) {}
 
     ngOnInit() {

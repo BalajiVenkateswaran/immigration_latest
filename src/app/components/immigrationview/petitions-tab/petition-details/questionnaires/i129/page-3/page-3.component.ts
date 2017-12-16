@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../../../../../../services/app.service';
-import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {Component, OnInit} from '@angular/core';
+import {AppService} from '../../../../../../../services/app.service';
+import {IMyOptions} from 'mydatepicker';
+import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 import {IHDateUtil} from '../../../../../../framework/utils/date.component';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
+
 
 @Component({
-    selector: 'app-page-3.component',
+    selector: 'ih-i129-page-3',
     templateUrl: './page-3.component.html',
      styleUrls: ['./page-3.component.scss'],
 })
@@ -22,7 +22,7 @@ export class I129Page3Component implements OnInit {
     public passportExpiryDate: string;
     public dateStatusExpires: string;
     public states: any[] = [];
-    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public page3: any = {
         'address': {},
         'foreignAddress': {}

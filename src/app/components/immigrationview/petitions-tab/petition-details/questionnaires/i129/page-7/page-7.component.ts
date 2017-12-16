@@ -4,7 +4,7 @@ import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
 import {IHDateUtil} from '../../../../../../framework/utils/date.component';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
 @Component({
     selector: 'ih-i129-page-7',
     templateUrl: './page-7.component.html'
@@ -17,7 +17,7 @@ export class I129Page7Component implements OnInit {
         'preparerAddress': {}
     };
     public dateOfSignature: string;
-    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public aptType;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
          this.aptType = [

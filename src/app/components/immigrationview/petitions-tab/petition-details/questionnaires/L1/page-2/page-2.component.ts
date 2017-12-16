@@ -3,7 +3,7 @@ import {IMyOptions} from 'mydatepicker';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 import {AppService} from '../../../../../../../services/app.service';
 import {IHDateUtil} from '../../../../../../framework/utils/date.component';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
 
 @Component({
   selector: 'ih-i129l-page-2',

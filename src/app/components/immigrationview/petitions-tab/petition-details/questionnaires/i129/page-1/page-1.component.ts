@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../../../framework/popup/information/information.component';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
 
 @Component({
     selector: 'ih-i129-page-1',

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../../../../services/app.service';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
 
 @Component({
     selector: 'ih-i129-page-4',

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
 
 @Component({
     selector: 'ih-i129-page-8',

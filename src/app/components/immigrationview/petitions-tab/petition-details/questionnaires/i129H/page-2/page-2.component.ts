@@ -3,7 +3,7 @@ import {AppService} from '../../../../../../../services/app.service';
 import {IMyOptions} from 'mydatepicker';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 import {IHDateUtil} from '../../../../../../framework/utils/date.component';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
 
 @Component({
   selector: 'ih-i129h-page-2',
@@ -20,7 +20,7 @@ export class I129HPage2Component implements OnInit {
   public isQuestionnaireEdit = false;
   beforecancelquestionnaire: any;
 
-  constructor(public questionnaireService: QuestionnaireCommonService, private appService: AppService) {}
+  constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {}
 
   ngOnInit() {
     this.I129Hpage2 = {};

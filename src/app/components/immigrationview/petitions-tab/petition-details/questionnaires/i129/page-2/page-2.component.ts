@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../../../../services/app.service';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import {IMyOptions} from 'mydatepicker';
+import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 import {IHDateUtil} from '../../../../../../framework/utils/date.component';
-import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.component';
 
 @Component({
     selector: 'app-page-2.component',
@@ -17,7 +17,7 @@ export class I129Page2Component implements OnInit {
     public requestedAction;
     public isQuestionnaireEdit = false;
     public dateOfBirth: string;
-    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public gender;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
     private route: ActivatedRoute, private router: Router) {
