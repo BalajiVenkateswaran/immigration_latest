@@ -23,7 +23,7 @@
                       <div class="profile">
                           <div class="profile-name">
                               <h4>{{user.firstName}} {{user.lastName}}</h4>
-                              <h6>{{user.roleName}}</h6>
+                              <h6>{{getRoleName()}}</h6>
                           </div>
                             <div class="profile-pic">
                                 <img src="assets/images/user_icon.png" alt="profile-img">
@@ -76,7 +76,7 @@
                                   </div>
                               </div>
                               <div class="row usitem">
-                                  <div class="col-md-5">Organizations</div>
+                                  <div class="col-md-5">Petitioners</div>
                                   <div class="col-md-7">
                                       <div class="progress" style="margin-bottom: 0;">
                                           <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': headerComponentService.usageSummaryDetails.orgUsed/headerComponentService.usageSummaryDetails.orgAllowed * 100 + '%'}"></div>
@@ -88,7 +88,7 @@
                                   </div>
                               </div>
                               <div class="row usitem">
-                                  <div class="col-md-5">Clients</div>
+                                  <div class="col-md-5">Beneficiaries</div>
                                   <div class="col-md-7">
                                       <div class="progress" style="margin-bottom: 0;">
                                           <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': headerComponentService.usageSummaryDetails.clientsUsed/headerComponentService.usageSummaryDetails.clientsAllowed * 100 + '%'}"></div>
@@ -211,7 +211,7 @@
                              routerLinkActive="active">
                               <!--<span class="maintab-clientdetails"></span>-->
                               <img class="imgg" src="../../../../assets/images/Client Details.png" />
-                              <span >Client Details</span>
+                              <span >Beneficiary Details</span>
                               <!--<div class="arrow-up"></div>-->
                           </a>
                       </li>

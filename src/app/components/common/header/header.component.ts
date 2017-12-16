@@ -132,4 +132,9 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   public getImmigrationViewClientsTabPath() {
     return 'immigrationview/tab/clients';
   }
+
+  getRoleName() {
+    return this.user.roleName === ApplicationRoles.CLIENT ? 'Benificiary' : this.user.roleName;
+  }
+
 }

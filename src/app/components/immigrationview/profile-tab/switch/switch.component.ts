@@ -4,6 +4,8 @@ import {Component, OnInit} from '@angular/core';
 import {SwitchButtonComponent} from './switchButton';
 import {HeaderComponentService} from '../../../common/header/header.component.service';
 import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
+import {DeepCloneUtil} from '../../../framework/utils/deepclone.component';
+import {ApplicationRoles} from '../../../common/constants/applicationroles.constants';
 
 @Component({
     selector: 'ih-switch',
@@ -30,24 +32,26 @@ export class ProfileSwitchComponent implements OnInit {
             'columnsettings': [
                 {
                     headerName: 'Role Name',
-                    field: 'roleName',
-                  type: 'text',
+                    field: 'displayRoleName'
                 },
                 {
                     headerName: 'Account Name',
-                    field: 'accountName',
-                   type: 'text'
+                    field: 'accountName'
                 },
                 {
                     headerName: 'Switch',
-                    cellRendererFramework: SwitchButtonComponent,
-                  type: 'text'
+                    cellRendererFramework: SwitchButtonComponent
                 }
             ]
         }
     }
-  dataWithParameters(queryData) {
-    this.data = this.appService.userroleList;
-    this.user = this.headerService.user;
-  }
+
+    dataWithParameters(queryData) {
+      let userRoleList = this.appService.userroleList;
+      for (let userRole of userRoleList) {
+        userRole['displayRoleName'] = userRole.roleName === ApplicationRoles.CLIENT ? 'Beneficiary' : userRole.roleName;
+      }
+      this.data = userRoleList;
+      this.user = this.headerService.user;
+    }
 }

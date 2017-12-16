@@ -53,7 +53,7 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
         },
       'columnsettings': [
         {
-          headerName: 'Org Name',
+          headerName: 'Petitioner Name',
           field: 'orgName'
         },
         {
