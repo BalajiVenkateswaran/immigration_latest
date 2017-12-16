@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../../../../services/app.service';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
 
 @Component({
     selector: 'app-page-3.component',
     templateUrl: './page-3.component.html'
 })
 export class I129dcPage3Component implements OnInit {
+    public isQuestionnaireEdit = false;
+    beforecancelquestionnaire: any;
     public page3: any= {
         'capExemptReason': {
 
@@ -31,7 +32,7 @@ export class I129dcPage3Component implements OnInit {
                 'id': '1',
                 'display': 'No',
                 'value': 'N'
-            },
+            }
         ];
     }
 
@@ -41,31 +42,35 @@ export class I129dcPage3Component implements OnInit {
                          }
                      };
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 21).subscribe(res => {
-            if (res['formPage'] != undefined) {
+            if (res['formPage'] !== undefined) {
 
                 this.page3 = res['formPage'];
 
-                if (res['formPage']['capExemptReason'] != undefined) {
+                if (res['formPage']['capExemptReason'] !== undefined) {
                     this.page3.capExemptReason = res['formPage']['capExemptReason'];
                 }
 
             }
         })
     }
+  editQuestinnaireForm() {
+    this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
+    this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.page3);
+  }
+  cancelQuestinnaireEdit() {
+    this.page3 = this.beforecancelquestionnaire;
+    this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
+  }
 
-   savequestionnaireInformation() {
+  saveQuestionnaireInformation() {
         this.page3.pageNumber = 21;
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 21, this.page3).subscribe(res => {
-
-        })
+          this.isQuestionnaireEdit = false;
+        });
     }
 
     gotoPrev() {
-        this.savequestionnaireInformation();
-        this.appService.moveToPage('immigrationview/questionnaire/i129dc/page/2');
+        this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129dc/page/2');
     }
 
-    gotoNext() {
-       this.savequestionnaireInformation();
-    }
 }

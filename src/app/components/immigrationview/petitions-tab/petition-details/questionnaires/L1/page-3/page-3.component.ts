@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../../../../../../services/app.service';
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {Component, OnInit} from '@angular/core';
+import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
+import {AppService} from '../../../../../../../services/app.service';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+
 @Component({
-  selector: 'app-page-3',
+  selector: 'ih-i129l-page-3',
   templateUrl: './page-3.component.html'
 })
 export class I129LPage3Component implements OnInit {
     public questions: any = [];
     public page24: any = {};
+  public isQuestionnaireEdit = false;
+  beforecancelquestionnaire: any;
 
-    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService, private appService: AppService) {
       this.questions = [
       {
         'id': '0',
@@ -32,22 +36,26 @@ export class I129LPage3Component implements OnInit {
             }
         });
   }
-  savequestionnaireInformation() {
+  editQuestinnaireForm() {
+    this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
+    this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.page24);
+  }
+  cancelQuestinnaireEdit() {
+    this.page24 = this.beforecancelquestionnaire;
+    this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
+  }
+  saveQuestionnaireInformation() {
       this.page24.pageNumber = 24;
       this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'],  this.page24.pageNumber, this.page24).subscribe(res => {
-          console.log(res);
+        this.isQuestionnaireEdit = false;
       });
   }
   gotoNext() {
-      this.savequestionnaireInformation();
-      this.appService.moveToPage('immigrationview/questionnaire/i129l/page/4');
-      this.appService.currentSBLink = 'page4l1';
-
+    this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129l/page/4');
+    this.appService.currentSBLink = 'page4l1';
   }
   gotoPrev() {
-      this.savequestionnaireInformation();
-      this.appService.moveToPage('immigrationview/questionnaire/i129l/page/2');
-      this.appService.currentSBLink = 'page2l1';
-
+    this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129l/page/2');
+    this.appService.currentSBLink = 'page2l1';
   }
 }

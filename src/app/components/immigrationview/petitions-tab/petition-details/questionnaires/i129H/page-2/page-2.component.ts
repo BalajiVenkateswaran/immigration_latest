@@ -2,9 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../../../../services/app.service';
 import {IMyOptions} from 'mydatepicker';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
+import {IHDateUtil} from '../../../../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
 
 @Component({
-  selector: 'app-page-2.component',
+  selector: 'ih-i129h-page-2',
   templateUrl: './page-2.component.html'
 })
 export class I129HPage2Component implements OnInit {
@@ -14,14 +16,11 @@ export class I129HPage2Component implements OnInit {
   public petitionerDateOfSignature: string;
   public officialDateOfSignature: string;
   public projectManagerDateOfSignature: string;
-  private myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
-  };
+  myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+  public isQuestionnaireEdit = false;
+  beforecancelquestionnaire: any;
 
-  constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
-  }
+  constructor(public questionnaireService: QuestionnaireCommonService, private appService: AppService) {}
 
   ngOnInit() {
     this.I129Hpage2 = {};
@@ -65,7 +64,7 @@ export class I129HPage2Component implements OnInit {
       },
     ];
     this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 14).subscribe(res => {
-      if (res['formPage'] != undefined) {
+      if (res['formPage'] !== undefined) {
         this.I129Hpage2 = res['formPage'];
         this.petitionerDateOfSignature = this.I129Hpage2['petitionerDateOfSignature'];
         this.officialDateOfSignature = this.I129Hpage2['officialDateOfSignature'];
@@ -75,12 +74,11 @@ export class I129HPage2Component implements OnInit {
   }
 
   gotoNext() {
-    this.savequestionnaireInformation();
+
   }
 
   gotoPrev() {
-    this.savequestionnaireInformation();
-    this.appService.moveToPage('immigrationview/questionnaire/i129h/page/1/' + this.questionnaireService.selectedQuestionnaire['questionnaireId']);
+    this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129h/page/1/' + this.questionnaireService.selectedQuestionnaire['questionnaireId']);
   }
   submit() {
     this.I129Hpage2.pageNumber = 14;
@@ -101,14 +99,19 @@ export class I129HPage2Component implements OnInit {
       this.I129Hpage2['projectManagerDateOfSignature'] = this.I129Hpage2['projectManagerDateOfSignature']['formatted'];
     }
   }
-
-  savequestionnaireInformation() {
+  editQuestinnaireForm() {
+    this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
+    this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.I129Hpage2);
+  }
+  cancelQuestinnaireEdit() {
+    this.I129Hpage2 = this.beforecancelquestionnaire;
+    this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
+  }
+  saveQuestionnaireInformation() {
     this.I129Hpage2.pageNumber = 14;
     this.mapDatesToSave();
     this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 14, this.I129Hpage2).subscribe(res => {
-
+      this.isQuestionnaireEdit = false;
     });
   }
-
-
 }

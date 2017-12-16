@@ -1,48 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import {AppService} from "../../../../../../../services/app.service";
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {Component, OnInit} from '@angular/core';
+import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
+
 @Component({
-    selector: 'app-page-8.component',
+    selector: 'ih-i129-page-8',
     templateUrl: './page-8.component.html'
 })
 export class I129Page8Component implements OnInit {
     beforecancelquestionnaire: any;
-    isQuestionnaireEdit: boolean = false;
+    isQuestionnaireEdit = false;
     public page8: any = {};
-    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
+    constructor(public questionnaireService: QuestionnaireCommonService) {
     }
 
     ngOnInit() {
-        //this.isQuestionnaireEdit = true;
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 8).subscribe(res => {
-            if (res['formPage'] != undefined) {
+            if (res['formPage'] !== undefined) {
                 this.page8 = res['formPage'];
             }
         })
     }
      editQuestinnaireForm() {
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
-        this.beforecancelquestionnaire = (<any>Object).assign({}, this.page8);
+        this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.page8);
     }
     cancelQuestinnaireEdit() {
         this.page8 = this.beforecancelquestionnaire;
-        this.isQuestionnaireEdit = true;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-    savequestionnaireInformation() {
+    saveQuestionnaireInformation() {
         this.page8.pageNumber = 8;
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 8, this.page8).subscribe(res => {
-
+          this.isQuestionnaireEdit = false;
         })
     }
 
     gotoPrev() {
-        this.savequestionnaireInformation();
-        this.appService.moveToPage('immigrationview/questionnaire/i129/page/7');
-    }
-
-    gotoNext() {
-        this.savequestionnaireInformation();
+        this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129/page/7');
     }
 }

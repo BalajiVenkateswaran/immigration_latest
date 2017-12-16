@@ -1,59 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from "../../../../../../../services/app.service";
-import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {Component, OnInit} from '@angular/core';
+import {AppService} from '../../../../../../../services/app.service';
+import {IMyOptions} from 'mydatepicker';
+import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
+import {IHDateUtil} from '../../../../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
 
 @Component({
-    selector: 'app-page-5.component',
+    selector: 'ih-i129-page-5',
     templateUrl: './page-5.component.html'
 })
 export class I129Page5Component implements OnInit {
     beforecancelquestionnaire: any;
-    isQuestionnaireEdit: boolean = false;
+    isQuestionnaireEdit = false;
     public page5: any = {
-        "address": {}
+        'address': {}
     };
     public questions;
     public aptType;
     public intendentEmploymentFrom: string;
     public intendentEmploymentTo: string;
     public states: any[] = [];
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-        showSelectorArrow: false
-    };
+    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
 
         this.questions = [
             {
-                "id": "0",
-                "display": "Yes",
-                "value": "Y"
+                'id': '0',
+                'display': 'Yes',
+                'value': 'Y'
             },
             {
-                "id": "1",
-                "display": "No",
-                "value": "N"
+                'id': '1',
+                'display': 'No',
+                'value': 'N'
             },
         ];
         this.aptType = [
             {
-                "id": "0",
-                "display": "Apt.",
-                "value": "APT"
+                'id': '0',
+                'display': 'Apt.',
+                'value': 'APT'
             },
             {
-                "id": "1",
-                "display": "Stc.",
-                "value": "STE"
+                'id': '1',
+                'display': 'Stc.',
+                'value': 'STE'
             },
             {
-                "id": "2",
-                "display": "Flr.",
-                "value": "FLR"
+                'id': '2',
+                'display': 'Flr.',
+                'value': 'FLR'
             }
 
         ];
@@ -136,12 +132,11 @@ export class I129Page5Component implements OnInit {
 
     ngOnInit() {
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 5).subscribe(res => {
-            if (res['formPage'] != undefined) {
-
+            if (res['formPage'] !== undefined) {
                 this.page5 = res['formPage'];
                 this.intendentEmploymentFrom = this.page5['intendentEmploymentFrom'];
                 this.intendentEmploymentTo = this.page5['intendentEmploymentTo'];
-                if (res['formPage']['address'] != undefined) {
+                if (res['formPage']['address'] !== undefined) {
                     this.page5.address = res['formPage']['address'];
                 }
             }
@@ -149,31 +144,28 @@ export class I129Page5Component implements OnInit {
     }
     editQuestinnaireForm() {
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
-        this.beforecancelquestionnaire = (<any>Object).assign({}, this.page5);
+        this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.page5);
     }
     cancelQuestinnaireEdit() {
         this.page5 = this.beforecancelquestionnaire;
-        this.isQuestionnaireEdit = true;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-    savequestionnaireInformation() {
-        //this.isQuestionnaireEdit = true;
+  saveQuestionnaireInformation() {
         this.page5.pageNumber = 5;
-        if(this.page5['intendentEmploymentFrom'] != null){
+        if (this.page5['intendentEmploymentFrom'] != null) {
           this.page5['intendentEmploymentFrom'] = this.page5['intendentEmploymentFrom']['formatted'];
         }
-        if(this.page5['intendentEmploymentTo'] != null){
+        if (this.page5['intendentEmploymentTo'] != null) {
           this.page5['intendentEmploymentTo'] = this.page5['intendentEmploymentTo']['formatted'];
         }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 5, this.page5).subscribe(res => {
-
+          this.isQuestionnaireEdit = false;
         })
     }
     gotoNext() {
-        this.savequestionnaireInformation();
-        this.appService.moveToPage('immigrationview/questionnaire/i129/page/6');
+        this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129/page/6');
     }
     gotoPrev() {
-        this.savequestionnaireInformation();
-        this.appService.moveToPage('immigrationview/questionnaire/i129/page/4');
+      this.questionnaireService.goToNextPage(this.isQuestionnaireEdit,  'immigrationview/questionnaire/i129/page/4');
     }
 }

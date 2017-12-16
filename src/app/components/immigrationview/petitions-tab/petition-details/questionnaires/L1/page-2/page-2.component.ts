@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IMyOptions} from 'mydatepicker';
-import { AppService } from '../../../../../../../services/app.service';
-import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
+import {AppService} from '../../../../../../../services/app.service';
+import {IHDateUtil} from '../../../../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
 
 @Component({
-  selector: 'app-page-2',
+  selector: 'ih-i129l-page-2',
   templateUrl: './page-2.component.html'
 })
 export class I129LPage2Component implements OnInit {
@@ -25,13 +27,10 @@ export class I129LPage2Component implements OnInit {
   public toDate7: string;
   public page23: any = {
   };
-  public myDatePickerOptions: IMyOptions = {
-      // other options...
-      dateFormat: 'mm-dd-yyyy',
-      showClearDateBtn: false,
-      editableDateField: false
-  };
-  constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+  public isQuestionnaireEdit = false;
+  beforecancelquestionnaire: any;
+  constructor(public questionnaireService: QuestionnaireCommonService, private appService: AppService) {
 
     this.companyRelated = [
       {
@@ -111,13 +110,20 @@ export class I129LPage2Component implements OnInit {
               }
               if (this.page23['toDate7']) {
                   this.toDate7 = this.page23['toDate7'];
-
               }
           }
 
       });
   }
-  savequestionnaireInformation() {
+  editQuestinnaireForm() {
+    this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
+    this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.page23);
+  }
+  cancelQuestinnaireEdit() {
+    this.page23 = this.beforecancelquestionnaire;
+    this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
+  }
+  saveQuestionnaireInformation() {
       this.page23.pageNumber = 23;
       if (this.page23.fromDate1) {
           this.page23.fromDate1 = this.page23.fromDate1['formatted'];
@@ -162,17 +168,15 @@ export class I129LPage2Component implements OnInit {
           this.page23.toDate7 = this.page23.toDate7['formatted'];
       }
       this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], this.page23.pageNumber, this.page23).subscribe(res => {
-          console.log(res);
+          this.isQuestionnaireEdit = false;
       });
   }
   gotoNext() {
-      this.savequestionnaireInformation();
-      this.appService.moveToPage('immigrationview/questionnaire/i129l/page/3');
+      this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129l/page/3');
       this.appService.currentSBLink = 'page3l1';
   }
   gotoPrev() {
-      this.savequestionnaireInformation();
-      this.appService.moveToPage('immigrationview/questionnaire/i129l/page/1/' + this.questionnaireService.selectedQuestionnaire['questionnaireId']);
+    this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129l/page/1/' + this.questionnaireService.selectedQuestionnaire['questionnaireId']);
       this.appService.currentSBLink = 'page1l1';
   }
 

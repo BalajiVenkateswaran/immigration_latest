@@ -8,7 +8,10 @@
           <div class="col-md-4 pagenoof36">Page 14 of 36</div>
           <div class="col-md-4">
             <a *ngIf="appService.isClientView()" (click)="submit()" class="nextbtn">Submit</a>
-            <a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn">Save</a>
+            <!--<a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn">Save</a>-->
+            <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
+            <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
           </div>
         </div>
       </div>
@@ -18,7 +21,7 @@
               <div class="col-md-12" style="margin-top: 1%;">
                 <div class="row">
                   <div class="col-md-12"><b>7.b.</b>Explanation</div>
-                  <div class="col-md-12"><textarea style="height:120px" [(ngModel)]="I129Hpage2.explanation"></textarea>
+                  <div class="col-md-12"><textarea style="height:120px" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage2.explanation"></textarea>
                   </div>
                 </div>
               </div>
@@ -30,12 +33,11 @@
       </div>
       <div class="col-md-12">
         <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-          
+
             <div class="col-md-12" style="margin-top: 1%;">
               <div class="row">
                 <div class="col-md-12"><b>1.</b>Describe the proposed duties</div>
-                <div class="col-md-12"><textarea style="height:120px"
-                                                 [(ngModel)]="I129Hpage2.proposedDutiess"></textarea></div>
+                <div class="col-md-12"><textarea style="height:120px" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage2.proposedDutiess"></textarea></div>
               </div>
             </div>
             <div class="col-md-12">
@@ -45,8 +47,7 @@
                         experience.
                     </div>
                     <div class="col-md-12">
-                        <textarea style="height:120px"
-                                  [(ngModel)]="I129Hpage2.summaryOfWorkExp"></textarea>
+                        <textarea style="height:120px" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage2.summaryOfWorkExp"></textarea>
                     </div>
                 </div>
                 </div>
@@ -71,15 +72,15 @@
               <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-4">Name of Petitioner</div>
-                  <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.petitonerName"/></div>
+                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage2.petitonerName"/></div>
 
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="row">
-                  <div class="col-md-4">Date (mm/dd/yyyy)</div>
+                  <div class="col-md-4">Date (mm-dd-yyyy)</div>
                   <div class="col-md-8">
-                    <my-date-picker [options]="myDatePickerOptions"
+                    <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                     [(ngModel)]="I129Hpage2.petitionerDateOfSignature"
                                     [selDate]="petitionerDateOfSignature"></my-date-picker>
                   </div>
@@ -95,20 +96,20 @@
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-4">Signature of Authorized Official of Employer</div>
-                  <div class="col-md-8"><input type="text"/></div>
+                  <div class="col-md-8"><input type="text" [disabled]="true"/></div>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-4">Name of Authorized Official of Employer</div>
-                  <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.authorizedOfficial"/></div>
+                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage2.authorizedOfficial"/></div>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-4">Date (mm/dd/yyyy)</div>
+                  <div class="col-md-4">Date (mm-dd-yyyy)</div>
                   <div class="col-md-8">
-                    <my-date-picker [options]="myDatePickerOptions"
+                    <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                     [(ngModel)]="I129Hpage2.officialDateOfSignature"
                                     [selDate]="officialDateOfSignature"></my-date-picker>
                   </div>
@@ -123,20 +124,20 @@
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-4">Signature of DOD Project Manager</div>
-                  <div class="col-md-8"><input type="text"/></div>
+                  <div class="col-md-8"><input type="text" [disabled]="true"/></div>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-4">Name of DOD Project Manager</div>
-                  <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage2.projectManager"/></div>
+                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage2.projectManager"/></div>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-4">Date (mm/dd/yyyy)</div>
+                  <div class="col-md-4">Date (mm-dd-yyyy)</div>
                   <div class="col-md-8">
-                    <my-date-picker [options]="myDatePickerOptions"
+                    <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                     [(ngModel)]="I129Hpage2.projectManagerDateOfSignature"
                                     [selDate]="projectManagerDateOfSignature"></my-date-picker>
                   </div>
@@ -155,7 +156,7 @@
               <div class="col-md-12">
               <div class="row">
                 <div class="col-md-3" *ngFor="let x of I129Hpage2Employment">
-                  <input type="radio" name="employment" [value]="x.value" [(ngModel)]="I129Hpage2.employment">{{x.display}}
+                  <input type="radio" name="employment" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="I129Hpage2.employment">{{x.display}}
                 </div>
               </div>
               </div>
@@ -164,9 +165,8 @@
               <div class="col-md-12"><b>2.</b>Temporary need is: (select <b>only one</b> box)</div>
 
                 <div class="col-md-3" *ngFor="let x of I129Hpage2TemporaryNeed">
-                  <input type="radio" name="temporaryneed" [value]="x.value" [(ngModel)]="I129Hpage2.temporaryNeed">{{x.display}}
+                  <input type="radio" name="temporaryneed" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="I129Hpage2.temporaryNeed">{{x.display}}
                 </div>
-
             </div>
             </div>
           </div>

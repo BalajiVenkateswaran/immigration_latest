@@ -6,11 +6,13 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
-                        <a (click)="gotoPrev()" class="prevbtn">Back</a>
+                        <a (click)="gotoPrev()" class="prevbtn">Previous</a>
                     </div>
                     <div class="col-md-4 pagenoof36">Page 8 of 36</div>
                     <div class="col-md-4">
-                        <a (click)="gotoNext()" class="nextbtn">Save</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
+                        <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
                     </div>
                 </div>
             </div>
@@ -25,94 +27,67 @@
                         <div class="col-md-12">
                             <div class="col-md-6" style="margin-left: -30px !important;">
                                 <div class="col-md-4"><b>1.</b>A-Number</div>
-                                <div class="col-md-8">
-                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.anumber" />
-                                    <span *ngIf="isQuestionnaireEdit==true">{{page8.anumber}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.anumber" /></div>
                             </div>
                             <div class="col-md-6"></div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4"><b>2.</b>Page Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.pageNumber1"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.pageNumber1}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.pageNumber1"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Part Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.partNumber1"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.partNumber1}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.partNumber1"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Item Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.itemNumber1"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.itemNumber1}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.itemNumber1"/></div>
                             </div>
                         </div>
-                        <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(disabled)]="isQuestionnaireEdit" textarea [(ngModel)]="page8.additionalInformation1"></textarea>
-
-                        </div>
+                        <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(disabled)]="!isQuestionnaireEdit" textarea [(ngModel)]="page8.additionalInformation1"></textarea></div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4"><b>3.</b>Page Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.pageNumber2"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.pageNumber2}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.pageNumber2"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Part Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.partNumber2"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.partNumber2}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit"[(ngModel)]="page8.partNumber2"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Item Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.itemNumber2"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.itemNumber2}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.itemNumber2"/></div>
                             </div>
                         </div>
-                        <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(disabled)]="isQuestionnaireEdit" [(ngModel)]="page8.additionalInformation2"></textarea>
-
-                        </div>
+                        <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page8.additionalInformation2"></textarea></div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4"><b>4.</b>Page Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.pageNumber3"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.pageNumber3}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.pageNumber3"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Part Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.partNumber3"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.partNumber3}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.partNumber3"/></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-4">Item Number</div>
-                                <div class="col-md-8"><input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page8.itemNumber3"/>
-                                 <span *ngIf="isQuestionnaireEdit==true">{{page8.itemNumber3}}</span>
-                                </div>
+                                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page8.itemNumber3"/></div>
                             </div>
                         </div>
-                        <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(disabled)]="isQuestionnaireEdit" [(ngModel)]="page8.additionalInformation3"></textarea>
-
-                        </div>
+                        <div class="col-md-12"><textarea rows="6" style="min-height:120px;" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page8.additionalInformation3"></textarea></div>
                 </div>
             </div>
     </div>

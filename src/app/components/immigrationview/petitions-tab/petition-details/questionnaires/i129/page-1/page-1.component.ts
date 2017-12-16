@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from '../../../../../../../services/app.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionnaireCommonService} from '../../../questionnaires/common/questionnaire-common.service';
 import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../../../framework/popup/information/information.component';
-import {ConfirmationDialogComponent} from '../../../../../../framework/popup/confirmation/confirmation.component';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
 
 @Component({
     selector: 'ih-i129-page-1',
@@ -19,8 +18,7 @@ export class I129Page1Component implements OnInit {
     };
     public aptType;
     public states: any[] = [];
-    constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
-     private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
+    constructor(public questionnaireService: QuestionnaireCommonService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
         this.aptType = [
             {
                 'id': '0',
@@ -144,14 +142,13 @@ export class I129Page1Component implements OnInit {
 
     editQuestinnaireForm() {
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
-        this.beforecancelquestionnaire = (<any>Object).assign({}, this.page1);
+        this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.page1);
     }
     cancelQuestinnaireEdit() {
         this.page1 = this.beforecancelquestionnaire;
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-    savequestionnaireInformation(): boolean {
-        // this.isQuestionnaireEdit = true;
+  saveQuestionnaireInformation(): boolean {
         this.page1.pageNumber = 1;
 
         if (this.page1.address && (this.page1.address['state'] || this.page1.address['zipCode'] )) {

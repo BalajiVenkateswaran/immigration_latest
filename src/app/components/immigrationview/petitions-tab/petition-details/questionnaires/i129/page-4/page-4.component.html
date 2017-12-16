@@ -7,11 +7,14 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
-                        <a (click)="gotoPrev()" class="prevbtn">Back</a>
+                        <a (click)="gotoPrev()" class="prevbtn">Previous</a>
                     </div>
                     <div class="col-md-4 pagenoof36">Page 4 of 36</div>
                     <div class="col-md-4">
-                        <a (click)="gotoNext()" class="nextbtn">Save & Continue</a>
+                        <a (click)="gotoNext()" class="nextbtn">Next</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
+                        <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
                     </div>
                 </div>
             </div>
@@ -30,16 +33,13 @@
                                         <div class="col-md-8"><input type="text"/></div>
                                     </div>
                                 </div>-->
-
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="" [value]="x.value" [(disabled)]="isQuestionnaireEdit" [(ngModel)]="page4.anyOtherPetition" [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="" [value]="x.value" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page4.anyOtherPetition">{{x.display}}
 
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page4.noOfPetitions" placeholder="If yes how many?" />
-                                    <span *ngIf="isQuestionnaireEdit==true">{{page4.noOfPetitions}}</span>
+                                    <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page4.noOfPetitions" placeholder="If yes how many?" />
                                 </div>
-                                <!--  <div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyOtherPetition"> No</div>-->
                             </div>
                             <div class="row">
                                 <div class="col-md-12" style="padding-bottom:10px;"><b>4.</b> Are you filing any applications for replacement/initial I-94, Arrival-Departure Records with
@@ -47,63 +47,43 @@
                                     when he/she was admitted to the United States at an air or sea port, he/ she may be able
                                     to obtain the Form I-94 from the CBP Website at <a href="#">www.cbp.gov/i94</a>&nbsp; instead of filing an
                                     application for a replacement/initial I-94</div>
-                                <!--<div class="col-md-4"></div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyArrivalOrDepartureRecords"> Yes If yes, how many?</div>
-                                        <div class="col-md-8"><input type="text" /></div>
-                                    </div>
-
-                                </div>-->
                                     <div class="col-md-1" *ngFor="let x of questions">
                                         <input type="radio" name="anyArrivalOrDepartureRecords" [value]="x.value" [(ngModel)]="page4.anyArrivalOrDepartureRecords"
-                                               [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                               [(disabled)]="!isQuestionnaireEdit"/>{{x.display}}
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page4.noOfRecords" placeholder="If yes how many?" />
-                                        <span *ngIf="isQuestionnaireEdit==true">{{page4.noOfRecords}}</span>
+                                        <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page4.noOfRecords" placeholder="If yes how many?" />
                                     </div>
-                                    <!--<div class="col-md-2"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyArrivalOrDepartureRecords"> No</div>-->
                                 </div>
                             <div class="row">
                                 <div class="col-md-4"><b>5. </b> Are you filing any applications for dependents with this petition?</div>
-                                <!-- <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4"><input type="checkbox" name="" value="" [(ngModel)]="page4.anyDependents"> Yes If yes, how many?</div>
-                                        <div class="col-md-8"><input type="text" /></div>
-                                    </div>
-                                </div>-->
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="anyDependents" [value]="x.value" [(ngModel)]="page4.anyDependents" [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="anyDependents" [value]="x.value" [(ngModel)]="page4.anyDependents" [(disabled)]="!isQuestionnaireEdit"/>{{x.display}}
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page4.noOfDependents" placeholder="If yes how many?" />
-                                    <span *ngIf="isQuestionnaireEdit==true">{{page4.noOfDependents}}</span>
-
+                                    <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page4.noOfDependents" placeholder="If yes how many?" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4"><b>6. </b> Is any beneficiary in this petition in removal proceedings?</div>
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="anyRemovalProceedings" [value]="x.value" [(ngModel)]="page4.anyRemovalProceedings" [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="anyRemovalProceedings" [value]="x.value" [(ngModel)]="page4.anyRemovalProceedings" [(disabled)]="!isQuestionnaireEdit"/>{{x.display}}
                                 </div>
                                 <div class="col-md-6">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-4"><b>7. </b> Have you ever filed an immigrant petition for any beneficiary in this petition?</div>
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="anyImmigrantPetitionFiled" [value]="x.value" [(ngModel)]="page4.anyImmigrantPetitionFiled" [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="anyImmigrantPetitionFiled" [value]="x.value" [(ngModel)]="page4.anyImmigrantPetitionFiled" [(disabled)]="!isQuestionnaireEdit">{{x.display}}
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page4.noOfImmigrantPetitions" placeholder="If yes, how many?" />
-                                    <span *ngIf="isQuestionnaireEdit==true">{{page4.noOfImmigrantPetitions}}</span>
+                                    <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page4.noOfImmigrantPetitions" placeholder="If yes, how many?" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4"><b>8. </b> Did you indicate you were filing a new petition in <b>Part 2.</b>?</div>
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="isNewPetitionInPart2" [value]="x.value" [(ngModel)]="page4.isNewPetitionInPart2" [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="isNewPetitionInPart2" [value]="x.value" [(ngModel)]="page4.isNewPetitionInPart2" [(disabled)]="!isQuestionnaireEdit"/>{{x.display}}
                                 </div>
                                 <div class="col-md-6">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
@@ -112,8 +92,7 @@
                                     <b>a. </b> Has any beneficiary in this petition ever been given the classification you are now requesting within the last seven years?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="isPetitionRequestinLastSevenYears" [value]="x.value" [(disabled)]="isQuestionnaireEdit" [(ngModel)]="page4.isPetitionRequestinLastSevenYears"
-                                        [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="isPetitionRequestinLastSevenYears" [value]="x.value" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page4.isPetitionRequestinLastSevenYears"/>{{x.display}}
                                 </div>
                                 <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
@@ -122,8 +101,7 @@
                                     <b>b. </b> Has any beneficiary in this petition ever been denied the classification you are now requesting within the last seven years?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="isPetitionRequestDeniedinLastSevenYears" [value]="x.value" [(disabled)]="isQuestionnaireEdit" [(ngModel)]="page4.isPetitionRequestDeniedinLastSevenYears"
-                                        [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="isPetitionRequestDeniedinLastSevenYears" [value]="x.value" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page4.isPetitionRequestDeniedinLastSevenYears"/>{{x.display}}
                                 </div>
                                 <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
@@ -132,8 +110,7 @@
                                     <b>9. </b> Have you ever previously filed a nonimmigrant petition for this beneficiary?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="isPreviouslyFiledNonimigrantPetition" [value]="x.value" [(ngModel)]="page4.isPreviouslyFiledNonimigrantPetition"
-                                        [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="isPreviouslyFiledNonimigrantPetition" [value]="x.value" [(ngModel)]="page4.isPreviouslyFiledNonimigrantPetition" [(disabled)]="!isQuestionnaireEdit"/>{{x.display}}
                                 </div>
                                 <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
@@ -143,8 +120,7 @@
                                     year?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="isPetittionNotinLastOneYear" [value]="x.value" [(ngModel)]="page4.isPetittionNotinLastOneYear"
-                                        [(disabled)]="isQuestionnaireEdit" [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="isPetittionNotinLastOneYear" [value]="x.value" [(ngModel)]="page4.isPetittionNotinLastOneYear" [(disabled)]="!isQuestionnaireEdit"/>{{x.display}}
                                 </div>
                                 <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
 
@@ -154,7 +130,7 @@
                                    <b>11.a. </b> Has any beneficiary in this petition ever been a J-1 exchange visitor or J-2 dependent of a J-1 exchange visitor?
                                 </div>
                                 <div class="col-md-1" *ngFor="let x of questions">
-                                    <input type="radio" name="isPetitionJ1ExcahngeVisitor" [value]="x.value" [(ngModel)]="page4.isPetitionJ1ExcahngeVisitor" [(disabled)]="isQuestionnaireEdit">{{x.display}}
+                                    <input type="radio" name="isPetitionJ1ExcahngeVisitor" [value]="x.value" [(ngModel)]="page4.isPetitionJ1ExcahngeVisitor" [(disabled)]="!isQuestionnaireEdit"/>{{x.display}}
                                 </div>
                                 <div class="col-md-7">If yes, proceed to <b>Part 9.</b> and type or print your explanation.</div>
                             </div>
@@ -166,8 +142,7 @@
                                     or a copy of the passport that includes the J visa stamp.
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page4.dateOfBeneficiaryMaintainedStatus" />
-                                    <span *ngIf="isQuestionnaireEdit==true">{{page4.dateOfBeneficiaryMaintainedStatus}}</span>
+                                    <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page4.dateOfBeneficiaryMaintainedStatus" />
                                 </div>
                             </div>
                         </div>
@@ -180,19 +155,13 @@
             <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
                     <div class="col-md-12" style="padding-bottom:10px;margin-top: 10px;">Attach the Form I-129 supplement relevant to the classification of the worker(s) you are requesting.</div>
                     <div class="col-md-6">
-                            <div class="col-md-4"><b>1.</b>Job Title</div>
-                            <div class="col-md-6">
-                                <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page4.jobTitle" />
-                                <span *ngIf="isQuestionnaireEdit==true">{{page4.jobTitle}}</span>
-                            </div>
+                        <div class="col-md-4"><b>1.</b>Job Title</div>
+                        <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page4.jobTitle" /></div>
                     </div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-4"><b>2.</b>LCA or ETA Case Number</div>
-                            <div class="col-md-6">
-                                <input type="text" *ngIf="isQuestionnaireEdit==false" [(ngModel)]="page4.lcaNumber" />
-                                <span *ngIf="isQuestionnaireEdit==true">{{page4.lcaNumber}}</span>
-                            </div>
+                            <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page4.lcaNumber" /></div>
                         </div>
                     </div>
             </div>

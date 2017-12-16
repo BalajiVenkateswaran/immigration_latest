@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {ImmigrationViewPetitionInformation} from '../../../../../models/ImmigrationViewPetitionInformation';
 import {AppService} from '../../../../../services/app.service';
 import {PetitionDetailsService} from './petition-details.service';
-import {IhDateUtil} from '../../../../framework/utils/date.component';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 import {DialogService} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
 import {MatDialog} from '@angular/material';
@@ -60,7 +60,7 @@ export class PetitionDetailsComponent implements OnInit {
     public receiptInfo: any = {};
     private sponsorInfoAddress: any = {};
     private petitionAdditionalDetails: any = {};
-    public datePickerOptions = IhDateUtil.datePickerOptions;
+    public datePickerOptions = IHDateUtil.datePickerOptions;
     isLCAInfoEdit = true;
     isReceiptInfoEdit = true;
     isReceiptInfoSave = false;

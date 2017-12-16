@@ -1,46 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import {AppService} from "../../../../../../../services/app.service";
+import {AppService} from '../../../../../../../services/app.service';
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {IHDateUtil} from '../../../../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
 @Component({
-    selector: 'app-page-7.component',
+    selector: 'ih-i129-page-7',
     templateUrl: './page-7.component.html'
 })
 export class I129Page7Component implements OnInit {
     beforecancelquestionnaire: any;
-    isQuestionnaireEdit: boolean = false;
+    isQuestionnaireEdit = false;
     public states: any[] = [];
     public page7: any = {
-        "preparerAddress":{}
+        'preparerAddress': {}
     };
     public dateOfSignature: string;
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-        openSelectorTopOfInput: true,
-        showSelectorArrow: false
-    };
+    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public aptType;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
          this.aptType = [
             {
-                "id": "0",
-                "display": "Apt.",
-                "value":"APT"
+                'id': '0',
+                'display': 'Apt.',
+                'value': 'APT'
             },
             {
-                "id": "1",
-                "display": "Stc.",
-                "value": "STE"
+                'id': '1',
+                'display': 'Stc.',
+                'value': 'STE'
             },
             {
-                "id": "2",
-                "display": "Flr.",
-                "value": "FLR"
+                'id': '2',
+                'display': 'Flr.',
+                'value': 'FLR'
             }
-
         ];
         this.states = [
             { value: '0', name: 'select State' },
@@ -120,13 +115,11 @@ export class I129Page7Component implements OnInit {
     }
 
     ngOnInit() {
-        //this.isQuestionnaireEdit = true;
         this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 7).subscribe(res => {
-            if (res['formPage'] != undefined) {
-
+            if (res['formPage'] !== undefined) {
                 this.page7 = res['formPage'];
                 this.dateOfSignature = this.page7['dateOfSignature'];
-                if (res['formPage']['preparerAddress'] != undefined) {
+                if (res['formPage']['preparerAddress'] !== undefined) {
                     this.page7.preparerAddress = res['formPage']['preparerAddress'];
                 }
             }
@@ -134,28 +127,25 @@ export class I129Page7Component implements OnInit {
     }
      editQuestinnaireForm() {
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
-        this.beforecancelquestionnaire = (<any>Object).assign({}, this.page7);
+        this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.page7);
     }
     cancelQuestinnaireEdit() {
         this.page7 = this.beforecancelquestionnaire;
-        this.isQuestionnaireEdit = true;
+        this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-    savequestionnaireInformation() {
-        //this.isQuestionnaireEdit = true;
+  saveQuestionnaireInformation() {
         this.page7.pageNumber = 7;
-        if(this.page7['dateOfSignature'] != null){
+        if (this.page7['dateOfSignature'] != null) {
           this.page7['dateOfSignature'] = this.page7['dateOfSignature']['formatted'];
         }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 7, this.page7).subscribe(res => {
-
+          this.isQuestionnaireEdit = false;
         })
     }
     gotoNext() {
-        this.savequestionnaireInformation();
-        this.appService.moveToPage('immigrationview/questionnaire/i129/page/8');
+        this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129/page/8');
     }
     gotoPrev() {
-        this.savequestionnaireInformation();
-        this.appService.moveToPage('immigrationview/questionnaire/i129/page/6');
+        this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129/page/6');
     }
 }

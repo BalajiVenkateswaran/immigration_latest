@@ -3,6 +3,8 @@ import { AppService } from '../../../../../../../services/app.service';
 import { IMyOptions, IMyDateModel, IMyDate } from 'mydatepicker';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QuestionnaireCommonService } from '../../../questionnaires/common/questionnaire-common.service';
+import {IHDateUtil} from '../../../../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../../../../framework/utils/deepclone.util';
 
 @Component({
     selector: 'app-page-3.component',
@@ -20,11 +22,7 @@ export class I129Page3Component implements OnInit {
     public passportExpiryDate: string;
     public dateStatusExpires: string;
     public states: any[] = [];
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public page3: any = {
         'address': {},
         'foreignAddress': {}
@@ -74,7 +72,7 @@ export class I129Page3Component implements OnInit {
                 'id': '2',
                 'display': 'Port of entry',
                 'value': 'PORT_OF_ENTRY'
-            },
+            }
         ];
         this.states = [
             { value: '0', name: 'select State' },
@@ -172,7 +170,7 @@ export class I129Page3Component implements OnInit {
     }
     editQuestinnaireForm() {
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
-        this.beforecancelquestionnaire = (<any>Object).assign({}, this.page3);
+        this.beforecancelquestionnaire = DeepCloneUtil.deepClone(this.page3);
     }
     cancelQuestinnaireEdit() {
         this.page3 = this.beforecancelquestionnaire;
@@ -194,23 +192,12 @@ export class I129Page3Component implements OnInit {
       }
     }
 
-    saveQuestionnaireInformation(isNextPage: boolean) {
+    saveQuestionnaireInformation() {
         this.page3.pageNumber = 3;
         this.mapDatesToSave();
-
-        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3,
-          this.page3).subscribe(res => {
-          // Call ngOnInit for client view page
-          if (isNextPage) {
-            if (this.appService.applicationViewMode === 'Client') {
-              this.ngOnInit();
-            } else {
-              this.appService.moveToPage('immigrationview/questionnaire/i129/page/4');
-            }
-          } else {
-            this.appService.moveToPage('immigrationview/questionnaire/i129/page/2');
-          }
-        })
+        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3, this.page3).subscribe(res => {
+          this.isQuestionnaireEdit = false;
+        });
     }
 
     submitClientQuestionnaireInformation(): any {
@@ -222,15 +209,13 @@ export class I129Page3Component implements OnInit {
       });
     }
 
-
     gotoNext() {
-        this.saveQuestionnaireInformation(true);
+        this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129/page/4');
     }
     gotoPrev() {
-        this.saveQuestionnaireInformation(false);
+        this.questionnaireService.goToNextPage(this.isQuestionnaireEdit, 'immigrationview/questionnaire/i129/page/2');
     }
     submit() {
       this.submitClientQuestionnaireInformation();
     }
-
 }

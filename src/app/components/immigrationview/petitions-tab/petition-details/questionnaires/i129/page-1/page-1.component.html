@@ -12,7 +12,7 @@
             <div class="col-md-4">
               <a (click)="gotoNext()" class="nextbtn">Next</a>
               <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
-              <a *ngIf="isQuestionnaireEdit" (click)="savequestionnaireInformation()" class="nextbtn">Save</a>
+              <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
               <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
             </div>
         </div>
@@ -76,7 +76,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4" *ngFor="let x of aptType">
-                                {{x.display}}<input type="radio" [(disabled)]="isQuestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType"/>
+                                {{x.display}}<input type="radio" [(disabled)]="!isQuestionnaireEdit" name="aptType" [value]="x.value" [(ngModel)]="page1.address.aptType"/>
                             </div>
                         </div>
                     </div>
@@ -97,14 +97,14 @@
                     <div class="form-group">
                         <label for="state">State</label>
                         <select class="form-control" id="state" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.state">
-                            <option [value]="mailingAddress.name" *ngFor="let mailingAddress of states">{{mailingAddress.name}}</option>
+                            <option [value]="state.name" *ngFor="let state of states">{{state.name}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="state">ZIP Code</label>
-                        <input class="form-control" id="state" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.zipCode"/>
+                        <input class="form-control" id="zipcode" type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.address.zipCode"/>
                     </div>
                 </div>
                 <div class="col-md-6">

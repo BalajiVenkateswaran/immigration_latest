@@ -11,7 +11,10 @@
           </div>
           <div class="col-md-4 pagenoof36">Page 22 of 36</div>
           <div class="col-md-4">
-            <a (click)="gotoNext()" class="nextbtn">Save & Continue</a>
+            <a (click)="gotoNext()" class="nextbtn">Next</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
+            <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
           </div>
         </div>
       </div>
@@ -21,14 +24,14 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-12">Name of the Petitioner</div>
-                <div class="col-md-12"><input type="text" [(ngModel)]="page22.petitonerName"/></div>
+                <div class="col-md-12"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.petitonerName"/></div>
               </div>
             </div>
           </div>
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-12">Name of the Beneficiary</div>
-              <div class="col-md-12"><input type="text" [(ngModel)]="page22.beneficiaryName"/></div>
+              <div class="col-md-12"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.beneficiaryName"/></div>
             </div>
           </div>
           <div class="col-md-12">
@@ -40,8 +43,7 @@
 
 
                 <label for="">
-                        <input type="radio" name="petitiontype" [value]="x.value"
-                           [(ngModel)]="page22.petitionType" />
+                        <input type="radio" name="petitiontype" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page22.petitionType" />
                         {{x.display}}
                       </label>
 
@@ -55,8 +57,7 @@
               </div>
               <div class="col-md-2" *ngFor="let x of questions">
                 <label for="">
-                        <input type="radio" name="petition50ormore" [value]="x.value"
-                              [(ngModel)]="page22.doesPetitionerEmploy50OrMore"/>
+                        <input type="radio" name="petition50ormore" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page22.doesPetitionerEmploy50OrMore"/>
                         {{x.display}}
                       </label>
 
@@ -70,8 +71,7 @@
               </div>
               <div class="col-md-2" *ngFor="let x of questions">
                 <label for="">
-                        <input type="radio" name="petitionh1b" [value]="x.value"
-                               [(ngModel)]="page22.areMoreThan50EmployeeInH1BOrL1BOrL1A"/>
+                        <input type="radio" name="petitionh1b" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page22.areMoreThan50EmployeeInH1BOrL1BOrL1A"/>
                         {{x.display}}
                       </label>
 
@@ -88,8 +88,7 @@
               </div>
               <div class="col-md-4" *ngFor="let x of classificationSought">
                 <label for="">
-                        <input type="radio" name="petitionindividual" [value]="x.value"
-                              [(ngModel)]="page22.sought"/>
+                        <input type="radio" name="petitionindividual" [disabled]="!isQuestionnaireEdit"  [value]="x.value" [(ngModel)]="page22.sought"/>
                         {{x.display}}
                       </label>
 
@@ -108,7 +107,7 @@
                 <td width="30%;" colspan="2">
                   <table width='100%'>
                     <tr>
-                      <td colspan="2" align="center" valign="middle">Period of Stay (mm/dd/yyyy)</td>
+                      <td colspan="2" align="center" valign="middle">Period of Stay (mm-dd-yyyy)</td>
                     </tr>
                     <tr>
                       <td width="50%" align="center" valign="middle">From</td>
@@ -119,80 +118,80 @@
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text"  class="form-control" [(ngModel)]="page22.subjectName1"/></td>
+                <td><input type="text"  class="form-control" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.subjectName1"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate1" [selDate]="fromDate1"></my-date-picker>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate1" [selDate]="fromDate1"></my-date-picker>
 
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.toDate1" [selDate]="toDate1"></my-date-picker>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.toDate1" [selDate]="toDate1"></my-date-picker>
                 </td>
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="page22.subjectName2"/></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.subjectName2"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate2" [selDate]="fromDate2"></my-date-picker>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate2" [selDate]="fromDate2"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.toDate2" [selDate]="toDate2"></my-date-picker>
-                </td>
-
-              </tr>
-              <tr>
-                <!--<td><span></span><td>-->
-
-                <td><input type="text"  [(ngModel)]="page22.subjectName3"/></td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate3" [selDate]="fromDate3"></my-date-picker>
-                </td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.toDate3" [selDate]="toDate3"></my-date-picker>
-                </td>
-
-              </tr>
-              <tr>
-                <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="page22.subjectName4" /></td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate4" [selDate]="fromDate4"></my-date-picker>
-                </td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.toDate4" [selDate]="toDate4"></my-date-picker>
-                </td>
-
-              </tr>
-              <tr>
-                <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="page22.subjectName5" /></td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate5" [selDate]="fromDate5"></my-date-picker>
-                </td>
-                <td>
-                  <my-date-picker [options]="myDatePickerOptions"  [(ngModel)]="page22.toDate5" [selDate]="toDate5"></my-date-picker>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.toDate2" [selDate]="toDate2"></my-date-picker>
                 </td>
 
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
 
-                <td><input type="text" [(ngModel)]="page22.subjectName6" /></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit"  [(ngModel)]="page22.subjectName3"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate6" [selDate]="fromDate6"></my-date-picker>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate3" [selDate]="fromDate3"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.toDate6" [selDate]="toDate6"></my-date-picker>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.toDate3" [selDate]="toDate3"></my-date-picker>
                 </td>
 
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="page22.subjectName7" /></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.subjectName4" /></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate7" [selDate]="fromDate7"></my-date-picker>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate4" [selDate]="fromDate4"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="page22.toDate7" [selDate]="toDate7"></my-date-picker>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.toDate4" [selDate]="toDate4"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.subjectName5" /></td>
+                <td>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate5" [selDate]="fromDate5"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"  [(ngModel)]="page22.toDate5" [selDate]="toDate5"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.subjectName6" /></td>
+                <td>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate6" [selDate]="fromDate6"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.toDate6" [selDate]="toDate6"></my-date-picker>
+                </td>
+
+              </tr>
+              <tr>
+                <!--<td><span></span><td>-->
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.subjectName7" /></td>
+                <td>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.fromDate7" [selDate]="fromDate7"></my-date-picker>
+                </td>
+                <td>
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions" [(ngModel)]="page22.toDate7" [selDate]="toDate7"></my-date-picker>
                 </td>
 
               </tr>
@@ -203,7 +202,7 @@
             <div class="row">
 
               <div class="col-md-12">Name of the Employer Abroad</div>
-              <div class="col-md-12"><input type="text"  [(ngModel)]="page22.nameOfEmployer"/></div>
+              <div class="col-md-12"><input type="text" [disabled]="!isQuestionnaireEdit"  [(ngModel)]="page22.nameOfEmployer"/></div>
 
             </div>
           </div>
@@ -211,7 +210,7 @@
             <div class="col-md-4">
               <div class="row">
                 <div class="col-md-4">Street Number and Name</div>
-                <div class="col-md-8"><input type="text" [(ngModel)]="page22.employerAddress.street"/>
+                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit"  [(ngModel)]="page22.employerAddress.street"/>
 
                 </div>
               </div>
@@ -222,7 +221,7 @@
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-4" *ngFor="let x of aptType">
-                      <input type="radio"  name="aptType" [value]="x.value" [(ngModel)]="page22.employerAddress.aptType">{{x.display}}
+                      <input type="radio"  name="aptType" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page22.employerAddress.aptType">{{x.display}}
                     </div>
                   </div>
                 </div>
@@ -232,7 +231,7 @@
             <div class="col-md-4">
               <div class="row">
                 <div class="col-md-4">Number </div>
-                <div class="col-md-8"><input type="text" [(ngModel)]="page22.employerAddress.houseNumber"/>
+                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.houseNumber"/>
 
                 </div>
               </div>
@@ -242,7 +241,7 @@
               <div class="col-md-4">
                 <div class="row">
                   <div class="col-md-4">City or Town</div>
-                  <div class="col-md-8"><input type="text" [(ngModel)]="page22.employerAddress.city"/>
+                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.city"/>
 
                   </div>
                 </div>
@@ -251,18 +250,16 @@
                 <div class="row">
                   <div class="col-md-4">State</div>
                   <div class="col-md-8">
-                    <select [(ngModel)]="page22.employerAddress.state">
-                                              <option *ngFor="let x of states"  [value]="x.value">{{x.name}}</option>
-                                          </select>
-
+                    <select [(ngModel)]="page22.employerAddress.state" [disabled]="!isQuestionnaireEdit" >
+                        <option *ngFor="let x of states"  [value]="x.value">{{x.name}}</option>
+                    </select>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="row">
                   <div class="col-md-4">ZIP Code</div>
-                  <div class="col-md-8"><input type="text" [(ngModel)]="page22.employerAddress.zipCode"/>
-
+                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.zipCode"/>
                   </div>
                 </div>
               </div>
@@ -271,24 +268,21 @@
               <div class="col-md-4">
                 <div class="row">
                   <div class="col-md-4">Province</div>
-                  <div class="col-md-8"><input type="text" [(ngModel)]="page22.employerAddress.province"/>
-
+                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.province"/>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="row">
                   <div class="col-md-4">Postal Code</div>
-                  <div class="col-md-8"><input type="text" [(ngModel)]="page22.employerAddress.postalCode"/>
-
+                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.postalCode"/>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="row">
                   <div class="col-md-4">Country</div>
-                  <div class="col-md-8"><input type="text" [(ngModel)]="page22.employerAddress.country"/>
-
+                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.country"/>
                   </div>
                 </div>
               </div>

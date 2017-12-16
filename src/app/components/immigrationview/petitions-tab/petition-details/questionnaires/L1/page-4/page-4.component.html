@@ -7,11 +7,14 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-4">
-            <a (click)="gotoPrev()" class="prevbtn">Back</a>
+            <a (click)="gotoPrev()" class="prevbtn">Previous</a>
           </div>
           <div class="col-md-4 pagenoof36">Page 25 of 36</div>
           <div class="col-md-4">
-            <a (click)="gotoNext()" class="nextbtn">Save</a>
+            <!--<a (click)="gotoNext()" class="nextbtn">Save</a>-->
+            <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
+            <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
           </div>
         </div>
       </div>
@@ -27,63 +30,41 @@
             </div>
             <div class="col-md-12">
               <table width='100%' border="1" cellpadding="3" cellspacing="0">
-
-
-
                 <tr>
                   <td width="50%" align="center" valign="middle">Name and Address</td>
-
-
-
                   <td width="50%" align="center" valign="middle">Relationship</td>
                 </tr>
-
-
                 <tr>
-                  <!--<td><span></span><td>-->
-                  <td><input type="text" class="form-control" [(ngModel)]="page25.foreignOrUSCompanyAddress1"/></td>
-
-                  <td><input type="text" class="form-control" [(ngModel)]="page25.relationship1"/></td>
+                  <td><input type="text" class="form-control" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.foreignOrUSCompanyAddress1"/></td>
+                  <td><input type="text" class="form-control" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.relationship1"/></td>
                 </tr>
                 <tr>
-                  <!--<td><span></span><td>-->
-                  <td><input type="text" [(ngModel)]="page25.foreignOrUSCompanyAddress2"/></td>
-
-                  <td><input type="text" [(ngModel)]="page25.relationship2"/></td>
+                  <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.foreignOrUSCompanyAddress2"/></td>
+                  <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.relationship2"/></td>
                 </tr>
                 <tr>
-                  <!--<td><span></span><td>-->
-
-
-                  <td><input type="text" [(ngModel)]="page25.foreignOrUSCompanyAddress3"/></td>
-                  <td><input type="text" [(ngModel)]="page25.relationship3"/></td>
+                  <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.foreignOrUSCompanyAddress3"/></td>
+                  <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.relationship3"/></td>
                 </tr>
                 <tr>
-                  <!--<td><span></span><td>-->
-
-                  <td><input type="text" [(ngModel)]="page25.foreignOrUSCompanyAddress4"/></td>
-                  <td><input type="text" [(ngModel)]="page25.relationship4"/></td>
+                  <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.foreignOrUSCompanyAddress4"/></td>
+                  <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.relationship4"/></td>
                 </tr>
                 <tr>
-                  <!--<td><span></span><td>-->
-
-                  <td><input type="text" [(ngModel)]="page25.foreignOrUSCompanyAddress5"/></td>
-                  <td><input type="text" [(ngModel)]="page25.relationship5"/></td>
+                  <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.foreignOrUSCompanyAddress5"/></td>
+                  <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.relationship5"/></td>
                 </tr>
                   <tr>
-                      <!--<td><span></span><td>-->
-                      <td><input type="text" [(ngModel)]="page25.foreignOrUSCompanyAddress6" /></td>
-                      <td><input type="text" [(ngModel)]="page25.relationship6" /></td>
+                      <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.foreignOrUSCompanyAddress6" /></td>
+                      <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.relationship6" /></td>
                   </tr>
                   <tr>
-                      <!--<td><span></span><td>-->
-                      <td><input type="text" [(ngModel)]="page25.foreignOrUSCompanyAddress7" /></td>
-                      <td><input type="text" [(ngModel)]="page25.relationship7" /></td>
+                      <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.foreignOrUSCompanyAddress7" /></td>
+                      <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.relationship7" /></td>
                   </tr>
                   <tr>
-                      <!--<td><span></span><td>-->
-                      <td><input type="text" [(ngModel)]="page25.foreignOrUSCompanyAddress8" /></td>
-                      <td><input type="text" [(ngModel)]="page25.relationship8" /></td>
+                      <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.foreignOrUSCompanyAddress8" /></td>
+                      <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page25.relationship8" /></td>
                   </tr>
               </table>
             </div>

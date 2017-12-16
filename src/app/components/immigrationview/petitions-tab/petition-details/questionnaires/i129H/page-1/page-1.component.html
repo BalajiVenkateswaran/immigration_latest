@@ -10,7 +10,10 @@
           </div>
           <div class="col-md-4 pagenoof36">Page 13 of 36</div>
           <div class="col-md-4">
-            <a (click)="gotoNext()" class="nextbtn">Save & Continue</a>
+            <a (click)="gotoNext()" class="nextbtn">Next</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
+            <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
           </div>
         </div>
       </div>
@@ -20,7 +23,7 @@
             <div class="col-md-12" style="margin-top: 2%;">
               <div class="row">
                 <div class="col-md-4"><b>1.</b>Name of the Petitioner</div>
-                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.petitonerName"/></div>
+                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.petitonerName"/></div>
               </div>
             </div>
             <div class="col-md-12">
@@ -31,7 +34,7 @@
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-4"><b>2.a.</b>Name of the Beneficiary</div>
-              <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.beneficiaryName"/></div>
+              <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.beneficiaryName"/></div>
             </div>
           </div>
           <div *ngIf="appService.isImmigrationView()">
@@ -41,7 +44,7 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-4"><b>2.b.</b>Provide the total number of beneficiaries</div>
-                <div class="col-md-8"><input type="text" [(ngModel)]="I129Hpage1.totalNumberOfBeneficiaries"/></div>
+                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.totalNumberOfBeneficiaries"/></div>
               </div>
             </div>
           </div>
@@ -59,7 +62,7 @@
                 <td width="30%;" colspan="2">
                   <table width='100%'>
                     <tr>
-                      <td colspan="2" align="center" valign="middle">Period of Stay (mm/dd/yyyy)</td>
+                      <td colspan="2" align="center" valign="middle">Period of Stay (mm-dd-yyyy)</td>
                     </tr>
                     <tr>
                       <td width="50%" align="center" valign="middle">From</td>
@@ -70,28 +73,28 @@
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName1" class="form-control"/></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.subjectName1" class="form-control"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.fromDate1"
                                   [selDate]="fromDate1"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.toDate1"
                                   [selDate]="toDate1"></my-date-picker>
                 </td>
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName2"/></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.subjectName2"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.fromDate2"
                                   [selDate]="fromDate2"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.toDate2"
                                   [selDate]="toDate2"></my-date-picker>
                 </td>
@@ -100,14 +103,14 @@
               <tr>
                 <!--<td><span></span><td>-->
 
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName3"/></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.subjectName3"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.fromDate3"
                                   [selDate]="fromDate3"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.toDate3"
                                   [selDate]="toDate3"></my-date-picker>
                 </td>
@@ -115,14 +118,14 @@
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName4"/></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.subjectName4"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.fromDate4"
                                   [selDate]="fromDate4"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.toDate4"
                                   [selDate]="toDate4"></my-date-picker>
                 </td>
@@ -130,14 +133,14 @@
               </tr>
               <tr>
                 <!--<td><span></span><td>-->
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName5"/></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.subjectName5"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.fromDate5"
                                   [selDate]="fromDate5"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.toDate5"
                                   [selDate]="toDate5"></my-date-picker>
                 </td>
@@ -146,14 +149,14 @@
               <tr>
                 <!--<td><span></span><td>-->
 
-                <td><input type="text" [(ngModel)]="I129Hpage1.subjectName6"/></td>
+                <td><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="I129Hpage1.subjectName6"/></td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.fromDate6"
                                   [selDate]="fromDate6"></my-date-picker>
                 </td>
                 <td>
-                  <my-date-picker [options]="myDatePickerOptions"
+                  <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
                                   [(ngModel)]="I129Hpage1.toDate6"
                                   [selDate]="toDate6"></my-date-picker>
                 </td>
@@ -168,7 +171,7 @@
             <div class="col-md-12">
               <div class="row" *ngFor="let x of I129Hpage1Sought">
                 <div class="col-md-12">
-                  <input type="radio" name="sought" [value]="x.value" [(ngModel)]="I129Hpage1.sought">{{x.display}}
+                  <input type="radio" name="sought" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="I129Hpage1.sought">{{x.display}}
                 </div>
               </div>
               <div class="row">
@@ -180,8 +183,7 @@
                   <div class="row">
                     <div class="col-md-3" *ngFor="let x of I129Hpage1questions">
                       <label for="">
-                        <input type="radio" name="petitionfiledonbehalf" [value]="x.value"
-                               [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
+                        <input type="radio" name="petitionfiledonbehalf" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="I129Hpage1.petitionFiledOnBehalfOfBeneficiary"/>
                         {{x.display}}
                       </label>
                     </div>
@@ -194,8 +196,7 @@
                   <div class="row">
                     <div class="col-md-3" *ngFor="let x of I129Hpage1questions">
                       <label for="">
-                        <input type="radio" name="changeemployer" [value]="x.value"
-                               [(ngModel)]="I129Hpage1.changeOfEmployer"/>
+                        <input type="radio" name="changeemployer" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="I129Hpage1.changeOfEmployer"/>
                         {{x.display}}
                       </label>
                     </div>
@@ -209,8 +210,7 @@
                   <div class="row">
                     <div class="col-md-3" *ngFor="let x of I129Hpage1questions">
                       <label for="">
-                        <input type="radio" name="ownership" [value]="x.value"
-                               [(ngModel)]="I129Hpage1.doesBeneficiaryHaveOwnership"/>
+                        <input type="radio" name="ownership" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="I129Hpage1.doesBeneficiaryHaveOwnership"/>
                         {{x.display}}
                       </label>
                     </div>

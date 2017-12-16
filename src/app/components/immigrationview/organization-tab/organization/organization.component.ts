@@ -3,7 +3,7 @@ import {HeaderService} from '../../../common/header/header.service';
 import {Component, OnInit} from '@angular/core';
 import {OrganizationService} from './organization.service';
 import {FormControl, Validators} from '@angular/forms';
-import {IhDateUtil} from '../../../framework/utils/date.component';
+import {IHDateUtil} from '../../../framework/utils/date.component';
 import {DialogService} from 'ng2-bootstrap-modal';
 import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 import {MatDialog} from '@angular/material';
@@ -31,7 +31,7 @@ export class OrganizationComponent implements OnInit {
     private beforeCancelOrg;
     private beforeCancelAdmin;
     private beforeCancelSignin;
-    public datePikcerOptions= IhDateUtil.datePickerOptions;
+    public datePikcerOptions= IHDateUtil.datePickerOptions;
     email: FormControl;
     public emailRegex;
     private status = [
