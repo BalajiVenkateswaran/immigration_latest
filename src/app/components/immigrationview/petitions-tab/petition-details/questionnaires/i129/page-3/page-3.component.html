@@ -11,10 +11,10 @@
                     <div class="col-md-4 pagenoof36">Page 3 of 36</div>
                     <div class="col-md-4">
                         <a *ngIf="appService.isClientView()" (click)="submit()" class="nextbtn">Inform to firm</a>
-                        <a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn">Next</a>
-                      <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
-                      <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
-                      <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
+                        <a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn iportal-btnIMclient">Next</a>
+                      <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn iportal-btnIMclient" style="color: #FF0000 !important;">Cancel</a>
+                      <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient">Save</a>
+                      <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn iportal-btnIMclient">Edit</a>
 
                     </div>
                 </div>

@@ -1654,15 +1654,19 @@ tr.i129htblRow:nth-child(even) {
     margin: 10% auto; } }
 
 /*# sourceMappingURL=style.css.map */
+
+/*.questbtns {
+  background-color: #F6F7FA !IMPORTANT;
+  color: #B29FE1 !important;
+  border: 2px solid #B29FE1 !important;
+  margin-right: 8px;
+}*/
 /*Client-Tab styles*/
-
-
-
-            .rigicon{
-                color:#61BBF8;
-                font-size: 26px;
-                padding: 3px 10px 0px 10px;
-            }
+.rigicon {
+  color: #61BBF8;
+  font-size: 26px;
+  padding: 3px 10px 0px 10px;
+}
             .leficon{
                 color:#61BBF8;
                 font-size: 31px;
