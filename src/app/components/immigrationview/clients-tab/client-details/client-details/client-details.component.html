@@ -3,7 +3,7 @@
     <h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">
         <img style="margin-bottom: 4px !important;" src="../../../../assets/images/Group984.png" />&nbsp;&nbsp;&nbsp;<span>{{appService.clientfirstName}} {{appService.clientlastName}}</span> </h1>
       <div class="clearfix"></div>
-      <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Client Details</h2>
+      <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Beneficiary Details</h2>
       <div>
       <button type="submit" class="sendinvite no-marg-right" style="margin: -42px 8px 0 0!important;" [ngClass]="{'disableClass':disableSendInvite,'sendinvite no-marg-right':!disableSendInvite}"
         [disabled]="disableSendInvite" (click)="sendInvite($event)">Send Invite</button>

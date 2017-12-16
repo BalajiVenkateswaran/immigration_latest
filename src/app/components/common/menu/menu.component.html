@@ -58,7 +58,7 @@
       <li>
          <a (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Client Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-client-details"></span>
-                <span>Client Details</span>
+                <span>Beneficiary Details</span>
             </a>
         </li>
         <li ngbDropdown class="dropdown">
@@ -136,7 +136,7 @@
         <li>
             <a (click)="appService.moveToPage('immigrationview/manageaccount/organizations');highlightSBLink('Organizations');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Organizations') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
-                <span>Organizations</span>
+                <span>Petitioners</span>
             </a>
         </li>
         <li>
@@ -232,7 +232,7 @@
         <li ngbDropdown class="dropdown">
             <a (click)="appService.moveToPage('immigrationview/reports/client/status');highlightSBLink('immiview-clientstatusreports');submenuclick('immicilentreports')" [ngClass]="[checkForCurrentSBLink('immiview-clientstatusreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
-                <span>Clients</span>
+                <span>Beneficiaries</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" role="menu" *ngIf="immicilentreports" aria-labelledby="users" name="users" ngDefaultControl>
@@ -308,7 +308,7 @@
         <li>
             <a (click)="appService.moveToPage('immigrationview/organization/details');highlightSBLink('Org Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Org Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
-                <span>Org Details</span>
+                <span>Petitioner Details</span>
             </a>
         </li>
         <li>
@@ -323,7 +323,7 @@
         <li>
             <a (click)="appService.moveToPage('clientview/client/details');highlightSBLink('ClientDetails');submenuclick('')" [ngClass]="[checkForCurrentSBLink('ClientDetails') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-client-details"></span>
-                <span>Client Details</span>
+                <span>Beneficiary Details</span>
             </a>
         </li>
         <li>
@@ -584,7 +584,7 @@
         <li ngbDropdown class="dropdown">
             <a (click)="appService.moveToPage('superuserview/reports/clients/status');highlightSBLink('superuserview/reports/clients/status');submenuclick('superuserclientreports')" [ngClass]="[checkForCurrentSBLink('superuserview/reports/clients/status') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
-                <span>Clients</span>
+                <span>Beneficiaries</span>
                 <span class="ico-arrow"></span>
             </a>
             <ul class="listsidemenu" *ngIf="superuserclientreports" role="menu" aria-labelledby="users" name="users" ngDefaultControl>

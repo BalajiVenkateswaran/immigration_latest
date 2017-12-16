@@ -40,7 +40,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="fieldset">
-                                        <h3>Organization Docs</h3> <div class="clearfix"></div>
+                                        <h3>Petitioner Docs</h3> <div class="clearfix"></div>
                                         <div class="scrollpurpus">
                                             <div class="chkbox" *ngFor="let x of orgdocList; let xindex = index;">
                                                 <input #orgcheckBox [checked]="checkIfDocSelected(x)" type="checkbox" (change)="onDocSelection(x, orgcheckBox)"  name="{{x.fileName}}" id="{{x.fileId}}" /> <label class="docName" for="{{x.fileId}}" title="{{(xindex + 1) + '. ' + x.fileName}}">{{(xindex + 1) + '. ' + x.fileName}}</label>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="fieldset large">
-                                        <h3>Client Docs</h3>
+                                        <h3>Beneficiary Docs</h3>
                                         <div class="clearfix"></div>
                                         <div class="scrollpurpus">
                                             <div class="chkbox" *ngFor="let z of clientdocList; let zindex = index">

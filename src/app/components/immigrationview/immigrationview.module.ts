@@ -15,7 +15,7 @@ import {ImmigrationViewClientDetailsComponent} from './clients-tab/client-detail
 import {DependentDetailsComponent} from './clients-tab/client-details/dependent-details/dependent-details.component';
 import {ImmigrationViewDependentsComponent} from './clients-tab/client-details/dependents/dependents.component';
 import {ImmigrationviewDocumentExpirationsComponent} from './clients-tab/client-details/document-expirations/document-expirations.component';
-import {DocumentManagementComponent} from './clients-tab/client-details/document-management/document-management.component';
+import {DocumentManagementComponent} from './petitions-tab/petition-details/document-management/document-management.component';
 import {ClientDocumentRepositoryComponent} from './clients-tab/client-details/document-repository/document-repository.component';
 import {ImmigrationViewI797HistoryComponent} from './clients-tab/client-details/i-797-history/i-797-history.component';
 import {ImmigrationViewPassportInfoComponent} from './clients-tab/client-details/passport-info/passport-info.component';
