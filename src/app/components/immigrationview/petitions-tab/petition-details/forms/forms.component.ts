@@ -179,20 +179,17 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
                     }
                 });
                 this.formsService.generateForms(questionnaireId, this.headerService.user.accountId, event.data).subscribe(
-                    res => {
-                        if (res['statusCode'] === 'FAILURE') {
-                            this.errorMessage = true;
-                        } else {
-                           this.getFormsData();
-                           this.dialogService.removeAll();
-                        }
-                    }
-
-                );
+                res => {
+                      if (res['statusCode'] === 'FAILURE') {
+                          this.errorMessage = true;
+                      } else {
+                         this.getFormsData();
+                         this.dialogService.removeAll();
+                      }
+                    });
             }
 
-        })
-
+        });
     }
     onGenerateFormDownloadClick(event) {
           if (event.data.fileId) {
