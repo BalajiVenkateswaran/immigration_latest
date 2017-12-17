@@ -21,7 +21,6 @@ export class GenerateFormButton implements ICellRendererAngularComp {
     }
     onGenerateFormClick(){
         this.params.context.componentParent.onGenerateFormClick({ 'data': this.params.data});
-        
     }
 
 

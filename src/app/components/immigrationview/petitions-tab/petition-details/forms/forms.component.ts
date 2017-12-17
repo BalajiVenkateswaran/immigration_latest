@@ -168,7 +168,6 @@ export class FormsComponent extends DialogComponent<ConfirmModel, boolean> imple
             generateFormsPopup: true,
             title: 'Form Name',
             generateFormData: this.generateFormData
-
         }).subscribe((isConfirmed) => {
 
             if (isConfirmed) {

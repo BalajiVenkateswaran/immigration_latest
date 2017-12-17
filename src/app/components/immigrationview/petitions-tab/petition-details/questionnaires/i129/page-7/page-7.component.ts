@@ -14,7 +14,9 @@ export class I129Page7Component implements OnInit {
     isQuestionnaireEdit = false;
     public states: any[] = [];
     public page7: any = {
-        'preparerAddress': {}
+        'preparerAddress': {
+          'country' : 'USA'
+        }
     };
     public dateOfSignature: string;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
@@ -121,6 +123,7 @@ export class I129Page7Component implements OnInit {
                 this.dateOfSignature = this.page7['dateOfSignature'];
                 if (res['formPage']['preparerAddress'] !== undefined) {
                     this.page7.preparerAddress = res['formPage']['preparerAddress'];
+                    this.page7.preparerAddress.country = 'USA';
                 }
             }
         })

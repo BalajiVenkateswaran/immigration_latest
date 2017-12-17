@@ -123,7 +123,9 @@ export class I129Page1Component implements OnInit {
             };
         this.route.params.subscribe(params => {
             this.page1 = {
-                           'address': {},
+                           'address': {
+                             'country' : 'USA'
+                           },
                            'contact': {}
                          };
             this.questionnaireService.getQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 1).subscribe(res => {
@@ -131,6 +133,7 @@ export class I129Page1Component implements OnInit {
                     this.page1 = res['formPage'];
                     if (res['formPage']['address'] !== undefined) {
                         this.page1.address = res['formPage']['address'];
+                        this.page1.address.country = 'USA';
                     }
                     if (res['formPage']['contact'] !== undefined) {
                         this.page1.contact = res['formPage']['contact'];
@@ -148,7 +151,7 @@ export class I129Page1Component implements OnInit {
         this.page1 = this.beforecancelquestionnaire;
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-  saveQuestionnaireInformation(): boolean {
+    saveQuestionnaireInformation(): boolean {
         this.page1.pageNumber = 1;
 
         if (this.page1.address && (this.page1.address['state'] || this.page1.address['zipCode'] )) {
