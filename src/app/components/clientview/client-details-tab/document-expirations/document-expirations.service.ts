@@ -9,19 +9,20 @@ export class DocumentExpirationsService {
 
     }
     public getDocumentExpiration(clientId: string) {
-        return this.restService.getData('/clientview/DocumentExpiration/' + clientId);
+        return this.restService.getData('/client/details/documentexpiration/' + clientId);
     }
 
-    public saveDocumentExpairation(documentExpiration: DocumentExpiration) {
+    public saveDocumentExpairation(documentExpiration: DocumentExpiration, userId: string) {
         let req = {
-            'documentExpirations': documentExpiration
+            'documentExpirations': documentExpiration,
+          'updatedByUser': userId
         }
-        return this.restService.postData('/clientview/DocumentExpiration', req);
+        return this.restService.postData('/client/details/documentexpiration', req);
     }
 
 
     public deleteDocumentExpiration(documentExpirationId: string) {
-        return this.restService.deleteData('/client/DocumentExpiration/' + documentExpirationId);
+        return this.restService.deleteData('/client/details/documentexpiration/' + documentExpirationId);
     }
 
 }

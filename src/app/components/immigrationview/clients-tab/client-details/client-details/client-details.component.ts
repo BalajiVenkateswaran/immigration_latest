@@ -32,11 +32,11 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     // Profile section variables
     isProfileEdit;
     isPersonalInfoEdit;
-  public status: any[];
-  public gender: any[];
-  public user: User;
-  public dateOfBirth: string;
-  public creationDate: string;
+    public status: any[];
+    public gender: any[];
+    public user: User;
+    public dateOfBirth: string;
+    public creationDate: string;
     public warningMessage = false;
     public user1;
     public myDatePickerOptions: IMyOptions = {

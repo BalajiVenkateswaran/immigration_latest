@@ -134,7 +134,13 @@ export class HeaderComponent extends DialogComponent<ConfirmModel, boolean> impl
   }
 
   getRoleName() {
-    return this.user.roleName === ApplicationRoles.CLIENT ? 'Benificiary' : this.user.roleName;
+    if (this.user.roleName === ApplicationRoles.CLIENT) {
+      return  'Benificiary';
+    } else if (this.user.roleName === ApplicationRoles.IMMIGRATION_MANAGER) {
+      return 'Immigration Admin';
+    } else {
+      return this.user.roleName;
+    }
   }
 
 }

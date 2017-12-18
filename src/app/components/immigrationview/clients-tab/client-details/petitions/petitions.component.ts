@@ -11,6 +11,7 @@ import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/sma
 import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 import {AddPetitionDialogComponent, NewPetitionData} from './addpetition.component';
+import {ImmigrationClientCommonService} from '../common/immigration-client.service';
 
 export interface ConfirmModel {
     title: string;
@@ -52,7 +53,7 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
-    constructor(private immigrationviewpetitionService: ImmigrationViewPetitionsService, public appService: AppService,
+    constructor(private immigrationviewpetitionService: ImmigrationViewPetitionsService, public appService: AppService, private immigrationClientCommonService: ImmigrationClientCommonService,
         private menuService: MenuService, private router: Router, private headerService: HeaderService,
                 private clientDetailsService: ImmigrationViewClientDetailsService, private dialog: MatDialog) {
         this.addPetition = new FormGroup({
@@ -141,6 +142,7 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
     this.clientDetailsService.getClientDetails(this.appService.clientId)
       .subscribe((res) => {
         this.clientDetails = res['clientDetails'];
+        this.immigrationClientCommonService.userId = this.clientDetails['userId'];
         this.client = res['client'];
         this.appService.clientfirstName = res['clientDetails']['firstName'];
         this.appService.clientlastName = res['clientDetails']['lastName'];

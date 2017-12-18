@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {HeaderService} from '../../../common/header/header.service';
 import {SortType} from '../../../framework/smarttable/types/query-parameters';
 import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
+import {ApplicationRoles} from '../../../common/constants/applicationroles.constants';
 
 @Component({
   selector: 'app-profileloginhistory',
@@ -57,11 +58,7 @@ export class ProfileLoginHisComponent implements OnInit {
       ]
     };
   }
-  ngOnInit() {
-
-
-  }
-
+  ngOnInit() {}
 
   dataWithParameters(queryData) {
     if (queryData) {
@@ -76,6 +73,15 @@ export class ProfileLoginHisComponent implements OnInit {
             this.data = res['userLoginHistory'];
             for (let i = 0; i < this.data.length; i++) {
               this.data[i]['accountName'] = this.headerService.user.firstName.concat(' ' + this.headerService.user.lastName);
+              let roleName = this.data[i]['role'];
+              if (roleName === ApplicationRoles.CLIENT) {
+                roleName = 'Benificiary';
+              } else if (roleName === ApplicationRoles.IMMIGRATION_MANAGER) {
+                roleName = 'Immigration Admin';
+              } else {
+                roleName = roleName;
+              }
+              this.data[i]['role'] = roleName;
             }
           }
           this.paginationData = res['pageMetadata'];

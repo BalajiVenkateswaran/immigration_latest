@@ -66,7 +66,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
                 },
                 {
                     headerName: 'Status',
-                    field: 'status',
+                    field: 'status'
                 }
             ]
         };
@@ -74,7 +74,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     getClientDocumentExp() {
         this.documentExpirationsService.getDocumentExpiration(this.headerService.user.userId)
             .subscribe((res) => {
-                this.data = res['DocumentExpiration'];
+                this.data = res['documentExpiration'];
             });
     }
     ngOnInit() {
@@ -87,8 +87,8 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
             title: 'Add Document Expiration',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.appService.addClientNewDocExp['clientId'] = this.appService.clientId;
-                this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp).subscribe((res) => {
+                this.appService.addClientNewDocExp['userId'] = this.headerService.user.userId;
+                this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp, this.headerService.user.userId).subscribe((res) => {
                     if (res['statusCode'] === 'SUCCESS') {
                         this.getClientDocumentExp();
                     }
@@ -97,6 +97,9 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
         });
     }
     clientDocExpSave() {
+        if (!this.addClientNewDocExp['status']) {
+          this.addClientNewDocExp['status'] = 'Active';
+        }
         if (this.addClientNewDocExp['validFrom'] && this.addClientNewDocExp['validFrom']['formatted']) {
             this.addClientNewDocExp['validFrom'] = this.addClientNewDocExp['validFrom']['formatted'];
         }
@@ -126,8 +129,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
 
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-
-                this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp).subscribe((res) => {
+                this.documentExpirationsService.saveDocumentExpairation(this.appService.addClientNewDocExp, this.headerService.user.userId).subscribe((res) => {
                     if (res['statusCode'] === 'SUCCESS') {
                         this.getClientDocumentExp();
                     }

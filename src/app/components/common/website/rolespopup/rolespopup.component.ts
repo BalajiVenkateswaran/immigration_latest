@@ -92,6 +92,10 @@ export class RolesPopupComponent extends DialogComponent<ConfirmModel, boolean> 
     let roleName = user.roleName;
     if (user.roleName === ApplicationRoles.CLIENT) {
       roleName = 'Beneficiary';
+    } else if (user.roleName === ApplicationRoles.IMMIGRATION_MANAGER) {
+      roleName = 'Immigration Admin';
+    } else {
+      roleName = user.roleName;
     }
     return user.accountName == null ? roleName : roleName + ' in ' + user.accountName;
   }

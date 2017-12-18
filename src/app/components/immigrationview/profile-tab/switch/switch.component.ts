@@ -49,7 +49,15 @@ export class ProfileSwitchComponent implements OnInit {
     dataWithParameters(queryData) {
       let userRoleList = this.appService.userroleList;
       for (let userRole of userRoleList) {
-        userRole['displayRoleName'] = userRole.roleName === ApplicationRoles.CLIENT ? 'Beneficiary' : userRole.roleName;
+        let roleName;
+        if (userRole.roleName === ApplicationRoles.CLIENT) {
+          roleName = 'Benificiary';
+        } else if (userRole.roleName === ApplicationRoles.IMMIGRATION_MANAGER) {
+          roleName = 'Immigration Admin';
+        } else {
+          roleName = userRole.roleName;
+        }
+        userRole['displayRoleName'] = roleName;
       }
       this.data = userRoleList;
       this.user = this.headerService.user;

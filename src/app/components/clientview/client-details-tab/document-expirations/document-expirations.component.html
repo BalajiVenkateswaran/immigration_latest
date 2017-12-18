@@ -30,14 +30,14 @@
                             <div class="col-md-5">Valid From:</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" id="cvDocExpValidFrom" [(ngModel)]="addClientNewDocExp.validFrom"
+                                                id="cvDocExpValidFrom" [(ngModel)]="addClientNewDocExp.validFrom"
                                                 [selDate]="validFrom"></my-date-picker>
 
                             </div>
                             <div class="col-md-5">Valid To:</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" id="cvDocExpValidTo" [(ngModel)]="addClientNewDocExp.validTo"
+                                                id="cvDocExpValidTo" [(ngModel)]="addClientNewDocExp.validTo"
                                                 [selDate]="validTo"></my-date-picker>
 
                             </div>

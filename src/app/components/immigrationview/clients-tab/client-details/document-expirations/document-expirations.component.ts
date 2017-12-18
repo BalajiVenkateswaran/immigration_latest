@@ -10,6 +10,7 @@ import {HeaderService} from '../../../../common/header/header.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
 import {MatDialog} from '@angular/material';
+import {ImmigrationClientCommonService} from '../common/immigration-client.service';
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -44,7 +45,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     dateFormat: 'mm-dd-yyyy',
     showClearDateBtn: false,
   };
-  constructor(private immigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService,
+  constructor(private immigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService, private immigrationClientCommonService: ImmigrationClientCommonService,
     public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
@@ -78,7 +79,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
   getDocumentsExpirations() {
     this.immigrationviewDocumentExpirationsService.getDocumentExpiration(this.appService.clientId)
       .subscribe((res) => {
-        this.data = res['DocumentExpiration'];
+        this.data = res['documentExpiration'];
       });
   }
   ngOnInit() {
@@ -92,7 +93,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
 
-        this.addNewDocExp['clientDocumentExpirationId'] = this.addNewDocExp['clientId'];
+        this.appService.addNewDocExp['userId'] = this.immigrationClientCommonService.userId;
         this.immigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp, this.headerService.user.userId).subscribe((res) => {
           if (res['statusCode'] === 'SUCCESS') {
             this.getDocumentsExpirations();
@@ -103,10 +104,9 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     });
   }
   docExpSave() {
-    if (this.addNewDocExp['status'] === '' || null || undefined) {
-      this.addNewDocExp['status'] === 'Active';
+    if(!this.addNewDocExp['status']){
+      this.addNewDocExp['status'] = 'Active';
     }
-    this.addNewDocExp['clientId'] = this.appService.clientId;
     this.addNewDocExp['validFrom'] = this.addNewDocExp['validFrom']['formatted'];
     this.addNewDocExp['validTo'] = this.addNewDocExp['validTo']['formatted'];
     this.appService.addNewDocExp = this.addNewDocExp;
