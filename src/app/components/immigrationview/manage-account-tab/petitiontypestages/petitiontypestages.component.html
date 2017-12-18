@@ -42,8 +42,8 @@
                                         <input *ngIf="addStages" type="text" class="selecteditems" [value]="addPetionStagesName" (input)="addPetionStagesName=$event.target.value" autofocus/>
                                     </ul>
                                     <button *ngIf="saveorder" type="button" class="iportal-btnIMclient pull-right no-marg-right" style="margin-top: 5px!important;margin-bottom: 5px;" (click)="saveOrder()">Save Order</button>
-                                    <button *ngIf="cancelBtn" type="button" class="iportal-btnIMclient pull-left no-marg-right" style="margin-top: 5px!important; margin-bottom: 5px;" (click)="cancelPetitionStages()">Cancel</button>
-                                    <button *ngIf="saveBtn" type="button" class="iportal-btnIMclient pull-right no-marg-right" style="margin-top: 5px!important; margin-bottom: 5px;" (click)="savePetitionStages(petitionStages)">Save</button>
+                                    <button *ngIf="cancelBtn" type="button" class="iportal-btnIMclient pull-left no-marg-right" style="margin-top: 5px!important; margin-bottom: 5px;color:#F87A00 !important;" (click)="cancelPetitionStages()">Cancel</button>
+                                    <button *ngIf="saveBtn" type="button" class="iportal-btnIMclient pull-right no-marg-right" style="margin-top: 5px!important; margin-bottom: 5px;color: #008000 !important;" (click)="savePetitionStages(petitionStages)">Save</button>
                                 </div>                            
 
                             </form>

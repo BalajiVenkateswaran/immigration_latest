@@ -3,7 +3,7 @@ import { Component, OnDestroy, EventEmitter, Output, Input } from '@angular/core
 import { ICellRendererAngularComp } from 'ag-grid-angular/main';
 @Component({
 
-    template: `<button class="iportal-btn"   (click)="onGenerateFormClick()">Generate Form</button>`,
+    template: `<button class="btn iportal-btnIMclient"   (click)="onGenerateFormClick()">Generate Form</button>`,
     styleUrls: ['./forms.component.scss']
 
 })

@@ -17,7 +17,7 @@
                             <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editProfileForm()" *ngIf="isUserEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isUserEdit">
                                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isUserEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
+                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" (click)="saveUserProfile()" *ngIf="isUserEdit==false">Save</button>
                             </div>
                         </div>
                     </div>

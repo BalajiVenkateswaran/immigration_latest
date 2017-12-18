@@ -27,8 +27,9 @@
 <div class="main-content">
 
     <div class="table-data petition-docs">
-        <h2 class="clickname" style="width:60%;float:left;border-bottom: none!important;" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}}</h2>
-        <h2 style="float:right;width:40%; text-align:right;border-bottom: none!important;">{{appService.petitionDetails}}</h2>
+        <h1 class="clickname" style="width:60%;float:left;border-bottom: none!important;" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">
+            <img style="margin-bottom: 4px !important;" src="../../../../assets/images/Group984.png" />&nbsp;&nbsp;&nbsp; <span>{{appService.clientfirstName}} {{appService.clientlastName}}</span></h1>
+        <h1 style="float:right;width:40%; text-align:right;border-bottom: none!important;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>
         <h2 class="headerinsections" style="border-bottom: none!important;color: #4EA0F9 !important;margin-top: 0px !important;margin-bottom: 7px!important;">Document Management</h2>
         <!--<h2>Document Management</h2>-->
@@ -73,13 +74,13 @@
                         </form>
                     </div>
                     <div class="col-md-4 right-form">
-                        <div class="row removedclass">
+                        <div class="row removedclass" style="margin-bottom: 6px !important; margin-left: 4px !important;">
                             <div class="col-md-1"></div>
-                            <button type="submit" class="btn btn-primary" style="background: #34a853 !important;" *ngIf="isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'saveorder':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
-                          <button _ngcontent-c7="" class="btn btn-default pull-left no-marg-right" *ngIf="isSaveOrderVisible" style="margin-top: 0px!important;    margin-right: -20px !important;margin-left: -14px;background: #ea4335 !important;color: #fff!important;" type="button" (click)="cancelOrder()">Cancel</button>
+                            <button type="submit" class="btn iportal-btnIMclient" style="color: #34a853 !important;" *ngIf="isSaveOrderVisible" (click)="saveOrder()" [ngClass]="{'iportal-btnIMclient':isSaveOrderVisible,'myclass':!isSaveOrderVisible}">Save Order</button>
+                          <button _ngcontent-c7="" class="btn iportal-btnIMclient pull-left no-marg-right" *ngIf="isSaveOrderVisible" style="margin-top: 0px!important;    margin-right: -20px !important;margin-left: -14px;color: #ea4335 !important;" type="button" (click)="cancelOrder()">Cancel</button>
 
                           <div class="col-md-1"></div>
-                            <button type="submit" class="btn iportal-btnIMclient" style="margin-left: -44px!important;" *ngIf="isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'saveorder':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
+                            <button type="submit" class="btn iportal-btnIMclient" style="margin-left: -44px!important;" *ngIf="isMergeOrderVisible" (click)="mergeOrder()"[ngClass]="{'iportal-btnIMclient':isMergeOrderVisible,'myclass':!isMergeOrderVisible}">Merge Order</button>
 
                         </div>
 
