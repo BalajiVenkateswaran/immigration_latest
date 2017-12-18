@@ -3,7 +3,7 @@ import { Component, OnDestroy, EventEmitter, Output, Input } from '@angular/core
 import { ICellRendererAngularComp } from 'ag-grid-angular/main';
 @Component({
 
-    template: `<button class="iportal-btn"  [ngClass]="{'myclass':disableButton(),'iportal-btn':!disableButton()}"  [disabled]="disableButton()"
+    template: `<button class="btn iportal-btnIMclient"  [ngClass]="{'myclass':disableButton(),'btn iportal-btnIMclient':!disableButton()}"  [disabled]="disableButton()"
  (click)="onDonwloadClicked()">Download Form</button>`,
 
 

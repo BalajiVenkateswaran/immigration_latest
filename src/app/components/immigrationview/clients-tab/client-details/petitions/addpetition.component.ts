@@ -53,10 +53,12 @@ import {HeaderService} from '../../../../common/header/header.service';
               </div>
               <div class="col-md-7">
                 <div class="row">
-                  <div class="col-md-6"><button type="button" class="btn btn-primary" id="ivClientDtlsPetitionSave1" (click)="petitionSave()" 
+                  <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+	style="color: #008000 !important;margin-top: 4px!important;margin-right: 11px; width: 90%;" id="ivClientDtlsPetitionSave1" (click)="petitionSave()" 
                                                 [disabled]="newPetitionItem.petitiontype == undefined || newPetitionItem.petitionSubType == undefined
                                                 || newPetitionItem.petitionName == null || newPetitionItem.petitionName == undefined || newPetitionItem.petitionName == ''">Save</button></div>
-                  <div class="col-md-6"><button type="button" class="btn btn-default" id="ivClientDtlsPetitionCancel1" (click)="cancelClick()">Cancel</button></div>
+                  <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+	style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="ivClientDtlsPetitionCancel1" (click)="cancelClick()">Cancel</button></div>
                 </div>
               </div>
             </div>
