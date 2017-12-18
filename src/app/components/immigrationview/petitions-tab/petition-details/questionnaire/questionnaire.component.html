@@ -19,7 +19,7 @@
         <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Client</h2>
         <ih-smart-table class="immiview-ques-client" [settings]="settings" [data]="data"
                      (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditQuestionnaireClick($event)" (onDeleteClick)="onDeleteClientQuestionnaireClick($event)" ></ih-smart-table>
-        <button [(disabled)]="sendQuestionnaire" type="submit" class="submitbtn" (click)="sendQuestionnaireClient()" [ngClass]="{'myclass':sendQuestionnaire,'submitbtn':!sendQuestionnaire}">Send Questionnaire to client </button>
+        <button [(disabled)]="sendQuestionnaire" type="submit" class="btn iportal-btnIMclient pull-right" (click)="sendQuestionnaireClient()" [ngClass]="{'myclass':sendQuestionnaire,'btn iportal-btnIMclient pull-right':!sendQuestionnaire}">Send Questionnaire to client </button>
         <div class="clearfix"></div>
         <h2 class="headerinsections" style="margin-top: 20px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Immigration Officer</h2>
          <ih-smart-table class="immiview-ques-emp" [settings]="settings1" [data]="employerData"
@@ -68,8 +68,10 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="onSaveQuestionnaireClick()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="onCancelQuestionnaireClick()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+	style="color: #008000 !important;margin-top: 4px!important; width: 90%;"  (click)="onSaveQuestionnaireClick()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+	style="color: #008000 !important;margin-top: 4px!important; width: 90%;"  (click)="onCancelQuestionnaireClick()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>
@@ -110,8 +112,10 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="onSaveEmpQuestionniaredeleteQuestionnaire()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="btn btn-default" (click)="onCancelEmpQuestionnaireClick()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+	style="color: #008000 !important;margin-top: 4px!important; width: 90%;"  (click)="onSaveEmpQuestionniaredeleteQuestionnaire()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+	style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" (click)="onCancelEmpQuestionnaireClick()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>
