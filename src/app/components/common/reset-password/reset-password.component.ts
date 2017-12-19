@@ -76,4 +76,8 @@ export class ResetPasswordComponent {
       this.confirmPasswordValidFlag = false;
     }
   }
+
+  cancelClick() {
+    this.dialogRef.close(false);
+  }
 }

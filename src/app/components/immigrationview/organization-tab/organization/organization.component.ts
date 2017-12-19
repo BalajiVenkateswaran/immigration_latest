@@ -24,7 +24,7 @@ export class OrganizationComponent implements OnInit {
     isSigninEdit = true;
     private signinDetails: any = {};
     private adminstrativeDetails: any = {};
-    private signinAddress: any = {};
+    signinAddress: any = {};
     private adminstrativeAddress: any = {};
     private isPersonProfileEdit;
     private orgDetails: any = {};
