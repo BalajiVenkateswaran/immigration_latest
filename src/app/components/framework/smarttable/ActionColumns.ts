@@ -23,10 +23,10 @@ export class ActionColumns implements ICellRendererAngularComp    {
     constructor() {
     }
     delRow() {
-        this.params.colDef.data.onDeleteClick.emit(this.params.data);
+        this.params.colDef.data.onDeleteClick.emit(this.params);
     }
     editRow() {
-        this.params.colDef.data.onEditClick.emit(this.params.data);
+        this.params.colDef.data.onEditClick.emit(this.params);
     }
 
 }

@@ -23,7 +23,7 @@
         <div class="clearfix"></div>
         <h2 class="headerinsections" style="margin-top: 20px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Immigration Officer</h2>
          <ih-smart-table class="immiview-ques-emp" [settings]="settings1" [data]="employerData"
-                     (onEditClick)="onEditEmpQuestionnaireClick($event)" (onDeleteClick)="onDeleteEmpQuestionniareClick($event)" ></ih-smart-table>
+                     (onEditClick)="onEditEmpQuestionnaireClick($event.data)" (onDeleteClick)="onDeleteEmpQuestionniareClick($event)" ></ih-smart-table>
     </div>
 </div>
 
