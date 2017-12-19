@@ -161,26 +161,23 @@
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoGender">Gender</label></div>
                       <div class="col-md-8">
-                          <select  style="border-radius: 4px;"  [(ngModel)]="clientPersonalInfo.gender">
+                          <select [disabled]="isPersonalInfoEdit" style="border-radius: 4px;"  [(ngModel)]="clientPersonalInfo.gender">
                               <option *ngFor="let genderTypes of gender" id="{{genderTypes.name}}">{{genderTypes.name}}</option>
                           </select>
-                          <!--<span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.gender}}</span>-->
                       </div>
                   </div>
 
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoDob">Date Of Birth</label></div>
                       <div class="col-md-8">
-                          <my-date-picker style="border-radius: 4px;"   [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="clientPersonalInfo.dateOfBirth"
+                          <my-date-picker [disabled]="isPersonalInfoEdit" style="border-radius: 4px;"   [options]="myDatePickerOptions" [(ngModel)]="clientPersonalInfo.dateOfBirth"
                                           [selDate]="dateOfBirth" id="ivClientDtlsPinfoDob"></my-date-picker>
-                          <!--<span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.dateOfBirth}}</span>-->
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoSsn">U.S. Social Security Number (if any)</label></div>
                       <div class="col-md-8">
-                          <input type="text" style="border-radius: 4px;"  id="ivClientDtlsPinfoSsn" [formControl]="ssn" [(ngModel)]="clientPersonalInfo.ssn" />
-                          <!--<span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span>-->
+                          <input type="text" style="border-radius: 4px;" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoSsn" [(ngModel)]="clientPersonalInfo.ssn" />
                       </div>
                   </div>
                   <div class="row sfm" *ngIf="isPersonalInfoEdit==false && ssn != null && ssn.errors">
@@ -193,25 +190,25 @@
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoAlienRegNo">Alien Registration Number</label></div>
                       <div class="col-md-8">
-                          <input type="text" style="border-radius: 4px;"   id="ivClientDtlsPinfoAlienRegNo" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" /><!--<span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.aleinRegistrationNumber}}</span>-->
+                          <input type="text" style="border-radius: 4px;"  [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoAlienRegNo" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" />
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoCOB">Country of Birth</label></div>
                       <div class="col-md-8">
-                          <input type="text" style="border-radius: 4px;"   id="ivClientDtlsPinfoCOB" [(ngModel)]="clientPersonalInfo.countryOfBirth" /><!--<span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.countryOfBirth}}</span>-->
+                          <input type="text" style="border-radius: 4px;"  [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoCOB" [(ngModel)]="clientPersonalInfo.countryOfBirth" />
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoSOB">State/Province of Birth</label></div>
                       <div class="col-md-8">
-                          <input type="text" style="border-radius: 4px;"  id="ivClientDtlsPinfoSOB" [(ngModel)]="clientPersonalInfo.stateOfBirth" /><!--<span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.stateOfBirth}}</span>-->
+                          <input type="text" style="border-radius: 4px;" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoSOB" [(ngModel)]="clientPersonalInfo.stateOfBirth" />
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoCitizen">Country of Citizenship or Nationality</label></div>
                       <div class="col-md-8">
-                          <input type="text" style="border-radius: 4px;"  id="ivClientDtlsPinfoCitizen" [(ngModel)]="clientPersonalInfo.citizenship" /><!--<span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.citizenship}}</span>-->
+                          <input type="text" style="border-radius: 4px;" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoCitizen" [(ngModel)]="clientPersonalInfo.citizenship" />
                       </div>
                   </div>
 

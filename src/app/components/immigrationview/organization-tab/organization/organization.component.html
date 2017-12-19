@@ -1,5 +1,5 @@
 <div class="main-content">
-    
+
     <div class="table-data-forms">
         <h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">
             <img style="margin-bottom: 4px !important;" src="../../../../assets/images/Group984.png" />&nbsp;&nbsp;&nbsp; <span>{{appService.clientfirstName}} {{appService.clientlastName}}</span></h1>
@@ -211,6 +211,17 @@
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Apt./Ste./Flr./Door</label></div>
+              <div class="col-md-8">
+                <select style="border-radius: 4px;" [disabled]="isSigninEdit" id="ivPetitionerAdrInfApt" [(ngModel)]="signinAddress.aptType">
+                  <option id="APT" value="APT">APT</option>
+                  <option id="STE" value="STE">STE</option>
+                  <option id="FLR" value="FLR">FLR</option>
+                  <option id="DOOR" value="DOOR">DOOR</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><label for="pi-petitiondescription">Number</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" *ngIf="isSigninEdit==false" [readonly]="isEdit" [(ngModel)]="signinAddress.aptNo" />
                 <span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.aptNo}}</span>

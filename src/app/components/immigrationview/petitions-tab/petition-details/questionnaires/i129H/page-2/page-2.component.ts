@@ -74,7 +74,6 @@ export class I129HPage2Component implements OnInit {
   }
 
   gotoNext() {
-
   }
 
   gotoPrev() {
@@ -89,13 +88,13 @@ export class I129HPage2Component implements OnInit {
   }
 
   mapDatesToSave() {
-    if (this.I129Hpage2['petitionerDateOfSignature'] != null) {
+    if (this.I129Hpage2['petitionerDateOfSignature'] != null && this.I129Hpage2['petitionerDateOfSignature']['formatted'] != null) {
       this.I129Hpage2['petitionerDateOfSignature'] = this.I129Hpage2['petitionerDateOfSignature']['formatted'];
     }
-    if (this.I129Hpage2['officialDateOfSignature'] != null) {
+    if (this.I129Hpage2['officialDateOfSignature'] != null && this.I129Hpage2['officialDateOfSignature']['formatted'] != null) {
       this.I129Hpage2['officialDateOfSignature'] = this.I129Hpage2['officialDateOfSignature']['formatted'];
     }
-    if (this.I129Hpage2['projectManagerDateOfSignature'] != null) {
+    if (this.I129Hpage2['projectManagerDateOfSignature'] != null && this.I129Hpage2['projectManagerDateOfSignature']['formatted'] != null) {
       this.I129Hpage2['projectManagerDateOfSignature'] = this.I129Hpage2['projectManagerDateOfSignature']['formatted'];
     }
   }

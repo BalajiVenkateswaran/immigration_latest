@@ -357,7 +357,7 @@
                 <h2>Sponsor Information On Form</h2>
                 <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditSponsorInfoClick()" *ngIf="isSponsorInfoEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
-                  <button type="button" (click)="cancelSponsorInfoEdit()"  class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isSponsorInfoEdit==false">Cancel</button>
+                  <button type="button" (click)="onCancelSponsorInfoClick()"  class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isSponsorInfoEdit==false">Cancel</button>
                   <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" (click)="onSaveSponsorInfoClick()" *ngIf="isSponsorInfoEdit==false">Save</button>
                 </div>
               </div>

@@ -8,10 +8,11 @@ import {DialogService} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
 import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {DeepCloneUtil} from '../../../../framework/utils/deepclone.component';
 
 
 @Component({
-    selector: 'app-petition-details',
+    selector: 'ih-petition-details',
     templateUrl: './petition-details.component.html',
     styleUrls: ['./petition-details.component.scss'],
   providers: [PetitionDetailsService]
@@ -59,6 +60,7 @@ export class PetitionDetailsComponent implements OnInit {
     private sponsorInfo: any = {};
     public receiptInfo: any = {};
     private sponsorInfoAddress: any = {};
+    private beforeSponsorInfoAddress: any;
     private petitionAdditionalDetails: any = {};
     public datePickerOptions = IHDateUtil.datePickerOptions;
     isLCAInfoEdit = true;
@@ -104,7 +106,7 @@ export class PetitionDetailsComponent implements OnInit {
                     this.sponsorInfoAddress = this.sponsorInfo.address;
                 }
 
-                if (res['clientId'] != undefined) {
+                if (res['clientId'] !== undefined) {
                     this.appService.clientId = res['clientId'];
                 }
                 this.isPetitionInformationEdit = true;
@@ -134,7 +136,7 @@ export class PetitionDetailsComponent implements OnInit {
                 this.expiresOn = this.receiptInfo.expiresOn;
                 this.approvalReceivedOn = this.receiptInfo.approvalReceivedOn;
                 this.sentToGovAgencyOn = this.receiptInfo.sentToGovAgencyOn;
-                if (res['petitionTypeId'] != undefined) {
+                if (res['petitionTypeId'] !== undefined) {
                     this.petitionDetailsService.getPetitionStages(this.headerService.user.accountId, res['petitionTypeId'])
                         .subscribe((res) => {
                             this.petitionStages = res['petitionStageList'];
@@ -145,7 +147,7 @@ export class PetitionDetailsComponent implements OnInit {
                     .subscribe((res) => {
                         this.users = res['users'];
                         this.users.filter(user => {
-                            if (user.emailId == this.petitionDetails['assignedTo']) {
+                            if (user.emailId === this.petitionDetails['assignedTo']) {
                                 this.assignedToName = user.firstName + ', ' + user.lastName;
                             }
                         });
@@ -154,17 +156,15 @@ export class PetitionDetailsComponent implements OnInit {
         this.getPetionDelOrgs();
         this.status = [
             { value: '0', name: 'Open' },
-            { value: '1', name: 'Close' },
-
+            { value: '1', name: 'Close' }
         ];
         this.receiptNumber = [
             { value: '1', name: 'Yes' },
-            { value: '0', name: 'No' },
-
+            { value: '0', name: 'No' }
         ];
 
-        if (this.petitionDetails['markForDeletion'] == true) {
-            this.petitionDetails['status'] == 'MFD';
+        if (this.petitionDetails['markForDeletion'] === true) {
+            this.petitionDetails['status'] = 'MFD';
         }
         this.defaultSelected = this.receiptNumber[1].name;
         this.petitionDetailsService.getAllPetitionTypesAndSubTypes()
@@ -204,7 +204,7 @@ export class PetitionDetailsComponent implements OnInit {
 
     // is edit function for read only
     onEditPetitionInfoClick() {
-        this.beforeCancelPetition = (<any>Object).assign({}, this.petitionInformation);
+        this.beforeCancelPetition = DeepCloneUtil.deepClone(this.petitionInformation);
         this.startDate = this.petitionInformation.startDate;
         this.deniedDate = this.petitionInformation.deniedDate;
         this.withdrawDate = this.petitionInformation.withdrawDate;
@@ -252,9 +252,11 @@ export class PetitionDetailsComponent implements OnInit {
             this.petitionInformation['rejectedDate'] = this.petitionDetails['rejectedDate']['formatted'];
         }
         if (this.petitionDetails['markForDeletion'] === true) {
-            this.petitionDetails['status'] === 'MFD';
+            this.petitionDetails['status'] = 'MFD';
         }
-        if (this.petitionDetails['name'] === '' || this.petitionDetails['name'] == null || this.petitionDetails['name'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined && this.petitionDetails['status'] == '' || this.petitionDetails['status'] == null || this.petitionDetails['status'] == undefined) {
+        if (this.petitionDetails['name'] === '' || this.petitionDetails['name'] == null || this.petitionDetails['name'] === undefined && this.petitionDetails['status'] === '' ||
+          this.petitionDetails['status'] == null || this.petitionDetails['status'] === undefined && this.petitionDetails['status'] === '' || this.petitionDetails['status'] == null ||
+          this.petitionDetails['status'] === undefined) {
             this.sfmpi = true;
         } else {
             this.sfmpi = false;
@@ -296,7 +298,7 @@ export class PetitionDetailsComponent implements OnInit {
         this.sentToGovAgencyOn = this.receiptInfo.sentToGovAgencyOn;
         this.isReceiptInfoEdit = false;
         this.isReceiptInfoSave = true;
-        if (this.receiptInfo.showReceiptNumberToClient == 1) {
+        if (this.receiptInfo.showReceiptNumberToClient === 1) {
             this.receiptInfo['showReceiptNumberToClient'] = 1;
         } else {
             this.receiptInfo['showReceiptNumberToClient'] = 0;
@@ -360,13 +362,13 @@ export class PetitionDetailsComponent implements OnInit {
         this.receiptInfo['petitionId'] = this.appService.petitionId;
         this.receiptInfo['petitionReceiptId'] = this.receiptInfo['petitionReceiptId'];
 
-        if (this.receiptInfo.showReceiptNumberToClient != 0 && this.receiptInfo.showReceiptNumberToClient != 1) {
+        if (this.receiptInfo.showReceiptNumberToClient !== 0 && this.receiptInfo.showReceiptNumberToClient !== 1) {
             this.sfmRI = true;
         } else {
             this.sfmRI = false;
             this.petitionDetailsService.saveReceiptInfo(this.receiptInfo, this.headerService.user.userId)
                 .subscribe((res) => {
-                    if (res['receiptInfo'] != undefined) {
+                    if (res['receiptInfo'] !== undefined) {
                         this.isReceiptInfoSave = false;
                         this.receiptInfo = res['receiptInfo'];
 
@@ -440,7 +442,7 @@ export class PetitionDetailsComponent implements OnInit {
         this.petitionDetailsService.saveLcaInfo(this.lcaInfo, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isLCAInfoEdit = true;
-                if (res['lcaInfo'] != undefined) {
+                if (res['lcaInfo'] !== undefined) {
                     this.lcaInfo = res['lcaInfo'];
                 }
             });
@@ -448,25 +450,26 @@ export class PetitionDetailsComponent implements OnInit {
     }
     // For Sponsor Info On Form
     onEditSponsorInfoClick() {
-        this.beforeCancelSponsor = (<any>Object).assign({}, this.sponsorInfo);
+        this.beforeCancelSponsor = DeepCloneUtil.deepClone(this.sponsorInfo);
+        this.beforeSponsorInfoAddress = DeepCloneUtil.deepClone(this.sponsorInfoAddress);
         this.isSponsorInfoEdit = !this.isSponsorInfoEdit;
     }
 
     // cancel button function
     onCancelSponsorInfoClick() {
         this.sponsorInfo = this.beforeCancelSponsor;
+        this.sponsorInfoAddress = this.beforeSponsorInfoAddress;
         this.isSponsorInfoEdit = !this.isSponsorInfoEdit;
     }
     onSaveSponsorInfoClick() {
-
         this.sponsorInfo.petitionId = this.appService.petitionId;
-        if (this.sponsorInfoAddress != undefined) {
+        if (this.sponsorInfoAddress !== undefined) {
             this.sponsorInfo.address = this.sponsorInfoAddress;
         }
         this.petitionDetailsService.saveSponsorInfo(this.sponsorInfo, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isSponsorInfoEdit = true;
-                if (res['sponsorInfo'] != undefined) {
+                if (res['sponsorInfo'] !== undefined) {
                     this.sponsorInfo = res['sponsorInfo'];
 
                 }
@@ -475,7 +478,7 @@ export class PetitionDetailsComponent implements OnInit {
 
     // edit petitionAdditionalDetails Details
     onEditAdditionalDetailsClick() {
-        this.backendReceiptInfo = (<any>Object).assign({}, this.petitionAdditionalDetails);
+        this.backendReceiptInfo = DeepCloneUtil.deepClone(this.petitionAdditionalDetails);
         this.receiptDate = this.petitionAdditionalDetails.receiptDate;
         this.receiptNoticeDate = this.petitionAdditionalDetails.receiptNoticeDate;
         this.approvedOn = this.petitionAdditionalDetails.approvedOn;
@@ -503,14 +506,14 @@ export class PetitionDetailsComponent implements OnInit {
         this.petitionAdditionalDetails['petitionId'] = this.appService.petitionId;
         this.petitionAdditionalDetails['petitionReceiptId'] = this.petitionAdditionalDetails['petitionReceiptId'];
 
-        if (this.petitionAdditionalDetails['showReceiptNumberToClient'] == '' || null || undefined) {
+        if (this.petitionAdditionalDetails['showReceiptNumberToClient'] === '' || null || undefined) {
             this.sfmRI = true;
         } else {
             this.sfmRI = false;
             this.petitionDetailsService.savePetitionAdditionalDetails(this.petitionAdditionalDetails, this.headerService.user.userId)
                 .subscribe((res) => {
                     this.isAdditionalDetailsEdit = true;
-                    if (res['petitionAdditionalDetails'] != undefined) {
+                    if (res['petitionAdditionalDetails'] !== undefined) {
                         this.petitionAdditionalDetails = res['petitionAdditionalDetails'];
                     }
                 });
@@ -519,7 +522,7 @@ export class PetitionDetailsComponent implements OnInit {
 
 
     onEditDelegatedOrgsClick() {
-        this.beforeCancelPetition = (<any>Object).assign({}, this.petitionDetails);
+        this.beforeCancelPetition = DeepCloneUtil.deepClone(this.petitionDetails);
         this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
     }
 
@@ -550,7 +553,7 @@ export class PetitionDetailsComponent implements OnInit {
   onPetitionStatusChange(event) {
       if (event.target.value === 'Close') {
         this.dialog.open(InformationDialogComponent, {
-          data:{
+          data: {
             message: 'Closing a Petition will lead to removal of the Questionnaires (if any) in the Petition'
           }
         });

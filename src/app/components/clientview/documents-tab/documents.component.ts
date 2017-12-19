@@ -124,25 +124,25 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
       // dropdown code end
       this.route.params.subscribe(params => {
           if (params['clientId'] === '') {
-              this.documentservice.getOrgNames(this.headerService.user.userId).subscribe((res) => {
-                  this.orgNames = res['orgs'];
-                  this.appService.documentSideMenu(this.orgNames);
-                  this.appService.selectedOrgClienttId = this.orgNames[0].clientId;
-                  this.documentservice.selectedOrgId = this.orgNames[0].orgId;
-                  this.uploader.setOptions({
-                    url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId + '/updatedBy/' + this.headerService.user.userId
-                  });
-                  this.uploader.clearQueue();
-                  this.menuComponent.highlightSBLink(this.orgNames[0].orgName);
-                  this.getFilesList();
-              });
-          } else {
-              this.appService.selectedOrgClienttId = params['clientId'];
+            this.documentservice.getOrgNames(this.headerService.user.userId).subscribe((res) => {
+              this.orgNames = res['orgs'];
+              this.appService.documentSideMenu(this.orgNames);
+              this.appService.selectedOrgClienttId = this.orgNames[0].clientId;
+              this.documentservice.selectedOrgId = this.orgNames[0].orgId;
               this.uploader.setOptions({
                 url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId + '/updatedBy/' + this.headerService.user.userId
               });
               this.uploader.clearQueue();
+              this.menuComponent.highlightSBLink(this.orgNames[0].orgName);
               this.getFilesList();
+            });
+          } else if (params['clientId']) {
+            this.appService.selectedOrgClienttId = params['clientId'];
+            this.uploader.setOptions({
+              url: environment.appUrl + '/file/upload/entityId/' + this.appService.selectedOrgClienttId + '/entityType/CLIENT/org/' + this.documentservice.selectedOrgId + '/updatedBy/' + this.headerService.user.userId
+            });
+            this.uploader.clearQueue();
+            this.getFilesList();
           }
           this.headerService.showSideBarMenu('clientview-document', 'clientview/documents');
       });
@@ -252,8 +252,7 @@ export class DocumentsComponent extends DialogComponent<ConfirmModel, boolean> i
         editFiles: true,
         getData: false,
         title: 'Edit File Name',
-        editFileObject: this.editFileObject,
-
+        editFileObject: this.editFileObject
     }).subscribe((isConfirmed) => {
         if (isConfirmed) {
             let fileName = this.editFileObject.fileName.concat('.pdf');

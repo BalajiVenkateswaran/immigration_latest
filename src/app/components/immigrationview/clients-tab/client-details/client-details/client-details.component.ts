@@ -12,6 +12,7 @@ import {ImmigrationClientCommonService} from '../common/immigration-client.servi
 import {MatDialog} from '@angular/material';
 import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 @Component({
     selector: 'ih-client-details',
@@ -39,11 +40,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     public creationDate: string;
     public warningMessage = false;
     public user1;
-    public myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   public beforeCancelProfile;
   public beforeCancelPersonal;
     public disableSendInvite: boolean;
@@ -87,6 +84,7 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
 
                     this.mapToClientProfile();
                     this.mapToClientPersonalInfo();
+                    this.dateOfBirth = this.clientDetails['dateOfBirth'];
                     this.appService.firstName = this.clientDetails['firstName'];
                     this.appService.lastName = this.clientDetails['lastName'];
                 }
@@ -135,7 +133,6 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
     editPersonalInfoForm() {
         this.beforeCancelPersonal = (<any>Object).assign({}, this.clientPersonalInfo);
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
-        this.dateOfBirth = this.clientDetails['dateOfBirth'];
     }
 
     // cancel button function
@@ -171,8 +168,6 @@ export class ImmigrationViewClientDetailsComponent implements OnInit {
           }
         })
 
-    }
-    onDateChanged(event: IMyDateModel) {
     }
 
     // Save Client Details
