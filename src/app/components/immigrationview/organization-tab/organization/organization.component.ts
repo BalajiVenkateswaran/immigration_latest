@@ -18,6 +18,7 @@ import {MatDialog} from '@angular/material';
 export class OrganizationComponent implements OnInit {
 
     public warningMessage = false;
+    highlightSBLink;
     isProfileEdit;
     isAdminEdit = true;
     isSigninEdit = true;
@@ -39,7 +40,7 @@ export class OrganizationComponent implements OnInit {
                 { value: 'Inactive', name: 'Inactive' }
                 ];
 
-    constructor(private appService: AppService, private  organizationService: OrganizationService,
+    constructor(public appService: AppService, private  organizationService: OrganizationService,
         private dialogService: DialogService, private dialog: MatDialog, private headerService: HeaderService) {
             this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             this.email = new FormControl('', [Validators.required, Validators.pattern(this.emailRegex)]);
