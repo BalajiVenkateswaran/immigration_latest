@@ -18,7 +18,7 @@
                             <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editProfileForm()" *ngIf="isProfileEdit==true" id="cvClientProfileEdit">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
                                 <button type="button" (click)="cancelProfileEdit()" id="cvClientProfileCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isProfileEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="cvClientProfileSave1" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
+                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="cvClientProfileSave1" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
                                 <button type="button" (click)="cancelProfileEdit2()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isProfileEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;" (click)="saveClientProfile2()" *ngIf="isProfileEdit==false">Save</button>
+                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important;" (click)="saveClientProfile2()" *ngIf="isProfileEdit==false">Save</button>
                             </div>
                         </div>
 
@@ -83,7 +83,7 @@
                             <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;"  (click)="editPersonalInfoForm()" *ngIf="isPersonalInfoEdit==true" id="cvClientProfileInfoEdit">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
                                 <button type="button" (click)="cancelPersonalInfoEdit()" id="cvClientProfileInfoCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save"class="editbtn tbl-head-btn iportal-btnIMclient" id="cvClientProfileInfoSave1" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+                                <button type="submit" value="Save"class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="cvClientProfileInfoSave1" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
                                 <button type="button" (click)="cancelPersonalInfoEdit()" id="cvClientProfileInfoCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" id="cvClientProfileInfoSave2" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;"  (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+                                <button type="submit" value="Save" id="cvClientProfileInfoSave2" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important;"  (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
