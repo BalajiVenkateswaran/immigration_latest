@@ -1,9 +1,9 @@
 import {AppService} from '../../../services/app.service';
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ResetPasswordService} from './reset-password.service';
-import {MatDialog} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {InformationDialogComponent} from '../../framework/popup/information/information.component';
 
 @Component({
@@ -11,7 +11,7 @@ import {InformationDialogComponent} from '../../framework/popup/information/info
   templateUrl: './reset-password.component.html',
   providers: [ResetPasswordService]
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent {
   passwordRegex: RegExp;
   public oldPasswordValidationFlag= false;
   public confirmPasswordValidFlag= false;
@@ -31,14 +31,7 @@ export class ResetPasswordComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required])
   });
   constructor(private router: Router, private resetPasswordService: ResetPasswordService,
-    private appService: AppService, private dialog: MatDialog) {
-    console.log(this.login);
-
-    }
-
-  ngOnInit() {
-    this.router.navigate(['', { outlets: this.outlet }], { skipLocationChange: true });
-  }
+    private appService: AppService, private dialog: MatDialog, public dialogRef: MatDialogRef<ResetPasswordComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   loginSubmit(login, isValid) {
     console.log('Reset Password %o', login);
@@ -57,6 +50,7 @@ export class ResetPasswordComponent implements OnInit {
               message: 'Password is successfully updated'
             }
           }).afterClosed().subscribe((isConfirmed) => {
+              this.dialogRef.close(false);
               this.appService.moveToPage('login');
           });
         } else {
@@ -69,10 +63,10 @@ export class ResetPasswordComponent implements OnInit {
 
       });
   }
+
   validatePassword() {
     if (this.login.value.oldPassword === this.login.value.newPassword) {
       this.oldPasswordValidationFlag = true;
-
     } else {
       this.oldPasswordValidationFlag = false;
     }
@@ -82,7 +76,4 @@ export class ResetPasswordComponent implements OnInit {
       this.confirmPasswordValidFlag = false;
     }
   }
-
-
 }
-

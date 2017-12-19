@@ -96,7 +96,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvPInfoLostPassport">Have you ever lost a passport?</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoLostPassport" [(ngModel)]="passportDetailsFileList.everLostPassport" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.everLostPassport}}</span></div>
+                        <div class="col-md-8">
+                          <span *ngIf="isEdit==true">{{passport.everLostPassport==true ? 'YES': passport.everLostPassport == false ? 'NO' : ''}}</span>
+                          <select *ngIf="isPassportInfoEdit==false" [(ngModel)]="passportDetailsFileList.everLostPassport" class="form-control">
+                            <option value="true" id="ivClientDtlsPInfoLostPassportYes">YES</option>
+                            <option value="false" id="ivClientDtlsPInfoLostPassportNo">NO</option>
+                          </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvPInfoTravelDoc">Travel Document#</label></div>

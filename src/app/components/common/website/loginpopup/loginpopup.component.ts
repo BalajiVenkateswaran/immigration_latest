@@ -14,6 +14,7 @@ import {ApplicationViews} from '../../constants/applicationviews.constants';
 import {RolesPopupComponent} from '../rolespopup/rolespopup.component';
 import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 import {MatDialog} from '@angular/material';
+import {ResetPasswordComponent} from '../../reset-password/reset-password.component';
 
 export interface ConfirmModel {
   title: string;
@@ -26,7 +27,8 @@ export interface ConfirmModel {
 @Component({
   selector: 'ih-login-popup',
   templateUrl: 'loginpopup.component.html',
-  providers: [LoginPopupService, ManageAccountUserService]
+  providers: [LoginPopupService, ManageAccountUserService],
+  entryComponents: [ResetPasswordComponent]
 })
 export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
   public static uiBuildNumber: string = environment.buildNumber;
@@ -134,7 +136,7 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
           if (res['resetPassword'] !== undefined
             && res['resetPassword'] === true) {
             this.close();
-            this.appService.moveToPage('reset-password');
+            this.dialog.open(ResetPasswordComponent, {});
           } else {
             this.close();
             this.appService.userLoginHistoryId = res['userLoginHistoryId'];

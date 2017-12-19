@@ -66,7 +66,6 @@ import {ConfirmationDialogComponent} from './components/framework/popup/confirma
       NgIdleModule.forRoot()],
     entryComponents: [
         ConfirmorgComponent, ActionColumns, InformationDialogComponent, ConfirmationDialogComponent,
-
         ActionIcons, FilterComponent
     ],
     declarations: [
@@ -82,7 +81,6 @@ import {ConfirmationDialogComponent} from './components/framework/popup/confirma
         LooseCurrencyPipe,
         ActionColumns,
 
-        ResetPasswordComponent,
         InformationDialogComponent,
         ConfirmationDialogComponent,
         ConfirmorgComponent,

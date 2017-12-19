@@ -3,7 +3,6 @@ import {ModuleWithProviders} from '@angular/core';
 import {HeaderComponent} from './components/common/header/header.component';
 import {MenuComponent} from './components/common/menu/menu.component';
 import {FooterComponent} from './components/common/footer/footer.component';
-import {ResetPasswordComponent} from './components/common/reset-password/reset-password.component';
 
 import {I129Page2Component} from './components/immigrationview/petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
 
@@ -36,15 +35,6 @@ export const appRoutes: Routes = [
         component: FooterComponent,
         outlet: 'footer'
     },
-
-
-    {
-        path: 'reset-password',
-        component: ResetPasswordComponent
-    },
-
-
-
   /**
    * Custom module routes
    */
