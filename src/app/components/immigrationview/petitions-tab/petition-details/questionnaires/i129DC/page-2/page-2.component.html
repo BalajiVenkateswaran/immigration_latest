@@ -4,7 +4,6 @@
         <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <h1 style="float:right;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>-->
-        <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
@@ -13,22 +12,21 @@
                     <div class="col-md-4 pagenoof36">Page 20 of 36</div>
                     <div class="col-md-4">
                         <a (click)="gotoNext()" class="nextbtn">Next</a>
-                        <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
-                        <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
-                        <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn iportal-btnIMclient" style="color: #FF0000 !important;">Cancel</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient" style="color: #008000 !important;">Save</a>
+                        <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn btn iportal-btnIMclient">Edit</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 Questionnaireheader">
                 <h2>Fee Exemption and/or Determination</h2>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
-                        <div class="col-md-8">Are you a nonprofit research organization or a governmental research organization, as defined in 8 CFR 214.2(h)(19)(iii)(C)?</div>
+                        <div class="col-md-8" style="margin-top:10px!important;">Are you a nonprofit research organization or a governmental research organization, as defined in 8 CFR 214.2(h)(19)(iii)(C)?</div>
                         <div class="col-md-4">
                             <div class="row">
-                                 <div class="col-md-3" *ngFor="let x of questions"><input type="radio" [(disabled)]="!isQuestionnaireEdit" name="isOrgOrEntityDefinedIn8CFR19C" [value]="x.value" [(ngModel)]="page2.isOrgOrEntityDefinedIn8CFR19C">{{x.display}} </div>
+                                 <div class="col-md-3" style="margin-top:10px!important;" *ngFor="let x of questions"><input type="radio" [(disabled)]="!isQuestionnaireEdit" name="isOrgOrEntityDefinedIn8CFR19C" [value]="x.value" [(ngModel)]="page2.isOrgOrEntityDefinedIn8CFR19C">{{x.display}} </div>
                             </div>
                         </div>
                         <div class="col-md-8">Is this the second or subsequent request for an extension of stay that this petitioner has filed for this alien?</div>
@@ -76,16 +74,14 @@
                             <p><b>NOTE:</b>  A petitioner seeking initial approval of H-1B nonimmigrant status for a beneficiary, or seeking approval to employ an H-1B nonimmigrant currently working for another employer, must submit an additional $500 Fraud Prevention and Detection fee.  For petitions filed on or after December 18, 2015, an additional fee of $4,000 must be submitted if you responded yes to Item Numbers 1.d. and 1.d.1. of Section 1. of this supplement.  This $4,000 fee was mandated by the provisions of Public Law 114-113.</p>
                             <p>The Fraud Prevention and Detection Fee and Public Law 114-113 fee do not apply to H-1B1 petitions. These fees, when applicable, may not be waived. You must include payment of the fees when you submit this form.  Failure to submit the fees when required will result in rejection or denial of your submission.  Each of these fees should be paid by separate checks or money orders.</p>
                         </div>
-                    </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 Questionnaireheader">
                 <h2>Numerical Limitation Information </h2>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-top:10px!important;">
                             <p class="fieldsetheading"> Specify the type of H-1B petition you are filing. (select only one box): </p>
                         </div>
                         <div class="col-md-6" *ngFor="let x of petitionType">
@@ -164,9 +160,7 @@
                                 <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.zipCode"/></div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>

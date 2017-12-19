@@ -3,46 +3,36 @@
         <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <h1 style="float:right;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>-->
-        <div class="row">
             <div class="col-md-12">
-                <div class="row">
 
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-4 pagenoof36">Page 19 of 36</div>
                     <div class="col-md-4">
                         <a (click)="gotoNext()" class="nextbtn">Next</a>
-                        <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
-                        <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
-                        <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn iportal-btnIMclient" style="color: #FF0000 !important;">Cancel</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient" style="color: #008000 !important;">Save</a>
+                        <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn btn iportal-btnIMclient">Edit</a>
                     </div>
-                </div>
             </div>
-
-                </div>
-                <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
+        <div class="col-md-12">
+                <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="padding: 0px 20px 0px !important;">
+                        <div class="col-md-6"style="margin-top: 10px !important;">
                                 <div class="col-md-4">Name of the Petitioner</div>
                                 <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.petitionerName" /></div>
-                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="row">
+                        <div class="col-md-6"style="margin-top: 10px !important;">
+                            
                                 <div class="col-md-4">Name of the Beneficiary</div>
                                 <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.beneficiaryname"/></div>
-                            </div>
                         </div>
-                    </div>
                 </div>
-        <div class="row">
-            <div class="col-md-12">
+        </div>
+            <div class="col-md-12 Questionnaireheader">
                 <h2>General Information</h2>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12"style="margin-top:10px!important;">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
                         <div class="col-md-12">
                             <p class="fieldsetheading">Employer Information - (select all items that apply)</p>
                         </div>
@@ -136,16 +126,14 @@
                                 <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page1.naicscode" /></div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 Questionnaireheader">
                 <h2>Fee Exemption and/or Determination</h2>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-top: 10px!important;">
                             <p>
                                 In order for USCIS to determine if you must pay the additional $1,500 or $750 American Competitiveness
                                 and Workforce Improvement Act (ACWIA) fee, answer all of the following questions:
@@ -173,9 +161,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>

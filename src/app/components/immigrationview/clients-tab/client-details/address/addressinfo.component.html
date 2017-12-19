@@ -28,12 +28,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfStreet1" [(ngModel)]="WorkaddressinfoList.address.street1" /></div>
+                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;overflow: hidden; white-space: nowrap;" title="{{WorkaddressinfoList.address.street1}}">{{WorkaddressinfoList.address.street1}}</span></div>
+                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" type="text" id="ivClientAdrInfStreet1" [(ngModel)]="WorkaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.street2}}</span></div>
+                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;overflow: hidden; white-space: nowrap;" title="{{WorkaddressinfoList.address.street2}}">{{WorkaddressinfoList.address.street2}}</span></div>
                         <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfStreet2" [(ngModel)]="WorkaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">

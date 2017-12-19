@@ -13,7 +13,7 @@
                         <a *ngIf="appService.isClientView()" (click)="submit()" class="nextbtn">Inform to firm</a>
                         <a *ngIf="appService.isImmigrationView()" (click)="gotoNext()" class="nextbtn iportal-btnIMclient">Next</a>
                       <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn iportal-btnIMclient" style="color: #FF0000 !important;">Cancel</a>
-                      <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient">Save</a>
+                      <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient"style="color: #008000 !important;">Save</a>
                       <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn iportal-btnIMclient">Edit</a>
 
                     </div>
@@ -147,7 +147,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-4" *ngFor="let x of aptType">
+                                        <div class="col-md-3" *ngFor="let x of aptType">
                                             {{x.display}}<input type="radio" name="currentResidentialAptType" [value]="x.value" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page3.address.aptType">
                                         </div>
                                     </div>

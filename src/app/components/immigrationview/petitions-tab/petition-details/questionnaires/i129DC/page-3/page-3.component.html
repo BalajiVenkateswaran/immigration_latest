@@ -4,7 +4,6 @@
         <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <h1 style="float:right;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>-->
-        <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
@@ -12,20 +11,19 @@
                     </div>
                     <div class="col-md-4 pagenoof36">Page 21 of 36</div>
                     <div class="col-md-4">
-                        <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
-                        <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
-                        <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn iportal-btnIMclient" style="color: #FF0000 !important;">Cancel</a>
+                        <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient" style="color: #008000 !important;">Save</a>
+                        <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn btn iportal-btnIMclient">Edit</a>
 
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 Questionnaireheader">
                 <h2>Numerical Limitation Information</h2>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-top:10px!important;">
                             <p class="fieldsetheading">If you answered Item Number 1.d. "CAP Exempt," you must specify the reason(s) this petition is exempt from the numerical limitation for H-1B classification:</p>
                         </div>
                         <div class="col-md-12"><input type="checkbox" [disabled]="!isQuestionnaireEdit" name="isPetitionerIn20USC1001a" value="" [(ngModel)]="page3.capExemptReason.isPetitionerIn20USC1001a" [checked]="page3.capExemptReason.isPetitionerIn20USC1001a === toggles[0].value" (change)="$event.target.checked? (page3.capExemptReason.isPetitionerIn20USC1001a = toggles[0].value) : (page3.capExemptReason.isPetitionerIn20USC1001a = toggles[1].value)"> The petitioner is an institution of higher education as defined in section 101(a) of the Higher Education Act, of 1965, 20 U.S.C. 1001(a).</div>
@@ -36,17 +34,16 @@
                         <div class="col-md-12"><input type="checkbox" [disabled]="!isQuestionnaireEdit" name="isBeneficiaryRecievedWaiverInSection214I" value="" [(ngModel)]="page3.capExemptReason.isBeneficiaryRecievedWaiverInSection214I" [checked]="page3.capExemptReason.isBeneficiaryRecievedWaiverInSection214I === toggles[0].value" (change)="$event.target.checked? (page3.capExemptReason.isBeneficiaryRecievedWaiverInSection214I = toggles[0].value) : (page3.capExemptReason.isBeneficiaryRecievedWaiverInSection214I = toggles[1].value)"> The beneficiary of this petition is a J-1 nonimmigrant physician who has received a waiver based on section 214(l) of the Act.</div>
                         <div class="col-md-12"><input type="checkbox" [disabled]="!isQuestionnaireEdit" name="isBeneficiaryLimitationinSection104or106" value="" [(ngModel)]="page3.capExemptReason.isBeneficiaryLimitationinSection104or106" [checked]="page3.capExemptReason.isBeneficiaryLimitationinSection104or106 === toggles[0].value" (change)="$event.target.checked? (page3.capExemptReason.isBeneficiaryLimitationinSection104or106 = toggles[0].value) : (page3.capExemptReason.isBeneficiaryLimitationinSection104or106 = toggles[1].value)"> The beneficiary of this petition has been counted against the cap and (1) is applying for the remaining portion of the 6 year period of admission, or (2) is seeking an extension beyond the 6-year limitation based upon sections 104(c) or 106(a) of the American Competitiveness in the Twenty-First Century Act (AC21).</div>
                         <div class="col-md-12"><input type="checkbox" [disabled]="!isQuestionnaireEdit" name="isPetitionerPursuantOfPublicLaw110229" value="" [(ngModel)]="page3.capExemptReason.isPetitionerPursuantOfPublicLaw110229" [checked]="page3.capExemptReason.isPetitionerPursuantOfPublicLaw110229 === toggles[0].value" (change)="$event.target.checked? (page3.capExemptReason.isPetitionerPursuantOfPublicLaw110229 = toggles[0].value) : (page3.capExemptReason.isPetitionerPursuantOfPublicLaw110229 = toggles[1].value)"> The petitioner is an employer subject to the Guam-CNMI cap exemption pursuant to Public Law 110-229.</div>
-                    </div>
+                   
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 Questionnaireheader">
                 <h2>Off-Site Assignment of H-1B Beneficiaries </h2>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-                    <div class="row">
-                        <div class="col-md-8">The beneficiary of this petition will be assigned to work at an off-site location for all or part of the period for which H-1B classification sought. </div>
-                        <div class="col-md-4">
+                        <div class="col-md-8" style="margin-top:10px!important;">The beneficiary of this petition will be assigned to work at an off-site location for all or part of the period for which H-1B classification sought. </div>
+                        <div class="col-md-4" style="margin-top:10px!important;">
                             <div class="row">
                                  <div class="col-md-3" *ngFor="let x of questions"><input type="radio" [disabled]="!isQuestionnaireEdit" name="isBeneficiaryH1BClassificationSought" [value]="x.value" [(ngModel)]="page3.isBeneficiaryH1BClassificationSought">{{x.display}} </div>
                             </div>
@@ -66,9 +63,7 @@
                                   <div class="col-md-3" *ngFor="let x of questions"><input type="radio" [disabled]="!isQuestionnaireEdit" name="isBeneficiaryPaidAtOffsiteLocation" [value]="x.value" [(ngModel)]="page3.isBeneficiaryPaidAtOffsiteLocation">{{x.display}} </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
