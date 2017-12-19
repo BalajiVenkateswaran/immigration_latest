@@ -15,7 +15,6 @@ import {ImmigrationViewPetitionsComponent} from './clients-tab/client-details/pe
 import {ImmigrationViewVisasComponent} from './clients-tab/client-details/visas/visas.component';
 import {PetitionsComponent} from './petitions-tab/petitions/petitions.component';
 import {PetitionDocumentRepositoryComponent} from './petitions-tab/petition-details/document-repository/petition-document-repository.component';
-import {FormsComponent} from './petitions-tab/petition-details/forms/forms.component';
 import {NotesComponent} from './petitions-tab/petition-details/notes/notes.component';
 import {PetitionDetailsComponent} from './petitions-tab/petition-details/petition-details/petition-details.component';
 import {ImmigrationviewQuestionnaireComponent} from './petitions-tab/petition-details/questionnaire/questionnaire.component';
@@ -52,11 +51,6 @@ import {ManageAccountPreferencesComponent} from './manage-account-tab/preference
 import {ManageAccountShippingAddressComponent} from './manage-account-tab/shippingaddress/shippingaddress.component';
 import {ManageAccountUserComponent} from './manage-account-tab/user/user.component';
 import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-details/user-details.component';
-import {ProfileChangePwdComponent} from './profile-tab/changepassword/changepassword.component';
-import {ProfileLoginHisComponent} from './profile-tab/loginhistory/loginhistory.component';
-import {ProfileSwitchComponent} from './profile-tab/switch/switch.component';
-import {ProfileTodoListComponent} from './profile-tab/todolist/todolist.component';
-import {ProfileUserComponent} from './profile-tab/user/user.component';
 import {ClientsCreatedReportsComponent} from './reports-tab/client/created/created.component';
 import {ClientStatusReportsComponent} from './reports-tab/client/status/status.component';
 import {PetitionFinalActionComponent} from './reports-tab/petition/final-action/final-action.component';
@@ -134,10 +128,6 @@ const IMMIGRATION_VIEW_PETITION_ROUTER: Routes = [
   {
     path: 'petition/details/document-repository',
     component: PetitionDocumentRepositoryComponent
-  },
-  {
-    path: 'petition/details/forms',
-    component: FormsComponent
   },
   {
     path: 'petition/details/notes',

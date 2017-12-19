@@ -34,16 +34,16 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
     @Input() data: Object = {};
     @Input() paginationData: Object = {};
     @Input() addMorefilters: boolean;  // for morefilters
-    @Output() onAddClick = new EventEmitter();
     @Output() onRowClick = new EventEmitter();
+    @Output() onAddClick = new EventEmitter();
+    @Output() onEditClick = new EventEmitter();
     @Output() onDeleteClick = new EventEmitter();
     @Output() onColumnFilterClick = new EventEmitter();
     @Output() onPaginationTemplateClick = new EventEmitter();
     @Output() dataWithQueryParams = new EventEmitter();
     public gridOptions;
     public paginationTemplate: boolean;
-    public clickFlag = false;
-    public deleteSubscription;
+    //public clickFlag = false;
     public deleteData;
     public isAddButtonEnable: boolean;
     public isAddFilterButtonEnable: boolean;
@@ -59,14 +59,6 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
         console.log('constructor %o', this.settings);
         this.gridOptions = <GridOptions>{};
         this.queryParameters = new QueryParameters();
-        this.deleteSubscription = ActionColumns.sendDeleteData.subscribe(res => {
-            if (res !== undefined) {
-                this.deleteData = res;
-                this.clickFlag = true;
-            } else {
-                this.clickFlag = false;
-            }
-        });
 
         /*this.smartTableService.getFilterData().subscribe(data => {
             let newData = data.data
@@ -141,12 +133,9 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
         this.onAddClick.emit(this.isAddButtonEnable);
     }
     onCellClick(data) {
-        if (this.clickFlag === true) {
-            this.onDeleteClick.emit(data);
-            this.clickFlag = false;
-        } else {
-            this.onRowClick.emit(data);
-        }
+      if (data.column.colDef.headerTooltip !== 'Actions') {
+          this.onRowClick.emit(data);
+      }
     }
 
     getFilterType(headerName: string): string {
@@ -210,12 +199,27 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
             this.gridOptions['isDeleteEnable'] = this.settings['isDeleteEnable'];
         } else {
             this.gridOptions.isDeleteEnable = true;
-            this.settings['columnsettings'].unshift({
-                headerName: '',
-                headerTooltip: 'Actions',
-                width: 80,
-                cellRendererFramework: ActionColumns
-            });
+        }
+
+        if (this.settings.hasOwnProperty('isEditEnable')) {
+          this.gridOptions.isEditEnable = this.settings['isEditEnable'];
+        } else {
+          this.gridOptions.isEditEnable = false;
+        }
+
+        if (this.gridOptions.isDeleteEnable || this.gridOptions.isEditEnable) {
+          this.settings['columnsettings'].unshift({
+            headerName: '',
+            headerTooltip: 'Actions',
+            width: 80,
+            cellRendererFramework: ActionColumns,
+            data: {
+              isDeleteEnable: this.gridOptions.isDeleteEnable,
+              isEditEnable: this.gridOptions.isEditEnable,
+              onEditClick: this.onEditClick,
+              onDeleteClick: this.onDeleteClick
+            }
+          });
         }
 
         if (this.settings.hasOwnProperty('columnFilter')) {
@@ -263,12 +267,12 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
             if (item['headerTooltip'] == null && item['headerName'] !== '') {
                 item['headerTooltip'] = item['headerName'];
             }
-        })
+        });
         this.settings['columnsettings'].map(function (item) {
             if (item['tooltipField'] == null && item['tooltipField'] !== '') {
                 item['tooltipField'] = item['field'];
             }
-        })
+        });
         if (this.settings.hasOwnProperty('isAddButtonEnable')) {
             this.isAddButtonEnable = this.settings['isAddButtonEnable'];
         } else {

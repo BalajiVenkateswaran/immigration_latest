@@ -1,9 +1,6 @@
 import {NgModule} from '@angular/core';
 import {ClientsComponent} from './clients-tab/clients/clients.component';
-import {
-  immigrationViewClientRoute, immigrationViewManageAccountRoute, immigrationViewOrganizationRoute, immigrationViewPetitionRoute, immigrationViewQuestionnaireRoute,
-  immigrationViewReportsRoute
-} from './immigrationview.route';
+import {immigrationViewClientRoute, immigrationViewManageAccountRoute, immigrationViewOrganizationRoute, immigrationViewPetitionRoute, immigrationViewQuestionnaireRoute, immigrationViewReportsRoute} from './immigrationview.route';
 import {StatusButtonComponent} from './clients-tab/clients/statusButton';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -25,11 +22,9 @@ import {ImmigrationViewJobDetailsComponent} from './clients-tab/client-details/j
 import {PetitionsComponent} from './petitions-tab/petitions/petitions.component';
 import {PetitionDocumentRepositoryComponent} from './petitions-tab/petition-details/document-repository/petition-document-repository.component';
 import {NotesComponent} from './petitions-tab/petition-details/notes/notes.component';
-import {FormsComponent} from './petitions-tab/petition-details/forms/forms.component';
 import {PetitionDetailsComponent} from './petitions-tab/petition-details/petition-details/petition-details.component';
 import {ImmigrationviewQuestionnaireComponent} from './petitions-tab/petition-details/questionnaire/questionnaire.component';
 import {I129Page1Component} from './petitions-tab/petition-details/questionnaires/i129/page-1/page-1.component';
-import {I129Page2Component} from './petitions-tab/petition-details/questionnaires/i129/page-2/page-2.component';
 import {I129Page3Component} from './petitions-tab/petition-details/questionnaires/i129/page-3/page-3.component';
 import {I129Page4Component} from './petitions-tab/petition-details/questionnaires/i129/page-4/page-4.component';
 import {I129Page5Component} from './petitions-tab/petition-details/questionnaires/i129/page-5/page-5.component';
@@ -39,7 +34,6 @@ import {I129Page8Component} from './petitions-tab/petition-details/questionnaire
 import {I129dcPage1Component} from './petitions-tab/petition-details/questionnaires/i129DC/page-1/page-1.component';
 import {I129dcPage2Component} from './petitions-tab/petition-details/questionnaires/i129DC/page-2/page-2.component';
 import {I129dcPage3Component} from './petitions-tab/petition-details/questionnaires/i129DC/page-3/page-3.component';
-import {I129HPage1Component} from './petitions-tab/petition-details/questionnaires/i129H/page-1/page-1.component';
 import {I129HPage2Component} from './petitions-tab/petition-details/questionnaires/i129H/page-2/page-2.component';
 import {I129HPage3Component} from './petitions-tab/petition-details/questionnaires/i129H/page-3/page-3.component';
 import {I129HPage4Component} from './petitions-tab/petition-details/questionnaires/i129H/page-4/page-4.component';
@@ -49,8 +43,8 @@ import {I129LPage1Component} from './petitions-tab/petition-details/questionnair
 import {I129LPage2Component} from './petitions-tab/petition-details/questionnaires/L1/page-2/page-2.component';
 import {I129LPage3Component} from './petitions-tab/petition-details/questionnaires/L1/page-3/page-3.component';
 import {I129LPage4Component} from './petitions-tab/petition-details/questionnaires/L1/page-4/page-4.component';
-import {DownloadButton} from './petitions-tab/petition-details/forms/DownloadButton';
-import {GenerateFormButton} from './petitions-tab/petition-details/forms/GenerateFormButton';
+import {DownloadButton} from './petitions-tab/petition-details/questionnaire/DownloadButton';
+import {GenerateFormButton} from './petitions-tab/petition-details/questionnaire/GenerateFormButton';
 import {SendToClientQuestionnaire} from './petitions-tab/petition-details/questionnaire/SendToClientQuestionnaire';
 import {OrganizationDocumentRepositoryComponent} from './organization-tab/document-repository/document-repository.component';
 import {OrganizationComponent} from './organization-tab/organization/organization.component';
@@ -67,12 +61,6 @@ import {ManageAccountPreferencesComponent} from './manage-account-tab/preference
 import {ManageAccountShippingAddressComponent} from './manage-account-tab/shippingaddress/shippingaddress.component';
 import {ManageAccountUserComponent} from './manage-account-tab/user/user.component';
 import {ManageaccountUserDetailsComponent} from './manage-account-tab/user-details/user-details.component';
-import {ProfileChangePwdComponent} from './profile-tab/changepassword/changepassword.component';
-import {ProfileLoginHisComponent} from './profile-tab/loginhistory/loginhistory.component';
-import {ProfileSwitchComponent} from './profile-tab/switch/switch.component';
-import {ProfileTodoListComponent} from './profile-tab/todolist/todolist.component';
-import {ProfileUserComponent} from './profile-tab/user/user.component';
-import {SwitchButtonComponent} from './profile-tab/switch/switchButton';
 import {ClientsCreatedReportsComponent} from './reports-tab/client/created/created.component';
 import {ClientStatusReportsComponent} from './reports-tab/client/status/status.component';
 import {PetitionFinalActionComponent} from './reports-tab/petition/final-action/final-action.component';
@@ -82,7 +70,6 @@ import {PetitionsTagsReportsComponent} from './reports-tab/petition/tags/tags.co
 import {PetitionTypeReportComponent} from './reports-tab/petition/type/type.component';
 import {UserOpenPetitionComponent} from './reports-tab/user/open-petitions/open-petitions.component';
 import {UserTotalPetitionsComponent} from './reports-tab/user/total-petitions/total-petitions.component';
-import {AddPetitionDialogComponent} from './clients-tab/client-details/petitions/addpetition.component';
 
 @NgModule({
   imports: [
@@ -124,10 +111,9 @@ import {AddPetitionDialogComponent} from './clients-tab/client-details/petitions
     PetitionsComponent,
     /*Petition detail components*/
     PetitionDocumentRepositoryComponent,
-    FormsComponent, DownloadButton, GenerateFormButton,
     NotesComponent,
     PetitionDetailsComponent,
-    ImmigrationviewQuestionnaireComponent, SendToClientQuestionnaire,
+    ImmigrationviewQuestionnaireComponent, SendToClientQuestionnaire, DownloadButton, GenerateFormButton,
 
 
     /*Questionnaire pages*/

@@ -6,13 +6,12 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'actions-columns',
-    template: `<span><i class="fa fa-trash" aria-hidden="true" (click)="delRow()"></i></span>`,
+    template: `<span><i class="fa fa-trash" aria-hidden="true" (click)="delRow()"></i></span> <span *ngIf="params.colDef.data.isEditEnable"><i class="fa fa-pencil" aria-hidden="true" (click)="editRow()"></i></span>`,
 
 
 })
 export class ActionColumns implements ICellRendererAngularComp    {
     public params: any;
-    public static sendDeleteData = new Subject<Object>();
     agInit(params: any): void {
         this.params = params;
     }
@@ -21,10 +20,13 @@ export class ActionColumns implements ICellRendererAngularComp    {
       return false;
     }
 
-    constructor(){
+    constructor() {
     }
-    delRow(){
-        ActionColumns.sendDeleteData.next(this.params);
+    delRow() {
+        this.params.colDef.data.onDeleteClick.emit(this.params.data);
+    }
+    editRow() {
+        this.params.colDef.data.onEditClick.emit(this.params.data);
     }
 
 }

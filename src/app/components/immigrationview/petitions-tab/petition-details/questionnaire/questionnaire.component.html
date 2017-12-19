@@ -23,7 +23,7 @@
         <div class="clearfix"></div>
         <h2 class="headerinsections" style="margin-top: 20px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Immigration Officer</h2>
          <ih-smart-table class="immiview-ques-emp" [settings]="settings1" [data]="employerData"
-                     (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditEmpQuestionnaireClick($event)" (onDeleteClick)="onDeleteEmpQuestionniareClick($event)" ></ih-smart-table>
+                     (onEditClick)="onEditEmpQuestionnaireClick($event)" (onDeleteClick)="onDeleteEmpQuestionniareClick($event)" ></ih-smart-table>
     </div>
 </div>
 
@@ -68,9 +68,9 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient"
 	style="color: #008000 !important;margin-top: 4px!important; width: 90%;"  (click)="onSaveQuestionnaireClick()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient"
 	style="color: #008000 !important;margin-top: 4px!important; width: 90%;"  (click)="onCancelQuestionnaireClick()">Cancel</button></div>
                                 </div>
                             </div>
@@ -112,9 +112,9 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient"
 	style="color: #008000 !important;margin-top: 4px!important; width: 90%;"  (click)="onSaveEmpQuestionniaredeleteQuestionnaire()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient"
 	style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" (click)="onCancelEmpQuestionnaireClick()">Cancel</button></div>
                                 </div>
                             </div>
@@ -128,3 +128,29 @@
     </div>
 </div>
 
+    <div *ngIf="generateFormsPopup">
+      <div class="modal-dialog" ngDraggable>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">{{title}}</h4>
+            <button type="button" class="close" (click)="close()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-5">Do  you want to generate the form as</div>
+                  <div class="col-md-7"><input type="text"  [(ngModel)]="generateFormData.formName" class="form-control"></div>
+                  <div class="col-md-7">
+                    <div class="row">
+                      <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="generateFormSave(generateFormData.formName)">Ok</button></div>
+                      <div class="col-md-6"><button type="button" class="btn btn-default" (click)="generateFormCancel()">Cancel</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

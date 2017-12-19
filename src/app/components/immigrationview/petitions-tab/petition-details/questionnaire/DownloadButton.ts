@@ -10,18 +10,17 @@ import { ICellRendererAngularComp } from 'ag-grid-angular/main';
 })
 export class DownloadButton implements ICellRendererAngularComp {
     public params: any;
-    public downloadDisable:boolean=true;
+    public downloadDisable = true;
     agInit(params: any): void {
         this.params = params;
     }
     refresh(): boolean {
       return false;
     }
-    disableButton(){
-        if(this.params.data.fileId){
+    disableButton() {
+        if (this.params.data.fileId) {
             this.downloadDisable = false;
-        }
-        else{
+        } else {
             this.downloadDisable = true;
         }
         return this.downloadDisable;
@@ -29,7 +28,7 @@ export class DownloadButton implements ICellRendererAngularComp {
     constructor() {
 
     }
-    onDonwloadClicked(){
+    onDonwloadClicked() {
         this.params.context.componentParent.onGenerateFormDownloadClick({ 'data': this.params.data});
     }
 

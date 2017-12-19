@@ -27,4 +27,18 @@ export class QuestionnaireService {
     public deleteQuestionnaire(questionnaireId) {
         return this.restService.deleteData('/questionnaire/' + questionnaireId);
     }
+  public getForms(petitionId: string) {
+    return this.restService.getData('/questionnaire/forms/' + petitionId);
+
+  }
+  public generateForms(questionnaireId: string, accountId: string, data: any) {
+    return this.restService.postData('/questionnaire/generateForm/' + questionnaireId + '/accountId' + '/' + accountId, data);
+  }
+  public downloadFile(fileId: string, orgId: string) {
+    return this.restService.getFile('/file/' + fileId + '/org/' + orgId);
+  }
+  public renameFile(url: string, data: any) {
+    return this.restService.postData(url, data);
+
+  }
 }
