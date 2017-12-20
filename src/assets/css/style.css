@@ -154,11 +154,12 @@ placeholder :-ms-input-placeholder {
   width: auto;
   height: 30px;
   padding: 6px 12px;
-  font-size: 13px;
+  font-size: 14px;
   border:1px solid #5093E1;
   background: #F6F7FA;
   color: #5093E1 !important;
   border-radius: 5px;
+  font-weight: bolder !important;
 }
 .btnhov:hover {
   background-color: #72ADF9 !important;

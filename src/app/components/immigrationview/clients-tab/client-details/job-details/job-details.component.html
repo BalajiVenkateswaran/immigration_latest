@@ -75,36 +75,36 @@
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsHireDate">Hire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isjobdetailsEdit==false" id="ivClientDtlsJDtlsHireDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.hireDate" [selDate]="hireDate"></my-date-picker>
-                            <span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.hireDate}}</span>
+                            <my-date-picker *ngIf="isjobdetailsEdit==false" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.hireDate" [selDate]="hireDate"></my-date-picker>
+                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.hireDate}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsIntHireDate">International Hire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker id="ivClientDtlsJDtlsIntHireDate" *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
-                            <span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.internationalHireDate}}</span>
+                            <my-date-picker id="ivClientDtlsJDtlsIntHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
+                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.internationalHireDate}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsReHireDate">Rehire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker id="ivClientDtlsJDtlsReHireDate" *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.rehireDate" [selDate]="rehireDate"></my-date-picker>
-                            <span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.rehireDate}}</span>
+                            <my-date-picker id="ivClientDtlsJDtlsReHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.rehireDate" [selDate]="rehireDate"></my-date-picker>
+                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.rehireDate}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsLastWorkDate">Last Day Worked Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker id="ivClientDtlsJDtlsLastWorkDate" *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
-                            <span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.lastDayWorkedDate}}</span>
+                            <my-date-picker id="ivClientDtlsJDtlsLastWorkDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
+                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.lastDayWorkedDate}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsTermDate">Termination Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker id="ivClientDtlsJDtlsTermDate" *ngIf="isjobdetailsEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
-                            <span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.terminationDate}}</span>
+                            <my-date-picker id="ivClientDtlsJDtlsTermDate" [disabled]="isjobdetailsEdit" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
+                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.terminationDate}}</span>-->
                         </div>
                     </div>
 

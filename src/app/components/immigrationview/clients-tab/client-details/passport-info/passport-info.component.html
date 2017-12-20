@@ -25,76 +25,86 @@
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoPNo">Passport No.<span class="redstar">*</span></label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoPNo" [(ngModel)]="passport.passportNumber" [ngClass]="passport.passportNumber == '' ? 'redborder': ''" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.passportNumber}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoPNo" [(ngModel)]="passport.passportNumber" [ngClass]="passport.passportNumber == '' ? 'redborder': ''" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.passportNumber}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoPlace">Issuance Place</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoPlace" [(ngModel)]="passport.issuancePlace" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.issuancePlace}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoPlace" [(ngModel)]="passport.issuancePlace" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.issuancePlace}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoState">Issuance State</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoState" [(ngModel)]="passport.issuanceState" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.issuanceState}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoState" [(ngModel)]="passport.issuanceState" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.issuanceState}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoIssuanceCountry">Issuance Country</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoIssuanceCountry" [(ngModel)]="passport.issuanceCountry" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.issuanceCountry}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoIssuanceCountry" [(ngModel)]="passport.issuanceCountry" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.issuanceCountry}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoIssuingCountry">Issuing Country<span class="redstar">*</span></label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoIssuingCountry" [(ngModel)]="passport.issuingCountry" [ngClass]="passport.issuingCountry == '' ? 'redborder': ''" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.issuingCountry}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoIssuingCountry" [(ngModel)]="passport.issuingCountry" [ngClass]="passport.issuingCountry == '' ? 'redborder': ''" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.issuingCountry}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoIssuingDate">Issuance Date<span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <my-date-picker *ngIf="isEdit==false" id="ivClientDtlsPInfoIssuingDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.isuanceDate" [selDate]="isuanceDate" [ngClass]="passport.isuanceDate == '' ? 'redborder': ''">
+                <my-date-picker [disabled]="isEdit" id="ivClientDtlsPInfoIssuingDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.isuanceDate" [selDate]="isuanceDate" [ngClass]="passport.isuanceDate == '' ? 'redborder': ''">
                 </my-date-picker>
-                <span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.isuanceDate}}</span>
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.isuanceDate}}</span>-->
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoExpDate">Expiration Date<span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <my-date-picker *ngIf="isEdit==false" id="ivClientDtlsPInfoExpDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [ngClass]="passport.expirationDate == '' ? 'redborder': ''" [(ngModel)]="passport.expirationDate" [selDate]="expirationDate">
+                <my-date-picker [disabled]="isEdit" id="ivClientDtlsPInfoExpDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [ngClass]="passport.expirationDate == '' ? 'redborder': ''" [(ngModel)]="passport.expirationDate" [selDate]="expirationDate">
                 </my-date-picker>
-                <span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.expirationDate}}</span>
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.expirationDate}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoDob">Date of Birth<span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <my-date-picker *ngIf="isEdit==false" id="ivClientDtlsPInfoDob" [options]="myDatePickerOptions" [ngClass]="passport.dateOfBirth == '' ? 'redborder': ''" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.dateOfBirth" [selDate]="dateOfBirth">
+                <my-date-picker [disabled]="isEdit" id="ivClientDtlsPInfoDob" [options]="myDatePickerOptions" [ngClass]="passport.dateOfBirth == '' ? 'redborder': ''" (dateChanged)="onDateChanged($event)" [(ngModel)]="passport.dateOfBirth" [selDate]="dateOfBirth">
                 </my-date-picker>
-                <span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.dateOfBirth}}</span>
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.dateOfBirth}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoCob">City/Town/Village Of Birth</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoCob" [(ngModel)]="passport.cityOfBirth" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.cityOfBirth}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoCob" [(ngModel)]="passport.cityOfBirth" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.cityOfBirth}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoSob">State of Birth</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoSob" [(ngModel)]="passport.stateOfBirth" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.stateOfBirth}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoSob" [(ngModel)]="passport.stateOfBirth" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.stateOfBirth}}</span>--></div>
               {{countryofbirth}}
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoCob">Country of Birth<span class="redstar">*</span></label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoCob" [(ngModel)]="passport.countryOfBirth" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.countryOfBirth}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoCob" [(ngModel)]="passport.countryOfBirth" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.countryOfBirth}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoNationality">Nationality</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoNationality" [(ngModel)]="passport.nationality" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.nationality}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoNationality" [(ngModel)]="passport.nationality" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.nationality}}</span>--></div>
             </div>
 
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoMarks">Identification Marks</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoMarks" [(ngModel)]="passport.identificationMarks" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.identificationMarks}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoMarks" [(ngModel)]="passport.identificationMarks" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.identificationMarks}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoLostPassport">Have you ever lost a passport?</label></div>
               <div class="col-md-8">
                 <span *ngIf="isEdit==true">{{passport.everLostPassport==true ? 'YES': passport.everLostPassport == false ? 'NO' : ''}}</span>
-                <select *ngIf="isEdit==false" [(ngModel)]="passport.everLostPassport" class="form-control">
+                <select [disabled]="isEdit" [(ngModel)]="passport.everLostPassport" class="form-control">
                   <option value="true" id="ivClientDtlsPInfoLostPassportYes">YES</option>
                   <option value="false" id="ivClientDtlsPInfoLostPassportNo">NO</option>
                 </select>
@@ -102,11 +112,13 @@
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoTDoc">Travel Document#</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoTDoc" [(ngModel)]="passport.travelDocumentNumber" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.travelDocumentNumber}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoTDoc" [(ngModel)]="passport.travelDocumentNumber" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.travelDocumentNumber}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsPInfoComments">Comments</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" *ngIf="isEdit==false" type="text" id="ivClientDtlsPInfoComments" [(ngModel)]="passport.comments" /><span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.comments}}</span></div>
+              <div class="col-md-8"><input style="border-radius: 4px;" [disabled]="isEdit" type="text" id="ivClientDtlsPInfoComments" [(ngModel)]="passport.comments" />
+                <!--<span style="border-radius: 4px;" *ngIf="isEdit==true">{{passport.comments}}</span>--></div>
             </div>
             <div class="row">
               <div class="col-sm-12">

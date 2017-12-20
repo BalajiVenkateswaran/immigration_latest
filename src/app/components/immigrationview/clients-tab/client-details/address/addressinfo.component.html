@@ -23,23 +23,23 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.country}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfCountry" [(ngModel)]="WorkaddressinfoList.address.country" /></div>
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfCountry" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.country" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.country}}</span></div>-->                        
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;overflow: hidden; white-space: nowrap;" title="{{WorkaddressinfoList.address.street1}}">{{WorkaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" type="text" id="ivClientAdrInfStreet1" [(ngModel)]="WorkaddressinfoList.address.street1" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;overflow: hidden; white-space: nowrap;" title="{{WorkaddressinfoList.address.street1}}">{{WorkaddressinfoList.address.street1}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" type="text" id="ivClientAdrInfStreet1" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;overflow: hidden; white-space: nowrap;" title="{{WorkaddressinfoList.address.street2}}">{{WorkaddressinfoList.address.street2}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfStreet2" [(ngModel)]="WorkaddressinfoList.address.street2" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;overflow: hidden; white-space: nowrap;" title="{{WorkaddressinfoList.address.street2}}">{{WorkaddressinfoList.address.street2}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfStreet2" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.aptType}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false">
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.aptType}}</span></div>-->
+                        <div class="col-md-8">
                             <select style="border-radius: 4px;" [disabled]="workedit" id="ivClientAdrInfApt" [(ngModel)]="WorkaddressinfoList.address.aptType">
                                 <option id="APT" value="APT">APT</option>
                                 <option id="STE" value="STE">STE</option>
@@ -50,43 +50,44 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.city}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfCity" [(ngModel)]="WorkaddressinfoList.address.city" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.city}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfCity" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.city" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>County</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.county}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfCounty" [(ngModel)]="WorkaddressinfoList.address.county" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.county}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfCounty" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.county" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>State</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.state}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" [(ngModel)]="WorkaddressinfoList.address.state" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.state}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfState" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.state" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Zip Code</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.zipCode}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfZip" [(ngModel)]="WorkaddressinfoList.address.zipCode" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.zipCode}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfZip" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.zipCode" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Telephone</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.telephone}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input type="text" id="ivClientAdrInfTel" [(ngModel)]="WorkaddressinfoList.telephone" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span>{{WorkaddressinfoList.telephone}}</span></div>-->
+                        <div class="col-md-8"><input type="text" id="ivClientAdrInfTel" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.telephone" /></div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-4"><label>Fax</label></div>
-                        <div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.fax}}</span></div>
-                        <div class="col-md-8" *ngIf="workedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfFax" [(ngModel)]="WorkaddressinfoList.fax" /></div>
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.fax}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfFax" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.fax" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientAdrInfWorkingDate">Working Since</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="workedit==false" [options]="myDatePickerOptions" id="ivClientAdrInfWorkingDate"
+                            <my-date-picker  [options]="myDatePickerOptions" id="ivClientAdrInfWorkingDate"
                                             (dateChanged)="onDateChanged($event)"
+                                            [disabled]="workedit"
                                             [(ngModel)]="WorkaddressinfoList.residingSince"
                                             [selDate]="workResidingSince"></my-date-picker>
-                            <span style="border-radius: 4px;" *ngIf="workedit==true">{{WorkaddressinfoList.residingSince}}</span>
+                            <!--<span style="border-radius: 4px;" *ngIf="workedit==true">{{WorkaddressinfoList.residingSince}}</span>-->
                         </div>
 
                     </div>
@@ -117,24 +118,24 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.country}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResCountry" [(ngModel)]="ResidenceaddressinfoList.address.country" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.country}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResCountry" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.country" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResStreet1" [(ngModel)]="ResidenceaddressinfoList.address.street1" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.street1}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResStreet1" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.street2}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResStreet2" [(ngModel)]="ResidenceaddressinfoList.address.street2" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.street2}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResStreet2" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.aptType}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false">
-                            <select style="border-radius: 4px;" id="ivClientResInfApt" [(ngModel)]="ResidenceaddressinfoList.address.aptType">
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.aptType}}</span></div>-->
+                        <div class="col-md-8">
+                            <select style="border-radius: 4px;" id="ivClientResInfApt" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.aptType">
                                 <option id="APT" value="APT">APT</option>
                                 <option id="STE" value="STE">STE</option>
                                 <option id="FLR" value="FLR">FLR</option>
@@ -144,42 +145,43 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.city}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResCity" [(ngModel)]="ResidenceaddressinfoList.address.city" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.city}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResCity" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.city" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>County</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.county}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResCounty" [(ngModel)]="ResidenceaddressinfoList.address.county" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.county}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResCounty" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.county" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>State</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.state}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResState" [(ngModel)]="ResidenceaddressinfoList.address.state" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.state}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResState" [disabled]="residenceedit"  [(ngModel)]="ResidenceaddressinfoList.address.state" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Zip Code</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.zipCode}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResZip" [(ngModel)]="ResidenceaddressinfoList.address.zipCode" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.zipCode}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResZip" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.zipCode" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Telephone</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.telephone}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResTel" [(ngModel)]="ResidenceaddressinfoList.telephone" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.telephone}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResTel" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.telephone" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Fax</label></div>
-                        <div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.fax}}</span></div>
-                        <div class="col-md-8" *ngIf="residenceedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResFax" [(ngModel)]="ResidenceaddressinfoList.fax" /></div>
+                        <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.fax}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfResFax" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.fax" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientAdrInfResDate">Residing Since</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="residenceedit==false" [options]="myDatePickerOptions" id="ivClientAdrInfResDate"
+                            <my-date-picker  [options]="myDatePickerOptions" id="ivClientAdrInfResDate"
                                             (dateChanged)="onDateChanged($event)"
+                                            [disabled]="residenceedit"
                                             [(ngModel)]="ResidenceaddressinfoList.residingSince"
                                             [selDate]="resiResidingSince"></my-date-picker>
-                            <span style="border-radius: 4px;" *ngIf="residenceedit==true">{{ResidenceaddressinfoList.residingSince}}</span>
+                            <!--<span style="border-radius: 4px;" *ngIf="residenceedit==true">{{ResidenceaddressinfoList.residingSince}}</span>-->
                         </div>
 
                     </div>
@@ -216,24 +218,24 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.country}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailCountry" [(ngModel)]="MailingaddressinfoList.address.country" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.country}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailCountry" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.country" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailStreet1" [(ngModel)]="MailingaddressinfoList.address.street1" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.street1}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailStreet1" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.street2}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailStreet2" [(ngModel)]="MailingaddressinfoList.address.street2" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.street2}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailStreet2" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.aptType}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false">
-                            <select style="border-radius: 4px;" id="ivClientAdrInfMailApt" [(ngModel)]="MailingaddressinfoList.address.aptType">
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.aptType}}</span></div>-->
+                        <div class="col-md-8">
+                            <select style="border-radius: 4px;" id="ivClientAdrInfMailApt" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.aptType">
                                 <option id="APT" value="APT">APT</option>
                                 <option id="STE" value="STE">STE</option>
                                 <option id="FLR" value="FLR">FLR</option>
@@ -243,33 +245,33 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.city}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailCity" [(ngModel)]="MailingaddressinfoList.address.city" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.city}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailCity" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.city" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>County</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.county}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailCounty" [(ngModel)]="MailingaddressinfoList.address.county" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.county}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailCounty" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.county" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>State</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.state}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailState" [(ngModel)]="MailingaddressinfoList.address.state" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.state}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailState" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.state" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Zip Code</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.zipCode}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailZip" [(ngModel)]="MailingaddressinfoList.address.zipCode" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.zipCode}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailZip" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.zipCode" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Telephone</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.telephone}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailTel" [(ngModel)]="MailingaddressinfoList.telephone" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.telephone}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailTel" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.telephone" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Fax</label></div>
-                        <div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.fax}}</span></div>
-                        <div class="col-md-8" *ngIf="mailingedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailFax" [(ngModel)]="MailingaddressinfoList.fax" /></div>
+                        <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.fax}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfMailFax" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.fax" /></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
@@ -295,24 +297,24 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.country}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForCountry" [(ngModel)]="ForiegnaddressinfoList.address.country" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.country}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForCountry" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.country" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.street1}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForStreet1" [(ngModel)]="ForiegnaddressinfoList.address.street1" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.street1}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForStreet1" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.address.street1" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 2</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.street2}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForStreet2" [(ngModel)]="ForiegnaddressinfoList.address.street2" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.street2}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForStreet2" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.address.street2" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.aptType}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false">
-                            <select style="border-radius: 4px;" id="ivClientAdrInfForApt" [(ngModel)]="ForiegnaddressinfoList.address.aptType">
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.aptType}}</span></div>-->
+                        <div class="col-md-8">
+                            <select style="border-radius: 4px;" id="ivClientAdrInfForApt" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.address.aptType">
                                 <option id="APT" value="APT">APT</option>
                                 <option id="STE" value="STE">STE</option>
                                 <option id="FLR" value="FLR">FLR</option>
@@ -322,33 +324,33 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.city}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForCity" [(ngModel)]="ForiegnaddressinfoList.address.city" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.city}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForCity" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.address.city" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>County</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.county}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForCounty" [(ngModel)]="ForiegnaddressinfoList.address.county" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.county}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForCounty" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.address.county" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>State</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.state}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForState" [(ngModel)]="ForiegnaddressinfoList.address.state" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.state}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForState" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.address.state" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Zip Code</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.zipCode}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForZip" [(ngModel)]="ForiegnaddressinfoList.address.zipCode" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.zipCode}}</span></div>-->
+                        <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForZip" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.address.zipCode" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Telephone</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.telephone}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForTel" [(ngModel)]="ForiegnaddressinfoList.telephone" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.telephone}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForTel" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.telephone" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Fax</label></div>
-                        <div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.fax}}</span></div>
-                        <div class="col-md-8" *ngIf="foreignedit==false"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForFax" [(ngModel)]="ForiegnaddressinfoList.fax" /></div>
+                        <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.fax}}</span></div>-->
+                        <div class="col-md-8" ><input style="border-radius: 4px;" type="text" id="ivClientAdrInfForFax" [disabled]="foreignedit"  [(ngModel)]="ForiegnaddressinfoList.fax" /></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
