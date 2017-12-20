@@ -9,6 +9,7 @@ import {InformationDialogComponent} from '../../framework/popup/information/info
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss'],
   providers: [ResetPasswordService]
 })
 export class ResetPasswordComponent {

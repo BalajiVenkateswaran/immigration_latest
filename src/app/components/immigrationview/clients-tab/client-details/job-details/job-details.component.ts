@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {JobdetailsService} from './job-details.service';
 import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../../common/header/header.service';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 export interface formControl {
     name: string;
@@ -36,11 +37,8 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
         private formBuilder: FormBuilder, public appService: AppService, private jobdetails: JobdetailsService) {
     }
 
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+   
     ngOnInit() {
         let index = 0;
         this.jobdetails.getFile(this.appService.clientId)
