@@ -102,13 +102,6 @@ export class ClientDetailsComponent  implements OnInit {
      this.dateOfBirth = this.clientDetails.dateOfBirth;
    }
 
-  onDateChanged(event: IMyDateModel) {
-
-
-  }
-
-
-
   editProfileForm() {
     this.beforeCancelProfile = (<any>Object).assign({}, this.clientProfile);
     this.isProfileEdit = !this.isProfileEdit;

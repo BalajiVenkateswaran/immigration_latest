@@ -52,8 +52,7 @@ export class PetitionsComponent implements OnInit {
             'isDeleteEnable': false,
             'customPanel': true,
             'isAddFilterButtonEnable': true,
-          'isMorefilters':true,
-
+          'isMorefilters': true,
           'defaultFilter': [{
                 headingName: 'status',
                 headerName: 'Status',
@@ -67,7 +66,11 @@ export class PetitionsComponent implements OnInit {
                 types: [{
                     field: 'daysInStage',
                     operator: '>'
-                }],
+                      },
+                  {
+                    field: 'lastUpdate',
+                    operator: '>'
+                  }],
                 quick: [
                     {
                         headerName: 'Status',

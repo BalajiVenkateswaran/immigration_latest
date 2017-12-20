@@ -86,6 +86,12 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
       }
       ],
       filter: {
+        types: [
+          {
+            field: 'lastUpdate',
+            operator: '>'
+          }
+          ],
           quick: [
               {
                   headerName: 'Status',
@@ -131,7 +137,8 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
           },
           {
             headerName: 'Last Update',
-            field: 'lastUpdate'
+            field: 'lastUpdate',
+            type: 'datePicker'
           },
           {
               headerName: 'Petitions',

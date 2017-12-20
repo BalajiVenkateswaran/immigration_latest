@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-4"><label>Country</label></div>
                         <div class="col-md-8"><input style="border-radius: 4px;" type="text" id="ivClientAdrInfCountry" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.country" /></div>
-                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.country}}</span></div>-->                        
+                        <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.country}}</span></div>-->
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label>Street 1</label></div>
@@ -48,6 +48,12 @@
                             </select>
                         </div>
                     </div>
+                  <div class="row">
+                    <div class="col-md-4"><label>Number</label></div>
+                    <div class="col-md-8">
+                      <input style="border-radius: 4px;" id="ivClientAdrInfAptNo" type="text" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.aptNo" />
+                    </div>
+                  </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
                         <!--<div class="col-md-8" *ngIf="workedit==true"><span style="border-radius: 4px;">{{WorkaddressinfoList.address.city}}</span></div>-->
@@ -143,6 +149,12 @@
                             </select>
                         </div>
                     </div>
+                  <div class="row">
+                    <div class="col-md-4"><label>Number</label></div>
+                    <div class="col-md-8">
+                      <input style="border-radius: 4px;" id="ivClientResInfAptNo" type="text" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.aptNo" />
+                    </div>
+                  </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
                         <!--<div class="col-md-8" *ngIf="residenceedit==true"><span style="border-radius: 4px;">{{ResidenceaddressinfoList.address.city}}</span></div>-->
@@ -243,6 +255,12 @@
                             </select>
                         </div>
                     </div>
+                  <div class="row">
+                    <div class="col-md-4"><label>Number</label></div>
+                    <div class="col-md-8">
+                      <input style="border-radius: 4px;" id="ivClientMailInfAptNo" type="text" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.aptNo" />
+                    </div>
+                  </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
                         <!--<div class="col-md-8" *ngIf="mailingedit==true"><span style="border-radius: 4px;">{{MailingaddressinfoList.address.city}}</span></div>-->
@@ -322,6 +340,12 @@
                             </select>
                         </div>
                     </div>
+                  <div class="row">
+                    <div class="col-md-4"><label>Number</label></div>
+                    <div class="col-md-8">
+                      <input style="border-radius: 4px;" id="ivClientAdrInfForAptNo" type="text" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.aptNo" />
+                    </div>
+                  </div>
                     <div class="row">
                         <div class="col-md-4"><label>City</label></div>
                         <!--<div class="col-md-8" *ngIf="foreignedit==true"><span style="border-radius: 4px;">{{ForiegnaddressinfoList.address.city}}</span></div>-->

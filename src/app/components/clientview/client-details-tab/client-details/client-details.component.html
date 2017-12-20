@@ -67,8 +67,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
-                                <button type="button" (click)="cancelProfileEdit2()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isProfileEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important;" (click)="saveClientProfile2()" *ngIf="isProfileEdit==false">Save</button>
+                                <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isProfileEdit==false">Cancel</button>
+                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important;" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientdob">Date Of Birth</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isPersonalInfoEdit==false" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="clientPersonalInfo.dateOfBirth"
+                            <my-date-picker *ngIf="isPersonalInfoEdit==false" [options]="myDatePickerOptions" [(ngModel)]="clientPersonalInfo.dateOfBirth"
                                             [selDate]="dateOfBirth" id="cvClientdob"></my-date-picker>
                             <span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.dateOfBirth}}</span>
                         </div>
