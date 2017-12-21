@@ -2,7 +2,7 @@
 
         <div class="table-data">
             <h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">
-                <img style="margin-bottom: 4px !important;" src="../../../../assets/images/Group984.png" />&nbsp;&nbsp;&nbsp;<span>{{appService.firstName}} {{appService.lastName}}</span></h1>
+                <img style="margin-bottom: 4px !important;" src="../../../../assets/images/Group984.png" />&nbsp;&nbsp;&nbsp;<span>{{appService.clientfirstName}} {{appService.clientlastName}}</span></h1>
             <div class="clearfix"></div>
             <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Dependents</h2>
             <ih-smart-table class="immiview-clienttab-dependents" [settings]="settings" [data]="data"

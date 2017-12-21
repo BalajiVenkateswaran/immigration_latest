@@ -574,13 +574,10 @@ section {
                 width: 100%;
                 border-radius:0px;
                 border: solid 1px #dddbdc;
-                //background:#f6f7fa !important;
-                /*border-color: rgba(255, 255, 255, 0.5);*/
                 padding: 3px 4px 2px 5px;
                 color: #585155;
                 font-weight: 500;
                 font-size: 14px;
-                /*background: rgba(255, 255, 255, 0.1);*/
                 height: 35px;
                 margin-bottom: 12px;
                 option {
@@ -596,7 +593,7 @@ section {
           textarea[disabled],
           select[disabled] {
               border: solid 1px #c1c1c1;
-              background:#dededf !important;
+              background:#F6F7FA !important;
               cursor:not-allowed;
             }
             select.custom-select.d-inline-block{
