@@ -18,6 +18,13 @@ export class ResetPasswordComponent {
   passwordRegex: RegExp;
   public oldPasswordValidationFlag= false;
   public confirmPasswordValidFlag= false;
+
+  numberValidationRegExp: RegExp = new RegExp('[0-9]');
+  upperCaseValidationRegExp: RegExp = new RegExp('[A-Z]');
+  lowerCaseValidationRegExp: RegExp = new RegExp('[a-z]');
+  specialCharValidationRegExp: RegExp = new RegExp('[$@$!%*?#_&+=^,.:;\-]');
+
+
   private outlet: any = {
     breadcrumbs: null,
     header: null,
@@ -97,4 +104,20 @@ export class ResetPasswordComponent {
   cancelClick() {
     this.dialogRef.close(false);
   }
+  getNumberStyle(newPassword) {
+    return this.numberValidationRegExp.test(newPassword) ? 'green' : 'red';
+  }
+  getPasswordLengthStyle(newPassword) {
+    return newPassword && newPassword.length > 7 ? 'green' : 'red';
+  }
+  getUpperCaseStyle(newPassword) {
+    return this.upperCaseValidationRegExp.test(newPassword) ? 'green' : 'red';
+  }
+  getLowerCaseStyle(newPassword) {
+    return this.lowerCaseValidationRegExp.test(newPassword) ? 'green' : 'red';
+  }
+  getSpecialCharStyle(newPassword) {
+    return this.specialCharValidationRegExp.test(newPassword) ? 'green' : 'red';
+  }
+
 }

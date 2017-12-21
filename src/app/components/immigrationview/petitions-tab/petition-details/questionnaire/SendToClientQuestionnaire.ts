@@ -1,9 +1,8 @@
-import {Component, OnDestroy, EventEmitter, Output,Input} from '@angular/core';
+import {Component, OnDestroy, EventEmitter, Output, Input} from '@angular/core';
 
 import {ICellRendererAngularComp  } from 'ag-grid-angular/main';
 @Component({
-    selector: 'actions-columns',
-    template: `<input type="checkbox" [disabled]="!enableOrDisableCheckBox()" [(ngModel)]="checked"  (change)="questionnaireChecked()" />`,
+    template: `<input type="checkbox" [disabled]="!enableOrDisableCheckBox()" [(ngModel)]="checked"  (change)="questionnaireChecked()" />`
 })
 export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
     public params: any;
@@ -14,26 +13,17 @@ export class SendToClientQuestionnaire implements ICellRendererAngularComp    {
     refresh(): boolean {
       return false;
     }
-    constructor(){
+    constructor() {
     }
-    questionnaireChecked(){
-        this.params.data.itemChecked=this.checked;
-        this.params.context.componentParent.onQuestionnaireChecked({ 'data': this.params.data,"check":this.checked});
+    questionnaireChecked() {
+        this.params.data.itemChecked = this.checked;
+        this.params.context.componentParent.onQuestionnaireChecked({ 'data': this.params.data, 'check': this.checked});
     }
-    enableOrDisableCheckBox(){
-      var formNameBasedCheck;
-      if(this.params.data!=undefined){
-        if(this.params.data.formName=="I-129 H"){
-        formNameBasedCheck = true;
-      } else if(this.params.data.formName== "I-129 DC"){
-        formNameBasedCheck = false;
+    enableOrDisableCheckBox() {
+      if (this.params.data && (this.params.data.formName === 'I-129 DC' || this.params.data.formName === 'I-129 L')) {
+        return false;
+      } else {
+        return true;
       }
-      else{
-        formNameBasedCheck = true;
-      }
-
-    }
-    return formNameBasedCheck;
-
     }
 }

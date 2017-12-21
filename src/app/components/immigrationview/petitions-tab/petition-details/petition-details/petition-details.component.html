@@ -34,13 +34,13 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiontype">Petition Type </label></div>
               <div class="col-md-8">
-                <input type="text" style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.petitionType" disabled />
+                <input type="text" style="border-radius: 4px;" [disabled]="true" [(ngModel)]="petitionInformation.petitionType"/>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondesubtype">Petition Sub Type</label></div>
               <div class="col-md-8">
-                <input type="text" style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.petitionSubType" disabled />
+                <input type="text" style="border-radius: 4px;" [disabled]="true" [(ngModel)]="petitionInformation.petitionSubType"/>
               </div>
             </div>
             <div class="row">
@@ -52,7 +52,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">File Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.fileNumber" disabled />
+                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.fileNumber"/>
               </div>
             </div>
             <div class="row">
@@ -80,13 +80,13 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitionwithdrawndate">Days in Stage</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.daysInStage" disabled />
+                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.daysInStage"/>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-createdby">Next Stage</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.nextStage" disabled />
+                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.nextStage"/>
               </div>
             </div>
             <div class="row">
@@ -126,13 +126,13 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Created By</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.createdByUserOn" disabled />
+                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.createdByUserOn"/>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Last Updated By</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.lastUpdatedByUserOn" disabled />
+                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.lastUpdatedByUserOn"/>
               </div>
             </div>
             <div class="row">
@@ -147,7 +147,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-markfordeletiondetailsbyuser">Mark For Deletion details</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [readonly]=true [(ngModel)]="petitionInformation.deletedByUserOn" disabled />
+                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.deletedByUserOn"/>
               </div>
             </div>
             <div class="row sfm" *ngIf="sfmpi">
