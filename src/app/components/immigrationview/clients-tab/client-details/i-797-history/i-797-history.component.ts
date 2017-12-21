@@ -9,6 +9,8 @@ import {HeaderService} from '../../../../common/header/header.service';
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 import {MatDialog} from '@angular/material';
 import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -37,11 +39,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
     public getI797History = true;
     public addI797His: boolean;
     public addNewI797: any = {};
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public editi797Flag = true;
     public beforei797Edit: any;
     constructor(private immigrationViewI797HistoryService: ImmigrationViewI797HistoryService, public appService: AppService, public dialogService: DialogService,

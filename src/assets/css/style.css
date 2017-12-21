@@ -1693,3 +1693,8 @@ header .mainmenu ul li a:hover, header .mainmenu ul li a:focus,header .mainmenu 
 .smoothness.rightwithmenu{
     height:auto !important;
 }
+.textclip{
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;}

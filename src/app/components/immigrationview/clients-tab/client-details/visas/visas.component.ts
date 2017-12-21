@@ -10,7 +10,7 @@ import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/sma
 import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
-
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 export interface ConfirmModel {
   title: string;
@@ -44,13 +44,8 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
   public settings;
   public data;
   public delmesage;
-  private myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
 
-
-  };
   onDateChanged(event: IMyDateModel) {
     this.myDatePickerOptions.disableSince = event.date;
     // event properties are: event.date, event.jsdate, event.formatted and event.epoc
