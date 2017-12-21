@@ -1,5 +1,3 @@
-
-
 <div class="main-content">
     <div class="table-data-forms">
         <h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">
@@ -10,7 +8,6 @@
         <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;margin: 0px 0 0 0 !important;">Petition Details
             <button type="submit" value="Save" class="btn iportal-btnIMclient pull-right" style="margin-top: -5px !important;" (click)="sendCheckList()">Send Checklist</button>
         </h2>
-      <!--<div class="col-md-12 addresbox box-shadow" style="padding:0px 2px 15px 18px !important;">-->
         <div class="col-md-6 col-sm-6 col-xs-12 no-pad-left" style="margin-top: 12px !important;">
           <div class="col-md-12 addresbox box-shadow">
             <div class="row">
@@ -31,54 +28,45 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [readonly]="isEdit" [(ngModel)]="petitionInformation.name" [ngClass]="petitionInformation.name == '' ? 'redborder': ''" />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.name}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.name" [ngClass]="petitionInformation.name == '' ? 'redborder': ''" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiontype">Petition Type </label></div>
               <div class="col-md-8">
                 <input type="text" style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.petitionType" disabled />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitionType}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondesubtype">Petition Sub Type</label></div>
               <div class="col-md-8">
                 <input type="text" style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.petitionSubType" disabled />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.petitionSubType}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Description</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [readonly]="isEdit" [(ngModel)]="petitionInformation.description" />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.description}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.description" />
               </div>
             </div>
-
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">File Number</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.fileNumber" disabled />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.fileNumber}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitionstatus">Status <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-
                 <select style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.status" [ngClass]="petitionInformation.status == '' ? 'redborder': ''" (change)="onPetitionStatusChange($event)">
                   <option *ngFor="let petitionStatus of status">{{petitionStatus.name}}</option>
                 </select>
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.status}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitioncurrentstage">Tag</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [readonly]="isEdit" [(ngModel)]="petitionInformation.tag" />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.tag}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.tag" />
               </div>
             </div>
             <div class="row">
@@ -87,21 +75,18 @@
                 <select style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.currentStage" [ngClass]="petitionInformation.currentStage == '' ? 'redborder': ''">
                   <option *ngFor="let petitionStage of petitionStages;" [value]="petitionStage.stageId" [selected]="petitionStage.stageId">{{petitionStage.name}}</option>
                 </select>
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.currentStage}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitionwithdrawndate">Days in Stage</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.daysInStage" disabled />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.daysInStage}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-createdby">Next Stage</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.nextStage" disabled />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.nextStage}}</span>-->
               </div>
             </div>
             <div class="row">
@@ -110,30 +95,24 @@
                 <select style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.finalStatus" [ngClass]="petitionInformation.finalStatus == '' ? 'redborder': ''">
                   <option *ngFor="let petitionFinalStatus of finalStatus">{{petitionFinalStatus.name}}</option>
                 </select>
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.finalStatus}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Denied Date</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isPetitionInformationEdit" [options]="datePickerOptions" [(ngModel)]="petitionInformation.deniedDate" [selDate]="deniedDate"></my-date-picker>
-                <!--<span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deniedDate}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Withdrawn Date</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isPetitionInformationEdit" [options]="datePickerOptions" [(ngModel)]="petitionInformation.withdrawDate" [selDate]="withdrawDate"></my-date-picker>
-                <!--<span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.withdrawDate}}</span>-->
-
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Rejected Date</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isPetitionInformationEdit" [options]="datePickerOptions" [(ngModel)]="petitionInformation.rejectedDate" [selDate]="rejectedDate"></my-date-picker>
-                <!--<span *ngIf="isPetitionInformationEdit==true">{{petitionInformation.rejectedDate}}</span>-->
-
               </div>
             </div>
             <div class="row">
@@ -142,21 +121,18 @@
                 <select style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.assignedTo" [ngClass]="petitionInformation.assignedTo == '' ? 'redborder': ''">
                   <option *ngFor="let user of appService.usersList;" [value]="user.emailId">{{user.firstName}}, {{user.lastName}}</option>
                 </select>
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{assignedToName}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Created By</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.createdByUserOn" disabled />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.createdByUserOn}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Last Updated By</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.lastUpdatedByUserOn" disabled />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.lastUpdatedByUserOn}}</span>-->
               </div>
             </div>
             <div class="row">
@@ -166,14 +142,12 @@
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                 </select>
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.markForDeletion ? 'Yes' : 'No'}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-markfordeletiondetailsbyuser">Mark For Deletion details</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [readonly]=true [(ngModel)]="petitionInformation.deletedByUserOn" disabled />
-                <!--<span style="border-radius: 4px;" *ngIf="isPetitionInformationEdit==true">{{petitionInformation.deletedByUserOn}}</span>-->
               </div>
             </div>
             <div class="row sfm" *ngIf="sfmpi">
@@ -181,7 +155,6 @@
                 <span class="redstar">* Fields are Mandatory.</span>
               </div>
             </div>
-
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="isPetitionInformationEdit">
@@ -192,8 +165,6 @@
             </div>
           </div>
         </div>
-
-
         <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 12px !important;">
           <div class="col-md-12 addresbox box-shadow">
             <div class="row">
@@ -214,72 +185,57 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Receipt Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isReceiptInfoEdit" [readonly]="isEdit" [(ngModel)]="receiptInfo.receiptNumber" />
-                <!--<span style="border-radius: 4px;" *ngIf="isReceiptInfoEdit==true">{{receiptInfo.receiptNumber}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isReceiptInfoEdit" [(ngModel)]="receiptInfo.receiptNumber" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Receipt Date</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isReceiptInfoEdit" [options]="datePickerOptions" [(ngModel)]="receiptInfo.receiptDate" [selDate]="receiptDate"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isReceiptInfoEdit==true">{{receiptInfo.receiptDate}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Approved On</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isReceiptInfoEdit" [options]="datePickerOptions" [(ngModel)]="receiptInfo.approvedOn" [selDate]="approvedOn"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isReceiptInfoEdit==true">{{receiptInfo.approvedOn}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Valid From</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isReceiptInfoEdit" [options]="datePickerOptions" [(ngModel)]="receiptInfo.validFrom" [selDate]="validFrom"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isReceiptInfoEdit==true">{{receiptInfo.validFrom}}</span>-->
-
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Expires On</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isReceiptInfoEdit" [options]="datePickerOptions" [(ngModel)]="receiptInfo.expiresOn" [selDate]="expiresOn"></my-date-picker>
-                <!--<span style="border-radius: 4px;"  *ngIf="isReceiptInfoEdit==true">{{receiptInfo.expiresOn}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Sent to Gov. Agency On</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isReceiptInfoEdit" [options]="datePickerOptions" [(ngModel)]="receiptInfo.approvalReceivedOn" [selDate]="approvalReceivedOn"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isReceiptInfoEdit==true">{{receiptInfo.approvalReceivedOn}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Comments</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isReceiptInfoEdit" [readonly]="isEdit" [(ngModel)]="receiptInfo.comments" />
-                <!--<span style="border-radius: 4px;" *ngIf="isReceiptInfoEdit==true">{{receiptInfo.comments}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isReceiptInfoEdit" [(ngModel)]="receiptInfo.comments" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Approval Received</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isReceiptInfoEdit" [options]="datePickerOptions" [(ngModel)]="receiptInfo.sentToGovAgencyOn" [selDate]="sentToGovAgencyOn"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isReceiptInfoEdit==true">{{receiptInfo.sentToGovAgencyOn}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Show Receipt # to Client<span class="redstar">*</span></label></div>
               <div class="col-md-8">
                 <select style="border-radius: 4px;" [disabled]="isReceiptInfoEdit" [(ngModel)]="receiptInfo.showReceiptNumberToClient" [ngClass]="receiptInfo.showReceiptNumberToClient == 1 || 2 ? '': 'redborder'">
-
                   <option *ngFor="let receiptnumber of receiptNumber;" [value]="receiptnumber.value">{{receiptnumber.name}}</option>
-
                 </select>
-                <!--<span style="border-radius: 4px;" *ngIf="isReceiptInfoEdit==true">{{receiptInfo.showReceiptNumberToClient==1 ? 'Yes' : 'No'}}</span>-->
-
-
-
               </div>
             </div>
             <div class="row sfm" *ngIf="sfmRI">
@@ -297,7 +253,6 @@
             </div>
           </div>
         </div>
-
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="col-md-12 addresbox box-shadow" style="margin-top: 20px;">
             <div class="row">
@@ -314,29 +269,24 @@
               <div class="col-md-4"><label>Shipping Date</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isAdditionalDetailsEdit" [options]="datePickerOptions" [(ngModel)]="petitionAdditionalDetails.shippingDate" [selDate]="shippingDate"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.shippingDate}}</span>-->
               </div>
             </div>
-
             <div class="row">
               <div class="col-md-4"><label>Shipping Carrier</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.shippingCarrier" />
-                <!--<span style="border-radius: 4px;" *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.shippingCarrier}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label>Tracking Number</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.trackingNumber" />
-                <!--<span style="border-radius: 4px;" *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.trackingNumber}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label>Check Number</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.checkNumber" />
-                <!--<span style="border-radius: 4px;" *ngIf="isAdditionalDetailsEdit==true">{{petitionAdditionalDetails.checkNumber}}</span>-->
               </div>
             </div>
             <div class="row">
@@ -365,130 +315,110 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.name" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.name}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.name" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name On Form</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.nameOnForm" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.nameOnForm}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.nameOnForm" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Signing Person Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.signingPersonName" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.signingPersonName}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.signingPersonName" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Title</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.title" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.title}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.title" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Full Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.fullName" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.fullName}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.fullName" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Email</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.email" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.email}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.email" />
               </div>
             </div>
-
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Country</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.country" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.country}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.country" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.street1" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.street1}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.street1" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Apt./Ste./Flr./Door</label></div>
               <div class="col-md-8">
                 <select style="border-radius: 4px;" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.aptType">
-                  <option value="">Select</option>
-                  <option value="Apt">Apt</option>
-                  <option value="Ste">Ste</option>
-                  <option value="Flr">Flr</option>
-                  <option value="Door">Door</option>
+                  <option value="APT">APT</option>
+                  <option value="STE">STE</option>
+                  <option value="FLR">FLR</option>
+                  <option value="DOOR">DOOR</option>
                 </select>
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.aptType}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Apt/Ste/Door No</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.aptNo" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.aptNo}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.aptNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">City/Town</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.city" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.city}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.city" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">County</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.county" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.county}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.county" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">State/Province</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.state" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.state}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.state" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Zip/Postal code</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfoAddress.zipCode" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfoAddress.zipCode}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.zipCode" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Fax</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.fax" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.fax}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.fax" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Mobile Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.mobile" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.mobile}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.mobile" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Telephone</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [readonly]="isEdit" [(ngModel)]="sponsorInfo.phoneNumber" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSponsorInfoEdit==true">{{sponsorInfo.phoneNumber}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.phoneNumber" />
               </div>
             </div>
-
             <div class="row">
               <div class="col-sm-12">
                 <div class="tbl-head-btn" [hidden]="isSponsorInfoEdit">
@@ -514,64 +444,55 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">LCA Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [readonly]="isEdit" [(ngModel)]="lcaInfo.lcaNumber" />
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.lcaNumber}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.lcaNumber" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Approved Date</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isLCAInfoEdit" [options]="datePickerOptions" [(ngModel)]="lcaInfo.approvedDate" [selDate]="approvedDate"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.approvedDate}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Valid Thru Date</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isLCAInfoEdit" [options]="datePickerOptions" [(ngModel)]="lcaInfo.validThruDate" [selDate]="validThruDate"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.validThruDate}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Type</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [readonly]="isEdit" [(ngModel)]="lcaInfo.type" />
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.type}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.type" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">LCA Group</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [readonly]="isEdit" [(ngModel)]="lcaInfo.lcaGroup" />
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.lcaGroup}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.lcaGroup" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Assigned Date</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isLCAInfoEdit" [options]="datePickerOptions" [(ngModel)]="lcaInfo.assignedDate" [selDate]="assignedDate"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.assignedDate}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Effective On</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isLCAInfoEdit" [options]="datePickerOptions" [(ngModel)]="lcaInfo.effectiveOn" [selDate]="effectiveOn"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.effectiveOn}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Effective Till</label></div>
               <div class="col-md-8">
                 <my-date-picker [disabled]="isLCAInfoEdit" [options]="datePickerOptions" [(ngModel)]="lcaInfo.effectiveTill" [selDate]="effectiveTill"></my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.effectiveTill}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Comments</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [readonly]="isEdit" [(ngModel)]="lcaInfo.comments" />
-                <!--<span style="border-radius: 4px;" *ngIf="isLCAInfoEdit==true">{{lcaInfo.comments}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.comments" />
               </div>
             </div>
             <div class="row">
@@ -605,9 +526,6 @@
             </div>
           </div>
         </div>
-        <!--</div>-->
       </div>
-
-
 </div>
 

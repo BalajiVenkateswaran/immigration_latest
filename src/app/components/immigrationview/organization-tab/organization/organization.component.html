@@ -1,9 +1,7 @@
 <div class="main-content">
-
     <div class="table-data-forms">
         <div class="clearfix"></div>
         <h2 class="headerinsections" style="margin-top: 0px!important;font-size: 18px!important;color: #4EA0F9 !important;">Petitioner Details</h2>
-      <!--<div class="col-md-12 addresbox box-shadow" style="padding:0px 2px 15px 18px !important;">-->
         <div class="col-md-6 col-sm-6 col-xs-12 no-pad-left" style="margin-top: 12px !important;">
           <div class="col-md-12 addresbox box-shadow">
             <div class="row">
@@ -26,21 +24,18 @@
               <div class="col-md-4"><label for="wa-county">File Number <span class="redstar">*</span></label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [readonly]="true" [ngClass]="orgDetails.fileNumber == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-county" [(ngModel)]="orgDetails.fileNumber" />
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.fileNumber}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-taxid">Name</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [ngClass]="orgDetails.orgName == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-taxid" [(ngModel)]="orgDetails.orgName" />
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.orgName}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-taxid">Display Name<span class="redstar">*</span></label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [ngClass]="orgDetails.displayName == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-taxid" [(ngModel)]="orgDetails.displayName" />
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.displayName}}</span>-->
               </div>
             </div>
 
@@ -48,14 +43,12 @@
               <div class="col-md-4"><label for="wa-name">Type</label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isProfileEdit" id="wa-state" [readonly]="true" [(ngModel)]="orgDetails.orgType" />
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.orgType}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-door">Name on Forms <span class="redstar">*</span></label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [ngClass]="orgDetails.nameOnForms == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-door" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.nameOnForms" />
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.nameOnForms}}</span>-->
               </div>
             </div>
             <div class="row">
@@ -64,7 +57,6 @@
                 <select style="border-radius: 4px;" [disabled]="isProfileEdit" [ngClass]="orgDetails.status == '' ? 'redborder': ''" [(ngModel)]="orgDetails.status">
                   <option *ngFor="let orgStatus of status">{{orgStatus.name}}</option>
                 </select>
-                <!--<span *ngIf="isProfileEdit==true">{{orgDetails.status}}</span>-->
               </div>
             </div>
             <div class="row">
@@ -72,20 +64,17 @@
               <div class="col-md-8">
                 <my-date-picker [disabled]="isProfileEdit" id="wa-openDate" [options]="datePikcerOptions" [(ngModel)]="orgDetails.openDate" [selDate]="openDate">
                 </my-date-picker>
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.openDate}}</span>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-state">FED ID</label></div>
               <div class="col-md-8"><input style="border-radius: 4px;" type="text" [disabled]="isProfileEdit" id="wa-state" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.fedId" />
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.fedId}}</span></div>-->
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-email">Communication email <span class="redstar">*</span></label></div>
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [formControl]="email" [ngClass]="orgDetails.email == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-email" required [readonly]="isProfileEdit" [(ngModel)]="orgDetails.email" />
-                <!--<span  style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.email}}</span>-->
               </div>
             </div>
             <div class="row sfm" *ngIf="email.touched">
@@ -105,7 +94,6 @@
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                 </select>
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.markForDeletion ? 'Yes' : 'No'}}</span>-->
               </div>
             </div>
             <div class="row">
@@ -113,7 +101,6 @@
               <div class="col-md-8">
                 <input style="border-radius: 4px;" type="text" [disabled]="isProfileEdit" [readonly]=true
                        [(ngModel)]="orgDetails.markedForDeletionBy" />
-                <!--<span style="border-radius: 4px;" *ngIf="isProfileEdit==true">{{orgDetails.markedForDeletionBy}}</span>-->
               </div>
             </div>
             <div class="row sfm" *ngIf="warningMessage">
@@ -131,8 +118,6 @@
             </div>
           </div>
         </div>
-
-
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="col-md-12 addresbox box-shadow" style="margin-top: 12px !important;">
             <div class="row">
@@ -148,64 +133,55 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinDetails.name" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinDetails.name}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.name" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Title</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinDetails.title" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinDetails.title}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.title" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Email</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinDetails.email" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinDetails.email}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.email" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Telephone Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinDetails.tnNo" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinDetails.tnNo}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.tnNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Fax</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinDetails.fax" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinDetails.fax}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.fax" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Country</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.country" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.country}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.country" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Time Zone</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.timeZone" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.timeZone}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.timeZone" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street 1</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.street1" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.street1}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.street1" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street 2</label></div>
               <div class="col-md-8">
-                <input type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.street2" />
-                <!--<span *ngIf="isSigninEdit==true">{{signinAddress.street2}}</span>-->
+                <input type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.street2" />
               </div>
             </div>
             <div class="row">
@@ -222,36 +198,31 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.aptNo" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.aptNo}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.aptNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">City</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.city" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.city}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.city" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">County</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.county" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.county}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.county" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">State</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.state" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.state}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.state" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Zip Code</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [readonly]="isEdit" [(ngModel)]="signinAddress.zipCode" />
-                <!--<span style="border-radius: 4px;" *ngIf="isSigninEdit==true">{{signinAddress.zipCode}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.zipCode" />
               </div>
             </div>
             <div class="row">
@@ -281,55 +252,55 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.name" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.name" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Title</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.title" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.title" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Email</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.email" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.email" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Telephone Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.tnNo" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.tnNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Fax</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeDetails.fax" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.fax" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Country</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.country" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.country" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Time Zone</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.timeZone" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.timeZone" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street 1</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.street1" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.street1" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street 2</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.street2" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.street2" />
               </div>
             </div>
             <div class="row">
@@ -346,33 +317,31 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.aptNo" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.aptNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">City</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.city" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.city" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">County</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.county" />
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.county" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">State</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.state" />
-                <!--<span style="border-radius: 4px;" *ngIf="isAdminEdit==true">{{adminstrativeAddress.state}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.state" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Zip Code</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [readonly]="isEdit" [(ngModel)]="adminstrativeAddress.zipCode" />
-                <!--<span style="border-radius: 4px;" *ngIf="isAdminEdit==true">{{adminstrativeAddress.zipCode}}</span>-->
+                <input style="border-radius: 4px;" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.zipCode" />
               </div>
             </div>
             <div class="row">
@@ -385,6 +354,5 @@
             </div>
           </div>
         </div>
-        <!--</div>-->
       </div>
 </div>
