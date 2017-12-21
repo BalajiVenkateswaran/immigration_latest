@@ -1,10 +1,10 @@
-import { AppService } from '../../../../../services/app.service';
+import {AppService} from '../../../../../services/app.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PassportInfoService} from './passport-info.service';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../../common/header/header.service';
 import {ImmigrationClientCommonService} from '../common/immigration-client.service';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 @Component({
     selector: 'app-passport-info',
@@ -17,22 +17,19 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
     public passport: any = {};
     isEdit;
     countryofbirth;
-    private saveEditUser: any;
+    public saveEditUser: any;
     public cancelUserEdit = false;
-    private isuanceDate: string;
-    private expirationDate: string;
-    private dateOfBirth: string;
+    public isuanceDate: string;
+    public expirationDate: string;
+    public dateOfBirth: string;
     public warningMessage= false;
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+  public beforeCancelPassport;
     constructor(public appService: AppService, private passportinfoservice: PassportInfoService, public headerService: HeaderService,
                 private immigrationClientCommonService: ImmigrationClientCommonService) {
     }
 
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
-    private beforeCancelPassport;
+
     ngOnInit() {
         this.passportinfoservice.getClientPassportDetails(this.appService.clientId)
             .subscribe((res) => {

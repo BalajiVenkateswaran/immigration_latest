@@ -4,6 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../../common/header/header.service';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 export interface formControl {
     name: string;
@@ -18,38 +19,34 @@ export interface formControl {
 })
 export class ImmigrationViewAddressinfoComponent implements OnInit {
 
-    private addressinfoList: any;
-    private entityId: string;
+  public addressinfoList: any;
+  public entityId: string;
     public editUser: FormGroup; // our model driven form
-    private formControlValues: any = {};
+  public formControlValues: any = {};
     isEdit: boolean[] = [true];
-    private message: string;
-    private saveEditUser: any;
+  public message: string;
+  public saveEditUser: any;
     public cancelUserEdit = false;
     public WorkaddressinfoList: any = { address: {}};
-    private ResidenceaddressinfoList: any = {address: {}};
-    private MailingaddressinfoList: any = {address: {}};
-    private ForiegnaddressinfoList: any = {address: {}};
+  public ResidenceaddressinfoList: any = {address: {}};
+  public MailingaddressinfoList: any = {address: {}};
+  public ForiegnaddressinfoList: any = {address: {}};
     workedit: any;
     residenceedit: any;
     mailingedit: any;
     foreignedit: any;
-    private ClientDetailsforaddress;
+  public ClientDetailsforaddress;
     public WorkaddressinfoListspare: any = { address: {} };
-    private ResidenceaddressinfoListspare: any = { address: {} };
-    private MailingaddressinfoListspare: any = { address: {} };
-    private ForiegnaddressinfoListspare: any = { address: {} };
-    private workResidingSince: string;
-    private resiResidingSince: string;
+  public ResidenceaddressinfoListspare: any = { address: {} };
+  public MailingaddressinfoListspare: any = { address: {} };
+  public ForiegnaddressinfoListspare: any = { address: {} };
+  public workResidingSince: string;
+  public resiResidingSince: string;
     public checked: boolean;
     public copyMailingList: any = [];
     public phoneAdd: boolean;
     public faxAdd: boolean;
-    private myDatePickerOptions: IMyOptions = {
-            // other options...
-            dateFormat: 'mm-dd-yyyy',
-            showClearDateBtn: false,
-        };
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     constructor(private formBuilder: FormBuilder, public appService: AppService, private addressinfoservice: AddressInfoservice,
                 public headerService: HeaderService) {
         this.addressinfoservice.getClientAddress(this.appService.clientId)

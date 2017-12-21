@@ -20,25 +20,26 @@ export interface formControl {
 export class ImmigrationViewJobDetailsComponent implements OnInit {
 
     jobdetailsList: any;
-    private entityId: string;
+  public entityId: string;
     public editUser: FormGroup; // our model driven form
-    private formControlValues: any = {};
+  public formControlValues: any = {};
     isEdit: boolean[] = [true];
     isjobdetailsEdit;
     public jobDetails: any = {};
-    private message: string;
-    private hireDate: string;
-    private internationalHireDate: string;
-    private rehireDate: string;
-    private lastDayWorkedDate: string;
-    private terminationDate: string;
-    private beforeCancelJobDetails;
+  public message: string;
+  public hireDate: string;
+    public internationalHireDate: string;
+    public rehireDate: string;
+    public lastDayWorkedDate: string;
+    public terminationDate: string;
+    public beforeCancelJobDetails;
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+
     constructor(public headerService: HeaderService,
-        private formBuilder: FormBuilder, public appService: AppService, private jobdetails: JobdetailsService) {
+        public formBuilder: FormBuilder, public appService: AppService, private jobdetails: JobdetailsService) {
     }
 
-    private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
-   
+
     ngOnInit() {
         let index = 0;
         this.jobdetails.getFile(this.appService.clientId)

@@ -1,13 +1,14 @@
-import { ImmigrationdependentPersonalInfo } from '../../../../../models/dependentdetailspersnolinfo';
-import { ImmigrationdependentProfile } from '../../../../../models/dependentdetailsprofile';
-import { AppService } from '../../../../../services/app.service';
-import { Component, OnInit } from '@angular/core';
-import {DependentDetailsService} from "./dependent-details.service";
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import {ImmigrationdependentPersonalInfo} from '../../../../../models/dependentdetailspersnolinfo';
+import {ImmigrationdependentProfile} from '../../../../../models/dependentdetailsprofile';
+import {AppService} from '../../../../../services/app.service';
+import {Component, OnInit} from '@angular/core';
+import {DependentDetailsService} from './dependent-details.service';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import {HeaderService} from "../../../../common/header/header.service";
+import {IMyDateModel, IMyOptions} from 'mydatepicker';
+import {HeaderService} from '../../../../common/header/header.service';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 export interface formControl {
     name: string;
@@ -21,13 +22,13 @@ export interface formControl {
   providers: [DependentDetailsService]
 })
 export class DependentDetailsComponent implements OnInit {
-    private dependent: any = {} ;
+  public dependent: any = {} ;
     public editUser: FormGroup;
-    private formControlValues: any = {};
+  public formControlValues: any = {};
     isEdit: boolean[] = [true];
-    private message: string;
-    private status: any[];
-    private gender: any[];
+  public message: string;
+  public status: any[];
+  public gender: any[];
     //Profile section variables
     isProfileEdit;
     isPersonalInfoEdit;
@@ -35,17 +36,13 @@ export class DependentDetailsComponent implements OnInit {
     dependentLastName;
     public dependentDetails: any = {};
     public dependentProfile: ImmigrationdependentProfile = new ImmigrationdependentProfile();
-    private dependentPersonalInfo: ImmigrationdependentPersonalInfo = new ImmigrationdependentPersonalInfo();
-    private creationDate: string;
-    private dateOfBirth: string;
-    private beforeCancelProfile;
-    private beforeCancelPersonal;
-    public warningMessage:boolean=false;
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+  public dependentPersonalInfo: ImmigrationdependentPersonalInfo = new ImmigrationdependentPersonalInfo();
+  public creationDate: string;
+  public dateOfBirth: string;
+  public beforeCancelProfile;
+  public beforeCancelPersonal;
+    public warningMessage = false;
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
 
     constructor(private dependentDetailsService: DependentDetailsService,
         private formBuilder: FormBuilder, private appService: AppService,

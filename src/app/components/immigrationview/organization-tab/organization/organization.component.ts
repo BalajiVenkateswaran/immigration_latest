@@ -22,20 +22,20 @@ export class OrganizationComponent implements OnInit {
     isProfileEdit;
     isAdminEdit = true;
     isSigninEdit = true;
-    private signinDetails: any = {};
-    private adminstrativeDetails: any = {};
+    public signinDetails: any = {};
+    public adminstrativeDetails: any = {};
     signinAddress: any = {};
-    private adminstrativeAddress: any = {};
-    private isPersonProfileEdit;
-    private orgDetails: any = {};
-    private openDate: string;
-    private beforeCancelOrg;
-    private beforeCancelAdmin;
-    private beforeCancelSignin;
+    public adminstrativeAddress: any = {};
+    public isPersonProfileEdit;
+    public orgDetails: any = {};
+    public openDate: string;
+    public beforeCancelOrg;
+    public beforeCancelAdmin;
+    public beforeCancelSignin;
     public datePikcerOptions= IHDateUtil.datePickerOptions;
     email: FormControl;
     public emailRegex;
-    private status = [
+    public status = [
                 { value: 'Active', name: 'Active' },
                 { value: 'Inactive', name: 'Inactive' }
                 ];
