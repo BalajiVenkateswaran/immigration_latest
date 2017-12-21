@@ -72,9 +72,11 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
         for (let key in this.addressinfoList) {
             if (this.addressinfoList[key].addressType === 'WORK') {
                 this.WorkaddressinfoList = this.addressinfoList[key];
+                this.workResidingSince = this.WorkaddressinfoList['residingSince'];
             }
             if (this.addressinfoList[key].addressType === 'RESIDENCE') {
                 this.ResidenceaddressinfoList = this.addressinfoList[key];
+                this.resiResidingSince = this.ResidenceaddressinfoList['residingSince'];
             }
             if (this.addressinfoList[key].addressType === 'MAILING') {
                 this.MailingaddressinfoList = this.addressinfoList[key];
@@ -110,10 +112,6 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
             this.checked = false;
         }
     }
-       onDateChanged(event: IMyDateModel) {
-
-
-          }
        adressChange() {
            if (this.checked === true) {
                this.mailingedit = false;

@@ -111,7 +111,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         getRowStyle: function(params) {
           if (params.data.markForDeletion) {
             return {
-              backgroundColor: 'red !important'
+              color: 'red !important'
             };
           } else {
             return null;

@@ -464,7 +464,14 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
               message: 'This may take sometime'
             }
           });
-        event.data['fileName'] = result+'.pdf';
+        event.data['fileName'] = result + '.pdf';
+        if (event.data['sentToClient'] === 'Yes') {
+          event.data['sentToClient'] = true;
+        } else if (event.data['sentToClient'] === 'No') {
+          event.data['sentToClient'] = false;
+        } else {
+          event.data['sentToClient'] = false;
+        }
         this.questionnaireService.generateForms(questionnaireId, this.headerService.user.accountId, event.data).subscribe(
           res => {
             if (res['statusCode'] === 'FAILURE') {

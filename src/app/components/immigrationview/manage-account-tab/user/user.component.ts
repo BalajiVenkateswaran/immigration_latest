@@ -7,6 +7,7 @@ import {HeaderService} from '../../../common/header/header.service';
 import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
 import {MatDialog} from '@angular/material';
+import {ApplicationRoles} from '../../../common/constants/applicationroles.constants';
 
 export interface ConfirmModel {
     title: string;
@@ -73,7 +74,7 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                       value : 'Immigration Officer'
                     },
                     {
-                      display : 'Immigration Manager',
+                      display : 'Immigration Admin',
                       value : 'Immigration Manager'
                     }
                   ]
@@ -87,6 +88,13 @@ export class ManageAccountUserComponent extends DialogComponent<ConfirmModel, bo
                 this.data = res['users'];
                 this.appService.usersList = res['users'];
                 this.paginationData = res['pageMetadata'];
+                if (this.appService.usersList) {
+                  for (let user of this.appService.usersList) {
+                    if (user['role'] === ApplicationRoles.IMMIGRATION_MANAGER) {
+                      user['role'] = 'Immigration Admin';
+                    }
+                  }
+                }
             });
     }
     ngOnInit() {

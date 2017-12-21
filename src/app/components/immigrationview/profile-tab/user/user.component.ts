@@ -81,9 +81,9 @@ export class ProfileUserComponent implements OnInit {
     this.warningMessage = false;
   }
   saveUserProfile() {
-    if (this.userInfo['firstName'] == '' || this.userInfo['firstName'] == null || this.userInfo['firstName'] == undefined
-      || this.userInfo['lastName'] == '' || this.userInfo['lastName'] == null || this.userInfo['lastName'] == undefined
-      || this.userInfo['emailId'] == '' || this.userInfo['emailId'] == null || this.userInfo['emailId'] == undefined) {
+    if (this.userInfo['firstName'] === '' || this.userInfo['firstName'] == null || this.userInfo['firstName'] === undefined
+      || this.userInfo['lastName'] === '' || this.userInfo['lastName'] == null || this.userInfo['lastName'] === undefined
+      || this.userInfo['emailId'] === '' || this.userInfo['emailId'] == null || this.userInfo['emailId'] === undefined) {
       this.warningMessage = true;
     } else {
       this.warningMessage = false;

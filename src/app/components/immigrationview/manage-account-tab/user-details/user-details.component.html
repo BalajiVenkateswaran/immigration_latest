@@ -8,7 +8,6 @@
             <li><a href="#">Visas</a></li>
         </ul>
         <div class="clearfix"></div>
-        
             <div class="col-md-6 col-sm-6 col-xs-12 no-pad-left">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
@@ -30,37 +29,33 @@
                         <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
                             <input type="text" [disabled]="isUserEdit" id="wa-county" [(ngModel)]="userList.firstName" [ngClass]="userList.firstName == '' ? 'redborder': ''" />
-                            <!--<span *ngIf="isUserEdit==true">{{userList.firstName}}</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-zip">Last Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
                             <input type="text" [disabled]="isUserEdit" id="wa-zip" [(ngModel)]="userList.lastName" [ngClass]="userList.lastName == '' ? 'redborder': ''" />
-                            <!--<span *ngIf="isUserEdit==true">{{userList.lastName}}</span>-->
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-city">Email<span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="wa-emailid">Email<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <span>{{userList.emailId}}</span>
+                          <input type="text" [disabled]="isUserEdit" id="wa-emailid" [(ngModel)]="userList.emailId" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-country">Phone Number</label></div>
                         <div class="col-md-8">
                             <input type="text" [disabled]="isUserEdit" id="wa-country" [(ngModel)]="userList.phoneNumber" />
-                            <!--<span *ngIf="isUserEdit==true">{{userList.phoneNumber}}</span>-->
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><label for="wa-city">Role<span class="redstar">*</span></label></div>
+                        <div class="col-md-4"><label for="wa-role">Role<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select [(ngModel)]="userList.role" class="form-control" [disabled]="isUserEdit">
+                            <select [(ngModel)]="userList.role" id="wa-role" class="form-control" [disabled]="isUserEdit">
                                 <option value="Immigration Officer">Immigration Officer</option>
-                                <option value="Immigration Manager">Immigration Manager</option>
+                                <option value="Immigration Manager">Immigration Admin</option>
                             </select>
-                            <!--<span *ngIf="isUserEdit==true">{{userList.role}}</span>-->
                         </div>
                     </div>
                 </div>
@@ -89,15 +84,11 @@
 
                 </div>
             </div>
-
-
                 <div class="col-sm-12">
                     <h2>Login History</h2>
                 </div>
-
             <div class="table-data">
                 <ih-smart-table [settings]="settings" [data]="data" [paginationData]="paginationData" (dataWithQueryParams)="loginHistoryDataWithParameters($event)"></ih-smart-table>
             </div>
-
     </div>
 </div>

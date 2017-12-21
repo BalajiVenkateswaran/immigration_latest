@@ -96,7 +96,7 @@ export class PetitionsComponent implements OnInit {
               getRowStyle: function(params) {
                 if (params.data.markForDeletion) {
                   return {
-                    backgroundColor: 'red !important'
+                    color: 'red !important'
                   };
                 } else {
                   return null;

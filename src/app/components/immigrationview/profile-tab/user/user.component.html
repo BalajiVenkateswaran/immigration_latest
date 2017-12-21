@@ -25,28 +25,24 @@
               <div class="col-md-4"><label for="profileUserfName">First Name<span class="redstar">*</span></label></div>
               <div class="col-md-8">
                 <input type="text" [disabled]="isUserEdit" id="profileUserfName" [(ngModel)]="userInfo.firstName" [ngClass]="userInfo.firstName == '' ? 'redborder': ''" />
-                  <span *ngIf="isUserEdit==true">{{userInfo.firstName}}</span>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="profileUserlName">Last Name<span class="redstar">*</span></label></div>
               <div class="col-md-8">
                 <input type="text" [disabled]="isUserEdit" id="profileUserlName" [(ngModel)]="userInfo.lastName" [ngClass]="userInfo.lastName == '' ? 'redborder': ''" />
-                  <span *ngIf="isUserEdit==true">{{userInfo.lastName}}</span>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="profileUserEmail">Email<span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <span>{{userInfo.emailId}}</span>
+                <input type="text" [disabled]="true" id="profileUserEmail" [(ngModel)]="userInfo.emailId" />
               </div>
-
             </div>
             <div class="row">
               <div class="col-md-4"><label for="profileUserPhone">Phone Number</label></div>
               <div class="col-md-8">
                 <input type="text" [disabled]="isUserEdit" id="profileUserPhone" [(ngModel)]="userInfo.phoneNumber" />
-                <!--<span *ngIf="isUserEdit==true">{{userInfo.phoneNumber}}</span>-->
               </div>
             </div>
           </div>

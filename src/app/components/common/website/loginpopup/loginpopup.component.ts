@@ -136,7 +136,9 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
           if (res['resetPassword'] !== undefined
             && res['resetPassword'] === true) {
             this.close();
-            this.dialog.open(ResetPasswordComponent, {});
+            this.dialog.open(ResetPasswordComponent, {
+              data: model
+            });
           } else {
             this.close();
             this.appService.userLoginHistoryId = res['userLoginHistoryId'];

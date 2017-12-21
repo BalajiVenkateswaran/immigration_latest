@@ -89,11 +89,9 @@
                         <div class="col-md-4"><label for="ivClientAdrInfWorkingDate">Working Since</label></div>
                         <div class="col-md-8">
                             <my-date-picker  [options]="myDatePickerOptions" id="ivClientAdrInfWorkingDate"
-                                            (dateChanged)="onDateChanged($event)"
                                             [disabled]="workedit"
                                             [(ngModel)]="WorkaddressinfoList.residingSince"
                                             [selDate]="workResidingSince"></my-date-picker>
-                            <!--<span style="border-radius: 4px;" *ngIf="workedit==true">{{WorkaddressinfoList.residingSince}}</span>-->
                         </div>
 
                     </div>
@@ -189,7 +187,6 @@
                         <div class="col-md-4"><label for="ivClientAdrInfResDate">Residing Since</label></div>
                         <div class="col-md-8">
                             <my-date-picker  [options]="myDatePickerOptions" id="ivClientAdrInfResDate"
-                                            (dateChanged)="onDateChanged($event)"
                                             [disabled]="residenceedit"
                                             [(ngModel)]="ResidenceaddressinfoList.residingSince"
                                             [selDate]="resiResidingSince"></my-date-picker>

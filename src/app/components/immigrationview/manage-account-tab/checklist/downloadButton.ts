@@ -1,11 +1,10 @@
 ﻿import {Component} from '@angular/core';
 import {ICellRendererAngularComp} from 'ag-grid-angular/main';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs';
-import {Subscription} from 'rxjs/Subscription';
 import {AppService} from '../../../../services/app.service';
 import {ManageAccountChecklistService} from './checklist.service';
 import * as FileSaver from 'file-saver';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 
 @Component({
     template: `
@@ -24,15 +23,22 @@ export class CheckListDownloadButtonComponent implements ICellRendererAngularCom
       return false;
     }
 
-    constructor(private manageAccountChecklistService: ManageAccountChecklistService, public appService: AppService) {
+    constructor(private manageAccountChecklistService: ManageAccountChecklistService, public appService: AppService, private dialog: MatDialog) {
     }
 
     downloadClick(event) {
-
+      if (this.params.data.fileId) {
         this.manageAccountChecklistService.downloadChecklist(this.params.data.checkListId).subscribe
-            (data => this.downloadFiles(data, this.params.data.fileName)),
-            error => console.log('Error Downloading....');
-        () => console.log('OK');
+        (data => this.downloadFiles(data, this.params.data.fileName),
+          error => console.log('Error Downloading....'), () => console.log('OK'));
+      } else {
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: 'No file to download'
+          }
+        });
+      }
     }
     downloadFiles(data: any, fileName) {
         let blob = new Blob([data], {

@@ -34,7 +34,11 @@ export class ResetPasswordComponent {
     confirmPassword: new FormControl('', [Validators.required])
   });
   constructor(private router: Router, private resetPasswordService: ResetPasswordService, public dialogService: DialogService,
-    private appService: AppService, private dialog: MatDialog, public dialogRef: MatDialogRef<ResetPasswordComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
+    private appService: AppService, private dialog: MatDialog, public dialogRef: MatDialogRef<ResetPasswordComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+
+    this.login.controls.email.setValue(data.emailId);
+    this.login.controls.oldPassword.setValue(data.password);
+  }
 
   loginSubmit(login, isValid) {
     console.log('Reset Password %o', login);
