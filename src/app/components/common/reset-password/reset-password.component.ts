@@ -5,6 +5,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ResetPasswordService} from './reset-password.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {InformationDialogComponent} from '../../framework/popup/information/information.component';
+import {LoginPopupComponent} from '../website/loginpopup/loginpopup.component';
+import {DialogService} from 'ng2-bootstrap-modal';
 
 @Component({
   selector: 'app-reset-password',
@@ -31,7 +33,7 @@ export class ResetPasswordComponent {
     newPassword: new FormControl('', [Validators.required, Validators.pattern(this.passwordRegex)]),
     confirmPassword: new FormControl('', [Validators.required])
   });
-  constructor(private router: Router, private resetPasswordService: ResetPasswordService,
+  constructor(private router: Router, private resetPasswordService: ResetPasswordService, public dialogService: DialogService,
     private appService: AppService, private dialog: MatDialog, public dialogRef: MatDialogRef<ResetPasswordComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   loginSubmit(login, isValid) {
@@ -51,8 +53,18 @@ export class ResetPasswordComponent {
               message: 'Password is successfully updated'
             }
           }).afterClosed().subscribe((isConfirmed) => {
-              this.dialogRef.close(false);
-              this.appService.moveToPage('login');
+              this.cancelClick();
+            this.dialogService.addDialog(LoginPopupComponent, {
+              selectrole: false,
+              getloginpage: false,
+              loginPopupForm: true,
+              title: 'Login',
+
+            }).subscribe((isConfirmed) => {
+              if (isConfirmed) {
+                this.dialogService.removeAll();
+              }
+            });
           });
         } else {
           this.dialog.open(InformationDialogComponent, {

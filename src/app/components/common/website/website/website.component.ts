@@ -29,18 +29,10 @@ export interface ConfirmModel {
   providers: [WebsiteService, ManageAccountUserService, DemoRequestDetailsService]
 })
 export class WebsiteComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-  public static uiBuildNumber: string = environment.buildNumber; // "17.09.07";
+  public static uiBuildNumber: string = environment.buildNumber;
 
   [x: string]: any;
 
-/*  private outlet: any = {
-    breadcrumbs: null,
-    header: null,
-    message: null,
-    carousel: null,
-    menu: null,
-    footer: null
-  };*/
   public login: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   message: string;
