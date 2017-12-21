@@ -165,10 +165,10 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
             this.gridOptions.pagination = true;
             this.queryParameters.setPagination(this.defaultPageSize, 0);
         }
-    if (this.settings.hasOwnProperty('isMorefilters')) {
-      this.isMorefilters = this.settings['isMorefilters'];
-      console.log(this.isMorefilters)
-    }
+        if (this.settings.hasOwnProperty('isMorefilters')) {
+          this.isMorefilters = this.settings['isMorefilters'];
+          console.log(this.isMorefilters)
+        }
         if (this.settings.hasOwnProperty('customPanel')) {
             this.gridOptions.suppressPaginationPanel = true;
             this.paginationTemplate = true;
@@ -286,6 +286,13 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
             this.gridOptions['rowHeight'] = 40;
         }
         this.gridOptions['columnDefs'] = this.settings['columnsettings'];
+
+        if (this.settings.hasOwnProperty('gridOptions')) {
+          let keys = Object.keys(this.settings['gridOptions']);
+          for (let key of keys) {
+            this.gridOptions[key] = this.settings['gridOptions'][key];
+          }
+        }
     }
 
 /*    ngOnDestroy() {

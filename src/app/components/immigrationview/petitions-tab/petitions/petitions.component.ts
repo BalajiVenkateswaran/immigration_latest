@@ -92,6 +92,17 @@ export class PetitionsComponent implements OnInit {
                     }
                 ]
             },
+            gridOptions: {
+              getRowStyle: function(params) {
+                if (params.data.markForDeletion) {
+                  return {
+                    backgroundColor: 'red !important'
+                  };
+                } else {
+                  return null;
+                }
+              }
+            },
             'columnsettings': [
                 {
                     headerName: 'Name',

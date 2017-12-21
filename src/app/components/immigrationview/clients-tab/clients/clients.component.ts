@@ -107,6 +107,17 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
           headingName: 'lastUpdate',
           sort: SortType.DESC
       }],
+      gridOptions: {
+        getRowStyle: function(params) {
+          if (params.data.markForDeletion) {
+            return {
+              backgroundColor: 'red !important'
+            };
+          } else {
+            return null;
+          }
+        }
+      },
       'columnsettings': [
           {
               headerName: 'First Name',
