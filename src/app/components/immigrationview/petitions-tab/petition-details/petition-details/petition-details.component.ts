@@ -34,7 +34,7 @@ export class PetitionDetailsComponent implements OnInit {
     public orgs: any = [];
     public status: any[];
     public receiptNumber: any[];
-    public delegatedOrgsList: any[];
+    public delegatedOrgsList: any[] = [];
   public startDate: string;
   public deniedDate: string;
   public withdrawDate: string;
@@ -62,6 +62,7 @@ export class PetitionDetailsComponent implements OnInit {
     public sponsorInfoAddress: any = {};
     private beforeSponsorInfoAddress: any;
     public petitionAdditionalDetails: any = {};
+  public beforePetitionAdditionalDetails: any;
     public datePickerOptions = IHDateUtil.datePickerOptions;
     isLCAInfoEdit = true;
     isReceiptInfoEdit = true;
@@ -90,16 +91,20 @@ export class PetitionDetailsComponent implements OnInit {
                     this.petitionDetails = res['petitionInfo'];
                     this.appService.petitionDetails = res['petitionInfo']['name'];
                     this.petitionInformation = this.petitionDetails;
+                    this.mapFromPetitionInfo();
                     //TODO - Set client first name and last name to appService
                 }
                 if (res['receiptInfo'] !== undefined) {
                     this.receiptInfo = res['receiptInfo'];
+                    this.mapFromReceiptInfo();
                 }
                 if (res['petitionAdditionalDetails'] !== undefined) {
                     this.petitionAdditionalDetails = res['petitionAdditionalDetails'];
+                    this.mapFromAdditionalDetails();
                 }
                 if (res['lcaInfo'] !== undefined) {
                     this.lcaInfo = res['lcaInfo'];
+                    this.mapFromLCAInfo();
                 }
                 if (res['sponsorInfo'] !== undefined) {
                     this.sponsorInfo = res['sponsorInfo'];
@@ -120,22 +125,6 @@ export class PetitionDetailsComponent implements OnInit {
                 this.isReceiptInfoSaveStatus = false;
                 this.isAdditionalDetailsEdit = true;
                 this.isSponsorInfoEdit = true;
-                this.startDate = this.petitionDetails.startDate;
-                this.deniedDate = this.petitionDetails.deniedDate;
-                this.withdrawDate = this.petitionDetails.withdrawDate;
-                this.rejectedDate = this.petitionDetails.rejectedDate;
-                this.approvedDate = this.lcaInfo.approvedDate;
-                this.assignedDate = this.lcaInfo.assignedDate;
-                this.validThruDate = this.lcaInfo.validThruDate;
-                this.effectiveOn = this.lcaInfo.effectiveOn;
-                this.effectiveTill = this.lcaInfo.effectiveTill;
-                this.receiptDate = this.receiptInfo.receiptDate;
-                this.receiptNoticeDate = this.receiptInfo.receiptNoticeDate;
-                this.approvedOn = this.receiptInfo.approvedOn;
-                this.validFrom = this.receiptInfo.validFrom;
-                this.expiresOn = this.receiptInfo.expiresOn;
-                this.approvalReceivedOn = this.receiptInfo.approvalReceivedOn;
-                this.sentToGovAgencyOn = this.receiptInfo.sentToGovAgencyOn;
                 if (res['petitionTypeId'] !== undefined) {
                     this.petitionDetailsService.getPetitionStages(this.headerService.user.accountId, res['petitionTypeId'])
                         .subscribe((res) => {
@@ -202,13 +191,19 @@ export class PetitionDetailsComponent implements OnInit {
         });
     }
 
+
+    mapFromPetitionInfo() {
+     if (this.petitionInformation) {
+       this.startDate = this.petitionInformation.startDate;
+       this.deniedDate = this.petitionInformation.deniedDate;
+       this.withdrawDate = this.petitionInformation.withdrawDate;
+       this.rejectedDate = this.petitionInformation.rejectedDate;
+     }
+    }
+
     // is edit function for read only
     onEditPetitionInfoClick() {
         this.beforeCancelPetition = DeepCloneUtil.deepClone(this.petitionInformation);
-        this.startDate = this.petitionInformation.startDate;
-        this.deniedDate = this.petitionInformation.deniedDate;
-        this.withdrawDate = this.petitionInformation.withdrawDate;
-        this.rejectedDate = this.petitionInformation.rejectedDate;
         this.petitionInformation.currentStage = this.petitionDetails.currentStageId;
         this.petitionInformation.markForDeletion = this.petitionInformation.markForDeletion;
         this.isPetitionInformationEdit = false;
@@ -219,18 +214,6 @@ export class PetitionDetailsComponent implements OnInit {
     onCancelPetitionInfoClick() {
         this.sfmpi = false;
         this.petitionInformation = this.beforeCancelPetition;
-        if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
-            this.petitionInformation.startDate = this.petitionDetails.startDate.formatted;
-        }
-        if (this.petitionDetails['deniedDate'] && this.petitionDetails['deniedDate']['formatted']) {
-            this.petitionInformation.deniedDate = this.petitionDetails.deniedDate.formatted;
-        }
-        if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
-            this.petitionInformation.withdrawDate = this.petitionDetails.withdrawDate.formatted;
-        }
-        if (this.petitionDetails['rejectedDate'] && this.petitionDetails['rejectedDate']['formatted']) {
-            this.petitionInformation.rejectedDate = this.petitionDetails.rejectedDate.formatted;
-        }
         this.isPetitionInformationEdit = !this.isPetitionInformationEdit;
     }
 
@@ -238,28 +221,29 @@ export class PetitionDetailsComponent implements OnInit {
     onSavePetitionInfoClick() {
         this.petitionDetails['petitionId'] = this.appService.petitionId;
         this.petitionDetails = this.petitionInformation;
-        this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
-        if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
-            this.petitionInformation['startDate'] = this.petitionDetails['startDate']['formatted'];
-        }
-        if (this.petitionDetails['deniedDate'] && this.petitionDetails['deniedDate']['formatted']) {
-            this.petitionInformation['deniedDate'] = this.petitionDetails['deniedDate']['formatted'];
-        }
-        if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
-            this.petitionInformation['withdrawDate'] = this.petitionDetails['withdrawDate']['formatted'];
-        }
-        if (this.petitionDetails['rejectedDate'] && this.petitionDetails['rejectedDate']['formatted']) {
-            this.petitionInformation['rejectedDate'] = this.petitionDetails['rejectedDate']['formatted'];
-        }
-        if (this.petitionDetails['markForDeletion'] === true) {
-            this.petitionDetails['status'] = 'MFD';
-        }
+
         if (this.petitionDetails['name'] === '' || this.petitionDetails['name'] == null || this.petitionDetails['name'] === undefined && this.petitionDetails['status'] === '' ||
           this.petitionDetails['status'] == null || this.petitionDetails['status'] === undefined && this.petitionDetails['status'] === '' || this.petitionDetails['status'] == null ||
           this.petitionDetails['status'] === undefined) {
             this.sfmpi = true;
         } else {
             this.sfmpi = false;
+            this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
+            if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
+              this.petitionInformation['startDate'] = this.petitionDetails['startDate']['formatted'];
+            }
+            if (this.petitionDetails['deniedDate'] && this.petitionDetails['deniedDate']['formatted']) {
+              this.petitionInformation['deniedDate'] = this.petitionDetails['deniedDate']['formatted'];
+            }
+            if (this.petitionDetails['withdrawDate'] && this.petitionDetails['withdrawDate']['formatted']) {
+              this.petitionInformation['withdrawDate'] = this.petitionDetails['withdrawDate']['formatted'];
+            }
+            if (this.petitionDetails['rejectedDate'] && this.petitionDetails['rejectedDate']['formatted']) {
+              this.petitionInformation['rejectedDate'] = this.petitionDetails['rejectedDate']['formatted'];
+            }
+            if (this.petitionDetails['markForDeletion'] === true) {
+              this.petitionDetails['status'] = 'MFD';
+            }
             this.petitionDetailsService.savePetitionDetails(this.petitionDetails, this.headerService.user.userId)
                 .subscribe((res) => {
                     if (res['petitionInfo'] !== undefined) {
@@ -277,18 +261,15 @@ export class PetitionDetailsComponent implements OnInit {
                                 });
                             });
                         this.isPetitionInformationSaveStatus = true;
-                        setTimeout(() => {    //<<<---    using ()=> syntax
-                            this.isPetitionInformationSaveStatus = false;
-                            this.isPetitionInformationEdit = true;
-                        }, 3000);
                         this.petitionInformation = this.petitionDetails;
-
+                        this.mapFromPetitionInfo();
                     }
                 });
         }
     }
-    onEditReceiptInfoClick() {
-        this.backendReceiptInfo = (<any>Object).assign({}, this.receiptInfo);
+
+    mapFromReceiptInfo() {
+      if (this.receiptInfo) {
         this.receiptDate = this.receiptInfo.receiptDate;
         this.receiptNoticeDate = this.receiptInfo.receiptNoticeDate;
         this.approvedOn = this.receiptInfo.approvedOn;
@@ -296,12 +277,17 @@ export class PetitionDetailsComponent implements OnInit {
         this.expiresOn = this.receiptInfo.expiresOn;
         this.approvalReceivedOn = this.receiptInfo.approvalReceivedOn;
         this.sentToGovAgencyOn = this.receiptInfo.sentToGovAgencyOn;
+      }
+    }
+
+    onEditReceiptInfoClick() {
+        this.backendReceiptInfo = (<any>Object).assign({}, this.receiptInfo);
         this.isReceiptInfoEdit = false;
         this.isReceiptInfoSave = true;
-        if (this.receiptInfo.showReceiptNumberToClient === 1) {
-            this.receiptInfo['showReceiptNumberToClient'] = 1;
+        if (this.receiptInfo.showReceiptNumberToClient === '1') {
+            this.receiptInfo['showReceiptNumberToClient'] = '1';
         } else {
-            this.receiptInfo['showReceiptNumberToClient'] = 0;
+            this.receiptInfo['showReceiptNumberToClient'] = '0';
 
         }
     }
@@ -309,27 +295,6 @@ export class PetitionDetailsComponent implements OnInit {
     // cancel button function
     onCancelReceiptInfoClick() {
         this.receiptInfo = this.backendReceiptInfo;
-        if (this.receiptInfo['receiptDate'] && this.receiptInfo['receiptDate']['formatted']) {
-            this.receiptInfo['receiptDate'] = this.receiptInfo['receiptDate']['formatted'];
-        }
-        if (this.receiptInfo['receiptNoticeDate'] && this.receiptInfo['receiptNoticeDate']['formatted']) {
-            this.receiptInfo['receiptNoticeDate'] = this.receiptInfo['receiptNoticeDate']['formatted'];
-        }
-        if (this.receiptInfo['approvedOn'] && this.receiptInfo['approvedOn']['formatted']) {
-            this.receiptInfo['approvedOn'] = this.receiptInfo['approvedOn']['formatted'];
-        }
-        if (this.receiptInfo['validFrom'] && this.receiptInfo['validFrom']['formatted']) {
-            this.receiptInfo['validFrom'] = this.receiptInfo['validFrom']['formatted'];
-        }
-        if (this.receiptInfo['expiresOn'] && this.receiptInfo['expiresOn']['formatted']) {
-            this.receiptInfo['expiresOn'] = this.receiptInfo['expiresOn']['formatted'];
-        }
-        if (this.receiptInfo['approvalReceivedOn'] && this.receiptInfo['approvalReceivedOn']['formatted']) {
-            this.receiptInfo['approvalReceivedOn'] = this.receiptInfo['approvalReceivedOn']['formatted'];
-        }
-        if (this.receiptInfo['sentToGovAgencyOn'] && this.receiptInfo['sentToGovAgencyOn']['formatted']) {
-            this.receiptInfo['sentToGovAgencyOn'] = this.receiptInfo['sentToGovAgencyOn']['formatted'];
-        }
         this.isReceiptInfoEdit = !this.isReceiptInfoEdit;
     }
 
@@ -362,7 +327,7 @@ export class PetitionDetailsComponent implements OnInit {
         this.receiptInfo['petitionId'] = this.appService.petitionId;
         this.receiptInfo['petitionReceiptId'] = this.receiptInfo['petitionReceiptId'];
 
-        if (this.receiptInfo.showReceiptNumberToClient !== 0 && this.receiptInfo.showReceiptNumberToClient !== 1) {
+        if (this.receiptInfo.showReceiptNumberToClient !== '0' && this.receiptInfo.showReceiptNumberToClient !== '1') {
             this.sfmRI = true;
         } else {
             this.sfmRI = false;
@@ -371,30 +336,25 @@ export class PetitionDetailsComponent implements OnInit {
                     if (res['receiptInfo'] !== undefined) {
                         this.isReceiptInfoSave = false;
                         this.receiptInfo = res['receiptInfo'];
-
+                        this.mapFromReceiptInfo();
                         this.isReceiptInfoSaveStatus = true;
-                        setTimeout(() => {    //<<<---    using ()=> syntax
-                            this.isReceiptInfoSaveStatus = false;
-                            this.isReceiptInfoEdit = true;
-                        }, 3000);
-
-
+                        this.isReceiptInfoEdit = true;
                     }
                 });
         }
-
-
     }
+
+    mapFromLCAInfo() {
+      this.approvedDate = this.lcaInfo.approvedDate;
+      this.assignedDate = this.lcaInfo.assignedDate;
+      this.validThruDate = this.lcaInfo.validThruDate;
+      this.effectiveOn = this.lcaInfo.effectiveOn;
+      this.effectiveTill = this.lcaInfo.effectiveTill;
+    }
+
     // For LCA form Section
     onEditLCAInfoClick() {
-
         this.backendLCAInfo = (<any>Object).assign({}, this.lcaInfo);
-        this.approvedDate = this.lcaInfo.approvedDate;
-        this.assignedDate = this.lcaInfo.assignedDate;
-        this.validThruDate = this.lcaInfo.validThruDate;
-        this.effectiveOn = this.lcaInfo.effectiveOn;
-
-        this.effectiveTill = this.lcaInfo.effectiveTill;
         this.isLCAInfoEdit = !this.isLCAInfoEdit;
     }
 
@@ -402,22 +362,6 @@ export class PetitionDetailsComponent implements OnInit {
     onCancelLCAInfoClick() {
         this.lcaInfo = this.backendLCAInfo;
         this.lcaInfo = this.backendLCAInfo;
-        if (this.lcaInfo['approvedDate'] && this.lcaInfo['approvedDate']['formatted']) {
-            this.lcaInfo['approvedDate'] = this.lcaInfo['approvedDate']['formatted'];
-        }
-        if (this.lcaInfo['validThruDate'] && this.lcaInfo['validThruDate']['formatted']) {
-            this.lcaInfo['validThruDate'] = this.lcaInfo['validThruDate']['formatted'];
-        }
-        if (this.lcaInfo['assignedDate'] && this.lcaInfo['assignedDate']['formatted']) {
-            this.lcaInfo['assignedDate'] = this.lcaInfo['assignedDate']['formatted'];
-        }
-        if (this.lcaInfo['effectiveOn'] && this.lcaInfo['effectiveOn']['formatted']) {
-            this.lcaInfo['effectiveOn'] = this.lcaInfo['effectiveOn']['formatted'];
-        }
-        if (this.lcaInfo['effectiveTill'] && this.lcaInfo['effectiveTill']['formatted']) {
-            this.lcaInfo['effectiveTill'] = this.lcaInfo['effectiveTill']['formatted'];
-        }
-
         this.isLCAInfoEdit = !this.isLCAInfoEdit;
     }
     onSaveLCAInfoClick() {
@@ -444,6 +388,7 @@ export class PetitionDetailsComponent implements OnInit {
                 this.isLCAInfoEdit = true;
                 if (res['lcaInfo'] !== undefined) {
                     this.lcaInfo = res['lcaInfo'];
+                    this.mapFromLCAInfo();
                 }
             });
 
@@ -467,57 +412,45 @@ export class PetitionDetailsComponent implements OnInit {
             this.sponsorInfo.address = this.sponsorInfoAddress;
         }
         this.petitionDetailsService.saveSponsorInfo(this.sponsorInfo, this.headerService.user.userId)
-            .subscribe((res) => {
-                this.isSponsorInfoEdit = true;
-                if (res['sponsorInfo'] !== undefined) {
-                    this.sponsorInfo = res['sponsorInfo'];
+        .subscribe((res) => {
+            this.isSponsorInfoEdit = true;
+            if (res['sponsorInfo'] !== undefined) {
+                this.sponsorInfo = res['sponsorInfo'];
+            }
+        });
+    }
 
-                }
-            });
+    mapFromAdditionalDetails() {
+      this.shippingDate = this.petitionAdditionalDetails.shippingDate;
     }
 
     // edit petitionAdditionalDetails Details
     onEditAdditionalDetailsClick() {
-        this.backendReceiptInfo = DeepCloneUtil.deepClone(this.petitionAdditionalDetails);
-        this.receiptDate = this.petitionAdditionalDetails.receiptDate;
-        this.receiptNoticeDate = this.petitionAdditionalDetails.receiptNoticeDate;
-        this.approvedOn = this.petitionAdditionalDetails.approvedOn;
-        this.validFrom = this.petitionAdditionalDetails.validFrom;
-        this.expiresOn = this.petitionAdditionalDetails.expiresOn;
+        this.beforePetitionAdditionalDetails = DeepCloneUtil.deepClone(this.petitionAdditionalDetails);
         this.isAdditionalDetailsEdit = !this.isAdditionalDetailsEdit;
     }
 
     // cancel button function
     onCancelAdditionalDetailsClick() {
-        this.petitionAdditionalDetails = this.backendReceiptInfo;
-        if (this.petitionAdditionalDetails['shippingDate'] && this.petitionAdditionalDetails['shippingDate']['formatted']) {
-            this.petitionAdditionalDetails['shippingDate'] = this.petitionAdditionalDetails['shippingDate']['formatted'];
-        }
+        this.petitionAdditionalDetails = this.beforePetitionAdditionalDetails;
         this.isAdditionalDetailsEdit = !this.isAdditionalDetailsEdit;
     }
 
     // Save petitionAdditionalDetails Details
     onSaveAdditionalDetailsClick() {
-        this.petitionAdditionalDetails.petitionId = this.appService.petitionId;
-
         if (this.petitionAdditionalDetails['shippingDate'] && this.petitionAdditionalDetails['shippingDate']['formatted']) {
             this.petitionAdditionalDetails['shippingDate'] = this.petitionAdditionalDetails['shippingDate']['formatted'];
         }
         this.petitionAdditionalDetails['petitionId'] = this.appService.petitionId;
-        this.petitionAdditionalDetails['petitionReceiptId'] = this.petitionAdditionalDetails['petitionReceiptId'];
 
-        if (this.petitionAdditionalDetails['showReceiptNumberToClient'] === '' || null || undefined) {
-            this.sfmRI = true;
-        } else {
-            this.sfmRI = false;
-            this.petitionDetailsService.savePetitionAdditionalDetails(this.petitionAdditionalDetails, this.headerService.user.userId)
-                .subscribe((res) => {
-                    this.isAdditionalDetailsEdit = true;
-                    if (res['petitionAdditionalDetails'] !== undefined) {
-                        this.petitionAdditionalDetails = res['petitionAdditionalDetails'];
-                    }
-                });
-        }
+        this.petitionDetailsService.savePetitionAdditionalDetails(this.petitionAdditionalDetails, this.headerService.user.userId)
+            .subscribe((res) => {
+                this.isAdditionalDetailsEdit = true;
+                if (res['petitionAdditionalDetails'] !== undefined) {
+                    this.petitionAdditionalDetails = res['petitionAdditionalDetails'];
+                    this.mapFromAdditionalDetails();
+                }
+            });
     }
 
 
@@ -545,10 +478,8 @@ export class PetitionDetailsComponent implements OnInit {
                     this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
                     this.getPetionDelOrgs();
                 }
-
             });
     }
-
 
   onPetitionStatusChange(event) {
       if (event.target.value === 'Close') {
