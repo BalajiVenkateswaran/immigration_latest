@@ -473,12 +473,12 @@ export class PetitionDetailsComponent implements OnInit {
             }
         }
         this.petitionDetailsService.saveDelegatedOrgs(this.orgs, this.appService.petitionId, this.headerService.user.userId)
-            .subscribe((res) => {
-                if (res['statusCode'] === 'SUCCESS') {
-                    this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
-                    this.getPetionDelOrgs();
-                }
-            });
+        .subscribe((res) => {
+            if (res['statusCode'] === 'SUCCESS') {
+                this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
+                this.getPetionDelOrgs();
+            }
+        });
     }
 
   onPetitionStatusChange(event) {

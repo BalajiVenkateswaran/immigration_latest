@@ -39,7 +39,7 @@
                       <div class="col-md-4"><label for="ivClientDtlsFileNo">File Number<span class="redstar">*</span></label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="true"  id="ivClientDtlsFileNo"  [(ngModel)]="clientProfile.fileNumber"
-                                 [ngClass]="clientProfile.fileNumber == '' ? 'redborder': ''" />                          
+                                 [ngClass]="clientProfile.fileNumber == '' ? 'redborder': ''" />
                       </div>
                   </div>
                   <div class="row">
@@ -48,41 +48,41 @@
                           <select style="border-radius: 4px;"  [disabled]="isProfileEdit" [(ngModel)]="client.clientStatus" [ngClass]="client.clientStatus == '' ? 'redborder': ''">
                               <option *ngFor="let clientstatus of status" id="{{clientstatus.name}}">{{clientstatus.name}}</option>
                           </select>
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsEmail">Email<span class="redstar">*</span></label></div>
                       <div class="col-md-8">
-                          <input style="border-radius: 4px;" maxlength="100" type="text" id="ivClientDtlsEmail"  [disabled]="true"  [(ngModel)]="clientProfile.email" [ngClass]="clientProfile.email == '' ? 'redborder': ''" />                         
+                          <input style="border-radius: 4px;" maxlength="100" type="text" id="ivClientDtlsEmail"  [disabled]="true"  [(ngModel)]="clientProfile.email" [ngClass]="clientProfile.email == '' ? 'redborder': ''" />
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsFName">First Name<span class="redstar">*</span></label></div>
                       <div class="col-md-8">
                           <input style="border-radius: 4px;" maxlength="100"  type="text" [disabled]="isProfileEdit" id="ivClientDtlsFName" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="wa-state">Middle Name</label></div>
                       <div class="col-md-8">
                           <input style="border-radius: 4px;" maxlength="100"  type="text" [disabled]="isProfileEdit" id="wa-state" [(ngModel)]="clientProfile.middleName" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsLName">Last Name<span class="redstar">*</span></label></div>
                       <div class="col-md-8">
                           <input style="border-radius: 4px;" maxlength="100"  type="text" [disabled]="isProfileEdit" id="ivClientDtlsLName" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPhone">Phone Number<span class="redstar">*</span>  </label></div>
                       <div class="col-md-8">
-                          <input style="border-radius: 4px;" maxlength="100"  type="text" [disabled]="isProfileEdit" id="ivClientDtlsPhone" [formControl]="phoneNumber" [(ngModel)]="clientProfile.phoneNumber"
-                                 [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" />                          
+                          <input style="border-radius: 4px;" maxlength="100"  type="text" [attr.disabled]="isProfileEdit?'':null" id="ivClientDtlsPhone" [formControl]="phoneNumber" [(ngModel)]="clientProfile.phoneNumber"
+                                 [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" />
                       </div>
                   </div>
                   <div class="row sfm" *ngIf="isProfileEdit==false && phoneNumber != null && phoneNumber.errors">
@@ -99,14 +99,14 @@
                       <div class="col-md-4"><label for="ivClientDtlsCreatedBy">Created By</label></div>
                       <div class="col-md-8">
                           <input style="border-radius: 4px;" maxlength="100"  type="text" id="ivClientDtlsCreatedBy" [disabled]="true"  [(ngModel)]="clientProfile.createdByUserOn" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsupdatedBy">Last Updated By</label></div>
                       <div class="col-md-8">
                           <input style="border-radius: 4px;" maxlength="100"  type="text" [disabled]="true" id="ivClientDtlsupdatedBy"  [(ngModel)]="clientProfile.lastUpdatedByUserOn" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
@@ -116,14 +116,14 @@
                               <option value="true" id="ivClientDtlsForDeleteYes">Yes</option>
                               <option value="false" id="ivClientDtlsForDeleteNo">No</option>
                           </select>
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsForDeleteBy">Marked For Deletion By</label></div>
                       <div class="col-md-8">
                           <input style="border-radius: 4px;" maxlength="100"  type="text" id="ivClientDtlsForDeleteBy" [disabled]="true"  [(ngModel)]="clientProfile.deletedByUserOn" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
@@ -165,7 +165,7 @@
                           <select [disabled]="isPersonalInfoEdit" style="border-radius: 4px;"  [(ngModel)]="clientPersonalInfo.gender">
                               <option *ngFor="let genderTypes of gender" id="{{genderTypes.name}}">{{genderTypes.name}}</option>
                           </select>
-                          
+
                       </div>
                   </div>
 
@@ -174,14 +174,14 @@
                       <div class="col-md-8">
                           <my-date-picker [disabled]="isPersonalInfoEdit" style="border-radius: 4px;"   [options]="myDatePickerOptions" [(ngModel)]="clientPersonalInfo.dateOfBirth"
                                           [selDate]="dateOfBirth" id="ivClientDtlsPinfoDob"></my-date-picker>
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoSsn">U.S. Social Security Number (if any)</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoSsn" [(ngModel)]="clientPersonalInfo.ssn" />
-                          
+
                       </div>
                   </div>
                   <div class="row sfm" *ngIf="isPersonalInfoEdit==false && ssn != null && ssn.errors">
@@ -195,28 +195,28 @@
                       <div class="col-md-4"><label for="ivClientDtlsPinfoAlienRegNo">Alien Registration Number</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100"  [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoAlienRegNo" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoCOB">Country of Birth</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100"  [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoCOB" [(ngModel)]="clientPersonalInfo.countryOfBirth" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoSOB">State/Province of Birth</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoSOB" [(ngModel)]="clientPersonalInfo.stateOfBirth" />
-                          
+
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoCitizen">Country of Citizenship or Nationality</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoCitizen" [(ngModel)]="clientPersonalInfo.citizenship" />
-                          
+
                       </div>
                   </div>
 
