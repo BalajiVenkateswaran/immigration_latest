@@ -19,92 +19,92 @@
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsTitle">Job Title</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsTitle" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobTitle" style="cursor: default!important;border-radius: 4px;" />
-                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobTitle}}</span>-->
+                            <input type="text" id="ivClientDtlsJDtlsTitle" class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobTitle" style="cursor: default!important;border-radius: 4px;" />
+                    
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsType">Job Type</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsType" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobType" style="cursor: default!important;border-radius: 4px;" />
-                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobType}}</span>-->
+                            <input  type="text" id="ivClientDtlsJDtlsType" class="disabled"  maxlength="100" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobType" style="cursor: default!important;border-radius: 4px;" />
+                       
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsCode">Job Code</label></div>
                         <div class="col-md-8">
-                            <input   type="text" id="ivClientDtlsJDtlsCode" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobCode" style="cursor: default!important;border-radius: 4px;" />
-                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.jobCode}}</span>-->
+                            <input   type="text" id="ivClientDtlsJDtlsCode" class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobCode" style="cursor: default!important;border-radius: 4px;" />
+                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsSal">Annual Salary</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsSal"class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.annualSalary" style="cursor: default!important;border-radius: 4px;" />
-                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.annualSalary}}</span>-->
+                            <input  type="text" id="ivClientDtlsJDtlsSal"class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.annualSalary" style="cursor: default!important;border-radius: 4px;" />
+                          
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsDuties">Duties And Responsibilites</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsDuties" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.dutiesAndResponsibilities"  style="cursor: default!important;border-radius: 4px;"/>
-                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.dutiesAndResponsibilities}}</span>-->
+                            <input  type="text" id="ivClientDtlsJDtlsDuties" class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.dutiesAndResponsibilities"  style="cursor: default!important;border-radius: 4px;"/>
+                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsProjName">Project Name</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsProjName" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.projectName" style="cursor: default!important;border-radius: 4px;"  />
-                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectName}}</span>-->
+                            <input  type="text" id="ivClientDtlsJDtlsProjName" class="disabled"  maxlength="100" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.projectName" style="cursor: default!important;border-radius: 4px;"  />
+                          
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsProjCode">Project Code</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsProjCode" *ngIf="isjobdetailsEdit==false" [(ngModel)]="jobDetails.projectCode" style="cursor: default!important;border-radius: 4px;"  />
-                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.projectCode}}</span>-->
+                            <input  type="text" id="ivClientDtlsJDtlsProjCode" *ngIf="isjobdetailsEdit==false"  maxlength="100" [(ngModel)]="jobDetails.projectCode" style="cursor: default!important;border-radius: 4px;"  />
+                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsNoHrs">No Of Hours/Week</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsNoHrs" class="disabled"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.noOfHoursPerWeek" style="cursor: default!important;border-radius: 4px;"  />
-                            <!--<span *ngIf="isjobdetailsEdit==true">{{jobDetails.noOfHoursPerWeek}}</span>-->
+                            <input  type="text" id="ivClientDtlsJDtlsNoHrs" class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.noOfHoursPerWeek" style="cursor: default!important;border-radius: 4px;"  />
+                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsHireDate">Hire Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker *ngIf="isjobdetailsEdit==false" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.hireDate" [selDate]="hireDate"></my-date-picker>
-                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.hireDate}}</span>-->
+                          
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsIntHireDate">International Hire Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker id="ivClientDtlsJDtlsIntHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
-                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.internationalHireDate}}</span>-->
+                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsReHireDate">Rehire Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker id="ivClientDtlsJDtlsReHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.rehireDate" [selDate]="rehireDate"></my-date-picker>
-                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.rehireDate}}</span>-->
+                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsLastWorkDate">Last Day Worked Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker id="ivClientDtlsJDtlsLastWorkDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
-                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.lastDayWorkedDate}}</span>-->
+                           
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsTermDate">Termination Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker id="ivClientDtlsJDtlsTermDate" [disabled]="isjobdetailsEdit" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
-                            <!--<span style="border-radius: 4px;" *ngIf="isjobdetailsEdit==true">{{jobDetails.terminationDate}}</span>-->
+                            
                         </div>
                     </div>
 
