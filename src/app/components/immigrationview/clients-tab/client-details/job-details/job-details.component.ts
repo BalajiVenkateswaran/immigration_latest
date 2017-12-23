@@ -5,6 +5,7 @@ import {JobdetailsService} from './job-details.service';
 import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../../common/header/header.service';
 import {IHDateUtil} from '../../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../../framework/utils/deepclone.component';
 
 export interface formControl {
     name: string;
@@ -46,6 +47,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
             .subscribe((res) => {
                 if (res['jobDetails']) {
                     this.jobDetails = res['jobDetails'];
+                    this.mapFromJobDetails();
                     console.log(this.jobDetails)
                 }
                 this.isjobdetailsEdit = true;
@@ -58,40 +60,21 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
         this.appService.currentSBLink = link;
     }
 
+    mapFromJobDetails() {
+      this.hireDate = this.jobDetails['hireDate'];
+      this.internationalHireDate = this.jobDetails['internationalHireDate'];
+      this.rehireDate = this.jobDetails['rehireDate'];
+      this.lastDayWorkedDate = this.jobDetails['lastDayWorkedDate'];
+      this.terminationDate = this.jobDetails['terminationDate'];
+    }
+
     editJobInfoForm() {
-        this.beforeCancelJobDetails = (<any>Object).assign({}, this.jobDetails);
-        this.isjobdetailsEdit = !this.isjobdetailsEdit;
-
-        this.hireDate = this.jobDetails['hireDate'];
-        this.internationalHireDate = this.jobDetails['internationalHireDate'];
-        this.rehireDate = this.jobDetails['rehireDate'];
-        this.lastDayWorkedDate = this.jobDetails['lastDayWorkedDate'];
-        this.terminationDate = this.jobDetails['rehireDate'];
-
+      this.beforeCancelJobDetails = DeepCloneUtil.deepClone(this.jobDetails);
+      this.isjobdetailsEdit = !this.isjobdetailsEdit;
     }
 
     cancelJobInfoEdit() {
         this.jobDetails = this.beforeCancelJobDetails;
-        if (this.jobDetails['hireDate'] && this.jobDetails['hireDate']['formatted']) {
-            this.jobDetails['hireDate'] = this.jobDetails['hireDate']['formatted'];
-        }
-
-        if (this.jobDetails['rehireDate'] && this.jobDetails['rehireDate']['formatted']) {
-            this.jobDetails['rehireDate'] = this.jobDetails['rehireDate']['formatted'];
-        }
-
-        if (this.jobDetails['internationalHireDate'] && this.jobDetails['internationalHireDate']['formatted']) {
-            this.jobDetails['internationalHireDate'] = this.jobDetails['internationalHireDate']['formatted'];
-        }
-
-        if (this.jobDetails['lastDayWorkedDate'] && this.jobDetails['lastDayWorkedDate']['formatted']) {
-            this.jobDetails['lastDayWorkedDate'] = this.jobDetails['lastDayWorkedDate']['formatted'];
-        }
-
-        if (this.jobDetails['terminationDate'] && this.jobDetails['terminationDate']['formatted']) {
-            this.jobDetails['terminationDate'] = this.jobDetails['terminationDate']['formatted'];
-        }
-
         this.isjobdetailsEdit = !this.isjobdetailsEdit;
     }
 
@@ -120,7 +103,8 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
             .subscribe((res) => {
                 this.isjobdetailsEdit = true;
                 if (res['jobDetails']) {
-                    this.jobDetails = res['jobDetails'];
+                  this.jobDetails = res['jobDetails'];
+                  this.mapFromJobDetails();
                 }
             });
 

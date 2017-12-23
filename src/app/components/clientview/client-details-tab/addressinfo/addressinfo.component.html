@@ -169,7 +169,7 @@
                         <div class="row">
                             <div class="col-md-4"><label>Use same for Mailing Address</label></div>
                             <div class="col-md-8">
-                                <input type="checkbox" name="clientAddress" [(ngModel)]="checked" (change)="adressChange()" />
+                                <input type="checkbox" [disabled]="residenceedit" name="clientAddress" [(ngModel)]="checked" />
                             </div>
                         </div>
                         <div class="row">
@@ -189,29 +189,29 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <h2>Mailing Address</h2>
-                                <button type="submit" (click)="addressedit('MAILING')" value="Edit" id="cvaddrMailingEdit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" *ngIf="mailingedit==true">Edit</button>
-                                <div class="tbl-head-btn" [hidden]="mailingedit">
-                                    <button type="button" (click)="cancelEdit('MAILING')" id="cvaddrMailingCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="mailingedit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="cvaddrMailingSave1" style="color: #008000 !important;" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
+                                <button type="submit" (click)="addressedit('MAILING')" value="Edit" id="cvaddrMailingEdit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" *ngIf="mailingedit==true && !checked">Edit</button>
+                                <div class="tbl-head-btn" [hidden]="mailingedit && !checked">
+                                    <button type="button" (click)="cancelEdit('MAILING')" id="cvaddrMailingCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="mailingedit==false && !checked">Cancel</button>
+                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="cvaddrMailingSave1" style="color: #008000 !important;" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false && !checked">Save</button>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Country</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingCountry" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.country" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingCountry" [disabled]="checked || mailingedit " [(ngModel)]="checked ? ResidenceaddressinfoList.address.country : MailingaddressinfoList.address.country" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 1</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingStreet1" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.street1" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingStreet1" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.street1 : MailingaddressinfoList.address.street1" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 2</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingStreet2" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.street2" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingStreet2" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.street2 : MailingaddressinfoList.address.street2" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
                             <div class="col-md-8">
-                              <select style="border-radius: 4px;" [disabled]="mailingedit" id="cvaddrMailingApt" [(ngModel)]="MailingaddressinfoList.address.aptType">
+                              <select style="border-radius: 4px;" [disabled]="checked || mailingedit" id="cvaddrMailingApt" [(ngModel)]="checked ? ResidenceaddressinfoList.address.aptType : MailingaddressinfoList.address.aptType">
                                 <option id="APT" value="APT">APT</option>
                                 <option id="STE" value="STE">STE</option>
                                 <option id="FLR" value="FLR">FLR</option>
@@ -222,38 +222,38 @@
                       <div class="row">
                         <div class="col-md-4"><label>Number</label></div>
                         <div class="col-md-8">
-                          <input style="border-radius: 4px;" id="cvaddrMailingAptNo" type="text" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.aptNo" />
+                          <input style="border-radius: 4px;" id="cvaddrMailingAptNo" type="text" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.aptNo : MailingaddressinfoList.address.aptNo" />
                         </div>
                       </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingCity" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.city" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingCity" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.city : MailingaddressinfoList.address.city" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>County</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingCounty" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.county" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingCounty" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.county : MailingaddressinfoList.address.county" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>State</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingState" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.state" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingState" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.state : MailingaddressinfoList.address.state" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Zip Code</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingZip" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.address.zipCode" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingZip" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.zipCode : MailingaddressinfoList.address.zipCode" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Telephone</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingTel" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.telephone" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingTel" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.telephone : MailingaddressinfoList.telephone" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Fax</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingFax" [disabled]="mailingedit" [(ngModel)]="MailingaddressinfoList.fax" /></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrMailingFax" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.fax : MailingaddressinfoList.fax" /></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="tbl-head-btn" [hidden]="mailingedit">
-                                    <button type="button" (click)="cancelEdit('MAILING')" id="cvaddrMailingCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="mailingedit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;" id="cvaddrMailingSave2" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false">Save</button>
+                                <div class="tbl-head-btn" [hidden]="checked || mailingedit">
+                                    <button type="button" (click)="cancelEdit('MAILING')" id="cvaddrMailingCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="mailingedit==false && !checked">Cancel</button>
+                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;" id="cvaddrMailingSave2" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false && !checked">Save</button>
                                 </div>
                             </div>
                         </div>

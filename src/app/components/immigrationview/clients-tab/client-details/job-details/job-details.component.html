@@ -4,7 +4,6 @@
             <img style="margin-bottom: 4px !important;" src="../../../../assets/images/Group984.png" />&nbsp;&nbsp;&nbsp;<span>{{appService.clientfirstName}} {{appService.clientlastName}}</span> </h1>
         <div class="clearfix"></div>
         <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Job Details</h2>
-            <!--<div class="col-md-6 col-sm-6 col-xs-12 addresbox box-shadow" style="padding:12px 15px 12px !important;">-->
                 <div class="col-md-6 addresbox box-shadow">
                     <div class="row">
                         <div class="col-sm-12">
@@ -19,92 +18,88 @@
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsTitle">Job Title</label></div>
                         <div class="col-md-8">
-                            <input type="text" id="ivClientDtlsJDtlsTitle" class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobTitle" style="cursor: default!important;border-radius: 4px;" />
-                    
+                            <input type="text" id="ivClientDtlsJDtlsTitle" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobTitle" style="cursor: default!important;border-radius: 4px;" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsType">Job Type</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsType" class="disabled"  maxlength="100" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobType" style="cursor: default!important;border-radius: 4px;" />
-                       
+                            <input  type="text" id="ivClientDtlsJDtlsType" maxlength="100" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobType" style="cursor: default!important;border-radius: 4px;" />
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsCode">Job Code</label></div>
                         <div class="col-md-8">
-                            <input   type="text" id="ivClientDtlsJDtlsCode" class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobCode" style="cursor: default!important;border-radius: 4px;" />
-                            
+                            <input   type="text" id="ivClientDtlsJDtlsCode" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobCode" style="cursor: default!important;border-radius: 4px;" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsSal">Annual Salary</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsSal"class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.annualSalary" style="cursor: default!important;border-radius: 4px;" />
-                          
+                            <input  type="text" id="ivClientDtlsJDtlsSal" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.annualSalary" style="cursor: default!important;border-radius: 4px;" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsDuties">Duties And Responsibilites</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsDuties" class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.dutiesAndResponsibilities"  style="cursor: default!important;border-radius: 4px;"/>
-                            
+                            <input  type="text" id="ivClientDtlsJDtlsDuties" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.dutiesAndResponsibilities"  style="cursor: default!important;border-radius: 4px;"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsProjName">Project Name</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsProjName" class="disabled"  maxlength="100" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.projectName" style="cursor: default!important;border-radius: 4px;"  />
-                          
+                            <input  type="text" id="ivClientDtlsJDtlsProjName" maxlength="100" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.projectName" style="cursor: default!important;border-radius: 4px;"  />
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsProjCode">Project Code</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsProjCode" *ngIf="isjobdetailsEdit==false"  maxlength="100" [(ngModel)]="jobDetails.projectCode" style="cursor: default!important;border-radius: 4px;"  />
-                            
+                            <input  type="text" id="ivClientDtlsJDtlsProjCode" [disabled]="isjobdetailsEdit"  maxlength="100" [(ngModel)]="jobDetails.projectCode" style="cursor: default!important;border-radius: 4px;"  />
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsNoHrs">No Of Hours/Week</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsNoHrs" class="disabled"  maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.noOfHoursPerWeek" style="cursor: default!important;border-radius: 4px;"  />
-                            
+                            <input  type="text" id="ivClientDtlsJDtlsNoHrs" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.noOfHoursPerWeek" style="cursor: default!important;border-radius: 4px;"  />
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsHireDate">Hire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isjobdetailsEdit==false" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.hireDate" [selDate]="hireDate"></my-date-picker>
-                          
+                            <my-date-picker id="ivClientDtlsJDtlsHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" [(ngModel)]="jobDetails.hireDate" [selDate]="hireDate"></my-date-picker>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsIntHireDate">International Hire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker id="ivClientDtlsJDtlsIntHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
-                            
+                            <my-date-picker id="ivClientDtlsJDtlsIntHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" [(ngModel)]="jobDetails.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsReHireDate">Rehire Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker id="ivClientDtlsJDtlsReHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.rehireDate" [selDate]="rehireDate"></my-date-picker>
-                            
+                            <my-date-picker id="ivClientDtlsJDtlsReHireDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" [(ngModel)]="jobDetails.rehireDate" [selDate]="rehireDate"></my-date-picker>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsLastWorkDate">Last Day Worked Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker id="ivClientDtlsJDtlsLastWorkDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
-                           
+                            <my-date-picker id="ivClientDtlsJDtlsLastWorkDate" [disabled]="isjobdetailsEdit"  [options]="myDatePickerOptions" [(ngModel)]="jobDetails.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsTermDate">Termination Date</label></div>
                         <div class="col-md-8">
-                            <my-date-picker id="ivClientDtlsJDtlsTermDate" [disabled]="isjobdetailsEdit" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
-                            
+                            <my-date-picker id="ivClientDtlsJDtlsTermDate" [disabled]="isjobdetailsEdit" [options]="myDatePickerOptions" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
+
                         </div>
                     </div>
 
@@ -117,6 +112,5 @@
                         </div>
                     </div>
                 </div>
-            <!--</div>-->
     </div>
 </div>

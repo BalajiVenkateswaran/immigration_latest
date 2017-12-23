@@ -1,135 +1,108 @@
 <div class="main-content">
-
-        <div class="table-data-forms">
-            <h1>{{appService.firstName}} {{appService.lastName}}</h1>
-            <div class="clearfix"></div>
-            <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Job Details</h2>
-            <div class="clearfix"></div>
-            <!--<div class="col-md-6 addresbox box-shadow" style="padding: 12px 12px 12px 12px !important;">-->
-                <div class="col-md-6 col-sm-6 col-xs-12" style="width: 480px!important;">
-                    <div class="col-md-12 addresbox box-shadow">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h2>Current Job Info</h2>
-                                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editJobInfoForm()" id="cvJDetailsEdit" *ngIf="isjobdetailsEdit==true">Edit</button>
-                                <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
-                                    <button type="button" (click)="cancelJobInfoEdit()" id="cvJDetailsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="cvJDetailsSave1" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsJobTitle">Job Title</label></div>
-                            <div class="col-md-8">
-                                <input type="text" id="cvJDetailsJobTitle" [(ngModel)]="jobinDetail.jobTitle" />
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.jobTitle}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsJobType">Job Type</label></div>
-                            <div class="col-md-8">
-                                <input type="text" id="cvJDetailsJobType" [(ngModel)]="jobinDetail.jobType" />
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.jobType}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsJobCode">Job Code</label></div>
-                            <div class="col-md-8">
-                                <input type="text" id="cvJDetailsJobCode"[(ngModel)]="jobinDetail.jobCode" />
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.jobCode}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsAnnualSal">Annual Salary</label></div>
-                            <div class="col-md-8">
-                                <input type="text" id="cvJDetailsAnnualSal"  [(ngModel)]="jobinDetail.annualSalary" />
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.annualSalary}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsDutiesRes">Duties And Responsibilites</label></div>
-                            <div class="col-md-8">
-                                <input type="text" id="cvJDetailsDutiesRes"  [(ngModel)]="jobinDetail.dutiesAndResponsibilities" />
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.dutiesAndResponsibilities}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsProjectName">Project Name</label></div>
-                            <div class="col-md-8">
-                                <input type="text" id="cvJDetailsProjectName"  [(ngModel)]="jobinDetail.projectName" />
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.projectName}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsProjectCode">Project Code</label></div>
-                            <div class="col-md-8">
-                                <input type="text" id="cvJDetailsProjectCode" [(ngModel)]="jobinDetail.projectCode" />
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.projectCode}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsNoOfHrs">No Of Hours/Week</label></div>
-                            <div class="col-md-8">
-                                <input type="text" id="cvJDetailsNoOfHrs"  [(ngModel)]="jobinDetail.noOfHoursPerWeek" />
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.noOfHoursPerWeek}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-4"><label for="cvJDetailsHireDate">Hire Date</label></div>
-                            <div class="col-md-8">
-                                <my-date-picker  id="cvJDetailsHireDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.hireDate" [selDate]="hireDate"></my-date-picker>
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.hireDate}}</span>-->
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="row">
-
-                            <div class="col-md-4"><label for="cvJDetailsIntlHireDate">International Hire Date</label></div>
-                            <div class="col-md-8">
-                                <my-date-picker  id="cvJDetailsIntlHireDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.internationalHireDate}}</span>-->
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsRelHireDate">Rehire Date</label></div>
-                            <div class="col-md-8">
-                                <my-date-picker  [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.rehireDate" [selDate]="rehireDate"></my-date-picker>
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.rehireDate}}</span>-->
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsLasWorkedDate">Last Day Worked Date</label></div>
-                            <div class="col-md-8">
-                                <my-date-picker  id="cvJDetailsLasWorkedDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.lastDayWorkedDate}}</span>-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><label for="cvJDetailsTerminationDate">Termination Date</label></div>
-                            <div class="col-md-8">
-                                <my-date-picker  id="cvJDetailsTerminationDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.terminationDate" [selDate]="terminationDate"></my-date-picker>
-                                <!--<span *ngIf="isjobdetailsEdit==true">{{jobinDetail.terminationDate}}</span>-->
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
-                                    <button type="button" (click)="cancelJobInfoEdit()" id="cvJDetailsCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;" id="cvJDetailsSave2" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
-                                </div>
-                            </div>
+    <div class="table-data-forms">
+        <h1>{{appService.firstName}} {{appService.lastName}}</h1>
+        <div class="clearfix"></div>
+        <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Job Details</h2>
+        <div class="clearfix"></div>
+        <div class="col-md-6 col-sm-6 col-xs-12" style="width: 480px!important;">
+            <div class="col-md-12 addresbox box-shadow">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>Current Job Info</h2>
+                        <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editJobInfoForm()" id="cvJDetailsEdit" *ngIf="isjobdetailsEdit==true">Edit</button>
+                        <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
+                            <button type="button" (click)="cancelJobInfoEdit()" id="cvJDetailsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                            <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="cvJDetailsSave1" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
                         </div>
                     </div>
                 </div>
-            <!--</div>-->
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsJobTitle">Job Title</label></div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="isjobdetailsEdit" id="cvJDetailsJobTitle" [(ngModel)]="jobinDetail.jobTitle" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsJobType">Job Type</label></div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="isjobdetailsEdit" id="cvJDetailsJobType" [(ngModel)]="jobinDetail.jobType" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsJobCode">Job Code</label></div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="isjobdetailsEdit" id="cvJDetailsJobCode"[(ngModel)]="jobinDetail.jobCode" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsAnnualSal">Annual Salary</label></div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="isjobdetailsEdit" id="cvJDetailsAnnualSal"  [(ngModel)]="jobinDetail.annualSalary" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsDutiesRes">Duties And Responsibilites</label></div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="isjobdetailsEdit" id="cvJDetailsDutiesRes"  [(ngModel)]="jobinDetail.dutiesAndResponsibilities" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsProjectName">Project Name</label></div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="isjobdetailsEdit" id="cvJDetailsProjectName"  [(ngModel)]="jobinDetail.projectName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsProjectCode">Project Code</label></div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="isjobdetailsEdit" id="cvJDetailsProjectCode" [(ngModel)]="jobinDetail.projectCode" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsNoOfHrs">No Of Hours/Week</label></div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="isjobdetailsEdit" id="cvJDetailsNoOfHrs"  [(ngModel)]="jobinDetail.noOfHoursPerWeek" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsHireDate">Hire Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker [disabled]="isjobdetailsEdit"  id="cvJDetailsHireDate" [options]="myDatePickerOptions" [(ngModel)]="jobinDetail.hireDate" [selDate]="hireDate"></my-date-picker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsIntlHireDate">International Hire Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker [disabled]="isjobdetailsEdit" id="cvJDetailsIntlHireDate" [options]="myDatePickerOptions" [(ngModel)]="jobinDetail.internationalHireDate" [selDate]="internationalHireDate"></my-date-picker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsRelHireDate">Rehire Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker  [disabled]="isjobdetailsEdit" id="cvJDetailsRelHireDate" [options]="myDatePickerOptions" [(ngModel)]="jobinDetail.rehireDate" [selDate]="rehireDate"></my-date-picker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsLasWorkedDate">Last Day Worked Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker  [disabled]="isjobdetailsEdit" id="cvJDetailsLasWorkedDate" [options]="myDatePickerOptions" [(ngModel)]="jobinDetail.lastDayWorkedDate" [selDate]="lastDayWorkedDate"></my-date-picker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvJDetailsTerminationDate">Termination Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker  [disabled]="isjobdetailsEdit" id="cvJDetailsTerminationDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="jobinDetail.terminationDate" [selDate]="terminationDate"></my-date-picker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
+                            <button type="button" (click)="cancelJobInfoEdit()" id="cvJDetailsCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isjobdetailsEdit==false">Cancel</button>
+                            <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;" id="cvJDetailsSave2" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-

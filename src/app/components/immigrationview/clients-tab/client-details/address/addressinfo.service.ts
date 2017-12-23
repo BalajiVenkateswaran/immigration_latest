@@ -1,23 +1,26 @@
 ﻿import {RestService} from '../../../../../services/rest.service';
 import {Injectable} from '@angular/core';
+import {HeaderService} from '../../../../common/header/header.service';
 
 @Injectable()
 export class AddressInfoservice {
 
-  constructor(private restService: RestService) {
+  constructor(private restService: RestService, private headerService: HeaderService) {
   }
 
-  public getClientAddress(clientId: string) {
-    return this.restService.getData('/client/address/' + clientId);
+  public getClientAddress(userId: string) {
+    return this.restService.getData('/immigration/client/details/address/' + userId);
   }
-  public saveClientAddress(clientAddress: any, clientId: string, userId: string) {
+  public saveClientAddress(clientAddress: any, checked?: boolean) {
     let req = {
       'clientAddress': clientAddress,
-      'clientId': clientId,
-      'updatedByUser': userId
+      'updatedByUser': this.headerService.user.userId
     };
+    if (checked) {
+      req['copyResidenceAddress'] = checked;
+    }
 
-    return this.restService.postData('/client/address', req);
+    return this.restService.postData('/client/details/address', req);
 
   }
 }

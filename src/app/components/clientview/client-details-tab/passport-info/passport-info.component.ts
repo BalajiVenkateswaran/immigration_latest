@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ClientViewPassportInfoService} from './passport-info.service';
-import {passportinfo} from '../../../../models/passportinfo';
-import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
 import {AppService} from '../../../../services/app.service';
-import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../common/header/header.service';
-
-export interface formControl {
-    name: string;
-    value: FormControl;
-}
+import {IHDateUtil} from '../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../framework/utils/deepclone.component';
 
 @Component({
     selector: 'app-passport-info',
@@ -19,28 +14,18 @@ export interface formControl {
 })
 export class ClientViewPassportInfoComponent implements OnInit {
 
-    private passportinfoList: any;
-    public editUser: FormGroup; // our model driven form
-    private fieldsList: passportinfo[];
-    private formControlValues: any = {};
-    isEdit: boolean[] = [true];
-    private message: string;
     public isPassportInfoEdit: boolean;
     private passportDetailsFileList: any = {};
-    private isuanceDate: string;
-    private expirationDate: string;
-    private dateOfBirth: string;
-    countryofbirth;
-
-    constructor(private passportInfoService: ClientViewPassportInfoService,
-        private formBuilder: FormBuilder, public appService: AppService, public headerService: HeaderService) {
-    }
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    public isuanceDate: string;
+    public expirationDate: string;
+    public dateOfBirth: string;
+    public countryofbirth;
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     private beforeCancelPassport;
+    constructor(private passportInfoService: ClientViewPassportInfoService,
+        public appService: AppService, public headerService: HeaderService) {
+    }
+
     ngOnInit() {
 
         this.passportInfoService.getClientPassportDetails(this.headerService.user.userId)
@@ -50,42 +35,24 @@ export class ClientViewPassportInfoComponent implements OnInit {
                 if (this.passportDetailsFileList === undefined) {
                     this.passportDetailsFileList = {};
                 }
+                this.mapFromPassportInfo();
                 this.isPassportInfoEdit = true
             });
     }
 
-    onDateChanged(event: IMyDateModel) {
+    mapFromPassportInfo() {
+      this.isuanceDate = this.passportDetailsFileList.isuanceDate;
+      this.expirationDate = this.passportDetailsFileList.expirationDate;
+      this.dateOfBirth = this.passportDetailsFileList.dateOfBirth;
     }
-    editForm(event, i) {
-        this.isEdit[i] = !this.isEdit[i];
-    }
-    cancelEdit(event, i) {
-        this.isEdit[i] = !this.isEdit[i];
-        this.ngOnInit();
-    }
-
     passportInfoEditForm() {
-        this.beforeCancelPassport = (<any>Object).assign({}, this.passportDetailsFileList);
+        this.beforeCancelPassport = DeepCloneUtil.deepClone(this.passportDetailsFileList);
         this.isPassportInfoEdit = !this.isPassportInfoEdit;
-        this.isuanceDate = this.passportDetailsFileList.isuanceDate;
-        this.expirationDate = this.passportDetailsFileList.expirationDate;
-        this.dateOfBirth = this.passportDetailsFileList.dateOfBirth;
-
     }
 
     cancelPassportInfoEdit() {
         this.passportDetailsFileList = this.beforeCancelPassport;
         this.isPassportInfoEdit = !this.isPassportInfoEdit;
-
-        if (this.passportDetailsFileList['isuanceDate'] && this.passportDetailsFileList['isuanceDate']['formatted']) {
-            this.passportDetailsFileList['isuanceDate'] = this.passportDetailsFileList['isuanceDate']['formatted'];
-        }
-        if (this.passportDetailsFileList['expirationDate'] && this.passportDetailsFileList['expirationDate']['formatted']) {
-            this.passportDetailsFileList['expirationDate'] = this.passportDetailsFileList['expirationDate']['formatted'];
-        }
-        if (this.passportDetailsFileList['dateOfBirth'] && this.passportDetailsFileList['dateOfBirth']['formatted']) {
-            this.passportDetailsFileList['dateOfBirth'] = this.passportDetailsFileList['dateOfBirth']['formatted'];
-        }
     }
 
 
@@ -107,12 +74,9 @@ export class ClientViewPassportInfoComponent implements OnInit {
                 this.isPassportInfoEdit = true;
                 if (res['passport']) {
                     this.passportDetailsFileList = res['passport'];
-                    console.log(this.passportDetailsFileList);
-
+                    this.mapFromPassportInfo();
                 }
             });
-
-
     }
 
 }

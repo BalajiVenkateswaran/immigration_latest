@@ -1,5 +1,4 @@
 <div class="main-content">
-
     <div class="table-data-forms">
         <h1>{{appService.firstName}} {{appService.lastName}}</h1>
         <div class="clearfix"></div>
@@ -9,122 +8,107 @@
             <li><a href="#">Passport</a></li>
         </ul>
         <div class="clearfix"></div>
-        <!--<div class="col-md-6 addresbox box-shadow" style="padding: 12px 12px 12px 12px !important;">-->
-            <div class="col-md-6 col-sm-6 col-xs-12" style="width: 480px!important;">
-                <div class="col-md-12 addresbox box-shadow">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h2>Passport</h2>
-                            <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;"  (click)="passportInfoEditForm()" id="cvPInfoEdit" *ngIf="isPassportInfoEdit==true">Edit</button>
-                            <div class="tbl-head-btn" [hidden]="isPassportInfoEdit">
-                                <button type="button" (click)="cancelPassportInfoEdit()" id="cvPInfoCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPassportInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" (click)="savePassportformation()" id="cvPInfoSave1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" *ngIf="isPassportInfoEdit==false">Save</button>
-                            </div>
+        <div class="col-md-6 col-sm-6 col-xs-12" style="width: 480px!important;">
+            <div class="col-md-12 addresbox box-shadow">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>Passport</h2>
+                        <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;"  (click)="passportInfoEditForm()" id="cvPInfoEdit" *ngIf="isPassportInfoEdit==true">Edit</button>
+                        <div class="tbl-head-btn" [hidden]="isPassportInfoEdit">
+                            <button type="button" (click)="cancelPassportInfoEdit()" id="cvPInfoCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPassportInfoEdit==false">Cancel</button>
+                            <button type="submit" value="Save" (click)="savePassportformation()" id="cvPInfoSave1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" *ngIf="isPassportInfoEdit==false">Save</button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoPassport">Passport(#)</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoPassport" [(ngModel)]="passportDetailsFileList.passportNumber" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.passportNumber}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoIssuancePlace">Issuance Place</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoIssuancePlace" [(ngModel)]="passportDetailsFileList.issuancePlace" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.issuancePlace}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoIssuanceState">Issuance State</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoIssuanceState" [(ngModel)]="passportDetailsFileList.issuanceState" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.issuanceState}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoIssuanceCountry">Issuance Country</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoIssuanceCountry" [(ngModel)]="passportDetailsFileList.issuanceCountry" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.issuanceCountry}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoIssuingCountry">Issuing Country</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoIssuingCountry" [(ngModel)]="passportDetailsFileList.issuingCountry" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.issuingCountry}}</span></div>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoPassport">Passport(#)</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoPassport" [(ngModel)]="passportDetailsFileList.passportNumber" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoIssuancePlace">Issuance Place</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoIssuancePlace" [(ngModel)]="passportDetailsFileList.issuancePlace" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoIssuanceState">Issuance State</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoIssuanceState" [(ngModel)]="passportDetailsFileList.issuanceState" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoIssuanceCountry">Issuance Country</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoIssuanceCountry" [(ngModel)]="passportDetailsFileList.issuanceCountry" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoIssuingCountry">Issuing Country</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoIssuingCountry" [(ngModel)]="passportDetailsFileList.issuingCountry" /></div>
+                </div>
+                <div class="row">
 
-                        <div class="col-md-4"><label for="cvPInfoIssuanceDate">Issuance Date</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isPassportInfoEdit==false" id="cvPInfoIssuanceDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passportDetailsFileList.isuanceDate" [selDate]="isuanceDate">
-                            </my-date-picker>
-                            <span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.isuanceDate}}</span>
-                        </div>
-
+                    <div class="col-md-4"><label for="cvPInfoIssuanceDate">Issuance Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker [disabled]="isPassportInfoEdit" id="cvPInfoIssuanceDate" [options]="myDatePickerOptions" [(ngModel)]="passportDetailsFileList.isuanceDate" [selDate]="isuanceDate"></my-date-picker>
                     </div>
-                    <div class="row">
-
-                        <div class="col-md-4"><label for="cvPInfoExpDate">Expiration Date</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isPassportInfoEdit==false" id="cvPInfoExpDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passportDetailsFileList.expirationDate" [selDate]="expirationDate">
-                            </my-date-picker>
-                            <span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.expirationDate}}</span>
-                        </div>
-                      </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoDob">Date of Birth</label></div>
-                        <div class="col-md-8">
-                            <my-date-picker *ngIf="isPassportInfoEdit==false" id="cvPInfoDob" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="passportDetailsFileList.dateOfBirth" [selDate]="dateOfBirth">
-                            </my-date-picker>
-                            <span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.dateOfBirth}}</span>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoExpDate">Expiration Date</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker [disabled]="isPassportInfoEdit" id="cvPInfoExpDate" [options]="myDatePickerOptions" [(ngModel)]="passportDetailsFileList.expirationDate" [selDate]="expirationDate"></my-date-picker>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoCityOfBirth">City/Town/Village Of Birth</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoCityOfBirth" [(ngModel)]="passportDetailsFileList.cityOfBirth" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.cityOfBirth}}</span></div>
+                  </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoDob">Date of Birth</label></div>
+                    <div class="col-md-8">
+                        <my-date-picker [disabled]="isPassportInfoEdit" id="cvPInfoDob" [options]="myDatePickerOptions" [(ngModel)]="passportDetailsFileList.dateOfBirth" [selDate]="dateOfBirth"></my-date-picker>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoStateOfBirth">State of Birth</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoStateOfBirth" [(ngModel)]="passportDetailsFileList.stateOfBirth" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.stateOfBirth}}</span></div>
-                        {{countryofbirth}}
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoCityOfBirth">City/Town/Village Of Birth</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoCityOfBirth" [(ngModel)]="passportDetailsFileList.cityOfBirth" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoStateOfBirth">State of Birth</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoStateOfBirth" [(ngModel)]="passportDetailsFileList.stateOfBirth" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoCountryOfBirth">Country of Birth</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoCountryOfBirth" [(ngModel)]="passportDetailsFileList.countryOfBirth" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoNationality">Nationality</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoNationality" [(ngModel)]="passportDetailsFileList.nationality" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoCountryOfNationality">Country of Nationality</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoCountryOfNationality" [(ngModel)]="passportDetailsFileList.countryOfNationality" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoIdentificationMarks">Identification Marks</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoIdentificationMarks" [(ngModel)]="passportDetailsFileList.identificationMarks" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoLostPassport">Have you ever lost a passport?</label></div>
+                    <div class="col-md-8">
+                      <select [disabled]="isPassportInfoEdit" id="cvPInfoLostPassport" [(ngModel)]="passportDetailsFileList.everLostPassport" class="form-control">
+                        <option value="true" id="ivClientDtlsPInfoLostPassportYes">YES</option>
+                        <option value="false" id="ivClientDtlsPInfoLostPassportNo">NO</option>
+                      </select>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoCountryOfBirth">Country of Birth</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoCountryOfBirth" [(ngModel)]="passportDetailsFileList.countryOfBirth" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.countryOfBirth}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoNationality">Nationality</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoNationality" [(ngModel)]="passportDetailsFileList.nationality" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.nationality}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoCountryOfNationality">Country of Nationality</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoCountryOfNationality" [(ngModel)]="passportDetailsFileList.countryOfNationality" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.countryOfNationality}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoIdentificationMarks">Identification Marks</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoIdentificationMarks" [(ngModel)]="passportDetailsFileList.identificationMarks" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.identificationMarks}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoLostPassport">Have you ever lost a passport?</label></div>
-                        <div class="col-md-8">
-                          <span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.everLostPassport == true ? 'YES': (passportDetailsFileList.everLostPassport == false ? 'NO' : '')}}</span>
-                          <select *ngIf="isPassportInfoEdit==false" [(ngModel)]="passportDetailsFileList.everLostPassport" class="form-control">
-                            <option value="true" id="ivClientDtlsPInfoLostPassportYes">YES</option>
-                            <option value="false" id="ivClientDtlsPInfoLostPassportNo">NO</option>
-                          </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoTravelDoc">Travel Document#</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoTravelDoc" [(ngModel)]="passportDetailsFileList.travelDocumentNumber" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.travelDocumentNumber}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"><label for="cvPInfoComments">Comments</label></div>
-                        <div class="col-md-8"><input *ngIf="isPassportInfoEdit==false" type="text" id="cvPInfoComments" [(ngModel)]="passportDetailsFileList.comments" /><span *ngIf="isPassportInfoEdit==true">{{passportDetailsFileList.comments}}</span></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="tbl-head-btn" [hidden]="isPassportInfoEdit">
-                                <button type="button" (click)="cancelPassportInfoEdit()" id="cvPInfoCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isPassportInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" (click)="savePassportformation()" id="cvPInfoSave2" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;"  *ngIf="isPassportInfoEdit==false">Save</button>
-                            </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoTravelDoc">Travel Document#</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoTravelDoc" [(ngModel)]="passportDetailsFileList.travelDocumentNumber" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label for="cvPInfoComments">Comments</label></div>
+                    <div class="col-md-8"><input [disabled]="isPassportInfoEdit" type="text" id="cvPInfoComments" [(ngModel)]="passportDetailsFileList.comments" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tbl-head-btn" [hidden]="isPassportInfoEdit">
+                            <button type="button" (click)="cancelPassportInfoEdit()" id="cvPInfoCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isPassportInfoEdit==false">Cancel</button>
+                            <button type="submit" value="Save" (click)="savePassportformation()" id="cvPInfoSave2" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;"  *ngIf="isPassportInfoEdit==false">Save</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-        <!--</div>-->
-
+        </div>
     </div>
-
 </div>

@@ -124,6 +124,7 @@ export class LoginPopupComponent extends DialogComponent<ConfirmModel, boolean> 
           }).afterClosed().subscribe((isConfirmed) => {
             window.location.reload(true);
           });
+          return;
         }
         /*this.loginPopupService.getIPAndLocation().subscribe(res => {
           this.locationObject = res;

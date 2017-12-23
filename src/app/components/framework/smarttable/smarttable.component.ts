@@ -285,6 +285,7 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
         } else {
             this.gridOptions['rowHeight'] = 40;
         }
+        this.gridOptions.suppressNoRowsOverlay = true;
         this.gridOptions['columnDefs'] = this.settings['columnsettings'];
 
         if (this.settings.hasOwnProperty('gridOptions')) {
@@ -294,10 +295,6 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
           }
         }
     }
-
-/*    ngOnDestroy() {
-        this.filterSubscription.unsubscribe();
-    }*/
 
     invokeResource() {
         let queryString = '?';

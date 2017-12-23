@@ -125,18 +125,18 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
 
   }
 
-    getPetitionData() {
-        this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId, this.queryParams).subscribe((res) => {
-            this.data = res['petitions'];
-            this.clientInviteStatus = res['clientInviteStatus'];
-          //  console.log(this.appService.clientId);
+  getPetitionData() {
+      this.immigrationviewpetitionService.getPetitions(this.headerService.selectedOrg['orgId'], this.appService.clientId, this.queryParams).subscribe((res) => {
+          this.data = res['petitions'];
+          this.clientInviteStatus = res['clientInviteStatus'];
+
           this.getClientDetails();
-            console.log(res)
-        });
-        if (!this.allPetitionTypesAndSubTypes) {
-          this.getPetitionTypes();
-        }
-    }
+          console.log(res)
+      });
+      if (!this.allPetitionTypesAndSubTypes) {
+        this.getPetitionTypes();
+      }
+  }
 
   getClientDetails() {
     this.clientDetailsService.getClientDetails(this.appService.clientId)
@@ -170,9 +170,9 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
 
   addNewPetition() {
       if (this.clientInviteStatus !== 'Accept') {
-        let informationMessage = 'Client has not been updated the invite. Please contact the client.';
+        let informationMessage = 'Cannot add petition as the Beneficiary has not accepted the invite. Please inform him to accept the same in order to proceed further.';
         if (this.clientInviteStatus === 'Decline') {
-          informationMessage = 'Petitions cannot be added to this client as the invitation is declined.';
+          informationMessage = 'Petitions cannot be added to this beneficiary as the invitation is declined.';
         }
         this.dialog.open(InformationDialogComponent, {
           data: {message: informationMessage}
