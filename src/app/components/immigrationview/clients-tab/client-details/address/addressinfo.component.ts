@@ -58,7 +58,9 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
     this.mailingedit = true;
     this.foreignedit = true;
   }
-
+  highlightSBLink(link) {
+    this.appService.currentSBLink = link;
+  }
   addressType() {
     for (let key in this.addressinfoList) {
       if (this.addressinfoList[key].addressType === 'WORK') {

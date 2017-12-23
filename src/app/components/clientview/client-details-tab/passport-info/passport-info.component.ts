@@ -15,7 +15,7 @@ import {DeepCloneUtil} from '../../../framework/utils/deepclone.component';
 export class ClientViewPassportInfoComponent implements OnInit {
 
     public isPassportInfoEdit: boolean;
-    private passportDetailsFileList: any = {};
+    public passportDetailsFileList: any = {};
     public isuanceDate: string;
     public expirationDate: string;
     public dateOfBirth: string;
