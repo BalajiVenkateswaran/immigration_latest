@@ -113,53 +113,48 @@
                         <div class="col-md-12">
                             <p class="fieldsetheading">Address of the United States institution of higher education</p>
                         </div>
-                        <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-6">Street Number and Name</div>
-                                <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.street"/></div>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-4">                           
+                                <div class="col-md-5">Street Number and Name</div>
+                                <div class="col-md-7"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.street" /></div>                         
                         </div>
                         <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-6"></div>
-                                <div class="col-md-6">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-7">
                                     <div class="row">
                                         <div class="col-md-4" *ngFor="let x of aptType">
-                                           <input type="radio" name="aptType" [value]="x.value" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.aptType">{{x.display}}
+                                            {{x.display}}<input type="radio" name="aptType" [value]="x.value" [(disabled)]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.aptType">
                                         </div>
 
                                     </div>
                                 </div>
-                            </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="row">
                                 <div class="col-md-6">Number </div>
-                                <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.houseNumber"/></div>
-                            </div>
+                                <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.houseNumber" /></div>
+                           
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
-                            <div class="row">
                                 <div class="col-md-6">City or Town</div>
-                                <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.city"/></div>
-                            </div>
+                                <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.city" /></div>
+                            
                         </div>
                         <div class="col-md-4">
-                            <div class="row">
                                 <div class="col-md-6">State</div>
                                 <div class="col-md-6">
-                                  <select class="form-control" id="state" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.state">
-                                    <option [value]="state.name" *ngFor="let state of states">{{state.name}}</option>
-                                  </select>
+                                    <select class="form-control" id="state" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.state">
+                                        <option [value]="state.name" *ngFor="let state of states">{{state.name}}</option>
+                                    </select>
                                 </div>
-                            </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="row">
                                 <div class="col-md-6">ZIP Code</div>
-                                <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.zipCode"/></div>
-                            </div>
+                                <div class="col-md-6"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page2.addressOfUSinstitution.zipCode" /></div>
+                            
                         </div>
+                    </div>
                 </div>
             </div>
     </div>

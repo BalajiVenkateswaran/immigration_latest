@@ -7,7 +7,8 @@ export class IHDateUtil {
     showClearDateBtn: false,
     editableDateField: false,
     openSelectorTopOfInput: true,
-    showSelectorArrow: false
+    showSelectorArrow: false,
+    alignSelectorRight:true
   };
 }
 

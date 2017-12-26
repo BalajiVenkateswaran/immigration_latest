@@ -3,7 +3,6 @@
     <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
     <h1 style="float:right;">{{appService.petitionDetails}}</h1>
     <div class="clearfix"></div>-->
-    <div class="row">
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-4">
@@ -11,17 +10,17 @@
           </div>
           <div class="col-md-4 pagenoof36">Page 22 of 36</div>
           <div class="col-md-4">
-            <a (click)="gotoNext()" class="nextbtn">Next</a>
-            <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
-            <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
-            <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
+            <a (click)="gotoNext()" class="nextbtn iportal-btnIMclient">Next</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn iportal-btnIMclient" style="color: #FF0000 !important;">Cancel</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient" style="color: #008000 !important;">Save</a>
+            <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn iportal-btnIMclient">Edit</a>
           </div>
         </div>
       </div>
       <div class="col-md-12">
         <div class="col-md-12 addresbox box-shadow clientview-ques129h">
           <div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: 10px;">
               <div class="row">
                 <div class="col-md-12">Name of the Petitioner</div>
                 <div class="col-md-12"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.petitonerName"/></div>
@@ -198,97 +197,76 @@
             </table>
           </div>
 
-          <div class="col-md-12">
-            <div class="row">
-
+          <div class="col-md-12"style="margin-top: 10px;">
               <div class="col-md-12">Name of the Employer Abroad</div>
               <div class="col-md-12"><input type="text" [disabled]="!isQuestionnaireEdit"  [(ngModel)]="page22.nameOfEmployer"/></div>
-
-            </div>
           </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="row">
-                <div class="col-md-4">Street Number and Name</div>
-                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit"  [(ngModel)]="page22.employerAddress.street"/>
-
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="row">
-                <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
-                <div class="col-md-8">
-                  <div class="row">
-                    <div class="col-md-4" *ngFor="let x of aptType">
-                      <input type="radio"  name="aptType" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page22.employerAddress.aptType">{{x.display}}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="col-md-4">Street Number and Name</div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.street" />
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
+                <div class="col-md-4">
+                    <div class="col-md-5"><label>Apt./Ste./Flr./Door</label></div>
+                    <div class="col-md-7">
+                        <div class="col-md-3" *ngFor="let x of aptType">
+                            {{x.display}}<input type="radio" name="aptType" [disabled]="!isQuestionnaireEdit" [value]="x.value" [(ngModel)]="page22.employerAddress.aptType">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="col-md-4">
-              <div class="row">
-                <div class="col-md-4">Number </div>
-                <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.houseNumber"/>
-
+                <div class="col-md-4">
+                    <div class="col-md-4">Number </div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.houseNumber" />
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="row">
-                  <div class="col-md-4">City or Town</div>
-                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.city"/>
-
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="row">
-                  <div class="col-md-4">State</div>
-                  <div class="col-md-8">
-                    <select [(ngModel)]="page22.employerAddress.state" [disabled]="!isQuestionnaireEdit" >
-                        <option *ngFor="let x of states"  [value]="x.value">{{x.name}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="row">
-                  <div class="col-md-4">ZIP Code</div>
-                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.zipCode"/>
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
-                <div class="row">
-                  <div class="col-md-4">Province</div>
-                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.province"/>
-                  </div>
+                <div class="col-md-4">
+                    <div class="col-md-4">City or Town</div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.city" />
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="row">
-                  <div class="col-md-4">Postal Code</div>
-                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.postalCode"/>
-                  </div>
+                <div class="col-md-4">
+                    <div class="col-md-4">State</div>
+                    <div class="col-md-8">
+                        <select [(ngModel)]="page22.employerAddress.state" [disabled]="!isQuestionnaireEdit">
+                            <option *ngFor="let x of states" [value]="x.value">{{x.name}}</option>
+                        </select>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="row">
-                  <div class="col-md-4">Country</div>
-                  <div class="col-md-8"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.country"/>
-                  </div>
+                <div class="col-md-4">
+                        <div class="col-md-4">ZIP Code</div>
+                        <div class="col-md-8">
+                            <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.zipCode" />
+                        </div>
                 </div>
-              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="col-md-4">Province</div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.province" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-4">Postal Code</div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.postalCode" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-4">Country</div>
+                    <div class="col-md-8">
+                        <input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page22.employerAddress.country" />
+                    </div>
+                </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
