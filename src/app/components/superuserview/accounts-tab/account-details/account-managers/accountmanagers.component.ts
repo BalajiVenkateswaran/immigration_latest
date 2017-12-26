@@ -36,6 +36,8 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
     public dialog: MatDialog, private accountDetailsCommonService: AccountDetailsCommonService, public headerService: HeaderService) {
     super(dialogService);
     this.settings = {
+      isDeleteEnable: false,
+      isEditEnable: false,
       'columnsettings': [
         {
           headerName: 'First Name',
@@ -54,7 +56,7 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
           field: 'roleName'
         }
       ]
-    }
+    };
   }
   ngOnInit() {
     this.getAccountsManagers();
