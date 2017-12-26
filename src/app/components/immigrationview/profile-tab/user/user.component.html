@@ -24,25 +24,25 @@
             <div class="row">
               <div class="col-md-4"><label for="profileUserfName">First Name<span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input type="text" [disabled]="isUserEdit" id="profileUserfName" [(ngModel)]="userInfo.firstName" [ngClass]="userInfo.firstName == '' ? 'redborder': ''" />
+                <input type="text" maxlength="100" [disabled]="isUserEdit" id="profileUserfName" [(ngModel)]="userInfo.firstName" [ngClass]="userInfo.firstName == '' ? 'redborder': ''" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="profileUserlName">Last Name<span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input type="text" [disabled]="isUserEdit" id="profileUserlName" [(ngModel)]="userInfo.lastName" [ngClass]="userInfo.lastName == '' ? 'redborder': ''" />
+                <input type="text" maxlength="100" [disabled]="isUserEdit" id="profileUserlName" [(ngModel)]="userInfo.lastName" [ngClass]="userInfo.lastName == '' ? 'redborder': ''" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="profileUserEmail">Email<span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input type="text" [disabled]="true" id="profileUserEmail" [(ngModel)]="userInfo.emailId" />
+                <input type="text" maxlength="100" [disabled]="true" id="profileUserEmail" [(ngModel)]="userInfo.emailId" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="profileUserPhone">Phone Number</label></div>
               <div class="col-md-8">
-                <input type="text" [disabled]="isUserEdit" id="profileUserPhone" [(ngModel)]="userInfo.phoneNumber" />
+                <input type="text" maxlength="100" [disabled]="isUserEdit" id="profileUserPhone" [(ngModel)]="userInfo.phoneNumber" />
               </div>
             </div>
           </div>

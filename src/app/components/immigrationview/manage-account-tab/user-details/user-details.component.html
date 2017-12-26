@@ -28,25 +28,25 @@
                     <div class="row">
                         <div class="col-md-4"><label for="wa-county">First Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" [disabled]="isUserEdit" id="wa-county" [(ngModel)]="userList.firstName" [ngClass]="userList.firstName == '' ? 'redborder': ''" />
+                            <input type="text" maxlength="100" [disabled]="isUserEdit" id="wa-county" [(ngModel)]="userList.firstName" [ngClass]="userList.firstName == '' ? 'redborder': ''" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-zip">Last Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" [disabled]="isUserEdit" id="wa-zip" [(ngModel)]="userList.lastName" [ngClass]="userList.lastName == '' ? 'redborder': ''" />
+                            <input type="text" maxlength="100" [disabled]="isUserEdit" id="wa-zip" [(ngModel)]="userList.lastName" [ngClass]="userList.lastName == '' ? 'redborder': ''" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-emailid">Email<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                          <input type="text" [disabled]="isUserEdit" id="wa-emailid" [(ngModel)]="userList.emailId" />
+                          <input type="text" maxlength="100" [disabled]="isUserEdit" id="wa-emailid" [(ngModel)]="userList.emailId" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="wa-country">Phone Number</label></div>
                         <div class="col-md-8">
-                            <input type="text" [disabled]="isUserEdit" id="wa-country" [(ngModel)]="userList.phoneNumber" />
+                            <input type="text" maxlength="100" [disabled]="isUserEdit" id="wa-country" [(ngModel)]="userList.phoneNumber" />
                         </div>
                     </div>
                     <div class="row">
