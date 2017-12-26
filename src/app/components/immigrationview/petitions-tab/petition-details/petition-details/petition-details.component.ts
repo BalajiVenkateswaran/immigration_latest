@@ -247,6 +247,7 @@ export class PetitionDetailsComponent implements OnInit {
             this.petitionDetailsService.savePetitionDetails(this.petitionDetails, this.headerService.user.userId)
                 .subscribe((res) => {
                     if (res['petitionInfo'] !== undefined) {
+                      this.isPetitionInformationEdit = true;
                         this.isPetitionInformationSave = false;
                         this.petitionDetails = res['petitionInfo'];
                         console.log(res);
