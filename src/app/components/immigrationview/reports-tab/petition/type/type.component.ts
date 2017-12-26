@@ -1,9 +1,7 @@
-﻿import { AppService } from '../../../../../services/app.service';
-import { PetitionTypeReportService } from './type.service';
+﻿import {PetitionTypeReportService} from './type.service';
 import {Component, OnInit} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/petitiontypestages/petitiontypestages.service';
-import {HeaderService} from "../../../../common/header/header.service";
+import {HeaderService} from '../../../../common/header/header.service';
 
 @Component({
     selector: 'app-petitiontypes-report',
@@ -15,11 +13,9 @@ import {HeaderService} from "../../../../common/header/header.service";
 export class PetitionTypeReportComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
-    public pieChartType: string = 'pie';
+    public pieChartType = 'pie';
     public orgsList: any = {};
     public orgsNames: any = [];
-    public count: any = [];
-    public subTypes: any = [];
     public selectedsubtype: any;
     public selectedsubtypeId: any;
     public petitionstageTypes: any = [];
@@ -30,9 +26,11 @@ export class PetitionTypeReportComponent implements OnInit {
             res => {
                 console.log(res);
                 this.petitionstageTypes = res['petitionTypes'];
-                this.selectedsubtype = "H1B";
-                this.selectedsubtypeId = this.petitionstageTypes[0].petitionTypeId;
-                this.getpetitiontypereports();
+                if (this.petitionstageTypes[0]) {
+                  this.selectedsubtype = this.petitionstageTypes[0].petitiontype;
+                  this.selectedsubtypeId = this.petitionstageTypes[0].petitionTypeId;
+                  this.getpetitiontypereports();
+                }
             });
 
     }
@@ -42,38 +40,38 @@ export class PetitionTypeReportComponent implements OnInit {
                 console.log(res);
                 this.orgsNames = [];
                 this.pieChartData = [];
-                this.pieChartLabels = [];
+                let pieChartLabels = [];
                 this.orgsList = res['orgs'];
 
-                for (var item in this.orgsList) {
-                    this.count = [];
-                    this.subTypes = [];
+                for (let item in this.orgsList) {
+                    let data = [];
+                    let subTypes = [];
                     this.orgsNames.push(item);
-                    for (var i = 0; i < this.orgsList[item].length; i++) {
-                        this.count.push(this.orgsList[item][i]['count']);
-                        this.subTypes.push(this.orgsList[item][i]['subType']);
+                    for (let i = 0; i < this.orgsList[item].length; i++) {
+                        data.push(this.orgsList[item][i]['count']);
+                        subTypes.push(this.orgsList[item][i]['subType']);
                     }
-                    this.pieChartLabels[item] = this.subTypes;
-                    this.pieChartData[item] = this.count;
-
+                    pieChartLabels[item] = subTypes;
+                    this.pieChartData[item] = data;
                 }
 
+                setTimeout(() => {this.pieChartLabels = pieChartLabels});
             });
+
     }
   petitionsubtypechange() {
-        for (var i = 0; i < this.petitionstageTypes.length; i++) {
-            if (this.selectedsubtype == this.petitionstageTypes[i].petitiontype) {
+        for (let i = 0; i < this.petitionstageTypes.length; i++) {
+            if (this.selectedsubtype === this.petitionstageTypes[i].petitiontype) {
                 this.selectedsubtypeId = this.petitionstageTypes[i].petitionTypeId;
             }
         }
         this.getpetitiontypereports();
+  }
+  public chartClicked(e: any): void {
+      console.log(e);
+  }
 
-    }
-    public chartClicked(e: any): void {
-        console.log(e);
-    }
-
-    public chartHovered(e: any): void {
-        console.log(e);
-    }
+  public chartHovered(e: any): void {
+      console.log(e);
+  }
 }

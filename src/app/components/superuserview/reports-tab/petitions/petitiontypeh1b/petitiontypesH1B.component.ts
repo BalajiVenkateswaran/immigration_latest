@@ -23,8 +23,8 @@ export class SuperUserH1BReportsComponent implements OnInit {
     public subTypes: any = [];
     public selectedaccountId: string;
     public petitionstageTypes: any = [];
-  selectedsubtype;
-  petitionsubtypechange;
+    public selectedPetitionType;
+    public selectedPetitionTypeId;
   constructor(public appService: AppService, private superUserH1Breportsservice: SuperUserH1BReportsService,
       public reportsCommonService: ReportsCommonService, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
   ngOnInit() {
@@ -32,6 +32,11 @@ export class SuperUserH1BReportsComponent implements OnInit {
           res => {
               console.log(res);
               this.petitionstageTypes = res['petitionTypes'];
+              if (this.petitionstageTypes[0]) {
+                this.selectedPetitionType = this.petitionstageTypes[0].petitiontype;
+                this.selectedPetitionTypeId = this.petitionstageTypes[0].petitionTypeId;
+                this.getreports();
+              }
           });
         this.selectedaccountId = this.reportsCommonService.totalAccounts[0].accountId;
         this.getreports();
@@ -39,28 +44,42 @@ export class SuperUserH1BReportsComponent implements OnInit {
     }
   changeaccount(value) {
         this.selectedaccountId = value;
+        this.selectedPetitionType = this.petitionstageTypes[0].petitiontype;
+        this.selectedPetitionTypeId = this.petitionstageTypes[0].petitionTypeId;
         this.getreports();
     }
   getreports() {
-        this.superUserH1Breportsservice.getpetitonTypesreports(this.selectedaccountId, "14a8e52f-2f5a-11e7-bf66-0aac8eb8f426")
+        this.superUserH1Breportsservice.getpetitonTypesreports(this.selectedaccountId, this.selectedPetitionTypeId)
             .subscribe((res) => {
-                console.log(res);
-                if (res['orgs']) {
+              this.orgsNames = [];
+              this.pieChartData = [];
+              let pieChartLabels = [];
+              if (res['orgs']) {
                     this.orgsList = res['orgs'];
-                    for (var item in this.orgsList) {
-                        this.count = [];
-                        this.subTypes = [];
+                    for (let item in this.orgsList) {
+                        let data = [];
+                        let types = [];
                         this.orgsNames.push(item);
-                        for (var i = 0; i < this.orgsList[item].length; i++) {
-                            this.count.push(this.orgsList[item][i]['count']);
-                            this.subTypes.push(this.orgsList[item][i]['subType']);
+                        for (let i = 0; i < this.orgsList[item].length; i++) {
+                            data.push(this.orgsList[item][i]['count']);
+                            types.push(this.orgsList[item][i]['subType']);
                         }
-                        this.pieChartLabels[item] = this.subTypes;
-                        this.pieChartData[item] = this.count;
+                        pieChartLabels[item] = types;
+                        this.pieChartData[item] = data;
                     }
+                  setTimeout(() => {this.pieChartLabels = pieChartLabels});
                 }
             });
     }
+
+  petitionsubtypechange() {
+    for (let i = 0; i < this.petitionstageTypes.length; i++) {
+      if (this.selectedPetitionType === this.petitionstageTypes[i].petitiontype) {
+        this.selectedPetitionTypeId = this.petitionstageTypes[i].petitionTypeId;
+      }
+    }
+    this.getreports();
+  }
     public chartClicked(e: any): void {
         console.log(e);
     }

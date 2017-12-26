@@ -7,8 +7,8 @@ export class PetitionStagesReportsService {
     constructor(private restService: RestService) {
 
     }
-    public getpetitonStagereports(accountId: string) {
+    public getpetitonStagereports(accountId: string, petitionTypeId: string) {
         console.log('petiontypereportsreports|getstatus|', accountId);
-        return this.restService.getData('/immigration/account/' + accountId + '/petition/stage');
+        return this.restService.getData('/immigration/account/' + accountId + '/petition/' + petitionTypeId + '/stage');
     }
 }

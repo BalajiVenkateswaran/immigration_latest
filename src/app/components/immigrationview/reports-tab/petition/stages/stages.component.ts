@@ -14,48 +14,59 @@ import {ManageAccountPetitionStagesService} from '../../../manage-account-tab/pe
 export class PetitionStagesReportsComponent implements OnInit {
     public pieChartLabels: string[] = [];
     public pieChartData: number[] = [];
-    public pieChartType: string = 'pie';
+    public pieChartType = 'pie';
     public orgsList: any = {};
     public orgsNames: any = [];
-    public count: any = [];
-    public stages: any = [];
     public petitionstageTypes: any = [];
-    public selectedsubtype: string;
-  public selectedsubtypeId: any;
-    public petitionsubtypechange: any;
+    public selectedPetitionType: string;
+    public selectedPetitionTypeId: any;
     constructor(public headerService: HeaderService, private petitionStagesreportsservice: PetitionStagesReportsService, private immigrationViewPetitionsService: ManageAccountPetitionStagesService) { }
 
   ngOnInit() {
-      this.immigrationViewPetitionsService.getPetitionTypes().subscribe(
-          res => {
-              console.log(res);
-              this.petitionstageTypes = res['petitionTypes'];
-            this.selectedsubtype = "H1B";
-            this.selectedsubtypeId = this.petitionstageTypes[0].petitionTypeId;
+    this.immigrationViewPetitionsService.getPetitionTypes().subscribe(
+        res => {
+          this.petitionstageTypes = res['petitionTypes'];
+          this.selectedPetitionType = this.petitionstageTypes[0].petitiontype;
+          this.selectedPetitionTypeId = this.petitionstageTypes[0].petitionTypeId;
+          this.getPetitionStages();
+        });
 
-          });
-        this.petitionStagesreportsservice.getpetitonStagereports(this.headerService.user.accountId)
-            .subscribe((res) => {
-                console.log(res);
-                this.orgsList = res['orgs'];
-                for (var item in this.orgsList) {
-                    this.count = [];
-                    this.stages = [];
-                    this.orgsNames.push(item);
-                    for (var i = 0; i < this.orgsList[item].length; i++) {
-                        this.count.push(this.orgsList[item][i]['count']);
-                        this.stages.push(this.orgsList[item][i]['stage']);
-                    }
-                    this.pieChartData[item] = this.count;
-                    this.pieChartLabels[item] = this.stages;
-                }
-            });
+  }
+  petitionsubtypechange() {
+    for (let i = 0; i < this.petitionstageTypes.length; i++) {
+      if (this.selectedPetitionType === this.petitionstageTypes[i].petitiontype) {
+        this.selectedPetitionTypeId = this.petitionstageTypes[i].petitionTypeId;
+      }
     }
-    public chartClicked(e: any): void {
-        console.log(e);
-    }
+    this.getPetitionStages();
+  }
+  getPetitionStages() {
+    this.petitionStagesreportsservice.getpetitonStagereports(this.headerService.user.accountId, this.selectedPetitionTypeId)
+      .subscribe((res) => {
+        this.orgsList = res['orgs'];
+        this.orgsNames = [];
+        let pieChartLabels = [];
+        this.pieChartData = [];
+        for (let item in this.orgsList) {
+          let data = [];
+          let stages = [];
+          this.orgsNames.push(item);
+          for (let i = 0; i < this.orgsList[item].length; i++) {
+            data.push(this.orgsList[item][i]['count']);
+            stages.push(this.orgsList[item][i]['stage']);
+          }
+          this.pieChartData[item] = data;
+          pieChartLabels[item] = stages;
+        }
+        setTimeout(() => {this.pieChartLabels = pieChartLabels});
+      });
+  }
 
-    public chartHovered(e: any): void {
-        console.log(e);
-    }
+  public chartClicked(e: any): void {
+      console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+      console.log(e);
+  }
 }

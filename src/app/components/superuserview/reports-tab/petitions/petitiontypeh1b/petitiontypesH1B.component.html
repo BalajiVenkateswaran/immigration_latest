@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-12">
                 <span class="listofusers">Select Petition Type</span>
-                <select class="form-control" [(ngModel)]="selectedsubtype" (change)="petitionsubtypechange()" style="max-width:250px;">
+                <select class="form-control" [(ngModel)]="selectedPetitionType" (change)="petitionsubtypechange()" style="max-width:250px;">
                     <option *ngFor="let type of petitionstageTypes" value={{type.petitiontype}} id="{{type.petitiontype}}">{{type.petitiontype}}</option>
                 </select>
             </div>
