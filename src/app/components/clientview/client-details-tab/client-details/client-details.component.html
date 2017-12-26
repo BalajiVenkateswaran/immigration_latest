@@ -31,37 +31,37 @@
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientDetails">File Number</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isProfileEdit==false" id="cvClientDetails" [readonly]="true" [(ngModel)]="clientProfile.fileNumber" /><span *ngIf="isProfileEdit==true">{{clientProfile.fileNumber}}</span>
+                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientDetails" [readonly]="true" [(ngModel)]="clientProfile.fileNumber" /><span *ngIf="isProfileEdit==true">{{clientProfile.fileNumber}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientEmail">Email</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isProfileEdit==false" id="cvClientEmail" [readonly]="isEdit" [(ngModel)]="clientProfile.email" /><span *ngIf="isProfileEdit==true">{{clientProfile.email}}</span>
+                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientEmail" [readonly]="isEdit" [(ngModel)]="clientProfile.email" /><span *ngIf="isProfileEdit==true">{{clientProfile.email}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientFName">First Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isProfileEdit==false" id="cvClientFName" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.firstName}}</span>
+                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientFName" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.firstName}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientMiddleName">Middle Name</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isProfileEdit==false" id="cvClientMiddleName" [(ngModel)]="clientProfile.middleName" /><span *ngIf="isProfileEdit==true">{{clientProfile.middleName}}</span>
+                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientMiddleName" [(ngModel)]="clientProfile.middleName" /><span *ngIf="isProfileEdit==true">{{clientProfile.middleName}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientLName">Last Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isProfileEdit==false" id="cvClientLName" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.lastName}}</span>
+                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientLName" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.lastName}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientPhone">Phone Number<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isProfileEdit==false" id="cvClientPhone" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span>
+                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientPhone" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span>
                         </div>
                     </div>
                     <div class="row">
@@ -111,31 +111,31 @@
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientPInfoSocialSecurityNo">U.S. Social Security Number (if any)</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientPInfoSocialSecurityNo" [(ngModel)]="clientPersonalInfo.ssn" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span>
+                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientPInfoSocialSecurityNo" [(ngModel)]="clientPersonalInfo.ssn" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientaleinRegistrationNumber">Alien Registration Number</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientaleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.aleinRegistrationNumber}}</span>
+                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientaleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.aleinRegistrationNumber}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientcountryOfBirth">Country of Birth</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientcountryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.countryOfBirth}}</span>
+                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientcountryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.countryOfBirth}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientstateOfBirth">State/Province of Birth</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientstateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.stateOfBirth}}</span>
+                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientstateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.stateOfBirth}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientcitizenship">Country of Citizenship or Nationality</label></div>
                         <div class="col-md-8">
-                            <input type="text" *ngIf="isPersonalInfoEdit==false" id="cvClientcitizenship" [(ngModel)]="clientPersonalInfo.citizenship" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.citizenship}}</span>
+                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientcitizenship" [(ngModel)]="clientPersonalInfo.citizenship" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.citizenship}}</span>
                         </div>
                     </div>
                     <div class="row">

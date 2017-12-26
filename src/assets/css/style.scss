@@ -595,6 +595,7 @@ section {
               border: solid 1px #c1c1c1;
               background:#F6F7FA !important;
               cursor:not-allowed;
+             
             }
             select.custom-select.d-inline-block{
                 width: 48% !important;
@@ -622,13 +623,14 @@ section {
                 background:red !important;*/
                 padding: 3px 4px 2px 5px;
                 color: #585155;
-                font-weight: 500 !important;
+                /*font-weight: 500 !important;*/
                 font-size: 14px !important;
                 /*background: rgba(255, 255, 255, 0.1);*/
                 height: 30px;
                 margin-bottom: 12px;
                 background:#f6f7fa !important;
-
+                font-weight:600!important;
+             opacity: 0.9;
                 height: 34px !important;
     line-height: 20px !important;
     font-size: 14px !important;
@@ -646,7 +648,7 @@ section {
                         }
                     }
                 }
-                .selector {
+                .selector {                    
                     table.caltable {
                         td.daycell  {
                             div.currmonth, div.prevmonth, div.nextmonth {

@@ -13,7 +13,7 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <form (submit)="addTodo($event)">
-                                <input [(ngModel)]="newTodo" id="addTodoNew" type="text" style="width: calc(100% - 40px);"  name="newTodo" (keyup)="enableAddButton(newTodo)"   >
+                                <input [(ngModel)]="newTodo" maxlength="100" id="addTodoNew" type="text" style="width: calc(100% - 40px);"  name="newTodo" (keyup)="enableAddButton(newTodo)"   >
                                 <button *ngIf="hideAddButton" id="addTodoSubmit" type="submit" [disabled]="newTodo===''" class="addTodo">+</button>
                             </form>
                         </div>

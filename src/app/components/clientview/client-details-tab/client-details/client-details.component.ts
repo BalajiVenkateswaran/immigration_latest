@@ -5,7 +5,7 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {AppService} from '../../../../services/app.service';
 import {ImmigrationViewClientProfile} from '../../../../models/immigrationviewclientprofile';
 import {ImmigrationViewClientPersonalInfo} from '../../../../models/ImmigrationViewClientPersonalInfo';
-
+import {IHDateUtil} from '../../../framework/utils/date.component';
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {User} from '../../../../models/user';
@@ -47,12 +47,7 @@ export class ClientDetailsComponent  implements OnInit {
   private clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
 
   private clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
-
-  private myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
-  };
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;  
   private creationDate: string;
   private dateOfBirth: string;
   private user: User;

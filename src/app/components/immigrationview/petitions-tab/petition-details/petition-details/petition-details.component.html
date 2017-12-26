@@ -28,31 +28,31 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.name" [ngClass]="petitionInformation.name == '' ? 'redborder': ''" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.name" [ngClass]="petitionInformation.name == '' ? 'redborder': ''" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiontype">Petition Type </label></div>
               <div class="col-md-8">
-                <input type="text" style="border-radius: 4px;" [disabled]="true" [(ngModel)]="petitionInformation.petitionType"/>
+                <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="true" [(ngModel)]="petitionInformation.petitionType"/>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondesubtype">Petition Sub Type</label></div>
               <div class="col-md-8">
-                <input type="text" style="border-radius: 4px;" [disabled]="true" [(ngModel)]="petitionInformation.petitionSubType"/>
+                <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="true" [(ngModel)]="petitionInformation.petitionSubType"/>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Description</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.description" />
+                <input style="border-radius: 4px;" type="text" maxlength="100" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.description" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">File Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.fileNumber"/>
+                <input style="border-radius: 4px;" type="text" maxlength="100" [disabled]="true" [(ngModel)]="petitionInformation.fileNumber"/>
               </div>
             </div>
             <div class="row">
@@ -66,7 +66,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitioncurrentstage">Tag</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.tag" />
+                <input style="border-radius: 4px;" type="text" maxlength="100" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.tag" />
               </div>
             </div>
             <div class="row">
@@ -80,13 +80,13 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitionwithdrawndate">Days in Stage</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.daysInStage"/>
+                <input style="border-radius: 4px;" type="text" maxlength="100" [disabled]="true" [(ngModel)]="petitionInformation.daysInStage"/>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-createdby">Next Stage</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.nextStage"/>
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="true" [(ngModel)]="petitionInformation.nextStage"/>
               </div>
             </div>
             <div class="row">
@@ -126,13 +126,13 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Created By</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.createdByUserOn"/>
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="true" [(ngModel)]="petitionInformation.createdByUserOn"/>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-lastupdatedby">Last Updated By</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.lastUpdatedByUserOn"/>
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="true" [(ngModel)]="petitionInformation.lastUpdatedByUserOn"/>
               </div>
             </div>
             <div class="row">
@@ -147,7 +147,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-markfordeletiondetailsbyuser">Mark For Deletion details</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="petitionInformation.deletedByUserOn"/>
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="true" [(ngModel)]="petitionInformation.deletedByUserOn"/>
               </div>
             </div>
             <div class="row sfm" *ngIf="sfmpi">
@@ -185,7 +185,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Receipt Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isReceiptInfoEdit" [(ngModel)]="receiptInfo.receiptNumber" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isReceiptInfoEdit" [(ngModel)]="receiptInfo.receiptNumber" />
               </div>
             </div>
             <div class="row">
@@ -221,7 +221,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Comments</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isReceiptInfoEdit" [(ngModel)]="receiptInfo.comments" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isReceiptInfoEdit" [(ngModel)]="receiptInfo.comments" />
               </div>
             </div>
             <div class="row">
@@ -274,19 +274,19 @@
             <div class="row">
               <div class="col-md-4"><label>Shipping Carrier</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.shippingCarrier" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.shippingCarrier" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label>Tracking Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.trackingNumber" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.trackingNumber" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label>Check Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.checkNumber" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdditionalDetailsEdit" [(ngModel)]="petitionAdditionalDetails.checkNumber" />
               </div>
             </div>
             <div class="row">
@@ -315,49 +315,49 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.name" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.name" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name On Form</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.nameOnForm" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.nameOnForm" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Signing Person Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.signingPersonName" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.signingPersonName" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Title</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.title" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.title" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Full Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.fullName" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.fullName" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Email</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.email" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.email" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Country</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.country" />
+                <input style="border-radius: 4px;" type="text" maxlength="100" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.country" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.street1" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.street1" />
               </div>
             </div>
             <div class="row">
@@ -374,49 +374,49 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.aptNo" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.aptNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">City/Town</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.city" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.city" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">County</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.county" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.county" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">State/Province</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.state" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.state" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Zip/Postal code</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.zipCode" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfoAddress.zipCode" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Fax</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.fax" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.fax" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Mobile Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.mobile" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.mobile" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Telephone</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.phoneNumber" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSponsorInfoEdit" [(ngModel)]="sponsorInfo.phoneNumber" />
               </div>
             </div>
             <div class="row">
@@ -444,7 +444,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">LCA Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.lcaNumber" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.lcaNumber" />
               </div>
             </div>
             <div class="row">
@@ -462,13 +462,13 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Type</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.type" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.type" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">LCA Group</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.lcaGroup" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.lcaGroup" />
               </div>
             </div>
             <div class="row">
@@ -492,7 +492,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Comments</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.comments" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isLCAInfoEdit" [(ngModel)]="lcaInfo.comments" />
               </div>
             </div>
             <div class="row">

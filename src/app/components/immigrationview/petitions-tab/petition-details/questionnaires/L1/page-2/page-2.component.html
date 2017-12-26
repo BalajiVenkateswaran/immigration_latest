@@ -3,7 +3,6 @@
     <!--<h1 class="clickname" (click)="appService.moveToPage('immigrationview/client/detail/client-details');highlightSBLink('Client Details')">{{appService.clientfirstName}} {{appService.clientlastName}} </h1>
         <h1 style="float:right;">{{appService.petitionDetails}}</h1>
         <div class="clearfix"></div>-->
-    <div class="row">
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-4">
@@ -11,20 +10,19 @@
           </div>
           <div class="col-md-4 pagenoof36">Page 23 of 36</div>
           <div class="col-md-4">
-            <a (click)="gotoNext()" class="nextbtn">Next</a>
-            <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn">Cancel</a>
-            <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn">Save</a>
-            <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn">Edit</a>
+            <a (click)="gotoNext()" class="nextbtn iportal-btnIMclient">Next</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn iportal-btnIMclient" style="color: #FF0000 !important;">Cancel</a>
+            <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient" style="color: #008000 !important;">Save</a>
+            <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn iportal-btnIMclient">Edit</a>
           </div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 Questionnaireheader">
         <h2> Complete This Selection If Filing For An Individual Petition (Continued) </h2>
       </div>
       <div class="col-md-12">
         <div class="col-md-12 addresbox box-shadow clientview-ques129h" style="margin-bottom:0px;">
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: 10px;">
               <p>Dates of beneficiary employment with this employer. Explain any interruptions in employement.</p>
             </div>
             <div class="col-md-12">
@@ -109,7 +107,7 @@
                 </tr>
               </table>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: 10px;">
               <p>Describe the beneficiary's duties abroad for 3 years preceding the filing of the petition. (If the beneficiary
                 is currently inside the United States, describe the beneficiary's duties abroad for the 3 years preceding
                 the beneficiary admission to the United States.)</p>
@@ -137,9 +135,7 @@
 
               </div>
             </div>
-          </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
