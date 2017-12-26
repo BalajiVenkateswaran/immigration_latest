@@ -23,15 +23,15 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Country</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrCountry" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.country"/></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrCountry" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.country"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 1</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrstreet1" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.street1"/></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrstreet1" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.street1"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 2</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrstreet2" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.street2"/></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrstreet2" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.street2"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
@@ -47,33 +47,33 @@
                       <div class="row">
                         <div class="col-md-4"><label>Number</label></div>
                         <div class="col-md-8">
-                          <input style="border-radius: 4px;" id="cvaddrAptNo" type="text" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.aptNo"/>
+                          <input style="border-radius: 4px;" maxlength="100" id="cvaddrAptNo" type="text" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.aptNo"/>
                         </div>
                       </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrCity" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.city"/></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrCity" maxlength="100" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.city"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>County</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrCounty" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.county"/></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrCounty" maxlength="100" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.county"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>State</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrState" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.state"/></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrState" maxlength="100" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.state"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Zip Code</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrZipCode" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.zipCode"/></div>
+                            <div class="col-md-8"><input type="text" id="cvaddrZipCode" maxlength="100" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.address.zipCode"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Telephone</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrTelephone" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.telephone"/></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrTelephone" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.telephone"/></div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4"><label>Fax</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrFax" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.fax"/></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrFax" [disabled]="workedit" [(ngModel)]="WorkaddressinfoList.fax"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="cvaddrWorkingSince">Working Since</label></div>
@@ -107,15 +107,15 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Country</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResCountry" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.country" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResCountry" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.country" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 1</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResStreet1" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.street1" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResStreet1" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.street1" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 2</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResStreet2" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.street2" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResStreet2" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.street2" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
@@ -131,32 +131,32 @@
                       <div class="row">
                         <div class="col-md-4"><label>Number</label></div>
                         <div class="col-md-8">
-                          <input style="border-radius: 4px;" id="cvaddrResAptNo" type="text" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.aptNo" />
+                          <input style="border-radius: 4px;" maxlength="100" id="cvaddrResAptNo" type="text" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.aptNo" />
                         </div>
                       </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResCity" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.city" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResCity" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.city" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>County</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResCounty" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.county" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResCounty" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.county" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>State</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResState" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.state" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResState" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.state" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Zip Code</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResZip" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.zipCode" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResZip" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.address.zipCode" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Telephone</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResTel" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.telephone" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResTel" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.telephone" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Fax</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrResFax" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.fax" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrResFax" [disabled]="residenceedit" [(ngModel)]="ResidenceaddressinfoList.fax" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label for="wa-rs">Residing Since</label></div>
@@ -198,15 +198,15 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Country</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingCountry" [disabled]="checked || mailingedit " [(ngModel)]="checked ? ResidenceaddressinfoList.address.country : MailingaddressinfoList.address.country" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingCountry" [disabled]="checked || mailingedit " [(ngModel)]="checked ? ResidenceaddressinfoList.address.country : MailingaddressinfoList.address.country" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 1</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingStreet1" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.street1 : MailingaddressinfoList.address.street1" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingStreet1" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.street1 : MailingaddressinfoList.address.street1" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 2</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingStreet2" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.street2 : MailingaddressinfoList.address.street2" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingStreet2" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.street2 : MailingaddressinfoList.address.street2" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
@@ -222,32 +222,32 @@
                       <div class="row">
                         <div class="col-md-4"><label>Number</label></div>
                         <div class="col-md-8">
-                          <input style="border-radius: 4px;" id="cvaddrMailingAptNo" type="text" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.aptNo : MailingaddressinfoList.address.aptNo" />
+                          <input style="border-radius: 4px;" maxlength="100" id="cvaddrMailingAptNo" type="text" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.aptNo : MailingaddressinfoList.address.aptNo" />
                         </div>
                       </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingCity" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.city : MailingaddressinfoList.address.city" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingCity" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.city : MailingaddressinfoList.address.city" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>County</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingCounty" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.county : MailingaddressinfoList.address.county" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingCounty" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.county : MailingaddressinfoList.address.county" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>State</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingState" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.state : MailingaddressinfoList.address.state" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingState" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.state : MailingaddressinfoList.address.state" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Zip Code</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingZip" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.zipCode : MailingaddressinfoList.address.zipCode" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingZip" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.address.zipCode : MailingaddressinfoList.address.zipCode" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Telephone</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingTel" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.telephone : MailingaddressinfoList.telephone" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingTel" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.telephone : MailingaddressinfoList.telephone" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Fax</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrMailingFax" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.fax : MailingaddressinfoList.fax" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrMailingFax" [disabled]="checked || mailingedit" [(ngModel)]="checked ? ResidenceaddressinfoList.fax : MailingaddressinfoList.fax" /></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
@@ -273,15 +273,15 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Country</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnCountry" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.country" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnCountry" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.country" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 1</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnStreet1" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.street1" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnStreet1" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.street1" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Street 2</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnStreet2" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.street2" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnStreet2" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.street2" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Apt./Ste./Flr./Door</label></div>
@@ -297,32 +297,32 @@
                       <div class="row">
                         <div class="col-md-4"><label>Number</label></div>
                         <div class="col-md-8">
-                          <input style="border-radius: 4px;" id="cvaddrForiegnAptNo" type="text" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.aptNo" />
+                          <input style="border-radius: 4px;" maxlength="100" id="cvaddrForiegnAptNo" type="text" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.aptNo" />
                         </div>
                       </div>
                         <div class="row">
                             <div class="col-md-4"><label>City</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnCity" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.city" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnCity" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.city" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>County</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnCounty" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.county" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnCounty" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.county" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>State</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnState" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.state" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnState" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.state" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Zip Code</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnZip" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.zipCode" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnZip" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.address.zipCode" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Telephone</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnTel" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.telephone" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnTel" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.telephone" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><label>Fax</label></div>
-                            <div class="col-md-8"><input type="text" id="cvaddrForiegnFax" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.fax" /></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="cvaddrForiegnFax" [disabled]="foreignedit" [(ngModel)]="ForiegnaddressinfoList.fax" /></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
