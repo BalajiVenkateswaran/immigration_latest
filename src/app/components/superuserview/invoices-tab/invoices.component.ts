@@ -14,7 +14,6 @@ export interface ConfirmModel {
     message: string;
     addNewClient: boolean;
     getClientsData: boolean;
-
 }
 @Component({
   selector: 'app-invoices',
@@ -83,14 +82,14 @@ export class SuperUserViewInvoicestabComponent extends DialogComponent<ConfirmMo
                   type: 'text'
                 },
                 {
-                    headerName: 'Payment Status',
-                    field: 'paymentStatus',
+                  headerName: 'Payment Status',
+                  field: 'paymentStatus',
                   type: 'dropDown',
                   data: this.statusTypes
                 },
                 {
-                    headerName: 'PDF Generated',
-                    field: 'pdfGenerated',
+                  headerName: 'PDF Generated',
+                  field: 'pdfGenerated',
                   type: 'text'
                 }
 

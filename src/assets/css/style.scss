@@ -1,5 +1,6 @@
 @import 'colors';
 @import 'global';
+@import 'button-progress';
 /*Login page css*/
 .login-bg {
     background: url("../images/Login_bg.jpg") no-repeat;
@@ -590,12 +591,13 @@ section {
                 border: transparent;
             }
           input[disabled],
+          input[ng-reflect-is-disabled="true"],
           textarea[disabled],
           select[disabled] {
               border: solid 1px #c1c1c1;
               background:#F6F7FA !important;
               cursor:not-allowed;
-             
+
             }
             select.custom-select.d-inline-block{
                 width: 48% !important;
@@ -648,7 +650,7 @@ section {
                         }
                     }
                 }
-                .selector {                    
+                .selector {
                     table.caltable {
                         td.daycell  {
                             div.currmonth, div.prevmonth, div.nextmonth {

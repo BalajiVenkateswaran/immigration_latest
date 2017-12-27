@@ -57,7 +57,7 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
         },
         {
           headerName: 'PDF Uploaded',
-          field: 'pdfUploaded'
+          field: 'fileName'
         },
         {
           headerName: 'Download Button',
@@ -92,9 +92,9 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
 
   onDownloadClick(event) {
     this.manageAccountInvoiceService.downloadFile(event.data.invoiceId).subscribe
-      (data => this.downloadFiles(data, event.data.fileName)),
-      error => console.log('Error Downloading....');
-    () => console.log('OK');
+      (data => this.downloadFiles(data, event.data.fileName),
+      error => console.log('Error Downloading....'),
+    () => console.log('OK'));
 
   }
   cancel() {

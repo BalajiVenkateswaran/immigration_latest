@@ -23,7 +23,7 @@
             <div class="row">
               <div class="col-md-4"><label for="wa-county">File Number <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [readonly]="true" [ngClass]="orgDetails.fileNumber == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-county" [(ngModel)]="orgDetails.fileNumber" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="true" id="wa-county" [(ngModel)]="orgDetails.fileNumber" />
               </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
             <div class="row">
               <div class="col-md-4"><label for="wa-name">Type</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isProfileEdit" id="wa-state" [readonly]="true" [(ngModel)]="orgDetails.orgType" />
+                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="true" id="wa-state" [(ngModel)]="orgDetails.orgType" />
               </div>
             </div>
             <div class="row">
@@ -62,8 +62,7 @@
             <div class="row">
               <div class="col-md-4"><label>Open Date</label></div>
               <div class="col-md-8">
-                <my-date-picker [disabled]="isProfileEdit" id="wa-openDate" [options]="datePikcerOptions" [(ngModel)]="orgDetails.openDate" [selDate]="openDate">
-                </my-date-picker>
+                <my-date-picker [disabled]="true" id="wa-openDate" [options]="datePikcerOptions" [selDate]="orgDetails.openDate"></my-date-picker>
               </div>
             </div>
             <div class="row">
@@ -98,10 +97,7 @@
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-country">Mark For Deletion details</label></div>
-              <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" [disabled]="isProfileEdit" [readonly]=true
-                       [(ngModel)]="orgDetails.markedForDeletionBy" />
-              </div>
+              <div class="col-md-8"><input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="orgDetails.markedForDeletionBy" /></div>
             </div>
             <div class="row sfm" *ngIf="warningMessage">
               <div class="col-md-12">

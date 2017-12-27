@@ -99,7 +99,7 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
     onReplaceClick(event, data) {
         let fileList: FileList = event.target.files;
         let file: File = fileList[0];
-        let fileName = this.getFiles[this.selectedindex].fileName;
+        let fileName = file.name;
         let fileExists = this.isfileExists(file);
         this.dialog.open(ConfirmationDialogComponent, {
             data: {
@@ -107,35 +107,32 @@ export class ClientDocumentRepositoryComponent extends DialogComponent<ConfirmMo
             }
         }).afterClosed().subscribe((isConfirmed) => {
             if (isConfirmed) {
-                if (fileList.length > 0 && FileUtils.checkFileExtension(fileName)  && fileExists !== true) {
-                    let formData: FormData = new FormData();
-                    formData.append('file', file, file.name);
-                    this.clientdocumentrepositoryService.replaceFile(data.fileId, this.headerService.selectedOrg['orgId'], formData)
-                        .subscribe(
-                        res => {
-                            this.getFilesList();
-                        }
-                        );
-                }
-                if (fileExists) {
-                    this.dialog.open(InformationDialogComponent, {
-                        data: {
-                          title: 'Error',
-                          message: 'File already exists'
-                        }
-                    });
-                }
-                if (!FileUtils.checkFileExtension(fileName) ) {
-                    this.dialog.open(InformationDialogComponent, {
-                        data: {
-                          title: 'Error',
-                          message: 'Please upload only PDF file'
-                        }
-                    });
-                }
-
+              let formData: FormData = new FormData();
+              if (fileList.length > 0 && FileUtils.checkFileExtension(fileName)  && fileExists !== true) {
+                  formData.append('file', file, file.name);
+                  this.clientdocumentrepositoryService.replaceFile(data.fileId, this.headerService.selectedOrg['orgId'], formData)
+                      .subscribe(
+                      res => {
+                          this.getFilesList();
+                      });
+              }
+              if (fileExists) {
+                  this.dialog.open(InformationDialogComponent, {
+                      data: {
+                        title: 'Error',
+                        message: 'File already exists'
+                      }
+                  });
+              }
+              if (!FileUtils.checkFileExtension(fileName) ) {
+                  this.dialog.open(InformationDialogComponent, {
+                      data: {
+                        title: 'Error',
+                        message: 'Please upload only PDF file'
+                      }
+                  });
+              }
             }
-
         })
     }
 

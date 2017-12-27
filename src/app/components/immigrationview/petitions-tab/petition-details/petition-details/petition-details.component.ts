@@ -204,8 +204,6 @@ export class PetitionDetailsComponent implements OnInit {
     // is edit function for read only
     onEditPetitionInfoClick() {
         this.beforeCancelPetition = DeepCloneUtil.deepClone(this.petitionInformation);
-        this.petitionInformation.currentStage = this.petitionDetails.currentStageId;
-        this.petitionInformation.markForDeletion = this.petitionInformation.markForDeletion;
         this.isPetitionInformationEdit = false;
         this.isPetitionInformationSave = true;
     }
@@ -228,7 +226,7 @@ export class PetitionDetailsComponent implements OnInit {
             this.sfmpi = true;
         } else {
             this.sfmpi = false;
-            this.petitionDetails['currentStageId'] = this.petitionInformation.currentStage;
+            this.petitionDetails['currentStageId'] = this.petitionInformation.currentStageId;
             if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
               this.petitionInformation['startDate'] = this.petitionDetails['startDate']['formatted'];
             }

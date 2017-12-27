@@ -35,48 +35,37 @@
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsCDate">Creation Date</label></div>
               <div class="col-md-8">
-                <my-date-picker [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsCDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="dependentProfile.creationDate" [selDate]="creationDate" [disabled]="true"></my-date-picker>
-                <!--<span *ngIf="isProfileEdit==true">{{dependentProfile.creationDate}}</span>-->
-                <!--<span>{{dependentProfile.creationDate}}</span>-->
-              </div>           
-            </div>            
+                <my-date-picker [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsCDate" [options]="myDatePickerOptions" [(ngModel)]="dependentProfile.creationDate" [selDate]="creationDate" [disabled]="true"></my-date-picker>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsEmail">Email</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsEmail" [(ngModel)]="dependentProfile.email" />
-                <!--<span *ngIf="isProfileEdit==true">{{dependentProfile.email}}</span>-->
-                </div>
+              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsEmail" [(ngModel)]="dependentProfile.email" /></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsFName">First Name<span class="redstar">*</span></label></div>
                 <div class="col-md-8">
                     <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsFName" [(ngModel)]="dependentProfile.firstName" [ngClass]="dependentProfile.firstName == '' ? 'redborder': ''" />
-                    <!--<span *ngIf="isProfileEdit==true">{{dependentProfile.firstName}}</span>-->
                 </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsMName">Middle Name</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsMName" [(ngModel)]="dependentProfile.middleName" />
-                <!--<span *ngIf="isProfileEdit==true">{{dependentProfile.middleName}}</span>-->
-                </div>
+              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsMName" [(ngModel)]="dependentProfile.middleName" /></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsLName">Last Name<span class="redstar">*</span></label></div>
                 <div class="col-md-8">
                     <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsLName" [(ngModel)]="dependentProfile.lastName" [ngClass]="dependentProfile.lastName == '' ? 'redborder': ''" />
-                    <!--<span *ngIf="isProfileEdit==true">{{dependentProfile.lastName}}</span>-->
                 </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsRel">Relation<span class="redstar">*</span></label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsRel" [(ngModel)]="dependentProfile.relation" [ngClass]="dependentProfile.relation == '' ? 'redborder': ''" />
-                <!--<span *ngIf="isProfileEdit==true">{{dependentProfile.relation}}</span>-->
-                </div>
+              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsRel" [(ngModel)]="dependentProfile.relation" [ngClass]="dependentProfile.relation == '' ? 'redborder': ''" /></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsPNo">Phone Number</label></div>
                 <div class="col-md-8">
                     <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsPNo" [(ngModel)]="dependentProfile.phoneNumber" />
-                    <!--<span *ngIf="isProfileEdit==true">{{dependentProfile.phoneNumber}}</span>-->
                 </div>
             </div>
           </div>
@@ -100,7 +89,6 @@
                 <select [disabled]="isPersonalInfoEdit" [(ngModel)]="dependentPersonalInfo.gender">
                   <option *ngFor="let genderTypes of gender" id="{{genderTypes.name}}">{{genderTypes.name}}</option>
                 </select>
-                <!--<span *ngIf="isPersonalInfoEdit==true">{{dependentPersonalInfo.gender}}</span>-->
               </div>
             </div>
 
@@ -108,39 +96,31 @@
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoDob">Date Of Birth</label></div>
               <div class="col-md-8">
-                <my-date-picker [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoDob" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="dependentPersonalInfo.dateOfBirth" [selDate]="dateOfBirth"></my-date-picker>
-                <!--<span *ngIf="isPersonalInfoEdit==true">{{dependentPersonalInfo.dateOfBirth}}</span>-->
+                <my-date-picker [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoDob" [options]="myDatePickerOptions" [(ngModel)]="dependentPersonalInfo.dateOfBirth" [selDate]="dateOfBirth"></my-date-picker>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoSsn">U.S. Social Security Number (if any)</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSsn" [(ngModel)]="dependentPersonalInfo.ssn" />
-                <!--<span *ngIf="isPersonalInfoEdit==true">{{dependentPersonalInfo.ssn}}</span>--></div>
+              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSsn" [(ngModel)]="dependentPersonalInfo.ssn" /></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoARegNo">Alien Registration Number</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoARegNo" [(ngModel)]="dependentPersonalInfo.alienRegistrationNumber" />
-                <!--<span *ngIf="isPersonalInfoEdit==true">{{dependentPersonalInfo.alienRegistrationNumber}}</span>--></div>
+              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoARegNo" [(ngModel)]="dependentPersonalInfo.alienRegistrationNumber" /></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoCOB">Country of Birth</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCOB" [(ngModel)]="dependentPersonalInfo.countryOfBirth" />
-                <!--<span *ngIf="isPersonalInfoEdit==true">{{dependentPersonalInfo.countryOfBirth}}</span>--></div>
+              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCOB" [(ngModel)]="dependentPersonalInfo.countryOfBirth" /></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoSOB">State/Province of Birth</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSOB" [(ngModel)]="dependentPersonalInfo.stateOfBirth" />
-                <!--<span *ngIf="isPersonalInfoEdit==true">{{dependentPersonalInfo.stateOfBirth}}</span>--></div>
+              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSOB" [(ngModel)]="dependentPersonalInfo.stateOfBirth" /></div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoCitiz">Country of Citizenship or Nationality</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCitiz" [(ngModel)]="dependentPersonalInfo.nationality" />
-                <!--<span *ngIf="isPersonalInfoEdit==true">{{dependentPersonalInfo.nationality}}</span>--></div>
+              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCitiz" [(ngModel)]="dependentPersonalInfo.nationality" /></div>
             </div>
           </div>
         </div>
-      <!--</div>-->
-
     </div>
 </div>
 

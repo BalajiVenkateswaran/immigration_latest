@@ -56,7 +56,6 @@ export class OrganizationComponent implements OnInit {
                 if (this.orgDetails['markForDeletion'] === true) {
                     this.orgDetails['status'] = 'Mark for Deletion';
                 }
-                console.log(this.orgDetails);
             }
             for (let i = 0; i < res['contactDetails'].length; i++) {
                 if (res['contactDetails'][i].contactType === 'SIGNING') {
@@ -66,7 +65,6 @@ export class OrganizationComponent implements OnInit {
                     this.adminstrativeDetails = res['contactDetails'][i];
                     this.adminstrativeAddress = this.adminstrativeDetails.address;
                 }
-
             }
 
             this.isProfileEdit = true;
@@ -104,7 +102,7 @@ export class OrganizationComponent implements OnInit {
                         this.dialog.open(InformationDialogComponent, {
                             data: {
                               title: 'Error',
-                              message: 'Organization cannot be deleted as there are clients for this organization'
+                              message: 'Petitioner cannot be deleted as there are beneficiaries'
                             }
                         });
 

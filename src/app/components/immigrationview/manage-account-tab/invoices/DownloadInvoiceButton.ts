@@ -5,10 +5,8 @@ import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-    template: `
-
-<a class="iportal-btn" (click)="download()"><i aria-hidden="true" class="fa fa-download"></i></a>
-`,
+    template: `<button class="btn iportal-btnIMclient" style="margin: -4px 0px 0px 0px !important;"  [ngClass]="{'myclass':disableButton(),'btn iportal-btnIMclient':!disableButton()}"  [disabled]="disableButton()"
+                       (click)="download()">Download Form</button>`,
 
 })
 export class DownloadInvoiceButtonComponent implements ICellRendererAngularComp {
@@ -21,12 +19,15 @@ export class DownloadInvoiceButtonComponent implements ICellRendererAngularComp 
       return false;
     }
 
-    constructor() {
-
-    }
-    download(){
+    download() {
           this.params.context.componentParent.onDownloadClick({ 'data': this.params.data})
     }
-
+  disableButton() {
+    if (this.params.data.fileId) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
 }

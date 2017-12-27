@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {IMyDateModel, IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../../common/header/header.service';
 import {IHDateUtil} from '../../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../../framework/utils/deepclone.component';
 
 export interface formControl {
     name: string;
@@ -59,15 +60,14 @@ export class DependentDetailsComponent implements OnInit {
              this.dependentDetailsService.getDependentDetails(dependentId)
               .subscribe((res) => {
                   if (res['dependent']) {
-                      this.dependent = res['dependent'];
-                      console.log(this.dependent);
-                      this.dependentDetails = res;
-                      this.mapToClientProfile();
-                      this.mapToClientPersonalInfo();
-
+                    this.dependent = res['dependent'];
+                    console.log(this.dependent);
+                    this.dependentDetails = res;
+                    this.mapToClientProfile();
+                    this.mapToClientPersonalInfo();
+                    this.dependentFirstName = res['dependent']['firstName'];
+                    this.dependentLastName = res['dependent']['lastName'];
                   }
-                  this.dependentFirstName = res['dependent']['firstName'];
-                  this.dependentLastName = res['dependent']['lastName'];
                   this.isProfileEdit = true;
                   this.isPersonalInfoEdit = true;
               });
@@ -86,14 +86,13 @@ export class DependentDetailsComponent implements OnInit {
         ]
     }
 
-    //is edit function for read only
+    // is edit function for read only
     editProfileForm() {
-        this.beforeCancelProfile = (<any>Object).assign({}, this.dependent);
+        this.beforeCancelProfile = DeepCloneUtil.deepClone(this.dependent);
         this.isProfileEdit = !this.isProfileEdit;
-        this.creationDate = this.dependent['creationDate'];
      }
 
-    //cancel button function
+    // cancel button function
     cancelProfileEdit() {
         this.mapToClientProfile();
         this.dependent = this.beforeCancelProfile;
@@ -106,16 +105,13 @@ export class DependentDetailsComponent implements OnInit {
 
     }
 
-    //is edit function for read only
+    // is edit function for read only
     editPersonalInfoForm() {
-        this.beforeCancelPersonal = (<any>Object).assign({}, this.dependent);
+        this.beforeCancelPersonal = DeepCloneUtil.deepClone(this.dependent);
         this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
-        this.dateOfBirth = this.dependent['dateOfBirth'];
-
-
     }
 
-    //cancel button function
+    // cancel button function
     cancelPersonalInfoEdit() {
         this.mapToClientPersonalInfo();
         this.dependent = this.beforeCancelPersonal;
@@ -126,45 +122,41 @@ export class DependentDetailsComponent implements OnInit {
     }
 
 
-    //Save Client Details
+    // Save Client Details
     saveClientProfile() {
 
         if (this.dependentProfile['creationDate'] && this.dependentProfile['creationDate']['formatted']) {
             this.dependentProfile['creationDate'] = this.dependentProfile['creationDate']['formatted'];
         }
         if (this.dependentProfile['firstName'] == undefined || this.dependentProfile['lastName'] == undefined || this.dependentProfile['relation'] == undefined || this.dependentProfile['fileNumber'] == undefined ||
-            this.dependentProfile['firstName'] == "" || this.dependentProfile['lastName'] == "" || this.dependentProfile['relation'] == "" || this.dependentProfile['fileNumber'] == "" ||
-            this.dependentProfile['firstName'] == null || this.dependentProfile['lastName'] == null || this.dependentProfile['relation'] == null || this.dependentProfile['fileNumber'] == null){
-            this.warningMessage=true;
-        }
-        else{
+            this.dependentProfile['firstName'] == '' || this.dependentProfile['lastName'] == '' || this.dependentProfile['relation'] == '' || this.dependentProfile['fileNumber'] == '' ||
+            this.dependentProfile['firstName'] == null || this.dependentProfile['lastName'] == null || this.dependentProfile['relation'] == null || this.dependentProfile['fileNumber'] == null) {
+            this.warningMessage = true;
+        } else {
             this.warningMessage = false;
             this.mapFromClientProfile();
-            this.dependentDetailsService.saveDependentDetails(this.dependent,this.headerService.user.userId)
+            this.dependentDetailsService.saveDependentDetails(this.dependent, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isProfileEdit = true;
                 if (res['dependent']) {
                     this.dependent = res['dependent'];
-                  this.mapToClientProfile();
+                    this.mapToClientProfile();
 
                 }
 
             });
         }
-
-
     }
 
-    //Save Client Details
+    // Save Client Details
     saveClientPersonalInfo() {
-
         if (this.dependentPersonalInfo['dateOfBirth'] && this.dependentPersonalInfo['dateOfBirth']['formatted']) {
             this.dependentPersonalInfo['dateOfBirth'] = this.dependentPersonalInfo['dateOfBirth']['formatted'];
         }
 
         this.mapFromClientPersonalInfo();
 
-          this.dependentDetailsService.saveDependentDetails(this.dependent,this.headerService.user.userId)
+          this.dependentDetailsService.saveDependentDetails(this.dependent, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isPersonalInfoEdit = true;
                 if (res['dependent']) {
@@ -179,6 +171,7 @@ export class DependentDetailsComponent implements OnInit {
         this.dependentProfile.fileNumber = this.dependent['fileNumber'];
         this.dependentProfile.status = this.dependent['status'];
         this.dependentProfile.creationDate = this.dependent['creationDate'];
+        this.creationDate = this.dependentProfile.creationDate;
         this.dependentProfile.employeeId = this.dependent['employeeId'];
         this.dependentProfile.email = this.dependent['email'];
         this.dependentProfile.firstName = this.dependent['firstName'];
@@ -212,6 +205,7 @@ export class DependentDetailsComponent implements OnInit {
     mapToClientPersonalInfo() {
         this.dependentPersonalInfo.gender = this.dependent['gender'];
         this.dependentPersonalInfo.dateOfBirth = this.dependent['dateOfBirth'];
+        this.dateOfBirth = this.dependent['dateOfBirth'];
         this.dependentPersonalInfo.ssn = this.dependent['ssn'];
         this.dependentPersonalInfo.alienRegistrationNumber = this.dependent['alienRegistrationNumber'];
         this.dependentPersonalInfo.countryOfBirth = this.dependent['countryOfBirth'];

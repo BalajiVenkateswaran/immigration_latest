@@ -72,8 +72,8 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondenieddate">Current Stage <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <select style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.currentStage" [ngClass]="petitionInformation.currentStage == '' ? 'redborder': ''">
-                  <option *ngFor="let petitionStage of petitionStages;" [value]="petitionStage.stageId" [selected]="petitionStage.stageId">{{petitionStage.name}}</option>
+                <select style="border-radius: 4px;" [disabled]="isPetitionInformationEdit" [(ngModel)]="petitionInformation.currentStageId" [ngClass]="petitionInformation.currentStageId == '' ? 'redborder': ''">
+                  <option *ngFor="let petitionStage of petitionStages;" [value]="petitionStage.stageId">{{petitionStage.name}}</option>
                 </select>
               </div>
             </div>

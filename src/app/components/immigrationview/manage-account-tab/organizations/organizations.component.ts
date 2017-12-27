@@ -11,7 +11,6 @@ import {MatDialog} from '@angular/material';
 
 export interface ConfirmModel {
   title: string;
-  message: string;
   showAddOrgpopup: boolean;
   getOrgsData: boolean;
   editorg: boolean;
@@ -94,7 +93,10 @@ export class ManageAccountOrganizationsComponent extends DialogComponent<Confirm
       getOrgsData: false,
       title: 'Add Organization',
       editorg: false,
-
+      neworgitem: {
+        orgStatus: 'Active',
+        orgType: 'Regular'
+      }
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.manageaccountorganizationService.saveNewOrganization(this.appService.neworgitem).subscribe((res) => {

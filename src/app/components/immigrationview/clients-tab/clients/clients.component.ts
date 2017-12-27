@@ -28,7 +28,7 @@ export interface ConfirmModel {
   entryComponents: [SmartTableFrameworkComponent, StatusButtonComponent]
 })
 export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-    public refreshFeedbackForm: any = false;
+  public saveButtonProgress = false;
   private outlet: any = {
     breadcrumbs: null,
     header: 'header',
@@ -185,27 +185,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             title: 'Add Client',
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
-                this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
-                    if (res['statusCode'] === 'SUCCESS') {
-                        this.clientService.getClients(this.clientService.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
-                            (res1) => {
-                                this.clientService.data = res1['clients'];
-                                this.clientService.paginationData = res1['pageMetadata'];
-                            }
-                        )
-                    } else {
-                      let message = res['statusDescription'];
-                      if (res['statusDescription'] === 'Duplicate client') {
-                        message = 'User already Exists';
-                      }
-                      this.dialog.open(InformationDialogComponent, {
-                        data: {
-                          title: 'Error',
-                          message: message
-                        }
-                      });
-                    }
-                });
+
             }
         });
     }
@@ -218,7 +198,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         }
     }
     clientSave(email, phone) {
-        this.refreshFeedbackForm = true;
+        this.saveButtonProgress = true;
         this.newclitem['accountId'] = this.headerService.user.accountId;
         this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
         this.newclitem['createdBy'] = this.headerService.user.userId;
@@ -231,15 +211,41 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
           || this.newclitem['email'] === '' || this.newclitem['email'] == null || this.newclitem['email'] === undefined
           || this.newclitem['phone'] === '' || this.newclitem['phone'] == null || this.newclitem['phone'] === undefined) {
             this.warningMessage = true;
+            this.saveButtonProgress = false;
         } else if (email != null || phone != null) {
 
         } else {
             this.warningMessage = false;
             this.appService.newclitem = this.newclitem;
             this.result = true;
-            this.close();
+
+          //Add new client
+          this.clientService.saveNewClient(this.appService.newclitem).subscribe((res) => {
+            if (res['statusCode'] === 'SUCCESS') {
+              this.clientService.getClients(this.clientService.queryParams, this.headerService.selectedOrg['orgId']).subscribe(
+                (res1) => {
+                  this.clientService.data = res1['clients'];
+                  this.clientService.paginationData = res1['pageMetadata'];
+                  this.saveButtonProgress = false;
+                  this.close();
+                }
+              );
+            } else {
+              let message = res['statusDescription'];
+              if (res['statusDescription'] === 'Duplicate client') {
+                message = 'User already Exists';
+              }
+              this.dialog.open(InformationDialogComponent, {
+                data: {
+                  title: 'Error',
+                  message: message
+                }
+              });
+              this.saveButtonProgress = false;
+              this.close();
+            }
+          });
         }
-        //this.refreshFeedbackForm = false;
     }
 
     cancel() {
