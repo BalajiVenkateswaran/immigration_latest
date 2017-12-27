@@ -28,6 +28,7 @@ export interface ConfirmModel {
   entryComponents: [SmartTableFrameworkComponent, StatusButtonComponent]
 })
 export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
+    public refreshFeedbackForm: any = false;
   private outlet: any = {
     breadcrumbs: null,
     header: 'header',
@@ -217,6 +218,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
         }
     }
     clientSave(email, phone) {
+        this.refreshFeedbackForm = true;
         this.newclitem['accountId'] = this.headerService.user.accountId;
         this.newclitem['orgId'] = this.headerService.selectedOrg['orgId'];
         this.newclitem['createdBy'] = this.headerService.user.userId;
@@ -237,6 +239,7 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
             this.result = true;
             this.close();
         }
+        //this.refreshFeedbackForm = false;
     }
 
     cancel() {

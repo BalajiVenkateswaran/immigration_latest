@@ -1,3 +1,17 @@
+<style>
+    .no-border{
+        height:auto !important;
+        margin-bottom:0px !important;
+        border:none !important;
+        margin-top: -2px !important;
+    }
+    .loader{
+        height: 24px !important;
+        position: absolute !important;
+        left: 63px;top: 7px;
+    }
+</style>
+
 <div class="main-content" *ngIf="getClientsData">
     <div class="pagetitleandfilters">
         <div class="mainContainer">
@@ -78,8 +92,11 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;"  id="ivClientSave1" (click)="clientSave(emailId.errors,phone.errors)">Save</button></div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
+	style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;"  id="ivClientSave1" (click)="clientSave(emailId.errors,phone.errors)">
+                                            <img src="../../../../../assets/images/icons/source.gif" *ngIf="refreshFeedbackForm" class="loader" />
+                                        <span *ngIf="!refreshFeedbackForm" class="no-border">Save</span></button></div>                                    
                                     <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
 	style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="ivClientCancel1" (click)="cancel()">Cancel</button></div>
                                 </div>
