@@ -8,7 +8,7 @@ import {HeaderService} from '../../../common/header/header.service';
 import {MatDialog} from '@angular/material';
 import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
 import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
-
+import {IHDateUtil} from '../../../framework/utils/date.component';
 
 export interface ConfirmModel {
   title: string;
@@ -39,11 +39,7 @@ export class I797HistoryComponent extends DialogComponent<ConfirmModel, boolean>
   public newi797item: any = {};
   public editFlag = true;
   public beforeEdit: any;
-  private myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
-  };
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions; 
 
   constructor(private i797HistoryService: I797HistoryService, public appService: AppService, public dialogService: DialogService,
               public dialog: MatDialog, public headerService: HeaderService) {

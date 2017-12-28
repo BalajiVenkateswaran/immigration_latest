@@ -7,6 +7,7 @@ import {IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../common/header/header.service';
 import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
 import {MatDialog} from '@angular/material';
+import {IHDateUtil} from '../../../framework/utils/date.component';
 
 export interface ConfirmModel {
   title: string;
@@ -31,11 +32,8 @@ export class VisasComponent extends DialogComponent<ConfirmModel, boolean> imple
   public getCleintVisa = true;
   public addCleintVisa: boolean;
   public addNewVisa: any = {};
-  private myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
-  };
+  private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+ 
   public editvisaFlag = true;
   public beforevisaEdit: any;
   public settings;
