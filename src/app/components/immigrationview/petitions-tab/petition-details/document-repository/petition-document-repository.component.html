@@ -37,9 +37,6 @@
                 <h2 class="headerinsections" style="font-size: 18px!important;border-bottom: none!important; color: #4EA0F9 !important;margin-top: 0px;">Document</h2>
                 <div class="dropzone">
                     <div class="col-md-7 well-lg">
-                        <!--<h4 style="color:#232F3F!important;margin-top: 0px!important;">Uploaded Files {{ getFiles.length }}</h4>-->
-
-
                         <table class="table" style="table-layout:fixed;">
                             <thead>
                                 <tr>
@@ -64,7 +61,7 @@
                                             <div>
                                                 <i class="fa fa-files-o" aria-hidden="true"></i>
                                             </div>
-                                            <input type="file" #fileInput (change)="onReplaceClick($event, pdf)" class="upload" name="file" />
+                                            <input type="file" #fileInput onclick="this.value = null" (change)="onReplaceClick($event, pdf)" class="upload" name="file" />
                                         </div>
                                         <button title="Remove" type="button" class="btn btn-danger btn-xs" (click)="onDeleteClick(pdf)">
                                             <i class="fa fa-trash" aria-hidden="true"></i>

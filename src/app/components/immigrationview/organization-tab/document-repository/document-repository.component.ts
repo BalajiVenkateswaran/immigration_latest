@@ -108,7 +108,7 @@ export class OrganizationDocumentRepositoryComponent extends DialogComponent<Con
           });
         }
       }
-    })
+    });
 
   }
   onDownloadClick(event) {

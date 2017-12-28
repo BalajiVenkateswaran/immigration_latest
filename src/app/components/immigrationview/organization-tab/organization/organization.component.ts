@@ -19,7 +19,7 @@ export class OrganizationComponent implements OnInit {
 
     public warningMessage = false;
     highlightSBLink;
-    isProfileEdit;
+    isProfileEdit = true;
     isAdminEdit = true;
     isSigninEdit = true;
     public signinDetails: any = {};
@@ -43,7 +43,7 @@ export class OrganizationComponent implements OnInit {
     constructor(public appService: AppService, private  organizationService: OrganizationService,
         private dialogService: DialogService, private dialog: MatDialog, private headerService: HeaderService) {
             this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            this.email = new FormControl('', [Validators.required, Validators.pattern(this.emailRegex)]);
+            this.email = new FormControl({value: '', disabled: this.isProfileEdit}, [Validators.required, Validators.pattern(this.emailRegex)]);
     }
 
     ngOnInit() {
@@ -94,6 +94,7 @@ export class OrganizationComponent implements OnInit {
             this.organizationService.saveOrgDetails(this.orgDetails, this.headerService.user.userId)
                 .subscribe((res) => {
                     this.isProfileEdit = true;
+                    this.email.enable();
                     if (res['organizationDetails']) {
                         this.orgDetails = res['organizationDetails'];
                     }
@@ -125,17 +126,17 @@ export class OrganizationComponent implements OnInit {
         this.isProfileEdit = !this.isProfileEdit;
         this.openDate = this.orgDetails.openDate;
         this.orgDetails.markForDeletion = this.orgDetails['markForDeletion'];
+        this.email.enable();
     }
 
     cancelProfileEdit() {
         this.orgDetails = this.beforeCancelOrg;
         this.isProfileEdit = !this.isProfileEdit;
-
+        this.warningMessage = false;
         if (this.orgDetails['openDate'] && this.orgDetails['openDate']['formatted']) {
             this.orgDetails['openDate'] = this.orgDetails['openDate']['formatted'];
         }
-
-
+        this.email.disable();
     }
 
     editPersonProfileForm() {

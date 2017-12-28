@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ICellRendererAngularComp} from 'ag-grid-angular/main';
 
 @Component({
-    template: `<button class="btn iportal-btnIMclient" style="margin: -4px 0px 0px 0px !important;" [ngClass]="{'myclass':disableButton(),'btn iportal-btnIMclient':!disableButton()}"  [disabled]="disableButton()"  (click)="onGenerateFormClick()">Generate Form</button>`,
+    template: `<button class="btn iportal-btnIMclient" style="margin: -4px 0px 0px 0px !important;" [ngClass]="{'myclass':disableButton(),'btn iportal-btnIMclient':!disableButton()}"  [disabled]="disableButton()"  (click)="onGenerateFormClick()">Generate</button>`,
     styleUrls: ['./forms.component.scss']
 })
 export class GenerateFormButton implements ICellRendererAngularComp {
