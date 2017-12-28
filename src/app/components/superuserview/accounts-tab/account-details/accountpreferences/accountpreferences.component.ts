@@ -103,7 +103,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
                     field: 'cost'
                 }
             ]
-        }
+        };
         this.discountSettings = {
             'isDeleteEnable': false,
             'columnsettings': [
@@ -136,7 +136,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
                     field: 'percentage'
                 }
             ]
-        }
+        };
     }
     getproducts() {
         this.superuserViewAccountPreferencesService.getproductsAccount(this.accountDetailsCommonService.accountId).subscribe((res) => {

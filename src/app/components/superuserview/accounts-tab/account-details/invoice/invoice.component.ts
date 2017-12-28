@@ -53,30 +53,38 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
                 'componentParent': this
             },
             'columnsettings': [
-                {
-                    headerName: 'Invoice Number',
-                    field: 'invoiceNumber',
-                },
-                {
-                    headerName: 'Invoice Date',
-                    field: 'invoiceDate',
-                },
-                {
-                    headerName: 'Invoice Amount',
-                    field: 'invoiceAmount',
-                },
-                {
-                    headerName: 'Payment Received',
-                    field: 'paymentRecieved',
-                },
-                {
+              {
+                  headerName: 'Invoice Number',
+                  field: 'invoiceNumber'
+              },
+              {
+                  headerName: 'Invoice Date',
+                  field: 'invoiceDate'
+              },
+              {
+                  headerName: 'Invoice Amount',
+                  field: 'invoiceAmount'
+              },
+              {
+                  headerName: 'Payment Received',
+                  field: 'paymentReceived'
+              },
+              {
+                headerName: 'Bill Start',
+                field: 'billStartDate'
+              },
+              {
+                headerName: 'Bill End',
+                field: 'billEndDate'
+              }
+                /*{
                     headerName: 'PDF Uploaded',
                     cellRendererFramework: InvoiceUploadButtonComponent
                 },
                 {
                     headerName: 'Download Button',
                     cellRendererFramework: InvoiceDownloadButtonComponent
-                }
+                }*/
             ]
         };
     }

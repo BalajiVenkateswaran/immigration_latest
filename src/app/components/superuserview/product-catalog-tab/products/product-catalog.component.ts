@@ -1,10 +1,11 @@
-import { AppService } from '../../../../services/app.service';
-import { MenuComponent } from '../../../common/menu/menu.component';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
-import { ProductCatalogProductService } from './product-catalog.service';
+import {AppService} from '../../../../services/app.service';
+import {MenuComponent} from '../../../common/menu/menu.component';
+import {Component, OnInit} from '@angular/core';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {ProductCatalogProductService} from './product-catalog.service';
 import {HeaderService} from '../../../common/header/header.service';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
 
 export interface ConfirmModel {
   title: string;
@@ -42,7 +43,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   public validationTypeValues: any = [];
 
   constructor(public appService: AppService, public dialogService: DialogService, public productCatalogProductService: ProductCatalogProductService,
-              private menuComponent: MenuComponent, public headerService: HeaderService) {
+              private menuComponent: MenuComponent, public headerService: HeaderService, private dialog: MatDialog) {
     super(dialogService);
 
     this.statusTypes = [
@@ -123,7 +124,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
           type: 'datePicker'
         }
       ]
-    }
+    };
     this.typeValues = [
       {
         'value': 'Plan',
@@ -183,19 +184,15 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
       getData: false,
       addPopup: false,
       title: 'View Product Details',
-      product: this.editFlag ? this.beforeEdit : event.data,
-
-
+      product: this.editFlag ? this.beforeEdit : event.data
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.productCatalogProductService.editProducts(this.appService.addUsers).subscribe((res) => {
           if (res['statusCode'] === 'SUCCESS') {
             this.reloadData();
-
           }
         });
       } else {
-
         this.editFlag = false;
       }
     });
@@ -216,6 +213,13 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
           if (res['statusCode'] === 'SUCCESS') {
             this.reloadData();
             this.addProduct = {};
+          } else {
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: res['statusDescription']
+              }
+            });
           }
         });
       } else {
@@ -261,10 +265,9 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     }
     this.productCatalogProductService.getProductDetailsWithQueryparams(queryData).subscribe(
       res => {
-
         this.data = res['products'];
         this.paginationData = res['pageMetadata'];
-      })
+      });
   }
   reloadData() {
     if (this.queryParameters !== undefined) {

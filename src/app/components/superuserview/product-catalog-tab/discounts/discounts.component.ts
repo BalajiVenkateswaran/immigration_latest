@@ -1,7 +1,7 @@
 import { AppService } from '../../../../services/app.service';
 import { Component, OnInit } from '@angular/core';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from "ng2-bootstrap-modal";
+import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { ProductCatalogDiscountService } from './discounts.service';
 export interface ConfirmModel {
     title: string;
@@ -29,10 +29,10 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     public viewDiscountPopup: boolean;
     public addDiscount: any = {};
     public discount: any = {};
-    public editFlag: boolean = true;
-    public viewDetails: boolean = true;
-    public isEditDiscount: boolean = true;
-    public warningMessage: boolean = false;
+    public editFlag = true;
+    public viewDetails = true;
+    public isEditDiscount = true;
+    public warningMessage = false;
 
     constructor(private appService: AppService, public productCatalogDiscountService: ProductCatalogDiscountService, public dialogService: DialogService) {
         super(dialogService);
@@ -40,39 +40,39 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
             'isDeleteEnable': false,
             'customPanel': true,
             'defaultFilter': [{
-                headingName: "status",
-                headerName: "Status",
-                filterValue: "Active"
+                headingName: 'status',
+                headerName: 'Status',
+                filterValue: 'Active'
             }
             ],
             'columnsettings': [
                 {
-                    headerName: "Name",
-                    field: "discountName"
+                    headerName: 'Name',
+                    field: 'discountName'
                 },
                 {
-                    headerName: "Code",
-                    field: "discountCode"
+                    headerName: 'Code',
+                    field: 'discountCode'
                 },
                 {
-                    headerName: "Cost",
-                    field: "cost"
+                    headerName: 'Cost',
+                    field: 'cost'
                 },
                 {
-                    headerName: "Percentage",
-                    field: "discountPercentage"
+                    headerName: 'Percentage',
+                    field: 'discountPercentage'
                 },
                 {
                     headerName: 'Type',
                     field: 'type'
                 },
                 {
-                    headerName: "Status",
-                    field: "status"
+                    headerName: 'Status',
+                    field: 'status'
                 },
                 {
-                    headerName: "Created On",
-                    field: "createdOn"
+                    headerName: 'Created On',
+                    field: 'createdOn'
                 }
             ]
         }
@@ -99,31 +99,34 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
         }).subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.productCatalogDiscountService.saveDiscountDetails(this.appService.addUsers).subscribe((res) => {
-                    if (res['statusCode'] == 'SUCCESS') {
+                    if (res['statusCode'] === 'SUCCESS') {
                         this.getDiscountDetails();
                         this.addDiscount = {};
+                    }  else {
+                      this.dialog.open(InformationDialogComponent, {
+                        data: {
+                          title: 'Error',
+                          message: res['statusDescription']
+                        }
+                      });
                     }
-
                 });
-            }
-            else {
+            } else {
                 this.addDiscount = {};
             }
         });
     }
     saveDiscounts() {
-        if (this.addDiscount['discountCode'] == '' || this.addDiscount['discountCode'] == null || this.addDiscount['discountCode'] == undefined || this.addDiscount['discountName'] == '' || this.addDiscount['discountName'] == null || this.addDiscount['discountName'] == undefined || this.addDiscount['type'] == null || this.addDiscount['type'] == undefined || this.addDiscount['type'] == '') {
-            this.warningMessage = true;
-        }
-        else {
-            this.warningMessage = false;
-            this.appService.addUsers = this.addDiscount;
-            this.result = true;
-            this.close();
-
-
-        }
-
+      if (this.addDiscount['discountCode'] === '' || this.addDiscount['discountCode'] == null || this.addDiscount['discountCode'] === undefined
+        || this.addDiscount['discountName'] === '' || this.addDiscount['discountName'] == null || this.addDiscount['discountName'] === undefined
+        || this.addDiscount['type'] == null || this.addDiscount['type'] === undefined || this.addDiscount['type'] === '') {
+          this.warningMessage = true;
+      } else {
+          this.warningMessage = false;
+          this.appService.addUsers = this.addDiscount;
+          this.result = true;
+          this.close();
+      }
     }
     cancel() {
         this.addDiscount = {};
@@ -150,8 +153,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
                         this.getDiscountDetails();
                     }
                 });
-            }
-            else {
+            } else {
 
                 this.editFlag = false;
             }
@@ -172,8 +174,8 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
         this.close();
     }
     dataWithParameters(queryData) {
-    if(queryData){
-      this.queryParameters=queryData;
+    if (queryData) {
+      this.queryParameters = queryData;
     }
     this.productCatalogDiscountService.getDiscountDetailsWithQueryparams(queryData).subscribe(
       res => {
