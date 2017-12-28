@@ -9,7 +9,7 @@ import {SortType} from '../../../../framework/smarttable/types/query-parameters'
 import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/smarttable.component';
 import {MatDialog} from '@angular/material';
 import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
-
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -39,12 +39,8 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   public rowClicked: boolean ;
   public data;
   public settings;
-  onDateChanged(event: IMyDateModel) {}
-  private myDatePickerOptions: IMyOptions = {
-      // other options...
-      dateFormat: 'mm-dd-yyyy',
-      showClearDateBtn: false,
-  };
+  onDateChanged(event: IMyDateModel) { }
+  private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
       public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService,  private petitionService: PetitionsService) {
       super(dialogService);
