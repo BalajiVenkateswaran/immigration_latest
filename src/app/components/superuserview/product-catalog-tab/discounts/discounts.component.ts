@@ -1,8 +1,10 @@
-import { AppService } from '../../../../services/app.service';
-import { Component, OnInit } from '@angular/core';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
-import { ProductCatalogDiscountService } from './discounts.service';
+import {AppService} from '../../../../services/app.service';
+import {Component, OnInit} from '@angular/core';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {ProductCatalogDiscountService} from './discounts.service';
+import {MatDialog} from '@angular/material';
+import {InformationDialogComponent} from '../../../framework/popup/information/information.component';
+
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -34,7 +36,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     public isEditDiscount = true;
     public warningMessage = false;
 
-    constructor(private appService: AppService, public productCatalogDiscountService: ProductCatalogDiscountService, public dialogService: DialogService) {
+    constructor(private appService: AppService, public productCatalogDiscountService: ProductCatalogDiscountService, public dialogService: DialogService, private dialog: MatDialog) {
         super(dialogService);
         this.settings = {
             'isDeleteEnable': false,
@@ -80,7 +82,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     getDiscountDetails() {
         this.productCatalogDiscountService.getDiscounts().subscribe(
             res => {
-                if (res['statusCode'] == 'SUCCESS') {
+                if (res['statusCode'] === 'SUCCESS') {
                     this.data = res['discountCatalogs'];
                 }
             }
