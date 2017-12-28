@@ -11,6 +11,8 @@ import {SmartTableFrameworkComponent} from '../../../../framework/smarttable/sma
 import {ConfirmationDialogComponent} from '../../../../framework/popup/confirmation/confirmation.component';
 import {MatDialog} from '@angular/material';
 import {ImmigrationClientCommonService} from '../common/immigration-client.service';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
+
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -40,11 +42,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
   public data;
   public editFlag = true;
   public beforeEdit: any;
-  private myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
-  };
+  private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   constructor(private immigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService, private immigrationClientCommonService: ImmigrationClientCommonService,
     public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService) {
     super(dialogService);

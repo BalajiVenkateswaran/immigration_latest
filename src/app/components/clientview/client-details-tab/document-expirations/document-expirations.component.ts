@@ -8,6 +8,7 @@ import {IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../common/header/header.service';
 import {ConfirmationDialogComponent} from '../../../framework/popup/confirmation/confirmation.component';
 import {MatDialog} from '@angular/material';
+import {IHDateUtil} from '../../../framework/utils/date.component';
 
 export interface ConfirmModel {
     title: string;
@@ -36,11 +37,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     public addClientNewDocExp: any = {};
     public editFlag = true;
     public beforeEdit: any;
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions; 
     constructor(private documentExpirationsService: DocumentExpirationsService, public appService: AppService, public dialogService: DialogService,
                 public dialog: MatDialog, public headerService: HeaderService) {
         super(dialogService);
