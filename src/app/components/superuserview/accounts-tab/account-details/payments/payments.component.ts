@@ -5,6 +5,7 @@ import {DialogService, DialogComponent} from "ng2-bootstrap-modal";
 import {AccountDetailsPaymentsService} from "./payments.service";
 import {AccountDetailsCommonService} from "../common/account-details-common.service";
 import {IMyOptions, IMyDateModel, IMyDate} from 'mydatepicker';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 export interface ConfirmModel {
   title: string;
@@ -37,11 +38,7 @@ export class AccountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
   public editFlag: boolean = true;
   public beforeEdit: any;
   public warningMessage: boolean = false;
-  public myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
-  };
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   constructor(private appService: AppService, public accountsPaymentService: AccountDetailsPaymentsService, public dialogService: DialogService,
     private accountDetailsCommonService: AccountDetailsCommonService) {
     super(dialogService);

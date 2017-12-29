@@ -4,6 +4,7 @@ import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {IMyOptions} from 'mydatepicker';
 import {SuperuserViewAccountPreferencesService} from './accountpreferences.service';
 import {AccountDetailsCommonService} from '../common/account-details-common.service';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 export interface ConfirmModel {
     title: string;
@@ -30,11 +31,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
 
     public getacntpref = true;
     public adddAcntPref: boolean;
-    public myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public warningMessage = false;
     public editdiscount: boolean;
     public adddprdctPref: any;

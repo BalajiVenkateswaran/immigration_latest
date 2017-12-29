@@ -31,11 +31,11 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4">First Name:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" id="svActManagerFName" [(ngModel)]="addUsers.firstName" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="svActManagerFName" [(ngModel)]="addUsers.firstName" class="form-control"></div>
                             <div class="col-md-4">Last Name:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" id="svActManagerLName" [(ngModel)]="addUsers.lastName" class="form-control"></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="svActManagerLName" [(ngModel)]="addUsers.lastName" class="form-control"></div>
                             <div class="col-md-4">Email:<span class="redstar">*</span></div>
-                            <div class="col-md-8"><input type="text" id="svActManagerEmail" [(ngModel)]="addUsers.emailId" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel"></div>
+                            <div class="col-md-8"><input type="text" maxlength="100" id="svActManagerEmail" [(ngModel)]="addUsers.emailId" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required #emailId="ngModel"></div>
                             <div class="col-md-4">Role:<span class="redstar">*</span></div>
                             <div class="col-md-8">
                                 <select [(ngModel)]="addUsers.role" class="form-control">

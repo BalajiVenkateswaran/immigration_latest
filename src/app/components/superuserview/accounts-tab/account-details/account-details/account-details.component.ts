@@ -9,6 +9,7 @@ import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {HeaderService} from '../../../../common/header/header.service';
 import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 @Component({
   selector: 'ih-account-details',
@@ -24,11 +25,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   public cancelUserEdit = false;
   public createdOn: any;
   public MFDdisable: boolean;
-  private myDatePickerOptions: IMyOptions = {
-    // other options...
-    dateFormat: 'mm-dd-yyyy',
-    showClearDateBtn: false,
-  };
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
 
   private beforeCancelAccountdetails;
   constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
