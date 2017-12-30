@@ -10,7 +10,6 @@
           </button>
       </h2>
     <div class="clearfix"></div>
-      <!--<div class="col-md-12 addresbox box-shadow" style="padding:0px 2px 15px 18px !important;">-->
           <div class="col-md-6 col-sm-6 col-xs-12 no-pad-left" style="margin-top: 12px !important;">
               <div class="col-md-12 addresbox box-shadow">
                   <div class="row">
@@ -20,13 +19,8 @@
                               Edit
                           </button>
                           <div class="tbl-head-btn" [hidden]="isProfileEdit">
-                              <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" id="ivClientDtlsCancel" *ngIf="isProfileEdit==false">
-                                  Cancel
-                              </button>
-                              <button type="submit" value="Save" id="ivClientDtlsSave" style="color: #008000 !important;" [ngClass]="isProfileSaveButtonEnabled() ? 'editbtn tbl-head-btn iportal-btnIMclient': 'editbtn tbl-head-btn iportal-btnIMclient'" (click)="saveClientProfile()"
-                                      [disabled]="!isProfileSaveButtonEnabled()" *ngIf="isProfileEdit==false">
-                                  Save
-                              </button>
+                              <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" id="ivClientDtlsCancel" *ngIf="isProfileEdit==false">Cancel</button>
+                              <button type="submit" value="Save" id="ivClientDtlsSave" style="color: #008000 !important; width: 65px;" [ngClass]="getProfileSaveButtonClass()" [disabled]="isProfileSaveButtonDisabled()" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
                           </div>
                       </div>
                   </div>
@@ -129,13 +123,8 @@
                   <div class="row">
                       <div class="col-sm-12">
                           <div class="tbl-head-btn" [hidden]="isProfileEdit">
-                              <button type="button" (click)="cancelProfileEdit()" id="ivClientDtlsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: unset!important;" *ngIf="isProfileEdit==false">
-                                  Cancel
-                              </button>
-                              <button type="submit" id="ivClientDtlsSave1" value="Save" [ngClass]="isProfileSaveButtonEnabled() ? 'editbtn tbl-head-btn iportal-btnIMclient': 'editbtn tbl-head-btn iportal-btnIMclient' " style="margin-top: unset!important;color: #008000 !important;"
-                                      [disabled]="!isProfileSaveButtonEnabled()" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">
-                                  Save
-                              </button>
+                              <button type="button" (click)="cancelProfileEdit()" id="ivClientDtlsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: unset!important;" *ngIf="isProfileEdit==false">Cancel</button>
+                              <button type="submit" id="ivClientDtlsSave1" value="Save" [ngClass]="getProfileSaveButtonClass()" [disabled]="isProfileSaveButtonDisabled()" style="margin-top: unset!important;color: #008000 !important;width: 65px;" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
                           </div>
                       </div>
                   </div>
@@ -150,12 +139,8 @@
                               Edit
                           </button>
                           <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
-                              <button type="button" (click)="cancelPersonalInfoEdit()" id="ivClientDtlsCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPersonalInfoEdit==false">
-                                  Cancel
-                              </button>
-                              <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="ivClientDtlsSave2" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">
-                                  Save
-                              </button>
+                              <button type="button" (click)="cancelPersonalInfoEdit()" id="ivClientDtlsCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
+                              <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;width: 65px;" id="ivClientDtlsSave2" [ngClass]="{'loader': showPersonalInfoSaveButtonProgress}" [disabled]="showPersonalInfoSaveButtonProgress" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                           </div>
                       </div>
                   </div>
@@ -165,23 +150,19 @@
                           <select [disabled]="isPersonalInfoEdit" style="border-radius: 4px;"  [(ngModel)]="clientPersonalInfo.gender">
                               <option *ngFor="let genderTypes of gender" id="{{genderTypes.name}}">{{genderTypes.name}}</option>
                           </select>
-
                       </div>
                   </div>
-
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoDob">Date Of Birth</label></div>
                       <div class="col-md-8">
                           <my-date-picker [disabled]="isPersonalInfoEdit" style="border-radius: 4px;"   [options]="myDatePickerOptions" [(ngModel)]="clientPersonalInfo.dateOfBirth"
                                           [selDate]="dateOfBirth" id="ivClientDtlsPinfoDob"></my-date-picker>
-
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoSsn">U.S. Social Security Number (if any)</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoSsn" [(ngModel)]="clientPersonalInfo.ssn" />
-
                       </div>
                   </div>
                   <div class="row sfm" *ngIf="isPersonalInfoEdit==false && ssn != null && ssn.errors">
@@ -195,46 +176,35 @@
                       <div class="col-md-4"><label for="ivClientDtlsPinfoAlienRegNo">Alien Registration Number</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100"  [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoAlienRegNo" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" />
-
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoCOB">Country of Birth</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100"  [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoCOB" [(ngModel)]="clientPersonalInfo.countryOfBirth" />
-
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoSOB">State/Province of Birth</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoSOB" [(ngModel)]="clientPersonalInfo.stateOfBirth" />
-
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-4"><label for="ivClientDtlsPinfoCitizen">Country of Citizenship or Nationality</label></div>
                       <div class="col-md-8">
                           <input type="text" style="border-radius: 4px;" maxlength="100" [disabled]="isPersonalInfoEdit" id="ivClientDtlsPinfoCitizen" [(ngModel)]="clientPersonalInfo.citizenship" />
-
                       </div>
                   </div>
-
-
                   <div class="row">
                       <div class="col-sm-12">
                           <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
-                              <button type="button" (click)="cancelPersonalInfoEdit()" ivClientDtlsPinfoCancel2 class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;    margin-top: 0px!important;" *ngIf="isPersonalInfoEdit==false">
-                                  Cancel
-                              </button>
-                              <button type="submit" value="Save" id="ivClientDtlsPinfoSave2" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important;" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">
-                                  Save
-                              </button>
+                              <button type="button" (click)="cancelPersonalInfoEdit()" ivClientDtlsPinfoCancel2 class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;    margin-top: 0px!important;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
+                              <button type="submit" value="Save" id="ivClientDtlsPinfoSave2" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important; width: 65px;" [ngClass]="{'loader': showPersonalInfoSaveButtonProgress}" [disabled]="showPersonalInfoSaveButtonProgress" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                           </div>
                       </div>
                   </div>
               </div>
           </div>
-        <!--</div>-->
       </div>
 </div>

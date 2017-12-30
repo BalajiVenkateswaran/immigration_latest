@@ -5,7 +5,6 @@
             <img style="margin-bottom: 4px !important;" src="../../../../assets/images/Group984.png" />&nbsp;&nbsp;&nbsp; <span>{{appService.clientfirstName}} {{appService.clientlastName}}</span></h1>
   <div class="clearfix"></div>
         <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Notes</h2>
-        <!--<div class="col-md-6 col-sm-6 col-xs-6 addresbox box-shadow"  style="padding:12px 12px 12px 12px!important;">-->
           <div class="col-md-6 addresbox box-shadow">
             <div class="row">
               <div class="col-md-12">
@@ -13,7 +12,7 @@
                 <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="onEditNotesClick()" *ngIf="isNotesEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isNotesEdit">
                   <button type="button" (click)="onCancelNotesClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isNotesEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" (click)="onSaveNotesClick()" *ngIf="isNotesEdit==false">Save</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important; width: 65px;" [ngClass]="{'loader': showNotesSaveButtonProgress}" [disabled]="showNotesSaveButtonProgress" (click)="onSaveNotesClick()" *ngIf="isNotesEdit==false">Save</button>
                 </div>
               </div>
             </div>
@@ -27,14 +26,11 @@
               <div class="col-md-12">
                 <div class="tbl-head-btn" [hidden]="isNotesEdit">
                   <button type="button" (click)="onCancelNotesClick()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 4px!important;" *ngIf="isNotesEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;" (click)="onSaveNotesClick()" *ngIf="isNotesEdit==false">Save</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important; width: 65px;" [ngClass]="{'loader': showNotesSaveButtonProgress}" [disabled]="showNotesSaveButtonProgress" (click)="onSaveNotesClick()" *ngIf="isNotesEdit==false">Save</button>
                 </div>
               </div>
             </div>
           </div>
-        <!--</div>-->
     </div>
-
-
 </div>
 

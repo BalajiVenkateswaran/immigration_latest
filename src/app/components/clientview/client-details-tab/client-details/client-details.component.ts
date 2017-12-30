@@ -29,10 +29,7 @@ export class ClientDetailsComponent  implements OnInit {
 
   private clientdetailsList: any;
   private client: any = {};
-
   public getCVClientData= true;
-
-
   public editUser: FormGroup; // our model driven form
   private fieldsList: clientdetails[];
   private status: any[];
@@ -47,12 +44,14 @@ export class ClientDetailsComponent  implements OnInit {
   private clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
 
   private clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
-  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;  
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   private creationDate: string;
   private dateOfBirth: string;
   private user: User;
   private beforeCancelProfile;
   private beforeCancelPersonal;
+  public showProfileSaveButtonProgress = false;
+  public showPersonalInfoSaveButtonProgress = false;
   constructor(private formBuilder: FormBuilder, private parserFormatter: NgbDateParserFormatter,
     public appService: AppService, private clientDetailsService: ClientDetailsService, public headerService: HeaderService, public dialogService: DialogService) {
 
@@ -77,9 +76,9 @@ export class ClientDetailsComponent  implements OnInit {
            this.mapToClientPersonalInfo();
          }
          if (res['client']) {
-        this.client = res['client'];
-        }
-        this.isProfileEdit = true;
+          this.client = res['client'];
+         }
+         this.isProfileEdit = true;
          this.isPersonalInfoEdit = true;
        });
 
@@ -135,9 +134,11 @@ export class ClientDetailsComponent  implements OnInit {
       this.warningMessage = true;
     } else {
       this.warningMessage = false;
+      this.showProfileSaveButtonProgress = true;
       this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.headerService.user.userId)
         .subscribe((res) => {
           this.isProfileEdit = true;
+          this.showProfileSaveButtonProgress = false;
           if (res['clientDetails']) {
             this.clientDetails = res['clientDetails'];
             this.mapToClientProfile();
@@ -149,6 +150,7 @@ export class ClientDetailsComponent  implements OnInit {
 
   // Save Client Details
   saveClientPersonalInfo() {
+    this.showPersonalInfoSaveButtonProgress = true;
     this.mapFromClientPersonalInfo();
     if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
       this.clientDetails['dateOfBirth'] = this.clientDetails['dateOfBirth']['formatted'];
@@ -156,13 +158,12 @@ export class ClientDetailsComponent  implements OnInit {
     this.clientDetailsService.saveClientDetails(this.clientDetails, this.client, this.headerService.user.userId)
       .subscribe((res) => {
         this.isPersonalInfoEdit = true;
+        this.showPersonalInfoSaveButtonProgress = false;
         if (res['clientDetails']) {
           this.clientDetails = res['clientDetails'];
           this.mapToClientPersonalInfo();
         }
       });
-
-
   }
 
 
@@ -219,7 +220,4 @@ export class ClientDetailsComponent  implements OnInit {
     this.clientDetails['linkedin'] = this.clientPersonalInfo.linkedin;
     this.clientDetails['twitter'] = this.clientPersonalInfo.twitter;
   }
-
 }
-
-

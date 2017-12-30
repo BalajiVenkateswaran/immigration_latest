@@ -1,5 +1,5 @@
 import { RestService } from '../../../../../services/rest.service';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class DependentDetailsService {
@@ -8,15 +8,15 @@ export class DependentDetailsService {
     }
 
     public getDependentDetails(dependentId: string) {
-        return this.restService.getData("/client/dependent/" + dependentId);
+        return this.restService.getData('/client/dependent/' + dependentId);
     }
 
     public saveDependentDetails(dependent: any, userId: string) {
-        var req = {
-            "dependent": dependent,
-            "updateByUser": userId
+        let req = {
+            'dependent': dependent,
+            'updateByUser': userId
         };
-        return this.restService.postData("/client/dependent", req);
+        return this.restService.postData('/client/dependent', req);
     }
 
 }

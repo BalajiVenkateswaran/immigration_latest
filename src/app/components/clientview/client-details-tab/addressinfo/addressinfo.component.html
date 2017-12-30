@@ -17,7 +17,7 @@
                                 <button type="submit" (click)="addressedit('WORK')" value="Edit" id="cvaddrWorkAddrEdit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" *ngIf="workedit==true">Edit</button>
                                 <div class="tbl-head-btn" [hidden]="workedit">
                                     <button type="button" (click)="cancelEdit('WORK')" id="cvaddrWorkAddrCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="workedit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"style="color: #008000 !important;" id="cvaddrWorkAddrSave1" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
+                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"style="color: #008000 !important; width: 65px;" [ngClass]="{'loader': showWorkSaveButtonProgress}" [disabled]="showWorkSaveButtonProgress" id="cvaddrWorkAddrSave1" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <div class="col-sm-12">
                                 <div class="tbl-head-btn" [hidden]="workedit">
                                     <button type="button" (click)="cancelEdit('WORK')" id="cvaddrWorkAddrCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="workedit==false">Cancel</button>
-                                    <button type="submit" value="Save"  class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;" id="cvaddrWorkAddrSave2" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
+                                    <button type="submit" value="Save"  class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important; width: 65px;" [ngClass]="{'loader': showWorkSaveButtonProgress}" [disabled]="showWorkSaveButtonProgress" id="cvaddrWorkAddrSave2" (click)="saveClientAdress('WORK')" *ngIf="workedit==false">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="addressedit('RESIDENCE')" value="Edit" id="cvaddrResEdit"  *ngIf="residenceedit==true">Edit</button>
                                 <div class="tbl-head-btn" [hidden]="residenceedit">
                                     <button type="button" (click)="cancelEdit('RESIDENCE')" id="cvaddrResCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="residenceedit==false">Cancel</button>
-                                    <button type="submit" value="Save"  class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="cvaddrResSave1" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
+                                    <button type="submit" value="Save"  class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important; width: 65px;" [ngClass]="{'loader': showResidenceSaveButtonProgress}" [disabled]="showResidenceSaveButtonProgress" id="cvaddrResSave1" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                             <div class="col-sm-12">
                                 <div class="tbl-head-btn" [hidden]="residenceedit">
                                     <button type="button" (click)="cancelEdit('RESIDENCE')" id="cvaddrResCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="residenceedit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;" id="cvaddrResSave2" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
+                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important; width: 65px;" [ngClass]="{'loader': showResidenceSaveButtonProgress}" [disabled]="showResidenceSaveButtonProgress" id="cvaddrResSave2" (click)="saveClientAdress('RESIDENCE')" *ngIf="residenceedit==false">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                                 <button type="submit" (click)="addressedit('MAILING')" value="Edit" id="cvaddrMailingEdit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" *ngIf="mailingedit==true && !checked">Edit</button>
                                 <div class="tbl-head-btn" [hidden]="mailingedit && !checked">
                                     <button type="button" (click)="cancelEdit('MAILING')" id="cvaddrMailingCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="mailingedit==false && !checked">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="cvaddrMailingSave1" style="color: #008000 !important;" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false && !checked">Save</button>
+                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="cvaddrMailingSave1" style="color: #008000 !important; width: 65px;" [ngClass]="{'loader': showMailingSaveButtonProgress}" [disabled]="showMailingSaveButtonProgress" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false && !checked">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +253,7 @@
                             <div class="col-sm-12">
                                 <div class="tbl-head-btn" [hidden]="checked || mailingedit">
                                     <button type="button" (click)="cancelEdit('MAILING')" id="cvaddrMailingCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="mailingedit==false && !checked">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important;" id="cvaddrMailingSave2" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false && !checked">Save</button>
+                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  style="margin-top: 0px!important;color: #008000 !important; width: 65px;" [ngClass]="{'loader': showMailingSaveButtonProgress}" [disabled]="showMailingSaveButtonProgress" id="cvaddrMailingSave2" (click)="saveClientAdress('MAILING')" *ngIf="mailingedit==false && !checked">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                                 <button type="submit" (click)="addressedit('FOREIGN')" value="Edit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" id="cvaddrForiegnEdit" *ngIf="foreignedit==true">Edit</button>
                                 <div class="tbl-head-btn" [hidden]="foreignedit">
                                     <button type="button" (click)="cancelEdit('FOREIGN')" id="cvaddrForiegnCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="foreignedit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="cvaddrForiegnSave1" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
+                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important; width: 65px;" [ngClass]="{'loader': showForeignSaveButtonProgress}" [disabled]="showForeignSaveButtonProgress" id="cvaddrForiegnSave1" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -328,7 +328,7 @@
                             <div class="col-sm-12">
                                 <div class="tbl-head-btn" [hidden]="foreignedit">
                                     <button type="button" (click)="cancelEdit('FOREIGN')" id="cvaddrForiegnCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="foreignedit==false">Cancel</button>
-                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"style="margin-top: 0px!important;color: #008000 !important;"  id="cvaddrForiegnSave2" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
+                                    <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"style="margin-top: 0px!important;color: #008000 !important; width: 65px;" [ngClass]="{'loader': showForeignSaveButtonProgress}" [disabled]="showForeignSaveButtonProgress" id="cvaddrForiegnSave2" (click)="saveClientAdress('FOREIGN')" *ngIf="foreignedit==false">Save</button>
                                 </div>
                             </div>
                         </div>

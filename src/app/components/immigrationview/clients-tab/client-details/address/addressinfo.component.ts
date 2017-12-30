@@ -40,6 +40,10 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
   public checked: boolean;
   private beforeChecked;
   public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+  public showWorkAddrSaveButtonProgress = false;
+  public showResiAddrSaveButtonProgress = false;
+  public showMailAddrSaveButtonProgress = false;
+  public showForeignAddrSaveButtonProgress = false;
   constructor(private immigrationClientCommonService: ImmigrationClientCommonService, public headerService: HeaderService,
               public appService: AppService, private addressinfoservice: AddressInfoservice, private dialog: MatDialog) {
   }
@@ -135,6 +139,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
 
   saveClientAdress(addresstype) {
     if (addresstype === 'WORK') {
+      this.showWorkAddrSaveButtonProgress = true;
       this.WorkaddressinfoList['userId'] = this.immigrationClientCommonService.userId;
       this.WorkaddressinfoList.addressType = addresstype;
       if (this.WorkaddressinfoList['residingSince'] && this.WorkaddressinfoList['residingSince']['formatted']) {
@@ -144,6 +149,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
       this.addressinfoservice.saveClientAddress(this.WorkaddressinfoList)
         .subscribe((res) => {
           this.workedit = true;
+          this.showWorkAddrSaveButtonProgress = false;
           if (res['clientAddress']) {
             this.WorkaddressinfoList = res['clientAddress'];
             this.workResidingSince = this.WorkaddressinfoList['residingSince'];
@@ -151,6 +157,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
         });
     }
     if (addresstype === 'RESIDENCE') {
+      this.showResiAddrSaveButtonProgress = true;
       this.ResidenceaddressinfoList['userId'] = this.immigrationClientCommonService.userId;
       this.ResidenceaddressinfoList.addressType = addresstype;
       if (this.ResidenceaddressinfoList['residingSince'] && this.ResidenceaddressinfoList['residingSince']['formatted']) {
@@ -160,6 +167,7 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
       this.addressinfoservice.saveClientAddress(this.ResidenceaddressinfoList, this.checked)
         .subscribe((res) => {
           this.residenceedit = true;
+          this.showResiAddrSaveButtonProgress = false;
           if (res['clientAddress']) {
             this.ResidenceaddressinfoList = res['clientAddress'];
             this.resiResidingSince = this.ResidenceaddressinfoList['residingSince'];
@@ -168,11 +176,13 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
     }
     if (addresstype === 'MAILING') {
       if (this.residenceedit) {
+        this.showMailAddrSaveButtonProgress = true;
         this.MailingaddressinfoList['userId'] = this.immigrationClientCommonService.userId;
         this.MailingaddressinfoList.addressType = addresstype;
         this.addressinfoservice.saveClientAddress(this.MailingaddressinfoList)
           .subscribe((res) => {
             this.mailingedit = true;
+            this.showMailAddrSaveButtonProgress = false;
             if (res['clientAddress']) {
               this.MailingaddressinfoList = res['clientAddress'];
             }
@@ -186,11 +196,13 @@ export class ImmigrationViewAddressinfoComponent implements OnInit {
       }
     }
     if (addresstype === 'FOREIGN') {
+      this.showForeignAddrSaveButtonProgress = true;
       this.ForiegnaddressinfoList['userId'] = this.immigrationClientCommonService.userId;
       this.ForiegnaddressinfoList.addressType = addresstype;
       this.addressinfoservice.saveClientAddress(this.ForiegnaddressinfoList)
         .subscribe((res) => {
           this.foreignedit = true;
+          this.showForeignAddrSaveButtonProgress = false;
           if (res['clientAddress']) {
             this.ForiegnaddressinfoList = res['clientAddress'];
           }

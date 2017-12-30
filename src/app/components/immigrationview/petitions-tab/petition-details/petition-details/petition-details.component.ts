@@ -80,9 +80,16 @@ export class PetitionDetailsComponent implements OnInit {
         { name: 'RFE', value: 'RFE' }
     ];
     petitionInformation: ImmigrationViewPetitionInformation = new ImmigrationViewPetitionInformation();
-    constructor(public appService: AppService, private petitionDetailsService: PetitionDetailsService,
+  public showPetitionInfoSaveButtonProgress = false;
+  public showReceiptInfoSaveButtonProgress = false;
+  public showAdditionalInfoSaveButtonProgress = false;
+  public showSponsorInfoSaveButtonProgress = false;
+  public showLCAInfoSaveButtonProgress = false;
+  public showDelegatedOrgsSaveButtonProgress = false;
+
+  constructor(public appService: AppService, private petitionDetailsService: PetitionDetailsService,
                 public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService) {
-    }
+  }
     ngOnInit() {
         this.headerService.showSideBarMenu('immigrationview-petition', 'immigrationview/tab/petitions');
         this.petitionDetailsService.getPetitionDetails(this.appService.petitionId)
@@ -226,6 +233,7 @@ export class PetitionDetailsComponent implements OnInit {
             this.sfmpi = true;
         } else {
             this.sfmpi = false;
+            this.showPetitionInfoSaveButtonProgress = true;
             this.petitionDetails['currentStageId'] = this.petitionInformation.currentStageId;
             if (this.petitionDetails['startDate'] && this.petitionDetails['startDate']['formatted']) {
               this.petitionInformation['startDate'] = this.petitionDetails['startDate']['formatted'];
@@ -246,22 +254,21 @@ export class PetitionDetailsComponent implements OnInit {
                 .subscribe((res) => {
                     if (res['petitionInfo'] !== undefined) {
                       this.isPetitionInformationEdit = true;
-                        this.isPetitionInformationSave = false;
-                        this.petitionDetails = res['petitionInfo'];
-                        console.log(res);
-                      console.log(this.petitionDetails );
-                        this.petitionDetailsService.getUsersForAccount(this.headerService.user.accountId)
-                            .subscribe((res) => {
-                                this.users = res['users'];
-                                this.users.filter(user => {
-                                    if (user.emailId === this.petitionDetails['assignedTo']) {
-                                        this.assignedToName = user.firstName + ', ' + user.lastName;
-                                    }
-                                });
-                            });
-                        this.isPetitionInformationSaveStatus = true;
-                        this.petitionInformation = this.petitionDetails;
-                        this.mapFromPetitionInfo();
+                      this.showPetitionInfoSaveButtonProgress = false;
+                      this.isPetitionInformationSave = false;
+                      this.petitionDetails = res['petitionInfo'];
+                      this.petitionDetailsService.getUsersForAccount(this.headerService.user.accountId)
+                          .subscribe((res) => {
+                              this.users = res['users'];
+                              this.users.filter(user => {
+                                  if (user.emailId === this.petitionDetails['assignedTo']) {
+                                      this.assignedToName = user.firstName + ', ' + user.lastName;
+                                  }
+                              });
+                          });
+                      this.isPetitionInformationSaveStatus = true;
+                      this.petitionInformation = this.petitionDetails;
+                      this.mapFromPetitionInfo();
                     }
                 });
         }
@@ -330,6 +337,7 @@ export class PetitionDetailsComponent implements OnInit {
             this.sfmRI = true;
         } else {
             this.sfmRI = false;
+            this.showReceiptInfoSaveButtonProgress = true;
             this.petitionDetailsService.saveReceiptInfo(this.receiptInfo, this.headerService.user.userId)
                 .subscribe((res) => {
                     if (res['receiptInfo'] !== undefined) {
@@ -339,6 +347,7 @@ export class PetitionDetailsComponent implements OnInit {
                         this.isReceiptInfoSaveStatus = true;
                         this.isReceiptInfoEdit = true;
                     }
+                  this.showReceiptInfoSaveButtonProgress = false;
                 });
         }
     }
@@ -381,10 +390,11 @@ export class PetitionDetailsComponent implements OnInit {
         if (this.lcaInfo['effectiveTill'] && this.lcaInfo['effectiveTill']['formatted']) {
             this.lcaInfo['effectiveTill'] = this.lcaInfo['effectiveTill']['formatted'];
         }
-
+        this.showLCAInfoSaveButtonProgress = true;
         this.petitionDetailsService.saveLcaInfo(this.lcaInfo, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isLCAInfoEdit = true;
+                this.showLCAInfoSaveButtonProgress = false;
                 if (res['lcaInfo'] !== undefined) {
                     this.lcaInfo = res['lcaInfo'];
                     this.mapFromLCAInfo();
@@ -410,9 +420,11 @@ export class PetitionDetailsComponent implements OnInit {
         if (this.sponsorInfoAddress !== undefined) {
             this.sponsorInfo.address = this.sponsorInfoAddress;
         }
+        this.showSponsorInfoSaveButtonProgress = true;
         this.petitionDetailsService.saveSponsorInfo(this.sponsorInfo, this.headerService.user.userId)
         .subscribe((res) => {
             this.isSponsorInfoEdit = true;
+            this.showSponsorInfoSaveButtonProgress = false;
             if (res['sponsorInfo'] !== undefined) {
                 this.sponsorInfo = res['sponsorInfo'];
             }
@@ -441,10 +453,11 @@ export class PetitionDetailsComponent implements OnInit {
             this.petitionAdditionalDetails['shippingDate'] = this.petitionAdditionalDetails['shippingDate']['formatted'];
         }
         this.petitionAdditionalDetails['petitionId'] = this.appService.petitionId;
-
+        this.showAdditionalInfoSaveButtonProgress = true;
         this.petitionDetailsService.savePetitionAdditionalDetails(this.petitionAdditionalDetails, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isAdditionalDetailsEdit = true;
+                this.showAdditionalInfoSaveButtonProgress = false;
                 if (res['petitionAdditionalDetails'] !== undefined) {
                     this.petitionAdditionalDetails = res['petitionAdditionalDetails'];
                     this.mapFromAdditionalDetails();
@@ -466,6 +479,7 @@ export class PetitionDetailsComponent implements OnInit {
 
     onSaveDelegatedOrgsClick() {
         this.delegatedOrgsList['petitionId'] = this.appService.petitionId;
+        this.showDelegatedOrgsSaveButtonProgress = true;
         for (let i = 0; i < this.delegatedOrgsList.length; i++) {
             if (this.delegatedOrgsList[i].petitionAssigned === true) {
                 this.orgs.push(this.delegatedOrgsList[i].orgId);
@@ -473,6 +487,7 @@ export class PetitionDetailsComponent implements OnInit {
         }
         this.petitionDetailsService.saveDelegatedOrgs(this.orgs, this.appService.petitionId, this.headerService.user.userId)
         .subscribe((res) => {
+          this.showDelegatedOrgsSaveButtonProgress = false;
             if (res['statusCode'] === 'SUCCESS') {
                 this.isDelegatedOrgsEdit = !this.isDelegatedOrgsEdit;
                 this.getPetionDelOrgs();

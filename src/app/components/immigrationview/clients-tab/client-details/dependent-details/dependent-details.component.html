@@ -1,126 +1,117 @@
 <div class="main-content">
-
-    <div class="table-data-forms">
-        <h1>{{dependentFirstName}} {{dependentLastName}}</h1>
-        <div class="clearfix"></div>
-        <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Dependents</h2>
-        <div class="clearfix"></div>
-      <!--<div class="col-md-12 addresbox box-shadow" style="padding:12px 0px 15px 0px !important;">-->
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="col-md-12 addresbox box-shadow">
-            <div class="row">
-              <div class="col-sm-12">
-                <h2>Profile</h2>
-                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;"  id="ivClientDtlsDepDtlsEdit" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit</button>
-                <div class="tbl-head-btn" [hidden]="isProfileEdit">
-                  <button type="button" (click)="cancelProfileEdit()" id="ivClientDtlsDepDtlsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isProfileEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient"  id="ivClientDtlsDepDtlsSave1" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
-                </div>
-              </div>
-
-            </div>
-            <div class="row" *ngIf="warningMessage">
-              <div class="col-md-12">
-                <span class="redstar">* Fields are Mandatory.</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsFNo">File Number<span class="redstar">*</span></label></div>
-                <div class="col-md-8">
-                    <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsFNo" [readonly]="true" [(ngModel)]="dependentProfile.fileNumber" [ngClass]="dependentProfile.fileNumber == '' ? 'redborder': ''" />
-                    <!--<span *ngIf="isProfileEdit==true">{{dependentProfile.fileNumber}}</span>-->
-                </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsCDate">Creation Date</label></div>
-              <div class="col-md-8">
-                <my-date-picker [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsCDate" [options]="myDatePickerOptions" [(ngModel)]="dependentProfile.creationDate" [selDate]="creationDate"></my-date-picker>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsEmail">Email</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsEmail" [(ngModel)]="dependentProfile.email" /></div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsFName">First Name<span class="redstar">*</span></label></div>
-                <div class="col-md-8">
-                    <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsFName" [(ngModel)]="dependentProfile.firstName" [ngClass]="dependentProfile.firstName == '' ? 'redborder': ''" />
-                </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsMName">Middle Name</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsMName" [(ngModel)]="dependentProfile.middleName" /></div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsLName">Last Name<span class="redstar">*</span></label></div>
-                <div class="col-md-8">
-                    <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsLName" [(ngModel)]="dependentProfile.lastName" [ngClass]="dependentProfile.lastName == '' ? 'redborder': ''" />
-                </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsRel">Relation<span class="redstar">*</span></label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsRel" [(ngModel)]="dependentProfile.relation" [ngClass]="dependentProfile.relation == '' ? 'redborder': ''" /></div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsPNo">Phone Number</label></div>
-                <div class="col-md-8">
-                    <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsPNo" [(ngModel)]="dependentProfile.phoneNumber" />
-                </div>
+  <div class="table-data-forms">
+    <h1>{{dependentFirstName}} {{dependentLastName}}</h1>
+    <div class="clearfix"></div>
+    <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Dependents</h2>
+    <div class="clearfix"></div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="col-md-12 addresbox box-shadow">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>Profile</h2>
+            <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;"  id="ivClientDtlsDepDtlsEdit" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit</button>
+            <div class="tbl-head-btn" [hidden]="isProfileEdit">
+              <button type="button" (click)="cancelProfileEdit()" id="ivClientDtlsDepDtlsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isProfileEdit==false">Cancel</button>
+              <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="width: 65px;" [ngClass]="{'loader': showProfileSaveButtonProgress}" [disabled]="showProfileSaveButtonProgress" id="ivClientDtlsDepDtlsSave1" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="col-md-12 addresbox box-shadow">
-            <div class="row">
-              <div class="col-sm-12">
-                <h2>Personal Info</h2>
-                <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editPersonalInfoForm()" id="ivClientDtlsDepDtlsPInfoEdit" *ngIf="isPersonalInfoEdit==true">Edit</button>
-                <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
-                  <button type="button" (click)="cancelPersonalInfoEdit()" id="ivClientDtlsDepDtlsPInfoCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                  <button type="submit" value="Save" id="ivClientDtlsDepDtlsPInfoSave" class="editbtn tbl-head-btn iportal-btnIMclient"  (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
-                </div>
-              </div>
-
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoGender">Gender</label></div>
-              <div class="col-md-8">
-                <select [disabled]="isPersonalInfoEdit" [(ngModel)]="dependentPersonalInfo.gender">
-                  <option *ngFor="let genderTypes of gender" id="{{genderTypes.name}}">{{genderTypes.name}}</option>
-                </select>
-              </div>
-            </div>
-
-
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoDob">Date Of Birth</label></div>
-              <div class="col-md-8">
-                <my-date-picker [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoDob" [options]="myDatePickerOptions" [(ngModel)]="dependentPersonalInfo.dateOfBirth" [selDate]="dateOfBirth"></my-date-picker>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoSsn">U.S. Social Security Number (if any)</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSsn" [(ngModel)]="dependentPersonalInfo.ssn" /></div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoARegNo">Alien Registration Number</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoARegNo" [(ngModel)]="dependentPersonalInfo.alienRegistrationNumber" /></div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoCOB">Country of Birth</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCOB" [(ngModel)]="dependentPersonalInfo.countryOfBirth" /></div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoSOB">State/Province of Birth</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSOB" [(ngModel)]="dependentPersonalInfo.stateOfBirth" /></div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoCitiz">Country of Citizenship or Nationality</label></div>
-              <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCitiz" [(ngModel)]="dependentPersonalInfo.nationality" /></div>
-            </div>
+        <div class="row" *ngIf="warningMessage">
+          <div class="col-md-12">
+            <span class="redstar">* Fields are Mandatory.</span>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsFNo">File Number<span class="redstar">*</span></label></div>
+            <div class="col-md-8">
+                <input type="text" [disabled]="true" id="ivClientDtlsDepDtlsFNo" [(ngModel)]="dependentProfile.fileNumber" [ngClass]="dependentProfile.fileNumber == '' ? 'redborder': ''" />
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsCDate">Creation Date</label></div>
+          <div class="col-md-8">
+            <my-date-picker [disabled]="true"  id="ivClientDtlsDepDtlsCDate" [options]="myDatePickerOptions" [(ngModel)]="dependentProfile.creationDate" [selDate]="creationDate"></my-date-picker>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsEmail">Email</label></div>
+          <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsEmail" [(ngModel)]="dependentProfile.email" /></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsFName">First Name<span class="redstar">*</span></label></div>
+            <div class="col-md-8">
+                <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsFName" [(ngModel)]="dependentProfile.firstName" [ngClass]="dependentProfile.firstName == '' ? 'redborder': ''" />
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsMName">Middle Name</label></div>
+          <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsMName" [(ngModel)]="dependentProfile.middleName" /></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsLName">Last Name<span class="redstar">*</span></label></div>
+            <div class="col-md-8">
+                <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsLName" [(ngModel)]="dependentProfile.lastName" [ngClass]="dependentProfile.lastName == '' ? 'redborder': ''" />
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsRel">Relation<span class="redstar">*</span></label></div>
+          <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsRel" [(ngModel)]="dependentProfile.relation" [ngClass]="dependentProfile.relation == '' ? 'redborder': ''" /></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsPNo">Phone Number</label></div>
+            <div class="col-md-8">
+                <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsPNo" [(ngModel)]="dependentProfile.phoneNumber" />
+            </div>
+        </div>
+      </div>
     </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="col-md-12 addresbox box-shadow">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>Personal Info</h2>
+            <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editPersonalInfoForm()" id="ivClientDtlsDepDtlsPInfoEdit" *ngIf="isPersonalInfoEdit==true">Edit</button>
+            <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
+              <button type="button" (click)="cancelPersonalInfoEdit()" id="ivClientDtlsDepDtlsPInfoCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
+              <button type="submit" value="Save" id="ivClientDtlsDepDtlsPInfoSave" class="editbtn tbl-head-btn iportal-btnIMclient" style="width: 65px;" [ngClass]="{'loader': showPersonalInfoSaveButtonProgress}" [disabled]="showPersonalInfoSaveButtonProgress" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoGender">Gender</label></div>
+          <div class="col-md-8">
+            <select [disabled]="isPersonalInfoEdit" [(ngModel)]="dependentPersonalInfo.gender">
+              <option *ngFor="let genderTypes of gender" id="{{genderTypes.name}}">{{genderTypes.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoDob">Date Of Birth</label></div>
+          <div class="col-md-8">
+            <my-date-picker [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoDob" [options]="myDatePickerOptions" [(ngModel)]="dependentPersonalInfo.dateOfBirth" [selDate]="dateOfBirth"></my-date-picker>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoSsn">U.S. Social Security Number (if any)</label></div>
+          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSsn" [(ngModel)]="dependentPersonalInfo.ssn" /></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoARegNo">Alien Registration Number</label></div>
+          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoARegNo" [(ngModel)]="dependentPersonalInfo.alienRegistrationNumber" /></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoCOB">Country of Birth</label></div>
+          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCOB" [(ngModel)]="dependentPersonalInfo.countryOfBirth" /></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoSOB">State/Province of Birth</label></div>
+          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSOB" [(ngModel)]="dependentPersonalInfo.stateOfBirth" /></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoCitiz">Country of Citizenship or Nationality</label></div>
+          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCitiz" [(ngModel)]="dependentPersonalInfo.nationality" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-

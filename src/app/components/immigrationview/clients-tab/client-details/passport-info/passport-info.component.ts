@@ -24,6 +24,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
     public warningMessage= false;
   public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   public beforeCancelPassport;
+  public saveButtonProgress = false;
     constructor(public appService: AppService, private passportinfoservice: PassportInfoService, public headerService: HeaderService,
                 private immigrationClientCommonService: ImmigrationClientCommonService) {
     }
@@ -46,7 +47,6 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
         this.appService.currentSBLink = link;
     }
 
-
     mapFromPassportInfo() {
       this.isuanceDate = this.passport.isuanceDate;
       this.expirationDate = this.passport.expirationDate;
@@ -65,13 +65,13 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
         this.isEdit = !this.isEdit;
     }
     saveClientPassport() {
-
         if (this.passport['isuanceDate'] === '' || this.passport['passportNumber'] === '' || this.passport['issuingCountry'] === '' || this.passport['expirationDate'] === '' || this.passport['dateOfBirth'] === '' ||
             this.passport['isuanceDate'] === undefined || this.passport['passportNumber'] === undefined || this.passport['issuingCountry'] === undefined || this.passport['expirationDate'] === undefined
             || this.passport['dateOfBirth'] === undefined || this.passport['isuanceDate'] == null || this.passport['passportNumber'] == null || this.passport['issuingCountry'] == null || this.passport['expirationDate'] == null
             || this.passport['dateOfBirth'] == null || this.passport['countryOfBirth'] === '' || this.passport['countryOfBirth'] === undefined || this.passport['countryOfBirth'] == null) {
             this.warningMessage = true;
         } else {
+          this.saveButtonProgress = true;
             this.warningMessage = false;
              this.passport['userId'] = this.immigrationClientCommonService.userId;
             if (this.passport['isuanceDate'] && this.passport['isuanceDate']['formatted']) {
@@ -86,6 +86,7 @@ export class ImmigrationViewPassportInfoComponent implements OnInit {
             this.passportinfoservice.savePassport(this.headerService.user.accountId, this.passport, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isEdit = true;
+                this.saveButtonProgress = false;
                 if (res['passport']) {
                     this.passport = res['passport'];
                     this.mapFromPassportInfo();

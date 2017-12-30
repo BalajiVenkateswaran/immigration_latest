@@ -44,7 +44,8 @@ export class DependentDetailsComponent implements OnInit {
   public beforeCancelPersonal;
     public warningMessage = false;
   public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
-
+  public showProfileSaveButtonProgress = false;
+  public showPersonalInfoSaveButtonProgress = false;
     constructor(private dependentDetailsService: DependentDetailsService,
         private formBuilder: FormBuilder, private appService: AppService,
         private route: ActivatedRoute, private headerService: HeaderService,
@@ -124,47 +125,48 @@ export class DependentDetailsComponent implements OnInit {
 
     // Save Client Details
     saveClientProfile() {
-
-        if (this.dependentProfile['creationDate'] && this.dependentProfile['creationDate']['formatted']) {
-            this.dependentProfile['creationDate'] = this.dependentProfile['creationDate']['formatted'];
-        }
-        if (this.dependentProfile['firstName'] == undefined || this.dependentProfile['lastName'] == undefined || this.dependentProfile['relation'] == undefined || this.dependentProfile['fileNumber'] == undefined ||
-            this.dependentProfile['firstName'] == '' || this.dependentProfile['lastName'] == '' || this.dependentProfile['relation'] == '' || this.dependentProfile['fileNumber'] == '' ||
+        if (this.dependentProfile['firstName'] === undefined || this.dependentProfile['lastName'] === undefined || this.dependentProfile['relation'] === undefined || this.dependentProfile['fileNumber'] == undefined ||
+            this.dependentProfile['firstName'] === '' || this.dependentProfile['lastName'] === '' || this.dependentProfile['relation'] === '' || this.dependentProfile['fileNumber'] == '' ||
             this.dependentProfile['firstName'] == null || this.dependentProfile['lastName'] == null || this.dependentProfile['relation'] == null || this.dependentProfile['fileNumber'] == null) {
             this.warningMessage = true;
         } else {
-            this.warningMessage = false;
-            this.mapFromClientProfile();
-            this.dependentDetailsService.saveDependentDetails(this.dependent, this.headerService.user.userId)
-            .subscribe((res) => {
-                this.isProfileEdit = true;
-                if (res['dependent']) {
-                    this.dependent = res['dependent'];
-                    this.mapToClientProfile();
-
-                }
-
-            });
-        }
-    }
-
-    // Save Client Details
-    saveClientPersonalInfo() {
-        if (this.dependentPersonalInfo['dateOfBirth'] && this.dependentPersonalInfo['dateOfBirth']['formatted']) {
-            this.dependentPersonalInfo['dateOfBirth'] = this.dependentPersonalInfo['dateOfBirth']['formatted'];
-        }
-
-        this.mapFromClientPersonalInfo();
-
+          this.showProfileSaveButtonProgress = true;
+          this.warningMessage = false;
+          if (this.dependentProfile['creationDate'] && this.dependentProfile['creationDate']['formatted']) {
+            this.dependentProfile['creationDate'] = this.dependentProfile['creationDate']['formatted'];
+          }
+          this.mapFromClientProfile();
           this.dependentDetailsService.saveDependentDetails(this.dependent, this.headerService.user.userId)
-            .subscribe((res) => {
-                this.isPersonalInfoEdit = true;
-                if (res['dependent']) {
-                    this.dependent = res['dependent'];
-               this.mapToClientPersonalInfo();
-                }
-        });
+          .subscribe((res) => {
+              this.isProfileEdit = true;
+              this.showProfileSaveButtonProgress = false;
+              if (res['dependent']) {
+                  this.dependent = res['dependent'];
+                  this.mapToClientProfile();
+              }
+          });
+        }
     }
+
+  // Save Client Details
+  saveClientPersonalInfo() {
+    this.showPersonalInfoSaveButtonProgress = true;
+    if (this.dependentPersonalInfo['dateOfBirth'] && this.dependentPersonalInfo['dateOfBirth']['formatted']) {
+        this.dependentPersonalInfo['dateOfBirth'] = this.dependentPersonalInfo['dateOfBirth']['formatted'];
+    }
+
+    this.mapFromClientPersonalInfo();
+
+    this.dependentDetailsService.saveDependentDetails(this.dependent, this.headerService.user.userId)
+      .subscribe((res) => {
+        this.isPersonalInfoEdit = true;
+        this.showPersonalInfoSaveButtonProgress = false;
+        if (res['dependent']) {
+          this.dependent = res['dependent'];
+          this.mapToClientPersonalInfo();
+        }
+    });
+  }
 
 
     mapToClientProfile() {
@@ -200,8 +202,6 @@ export class DependentDetailsComponent implements OnInit {
         this.dependent['deletedOn'] = this.dependentProfile.deletedOn;
     }
 
-
-
     mapToClientPersonalInfo() {
         this.dependentPersonalInfo.gender = this.dependent['gender'];
         this.dependentPersonalInfo.dateOfBirth = this.dependent['dateOfBirth'];
@@ -230,6 +230,5 @@ export class DependentDetailsComponent implements OnInit {
         this.dependent['linkedin'] = this.dependentPersonalInfo.linkedin;
         this.dependent['twitter'] = this.dependentPersonalInfo.twitter;
     }
-
 }
 

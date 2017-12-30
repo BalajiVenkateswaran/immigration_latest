@@ -29,6 +29,7 @@ export class JobDetailsComponent implements OnInit {
     public terminationDate: string;
     public beforeCancelJobDetails;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+    public showJobDetailsSaveButtonProgress = false;
     constructor(private jobDetailsService: JobDetailsService,
                 private formBuilder: FormBuilder, public headerService: HeaderService, public appService: AppService) {
     }
@@ -60,29 +61,31 @@ export class JobDetailsComponent implements OnInit {
         this.isjobdetailsEdit = !this.isjobdetailsEdit;
     }
     saveJobInformation() {
-        if (this.jobinDetail['hireDate'] && this.jobinDetail['hireDate']['formatted']) {
-            this.jobinDetail['hireDate'] = this.jobinDetail['hireDate']['formatted'];
-        }
-        if (this.jobinDetail['rehireDate'] && this.jobinDetail['rehireDate']['formatted']) {
-            this.jobinDetail['rehireDate'] = this.jobinDetail['rehireDate']['formatted'];
-        }
-        if (this.jobinDetail['internationalHireDate'] && this.jobinDetail['internationalHireDate']['formatted']) {
-            this.jobinDetail['internationalHireDate'] = this.jobinDetail['internationalHireDate']['formatted'];
-        }
-        if (this.jobinDetail['lastDayWorkedDate'] && this.jobinDetail['lastDayWorkedDate']['formatted']) {
-            this.jobinDetail['lastDayWorkedDate'] = this.jobinDetail['lastDayWorkedDate']['formatted'];
-        }
-        if (this.jobinDetail['terminationDate'] && this.jobinDetail['terminationDate']['formatted']) {
-            this.jobinDetail['terminationDate'] = this.jobinDetail['terminationDate']['formatted'];
-        }
-        this.jobinDetail['clientId'] = this.headerService.user.userId;
-        this.jobDetailsService.saveJobDetails(this.jobinDetail)
-        .subscribe((res) => {
-            this.isjobdetailsEdit = true;
-            if (res['jobDetails']) {
-              this.jobinDetail = res['jobDetails'];
-              this.mapFromJobInfo();
-            }
-        });
+      this.showJobDetailsSaveButtonProgress = true;
+      if (this.jobinDetail['hireDate'] && this.jobinDetail['hireDate']['formatted']) {
+          this.jobinDetail['hireDate'] = this.jobinDetail['hireDate']['formatted'];
+      }
+      if (this.jobinDetail['rehireDate'] && this.jobinDetail['rehireDate']['formatted']) {
+          this.jobinDetail['rehireDate'] = this.jobinDetail['rehireDate']['formatted'];
+      }
+      if (this.jobinDetail['internationalHireDate'] && this.jobinDetail['internationalHireDate']['formatted']) {
+          this.jobinDetail['internationalHireDate'] = this.jobinDetail['internationalHireDate']['formatted'];
+      }
+      if (this.jobinDetail['lastDayWorkedDate'] && this.jobinDetail['lastDayWorkedDate']['formatted']) {
+          this.jobinDetail['lastDayWorkedDate'] = this.jobinDetail['lastDayWorkedDate']['formatted'];
+      }
+      if (this.jobinDetail['terminationDate'] && this.jobinDetail['terminationDate']['formatted']) {
+          this.jobinDetail['terminationDate'] = this.jobinDetail['terminationDate']['formatted'];
+      }
+      this.jobinDetail['clientId'] = this.headerService.user.userId;
+      this.jobDetailsService.saveJobDetails(this.jobinDetail)
+      .subscribe((res) => {
+          this.isjobdetailsEdit = true;
+          this.showJobDetailsSaveButtonProgress = false;
+          if (res['jobDetails']) {
+            this.jobinDetail = res['jobDetails'];
+            this.mapFromJobInfo();
+          }
+      });
     }
 }

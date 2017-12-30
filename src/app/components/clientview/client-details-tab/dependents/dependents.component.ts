@@ -181,7 +181,7 @@ export class DependentsComponent extends DialogComponent<ConfirmModel, boolean> 
   }
 
   editRecord(event): void {
-    this.appService.moveToPageWithParams('dependentDetails', event.data.dependentId);
+    this.appService.moveToPageWithParams('immigrationview/client/detail/dependentDetails', event.data.dependentId);
     this.appService.currentSBLink = event.data.firstName;
   }
   deleteRecord(event): void {

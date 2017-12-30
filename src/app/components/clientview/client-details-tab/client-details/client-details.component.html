@@ -1,5 +1,4 @@
 <div class="main-content">
-
     <div class="table-data-forms">
         <h1>{{clientDetails.firstName}} {{clientDetails.lastName}}</h1>
         <div class="clearfix"></div>
@@ -9,7 +8,6 @@
             <li><a href="#">Visas</a></li>
         </ul>
         <div class="clearfix"></div>
-        <!--<div class="col-md-12 addresbox box-shadow" style="padding: 12px 12px 12px 0px !important;">-->
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="col-md-12 addresbox box-shadow">
                     <div class="row">
@@ -18,10 +16,9 @@
                             <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editProfileForm()" *ngIf="isProfileEdit==true" id="cvClientProfileEdit">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
                                 <button type="button" (click)="cancelProfileEdit()" id="cvClientProfileCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isProfileEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="cvClientProfileSave1" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
+                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important; width: 65px;" [ngClass]="{'loader': showProfileSaveButtonProgress}" [disabled]="showProfileSaveButtonProgress" id="cvClientProfileSave1" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
                             </div>
                         </div>
-
                     </div>
                     <div class="row" *ngIf="warningMessage">
                         <div class="col-md-12">
@@ -31,44 +28,44 @@
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientDetails">File Number</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientDetails" [readonly]="true" [(ngModel)]="clientProfile.fileNumber" /><span *ngIf="isProfileEdit==true">{{clientProfile.fileNumber}}</span>
+                            <input type="text" maxlength="100" [disabled]="true" id="cvClientDetails" [(ngModel)]="clientProfile.fileNumber" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientEmail">Email</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientEmail" [readonly]="isEdit" [(ngModel)]="clientProfile.email" /><span *ngIf="isProfileEdit==true">{{clientProfile.email}}</span>
+                            <input type="text" maxlength="100" [disabled]="true" id="cvClientEmail" [(ngModel)]="clientProfile.email" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientFName">First Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientFName" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.firstName}}</span>
+                            <input type="text" maxlength="100" [disabled]="isProfileEdit" id="cvClientFName" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientMiddleName">Middle Name</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientMiddleName" [(ngModel)]="clientProfile.middleName" /><span *ngIf="isProfileEdit==true">{{clientProfile.middleName}}</span>
+                            <input type="text" maxlength="100" [disabled]="isProfileEdit" id="cvClientMiddleName" [(ngModel)]="clientProfile.middleName" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientLName">Last Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientLName" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.lastName}}</span>
+                            <input type="text" maxlength="100" [disabled]="isProfileEdit" id="cvClientLName" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientPhone">Phone Number<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isProfileEdit==false" id="cvClientPhone" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" /><span *ngIf="isProfileEdit==true">{{clientProfile.phoneNumber}}</span>
+                            <input type="text" maxlength="100" [disabled]="isProfileEdit" id="cvClientPhone" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isProfileEdit">
                                 <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isProfileEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important;" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
+                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important; width: 65px;" [ngClass]="{'loader': showProfileSaveButtonProgress}" [disabled]="showProfileSaveButtonProgress" (click)="saveClientProfile()" *ngIf="isProfileEdit==false">Save</button>
                             </div>
                         </div>
 
@@ -83,72 +80,64 @@
                             <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;"  (click)="editPersonalInfoForm()" *ngIf="isPersonalInfoEdit==true" id="cvClientProfileInfoEdit">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
                                 <button type="button" (click)="cancelPersonalInfoEdit()" id="cvClientProfileInfoCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save"class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="cvClientProfileInfoSave1" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+                                <button type="submit" value="Save"class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important; width: 65px;" [ngClass]="{'loader': showPersonalInfoSaveButtonProgress}" [disabled]="showPersonalInfoSaveButtonProgress" id="cvClientProfileInfoSave1" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="Gender">Gender</label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isPersonalInfoEdit==false" [(ngModel)]="clientPersonalInfo.gender">
+                            <select [disabled]="isPersonalInfoEdit" [(ngModel)]="clientPersonalInfo.gender">
                                 <option *ngFor="let genderTypes of gender" id="{{genderTypes.id}}">{{genderTypes.name}}</option>
                             </select>
-                            <span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.gender}}</span>
                         </div>
                     </div>
-
-
-
-
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientdob">Date Of Birth</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isPersonalInfoEdit==false" [options]="myDatePickerOptions" [(ngModel)]="clientPersonalInfo.dateOfBirth"
+                            <my-date-picker [disabled]="isPersonalInfoEdit" [options]="myDatePickerOptions" [(ngModel)]="clientPersonalInfo.dateOfBirth"
                                             [selDate]="dateOfBirth" id="cvClientdob"></my-date-picker>
-                            <span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.dateOfBirth}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientPInfoSocialSecurityNo">U.S. Social Security Number (if any)</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientPInfoSocialSecurityNo" [(ngModel)]="clientPersonalInfo.ssn" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.ssn}}</span>
+                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientPInfoSocialSecurityNo" [(ngModel)]="clientPersonalInfo.ssn" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientaleinRegistrationNumber">Alien Registration Number</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientaleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.aleinRegistrationNumber}}</span>
+                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientaleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientcountryOfBirth">Country of Birth</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientcountryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.countryOfBirth}}</span>
+                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientcountryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientstateOfBirth">State/Province of Birth</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientstateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.stateOfBirth}}</span>
+                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientstateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientcitizenship">Country of Citizenship or Nationality</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" *ngIf="isPersonalInfoEdit==false" id="cvClientcitizenship" [(ngModel)]="clientPersonalInfo.citizenship" /><span *ngIf="isPersonalInfoEdit==true">{{clientPersonalInfo.citizenship}}</span>
+                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientcitizenship" [(ngModel)]="clientPersonalInfo.citizenship" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isPersonalInfoEdit">
                                 <button type="button" (click)="cancelPersonalInfoEdit()" id="cvClientProfileInfoCancel2" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 0px!important;" *ngIf="isPersonalInfoEdit==false">Cancel</button>
-                                <button type="submit" value="Save" id="cvClientProfileInfoSave2" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important;"  (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
+                                <button type="submit" value="Save" id="cvClientProfileInfoSave2" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 0px!important;color: #008000 !important; width: 65px;" [ngClass]="{'loader': showPersonalInfoSaveButtonProgress}" [disabled]="showPersonalInfoSaveButtonProgress" (click)="saveClientPersonalInfo()" *ngIf="isPersonalInfoEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <!--</div>-->
-
     </div>
 </div>

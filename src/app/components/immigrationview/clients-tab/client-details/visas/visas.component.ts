@@ -45,6 +45,7 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
   public data;
   public delmesage;
   public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+  public saveButtonProgress = false;
 
   onDateChanged(event: IMyDateModel) {
     this.myDatePickerOptions.disableSince = event.date;
@@ -110,24 +111,12 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       title: 'Add Visa',
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.headerService.user.userId).subscribe((res) => {
-          this.message = res['statusCode'];
-          if (this.message === 'SUCCESS') {
-            this.getVisaaData();
-          } else {
-            this.dialog.open(InformationDialogComponent, {
-              data: {
-                title: 'Error',
-                message: 'Unable to Add Visa.'
-              }
-            });
-          }
-
-        });
+        this.getVisaaData();
       }
     });
   }
   visaSave() {
+    this.saveButtonProgress = true;
     this.newvisaitem['clientId'] = this.appService.clientId;
     if (this.newvisaitem['issuedOn'] && this.newvisaitem['issuedOn']['formatted']) {
 
@@ -137,8 +126,24 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       this.newvisaitem['expiresOn'] = this.newvisaitem['expiresOn']['formatted'];
     }
     this.appService.newvisaitem = this.newvisaitem;
-    this.result = true;
-    this.close();
+    this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.headerService.user.userId).subscribe((res) => {
+      this.message = res['statusCode'];
+      if (this.message === 'SUCCESS') {
+        this.result = true;
+      } else {
+        this.dialog.open(InformationDialogComponent, {
+          data: {
+            title: 'Error',
+            message: 'Unable to save Visa.'
+          }
+        });
+        this.result = false;
+      }
+      this.saveButtonProgress = false;
+      this.close();
+    });
+
+
   }
   cancel() {
     this.result = false;
@@ -159,17 +164,10 @@ export class ImmigrationViewVisasComponent extends DialogComponent<ConfirmModel,
       title: 'Edit Visa',
       newvisaitem: this.editvisaFlag ? this.beforevisaEdit : this.newvisaitem,
       issuedOn: event.data.issuedOn,
-      expiresOn: event.data.expiresOn,
-
+      expiresOn: event.data.expiresOn
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
-
-        this.immigrationviewVisasService.saveClientVisas(this.appService.newvisaitem, this.headerService.user.userId).subscribe((res) => {
-          if (res['statusCode'] === 'SUCCESS') {
-            this.getVisaaData();
-
-          }
-        });
+        this.getVisaaData();
       }
     });
   }

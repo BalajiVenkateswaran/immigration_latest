@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
 import {AppService} from '../../../../services/app.service';
 import {AddressInfoService} from './addressinfo.service';
 import {IMyOptions} from 'mydatepicker';
@@ -39,6 +38,10 @@ export class AddressinfoComponent implements OnInit {
   public checked: boolean;
   private beforeChecked;
   public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
+  public showWorkSaveButtonProgress = false;
+  public showResidenceSaveButtonProgress = false;
+  public showMailingSaveButtonProgress = false;
+  public showForeignSaveButtonProgress = false;
   constructor(private dialog: MatDialog, public headerService: HeaderService, public appService: AppService,
               private addressinfoservice: AddressInfoService) {
   }
@@ -132,6 +135,7 @@ export class AddressinfoComponent implements OnInit {
 
   saveClientAdress(addresstype) {
     if (addresstype === 'WORK') {
+      this.showWorkSaveButtonProgress = true;
       this.WorkaddressinfoList['userId'] = this.headerService.user.userId;
       this.WorkaddressinfoList.addressType = addresstype;
       if (this.WorkaddressinfoList['residingSince'] && this.WorkaddressinfoList['residingSince']['formatted']) {
@@ -141,6 +145,7 @@ export class AddressinfoComponent implements OnInit {
       this.addressinfoservice.saveClientAddress(this.WorkaddressinfoList)
         .subscribe((res) => {
           this.workedit = true;
+          this.showWorkSaveButtonProgress = false;
           if (res['clientAddress']) {
             this.WorkaddressinfoList = res['clientAddress'];
             this.workResidingSince = this.WorkaddressinfoList['residingSince'];
@@ -148,6 +153,7 @@ export class AddressinfoComponent implements OnInit {
         });
     }
     if (addresstype === 'RESIDENCE') {
+      this.showResidenceSaveButtonProgress = true;
       this.ResidenceaddressinfoList['userId'] = this.headerService.user.userId;
       this.ResidenceaddressinfoList.addressType = addresstype;
       if (this.ResidenceaddressinfoList['residingSince'] && this.ResidenceaddressinfoList['residingSince']['formatted']) {
@@ -157,6 +163,7 @@ export class AddressinfoComponent implements OnInit {
       this.addressinfoservice.saveClientAddress(this.ResidenceaddressinfoList, this.checked)
         .subscribe((res) => {
           this.residenceedit = true;
+          this.showResidenceSaveButtonProgress = false;
           if (res['clientAddress']) {
             this.ResidenceaddressinfoList = res['clientAddress'];
             this.resiResidingSince = this.ResidenceaddressinfoList['residingSince'];
@@ -165,11 +172,13 @@ export class AddressinfoComponent implements OnInit {
     }
     if (addresstype === 'MAILING') {
       if (this.residenceedit) {
+        this.showMailingSaveButtonProgress = true;
         this.MailingaddressinfoList['userId'] = this.headerService.user.userId;
         this.MailingaddressinfoList.addressType = addresstype;
         this.addressinfoservice.saveClientAddress(this.MailingaddressinfoList)
           .subscribe((res) => {
             this.mailingedit = true;
+            this.showMailingSaveButtonProgress = false;
             if (res['clientAddress']) {
               this.MailingaddressinfoList = res['clientAddress'];
             }
@@ -183,11 +192,13 @@ export class AddressinfoComponent implements OnInit {
       }
     }
     if (addresstype === 'FOREIGN') {
+      this.showForeignSaveButtonProgress = true;
       this.ForiegnaddressinfoList['userId'] = this.headerService.user.userId;
       this.ForiegnaddressinfoList.addressType = addresstype;
       this.addressinfoservice.saveClientAddress(this.ForiegnaddressinfoList)
         .subscribe((res) => {
           this.foreignedit = true;
+          this.showForeignSaveButtonProgress = false;
           if (res['clientAddress']) {
             this.ForiegnaddressinfoList = res['clientAddress'];
           }

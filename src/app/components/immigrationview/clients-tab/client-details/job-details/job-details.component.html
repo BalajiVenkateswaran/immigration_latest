@@ -11,7 +11,7 @@
                             <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editJobInfoForm()" id="ivClientDtlsJDtlsEdit" *ngIf="isjobdetailsEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
                                 <button type="button" (click)="cancelJobInfoEdit()" id="ivClientDtlsJDtlsCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" id="ivClientDtlsJDtlsSave" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important; width: 65px;" [ngClass]="{'loader': saveButtonProgress}" [disabled]="saveButtonProgress" id="ivClientDtlsJDtlsSave" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                         <div class="col-sm-12">
                             <div class="tbl-head-btn" [hidden]="isjobdetailsEdit">
                                 <button type="button" (click)="cancelJobInfoEdit()" id="ivClientDtlsJDtlsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;margin-top: 4px!important;" *ngIf="isjobdetailsEdit==false">Cancel</button>
-                                <button type="submit" value="Save" id="ivClientDtlsJDtlsSave1" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;color: #008000 !important;" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
+                                <button type="submit" value="Save" id="ivClientDtlsJDtlsSave1" class="editbtn tbl-head-btn iportal-btnIMclient" style="margin-top: 4px!important;color: #008000 !important; width: 65px;" [ngClass]="{'loader': saveButtonProgress}" [disabled]="saveButtonProgress" (click)="saveJobInformation()" *ngIf="isjobdetailsEdit==false">Save</button>
                             </div>
                         </div>
                     </div>

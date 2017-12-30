@@ -35,7 +35,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
     public terminationDate: string;
     public beforeCancelJobDetails;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
-
+    public saveButtonProgress = false;
     constructor(public headerService: HeaderService,
         public formBuilder: FormBuilder, public appService: AppService, private jobdetails: JobdetailsService) {
     }
@@ -53,9 +53,6 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
                 this.isjobdetailsEdit = true;
             });
     }
-    onDateChanged(event: IMyDateModel) {
-    }
-
     highlightSBLink(link) {
         this.appService.currentSBLink = link;
     }
@@ -79,6 +76,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
     }
 
     saveJobInformation() {
+        this.saveButtonProgress = true;
         if (this.jobDetails['hireDate'] && this.jobDetails['hireDate']['formatted']) {
             this.jobDetails['hireDate'] = this.jobDetails['hireDate']['formatted'];
         }
@@ -102,6 +100,7 @@ export class ImmigrationViewJobDetailsComponent implements OnInit {
         this.jobdetails.saveJobDetails(this.jobDetails, this.headerService.user.userId)
             .subscribe((res) => {
                 this.isjobdetailsEdit = true;
+                this.saveButtonProgress = false;
                 if (res['jobDetails']) {
                   this.jobDetails = res['jobDetails'];
                   this.mapFromJobDetails();
