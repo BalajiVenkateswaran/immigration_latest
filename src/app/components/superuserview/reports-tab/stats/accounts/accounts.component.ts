@@ -12,15 +12,15 @@ export class StatsAccountsComponent implements OnInit {
   constructor(public headerService: HeaderService) {
   }
   ngOnInit() {
-        this.headerService.showSideBarMenu("superuser-reports", "superuserview/reports/stats/accounts");
+        this.headerService.showSideBarMenu('superuser-reports', 'superuserview/reports/stats/accounts');
     }
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
     };
     public barChartLabels: number[] = [];
-    public barChartType: string = 'bar';
-    public barChartLegend: boolean = true;
+    public barChartType = 'bar';
+    public barChartLegend = true;
     // events
     public chartClicked(e: any): void {
         console.log(e);

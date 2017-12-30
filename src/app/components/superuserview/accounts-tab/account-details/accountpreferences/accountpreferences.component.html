@@ -38,9 +38,8 @@
                         <div class="col-md-4">Code:<span class="redstar">*</span></div>
                         <div class="col-md-8">
                             <select class="form-control" [(ngModel)]="addproduct.code">
-                                <option *ngFor="let c of allProducts" [value]="c.code" id="{{c.code}}">{{ c.code }}</option>
+                                <option *ngFor="let productCode of allProducts" [value]="productCode" id="{{productCode}}">{{ productCode }}</option>
                             </select>
-                            <!--<input type="text" class="form-control" id="svActPrefCode" [disabled]="editprdct" [(ngModel)]="addproduct.code">-->
                         </div>
                         <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
                         <div class="col-md-8">
@@ -85,7 +84,11 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-4">Code:<span class="redstar">*</span></div>
-                        <div class="col-md-8"><input type="text" id="svActPrefCode1" class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode"></div>
+                        <div class="col-md-8">
+                          <select class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode">
+                            <option *ngFor="let discountCode of allDiscounts" [value]="discountCode" id="{{discountCode}}">{{ discountCode }}</option>
+                          </select>
+                        </div>
                         <div class="col-md-4">Start Date:<span class="redstar">*</span></div>
                         <div class="col-md-8">
                             <my-date-picker [options]="myDatePickerOptions" id="svActPrefStartDate1" [(ngModel)]="discounts.startDate" [selDate]="startDate"></my-date-picker>

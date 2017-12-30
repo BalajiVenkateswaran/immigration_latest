@@ -28,7 +28,11 @@ export class SuperuserViewAccountPreferencesService {
     return this.restService.postData('/superuser/account/discounts', req);
   }
 
-  public getProductDetails() {
-    return this.restService.getData('/superuser/products');
+  public getAllActiveProductCodes() {
+    return this.restService.getData('/superuser/product/active/codes');
+  }
+
+  public getAllActiveDiscountCodes() {
+    return this.restService.getData('/superuser/discount/active/code');
   }
 }
