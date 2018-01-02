@@ -1461,7 +1461,7 @@ confirm .modal-dialog {
   confirm .modal-dialog .modal-content {
     background: #32353e;
     border: solid 2px #000;
-    padding-bottom: 15px; }
+    /*padding-bottom: 15px;*/ }
     confirm .modal-dialog .modal-content .modal-header {
       display: block !important; }
       confirm .modal-dialog .modal-content .modal-header .close {
@@ -1487,7 +1487,7 @@ confirm .modal-dialog {
 .orgnamebox .modal-content {
   background: #32353e;
   border: solid 2px #000;
-  padding-bottom: 15px; }
+  /*padding-bottom: 15px;*/ }
   .orgnamebox .modal-content .modal-header .close {
     color: #e9eaec !important;
     text-shadow: none !important;

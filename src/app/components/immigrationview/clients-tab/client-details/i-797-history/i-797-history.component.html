@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" id="ivClientDtlsI797Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%; margin-right: 11px;" (click)="I797HistorySave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" id="ivClientDtlsI797Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%; margin-right: 11px;" [ngClass]="{'loader': saveButtonProgress}" [disabled]="saveButtonProgress" (click)="I797HistorySave()">Save</button></div>
                                     <div class="col-md-6"><button type="button" id="ivClientDtlsI797Cancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important; " (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>

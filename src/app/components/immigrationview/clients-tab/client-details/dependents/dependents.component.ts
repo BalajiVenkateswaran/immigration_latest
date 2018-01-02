@@ -36,6 +36,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
   public getDependents = true;
   public addedData: any = {};
   public addDependnts: any;
+  public showWorkAddrSaveButtonProgress = false;
   public warningMessage = false;
   public settings;
   public data;
@@ -105,6 +106,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
       return false;
     })
     this.addDependents['clientId'] = this.appService.clientId;
+    this.showWorkAddrSaveButtonProgress = true;
     if (this.addDependents['firstName'] === '' || this.addDependents['firstName'] == null || this.addDependents['firstName'] === undefined ||
       this.addDependents['lastName'] === '' || this.addDependents['lastName'] == null || this.addDependents['lastName'] === undefined ||
       this.addDependents['relation'] === '' || this.addDependents['relation'] == null || this.addDependents['relation'] === undefined) {
@@ -117,7 +119,7 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
         }
       });
     } else {
-      this.warningMessage = false;
+        this.warningMessage = false;        
       this.appService.addDependents = this.addDependents;
       this.result = true;
       this.close();
@@ -143,8 +145,9 @@ export class ImmigrationViewDependentsComponent extends DialogComponent<ConfirmM
     }).afterClosed()
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.immigrationViewDependentService.removeDependentsSummary(dependents.data['dependentId']).subscribe((res) => {
-            this.message = res['statusCode'];
+            this.immigrationViewDependentService.removeDependentsSummary(dependents.data['dependentId']).subscribe((res) => {
+                this.showWorkAddrSaveButtonProgress = false;
+              this.message = res['statusCode'];
             if (this.message === 'SUCCESS') {
               this.getDepData();
             }

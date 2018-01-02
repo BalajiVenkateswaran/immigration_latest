@@ -155,7 +155,7 @@ $dateColumnWidth:110px;
   .modal-dialog .modal-content {
     background: #32353e !important;
     border: solid 2px #000 !important;
-    padding-bottom: 15px; }
+    /*padding-bottom: 15px;*/ }
     .modal-dialog .modal-content .modal-header {
       display: block !important; }
       .modal-dialog .modal-content .modal-header .close {
@@ -171,7 +171,7 @@ $dateColumnWidth:110px;
         font-weight: 500;
         margin-bottom: 0px !important; }
     .modal-dialog .modal-content .modal-body {
-      margin: 0px 15px;
+      /*margin: 0px 15px;*/
       border-radius: 5px;
       background: #fff; }
       .modal-dialog .modal-content .modal-body .btn-primary, .modal-dialog .modal-content .modal-body .btn-default {

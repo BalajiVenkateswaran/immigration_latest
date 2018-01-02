@@ -13,6 +13,7 @@ import {MatDialog} from '@angular/material';
 import {ImmigrationClientCommonService} from '../common/immigration-client.service';
 import {IHDateUtil} from '../../../../framework/utils/date.component';
 
+
 export interface ConfirmModel {
   title: string;
   message: string;
@@ -42,6 +43,7 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
   public data;
   public editFlag = true;
   public beforeEdit: any;
+  public showWorkAddrSaveButtonProgress = false;
   private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   constructor(private immigrationviewDocumentExpirationsService: ImmigrationviewDocumentExpirationsService, private immigrationClientCommonService: ImmigrationClientCommonService,
     public appService: AppService, public dialogService: DialogService, public dialog: MatDialog, public headerService: HeaderService) {
@@ -102,13 +104,14 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     });
   }
   docExpSave() {
-    if(!this.addNewDocExp['status']){
+      if (!this.addNewDocExp['status']) {
       this.addNewDocExp['status'] = 'Active';
     }
     this.addNewDocExp['validFrom'] = this.addNewDocExp['validFrom']['formatted'];
     this.addNewDocExp['validTo'] = this.addNewDocExp['validTo']['formatted'];
     this.appService.addNewDocExp = this.addNewDocExp;
     this.result = true;
+    this.showWorkAddrSaveButtonProgress = true;
     this.close();
   }
   cancel() {
@@ -135,8 +138,9 @@ export class ImmigrationviewDocumentExpirationsComponent extends DialogComponent
     }).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.immigrationviewDocumentExpirationsService.saveDocumentExpairation(this.appService.addNewDocExp, this.headerService.user.userId).subscribe((res) => {
-          if (res['statusCode'] === 'SUCCESS') {
-            this.getDocumentsExpirations();
+            if (res['statusCode'] === 'SUCCESS') {
+                this.getDocumentsExpirations();
+                this.showWorkAddrSaveButtonProgress = false;
           }
 
         });

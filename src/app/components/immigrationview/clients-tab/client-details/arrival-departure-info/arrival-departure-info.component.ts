@@ -39,6 +39,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   public rowClicked: boolean ;
   public data;
   public settings;
+  public showWorkAddrSaveButtonProgress = false;
   onDateChanged(event: IMyDateModel) { }
   private myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   constructor(private arrivalDepartureInfoService: ImmigrationViewArrivalDepartureInfoService,
@@ -122,7 +123,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
   }
   arrDepSave() {
       this.addArrDeparture['clientId'] = this.appService.clientId;
-
+      this.showWorkAddrSaveButtonProgress = true;
       if (this.addArrDeparture['departureDate'] && this.addArrDeparture['departureDate']['formatted']) {
            this.addArrDeparture['departureDate'] = this.addArrDeparture['departureDate']['formatted'];
       }
@@ -146,6 +147,7 @@ export class ImmigrationViewArrivalDepartureInfoComponent extends DialogComponen
       }).afterClosed().subscribe((isConfirmed) => {
             if (isConfirmed) {
                 this.arrivalDepartureInfoService.removeClientArrivalDeparture(arrivalDeprtInfo.data['arrivalDepartureInfoId']).subscribe((res) => {
+                    this.showWorkAddrSaveButtonProgress = false;
                     if (res['statusCode'] === 'SUCCESS') {
                         this.getArrivalDepartueInfo();
                     }

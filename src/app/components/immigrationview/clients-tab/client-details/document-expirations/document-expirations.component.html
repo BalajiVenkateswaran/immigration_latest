@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" id="ivClientDtlsDocExpSave" class="editbtn tbl-head-btn iportal-btnIMclient"style="margin-top: 4px!important;color: #008000 !important;margin-right: 11px; width: 90%;" (click)="docExpSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" id="ivClientDtlsDocExpSave" class="editbtn tbl-head-btn iportal-btnIMclient"style="margin-top: 4px!important;color: #008000 !important;margin-right: 11px; width: 90%;" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="docExpSave()">Save</button></div>
                                     <div class="col-md-6"><button type="button" id="ivClientDtlsDocExpCancel" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>

@@ -1300,11 +1300,11 @@ aside.left-opened.smoothness.loginScreen{display:none;}
 
 confirm {
     .modal-dialog {
-    margin: 15% auto 0px auto;
+    /*margin: 15% auto 0px auto;*/
         .modal-content {
                     background:#32353e !important;
         border:solid 2px #000 !important;
-        padding-bottom:15px;
+        /*padding-bottom:15px;*/
             .modal-header {
                 display:block !important;
                 .close {
@@ -1323,7 +1323,7 @@ confirm {
                 }
             }
             .modal-body {
-            margin:0px 15px;
+            /*margin:0px 15px;*/
             border-radius:5px;
             background:#fff;
             }
@@ -1340,7 +1340,7 @@ confirm {
     .modal-content {
         background:#232f3f !important;
         border:0px !important;
-        padding-bottom:15px;
+        /*padding-bottom:15px;*/
         border-radius:0px;
         width: 440px !important;
             margin: 0px auto;
@@ -1620,7 +1620,7 @@ confirm {
 }
 @media (min-width: 576px) {
 .modal-dialog {
-    margin: 10% auto;
+    /*margin: 10% auto;*/
 }
 }
 .loginpopup, .selectRole {
