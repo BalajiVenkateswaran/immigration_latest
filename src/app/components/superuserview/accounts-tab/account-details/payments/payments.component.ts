@@ -119,7 +119,7 @@ export class AccountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
           this.appService.addUsers['paymentDate'] = this.appService.addUsers['paymentDate']['formatted'];
         }
         this.accountsPaymentService.savePaymentDetails(this.accountDetailsCommonService.accountId, this.appService.addUsers).subscribe((res) => {
-          if (res['statusCode'] == 'SUCCESS') {
+          if (res['statusCode'] === 'SUCCESS') {
             this.getPaymentDetails();
           }
         });
@@ -127,19 +127,18 @@ export class AccountDetailsPaymentsComponent extends DialogComponent<ConfirmMode
     });
   }
   savePayments() {
-
-
-    if ((this.payments['invoiceNumber'] == '' || this.payments['invoiceNumber'] == null || this.payments['invoiceNumber'] == undefined || this.payments['transactionId'] == '' || this.payments['transactionId'] == null || this.payments['transactionId'] == undefined || this.payments['paymentDate'] == '' || this.payments['paymentDate'] == null || this.payments['paymentDate'] == undefined || this.payments['paymentAmount'] == '' || this.payments['paymentAmount'] == null || this.payments['paymentAmount'] == undefined || this.payments['paymentStatus'] == '' || this.payments['paymentStatus'] == null || this.payments['paymentStatus'] == undefined)) {
+    if ((this.payments['invoiceNumber'] === '' || this.payments['invoiceNumber'] == null || this.payments['invoiceNumber'] === undefined
+        || this.payments['transactionId'] === '' || this.payments['transactionId'] == null || this.payments['transactionId'] === undefined
+        || this.payments['paymentDate'] === '' || this.payments['paymentDate'] == null || this.payments['paymentDate'] === undefined
+        || this.payments['paymentAmount'] === '' || this.payments['paymentAmount'] == null || this.payments['paymentAmount'] === undefined
+        || this.payments['paymentStatus'] === '' || this.payments['paymentStatus'] == null || this.payments['paymentStatus'] === undefined)) {
       this.warningMessage = true;
-
-    }
-    else {
+    } else {
       this.warningMessage = false;
       this.appService.addUsers = this.payments;
       this.result = true;
       this.close();
     }
-
   }
   cancel() {
     this.result = false;

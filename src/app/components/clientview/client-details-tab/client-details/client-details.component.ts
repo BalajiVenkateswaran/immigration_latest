@@ -7,10 +7,11 @@ import {ImmigrationViewClientProfile} from '../../../../models/immigrationviewcl
 import {ImmigrationViewClientPersonalInfo} from '../../../../models/ImmigrationViewClientPersonalInfo';
 import {IHDateUtil} from '../../../framework/utils/date.component';
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
-import {IMyDateModel, IMyOptions} from 'mydatepicker';
+import {IMyOptions} from 'mydatepicker';
 import {User} from '../../../../models/user';
 import {HeaderService} from '../../../common/header/header.service';
 import {DialogService} from 'ng2-bootstrap-modal';
+import {DeepCloneUtil} from '../../../framework/utils/deepclone.component';
 
 
 export interface formControl {
@@ -72,6 +73,7 @@ export class ClientDetailsComponent  implements OnInit {
            this.appService.lastName = res['clientDetails'].lastName;
            this.mapToClientProfile();
            this.mapToClientPersonalInfo();
+           this.dateOfBirth = this.clientDetails.dateOfBirth;
          }
          if (res['client']) {
           this.client = res['client'];
@@ -90,12 +92,11 @@ export class ClientDetailsComponent  implements OnInit {
        {value: '1', name: 'Female', id: 'female'}
 
      ]
-     this.creationDate = this.clientDetails.creationDate;
-     this.dateOfBirth = this.clientDetails.dateOfBirth;
+
    }
 
   editProfileForm() {
-    this.beforeCancelProfile = (<any>Object).assign({}, this.clientProfile);
+    this.beforeCancelProfile = DeepCloneUtil.deepClone(this.clientProfile);
     this.isProfileEdit = !this.isProfileEdit;
     this.creationDate = this.clientDetails['creationDate'];
   }
@@ -109,15 +110,11 @@ export class ClientDetailsComponent  implements OnInit {
   }
 
   editPersonalInfoForm() {
-    this.beforeCancelPersonal = (<any>Object).assign({}, this.clientPersonalInfo);
-    this.dateOfBirth = this.clientDetails['dateOfBirth'];
+    this.beforeCancelPersonal = DeepCloneUtil.deepClone(this.clientPersonalInfo);
     this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
   }
   cancelPersonalInfoEdit() {
     this.clientPersonalInfo = this.beforeCancelPersonal;
-    if (this.clientPersonalInfo['dateOfBirth'] && this.clientPersonalInfo['dateOfBirth']['formatted']) {
-      this.clientPersonalInfo['dateOfBirth'] = this.clientPersonalInfo['dateOfBirth']['formatted'];
-    }
     this.isPersonalInfoEdit = !this.isPersonalInfoEdit;
   }
   saveClientProfile() {
@@ -160,6 +157,7 @@ export class ClientDetailsComponent  implements OnInit {
         if (res['clientDetails']) {
           this.clientDetails = res['clientDetails'];
           this.mapToClientPersonalInfo();
+          this.dateOfBirth = this.clientDetails.dateOfBirth;
         }
       });
   }

@@ -1,8 +1,4 @@
 <div class="main-content" *ngIf="getInvoice">
-    <!--<ul class="breadcrumb">
-        <li><a href="#">Account Invoice</a></li>
-    </ul>
-    <div class="clearfix"></div>-->
     <div class="table-data">
         <h1 _ngcontent-c8="" class="clickname">
             <img _ngcontent-c15="" src="../../../../assets/images/Profile.png" style="margin-bottom: 4px !important;height: 18px!important;">
@@ -38,7 +34,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Invoice Number:</div>
                                             <div class="col-md-7">
-                                                <input type="text" maxlength="100" id="svActinvInvNo"  [disabled]="isEditInvoice" [(ngModel)]="invoice.invoiceNumber" class="form-control">                                                
+                                                <input type="text" maxlength="100" id="svActinvInvNo"  [disabled]="isEditInvoice" [(ngModel)]="invoice.invoiceNumber" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -46,7 +42,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Invoice Date:</div>
                                             <div class="col-md-7">
-                                                <input type="text" maxlength="100" id="svActinvInvDate"  [disabled]="isEditInvoice" [(ngModel)]="invoice.invoiceDate" class="form-control">                                                
+                                                <input type="text" maxlength="100" id="svActinvInvDate"  [disabled]="isEditInvoice" [(ngModel)]="invoice.invoiceDate" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -56,7 +52,6 @@
                                             <div class="col-md-5">Invoice Amount:</div>
                                             <div class="col-md-7">
                                                 <input type="text" maxlength="100" id="svActinvInvAmt" [(ngModel)]="invoice.invoiceAmount" class="form-control">
-                                                <!--<span *ngIf="isEditInvoice==true">{{invoice.invoiceAmount}}</span>-->
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +59,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Account Name:</div>
                                             <div class="col-md-7">
-                                                <input type="text" maxlength="100" id="svActinvActName"  [disabled]="isEditInvoice" [(ngModel)]="invoice.accountName" class="form-control">                                                
+                                                <input type="text" maxlength="100" id="svActinvActName"  [disabled]="isEditInvoice" [(ngModel)]="invoice.accountName" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +67,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Account Number:</div>
                                             <div class="col-md-7">
-                                                <input type="text" maxlength="100" id="svActinvActNo" [disabled]="isEditInvoice" [(ngModel)]="invoice.accountNumber" class="form-control">                                                
+                                                <input type="text" maxlength="100" id="svActinvActNo" [disabled]="isEditInvoice" [(ngModel)]="invoice.accountNumber" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +75,7 @@
                                         <div class="row">
                                             <div class="col-md-5">Bill Start Date:</div>
                                             <div class="col-md-7">
-                                                <input type="text" maxlength="100" id="svActinvStartDate" [disabled]="isEditInvoice"  [(ngModel)]="invoice.billStartDate" class="form-control">                                                
+                                                <input type="text" maxlength="100" id="svActinvStartDate" [disabled]="isEditInvoice"  [(ngModel)]="invoice.billStartDate" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +84,7 @@
                                             <div class="col-md-5">Bill End Date:</div>
                                             <div class="col-md-7">
                                                 <input type="text" maxlength="100" id="svActinvEndDate" [disabled]="isEditInvoice" [(ngModel)]="invoice.billEndDate" class="form-control">
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -98,7 +93,7 @@
                                             <div class="col-md-5">Payment Status:</div>
                                             <div class="col-md-7">
                                                 <input type="text" maxlength="100" id="svActinvPmtStatus" [disabled]="isEditInvoice" [(ngModel)]="invoice.paymentStatus" class="form-control">
-                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -106,31 +101,30 @@
                                     <div class="row">
                                       <div class="col-md-5">Invoice (PDF Name):</div>
                                       <div class="col-md-7">
-                                        <input type="text" maxlength="100" [disabled]="isEditInvoice" id="svActinvInVPdfName" [(ngModel)]="invoice.fileName" class="form-control">                                        
+                                        <input type="text" maxlength="100" [disabled]="isEditInvoice" id="svActinvInVPdfName" [(ngModel)]="invoice.fileName" class="form-control">
                                       </div>
                                     </div>
                                   </div>
                                   <div class="col-md-6">
-                                      <div class="col-md-5">Upload:</div>
+                                      <div class="col-md-5">Payment Received:</div>
                                       <div class="col-md-7">
-                                        <!--<button type="button" class="btn btn-primary" id="svActinvUpload" (click)="onUploadClick(invoice)">Upload</button>-->
-                                        <div class="fileUpload" style="width: 42% !important;">
-                                          <button class="btn iportal-btnIMclient"> Upload</button>  
-                                          <input type="file" class="upload  btn iportal-btnIMclient" name="file" (change)="popupInvoiceFileUploadClick($event, invoice)" />
-                                        </div>
+                                          <select [(ngModel)]="invoice.paymentReceived" class="form-control">
+                                            <option [value]="true" id="paymentReceivedId">Yes</option>
+                                            <option [value]="false" id="paymentNotReceivedId">No</option>
+                                          </select>
                                       </div>
                                   </div>
                                   <div class="col-md-12">
                                     <div class="row">
                                       <div class="col-md-2">Comments:</div>
                                       <div class="col-md-10">
-                                        <textarea [(ngModel)]="invoice.comments"  maxlength="100"class="form-control" style="margin-left: 30px;width: 95%;height: 84px;"></textarea>                                        
+                                        <textarea [(ngModel)]="invoice.comments"  maxlength="100"class="form-control" style="margin-left: 30px;width: 95%;height: 84px;"></textarea>
                                       </div>
                                     </div>
 
                                   </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="row">
                                             <div class="col-md-5">Email Invoice:</div>
                                             <div class="col-md-7">
@@ -139,14 +133,20 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-md-6" style="margin-top: 6px!important;">
+                                    <div class="col-md-4">
+                                      <div class="col-md-5">Upload:</div>
+                                      <div class="col-md-7">
+                                        <div class="fileUpload">
+                                          <button class="btn iportal-btnIMclient"> Upload</button>
+                                          <input type="file" class="upload  btn iportal-btnIMclient" name="file" (change)="popupInvoiceFileUploadClick($event, invoice)" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4" style="margin-top: 6px!important;">
                                         <div class="row">
                                             <div class="col-md-5">Downdload:</div>
                                             <div class="col-md-7">
-
                                                 <button type="button" class="btn iportal-btnIMclient" id="svActinvDownload" (click)="downloadInvoice(invoice)">Download</button>
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@
                                       <div class="col-md-4" style="margin-left: 21%;">
                                         <button type="button" class="btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="svActinvSave" (click)="saveInvoiceDetails()">Save</button>
                                       </div>
-                                      <div class="col-md-4"><button type="button" class="btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="svActinvCancel" (click)="cancel()">Close</button></div>                                      
+                                      <div class="col-md-4"><button type="button" class="btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="svActinvCancel" (click)="cancel()">Close</button></div>
                                     </div>
                                   </div>
                                 </div>
