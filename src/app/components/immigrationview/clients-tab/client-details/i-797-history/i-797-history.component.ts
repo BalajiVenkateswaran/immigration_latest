@@ -41,6 +41,7 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
     public addNewI797: any = {};
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public editi797Flag = true;
+    public saveButtonProgress = false;
     public beforei797Edit: any;
     constructor(private immigrationViewI797HistoryService: ImmigrationViewI797HistoryService, public appService: AppService, public dialogService: DialogService,
                 public dialog: MatDialog, public headerService: HeaderService) {
@@ -104,7 +105,8 @@ export class ImmigrationViewI797HistoryComponent extends DialogComponent<Confirm
    }
    I797HistorySave() {
        this.addNewI797['clientId'] = this.appService.clientId;
-
+       
+    this.saveButtonProgress = true;
        if (this.addNewI797['approvedOn'] && this.addNewI797['approvedOn']['formatted']) {
            this.addNewI797['approvedOn'] = this.addNewI797['approvedOn']['formatted'];
        }

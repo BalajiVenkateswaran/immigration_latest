@@ -77,7 +77,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   formsData: any = [];
   private rowEdit: boolean[] = [];
   private isEditForms: boolean[] = [];
-
+  public saveButtonProgress = false;
   private status = [
     {
       'id': '0',
@@ -236,6 +236,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
   }
 
   onAddQuestionnaireClick() {
+      this.saveButtonProgress = true;
     this.dialogService.addDialog(ImmigrationviewQuestionnaireComponent, {
       showAddQuestionnairepopup: true,
       getQuestionnaireData: false,
@@ -249,6 +250,7 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
           if (this.message === 'SUCCESS') {
             this.getquesnreData();
           } else {
+              this.saveButtonProgress = false;
             this.dialog.open(InformationDialogComponent, {
               data: {
                 title: 'Error',
@@ -321,12 +323,13 @@ export class ImmigrationviewQuestionnaireComponent extends DialogComponent<Confi
 
   onSaveQuestionnaireClick() {
     this.newQuestionnaireitem['petitionId'] = this.appService.petitionId;
-
+    this.saveButtonProgress = true;
     if (this.newQuestionnaireitem['formId'] === '' || this.newQuestionnaireitem['formId'] == null || this.newQuestionnaireitem['formId'] === undefined ||
       this.newQuestionnaireitem['questionnaireName'] === '' || this.newQuestionnaireitem['questionnaireName'] == null || this.newQuestionnaireitem['questionnaireName'] === undefined) {
       this.sfmQuestionnaire = true;
     } else {
-      this.sfmQuestionnaire = false;
+        this.sfmQuestionnaire = false;
+        this.saveButtonProgress = true;
       this.appService.newQuestionnaireitem = this.newQuestionnaireitem;
       this.result = true;
       this.close();

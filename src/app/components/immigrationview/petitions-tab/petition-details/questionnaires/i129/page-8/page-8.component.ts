@@ -10,6 +10,7 @@ export class I129Page8Component implements OnInit {
     beforecancelquestionnaire: any;
     isQuestionnaireEdit = false;
     public page8: any = {};
+    public saveButtonProgress = false;
     constructor(public questionnaireService: QuestionnaireCommonService) {
     }
 
@@ -29,9 +30,11 @@ export class I129Page8Component implements OnInit {
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
     saveQuestionnaireInformation() {
+        this.saveButtonProgress = true;
         this.page8.pageNumber = 8;
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 8, this.page8).subscribe(res => {
-          this.isQuestionnaireEdit = false;
+            this.isQuestionnaireEdit = false;
+            this.saveButtonProgress = false;
         })
     }
 

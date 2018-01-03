@@ -22,6 +22,7 @@ export class I129Page3Component implements OnInit {
     public passportExpiryDate: string;
     public dateStatusExpires: string;
     public states: any[] = [];
+    public saveButtonProgress = false;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public page3: any = {
         'address': {},
@@ -193,10 +194,12 @@ export class I129Page3Component implements OnInit {
     }
 
     saveQuestionnaireInformation() {
+        this.saveButtonProgress = true;
         this.page3.pageNumber = 3;
         this.mapDatesToSave();
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 3, this.page3).subscribe(res => {
-          this.isQuestionnaireEdit = false;
+            this.isQuestionnaireEdit = false;
+            this.saveButtonProgress = false;
         });
     }
 

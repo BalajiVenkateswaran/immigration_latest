@@ -12,7 +12,7 @@
             <div class="col-md-4">
               <a (click)="gotoNext()" class="nextbtn iportal-btnIMclient">Next</a>
               <a *ngIf="isQuestionnaireEdit" (click)="cancelQuestinnaireEdit()" class="nextbtn iportal-btnIMclient" style="color: #FF0000 !important;">Cancel</a>
-              <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" class="nextbtn iportal-btnIMclient"style="color: #008000 !important;">Save</a>
+              <a *ngIf="isQuestionnaireEdit" (click)="saveQuestionnaireInformation()" [ngClass]="{'loader': saveButtonProgress}"  class="nextbtn iportal-btnIMclient"style="color: #008000 !important;">Save</a>
               <a *ngIf="!isQuestionnaireEdit" (click)="editQuestinnaireForm()" class="nextbtn iportal-btnIMclient">Edit</a>
             </div>
         </div>
