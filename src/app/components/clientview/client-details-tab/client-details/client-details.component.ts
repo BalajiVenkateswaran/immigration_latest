@@ -18,7 +18,6 @@ export interface formControl {
   value: FormControl;
 }
 
-
 @Component({
   selector: 'app-client-details',
   templateUrl: './client-details.component.html',
@@ -33,7 +32,7 @@ export class ClientDetailsComponent  implements OnInit {
   public editUser: FormGroup; // our model driven form
   private fieldsList: clientdetails[];
   private status: any[];
-  private gender: any[];
+  public gender: any[];
   private formControlValues: any = {};
   isEdit: boolean[] = [true];
   private message: string;
@@ -41,12 +40,11 @@ export class ClientDetailsComponent  implements OnInit {
   isPersonalInfoEdit;
   clientDetails: any = {};
   public warningMessage = false;
-  private clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
-
-  private clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
+  public clientProfile: ImmigrationViewClientProfile = new ImmigrationViewClientProfile();
+  public clientPersonalInfo: ImmigrationViewClientPersonalInfo = new ImmigrationViewClientPersonalInfo();
   public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   private creationDate: string;
-  private dateOfBirth: string;
+  public dateOfBirth: string;
   private user: User;
   private beforeCancelProfile;
   private beforeCancelPersonal;
