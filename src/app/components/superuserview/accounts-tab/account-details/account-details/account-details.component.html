@@ -14,11 +14,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h2>Account Info</h2>
-                            <button type="submit" class="editbtn  no-marg-right" id="svActDetailsEdit" (click)="editForm()" *ngIf="isEdit==true">Edit</button>
+                            <button type="submit" class="editbtn  no-marg-right iportal-btnIMclient" id="svActDetailsEdit" (click)="editForm()" *ngIf="isEdit==true">Edit</button>
                             <div class="tbl-head-btn" [hidden]="isEdit">
                                 <button type="button" (click)="cancelEdit()" id="svActDetailsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;" *ngIf="isEdit==false">Cancel</button>
-                                <button type="submit" id="svActDetailsSave1" value="Save" class="editbtn tbl-head-btniportal-btnIMclient" style="    color: #008000 !important;
-    margin-right: 11px;" (click)="saveAccountDetails()" *ngIf="isEdit==false">Save</button>
+                                <button type="submit" id="svActDetailsSave1" value="Save" class="editbtn iportal-btnIMclient" style="color: #008000 !important;margin-right: 11px;width: 65px;"[ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveAccountDetails()" *ngIf="isEdit==false">Save</button>
+                                
                             </div>
                         </div>
 

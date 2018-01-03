@@ -154,7 +154,7 @@
                                     <div class="row">
                                         <div clas="col-md-4"></div>
                                       <div class="col-md-4" style="margin-left: 21%;">
-                                        <button type="button" class="btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="svActinvSave" (click)="saveInvoiceDetails()">Save</button>
+                                        <button type="button" class="btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="svActinvSave" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveInvoiceDetails()">Save</button>
                                       </div>
                                       <div class="col-md-4"><button type="button" class="btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="svActinvCancel" (click)="cancel()">Close</button></div>                                      
                                     </div>

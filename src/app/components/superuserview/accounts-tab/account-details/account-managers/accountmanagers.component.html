@@ -67,7 +67,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <button type="button" class="editbtn tbl-head-btn iportal-btnIMclient"
-                                                style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 33%;" id="svActManagerSave" (click)="accountmanagersSave(emailId.errors)">
+                                                style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 33%;" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress"
+                                                 id="svActManagerSave" (click)="accountmanagersSave(emailId.errors)">
                                             Save
                                         </button>
                                     </div>

@@ -26,7 +26,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   public createdOn: any;
   public MFDdisable: boolean;
   public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
-
+  public showWorkAddrSaveButtonProgress = false;
   private beforeCancelAccountdetails;
   constructor(public appService: AppService, private superuserviewAccountDetailsService: SuperuserViewAccountDetailsService,
               private menuComponent: MenuComponent, public accountDetailsCommonService: AccountDetailsCommonService,
@@ -102,6 +102,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     }
   }
   saveAccountDetails() {
+      this.showWorkAddrSaveButtonProgress = true;
     if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
       this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
     }
@@ -120,7 +121,8 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
       this.accountDetails['accountId'] = this.accountDetailsCommonService.accountId;
       this.accountDetails['mfdBy'] = this.headerService.user.userId;
       this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
-        .subscribe((res) => {
+          .subscribe((res) => {
+              this.showWorkAddrSaveButtonProgress = false;
           this.isEditstorage = true;
           this.getAcountDetails();
           if (res['statusCode'] !== 'SUCCESS') {

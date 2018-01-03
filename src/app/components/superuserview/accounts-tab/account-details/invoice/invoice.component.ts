@@ -8,6 +8,7 @@ import {InvoiceDownloadButtonComponent} from './invoicedownloadbutton';
 import {InvoiceUploadButtonComponent} from './invoiceuploadbutton';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 import {MatDialog} from '@angular/material';
+import {IHDateUtil} from '../../../../framework/utils/date.component';
 
 export interface ConfirmModel {
     title: string;
@@ -36,11 +37,8 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     public viewPopup: boolean;
     public settings;
     public data;
-    public myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    public showWorkAddrSaveButtonProgress = false;
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
 
     constructor(public dialogService: DialogService, public dialog: MatDialog, public accountInvoiceService: AccountInvoiceService,
       private accountDetailsCommonService: AccountDetailsCommonService) {
@@ -185,9 +183,11 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         return upload;
     }
 
-    saveInvoiceDetails() {
+     saveInvoiceDetails() {
+         this.showWorkAddrSaveButtonProgress = true;
       this.accountInvoiceService.saveInvoiceDetails(this.invoice).subscribe(
-        res => {
+          res => {
+              this.showWorkAddrSaveButtonProgress = false;
           if (res['statusCode'] === 'SUCCESS') {}
         }
       );

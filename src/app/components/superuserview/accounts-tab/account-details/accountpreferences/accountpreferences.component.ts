@@ -50,6 +50,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
     public editProductFlag = true;
     public beforeProductEdit;
     public editDiscountFlag = true;
+    public showWorkAddrSaveButtonProgress = false;
     public beforeDiscountEdit;
     public allProducts;
     public allDiscounts;
@@ -261,13 +262,14 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         });
     }
     productSave() {
+        this.showWorkAddrSaveButtonProgress = true;
         if ((this.addproduct['code'] === '' || this.addproduct['code'] == null || this.addproduct['code'] === undefined || this.addproduct['startDate'] === ''
             || this.addproduct['startDate'] == null || this.addproduct['startDate'] === undefined || this.addproduct['endDate'] === ''
             || this.addproduct['endDate'] == null || this.addproduct['endDate'] === undefined)) {
             this.warningMessage = true;
-
         } else {
             this.warningMessage = false;
+            this.showWorkAddrSaveButtonProgress = false;
             this.addproduct['code'] = this.addproduct['code'];
             this.addproduct['startDate'] = this.addproduct['startDate']['formatted'];
             this.addproduct['endDate'] = this.addproduct['endDate']['formatted'];
@@ -279,6 +281,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
 
     }
     discountSave() {
+        this.showWorkAddrSaveButtonProgress = true;
         if ((this.discounts['code'] === '' || this.discounts['code'] == null || this.discounts['code'] === undefined ||
             this.discounts['startDate'] === '' || this.addproduct['startDate'] == null || this.discounts['startDate'] === undefined ||
             this.discounts['endDate'] === '' || this.discounts['endDate'] == null || this.discounts['endDate'] === undefined)) {
@@ -290,6 +293,7 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
         this.discounts['endDate'] = this.discounts.endDate['formatted'];
         this.discountInfo.push(this.discounts);
         this.accountDetailsCommonService.addDiscounts = this.discountInfo;
+        this.showWorkAddrSaveButtonProgress = false;
         this.result = true;
         this.close();
 
