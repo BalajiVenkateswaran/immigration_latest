@@ -31,7 +31,7 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
   public editFlag = true;
   public warningMessage = false;
   public paginationData;
-
+  public showWorkAddrSaveButtonProgress = false;
   constructor(public appService: AppService, public managersAccountService: AccountManagersService, public dialogService: DialogService,
     public dialog: MatDialog, private accountDetailsCommonService: AccountDetailsCommonService, public headerService: HeaderService) {
     super(dialogService);
@@ -95,13 +95,15 @@ export class AccountsManagersComponent extends DialogComponent<ConfirmModel, boo
     });
   }
   accountmanagersSave(email) {
+      this.showWorkAddrSaveButtonProgress = true;
     this.addUsers['accountId'] = this.accountDetailsCommonService.accountId;
     if (this.addUsers['firstName'] === '' || this.addUsers['firstName'] == null || this.addUsers['firstName'] === undefined || this.addUsers['lastName'] === ''
       || this.addUsers['lastName'] == null || this.addUsers['lastName'] === undefined || this.addUsers['emailId'] === '' || this.addUsers['emailId'] == null ||
       this.addUsers['emailId'] === undefined || this.addUsers['role'] === '' || this.addUsers['role'] == null || this.addUsers['role'] === undefined) {
       this.warningMessage = true;
     } else if (email != null) {
-      this.warningMessage = false;
+        this.warningMessage = false;
+        this.showWorkAddrSaveButtonProgress = false;
     } else {
       this.appService.addUsers = this.addUsers;
       this.result = true;

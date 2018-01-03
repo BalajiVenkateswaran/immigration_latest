@@ -18,6 +18,7 @@ export class I129Page1Component implements OnInit {
     };
     public aptType;
     public states: any[] = [];
+    public saveButtonProgress = false;
     constructor(public questionnaireService: QuestionnaireCommonService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
         this.aptType = [
             {
@@ -152,6 +153,7 @@ export class I129Page1Component implements OnInit {
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
     saveQuestionnaireInformation(): boolean {
+        this.saveButtonProgress = true;
         this.page1.pageNumber = 1;
 
         if (this.page1.address && (this.page1.address['state'] || this.page1.address['zipCode'] )) {
@@ -163,7 +165,8 @@ export class I129Page1Component implements OnInit {
           }
         }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 1, this.page1).subscribe(res => {
-          this.isQuestionnaireEdit = false;
+            this.saveButtonProgress = false;
+            this.isQuestionnaireEdit = false;
         });
         return true;
     }

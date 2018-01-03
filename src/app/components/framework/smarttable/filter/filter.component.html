@@ -20,7 +20,7 @@
           </div>  
         </div>
       </div>
-      <button *ngIf="smartTable.isAddButtonEnable" type="button" class="pull-right no-marg-right agridadd addbtnnsmart iportal-btnIMclient" (click)="onAddClick()">ADD</button>
+      <button *ngIf="smartTable.isAddButtonEnable" type="button" class="pull-right no-marg-right agridadd addbtnnsmart iportal-btnIMclient" [ngClass]="{'loader': saveButtonProgress}" [disabled]="saveButtonProgress" (click)="onAddClick()">ADD</button>
     </div>
     <div class="clearfix"></div>
   </div>

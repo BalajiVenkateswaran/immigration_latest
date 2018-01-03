@@ -19,6 +19,7 @@ export class I129Page7Component implements OnInit {
         }
     };
     public dateOfSignature: string;
+    public saveButtonProgress = false;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public aptType;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
@@ -136,13 +137,15 @@ export class I129Page7Component implements OnInit {
         this.page7 = this.beforecancelquestionnaire;
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-  saveQuestionnaireInformation() {
+    saveQuestionnaireInformation() {
+        this.saveButtonProgress = true;
         this.page7.pageNumber = 7;
         if (this.page7['dateOfSignature'] != null) {
           this.page7['dateOfSignature'] = this.page7['dateOfSignature']['formatted'];
         }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 7, this.page7).subscribe(res => {
-          this.isQuestionnaireEdit = false;
+            this.isQuestionnaireEdit = false;
+            this.saveButtonProgress = false;
         })
     }
     gotoNext() {

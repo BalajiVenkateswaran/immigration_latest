@@ -19,6 +19,7 @@ export class I129Page2Component implements OnInit {
     public dateOfBirth: string;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     public gender;
+    public saveButtonProgress = false;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService,
     private route: ActivatedRoute, private router: Router) {
          this.basicClassification = [
@@ -120,14 +121,16 @@ export class I129Page2Component implements OnInit {
         this.page2 = this.beforecancelquestionnaire;
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-  saveQuestionnaireInformation() {
+    saveQuestionnaireInformation() {
+        this.saveButtonProgress = true;
        this.page2.pageNumber = 2;
        if (this.page2['dateOfBirth'] != null) {
          this.page2['dateOfBirth'] = this.page2['dateOfBirth']['formatted'];
        }
 
        this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 2, this.page2).subscribe(res => {
-         this.isQuestionnaireEdit = false;
+           this.isQuestionnaireEdit = false;
+           this.saveButtonProgress = false;
        });
     }
     gotoNext() {

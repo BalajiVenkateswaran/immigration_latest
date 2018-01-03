@@ -12,6 +12,7 @@ export class I129Page4Component implements OnInit {
     isQuestionnaireEdit = false;
     public page4: any = {};
     public questions;
+    public saveButtonProgress = false;
      constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
           this.questions = [
             {
@@ -43,9 +44,11 @@ export class I129Page4Component implements OnInit {
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
     saveQuestionnaireInformation() {
+        this.saveButtonProgress = true;
         this.page4.pageNumber = 4;
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 4, this.page4).subscribe(res => {
-          this.isQuestionnaireEdit = false;
+            this.isQuestionnaireEdit = false;
+            this.saveButtonProgress = false;
         });
     }
     gotoNext() {

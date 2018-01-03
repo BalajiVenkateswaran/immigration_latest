@@ -15,6 +15,7 @@ export class I129Page6Component implements OnInit {
     isQuestionnaireEdit = false;
     public page6: any = {};
     public dateOfSignature: string;
+    public saveButtonProgress = false;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     constructor(public questionnaireService: QuestionnaireCommonService) {}
 
@@ -35,13 +36,15 @@ export class I129Page6Component implements OnInit {
         this.page6 = this.beforecancelquestionnaire;
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-  saveQuestionnaireInformation() {
+    saveQuestionnaireInformation() {
+        this.saveButtonProgress = true;
         this.page6.pageNumber = 6;
         if (this.page6['dateOfSignature'] != null) {
           this.page6['dateOfSignature'] = this.page6['dateOfSignature']['formatted'];
         }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 6, this.page6).subscribe(res => {
-          this.isQuestionnaireEdit = false;
+            this.isQuestionnaireEdit = false;
+            this.saveButtonProgress = false;
         })
     }
     gotoNext() {

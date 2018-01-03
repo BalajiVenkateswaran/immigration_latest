@@ -20,6 +20,7 @@ export class I129Page5Component implements OnInit {
     public intendentEmploymentFrom: string;
     public intendentEmploymentTo: string;
     public states: any[] = [];
+    public saveButtonProgress = false;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     constructor(public questionnaireService: QuestionnaireCommonService, public appService: AppService) {
 
@@ -150,7 +151,8 @@ export class I129Page5Component implements OnInit {
         this.page5 = this.beforecancelquestionnaire;
         this.isQuestionnaireEdit = !this.isQuestionnaireEdit;
     }
-  saveQuestionnaireInformation() {
+    saveQuestionnaireInformation() {
+        this.saveButtonProgress = true;
         this.page5.pageNumber = 5;
         if (this.page5['intendentEmploymentFrom'] != null) {
           this.page5['intendentEmploymentFrom'] = this.page5['intendentEmploymentFrom']['formatted'];
@@ -159,7 +161,8 @@ export class I129Page5Component implements OnInit {
           this.page5['intendentEmploymentTo'] = this.page5['intendentEmploymentTo']['formatted'];
         }
         this.questionnaireService.saveQuestionnaireData(this.questionnaireService.selectedQuestionnaire['questionnaireId'], 5, this.page5).subscribe(res => {
-          this.isQuestionnaireEdit = false;
+            this.saveButtonProgress = false;
+            this.isQuestionnaireEdit = false;
         })
     }
     gotoNext() {
