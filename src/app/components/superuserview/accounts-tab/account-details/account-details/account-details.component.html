@@ -18,101 +18,83 @@
                             <div class="tbl-head-btn" [hidden]="isEdit">
                                 <button type="button" (click)="cancelEdit()" id="svActDetailsCancel1" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;" *ngIf="isEdit==false">Cancel</button>
                                 <button type="submit" id="svActDetailsSave1" value="Save" class="editbtn iportal-btnIMclient" style="color: #008000 !important;margin-right: 11px;width: 65px;"[ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveAccountDetails()" *ngIf="isEdit==false">Save</button>
-                                
+
                             </div>
                         </div>
-
                     </div>
                     <div class="row sfm" *ngIf="errormsg">
                         <div class="col-md-12">
                             <span class="redstar">* Fields are Mandatory.</span>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsActName">Account Name <span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" maxlength="100" type="text" id="svActDetailsActName" [ngClass]="accountDetails.accountName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.accountName" />
-                        <span *ngIf="isEdit==true">{{accountDetails.accountName}}</span></div>
+                        <div class="col-md-8"><input [disabled]="true" maxlength="100" type="text" id="svActDetailsActName" [ngClass]="accountDetails.accountName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.accountName" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsActNo">Account Number <span class="redstar">*</span></label></div>
-                        <div class="col-md-8">
-                            <input *ngIf="isEdit==false" type="text" maxlength="100" id="svActDetailsActNo" [(ngModel)]="accountDetails.accountNumber" disabled />
-                            <span *ngIf="isEdit==true">{{accountDetails.accountNumber}}</span>
-                       </div>
+                        <div class="col-md-8"><input [disabled]="true" type="text" id="svActDetailsActNo" [(ngModel)]="accountDetails.accountNumber"/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsFName">First Name <span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" maxlength="100" type="text" id="svActDetailsFName" [ngClass]="accountDetails.firstName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.firstName" />
-                        <span *ngIf="isEdit==true">{{accountDetails.firstName}}</span></div>
+                      <div class="col-md-8"><input [disabled]="isEdit" maxlength="50" type="text" id="svActDetailsFName" [ngClass]="accountDetails.firstName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.firstName" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsLName">Last Name <span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" maxlength="100" type="text" id="svActDetailsLName" [ngClass]="accountDetails.lastName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.lastName" />
-                        <span *ngIf="isEdit==true">{{accountDetails.lastName}}</span></div>
+                      <div class="col-md-8"><input [disabled]="isEdit" maxlength="50" type="text" id="svActDetailsLName" [ngClass]="accountDetails.lastName == '' ? 'redborder': ''" [(ngModel)]="accountDetails.lastName" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsEmail">Email <span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" maxlength="100" type="text" id="svActDetailsEmail" [ngClass]="accountDetails.email == '' ? 'redborder': ''" [(ngModel)]="accountDetails.email" />
-                        <span *ngIf="isEdit==true">{{accountDetails.email}}</span></div>
+                      <div class="col-md-8"><input [disabled]="isEdit" maxlength="100" type="text" id="svActDetailsEmail" [ngClass]="accountDetails.email == '' ? 'redborder': ''" [(ngModel)]="accountDetails.email" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsPhone">Phone <span class="redstar">*</span></label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" maxlength="100" type="text" id="svActDetailsPhone" [ngClass]="accountDetails.phone == '' ? 'redborder': ''" [(ngModel)]="accountDetails.phone" />
-                        <span *ngIf="isEdit==true">{{accountDetails.phone}}</span></div>
+                      <div class="col-md-8"><input [disabled]="isEdit" maxlength="15" type="text" id="svActDetailsPhone" [ngClass]="accountDetails.phone == '' ? 'redborder': ''" [(ngModel)]="accountDetails.phone" /></div>
                     </div>
                     <div class="row">
                        <div class="col-md-4"><label for="svActDetailsCreatedOn">Created On</label></div>
                         <div class="col-md-8">
-                            <my-date-picker *ngIf="isEdit==false" id="svActDetailsCreatedOn" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="accountDetails.createdOn" [selDate]="createdOn">
+                            <my-date-picker [disabled]="true" id="svActDetailsCreatedOn" [options]="myDatePickerOptions" [(ngModel)]="accountDetails.createdOn" [selDate]="createdOn">
                             </my-date-picker>
-                            <span *ngIf="isEdit==true">{{accountDetails.createdOn}}</span>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsStatus">Status <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.status" [ngClass]="accountDetails.status == '' ? 'redborder': ''" class="form-control" (change)="statuschange()">
+                            <select [disabled]="isEdit" [(ngModel)]="accountDetails.status" [ngClass]="accountDetails.status == '' ? 'redborder': ''" class="form-control" (change)="statuschange()">
                                 <option [value]="status.value" *ngFor="let status of accountStatus()" id="{{status.name}}">{{status.name}}</option>
                             </select>
-                        <span *ngIf="isEdit==true">{{accountDetails.status}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsLastPaymentStatus">Last Payment Status</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" maxlength="100" type="text" id="svActDetailsLastPaymentStatus" [(ngModel)]="accountDetails.lastPaymentStatus" />
-                        <span *ngIf="isEdit==true">{{accountDetails.lastPaymentStatus}}</span></div>
+                        <div class="col-md-8"><input [disabled]="isEdit" maxlength="100" type="text" id="svActDetailsLastPaymentStatus" [(ngModel)]="accountDetails.lastPaymentStatus" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsStorage">Storage Type <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <select *ngIf="isEditstorage==false" [(ngModel)]="accountDetails.storageType" [ngClass]="accountDetails.storageType == '' ? 'redborder': ''" class="form-control">
+                            <select [disabled]="isEditstorage" [(ngModel)]="accountDetails.storageType" [ngClass]="accountDetails.storageType == '' ? 'redborder': ''" class="form-control">
                                 <option value="S3" id="svActDetailsStorageS3">S3</option>
                                 <option value="GD" id="svActDetailsStorageGD">GD</option>
                             </select>
-                        <span *ngIf="isEditstorage==true" >{{accountDetails.storageType}}</span></div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsMdel">Mark for Deletion <span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                          <!--[disabled]="MFDdisable"-->
-                            <select *ngIf="isEdit==false" [(ngModel)]="accountDetails.markForDeletion"  [ngClass]="accountDetails.markForDeletion == undefined ? 'redborder': ''" class="form-control">
+                            <select [disabled]="isEdit" [(ngModel)]="accountDetails.markForDeletion"  [ngClass]="accountDetails.markForDeletion == undefined ? 'redborder': ''" class="form-control">
                                 <option [value]="true" [selected] = "accountDetails.markForDeletion == true">YES</option>
                                 <option [value]="false" [selected] = "accountDetails.markForDeletion == false">NO</option>
                             </select>
-                        <span *ngIf="isEdit==true">{{accountDetails.markForDeletion? 'YES' : 'NO'}}</span></div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsMdelDetails">Mark For Deletion details</label></div>
-                        <div class="col-md-8">
-                            <input *ngIf="isEdit==false" maxlength="100" type="text" id="svActDetailsMdelDetails" [(ngModel)]="accountDetails.mfdBy" disabled />
-                            <span *ngIf="isEdit==true">{{accountDetails.mfdBy}}</span>
-                      </div>
+                        <div class="col-md-8"><input [disabled]="isEdit" maxlength="100" type="text" id="svActDetailsMdelDetails" [(ngModel)]="accountDetails.mfdBy"/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsComments">Notes/Comments</label></div>
-                        <div class="col-md-8"><input *ngIf="isEdit==false" type="text" maxlength="100" id="svActDetailsComments" [(ngModel)]="accountDetails.notes" /><span *ngIf="isEdit==true">{{accountDetails.notes}}</span></div>
+                        <div class="col-md-8"><input [disabled]="isEdit" type="text" maxlength="1000" id="svActDetailsComments" [(ngModel)]="accountDetails.notes"/></div>
                     </div>
                     <div class="row sfm" *ngIf="errormsg">
                         <div class="col-md-12">

@@ -10,6 +10,7 @@ import {HeaderService} from '../../../../common/header/header.service';
 import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 import {IHDateUtil} from '../../../../framework/utils/date.component';
+import {DeepCloneUtil} from '../../../../framework/utils/deepclone.component';
 
 @Component({
   selector: 'ih-account-details',
@@ -41,15 +42,12 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   getAcountDetails() {
     this.superuserviewAccountDetailsService.getAccountdetails(this.accountDetailsCommonService.accountId)
       .subscribe((res) => {
-        console.log('filesGetmethod%o', res);
         this.accountDetails = res;
         this.accountDetailsCommonService.accountName = res['accountName'];
-        console.log(this.accountDetails);
-        this.isEdit = true
+        this.isEdit = true;
         this.isEditstorage = true;
+        this.createdOn = this.accountDetails.createdOn;
       });
-  }
-  onDateChanged(event: IMyDateModel) {
   }
   highlightSBLink(link) {
     this.appService.currentSBLink = link;
@@ -77,11 +75,10 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   }
   // is edit function for read only
   editForm() {
-    this.beforeCancelAccountdetails = (<any>Object).assign({}, this.accountDetails);
+    this.beforeCancelAccountdetails = DeepCloneUtil.deepClone(this.accountDetails);
     this.isEdit = !this.isEdit;
     this.cancelUserEdit = true;
     this.storagenable();
-    this.createdOn = this.accountDetails.createdOn;
     if (this.accountDetails['status'] === 'Active') {
         this.MFDdisable = true;
     } else {
@@ -92,9 +89,6 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
   // cancel button function
   cancelEdit(event, i) {
     this.accountDetails = this.beforeCancelAccountdetails;
-    if (this.accountDetails['createdOn'] && this.accountDetails['createdOn']['formatted']) {
-      this.accountDetails['createdOn'] = this.accountDetails['createdOn']['formatted'];
-    }
     if (this.cancelUserEdit === true) {
       this.ngOnInit();
       this.isEdit[i] = !this.isEdit[i];
@@ -122,7 +116,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
       this.accountDetails['mfdBy'] = this.headerService.user.userId;
       this.superuserviewAccountDetailsService.saveAccountdetails(this.accountDetails)
           .subscribe((res) => {
-              this.showWorkAddrSaveButtonProgress = false;
+          this.showWorkAddrSaveButtonProgress = false;
           this.isEditstorage = true;
           this.getAcountDetails();
           if (res['statusCode'] !== 'SUCCESS') {
