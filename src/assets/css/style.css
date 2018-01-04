@@ -481,15 +481,16 @@ section .left-opened, section .rightwithmenu {
   position: absolute;
   top: 155px;
   bottom: 0px;
-  height: calc(100vh - 171px);
+  /*height: calc(100vh - 500px);*/
+  min-height:250px!important;
 
 }
-section .left-opened {
+/*section .left-opened {
   left: 0px;
   width: 200px;
   background-color: #282828 !important;
   overflow:auto;
-}
+}*/
 section .left-closed {
   left: -200px;
   width: 200px;
