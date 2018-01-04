@@ -96,7 +96,7 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
             headerName: 'Status',
             field: 'status',
             values: [
-              { alias: 'Pre-Act', value: 'PreAct' },
+              { alias: 'PreAct', value: 'PreAct' },
               { alias: 'Active', value: 'Active' },
               { alias: 'Inactive', value: 'Inactive' }
             ]

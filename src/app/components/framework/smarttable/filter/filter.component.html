@@ -17,7 +17,7 @@
           <div>
               <!--<span (click)="clearAllFilters()" style="cursor: pointer;">clear all</span>-->
               <button type="button" class="iportal-btnIMclient" style="cursor: pointer;" (click)="clearAllFilters()">clear all</button>
-          </div>  
+          </div>
         </div>
       </div>
       <button *ngIf="smartTable.isAddButtonEnable" type="button" class="pull-right no-marg-right agridadd addbtnnsmart iportal-btnIMclient" [ngClass]="{'loader': saveButtonProgress}" [disabled]="saveButtonProgress" (click)="onAddClick()">ADD</button>
@@ -36,10 +36,10 @@
                     <div class='col-sm-4' *ngFor="let column of row">
                         <div class='form-group'>
                             <label for="filter_{{column['field']}}">{{column['headerName']}}</label>
-                            <input class="form-control" *ngIf="column['type'] == 'text' " id="filter_{{column['field']}}"
+                            <input class="form-control" *ngIf="column['type'] == 'text' || column['type'] == undefined" id="filter_{{column['field']}}"
                                    name="filter[{{column['field']}}]" [(ngModel)]="column['value']" size="30" type="text" />
-                          <input class="form-control" *ngIf="column['type'] == undefined "
-                                 name="filter[{{column['field']}}]" [(ngModel)]="column['value']" size="30" type="text" />
+                          <input class="form-control" *ngIf="column['type'] == 'number'"
+                                 name="filter[{{column['field']}}]" [(ngModel)]="column['value']" size="30" type="number" />
                           <select class="form-control" *ngIf="column['type'] == 'dropDown'" [(ngModel)]="column['value']" >
                             <option *ngFor="let optionData of column['data']" [value] = 'optionData.value'>
                               {{ optionData.display}}

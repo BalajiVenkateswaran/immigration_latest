@@ -82,23 +82,27 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
         {
           headerName: 'Invoice Date',
           field: 'invoiceDate',
-          type: 'datePicker'
+          type: 'datePicker',
+          filter: false
         },
         {
           headerName: 'Invoice Amount',
           field: 'invoiceAmount',
-          type: 'text'
+          type: 'text',
+          filter: false
         },
         {
           headerName: 'Payment Status',
           field: 'paymentStatus',
           type: 'dropDown',
-          data: this.statusTypes
+          data: this.statusTypes,
+          filter: false
         },
         {
           headerName: 'Payment Date',
           field: 'paymentDate',
-          type: 'datePicker'
+          type: 'datePicker',
+          filter: false
         }
       ]
     }

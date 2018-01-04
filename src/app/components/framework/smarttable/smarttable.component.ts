@@ -243,8 +243,6 @@ export class SmartTableFrameworkComponent extends DialogComponent<ConfirmModel, 
           if (filter != null && filter.hasOwnProperty('quick')) {
             this.quickFilters = filter['quick'];
           }
-
-
         }
         if (this.settings.hasOwnProperty('sort')) {
           // TODO implement in a generic way
