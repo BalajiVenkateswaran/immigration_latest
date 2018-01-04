@@ -1,6 +1,6 @@
 <div *ngIf="appService.showMenu">
 <div class="navbar navbar-inverse navbar-fixed-left">
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-petition'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='immigrationview-petition'">
 
         <li>
             <a id="testone" (click)="appService.moveToPage('immigrationview/petition/details/petition-details');highlightSBLink('Petition Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petition Details') ? 'active': '']" routerLinkActive="active">
@@ -32,7 +32,7 @@
         </li>
     </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immigrationview-client'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='immigrationview-client'">
       <li>
         <a (click)="appService.moveToPage('immigrationview/client/detail/petitions');highlightSBLink('Petitions');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Petitions') ? 'active': '']" routerLinkActive="active">
           <span class="ico-history"></span>
@@ -106,7 +106,7 @@
         </li>
     </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='manageaccount'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='manageaccount'">
         <li ngbDropdown  class="dropdown">
             <a (click)="appService.moveToPage('immigrationview/manageaccount/user');highlightSBLink('User');submenuclick('manageUser')" [ngClass]="[checkForCurrentSBLink('User') ? 'active': '']"  routerLinkActive="active" class="dropdown-toggle" id="users" data-toggle="dropdown" ngbDropdownToggle >
                 <span class="ico-users"></span>
@@ -167,7 +167,7 @@
         </li>
     </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immiview-reports'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='immiview-reports'">
         <li ngbDropdown class="dropdown">
             <a (click)="appService.moveToPage('immigrationview/reports/petition/status');highlightSBLink('immiview-petitionreports');submenuclick('immipetitionreports')" [ngClass]="[checkForCurrentSBLink('immiview-petitionreports') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
@@ -256,7 +256,7 @@
             </ul>
         </li>-->
     </ul>
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='immiview-profuser'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='immiview-profuser'">
         <li>
             <a (click)="appService.moveToPage('profile/user');highlightSBLink('immiview-profileuser');submenuclick('')" [ngClass]="[checkForCurrentSBLink('immiview-profileuser') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
@@ -288,7 +288,7 @@
             </a>
         </li>
     </ul>
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='organization'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='organization'">
         <li>
             <a (click)="appService.moveToPage('immigrationview/organization/details');highlightSBLink('Org Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Org Details') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
@@ -303,7 +303,7 @@
         </li>
     </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientView-client'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='clientView-client'">
         <li>
             <a (click)="appService.moveToPage('clientview/client/details');highlightSBLink('ClientDetails');submenuclick('')" [ngClass]="[checkForCurrentSBLink('ClientDetails') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-client-details"></span>
@@ -363,13 +363,13 @@
             </a>
         </li>
     </ul>
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-document'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='clientview-document'">
         <li *ngFor='let value of docsideBarMenu'>
             <a (click)="appService.selectedOrgClienttId=value.clientId;clientViewDocuments.selectedOrgId=value.orgId;appService.moveToPageWithParams('clientview/documents',value.clientId);highlightSBLink(value.orgName);submenuclick('')" [ngClass]="[checkForCurrentSBLink(value.orgName) ? 'active': '']" routerLinkActive="active">{{value.orgName}}</a>
         </li>
 
     </ul>
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='clientview-Questionnaire'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='clientview-Questionnaire'">
         <li ngbDropdown class="dropdown">
             <a (click)="appService.moveToPage('clientview/questionnaries');highlightSBLink('Questionnaires');submenuclick('clientQuest')" [ngClass]="[checkForCurrentSBLink('Questionnaires') ? 'active': '']" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="clientView-questionnaires" routerLinkActive="active">
                 <span class="ico-flight"></span>
@@ -383,7 +383,7 @@
         </li>
     </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview/tab/accounts'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='superuserview/tab/accounts'">
 
         <li>
             <a (click)="appService.moveToPage('superuserview/account/details');highlightSBLink('Account Details');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Account Details') ? 'active': '']" routerLinkActive="active">
@@ -423,7 +423,7 @@
         </li>
     </ul>
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview-product'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='superuserview-product'">
 
         <li>
             <a (click)="appService.moveToPage('superuserview/productcatalog');highlightSBLink('Products');submenuclick('')" [ngClass]="[checkForCurrentSBLink('Products') ? 'active': '']" routerLinkActive="active">
@@ -441,7 +441,7 @@
     <!--superuser reports-->
     <!--stats-->
 
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-reports'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='superuser-reports'">
         <!--<li ngbDropdown class="dropdown">
             <a (click)="appService.moveToPage('superuserview/reports/stats/accounts');highlightSBLink('superuserview/reports/stats/accounts');superuserstatsclick()" [ngClass]="[checkForCurrentSBLink('superuserview/reports/stats/accounts') ? 'active': '']" routerLinkActive="active" ngbDropdownToggle class="dropdown-toggle" id="users" data-toggle="dropdown">
                 <span class="ico-users"></span>
@@ -631,7 +631,7 @@
             </ul>
         </li>
     </ul>
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuserview/misc/demorequest'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='superuserview/misc/demorequest'">
         <li>
             <a (click)="appService.moveToPage('superuserview/misc/demorequest');highlightSBLink('superuserview/misc/demorequest');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuserview/misc/demorequest') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>
@@ -646,7 +646,7 @@
         </li>
 
     </ul>
-    <ul class="nav navbar-nav" *ngIf="sideBarMenu=='superuser-profuser'">
+    <ul class="nav navbar-nav sidenavresize" *ngIf="sideBarMenu=='superuser-profuser'">
         <li>
             <a (click)="appService.moveToPage('superuser-profileuser');highlightSBLink('superuser-profileuser');submenuclick('')" [ngClass]="[checkForCurrentSBLink('superuser-profileuser') ? 'active': '']" routerLinkActive="active">
                 <span class="ico-flight"></span>

@@ -23,13 +23,13 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Country :</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaCountry" [(ngModel)]="newvisaitem.country" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaCountry" maxlength="100" [(ngModel)]="newvisaitem.country" class="form-control"></div>
                             <div class="col-md-5">Petition Number:</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaPNo" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaPNo" maxlength="100" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Number :</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaNo" [(ngModel)]="newvisaitem.visaNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaNo" maxlength="100" [(ngModel)]="newvisaitem.visaNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Type :</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaType" [(ngModel)]="newvisaitem.visaType" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaType" maxlength="100" [(ngModel)]="newvisaitem.visaType" class="form-control"></div>
                             <div class="col-md-5">Issued On :</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions" id="ivClientDtlsVisaIssuedOn"

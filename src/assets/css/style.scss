@@ -132,9 +132,20 @@ section {
         bottom: 0px;
         /*height: calc(100vh - 176px);*/
     }
-
-    .left-opened {
-        /*height: calc(100vh - 191px);*/
+    .sidenavresize{
+    display: block;
+    position: absolute;
+    /* bottom: -265px; */
+    left: 60px;
+    width: 190px;
+    background: none !important;
+    border: solid 1px #e3e3e4;
+    padding: 16px !important;
+    box-shadow: 0px 0px 5px #ddd !important;
+    top: 18px !important;
+}
+    /*.left-opened {
+        height: calc(100vh - 191px);
         bottom: 15px;
             left: 50px;
                 width: 190px;
@@ -142,7 +153,7 @@ section {
     border: solid 1px #e3e3e4;
     padding: 16px;
     box-shadow: 0px 0px 5px #ddd;
-    }
+    }*/
     .left-closed {
         left: -250px;
         width: 250px;

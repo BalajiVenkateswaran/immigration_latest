@@ -10,7 +10,7 @@
                 <button type="submit" class="iportal-btnIMclient" style="float: right !important;margin: -30px 0 20px 0 !important;" (click)="editProfileForm()" *ngIf="isProfileEdit==true">Edit</button>
                 <div class="tbl-head-btn" [hidden]="isProfileEdit">
                   <button type="button" (click)="cancelProfileEdit()" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;" *ngIf="isProfileEdit==false">Cancel</button>
-                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" (click)="saveOrgProfile()" *ngIf="isProfileEdit==false">Save</button>
+                  <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveOrgProfile()" *ngIf="isProfileEdit==false">Save</button>
                 </div>
               </div>
 
