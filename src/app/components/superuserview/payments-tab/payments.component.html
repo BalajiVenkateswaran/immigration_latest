@@ -1,13 +1,9 @@
 <div class="main-content" *ngIf="getClientsData">
-  <!--<ul class="breadcrumb">
-    <li><a href="#">Clients</a></li>
-  </ul>
-  <div class="clearfix"></div>-->
   <div class="pagetitleandfilters">
     <div class="mainContainer">
       <h2>Payments</h2>
       <div class="table-data">
-        <ih-smart-table class="superuserViewPaymentstab" [settings]="settings" [data]="data" (onRowClick)="editRecord($event)" (dataWithQueryParams)="dataWithParameters($event)">
+        <ih-smart-table class="superuserViewPaymentstab" [settings]="settings" [data]="data" [paginationData]="paginationData" (onRowClick)="editRecord($event)" (dataWithQueryParams)="dataWithParameters($event)">
         </ih-smart-table>
         </div>
       </div>

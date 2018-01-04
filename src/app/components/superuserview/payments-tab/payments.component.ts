@@ -32,6 +32,7 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
   public newclitem: any = {};
   public DefaultResponse = {'status': 'Active'};
   public settings;
+  public paginationData;
   public statusTypes: any = [];
   constructor(private superuserviewPaymentstabService: SuperUserViewPaymentstabService, private appService: AppService,
     private router: Router, public dialogService: DialogService, private menuComponent: MenuComponent,
@@ -133,9 +134,9 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
   }
   dataWithParameters(queryParams) {
     if (queryParams) {
-        console.log('' + queryParams);
         this.superuserviewPaymentstabService.getPaymentsWithQueryParams(queryParams).subscribe(res => {
         this.data = res.payments;
+        this.paginationData = res['pageMetadata'];
       })
     }
 
