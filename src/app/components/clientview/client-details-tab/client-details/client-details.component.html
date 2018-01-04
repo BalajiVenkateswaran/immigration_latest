@@ -40,25 +40,25 @@
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientFName">First Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isProfileEdit" id="cvClientFName" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''" />
+                            <input type="text" maxlength="45" [disabled]="isProfileEdit" id="cvClientFName" [(ngModel)]="clientProfile.firstName" [ngClass]="clientProfile.firstName == '' ? 'redborder': ''" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientMiddleName">Middle Name</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isProfileEdit" id="cvClientMiddleName" [(ngModel)]="clientProfile.middleName" />
+                            <input type="text" maxlength="45" [disabled]="isProfileEdit" id="cvClientMiddleName" [(ngModel)]="clientProfile.middleName" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientLName">Last Name<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isProfileEdit" id="cvClientLName" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''" />
+                            <input type="text" maxlength="45" [disabled]="isProfileEdit" id="cvClientLName" [(ngModel)]="clientProfile.lastName" [ngClass]="clientProfile.lastName == '' ? 'redborder': ''" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientPhone">Phone Number<span class="redstar">*</span></label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isProfileEdit" id="cvClientPhone" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" />
+                            <input type="text" maxlength="15" [disabled]="isProfileEdit" id="cvClientPhone" [(ngModel)]="clientProfile.phoneNumber" [ngClass]="clientProfile.phoneNumber == '' ? 'redborder': ''" />
                         </div>
                     </div>
                     <div class="row">
@@ -102,31 +102,29 @@
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientPInfoSocialSecurityNo">U.S. Social Security Number (if any)</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientPInfoSocialSecurityNo" [(ngModel)]="clientPersonalInfo.ssn" />
+                            <input type="text" maxlength="9" [disabled]="isPersonalInfoEdit" id="cvClientPInfoSocialSecurityNo" [(ngModel)]="clientPersonalInfo.ssn" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientaleinRegistrationNumber">Alien Registration Number</label></div>
-                        <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientaleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" />
-                        </div>
+                        <div class="col-md-8"><b>A-</b><input type="text" style="width: 96% !important;" maxlength="9" [disabled]="isPersonalInfoEdit" id="cvClientaleinRegistrationNumber" [(ngModel)]="clientPersonalInfo.aleinRegistrationNumber" /></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientcountryOfBirth">Country of Birth</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientcountryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth" />
+                            <input type="text" maxlength="20" [disabled]="isPersonalInfoEdit" id="cvClientcountryOfBirth" [(ngModel)]="clientPersonalInfo.countryOfBirth" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientstateOfBirth">State/Province of Birth</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientstateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth" />
+                            <input type="text" maxlength="20" [disabled]="isPersonalInfoEdit" id="cvClientstateOfBirth" [(ngModel)]="clientPersonalInfo.stateOfBirth" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="cvClientcitizenship">Country of Citizenship or Nationality</label></div>
                         <div class="col-md-8">
-                            <input type="text" maxlength="100" [disabled]="isPersonalInfoEdit" id="cvClientcitizenship" [(ngModel)]="clientPersonalInfo.citizenship" />
+                            <input type="text" maxlength="20" [disabled]="isPersonalInfoEdit" id="cvClientcitizenship" [(ngModel)]="clientPersonalInfo.citizenship" />
                         </div>
                     </div>
                     <div class="row">

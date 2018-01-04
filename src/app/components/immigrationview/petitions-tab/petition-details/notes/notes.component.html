@@ -18,8 +18,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <textarea *ngIf="isNotesEdit==false" id="note-multitext" class="multitext" [readonly]="isEdit" [(ngModel)]="petitionDetails.notes"></textarea>
-                <span *ngIf="isNotesEdit==true" class="notes multitext">{{petitionDetails.notes}}</span>
+                <textarea [disabled]="isNotesEdit" id="note-multitext" class="multitext" [(ngModel)]="petitionDetails.notes"></textarea>
               </div>
             </div>
             <div class="row">

@@ -28,7 +28,7 @@
                                                 [selDate]="departureDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Departure Country:</div>
-                            <div class="col-md-7"><input type="text" id="ivClientArrDepCountry" [(ngModel)]="addArrDeparture.departureCountry" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="20" id="ivClientArrDepCountry" [(ngModel)]="addArrDeparture.departureCountry" class="form-control"></div>
                             <div class="col-md-5">Arrival date:</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions" id="ivClientArrArDate"
@@ -36,19 +36,17 @@
                                                 [selDate]="arrivalDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Arrival Country:</div>
-                            <div class="col-md-7"><input type="text" id="ivClientArrArCountry" [(ngModel)]="addArrDeparture.arrivalCountry" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="20" id="ivClientArrArCountry" [(ngModel)]="addArrDeparture.arrivalCountry" class="form-control"/></div>
                             <div class="col-md-5">Visa Type:</div>
-                            <div class="col-md-7"><input type="text" id="ivClientArrVisaType" [(ngModel)]="addArrDeparture.visaType" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="10" id="ivClientArrVisaType" [(ngModel)]="addArrDeparture.visaType" class="form-control"/></div>
                             <div class="col-md-5">I-94:</div>
-                            <div class="col-md-7"><input type="text" id="ivClientArrI-94" [(ngModel)]="addArrDeparture.i94" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="15" id="ivClientArrI-94" [(ngModel)]="addArrDeparture.i94" class="form-control"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-  
                                     <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="ivClientArrSave" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="arrDepSave()">Save</button></div>
                                     <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="ivClientArrCancel" (click)="cancel()">Cancel</button></div>
                                 </div>

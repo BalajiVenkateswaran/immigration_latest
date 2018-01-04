@@ -28,39 +28,25 @@
                                                 [selDate]="departureDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Departure Country :</div>
-                            <div class="col-md-7"><input type="text" [(ngModel)]="newArvdInfoitem.departureCountry" id="cvArrDepCountry" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="20" [(ngModel)]="newArvdInfoitem.departureCountry" id="cvArrDepCountry" class="form-control"/></div>
                             <div class="col-md-5">Arrival date :</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)"  id="cvArrArrivalDate"[(ngModel)]="newArvdInfoitem.arrivalDate"
-                                                [selDate]="arrivalDate"></my-date-picker>
-
+                                <my-date-picker [options]="myDatePickerOptions" id="cvArrArrivalDate"[(ngModel)]="newArvdInfoitem.arrivalDate" [selDate]="arrivalDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Arrival Country :</div>
-                            <div class="col-md-7"><input type="text" id="cvArrArrivalCountry" [(ngModel)]="newArvdInfoitem.arrivalCountry" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="20" id="cvArrArrivalCountry" [(ngModel)]="newArvdInfoitem.arrivalCountry" class="form-control"/></div>
                             <div class="col-md-5">Visa Type :</div>
-                            <div class="col-md-7">
-                                <input type="text" id="cvArrVisaType" [(ngModel)]="newArvdInfoitem.visaType" class="form-control">
-                            </div>
+                            <div class="col-md-7"><input type="text" maxlength="10" id="cvArrVisaType" [(ngModel)]="newArvdInfoitem.visaType" class="form-control"/></div>
                             <div class="col-md-5">I-94 :</div>
-                            <div class="col-md-7">
-                              <input type="text" id="cvArrI94" [(ngModel)]="newArvdInfoitem.i94" class="form-control">
-                            </div>
+                            <div class="col-md-7"><input type="text" maxlength="15" id="cvArrI94" [(ngModel)]="newArvdInfoitem.i94" class="form-control"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                <!--<div class="row sfm" *ngIf="warningMessage">
-                <div class="col-md-12">
-                    <span class="redstar">* Fields are Mandatory.</span>
-                </div>
-            </div>-->
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="cvArrSave" (click)="ArvdInfoSave()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;"   id="cvArrCancel" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient"	style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="cvArrSave" (click)="ArvdInfoSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient"	style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;"   id="cvArrCancel" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

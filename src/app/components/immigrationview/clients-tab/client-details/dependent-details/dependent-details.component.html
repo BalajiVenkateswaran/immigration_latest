@@ -35,32 +35,32 @@
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsEmail">Email</label></div>
-          <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsEmail" [(ngModel)]="dependentProfile.email" /></div>
+          <div class="col-md-8"><input type="text" maxlength="100" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsEmail" [(ngModel)]="dependentProfile.email" /></div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsFName">First Name<span class="redstar">*</span></label></div>
             <div class="col-md-8">
-                <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsFName" [(ngModel)]="dependentProfile.firstName" [ngClass]="dependentProfile.firstName == '' ? 'redborder': ''" />
+                <input type="text" [disabled]="isProfileEdit" maxlength="45" id="ivClientDtlsDepDtlsFName" [(ngModel)]="dependentProfile.firstName" [ngClass]="dependentProfile.firstName == '' ? 'redborder': ''" />
             </div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsMName">Middle Name</label></div>
-          <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsMName" [(ngModel)]="dependentProfile.middleName" /></div>
+          <div class="col-md-8"><input type="text" maxlength="45" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsMName" [(ngModel)]="dependentProfile.middleName" /></div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsLName">Last Name<span class="redstar">*</span></label></div>
             <div class="col-md-8">
-                <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsLName" [(ngModel)]="dependentProfile.lastName" [ngClass]="dependentProfile.lastName == '' ? 'redborder': ''" />
+                <input type="text" maxlength="45" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsLName" [(ngModel)]="dependentProfile.lastName" [ngClass]="dependentProfile.lastName == '' ? 'redborder': ''" />
             </div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsRel">Relation<span class="redstar">*</span></label></div>
-          <div class="col-md-8"><input type="text" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsRel" [(ngModel)]="dependentProfile.relation" [ngClass]="dependentProfile.relation == '' ? 'redborder': ''" /></div>
+          <div class="col-md-8"><input type="text" maxlength="25" [disabled]="isProfileEdit"  id="ivClientDtlsDepDtlsRel" [(ngModel)]="dependentProfile.relation" [ngClass]="dependentProfile.relation == '' ? 'redborder': ''" /></div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsPNo">Phone Number</label></div>
             <div class="col-md-8">
-                <input type="text" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsPNo" [(ngModel)]="dependentProfile.phoneNumber" />
+                <input type="text" maxlength="15" [disabled]="isProfileEdit" id="ivClientDtlsDepDtlsPNo" [(ngModel)]="dependentProfile.phoneNumber" />
             </div>
         </div>
       </div>
@@ -93,23 +93,23 @@
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoSsn">U.S. Social Security Number (if any)</label></div>
-          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSsn" [(ngModel)]="dependentPersonalInfo.ssn" /></div>
+          <div class="col-md-8"><input type="text" maxlength="9" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSsn" [(ngModel)]="dependentPersonalInfo.ssn" /></div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoARegNo">Alien Registration Number</label></div>
-          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoARegNo" [(ngModel)]="dependentPersonalInfo.alienRegistrationNumber" /></div>
+          <div class="col-md-8"><b>A-</b><input type="text" maxlength="9" style="width: 96% !important;" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoARegNo" [(ngModel)]="dependentPersonalInfo.alienRegistrationNumber" /></div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoCOB">Country of Birth</label></div>
-          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCOB" [(ngModel)]="dependentPersonalInfo.countryOfBirth" /></div>
+          <div class="col-md-8"><input type="text" maxlength="20" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCOB" [(ngModel)]="dependentPersonalInfo.countryOfBirth" /></div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoSOB">State/Province of Birth</label></div>
-          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSOB" [(ngModel)]="dependentPersonalInfo.stateOfBirth" /></div>
+          <div class="col-md-8"><input type="text" maxlength="20" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoSOB" [(ngModel)]="dependentPersonalInfo.stateOfBirth" /></div>
         </div>
         <div class="row">
           <div class="col-md-4"><label for="ivClientDtlsDepDtlsPInfoCitiz">Country of Citizenship or Nationality</label></div>
-          <div class="col-md-8"><input type="text" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCitiz" [(ngModel)]="dependentPersonalInfo.nationality" /></div>
+          <div class="col-md-8"><input type="text" maxlength="20" [disabled]="isPersonalInfoEdit" id="ivClientDtlsDepDtlsPInfoCitiz" [(ngModel)]="dependentPersonalInfo.nationality" /></div>
         </div>
       </div>
     </div>

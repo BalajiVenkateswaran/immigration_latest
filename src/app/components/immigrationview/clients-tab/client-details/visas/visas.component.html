@@ -23,29 +23,24 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Country :</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaCountry" maxlength="100" [(ngModel)]="newvisaitem.country" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaCountry" maxlength="20" [(ngModel)]="newvisaitem.country" class="form-control"></div>
                             <div class="col-md-5">Petition Number:</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaPNo" maxlength="100" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaPNo" maxlength="15" [(ngModel)]="newvisaitem.petitionNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Number :</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaNo" maxlength="100" [(ngModel)]="newvisaitem.visaNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaNo" maxlength="15" [(ngModel)]="newvisaitem.visaNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Type :</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaType" maxlength="100" [(ngModel)]="newvisaitem.visaType" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="ivClientDtlsVisaType" maxlength="10" [(ngModel)]="newvisaitem.visaType" class="form-control"></div>
                             <div class="col-md-5">Issued On :</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions" id="ivClientDtlsVisaIssuedOn"
-                                                [(ngModel)]="newvisaitem.issuedOn"
-                                                [selDate]="issuedOn"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="ivClientDtlsVisaIssuedOn" [(ngModel)]="newvisaitem.issuedOn" [selDate]="issuedOn"></my-date-picker>
                             </div>
                             <div class="col-md-5">Expires On :</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions" id="ivClientDtlsVisaExpired"
-                                                [(ngModel)]="newvisaitem.expiresOn"
-                                                [selDate]="expiresOn"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="ivClientDtlsVisaExpired" [(ngModel)]="newvisaitem.expiresOn" [selDate]="expiresOn"></my-date-picker>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-
                             </div>
                             <div class="col-md-7">
                                 <div class="row">

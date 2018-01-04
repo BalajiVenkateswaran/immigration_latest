@@ -24,47 +24,43 @@
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsType">Job Type</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsType" maxlength="100" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobType" style="cursor: default!important;border-radius: 4px;" />
-
+                            <input  type="text" id="ivClientDtlsJDtlsType" maxlength="45" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobType" style="cursor: default!important;border-radius: 4px;" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsCode">Job Code</label></div>
                         <div class="col-md-8">
-                            <input   type="text" id="ivClientDtlsJDtlsCode" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobCode" style="cursor: default!important;border-radius: 4px;" />
+                            <input   type="text" id="ivClientDtlsJDtlsCode" maxlength="45"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.jobCode" style="cursor: default!important;border-radius: 4px;" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsSal">Annual Salary</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsSal" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.annualSalary" style="cursor: default!important;border-radius: 4px;" />
+                            <input  type="text" id="ivClientDtlsJDtlsSal" maxlength="20"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.annualSalary" style="cursor: default!important;border-radius: 4px;" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsDuties">Duties And Responsibilites</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsDuties" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.dutiesAndResponsibilities"  style="cursor: default!important;border-radius: 4px;"/>
+                            <input  type="text" id="ivClientDtlsJDtlsDuties" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.dutiesAndResponsibilities"  style="cursor: default!important;border-radius: 4px;"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsProjName">Project Name</label></div>
                         <div class="col-md-8">
                             <input  type="text" id="ivClientDtlsJDtlsProjName" maxlength="100" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.projectName" style="cursor: default!important;border-radius: 4px;"  />
-
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsProjCode">Project Code</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsProjCode" [disabled]="isjobdetailsEdit"  maxlength="100" [(ngModel)]="jobDetails.projectCode" style="cursor: default!important;border-radius: 4px;"  />
-
+                            <input  type="text" id="ivClientDtlsJDtlsProjCode" [disabled]="isjobdetailsEdit"  maxlength="20" [(ngModel)]="jobDetails.projectCode" style="cursor: default!important;border-radius: 4px;"  />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsNoHrs">No Of Hours/Week</label></div>
                         <div class="col-md-8">
-                            <input  type="text" id="ivClientDtlsJDtlsNoHrs" maxlength="100"  [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.noOfHoursPerWeek" style="cursor: default!important;border-radius: 4px;"  />
-
+                            <input  type="number" id="ivClientDtlsJDtlsNoHrs" maxlength="11" [disabled]="isjobdetailsEdit" [(ngModel)]="jobDetails.noOfHoursPerWeek" style="cursor: default!important;border-radius: 4px;"  />
                         </div>
                     </div>
                     <div class="row">
@@ -99,7 +95,6 @@
                         <div class="col-md-4"><label for="ivClientDtlsJDtlsTermDate">Termination Date</label></div>
                         <div class="col-md-8">
                             <my-date-picker id="ivClientDtlsJDtlsTermDate" [disabled]="isjobdetailsEdit" [options]="myDatePickerOptions" [(ngModel)]="jobDetails.terminationDate" [selDate]="terminationDate"></my-date-picker>
-
                         </div>
                     </div>
 

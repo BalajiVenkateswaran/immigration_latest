@@ -29,34 +29,28 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Country:</div>
-                            <div class="col-md-7"><input type="text" maxlength="100" id="cvVisaCountry" [(ngModel)]="addNewVisa.country" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="20" id="cvVisaCountry" [(ngModel)]="addNewVisa.country" class="form-control"></div>
                             <div class="col-md-5">Petition Number:</div>
-                            <div class="col-md-7"><input type="text" maxlength="100"  id="cvVisaPetitionNo" [(ngModel)]="addNewVisa.petitionNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="15"  id="cvVisaPetitionNo" [(ngModel)]="addNewVisa.petitionNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Number:</div>
-                            <div class="col-md-7"><input type="text" maxlength="100" id="cvVisaVisaNo" [(ngModel)]="addNewVisa.visaNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="15" id="cvVisaVisaNo" [(ngModel)]="addNewVisa.visaNumber" class="form-control"></div>
                             <div class="col-md-5">Visa Type:</div>
-                            <div class="col-md-7"><input type="text" maxlength="100" id="cvVisaVisaType" [(ngModel)]="addNewVisa.visaType" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="10" id="cvVisaVisaType" [(ngModel)]="addNewVisa.visaType" class="form-control"></div>
                             <div class="col-md-5">Issued On:</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" id="cvVisaIssued" [(ngModel)]="addNewVisa.issuedOn"
-                                                [selDate]="issuedOn"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="cvVisaIssued" [(ngModel)]="addNewVisa.issuedOn" [selDate]="issuedOn"></my-date-picker>
                             </div>
                             <div class="col-md-5">Expires On:</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" id="cvVisaExpires" [(ngModel)]="addNewVisa.expiresOn"
-                                                [selDate]="expiresOn"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="cvVisaExpires" [(ngModel)]="addNewVisa.expiresOn" [selDate]="expiresOn"></my-date-picker>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="cvVisaSave" (click)="clientVisaSave()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="cvVisaSave" (click)="clientVisaSave()">Save</button></div>
                                     <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="cvVisaCancel" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
@@ -64,7 +58,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

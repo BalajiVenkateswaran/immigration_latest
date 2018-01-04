@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {DocumentExpirationsService} from './document-expirations.service';
-import {DocumentExpiration} from '../../../../models/documentExpiration';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AppService} from '../../../../services/app.service';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
@@ -37,7 +36,7 @@ export class DocumentExpirationsComponent extends DialogComponent< ConfirmModel,
     public addClientNewDocExp: any = {};
     public editFlag = true;
     public beforeEdit: any;
-    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions; 
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
     constructor(private documentExpirationsService: DocumentExpirationsService, public appService: AppService, public dialogService: DialogService,
                 public dialog: MatDialog, public headerService: HeaderService) {
         super(dialogService);

@@ -9,9 +9,7 @@
             <li><a href="#">I-797 History</a></li>
         </ul>
         <div class="clearfix"></div>
-        <!--<h2>I-797 History</h2>-->
-        <ih-smart-table [settings]="settings" [data]="data"
-                     (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
+        <ih-smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
         <div class="clearfix"></div>
     </div>
 </div>
@@ -27,48 +25,33 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Receipt Number :</div>
-                            <div class="col-md-7"><input type="text" id="cvi797RecieptNo" maxlength="100" [(ngModel)]="newi797item.receiptNumber" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" id="cvi797RecieptNo" maxlength="15" [(ngModel)]="newi797item.receiptNumber" class="form-control"/></div>
                             <div class="col-md-5">Receipt Date :</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" id="cvi797RecieptDate" [(ngModel)]="newi797item.receiptDate"
-                                                [selDate]="receiptDate"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="cvi797RecieptDate" [(ngModel)]="newi797item.receiptDate" [selDate]="receiptDate"></my-date-picker>
                             </div>
                             <div class="col-md-5">Status On I-797 :</div>
-                            <div class="col-md-7"><input type="text" maxlength="100" [(ngModel)]="newi797item.status" id="cvi797Status" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="15" [(ngModel)]="newi797item.status" id="cvi797Status" class="form-control"></div>
                             <div class="col-md-5">Approved on :</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" id="cvi797ApproveDate" [(ngModel)]="newi797item.approvedOn"
-                                                [selDate]="approvedOn"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="cvi797ApproveDate" [(ngModel)]="newi797item.approvedOn" [selDate]="approvedOn"></my-date-picker>
                             </div>
                             <div class="col-md-5">Valid From :</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" id="cvi797ValidFrom" [(ngModel)]="newi797item.validFrom"
-                                                [selDate]="validFrom"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="cvi797ValidFrom" [(ngModel)]="newi797item.validFrom" [selDate]="validFrom"></my-date-picker>
                             </div>
                             <div class="col-md-5">Valid Till:</div>
                             <div class="col-md-7">
-                                <my-date-picker [options]="myDatePickerOptions"
-                                                (dateChanged)="onDateChanged($event)" id="cvi797ValidTill" [(ngModel)]="newi797item.validTill"
-                                                [selDate]="validTill"></my-date-picker>
+                                <my-date-picker [options]="myDatePickerOptions" id="cvi797ValidTill" [(ngModel)]="newi797item.validTill" [selDate]="validTill"></my-date-picker>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                <!--<div class="row sfm" *ngIf="warningMessage">
-                <div class="col-md-12">
-                    <span class="redstar">* Fields are Mandatory.</span>
-                </div>
-            </div>-->
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="cvi797Save" (click)="i797Save()">Save</button></div>
-                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="cvi797Cancel" (click)="cancel()">Cancel</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="cvi797Save" (click)="i797Save()">Save</button></div>
+                                    <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="cvi797Cancel" (click)="cancel()">Cancel</button></div>
                                 </div>
                             </div>
                         </div>

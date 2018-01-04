@@ -23,38 +23,38 @@
             <div class="row">
               <div class="col-md-4"><label for="wa-county">File Number <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="true" id="wa-county" [(ngModel)]="orgDetails.fileNumber" />
+                <input maxlength="100" type="text" [disabled]="true" id="wa-county" [(ngModel)]="orgDetails.fileNumber" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-taxid">Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [ngClass]="orgDetails.orgName == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-taxid" [(ngModel)]="orgDetails.orgName" />
+                <input maxlength="100" type="text" [ngClass]="orgDetails.orgName == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-taxid" [(ngModel)]="orgDetails.orgName" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-taxid">Display Name<span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [ngClass]="orgDetails.displayName == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-taxid" [(ngModel)]="orgDetails.displayName" />
+                <input maxlength="100" type="text" [ngClass]="orgDetails.displayName == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-taxid" [(ngModel)]="orgDetails.displayName" />
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-4"><label for="wa-name">Type</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="true" id="wa-state" [(ngModel)]="orgDetails.orgType" />
+                <input maxlength="100" type="text" [disabled]="true" id="wa-state" [(ngModel)]="orgDetails.orgType" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-door">Name on Forms <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [ngClass]="orgDetails.nameOnForms == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-door" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.nameOnForms" />
+                <input maxlength="100" type="text" [ngClass]="orgDetails.nameOnForms == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-door" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.nameOnForms" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-status">Status <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <select style="border-radius: 4px;" [disabled]="isProfileEdit" [ngClass]="orgDetails.status == '' ? 'redborder': ''" [(ngModel)]="orgDetails.status">
+                <select  [disabled]="isProfileEdit" [ngClass]="orgDetails.status == '' ? 'redborder': ''" [(ngModel)]="orgDetails.status">
                   <option *ngFor="let orgStatus of status">{{orgStatus.name}}</option>
                 </select>
               </div>
@@ -67,13 +67,13 @@
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-state">FED ID</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isProfileEdit" id="wa-state" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.fedId" />
+              <div class="col-md-8"><input  maxlength="100" type="text" [disabled]="isProfileEdit" id="wa-state" [readonly]="isProfileEdit" [(ngModel)]="orgDetails.fedId" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-email">Communication email <span class="redstar">*</span></label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" type="text" maxlength="100" [formControl]="email" [ngClass]="orgDetails.email == '' ? 'redborder': ''" id="wa-email" [(ngModel)]="orgDetails.email" />
+                <input  type="text" maxlength="100" [formControl]="email" [ngClass]="orgDetails.email == '' ? 'redborder': ''" id="wa-email" [(ngModel)]="orgDetails.email" />
               </div>
             </div>
             <div class="row sfm" *ngIf="email.touched">
@@ -89,7 +89,7 @@
             <div class="row">
               <div class="col-md-4"><label for="wa-country">Mark for Deletion</label></div>
               <div class="col-md-8">
-                <select style="border-radius: 4px;" [disabled]="isProfileEdit" [(ngModel)]="orgDetails.markForDeletion">
+                <select  [disabled]="isProfileEdit" [(ngModel)]="orgDetails.markForDeletion">
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                 </select>
@@ -97,7 +97,7 @@
             </div>
             <div class="row">
               <div class="col-md-4"><label for="wa-country">Mark For Deletion details</label></div>
-              <div class="col-md-8"><input style="border-radius: 4px;" type="text" [disabled]="true" [(ngModel)]="orgDetails.markedForDeletionBy" /></div>
+              <div class="col-md-8"><input  type="text" [disabled]="true" [(ngModel)]="orgDetails.markedForDeletionBy" /></div>
             </div>
             <div class="row sfm" *ngIf="warningMessage">
               <div class="col-md-12">
@@ -129,49 +129,49 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.name" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.name" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Title</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.title" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.title" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Email</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.email" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.email" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Telephone Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.tnNo" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.tnNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Fax</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.fax" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinDetails.fax" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Country</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.country" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.country" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Time Zone</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.timeZone" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.timeZone" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street 1</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.street1" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.street1" />
               </div>
             </div>
             <div class="row">
@@ -183,7 +183,7 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Apt./Ste./Flr./Door</label></div>
               <div class="col-md-8">
-                <select style="border-radius: 4px;" [disabled]="isSigninEdit" id="ivPetitionerAdrInfApt" [(ngModel)]="signinAddress.aptType">
+                <select  [disabled]="isSigninEdit" id="ivPetitionerAdrInfApt" [(ngModel)]="signinAddress.aptType">
                   <option id="APT" value="APT">APT</option>
                   <option id="STE" value="STE">STE</option>
                   <option id="FLR" value="FLR">FLR</option>
@@ -194,31 +194,31 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.aptNo" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.aptNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">City</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.city" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.city" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">County</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.county" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.county" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">State</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.state" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.state" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Zip Code</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.zipCode" />
+                <input  maxlength="100" type="text" [disabled]="isSigninEdit" [(ngModel)]="signinAddress.zipCode" />
               </div>
             </div>
             <div class="row">
@@ -248,61 +248,61 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Name</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.name" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.name" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Title</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.title" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.title" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Email</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.email" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.email" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Telephone Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.tnNo" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.tnNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Fax</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.fax" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeDetails.fax" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Country</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.country" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.country" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Time Zone</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.timeZone" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.timeZone" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street 1</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.street1" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.street1" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Street 2</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.street2" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.street2" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Apt./Ste./Flr./Door</label></div>
               <div class="col-md-8">
-                <select style="border-radius: 4px;" [disabled]="isAdminEdit" id="ivPetitionerAdrInfApt" [(ngModel)]="adminstrativeAddress.aptType">
+                <select  [disabled]="isAdminEdit" id="ivPetitionerAdrInfApt" [(ngModel)]="adminstrativeAddress.aptType">
                   <option id="APT" value="APT">APT</option>
                   <option id="STE" value="STE">STE</option>
                   <option id="FLR" value="FLR">FLR</option>
@@ -313,31 +313,31 @@
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Number</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.aptNo" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.aptNo" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">City</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.city" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.city" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">County</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.county" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.county" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">State</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.state" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.state" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-4"><label for="pi-petitiondescription">Zip Code</label></div>
               <div class="col-md-8">
-                <input style="border-radius: 4px;" maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.zipCode" />
+                <input  maxlength="100" type="text" [disabled]="isAdminEdit" [(ngModel)]="adminstrativeAddress.zipCode" />
               </div>
             </div>
             <div class="row">

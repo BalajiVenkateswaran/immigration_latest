@@ -21,7 +21,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-5">Document Type:</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsDocExpDocType" [(ngModel)]="addNewDocExp.documentType" class="form-control"></div>
+                            <div class="col-md-7"><input maxlength="50" type="text" id="ivClientDtlsDocExpDocType" [(ngModel)]="addNewDocExp.documentType" class="form-control"></div>
                             <div class="col-md-5">Valid From:</div>
                             <div class="col-md-7">
                                 <my-date-picker [options]="myDatePickerOptions"
@@ -35,11 +35,10 @@
                                                 [selDate]="validTo" id="ivClientDtlsDocExpValidTo"></my-date-picker>
                             </div>
                             <div class="col-md-5">Status:</div>
-                            <div class="col-md-7"><input type="text" id="ivClientDtlsDocExpStatus" [(ngModel)]="addNewDocExp.status" class="form-control"></div>
+                            <div class="col-md-7"><input type="text" maxlength="45" id="ivClientDtlsDocExpStatus" [(ngModel)]="addNewDocExp.status" class="form-control"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-
                             </div>
                             <div class="col-md-7">
                                 <div class="row">
