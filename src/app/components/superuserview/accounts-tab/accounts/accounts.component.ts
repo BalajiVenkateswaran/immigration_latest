@@ -150,16 +150,19 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
           data: this.statusTypes
         },
         {
-            headerName: 'Orgs',
-            field: 'organizatinCount'
+          headerName: 'Orgs',
+          field: 'organizatinCount',
+          type: 'number'
         },
         {
           headerName: 'Clients',
-          field: 'clientCount'
+          field: 'clientCount',
+          type: 'number'
         },
         {
           headerName: 'Petitions',
-          field: 'petitionCount'
+          field: 'petitionCount',
+          type: 'number'
         },
         {
           headerName: 'Created On',
