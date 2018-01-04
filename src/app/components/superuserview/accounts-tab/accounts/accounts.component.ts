@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SuperUserviewAccountService} from './accounts.service';
 import {AppService} from '../../../../services/app.service';
 import {Router} from '@angular/router';
-import {User} from '../../../../models/user';
-import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {MenuComponent} from '../../../common/menu/menu.component';
 import {AccountDetailsCommonService} from '../account-details/common/account-details-common.service';
 import {ReportsCommonService} from '../../reports-tab/common/reports-common.service';
@@ -108,6 +107,17 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
         headingName: 'creationOn',
         sort: SortType.DESC
       }],
+      gridOptions: {
+        getRowStyle: function(params) {
+          if (params.data.markForDeletion) {
+            return {
+              color: 'red !important'
+            };
+          } else {
+            return null;
+          }
+        }
+      },
       'columnsettings': [
         {
           headerName: 'Account Name',

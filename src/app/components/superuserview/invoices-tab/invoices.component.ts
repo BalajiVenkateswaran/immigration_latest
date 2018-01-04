@@ -1,14 +1,14 @@
-import { invoice } from '../../../models/invoice';
-import { AppService } from '../../../services/app.service';
-import { HeaderService } from '../../common/header/header.service';
-import { MenuComponent } from '../../common/menu/menu.component';
-import { AccountDetailsCommonService } from '../accounts-tab/account-details/common/account-details-common.service';
-import { Component, OnInit } from '@angular/core';
+import {invoice} from '../../../models/invoice';
+import {AppService} from '../../../services/app.service';
+import {HeaderService} from '../../common/header/header.service';
+import {MenuComponent} from '../../common/menu/menu.component';
+import {AccountDetailsCommonService} from '../accounts-tab/account-details/common/account-details-common.service';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DialogService, DialogComponent} from 'ng2-bootstrap-modal';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {SuperUserViewInvoicestabService} from './invoices.service';
-import { SortType } from '../../framework/smarttable/types/query-parameters';
+import {SortType} from '../../framework/smarttable/types/query-parameters';
+
 export interface ConfirmModel {
     title: string;
     message: string;

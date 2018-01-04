@@ -104,7 +104,7 @@ export class SuperUserViewPaymentstabComponent extends DialogComponent<ConfirmMo
   }
 
   ngOnInit() {
-    this.headerService.showSideBarMenu(null, 'payments');
+    this.headerService.showSideBarMenu(null, 'superuserview/tab/payments');
   }
 
   clientSave() {

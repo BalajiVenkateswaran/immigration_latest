@@ -63,10 +63,10 @@ export class ManageaccountUserDetailsComponent implements OnInit {
             this.userList['roleId'] = res['userOrgsDetail']['userRoleInfo']['roleId'];
             this.userList['accountId'] = this.headerService.user.accountId;
             this.orgsList = res['userOrgsDetail']['organizationsInfo'];
-            if (this.userList.role == 'Immigration Officer') {
+            if (this.userList.role === 'Immigration Officer') {
                 this.isAccessEdit = true;
             }
-            if (this.userList.role == 'Immigration Manager') {
+            if (this.userList.role === 'Immigration Manager') {
                 this.isAccessEdit = false;
                 this.isAccess = false;
             }
@@ -112,17 +112,17 @@ export class ManageaccountUserDetailsComponent implements OnInit {
     }
     saveUserProfOrgs() {
         this.manageAccountUserDetailsService.updateUser(this.userProfOrgsList).subscribe((res) => {
-            if (res['statusCode'] == 'SUCCESS') {
+            if (res['statusCode'] === 'SUCCESS') {
                 this.getUserDetails();
             }
 
         });
     }
     saveUserProfile() {
-        if (this.userList['firstName'] == '' || this.userList['firstName'] == null || this.userList['firstName'] == undefined
-            || this.userList['lastName'] == '' || this.userList['lastName'] == null || this.userList['lastName'] == undefined
-            || this.userList['role'] == '' || this.userList['role'] == null || this.userList['role'] == undefined
-            || this.userList['emailId'] == '' || this.userList['emailId'] == null || this.userList['emailId'] == undefined) {
+        if (this.userList['firstName'] === '' || this.userList['firstName'] == null || this.userList['firstName'] === undefined
+            || this.userList['lastName'] === '' || this.userList['lastName'] == null || this.userList['lastName'] === undefined
+            || this.userList['role'] === '' || this.userList['role'] == null || this.userList['role'] === undefined
+            || this.userList['emailId'] === '' || this.userList['emailId'] == null || this.userList['emailId'] === undefined) {
             this.warningMessage = true;
         } else {
             this.warningMessage = false;

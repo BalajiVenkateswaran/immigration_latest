@@ -3,14 +3,12 @@ import { HeaderService } from '../../../common/header/header.service';
 import {ProfileUserService} from './user.service';
 import {Component, OnInit} from '@angular/core';
 
-
 @Component({
   selector: 'ih-profileuser',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.sass'],
   providers: [ProfileUserService]
 })
-
 export class ProfileUserComponent implements OnInit {
   public userInfo: any = {};
   public defaultorg: any;
@@ -30,14 +28,12 @@ export class ProfileUserComponent implements OnInit {
     this.headerService.showSideBarMenu('immiview-profuser', 'profile/user');
     this.profileUserservice.getUserInfo(this.headerService.user.userId)
       .subscribe((res) => {
-        console.log(res);
         if (res['user']) {
           this.userInfo = res['user'];
         }
       });
     this.profileUserservice.getDefaultOrg(this.headerService.user.accountId, this.headerService.user.userId)
       .subscribe((res) => {
-        console.log(res);
         if (res['statusCode'] === 'SUCCESS') {
           if (res['userDefaultOrg'] != null && res['userDefaultOrg'] !== undefined) {
             this.defaultorg = res['userDefaultOrg']['orgId'];
@@ -65,7 +61,6 @@ export class ProfileUserComponent implements OnInit {
       'orgId': this.selectedorg.orgId, 'userId': this.headerService.user.userId};
     this.profileUserservice.setDefaultOrg(data)
       .subscribe((res) => {
-        console.log(res);
         this.orgdisable = true;
         this.isUserorgEdit = true;
       });
@@ -92,7 +87,7 @@ export class ProfileUserComponent implements OnInit {
       this.userInfo['role'] = this.headerService.user.roleName;
       this.userInfo['userId'] = this.headerService.user.userId;
       this.profileUserservice.updateUser(this.userInfo).subscribe((res) => {
-        if (res['statusCode'] == 'SUCCESS') {
+        if (res['statusCode'] === 'SUCCESS') {
           console.log(res);
         }
       });
