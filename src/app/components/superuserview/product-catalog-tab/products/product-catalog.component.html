@@ -24,64 +24,64 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12 addresbox box-shadow">
-                                <div class="col-md-6">
+                            <div class="col-md-12 addresbox box-shadow" style="padding: 0px;">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Name:</div>
                                     <div class="col-md-8">
                                         <input type="text" maxlength="100" id="svprodName" [disabled]="isEditProducts" [(ngModel)]="product.name"
                                                class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Code:</div>
                                     <div class="col-md-8">
                                         <input type="text" maxlength="100" id="svprodCode" [disabled]="isEditProducts" [(ngModel)]="product.code"
                                                class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Description:</div>
                                     <div class="col-md-8">
                                         <input type="text" maxlength="100" id="svprodDes" [disabled]="isEditProducts" [(ngModel)]="product.description" class="form-control">
                                        
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Max Users:</div>
                                     <div class="col-md-8">
                                         <input type="text" id="svprodMaxUser" maxlength="100" [disabled]="isEditProducts" [(ngModel)]="product.maxUsers" class="form-control">
                                         
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Max Clients/Month:</div>
                                     <div class="col-md-8">
                                         <input type="text" id="svprodMaxClients" maxlength="100" [disabled]="isEditProducts" [(ngModel)]="product.maxClientsPerMonth"
                                                class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-4">Max Petitions/Month:</div>
-                                    <div class="col-md-8">
+                                <div class="col-md-6" style="padding: 0px;">
+                                    <div class="col-md-5">Max Petitions/Month:</div>
+                                    <div class="col-md-7">
                                         <input type="text" id="svprodMaxPet" maxlength="100" [disabled]="isEditProducts" [(ngModel)]="product.maxPetitionsPerMonth"
                                                class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Max S3 Storage:</div>
                                     <div class="col-md-8">
                                         <input type="text" id="svprodMaxStorage" maxlength="100" [disabled]="isEditProducts" [(ngModel)]="product.maxS3Storage" class="form-control">
                                         
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Cost:</div>
                                     <div class="col-md-8">
                                         <input type="text" id="svprodCost" maxlength="100" [disabled]="isEditProducts" [(ngModel)]="product.cost" class="form-control">
                                         
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Type:</div>
                                     <div class="col-md-8">
                                         <select [disabled]="isEditProducts" [(ngModel)]="product.productType" class="form-control">
@@ -89,7 +89,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                   <div class="col-md-4">Validation Type:</div>
                                   <div class="col-md-8">
                                     <select [disabled]="isEditProducts" [(ngModel)]="product.validationType" class="form-control">
@@ -97,7 +97,7 @@
                                     </select>
                                   </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Status:</div>
                                     <div class="col-md-8">
                                         <select [disabled]="isEditProducts" [(ngModel)]="product.status" class="form-control">
@@ -106,7 +106,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding: 0px;">
                                     <div class="col-md-4">Created On:</div>
                                     <div class="col-md-8">
                                         <input type="text" id="svprodCreatedOn" [disabled]="isEditProducts" [(ngModel)]="product.createdOn"
@@ -122,17 +122,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-7">
-                                        <div class="row">
                                             <div class="col-md-6">
-
-                                                <button type="submit" class="btn btn-primary" id="svprodEdit" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
-
-
-                                                    <button type="submit" value="Save" class="btn btn-primary" id="svprodSave" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
-
+                                                <button type="submit" class="btn iportal-btnIMclient" id="svprodEdit" style="color: #008000 !important;" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
+                                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="svprodSave" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
                                             </div>
-                                            <div class="col-md-6"><button type="button" class="btn btn-default" id="svprodCancel" (click)="cancel()">Cancel</button></div>
-                                        </div>
+                                            <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;" id="svprodCancel" (click)="cancel()">Cancel</button></div>
                                     </div>
                                 </div>
                             </div>

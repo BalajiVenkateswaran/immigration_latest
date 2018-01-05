@@ -4,7 +4,7 @@ import {DemoRequestDetailsService} from './demorequestdetails.service';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../common/header/header.service';
-
+import {IHDateUtil} from '../../../framework/utils/date.component';
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -25,11 +25,8 @@ export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, b
     public adddemorequest = false;
     public adddemoRequests: any = {};
     public demoRequestDate: any;
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'mm-dd-yyyy',
-        showClearDateBtn: false,
-    };
+    public showWorkAddrSaveButtonProgress = false;
+    public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   constructor(private demorequestdetailsservice: DemoRequestDetailsService,
               private appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
@@ -109,11 +106,13 @@ export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, b
         });
     }
     demorequestsave(email) {
+        this.showWorkAddrSaveButtonProgress = true;
         if (this.adddemoRequests['demoRequestDate']) {
           this.adddemoRequests['demoRequestDate'] = this.adddemoRequests['demoRequestDate']['formatted'];
         }
         this.demorequestdetailsservice.savedemoRequest(this.adddemoRequests).subscribe((res) => {
-              console.log(res);
+            console.log(res);
+            this.showWorkAddrSaveButtonProgress = false;
 
             });
             this.result = true;

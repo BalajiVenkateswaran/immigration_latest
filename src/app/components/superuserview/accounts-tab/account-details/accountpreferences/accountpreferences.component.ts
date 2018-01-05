@@ -253,19 +253,20 @@ export class AccountPreferencesComponent extends DialogComponent<ConfirmModel, b
                 message: res['statusDescription']
               }
             });
-            this.result = false;
+            this.result = false;            
           }
           this.close();
         });
       }
   }
   discountSave() {
+      this.showWorkAddrSaveButtonProgress = true;
     if ((this.discounts['discountCatalog']['discountCode'] === '' || this.discounts['discountCatalog']['discountCode'] == null || this.discounts['discountCatalog']['discountCode'] === undefined ||
         this.discounts['startDate'] === '' || this.discounts['startDate'] == null || this.discounts['startDate'] === undefined ||
         this.discounts['endDate'] === '' || this.discounts['endDate'] == null || this.discounts['endDate'] === undefined)) {
         this.warningMessage = true;
     } else {
-      this.showWorkAddrSaveButtonProgress = true;
+      this.showWorkAddrSaveButtonProgress = false;
       this.discounts['startDate'] = this.discounts.startDate['formatted'];
       this.discounts['endDate'] = this.discounts.endDate['formatted'];
 

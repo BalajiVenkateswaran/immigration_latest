@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div></div>
                                     <div class="col-md-6"> <button type="button" id="svMiscDemoSave" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 0%;" (click)="demorequestsave(emailId.errors,roles)">Save</button></div>
+	style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 0%;" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="demorequestsave(emailId.errors,roles)">Save</button></div>
                                     <div class="col-md-6"> <button type="button" id="svMiscDemoCancel" class="editbtn tbl-head-btn iportal-btnIMclient" 
 	style="color: #FF0000 !important;margin-left: 4px;width: 100%;margin-top: 4px!important;" (click)="cancel()">Cancel</button> </div>
                                 </div>
