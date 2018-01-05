@@ -183,7 +183,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <button type="submit" class="btn iportal-btnIMclient" style="margin-left: 80% !important;margin-top: 2% !important;" id="svActpmtsEdit" (click)="editpaymentsInfo()" *ngIf="isEditpayments==true">Edit</button>
-                                            <button type="submit" value="Save" class="btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="svActpmtsSave1" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
+                                            <button type="submit" value="Save" class="btn iportal-btnIMclient" style="color: #008000 !important;margin-top: 4px!important; width: 90%;margin-right: 11px;" id="svActpmtsSave1" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="savepaymentsInfo()" *ngIf="isEditpayments==false">Save</button>
                                         </div>
                                         <div class="col-md-6"><button type="button" class="btn iportal-btnIMclient" style="color: #FF0000 !important;margin-left: 4px;width: 90%;margin-top: 4px!important;" id="svActpmtsCancel1" (click)="cancel()">Cancel</button></div>
                                     </div>

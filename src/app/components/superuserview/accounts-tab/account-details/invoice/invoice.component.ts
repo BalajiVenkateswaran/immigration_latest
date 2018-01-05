@@ -189,8 +189,9 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
           res => {
               this.showWorkAddrSaveButtonProgress = false;
           if (res['statusCode'] === 'SUCCESS') {}
-        }
-      );
+          }           
+         );
+      this.close();
     }
 
     emailInvoice(invoice: any) {
