@@ -64,8 +64,8 @@ export class SuperUserViewAccountsComponent extends DialogComponent<ConfirmModel
         'value': 'Inactive'
       },
       {
-        'display': 'Pre-Act',
-        'value': 'Pre-Act'
+        'display': 'PreAct',
+        'value': 'PreAct'
       }
     ];
     this.storageTypes = [
