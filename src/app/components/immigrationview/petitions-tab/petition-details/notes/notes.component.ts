@@ -12,7 +12,7 @@ export class NotesComponent implements OnInit {
     isNotesEdit;
     private notes: string;
     private beforeCancelPetition;
-    private petitionDetails: any = {};
+    public petitionDetails: any = {};
     public showNotesSaveButtonProgress = false;
     constructor(public appService: AppService, private petitionNotesService: NotesService, public headerService: HeaderService) {
     }
