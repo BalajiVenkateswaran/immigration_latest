@@ -26,15 +26,15 @@ export class ManageAccountPreferencesComponent implements OnInit {
             'columnsettings': [
                 {
                     headerName: 'Name',
-                    field: 'name',
+                    field: 'productCatalog.productName',
                 },
                 {
                     headerName: 'Code',
-                    field: 'code',
+                    field: 'productCatalog.productCode',
                 },
                 {
                     headerName: 'Description',
-                    field: 'description'
+                    field: 'productCatalog.productDesc'
                 },
                 {
                     headerName: 'Start Date',
@@ -46,23 +46,23 @@ export class ManageAccountPreferencesComponent implements OnInit {
                 },
                 {
                     headerName: 'Max Users',
-                    field: 'maxUsers'
+                    field: 'productCatalog.maxUsers'
                 },
                 {
                     headerName: 'Max Clients/Month',
-                    field: 'maxClientsPerMonth'
+                    field: 'productCatalog.maxClients'
                 },
                 {
                     headerName: 'Max Petitions/Month',
-                    field: 'maxPetitionsPerMonth'
+                    field: 'productCatalog.maxPetitions'
                 },
                 {
                     headerName: 'Max S3 Storage',
-                    field: 'maxS3Storage'
+                    field: 'productCatalog.maxS3Storage'
                 },
                 {
                     headerName: 'Cost',
-                    field: 'cost'
+                    field: 'productCatalog.cost'
                 }
             ]
         }
@@ -72,15 +72,15 @@ export class ManageAccountPreferencesComponent implements OnInit {
             'columnsettings': [
                 {
                     headerName: 'Name',
-                    field: 'discountName',
+                    field: 'discountCatalog.discountName',
                 },
                 {
                     headerName: 'Code',
-                    field: 'discountCode',
+                    field: 'discountCatalog.discountCode',
                 },
                 {
                     headerName: 'Description',
-                    field: 'description'
+                    field: 'discountCatalog.discountDesc'
                 },
                 {
                     headerName: 'Start Date',
@@ -92,11 +92,11 @@ export class ManageAccountPreferencesComponent implements OnInit {
                 },
                 {
                     headerName: 'Cost',
-                    field: 'cost'
+                    field: 'discountCatalog.cost'
                 },
                 {
                     headerName: 'Percentage',
-                    field: 'percentage'
+                    field: 'discountCatalog.discountPercentage'
                 }
             ]
         }

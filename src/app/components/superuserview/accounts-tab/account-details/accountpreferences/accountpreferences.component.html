@@ -1,8 +1,4 @@
 <div class="main-content" *ngIf="getacntpref">
-  <!--<ul class="breadcrumb">
-      <li><a href="#">Account Preferences</a></li>
-  </ul>
-  <div class="clearfix"></div>-->
   <div class="table-data">
     <h1 _ngcontent-c8="" class="clickname">
       <img _ngcontent-c15="" src="../../../../assets/images/Profile.png" style="margin-bottom: 4px !important;height: 18px!important;">
@@ -11,14 +7,11 @@
     <div _ngcontent-c6="" class="clearfix"></div>
     <h2 _ngcontent-c6="" class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Account Preferences</h2>
     <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Products</h2>
-    <ih-smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)"
-                    (onRowClick)="editProducts($event)">
+    <ih-smart-table class="superUserViewaccprefProducts" [settings]="settings" [data]="data" (onAddClick)="addProducts($event)" (onRowClick)="editProducts($event)">
     </ih-smart-table>
-    <!--<h2 style="margin-top: 50px;">Discounts</h2>-->
     <div class="clearfix"></div>
     <h2 class="headerinsections" style="margin-top: 20px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Discounts</h2>
-    <ih-smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)"
-                    (onRowClick)="editDiscounts($event)">
+    <ih-smart-table class="superUserViewaccprefDiscounts" [settings]="discountSettings" [data]="discountData" (onAddClick)="addDiscounts($event)" (onRowClick)="editDiscounts($event)">
     </ih-smart-table>
   </div>
 
@@ -37,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-4">Code:<span class="redstar">*</span></div>
                         <div class="col-md-8">
-                            <select class="form-control" [(ngModel)]="addproduct.code">
+                            <select class="form-control" [(ngModel)]="addproduct.productCatalog.productCode">
                                 <option *ngFor="let productCode of allProducts" [value]="productCode" id="{{productCode}}">{{ productCode }}</option>
                             </select>
                         </div>
@@ -85,7 +78,7 @@
                     <div class="row">
                         <div class="col-md-4">Code:<span class="redstar">*</span></div>
                         <div class="col-md-8">
-                          <select class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCode">
+                          <select class="form-control" [disabled]="editdscnt" [(ngModel)]="discounts.discountCatalog.discountCode">
                             <option *ngFor="let discountCode of allDiscounts" [value]="discountCode" id="{{discountCode}}">{{ discountCode }}</option>
                           </select>
                         </div>
