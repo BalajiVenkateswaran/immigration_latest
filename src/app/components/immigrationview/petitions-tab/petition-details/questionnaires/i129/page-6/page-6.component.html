@@ -57,14 +57,14 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">Signature of Authorized Signatory</div>
-                                <div class="col-md-7"><input type="text" [disabled]="!isQuestionnaireEdit" [(ngModel)]="page6.signature"/></div>
+                                <div class="col-md-7"><input type="text" [disabled]="true" [(ngModel)]="page6.signature"/></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">Date of Signature</div>
                                 <div class="col-md-4">
-                                    <my-date-picker [disabled]="!isQuestionnaireEdit" [options]="myDatePickerOptions"
+                                    <my-date-picker [disabled]="true" [options]="myDatePickerOptions"
                                                     [(ngModel)]="page6.dateOfSignature"
                                                     [selDate]="dateOfSignature"></my-date-picker>
                                 </div>

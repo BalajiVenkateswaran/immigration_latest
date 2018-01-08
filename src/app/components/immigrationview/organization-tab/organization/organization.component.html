@@ -29,7 +29,7 @@
             <div class="row">
               <div class="col-md-4"><label for="wa-taxid">Name</label></div>
               <div class="col-md-8">
-                <input maxlength="100" type="text" [ngClass]="orgDetails.orgName == '' ? 'redborder': ''" [disabled]="isProfileEdit" id="wa-taxid" [(ngModel)]="orgDetails.orgName" />
+                <input maxlength="100" type="text" [ngClass]="orgDetails.orgName == '' ? 'redborder': ''" [disabled]="true" id="wa-taxid" [(ngModel)]="orgDetails.orgName" />
               </div>
             </div>
             <div class="row">
