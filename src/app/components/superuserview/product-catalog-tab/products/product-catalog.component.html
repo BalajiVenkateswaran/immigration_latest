@@ -113,20 +113,20 @@
                                                class="form-control">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-5">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="row sfm" *ngIf="warningMessage">
                                             <div class="col-md-12">
                                                 <span class="redstar">* Fields are Mandatory.</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-6">
                                             <div class="col-md-6">
-                                                <button type="submit" class="btn iportal-btnIMclient" id="svprodEdit" style="color: #008000 !important;" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
-                                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="svprodSave" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveProductInfo()" *ngIf="isEditProducts==false">Save</button>
+                                                <button type="submit" class="btn iportal-btnIMclient" id="svprodEdit" style="color: #008000 !important;margin-left:2em !important;" (click)="editProductInfo()" *ngIf="isEditProducts==true">Edit</button>
+                                                <button type="submit" value="Save" class="editbtn tbl-head-btn iportal-btnIMclient" id="svprodSave" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveProductInfo()" style="margin-right:2em!important;" *ngIf="isEditProducts==false">Save</button>
                                             </div>
-                                            <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;" id="svprodCancel" (click)="cancel()">Cancel</button></div>
+                                            <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" style="color: #FF0000 !important;margin-right: 1px !important;" id="svprodCancel" (click)="cancel()">Cancel</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                             <div class="col-md-7">
                                 <div class="row">
                                     <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 0%;" id="svprodPopSave" (click)="saveProduct()">Save</button></div>
+	style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 0%;" id="svprodPopSave" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveProduct()">Save</button></div>
                                     <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
 	style="color: #FF0000 !important;margin-left: 4px;width: 100%;margin-top: 4px!important;" id="svprodPopCancel" (click)="cancel()">Cancel</button></div>
                                 </div>

@@ -35,7 +35,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     public viewDetails = true;
     public isEditDiscount = true;
     public warningMessage = false;
-
+    public showWorkAddrSaveButtonProgress = false;
     constructor(private appService: AppService, public productCatalogDiscountService: ProductCatalogDiscountService, public dialogService: DialogService, private dialog: MatDialog) {
         super(dialogService);
         this.settings = {
@@ -119,12 +119,14 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
         });
     }
     saveDiscounts() {
+        this.showWorkAddrSaveButtonProgress = true;
       if (this.addDiscount['discountCode'] === '' || this.addDiscount['discountCode'] == null || this.addDiscount['discountCode'] === undefined
         || this.addDiscount['discountName'] === '' || this.addDiscount['discountName'] == null || this.addDiscount['discountName'] === undefined
         || this.addDiscount['type'] == null || this.addDiscount['type'] === undefined || this.addDiscount['type'] === '') {
           this.warningMessage = true;
       } else {
-          this.warningMessage = false;
+          this.showWorkAddrSaveButtonProgress = false;
+          this.warningMessage = false;          
           this.appService.addUsers = this.addDiscount;
           this.result = true;
           this.close();
@@ -170,6 +172,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
 
     }
     saveDiscountInfo() {
+        this.showWorkAddrSaveButtonProgress = true;
         this.isEditDiscount = !this.isEditDiscount;
         this.appService.addUsers = this.discount;
         this.result = true;
@@ -181,7 +184,7 @@ export class SuperuserviewProductcatalogDiscountsComponent extends DialogCompone
     }
     this.productCatalogDiscountService.getDiscountDetailsWithQueryparams(queryData).subscribe(
       res => {
-
+          this.showWorkAddrSaveButtonProgress = false;
         this.data = res['discountCatalogs'];
         this.paginationData = res['pageMetadata'];
       })

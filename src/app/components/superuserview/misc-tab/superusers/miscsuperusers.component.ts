@@ -26,6 +26,7 @@ export class MiscSuperUsersComponent extends DialogComponent<ConfirmModel, boole
     public paginationData;
     public addsuperUsers: any = {};
     public warningMessage: any;
+    public showWorkAddrSaveButtonProgress = false;
     ngOnInit() {
     }
     constructor(private miscSuperusersservice: MiscSuperUsersService,
@@ -66,6 +67,7 @@ export class MiscSuperUsersComponent extends DialogComponent<ConfirmModel, boole
         });
     }
     superuserSave(email) {
+        this.showWorkAddrSaveButtonProgress = true;
         if ((this.addsuperUsers['firstName'] === '' || this.addsuperUsers['firstName'] == null || this.addsuperUsers['firstName'] === undefined
             || this.addsuperUsers['lastName'] === '' || this.addsuperUsers['lastName'] == null || this.addsuperUsers['lastName'] === undefined
             || this.addsuperUsers['emailId'] === '' || this.addsuperUsers['emailId'] == null || this.addsuperUsers['emailId'] === undefined)) {
@@ -76,6 +78,7 @@ export class MiscSuperUsersComponent extends DialogComponent<ConfirmModel, boole
         } else {
             this.warningMessage = false;
             this.miscSuperusersservice.saveNewsuperUser(this.addsuperUsers).subscribe((res) => {
+                this.showWorkAddrSaveButtonProgress = false;
                 console.log(res);
             });
             this.result = true;

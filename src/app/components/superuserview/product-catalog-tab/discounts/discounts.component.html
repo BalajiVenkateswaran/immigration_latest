@@ -26,59 +26,59 @@
                                 <div class="row">
                                     <div class="col-md-5">Name:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscName" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountName" class="form-control">
+                                        <input type="text" id="svprodDiscName" class="form-control disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountName">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Code:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscCode" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountCode" class="form-control">
+                                        <input type="text" id="svprodDiscCode" class="form-control disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountCode">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Description:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscDesc" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountDesc" class="form-control">
+                                        <input type="text" id="svprodDiscDesc" class=" form-control disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.discountDesc">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Cost:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscCost" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.cost" class="form-control">
+                                        <input type="text" id="svprodDiscCost" class="form-control disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.cost">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Percentage:</div>
                                     <div class="col-md-7">
-                                        <input type="text" id="svprodDiscPerc" class="disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.percentage" class="form-control">
+                                        <input type="text" id="svprodDiscPerc" class="form-control disabled"  [disabled]="isEditDiscount" [(ngModel)]="discount.percentage">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Type:</div>
                                     <div class="col-md-7">
-                                        <select *ngIf="isEditDiscount==false" class="form-control" [disabled]='true' [(ngModel)]="discount.type">
+                                        <select class="form-control" [disabled]='isEditDiscount' [(ngModel)]="discount.type">
 
                                    <option value="DIS" id="svprodDiscTypeDis">DIS</option>
                                    <option value="TRIAL" id="svprodDiscTypeTrail">TRIAL</option>
 
                                         </select>
-                                        <span *ngIf="isEditDiscount==true">{{discount.type}}</span>
+                                        
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Status:</div>
                                     <div class="col-md-7">
-                                        <select [(ngModel)]="discount.status" class="form-control" *ngIf="isEditDiscount==false">
+                                        <select [(ngModel)]="discount.status" [disabled]="isEditDiscount" class="form-control" >
                                             <option value="Active" id="svprodDiscStatusAct">Active</option>
                                             <option value="Inactive" id="svprodDiscStatusInAct">Inactive</option>
                                         </select>
-                                        <span *ngIf="isEditDiscount==true">{{discount.status}}</span>
+                                        <!--<span *ngIf="isEditDiscount==true">{{discount.status}}</span>-->
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">Created On:</div>
                                     <div class="col-md-7">
-                                        <input type="text" class="disabled"  [disabled]="true" id="svprodDiscCreatedOn" [(ngModel)]="discount.createdOn" class="form-control">
+                                        <input type="text" class="form-control disabled"  [disabled]="true" id="svprodDiscCreatedOn" [(ngModel)]="discount.createdOn">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -93,13 +93,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
 
-                                                <button type="submit" class="btn btn-primary" id="svprodDiscEdit" (click)="editDiscountInfo()" *ngIf="isEditDiscount==true">Edit</button>
+                                                <button type="submit" class="btn iportal-btnIMclient" style="color: #008000 !important;" id="svprodDiscEdit" (click)="editDiscountInfo()" *ngIf="isEditDiscount==true">Edit</button>
 
 
-                                                <button type="submit" value="Save" class="btn btn-primary" id="svprodDiscSave" (click)="saveDiscountInfo()" *ngIf="isEditDiscount==false">Save</button>
+                                                <button type="submit" value="Save" class="btn iportal-btnIMclient" style="color: #008000 !important;" id="svprodDiscSave" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveDiscountInfo()" *ngIf="isEditDiscount==false">Save</button>
 
                                             </div>
-                                            <div class="col-md-6"><button type="button" class="btn btn-default" id="svprodDiscCancel" (click)="cancel()">Cancel</button></div>
+                                            <div class="col-md-6"><button type="button" class="btn iportal-btnIMclient" style="color: #FF0000 !important;" id="svprodDiscCancel" (click)="cancel()">Cancel</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
-	style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 0%;" id="svprodDiscPopSave" (click)="saveDiscounts()">Save</button></div>
+	style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 0%;" id="svprodDiscPopSave" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="saveDiscounts()">Save</button></div>
                             <div class="col-md-6"><button type="button" class="editbtn tbl-head-btn iportal-btnIMclient" 
 	style="color: #FF0000 !important;margin-left: 4px;width: 100%;margin-top: 4px!important;" id="svprodDiscPopCancel" (click)="cancel()">Cancel</button></div>
                         </div>

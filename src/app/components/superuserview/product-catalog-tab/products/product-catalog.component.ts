@@ -41,7 +41,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   public warningMessage = false;
   public statusTypes: any = [];
   public validationTypeValues: any = [];
-
+  public showWorkAddrSaveButtonProgress = false;
   constructor(public appService: AppService, public dialogService: DialogService, public productCatalogProductService: ProductCatalogProductService,
               private menuComponent: MenuComponent, public headerService: HeaderService, private dialog: MatDialog) {
     super(dialogService);
@@ -228,6 +228,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     });
   }
   saveProduct() {
+      this.showWorkAddrSaveButtonProgress = true;
     if (this.addProduct['name'] === '' || this.addProduct['name'] == null || this.addProduct['name'] === undefined
       || this.addProduct['code'] === '' || this.addProduct['code'] == null || this.addProduct['code'] === undefined
       || this.addProduct['cost'] === '' || this.addProduct['cost'] == null || this.addProduct['cost'] === undefined) {
@@ -235,7 +236,9 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     } else {
       this.warningMessage = false;
       this.appService.addUsers = this.addProduct;
+      this.showWorkAddrSaveButtonProgress = false;
       this.result = true;
+      this.showWorkAddrSaveButtonProgress = false;
       this.close();
     }
 
@@ -245,7 +248,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
     this.close();
   }
   editProductInfo() {
-    this.isEditProducts = !this.isEditProducts;
+      this.isEditProducts = !this.isEditProducts;
   }
   cancelProductInfo() {
     this.isEditProducts = !this.isEditProducts;
@@ -253,6 +256,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
 
   }
   saveProductInfo() {
+      this.showWorkAddrSaveButtonProgress = true;
     this.isEditProducts = !this.isEditProducts;
     this.appService.addUsers.accountProductId = this.product.accountProductId;
     this.appService.addUsers = this.product;
@@ -264,7 +268,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
       this.queryParameters = queryData;
     }
     this.productCatalogProductService.getProductDetailsWithQueryparams(queryData).subscribe(
-      res => {
+        res => {
         this.data = res['products'];
         this.paginationData = res['pageMetadata'];
       });
@@ -272,7 +276,8 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
   reloadData() {
     if (this.queryParameters !== undefined) {
       this.productCatalogProductService.getProductDetailsWithQueryparams(this.queryParameters).subscribe(
-        res => {
+          res => {
+              this.showWorkAddrSaveButtonProgress = false;
           this.data = res['products'];
           this.paginationData = res['pageMetadata'];
         }
@@ -281,7 +286,7 @@ export class SuperuserviewProductcatalogComponent extends DialogComponent<Confir
 
     if (this.queryParameters == null || this.queryParameters === undefined) {
        this.productCatalogProductService.getProductDetails().subscribe(
-        res => {
+           res => {
           this.data = res['products'];
         }
       )
