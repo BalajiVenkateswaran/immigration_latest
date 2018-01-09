@@ -13,7 +13,7 @@ export interface ConfirmModel {
 @Component({
   selector: 'app-manageaccount-shippingaddress',
   templateUrl: './shippingaddress.component.html',
-  styleUrls: ['./shippingaddress.component.sass'],
+  styleUrls: ['./shippingaddress.component.scss'],
   providers: [ManageAccountShippingAddressService]
 })
 export class ManageAccountShippingAddressComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
@@ -49,6 +49,10 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
 
           headerName: 'Address',
           field: 'address',
+          width: 100,
+          cellStyle: {
+              'white-space': ' pre-line'
+          }
         }
 
       ]

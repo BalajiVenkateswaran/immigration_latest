@@ -8,8 +8,10 @@ import {InformationDialogComponent} from '../../../framework/popup/information/i
 
 
 @Component({
-    template: `<div class="fileUpload btn btn-primary iportal-btn no-marg-right agridadd" style="background:none !important;color: #04a9fc !important;margin-top: -7px !important;">
-                        <i class="fa fa-upload" style=" font-size: 20px !important;" aria-hidden="true"></i>
+    template: `<div class="fileUpload btn btn-primary iportal-btn no-marg-right agridadd" style="background:none !important;color: #04a9fc !important;margin-top: -7px !important;left: -23px!important;">
+                        
+<button _ngcontent-c2="" class="pull-right no-marg-right agridadd addbtnnsmart iportal-btnIMclient" style="margin-top: -2px !important; font-size: 11px !important;height: 26px !important;" type="button" 
+ng-reflect-klass="pull-right no-marg-right agrid" ng-reflect-ng-class="[object Object]">Upload</button>
                         <input type="file" #fileInput class="upload" name="file" (change)="fileUpload($event)"/>
                     </div>`,
 

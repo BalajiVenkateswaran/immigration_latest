@@ -8,8 +8,9 @@ import {InformationDialogComponent} from '../../../framework/popup/information/i
 
 @Component({
     template: `
-     <a class="iportal-btn" style="background:none !important; margin-left: 16px !important; color: #04a9fc !important; margin-top: -7px !important;" (click)="downloadClick($event)">
-      <i class="fa fa-download" style=" font-size: 20px !important;" aria-hidden="true"></i>
+     <a class="iportal-btn" style="background:none !important; margin-left: -4px !important; color: #04a9fc !important; margin-top: -7px !important;" (click)="downloadClick($event)">
+      <button _ngcontent-c2="" class="pull-right no-marg-right agridadd addbtnnsmart iportal-btnIMclient" style="margin-top: -2px !important; font-size: 11px !important;height: 26px !important;position: absolute;" type="button" 
+ng-reflect-klass="pull-right no-marg-right agrid" ng-reflect-ng-class="[object Object]">Download</button>
     </a>
    `
 })

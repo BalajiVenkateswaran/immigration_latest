@@ -1,16 +1,15 @@
-    <div class="main-content">
-        <div class="clearfix"></div>
+    <div class="main-content" style="margin-top: 16px;">
         <div class="petition-docs">
-            <h2 class="headerinsections" style="font-weight: 500!important;color: #4EA0F9 !important;border-bottom: none;margin-top: 0px !important;margin-bottom: 7px!important;">Petition Document Selection</h2>
+            <h2 class="headerinsections" style="font-weight: 500!important;color: #4EA0F9 !important;border-bottom: none;margin-top: 0px !important;margin-bottom: 7px!important;">Petition Type Stages</h2>
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-3">                        
                         <div class="left-form petition-type-stages-left">
                             <form class="scroll-form">
                                 <h5 style="color:#283343!important;padding: 8px!important;"><strong>Petition Type</strong></h5>                        
-                                <div class="row" style="margin:0px; padding:0px 15px;margin-bottom: -57px !important;overflow: hidden !important;">
+                                <div class="row" style="margin:0px; padding:0px 15px;overflow: hidden !important;">
                                     <ul class="col-md-12 right-form petition-type-stages" >
-                                        <li *ngFor="let petitionType of petitionTypes;let i = index" (click)="onClickOfPetitionType(petitionType,i)" [ngClass]="{'slecteditemcolor': petitionType.petitionTypeId == selectedPetitionType.petitionTypeId,'selecteditems':petitionType.petitionTypeId != selectedPetitionType.petitionTypeId}" title="{{petitionType.petitiontype}}">{{petitionType.petitiontype}}</li>
+                                        <li *ngFor="let petitionType of petitionTypes;let i = index" style="cursor: auto !important;" (click)="onClickOfPetitionType(petitionType,i)" [ngClass]="{'slecteditemcolor': petitionType.petitionTypeId == selectedPetitionType.petitionTypeId,'selecteditems':petitionType.petitionTypeId != selectedPetitionType.petitionTypeId}" title="{{petitionType.petitiontype}}">{{petitionType.petitiontype}}</li>
                                     </ul>
                                 </div>
                             </form>
@@ -23,7 +22,7 @@
                                 <button *ngIf="addDeleteBtn" type="button" class="iportal-btnIMclient pull-right" style="margin-top: -40px!important;margin-right: 7px !important" (click)="addPetitionStages()">Add</button>
                                 <div class="row" style="margin:0px; padding:0px 15px;overflow: hidden !important;" >
                                     <ul class="col-md-12 right-form petition-type-stages" [dragula]="dragbox" [dragulaModel]="petitionStages">
-                                        <li *ngFor="let stage of petitionStages;let i = index" id="petitionstage" (click)="setClickedRowstages(stage,i)">
+                                        <li *ngFor="let stage of petitionStages;let i = index" id="petitionstage"  (click)="setClickedRowstages(stage,i)">
                                             <div *ngIf="!stage.edit">
                                                 <label style="width: 80%;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;font-weight: normal;" title="{{ i + 1 }}  {{stage.name}}">{{ i + 1 }}  {{stage.name}}</label>
                                                 <span class="" style="float:right;margin-top:-7%">
