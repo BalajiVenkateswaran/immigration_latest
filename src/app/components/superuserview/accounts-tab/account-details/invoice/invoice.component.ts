@@ -196,7 +196,17 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     emailInvoice(invoice: any) {
       this.accountInvoiceService.sendInvoiceEmail(invoice['invoiceId']).subscribe(
         res => {
-          if (res['statusCode'] === 'SUCCESS') {}
+          this.close();
+          let message = 'Failed to send email. Please try after some time.';
+          if (res['statusCode'] === 'SUCCESS') {
+            message = 'Email is sent successfully';
+          }
+          this.dialog.open(InformationDialogComponent, {
+            data: {
+              title: 'Error',
+              message: message
+            }
+          });
         }
       );
     }
