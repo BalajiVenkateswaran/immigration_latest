@@ -2059,7 +2059,8 @@ header {
         }
 
         a[ng-reflect-ng-class=active] {
-          color: #c2c2c2 !important;
+          color:#000000 !important;
+          font-weight:500;
         }
       }
 
