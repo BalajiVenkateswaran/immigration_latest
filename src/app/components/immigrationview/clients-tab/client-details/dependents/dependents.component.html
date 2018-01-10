@@ -5,7 +5,7 @@
                 <img style="margin-bottom: 4px !important;" src="../../../../assets/images/Group984.png" />&nbsp;&nbsp;&nbsp;<span>{{appService.clientfirstName}} {{appService.clientlastName}}</span></h1>
             <div class="clearfix"></div>
             <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Dependents</h2>
-            <ih-smart-table class="immiview-clienttab-dependents" [settings]="settings" [data]="data"
+            <ih-smart-table class="immiview-clienttab-dependents benadd" [settings]="settings" [data]="data"
                          (onAddClick)="addNewDependents($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)"></ih-smart-table>
             <div class="clearfix"></div>
         </div>

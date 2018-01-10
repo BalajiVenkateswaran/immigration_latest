@@ -1,7 +1,7 @@
 <div class="main-content" *ngIf="getsuperUsers">
     <div class="table-data">
       <h2 _ngcontent-c6="" class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Super Users</h2>
-        <ih-smart-table [settings]="settings" [data]="data"
+        <ih-smart-table class="benadd" [settings]="settings" [data]="data"
                         [paginationData]="paginationData"
                         (dataWithQueryParams)="dataWithParameters($event)"
                         (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">

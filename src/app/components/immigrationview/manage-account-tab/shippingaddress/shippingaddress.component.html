@@ -1,3 +1,4 @@
+
 <div class="main-content" *ngIf="getShipping">
     <ul class="breadcrumb">
         <li><a href="#">Shipping Address</a></li>
@@ -5,7 +6,7 @@
     <div class="clearfix"></div>
     <div class="table-data">
         <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 2.1em!important;">Shipping Address</h2>
-        <ih-smart-table class="immiview-managAcctab-shippingaddress" [settings]="settings"
+        <ih-smart-table class="immiview-managAcctab-shippingaddress newclass" [settings]="settings"
                      [data]="data"
                      (onAddClick)="addFunction($event)"
                      (onRowClick)="editRecord($event)"

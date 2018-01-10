@@ -1697,3 +1697,11 @@ header .mainmenu ul li a:hover, header .mainmenu ul li a:focus,header .mainmenu 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;}
+ .benadd .addbtnnsmart{
+        margin-top: -42px !important;
+        margin-right: 9px !important;
+    }
+    .newclass .addbtnnsmart{
+        margin-top: -73px !important;
+        margin-right: 9px !important;
+        }

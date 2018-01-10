@@ -1,7 +1,7 @@
 <div class="main-content"  *ngIf="getdemorequests">
     <div class="table-data">
       <h2 _ngcontent-c6="" class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Demo Request Details</h2>
-        <ih-smart-table [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+        <ih-smart-table class="benadd" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
         </ih-smart-table>
     </div>
 </div>

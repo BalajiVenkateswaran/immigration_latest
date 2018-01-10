@@ -17,7 +17,7 @@
 
         <div class="clearfix"></div>
         <h2 class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Client</h2>
-        <ih-smart-table class="immiview-ques-client" [settings]="settings" [data]="data"
+        <ih-smart-table class="immiview-ques-client benadd" [settings]="settings" [data]="data"
                      (onAddClick)="onAddQuestionnaireClick($event)" (onRowClick)="onEditQuestionnaireClick($event)" (onDeleteClick)="onDeleteClientQuestionnaireClick($event)" ></ih-smart-table>
         <button [(disabled)]="sendQuestionnaire" type="submit" class="btn iportal-btnIMclient pull-right" (click)="sendQuestionnaireClient()" [ngClass]="{'myclass':sendQuestionnaire,'btn iportal-btnIMclient pull-right':!sendQuestionnaire}">Send Questionnaire to client </button>
         <div class="clearfix"></div>
