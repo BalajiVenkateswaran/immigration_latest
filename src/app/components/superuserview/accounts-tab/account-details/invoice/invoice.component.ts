@@ -140,35 +140,34 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
         let fileExists = this.isfileExists(file);
         let y = x.split('.');
         if (fileList.length > 0 && y[1] === 'pdf' && fileExists !== true) {
-            let formData: FormData = new FormData();
-            formData.append('file', file, file.name);
+          let formData: FormData = new FormData();
+          formData.append('file', file, file.name);
 
-            this.accountInvoiceService.uploadFile(event.data.invoiceId, formData)
-                .subscribe(
-                res => {
-                   if (res['statusCode'] === 'SUCCESS') {
-                     event.data.fileId = res['fileId'];
-                     event.data.fileName = file.name;
-                   }
-                }
-                );
+          this.accountInvoiceService.uploadFile(event.data.invoiceId, formData)
+            .subscribe(res => {
+               if (res['statusCode'] === 'SUCCESS') {
+                 event.data.fileId = res['fileId'];
+                 event.data.fileName = file.name;
+               }
+            });
 
         } else {
-            if (fileExists === true) {
-                this.dialog.open(InformationDialogComponent, {
-                    data: {
-                      title: 'Error',
-                      message: 'Filename is already exists.'
-                    }
-                });
-            } else {
-                this.dialog.open(InformationDialogComponent, {
-                    data: {
-                      title: 'Error',
-                      message: 'Please Upload Only Pdf files'
-                    }
-                });
-            }
+          this.close();
+          if (fileExists === true) {
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: 'File with same name is already uploaded for an invoice. Please rename the file and upload.'
+              }
+            });
+          } else {
+            this.dialog.open(InformationDialogComponent, {
+              data: {
+                title: 'Error',
+                message: 'Please Upload Only Pdf files'
+              }
+            });
+          }
         }
     }
      isfileExists(file) {
@@ -189,7 +188,7 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
           res => {
               this.showWorkAddrSaveButtonProgress = false;
           if (res['statusCode'] === 'SUCCESS') {}
-          }           
+          }
          );
       this.close();
     }
