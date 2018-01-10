@@ -1,0 +1,36 @@
+.pricetype {
+  text-align: center;
+  text-transform: uppercase;
+  color: #2298e7;
+  font-size: 26px;
+  font-weight: 700;
+  width: 100%;
+  float: left;
+}
+
+.pricetype-tagline {
+  text-align: center;
+  padding-left: 20%;
+  margin-bottom: 20px;
+  float: left;
+}
+
+.picebox {
+  background: #fff;width: 100%;min-height: 420px;
+  box-shadow: 1px 1px 5px #d6d6d6;
+  padding: 30px;
+  overflow: hidden;
+}
+.picebox p {
+  text-align: left;
+  font-size: 16px;
+  line-height: 50px;
+  margin: 30px auto 0px auto;
+  width: 80%;
+  font-weight: 400;
+}
+
+.price {
+  font-size: 38px;
+  font-weight: 700;
+}

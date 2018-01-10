@@ -17,7 +17,6 @@ export interface ConfirmModel {
   providers: [ManageAccountShippingAddressService]
 })
 export class ManageAccountShippingAddressComponent extends DialogComponent<ConfirmModel, boolean> implements OnInit {
-
   private message: string;
   private data;
   public getShipping = true;
@@ -30,23 +29,16 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
     public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
     this.settings = {
-
       'columnsettings': [
         {
-
           headerName: 'SL.NO',
-          field: 'slNo',
-
+          field: 'slNo'
         },
         {
-
           headerName: 'Address Name',
-          field: 'addressName',
-
-
+          field: 'addressName'
         },
         {
-
           headerName: 'Address',
           field: 'address',
           width: 100,
@@ -54,9 +46,20 @@ export class ManageAccountShippingAddressComponent extends DialogComponent<Confi
               'white-space': ' pre-line'
           }
         }
-
-      ]
-    }
+      ],
+      gridOptions: {
+        getRowHeight: function(params) {
+          // assuming 50 characters per line, working how how many lines we need
+          let addressSplitByNewLine = params.data.address.split('\n');
+          let lineNumbers = addressSplitByNewLine.length;
+          for (let addressLine of addressSplitByNewLine) {
+            lineNumbers = lineNumbers + Math.floor(addressLine.length / 30);
+          }
+          let rowheight = 20 * (lineNumbers + 1);
+          return rowheight < 40 ? 40 : (rowheight - 10);
+        }
+      }
+    };
 
   }
 

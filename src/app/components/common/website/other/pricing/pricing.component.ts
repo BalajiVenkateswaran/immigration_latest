@@ -3,8 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'ih-pricing',
-    templateUrl: 'pricing.component.html'
+  selector: 'ih-pricing',
+  templateUrl: 'pricing.component.html',
+  styleUrls: ['pricing.component.scss']
 })
 export class WebsitePricingComponent implements OnInit {
 
