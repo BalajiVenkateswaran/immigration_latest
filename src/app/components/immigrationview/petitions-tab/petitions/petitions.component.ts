@@ -7,6 +7,7 @@ import { MenuComponent } from '../../../common/menu/menu.component';
 import { PetitionsService } from './petitions.service';
 import { SortType } from '../../../framework/smarttable/types/query-parameters';
 import {SmartTableFrameworkComponent} from '../../../framework/smarttable/smarttable.component';
+import {QuestionnaireCommonService} from '../petition-details/questionnaires/common/questionnaire-common.service';
 
 @Component({
     selector: 'ih-immigrationview-petitions',
@@ -31,7 +32,7 @@ export class PetitionsComponent implements OnInit {
     private orgId: string;
     private petitionTypesData: any;
     public statusTypes: any = [];
-    constructor(private router: Router,
+    constructor(private router: Router, private questionnaireCommonService: QuestionnaireCommonService,
         private petitionService: PetitionsService, private appService: AppService,
         private menuComponent: MenuComponent, private headerService: HeaderService) {
 
@@ -213,6 +214,7 @@ export class PetitionsComponent implements OnInit {
         this.appService.clientfirstName = event.data.firstName;
         this.appService.clientlastName = event.data.lastName;
         this.appService.petitionType = event.data.petitionType;
+        this.questionnaireCommonService.questionnaireList = null;
         this.appService.moveToPage('immigrationview/petition/details/petition-details');
     }
     getPetitionTypeValues() {

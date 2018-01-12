@@ -12,6 +12,7 @@ import {MatDialog} from '@angular/material';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 import {AddPetitionDialogComponent, NewPetitionData} from './addpetition.component';
 import {ImmigrationClientCommonService} from '../common/immigration-client.service';
+import {QuestionnaireCommonService} from '../../../petitions-tab/petition-details/questionnaires/common/questionnaire-common.service';
 
 export interface ConfirmModel {
     title: string;
@@ -54,7 +55,7 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
         this.appService.currentSBLink = link;
     }
     constructor(private immigrationviewpetitionService: ImmigrationViewPetitionsService, public appService: AppService, private immigrationClientCommonService: ImmigrationClientCommonService,
-        private menuService: MenuService, private router: Router, private headerService: HeaderService,
+        private menuService: MenuService, private router: Router, private headerService: HeaderService, private questionnaireCommonService: QuestionnaireCommonService,
                 private clientDetailsService: ImmigrationViewClientDetailsService, private dialog: MatDialog) {
         this.addPetition = new FormGroup({
             petitionName: new FormControl(''),
@@ -223,6 +224,7 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
       console.log('petitions:::::%o', event.data);
       this.appService.petitionId = event.data.petitionId;
       this.appService.clientId = event.data.clientId;
+      this.questionnaireCommonService.questionnaireList = null;
       this.appService.moveToPage('immigrationview/petition/details/petition-details');
       this.appService.currentSBLink = 'Petition Details';
   }
