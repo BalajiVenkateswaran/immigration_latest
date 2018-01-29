@@ -21,6 +21,8 @@
                                 <h5 style="color:#283343!important;padding: 8px!important;"><strong>Stages</strong></h5>
                                 <button *ngIf="addDeleteBtn" type="button" class="iportal-btnIMclient pull-right" style="margin-top: -40px!important;margin-right: 7px !important" (click)="addPetitionStages()">Add</button>
                                 <div class="tbl-head-btn" style="margin-top: -43px!important;">
+
+                                    <button *ngIf="saveorder" type="button" class="iportal-btnIMclient pull-right" style="margin-top: 5px!important;margin-bottom: 5px;" (click)="saveOrder()">Save Order</button>
                                     <button *ngIf="cancelBtn" type="button" class="iportal-btnIMclient pull-left" style="margin-top: 5px!important; margin-bottom: 5px;color:#F87A00 !important;" (click)="cancelPetitionStages()">Cancel</button>
                                     <button *ngIf="saveBtn" type="button" class="iportal-btnIMclient pull-right" style="margin-top: 5px!important; margin-bottom: 5px;color: #008000 !important;" (click)="savePetitionStages(petitionStages)">Save</button>
                                 </div>
@@ -43,8 +45,7 @@
                                                 </div>
                                         </li>
                                         <input *ngIf="addStages" type="text" class="selecteditems" [value]="addPetionStagesName" (input)="addPetionStagesName=$event.target.value" autofocus/>
-                                    </ul>
-                                    <button *ngIf="saveorder" type="button" class="iportal-btnIMclient pull-right no-marg-right" style="margin-top: 5px!important;margin-bottom: 5px;" (click)="saveOrder()">Save Order</button>                                    
+                                    </ul>                                                                        
                                 </div>                            
 
                             </form>
