@@ -877,13 +877,13 @@ $dateColumnWidth:110px;
         left:0% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceDate"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceDate"] {
-        width:15% !important;
-        left:25% !important;
+        width: 15% !important;
+    left: 17% !important;
     }
 
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="invoiceAmount"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="invoiceAmount"] {
-        width:15% !important;
-        left:40% !important;
+          width: 15% !important;
+    left: 32% !important;
     }
     .ag-fresh .ag-ltr .ag-header-cell[col-id~="paymentRecieved"], .ag-fresh .ag-ltr .ag-cell-value[col-id~="paymentRecieved"] {
       width:10% !important;

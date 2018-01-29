@@ -47,7 +47,7 @@
                           </select>
 
                           <my-date-picker *ngIf="column['type'] == 'datePicker'"
-                                          [options]="datePickerOptions" [(ngModel)]="column['value']"
+                                          [options]="myDatePickerOptions" [(ngModel)]="column['value']"
                                           [selDate]="deniedDate"></my-date-picker>
 
                         </div>

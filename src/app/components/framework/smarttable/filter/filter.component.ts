@@ -3,7 +3,8 @@ import {SmartTableFrameworkComponent} from '../smarttable.component';
 import {DialogService, DialogComponent} from 'ng2-bootstrap-modal';
 import {FilterEntry} from '../types/query-parameters';
 import {DatePipe} from '@angular/common';
-
+import {IMyOptions} from 'mydatepicker';
+import {IHDateUtil} from '../../../framework/utils/date.component';
 
 export interface ConfirmModel {
   title: string;
@@ -25,7 +26,7 @@ export class FilterComponent extends DialogComponent<ConfirmModel, boolean> {
   @Output() addRecordClick = new EventEmitter();
 
   public dateValue;
-
+  public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
   showFilters = true;
   addMorefilters = false;
   /**
