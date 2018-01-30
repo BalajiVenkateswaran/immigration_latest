@@ -8,7 +8,7 @@ import {ApplicationRoles} from '../../../common/constants/applicationroles.const
 @Component({
     template: `
     <div>
-     <button class="iportal-btnIMclient" id="{{this.getId()}}" [ngClass]="{'myclass':switchdisable,'iportal-btnIMclient btnhov':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
+     <button class="iportal-btnIMclient" name="switchButton" id="{{this.getId()}}" [ngClass]="{'myclass':switchdisable,'iportal-btnIMclient btnhov':!switchdisable}" [disabled]="switchdisable" (click)="onSwitchClick(this.params)">Switch</button>
     </div>
    `
 
@@ -30,11 +30,7 @@ export class SwitchButtonComponent implements ICellRendererAngularComp {
     }
 
     getId(): string {
-      if (this.params.data.accountId) {
-        return this.params.data.accountId;
-      } else {
-        return this.params.data.roleName;
-      }
+      return this.params.data.roleName + '_' + this.params.data.accountName;
     }
 
     onSwitchClick(params) {
