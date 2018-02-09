@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     template: `<button class="btn iportal-btnIMclient" style="margin: -4px 0px 0px 0px !important;"  [ngClass]="{'myclass':disableButton(),'btn iportal-btnIMclient':!disableButton()}"  [disabled]="disableButton()"
-                       (click)="download()">Download Form</button>`,
+                       (click)="download()">Download</button>`,
 
 })
 export class DownloadInvoiceButtonComponent implements ICellRendererAngularComp {

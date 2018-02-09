@@ -56,11 +56,7 @@ export class ManageAccountInvoicesComponent extends DialogComponent<ConfirmModel
           field: 'paymentReceived'
         },
         {
-          headerName: 'PDF Uploaded',
-          field: 'fileName'
-        },
-        {
-          headerName: 'Download Button',
+          headerName: 'Invoice PDF',
           cellRendererFramework: DownloadInvoiceButtonComponent
         }
       ]
