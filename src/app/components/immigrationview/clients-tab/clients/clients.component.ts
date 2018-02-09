@@ -231,14 +231,10 @@ export class ClientsComponent extends DialogComponent<ConfirmModel, boolean> imp
                 }
               );
             } else {
-              let message = res['statusDescription'];
-              if (res['statusDescription'] === 'Duplicate client') {
-                message = 'User already Exists';
-              }
               this.dialog.open(InformationDialogComponent, {
                 data: {
                   title: 'Error',
-                  message: message
+                  message: res['statusDescription']
                 }
               });
               this.saveButtonProgress = false;
