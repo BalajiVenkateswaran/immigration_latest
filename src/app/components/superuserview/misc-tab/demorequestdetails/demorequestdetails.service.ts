@@ -11,4 +11,7 @@ export class DemoRequestDetailsService {
     public savedemoRequest(data: any) {
         return this.restService.putData('/superuser/misc/demo', data);
     }
+    public removeDemoRequest(demoId: string) {
+        return this.restService.deleteData('/superuser/misc/demo/' + demoId);
+    }
 }

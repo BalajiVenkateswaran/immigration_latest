@@ -131,4 +131,7 @@ export class SuperuserViewAccountDetailsComponent implements OnInit {
     }
 
   }
+  getMFDDetails(accountDetails: any){
+    return accountDetails.mfdBy ? accountDetails.mfdBy + ' On ' + accountDetails.mfdOn : '';
+  }
 }

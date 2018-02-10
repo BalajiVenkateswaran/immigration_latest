@@ -90,7 +90,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsMdelDetails">Mark For Deletion details</label></div>
-                        <div class="col-md-8"><input [disabled]="isEdit" maxlength="100" type="text" id="svActDetailsMdelDetails" [(ngModel)]="accountDetails.mfdBy"/></div>
+                        <div class="col-md-8"><input [disabled]="true" type="text" id="svActDetailsMdelDetails" [value]="getMFDDetails(accountDetails)"/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><label for="svActDetailsComments">Notes/Comments</label></div>

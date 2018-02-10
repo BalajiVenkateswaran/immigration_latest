@@ -5,6 +5,8 @@ import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {IMyOptions} from 'mydatepicker';
 import {HeaderService} from '../../../common/header/header.service';
 import {IHDateUtil} from '../../../framework/utils/date.component';
+import {ConfirmationDialogComponent} from "../../../framework/popup/confirmation/confirmation.component";
+import {MatDialog} from "@angular/material";
 export interface ConfirmModel {
     title: string;
     message: string;
@@ -27,7 +29,7 @@ export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, b
     public demoRequestDate: any;
     public showWorkAddrSaveButtonProgress = false;
     public myDatePickerOptions: IMyOptions = IHDateUtil.datePickerOptions;
-  constructor(private demorequestdetailsservice: DemoRequestDetailsService,
+  constructor(private demorequestdetailsservice: DemoRequestDetailsService, private dialog: MatDialog,
               private appService: AppService, public dialogService: DialogService, private headerService: HeaderService) {
     super(dialogService);
 
@@ -79,7 +81,7 @@ export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, b
                 this.data = res.demoRequests;
             });
     }
-    addFunction() {
+    addRecord() {
         this.dialogService.addDialog(DemoRequestDetailsComponent, {
             adddemorequest: true,
             getdemorequests: false,
@@ -105,6 +107,24 @@ export class DemoRequestDetailsComponent extends DialogComponent<ConfirmModel, b
             }
         });
     }
+
+
+    removeRecord(event){
+      this.dialog.open(ConfirmationDialogComponent, {
+        data: {
+          message: 'Are you sure you want to Delete?'
+        }
+      }).afterClosed().subscribe((isConfirmed) => {
+        if (isConfirmed) {
+          this.demorequestdetailsservice.removeDemoRequest(event.data.demoRequestId).subscribe((res) => {
+            if (res['statusCode'] === 'SUCCESS') {
+              this.getDemoRequests();
+            }
+          });
+        }
+      });
+    }
+
     demorequestsave(email) {
         this.showWorkAddrSaveButtonProgress = true;
         if (this.adddemoRequests['demoRequestDate']) {

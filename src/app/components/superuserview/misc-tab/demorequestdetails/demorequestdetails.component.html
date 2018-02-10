@@ -1,7 +1,7 @@
 <div class="main-content"  *ngIf="getdemorequests">
     <div class="table-data">
       <h2 _ngcontent-c6="" class="headerinsections" style="margin-top: 0px !important;color: #4EA0F9 !important;margin-bottom: 7px!important;">Demo Request Details</h2>
-        <ih-smart-table class="benadd" [settings]="settings" [data]="data" (onAddClick)="addFunction($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="deleteRecord($event)">
+        <ih-smart-table class="benadd" [settings]="settings" [data]="data" (onAddClick)="addRecord($event)" (onRowClick)="editRecord($event)" (onDeleteClick)="removeRecord($event)">
         </ih-smart-table>
     </div>
 </div>
@@ -67,9 +67,9 @@
                             <div class="col-md-7">
                                 <div class="row">
                                     <div></div>
-                                    <div class="col-md-6"> <button type="button" id="svMiscDemoSave" class="editbtn tbl-head-btn iportal-btnIMclient" 
+                                    <div class="col-md-6"> <button type="button" id="svMiscDemoSave" class="editbtn tbl-head-btn iportal-btnIMclient"
 	style="color: #008000 !important;margin-top: 4px!important; width: 100%;margin-right: 0%;" [ngClass]="{'loader': showWorkAddrSaveButtonProgress}" [disabled]="showWorkAddrSaveButtonProgress" (click)="demorequestsave(emailId.errors,roles)">Save</button></div>
-                                    <div class="col-md-6"> <button type="button" id="svMiscDemoCancel" class="editbtn tbl-head-btn iportal-btnIMclient" 
+                                    <div class="col-md-6"> <button type="button" id="svMiscDemoCancel" class="editbtn tbl-head-btn iportal-btnIMclient"
 	style="color: #FF0000 !important;margin-left: 4px;width: 100%;margin-top: 4px!important;" (click)="cancel()">Cancel</button> </div>
                                 </div>
                             </div>
