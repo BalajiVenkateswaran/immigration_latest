@@ -9,6 +9,7 @@ import {InvoiceUploadButtonComponent} from './invoiceuploadbutton';
 import {InformationDialogComponent} from '../../../../framework/popup/information/information.component';
 import {MatDialog} from '@angular/material';
 import {IHDateUtil} from '../../../../framework/utils/date.component';
+import {FileUtils} from "../../../../common/FileUtils";
 
 export interface ConfirmModel {
     title: string;
@@ -96,26 +97,26 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
                 }
             });
     }
-    editRecord(event) {
-        if (event.colDef.headerName !== 'PDF Uploaded' && event.colDef.headerName !== 'Download Button') {
-        this.dialogService.addDialog(AccountInvoiceComponent, {
-            title: 'View Invoice Details',
-            viewPopup: true,
-            getInvoice: false,
-            addInvoice: false,
-            invoice: event.data
-        })
-        }
-    }
-    cancel() {
-         this.close();
-    }
-    onDownloadClick(event) {
-       this.accountInvoiceService.downloadFile(event.data.invoiceId).subscribe
-            (data => this.downloadFiles(data, event.data.fileName),
-            error => console.log('Error Downloading....'),
-        () => console.log('OK'));
-    }
+  editRecord(event) {
+      if (event.colDef.headerName !== 'PDF Uploaded' && event.colDef.headerName !== 'Download Button') {
+      this.dialogService.addDialog(AccountInvoiceComponent, {
+          title: 'View Invoice Details',
+          viewPopup: true,
+          getInvoice: false,
+          addInvoice: false,
+          invoice: event.data
+      })
+      }
+  }
+  cancel() {
+       this.close();
+  }
+  onDownloadClick(event) {
+     this.accountInvoiceService.downloadFile(event.data.invoiceId).subscribe
+          (data => this.downloadFiles(data, event.data.fileName),
+          error => console.log('Error Downloading....'),
+      () => console.log('OK'));
+  }
 
   downloadInvoice(event) {
     this.accountInvoiceService.downloadFile(event.invoiceId).subscribe
@@ -124,22 +125,30 @@ export class AccountInvoiceComponent extends DialogComponent<ConfirmModel, boole
     () => console.log('OK'));
   }
 
-    downloadFiles(data: any, fileName) {
-        let blob = new Blob([data], {
-            type: 'application/pdf'
-        });
-        FileSaver.saveAs(blob, fileName);
+  downloadFiles(data: any, fileName) {
+    if(fileName != undefined && fileName != null && fileName != ''){
+      let blob = new Blob([data], {
+        type: 'application/pdf'
+      });
+      FileSaver.saveAs(blob, fileName);
+    } else {
+      this.dialogService.removeAll();
+      this.dialog.open(InformationDialogComponent, {
+        data: {
+          title: 'Error',
+          message: 'No file to download'
+        }
+      });
     }
+  }
   popupInvoiceFileUploadClick(event: any, data: any) {
    this.onUploadClick( {'event': event, 'data': data});
   }
     onUploadClick(event) {
         let fileList: FileList = event.event.target.files;
         let file: File = fileList[0];
-        let x = file.name;
         let fileExists = this.isfileExists(file);
-        let y = x.split('.');
-        if (fileList.length > 0 && y[1] === 'pdf' && fileExists !== true) {
+        if (fileList.length > 0 && FileUtils.checkFileExtension(file.name) && fileExists !== true) {
           let formData: FormData = new FormData();
           formData.append('file', file, file.name);
 
