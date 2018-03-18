@@ -224,6 +224,7 @@ export class ImmigrationViewPetitionsComponent implements OnInit {
       console.log('petitions:::::%o', event.data);
       this.appService.petitionId = event.data.petitionId;
       this.appService.clientId = event.data.clientId;
+      this.appService.petitionType = event.data.petitionType;
       this.questionnaireCommonService.questionnaireList = null;
       this.appService.moveToPage('immigrationview/petition/details/petition-details');
       this.appService.currentSBLink = 'Petition Details';

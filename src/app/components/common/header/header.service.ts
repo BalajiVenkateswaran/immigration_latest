@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {ApplicationRoles} from '../constants/applicationroles.constants';
 import {User} from '../../../models/user';
 import {MatDialog} from '@angular/material';
+import {DialogService} from "ng2-bootstrap-modal";
 
 @Injectable()
 export class HeaderService {
@@ -19,7 +20,7 @@ export class HeaderService {
   private _currentTab: string;
   private _isBurgerMenuVisible: boolean;
 
-  constructor(private appService: AppService, private dialog: MatDialog) {
+  constructor(private appService: AppService, private dialog: MatDialog, private dialogService: DialogService) {
   }
 
   get Immigrant(): string {
@@ -127,6 +128,7 @@ export class HeaderService {
   }
 
   logOut() {
+    this.dialogService.removeAll();
     this.dialog.closeAll();
     this.destroy();
     // Explict clean up of user object from headerService while logout
